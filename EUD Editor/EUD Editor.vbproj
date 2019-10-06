@@ -856,9 +856,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EUD Editor.ico" />
-    <None Include="Resources\MurakamiShiinaQC.txt" />
     <None Include="Resources\AshWorld003.dds" />
-    <None Include="Resources\MurakamiShiinaQC.py" />
     <None Include="Resources\StringAnimater.png" />
     <None Include="Resources\MostRecentlyRedo.png" />
     <None Include="Resources\successBulid.wav" />
@@ -866,7 +864,6 @@
     <None Include="Resources\ICON_SCDB.png" />
     <None Include="Resources\LoadFile.png" />
     <None Include="Resources\customText.txt" />
-    <None Include="Resources\punitloop.txt" />
     <None Include="Resources\FileSetting.png" />
     <None Include="Resources\ICON_SoundPlayer.png" />
     <None Include="Resources\MurakamiShiinaQC.png" />
@@ -877,7 +874,6 @@
     <None Include="Resources\Console.png" />
     <None Include="Resources\Colortable.png" />
     <None Include="Resources\MapEditor.png" />
-    <None Include="Resources\punitloop.py" />
     <None Include="Resources\Savefile.png" />
     <None Include="Resources\ICON_TriggerEditor.png" />
     <None Include="Resources\Insert.png" />

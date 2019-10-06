@@ -482,7 +482,6 @@ Module TriggerEditorDataMoudle
         If ProjectSet.SCDBUse Then
             strbulider.AppendLine("import SCDB as scdb;")
         End If
-        strbulider.AppendLine("import punitloop as lp;")
         strbulider.AppendLine("import tempcustomText as tct;")
 
         strbulider.AppendLine(vbCrLf & "var txtPtr;")

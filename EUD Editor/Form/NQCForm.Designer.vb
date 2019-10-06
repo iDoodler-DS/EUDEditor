@@ -134,10 +134,10 @@ Partial Class NQCForm
         Me.FlowLayoutPanel1.Controls.Add(Me.RadioButton2)
         Me.FlowLayoutPanel1.Controls.Add(Me.EasyCompletionComboBox1)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 19)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 23)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(305, 59)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(305, 55)
         Me.FlowLayoutPanel1.TabIndex = 21
         '
         'RadioButton1
@@ -146,7 +146,7 @@ Partial Class NQCForm
         Me.RadioButton1.Location = New System.Drawing.Point(3, 5)
         Me.RadioButton1.Margin = New System.Windows.Forms.Padding(3, 5, 3, 3)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(77, 19)
+        Me.RadioButton1.Size = New System.Drawing.Size(95, 24)
         Me.RadioButton1.TabIndex = 2
         Me.RadioButton1.TabStop = True
         Me.RadioButton1.Text = "직접 입력"
@@ -155,19 +155,19 @@ Partial Class NQCForm
         'TextBox1
         '
         Me.TextBox1.Enabled = False
-        Me.TextBox1.Location = New System.Drawing.Point(86, 3)
+        Me.TextBox1.Location = New System.Drawing.Point(104, 3)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(195, 23)
+        Me.TextBox1.Size = New System.Drawing.Size(195, 27)
         Me.TextBox1.TabIndex = 4
         '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Checked = True
-        Me.RadioButton2.Location = New System.Drawing.Point(3, 34)
+        Me.RadioButton2.Location = New System.Drawing.Point(3, 38)
         Me.RadioButton2.Margin = New System.Windows.Forms.Padding(3, 5, 3, 3)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(77, 19)
+        Me.RadioButton2.Size = New System.Drawing.Size(95, 24)
         Me.RadioButton2.TabIndex = 3
         Me.RadioButton2.TabStop = True
         Me.RadioButton2.Text = "키보드 값"
@@ -178,10 +178,10 @@ Partial Class NQCForm
         Me.EasyCompletionComboBox1.FormattingEnabled = True
         Me.EasyCompletionComboBox1.IntegralHeight = False
         Me.EasyCompletionComboBox1.Items.AddRange(New Object() {"LBUTTON", "RBUTTON", "CANCEL", "MBUTTON", "XBUTTON1", "XBUTTON2", "BACK", "TAB", "CLEAR", "ENTER", "NX5", "SHIFT", "LCTRL", "LALT", "PAUSE", "CAPSLOCK", "RALT", "JUNJA", "FINAL", "RCTRL", "ESC", "CONVERT", "NONCONVERT", "ACCEPT", "MODECHANGE", "SPACE", "PGUP", "PGDN", "END", "HOME", "LEFT", "UP", "RIGHT", "DOWN", "SELECT", "PRINTSCREEN", "EXECUTE", "SNAPSHOT", "INSERT", "DELETE", "HELP", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "LWIN", "RWIN", "속성", "SLEEP", "NUMPAD0", "NUMPAD1", "NUMPAD2", "NUMPAD3", "NUMPAD4", "NUMPAD5", "NUMPAD6", "NUMPAD7", "NUMPAD8", "NUMPAD9", "NUMPAD*", "NUMPAD+", "SEPARATOR", "NUMPAD-", "NUMPAD.", "NUMPAD/", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19", "F20", "F21", "F22", "F23", "F24", "NUMLOCK", "SCROLL", "OEM_FJ_JISHO", "OEM_FJ_MASSHOU", "OEM_FJ_TOUROKU", "OEM_FJ_LOYA", "OEM_FJ_ROYA", "LSHIFT", "RSHIFT", "LCONTROL", "RCONTROL", "LMENU", "RMENU", "BROWSER_BACK", "BROWSER_FORWARD", "BROWSER_REFRESH", "BROWSER_STOP", "BROWSER_SEARCH", "BROWSER_FAVORITES", "BROWSER_HOME", "VOLUME_MUTE", "VOLUME_DOWN", "VOLUME_UP", "MEDIA_NEXT_TRACK", "MEDIA_PREV_TRACK", "MEDIA_STOP", "MEDIA_PLAY_PAUSE", "LAUNCH_MAIL", "LAUNCH_MEDIA_SELECT", "LAUNCH_APP1", "LAUNCH_APP2", "SEMICOLON", "=", ",", "-", ".", "/", "`", "ABNT_C1", "ABNT_C2", "[", "|", "]", "'", "OEM_8", "OEM_AX", "OEM_102", "ICO_HELP", "ICO_00", "PROCESSKEY", "ICO_CLEAR", "PACKET", "OEM_RESET", "OEM_JUMP", "OEM_PA1", "OEM_PA2", "OEM_PA3", "OEM_WSCTRL", "OEM_CUSEL", "OEM_ATTN", "OEM_FINISH", "OEM_COPY", "OEM_AUTO", "OEM_ENLW", "OEM_BACKTAB", "ATTN", "CRSEL", "EXSEL", "EREOF", "PLAY", "ZOOM", "NONAME", "PA1", "OEM_CLEAR", "_NONE_"})
-        Me.EasyCompletionComboBox1.Location = New System.Drawing.Point(86, 32)
+        Me.EasyCompletionComboBox1.Location = New System.Drawing.Point(104, 36)
         Me.EasyCompletionComboBox1.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.EasyCompletionComboBox1.Name = "EasyCompletionComboBox1"
-        Me.EasyCompletionComboBox1.Size = New System.Drawing.Size(138, 23)
+        Me.EasyCompletionComboBox1.Size = New System.Drawing.Size(138, 28)
         Me.EasyCompletionComboBox1.TabIndex = 5
         '
         'GroupBox2
@@ -202,10 +202,10 @@ Partial Class NQCForm
         Me.FlowLayoutPanel3.Controls.Add(Me.RadioButton4)
         Me.FlowLayoutPanel3.Controls.Add(Me.FlowLayoutPanel2)
         Me.FlowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(3, 19)
+        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(3, 23)
         Me.FlowLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel3.Name = "FlowLayoutPanel3"
-        Me.FlowLayoutPanel3.Size = New System.Drawing.Size(305, 97)
+        Me.FlowLayoutPanel3.Size = New System.Drawing.Size(305, 93)
         Me.FlowLayoutPanel3.TabIndex = 20
         '
         'RadioButton3
@@ -214,7 +214,7 @@ Partial Class NQCForm
         Me.RadioButton3.Location = New System.Drawing.Point(3, 5)
         Me.RadioButton3.Margin = New System.Windows.Forms.Padding(3, 5, 3, 3)
         Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(77, 19)
+        Me.RadioButton3.Size = New System.Drawing.Size(95, 24)
         Me.RadioButton3.TabIndex = 5
         Me.RadioButton3.Text = "직접 입력"
         Me.RadioButton3.UseVisualStyleBackColor = True
@@ -222,19 +222,19 @@ Partial Class NQCForm
         'TextBox2
         '
         Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(86, 3)
+        Me.TextBox2.Location = New System.Drawing.Point(3, 35)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(213, 23)
+        Me.TextBox2.Size = New System.Drawing.Size(213, 27)
         Me.TextBox2.TabIndex = 8
         '
         'RadioButton4
         '
         Me.RadioButton4.AutoSize = True
         Me.RadioButton4.Checked = True
-        Me.RadioButton4.Location = New System.Drawing.Point(3, 34)
+        Me.RadioButton4.Location = New System.Drawing.Point(222, 37)
         Me.RadioButton4.Margin = New System.Windows.Forms.Padding(3, 5, 3, 3)
         Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(49, 19)
+        Me.RadioButton4.Size = New System.Drawing.Size(60, 24)
         Me.RadioButton4.TabIndex = 6
         Me.RadioButton4.TabStop = True
         Me.RadioButton4.Text = "유닛"
@@ -246,7 +246,7 @@ Partial Class NQCForm
         Me.FlowLayoutPanel2.Controls.Add(Me.EasyCompletionComboBox2)
         Me.FlowLayoutPanel2.Controls.Add(Me.Label2)
         Me.FlowLayoutPanel2.Controls.Add(Me.NumericUpDown1)
-        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(58, 32)
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(3, 68)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
         Me.FlowLayoutPanel2.Size = New System.Drawing.Size(241, 62)
         Me.FlowLayoutPanel2.TabIndex = 7
@@ -257,7 +257,7 @@ Partial Class NQCForm
         Me.Label1.Location = New System.Drawing.Point(3, 7)
         Me.Label1.Margin = New System.Windows.Forms.Padding(3, 7, 3, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(71, 15)
+        Me.Label1.Size = New System.Drawing.Size(89, 20)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "데스값 유닛"
         '
@@ -265,32 +265,32 @@ Partial Class NQCForm
         '
         Me.EasyCompletionComboBox2.FormattingEnabled = True
         Me.EasyCompletionComboBox2.IntegralHeight = False
-        Me.EasyCompletionComboBox2.Location = New System.Drawing.Point(80, 3)
+        Me.EasyCompletionComboBox2.Location = New System.Drawing.Point(3, 30)
         Me.EasyCompletionComboBox2.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.EasyCompletionComboBox2.Name = "EasyCompletionComboBox2"
-        Me.EasyCompletionComboBox2.Size = New System.Drawing.Size(155, 23)
+        Me.EasyCompletionComboBox2.Size = New System.Drawing.Size(155, 28)
         Me.EasyCompletionComboBox2.TabIndex = 2
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(3, 36)
+        Me.Label2.Location = New System.Drawing.Point(3, 63)
         Me.Label2.Margin = New System.Windows.Forms.Padding(3, 7, 3, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(71, 15)
+        Me.Label2.Size = New System.Drawing.Size(89, 20)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "데스값 수치"
         '
         'NumericUpDown1
         '
-        Me.NumericUpDown1.Location = New System.Drawing.Point(80, 32)
+        Me.NumericUpDown1.Location = New System.Drawing.Point(3, 86)
         Me.NumericUpDown1.Name = "NumericUpDown1"
-        Me.NumericUpDown1.Size = New System.Drawing.Size(155, 23)
+        Me.NumericUpDown1.Size = New System.Drawing.Size(155, 27)
         Me.NumericUpDown1.TabIndex = 4
         '
         'NQCForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(317, 242)
         Me.ControlBox = False

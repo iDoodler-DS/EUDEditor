@@ -1,3 +1,17 @@
+[ 패치노트 0.17.9.1 ]
+
+- MSQC 마우스 로케이션 UI 최신버전에 맞게 수정.
+첫 사람 플레이어가 쓸 로케이션을 입력하면, 다음 사람이 다음 로케이션을 사용합니다.
+예시) Location 1을 마우스 로케이션으로 설정하고, 맵의 Human 플레이어가 P1,2,3,5라면
+각자 마우스 로케이션으로 Location 1, 2, 3, 5를 사용합니다.
+- AttackGround 와 ButtonRefresh가 캔낫 때 EUD오류 안 나게 수정했습니다.
+- TE함수 인게임 성능 최적화: AddSizeLocation, AddStatusFlags(EPD), BuildReset(EPD),
+ COrderLocEPD, SetLocation(LURD), SetLocationToUnit(EPD), EUDMoveLocation,
+  LocationAngle, PolarLocation.
+- 자동 업데이트 링크 수정
+- ct.sprintf, ct.setcachedcp 관련 오류 수정
+- punitloop.py 삭제, 표준 함수 사용하게 수정
+
 [ 패치노트 0.17.9.0 ]
 
 - customText이 StringBuffer 사용하게 수정 (1.23.1 패치 대응)

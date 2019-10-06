@@ -31,17 +31,13 @@
 
         lists.Clear()
         ListBox1.Items.Clear()
-        For i = 0 To 7
-            lists.Add(0)
-            ListBox1.Items.Add("Player" & i + 1 & " : None")
-        Next
+        lists.Add(0)
+        ListBox1.Items.Add("First Human Player : None")
 
-        For i = 0 To liststr.Count - 1
-            If liststr(i) <> "" Then
-                lists(i) = liststr(i)
-                ListBox1.Items(i) = "Player" & i + 1 & " : " & EasyCompletionComboBox1.Items(liststr(i))
-            End If
-        Next
+        If liststr(0) <> "" Then
+            lists(0) = liststr(0)
+            ListBox1.Items(0) = "First Human Player : " & EasyCompletionComboBox1.Items(liststr(0))
+        End If
     End Sub
 
 
@@ -65,10 +61,14 @@
         If loadstatus Then
             loadstatus = False
             If ListBox1.SelectedIndex <> -1 Then
-                ListBox1.Items(ListBox1.SelectedIndex) = "Player" & ListBox1.SelectedIndex + 1 & " : " & EasyCompletionComboBox1.SelectedItem
+                ListBox1.Items(ListBox1.SelectedIndex) = "First Human Player : " & EasyCompletionComboBox1.SelectedItem
                 lists(ListBox1.SelectedIndex) = EasyCompletionComboBox1.SelectedIndex
             End If
             loadstatus = True
         End If
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+
     End Sub
 End Class

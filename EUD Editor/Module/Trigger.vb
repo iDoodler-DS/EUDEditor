@@ -2036,12 +2036,12 @@ Public Class Element
             _rtext = ElementNames(Type)
             Select Case Type
                 Case ElementType.Switch
-                    _rtext = "EUDSwitch(" & Values(0) & ");"
+                    _rtext = "switch(" & Values(0) & ") {"
                 Case ElementType.Switchcase
                     If Values(0) = -1 Then
-                        _rtext = "EUDSwitchDefault()();"
+                        _rtext = "  default:"
                     Else
-                        _rtext = "EUDSwitchCase()(" & Values(0) & ");"
+                        _rtext = "  case " & Values(0) & ":"
                     End If
                 Case ElementType.Foluder
                     _rtext = Values(0)
@@ -2070,9 +2070,9 @@ Public Class Element
                                 Case 0
                                     _playerText = "EUDLoopUnit()"
                                 Case 13
-                                    _playerText = "lp.EUDLoopUnit2()"
+                                    _playerText = "EUDLoopUnit2()"
                                 Case Else
-                                    _playerText = "lp.EUDLoopPUnit(" & Values(1) - 1 & ")"
+                                    _playerText = "EUDLoopPlayerUnit(" & Values(1) - 1 & ")"
                             End Select
 
 
@@ -2423,11 +2423,11 @@ Public Class Element
             Case ElementType.Switchcase
                 If Values(1) Then
                     LineCount += 1
-                    _stringb.AppendLine(GetIntend(intend - 1) & "EUDBreak();")
+                    _stringb.AppendLine(GetIntend(intend - 1) & "break;")
                 End If
             Case ElementType.Switch
                 LineCount += 1
-                _stringb.AppendLine(GetIntend(intend - 1) & "EUDEndSwitch();")
+                _stringb.AppendLine(GetIntend(intend - 1) & "}")
 
             Case ElementType.함수정의
                 LineCount += 1

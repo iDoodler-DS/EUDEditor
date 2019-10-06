@@ -166,9 +166,6 @@
   <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="punitloop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\punitloop.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;ks_c_5601-1987</value>
-  </data>
   <data name="UnitOrder" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\UnitOrder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -551,34 +551,6 @@ Namespace My.Resources
             End Get
         End Property
         
-        '''<summary>
-        '''  from eudplib import *
-        '''
-        '''
-        '''@EUDFunc
-        '''def f_dwepdcunitread_epd_safe(targetplayer):
-        '''    # from advanced read/write functions
-        '''    # https://github.com/armoha/euddraftAddons/raw/master/lib/advrw.zip
-        '''
-        '''    ret, retepd = EUDVariable(), EUDVariable()
-        '''
-        '''    # Common comparison rawtrigger
-        '''    PushTriggerScope()
-        '''    cmpc = Forward()
-        '''    cmp_player = cmpc + 4
-        '''    cmp_number = cmpc + 8
-        '''    cmpact = Forward()
-        '''
-        '''    cmptrigger = Forward()
-        '''    cmptrigger &lt;&lt; RawTrigger(
-        '''        conditions=[
-        '''            cmpc &lt;&lt;[나머지 문자열은 잘림]&quot;;과(와) 유사한 지역화된 문자열을 찾습니다.
-        '''</summary>
-        Friend ReadOnly Property punitloop() As String
-            Get
-                Return ResourceManager.GetString("punitloop", resourceCulture)
-            End Get
-        End Property
         
         '''<summary>
         '''  System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.

@@ -179,14 +179,12 @@ Namespace eudplib
 
 
 
-                    If nqclocs.Split(",").Count = 8 Then
+                    If nqclocs.Split(",").Count = 1 Then
                         Dim locs() As String = nqclocs.Split(",")
                         Dim _flag As Boolean = True
-                        For i = 0 To 7
-                            If Val(locs(i)) = 0 Then
-                                _flag = False
-                            End If
-                        Next
+                        If Val(locs(0)) = 0 Then
+                            _flag = False
+                        End If
                         If _flag = True Then
                             _values.Clear()
                             _values.Add("None")
@@ -198,11 +196,7 @@ Namespace eudplib
                                 End If
                             Next
 
-                            returntext.Append("마우스 : " & _values(Val(locs(0))))
-                            For i = 1 To 7
-                                returntext.Append(", " & _values(Val(locs(i))))
-                            Next
-                            returntext.AppendLine()
+                            returntext.AppendLine("마우스 : " & _values(Val(locs(0))))
                         End If
                     End If
                 End If
@@ -1307,16 +1301,6 @@ Namespace eudplib
                 streamwriter = New StreamWriter(filestream) ', Encoding.GetEncoding("ks_c_5601-1987"))
 
                 streamwriter.Write(My.Resources.customText)
-
-                streamwriter.Close()
-                filestream.Close()
-
-
-                filename = basefolder & "\eudplibdata\punitloop.py"
-                filestream = New FileStream(filename, FileMode.Create)
-                streamwriter = New StreamWriter(filestream) ', Encoding.GetEncoding("ks_c_5601-1987"))
-
-                streamwriter.Write(My.Resources.punitloop)
 
                 streamwriter.Close()
                 filestream.Close()

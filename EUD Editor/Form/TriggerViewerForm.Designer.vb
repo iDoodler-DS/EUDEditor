@@ -45,12 +45,12 @@ Partial Class TriggerViewerForm
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.FlowLayoutPanel1, 0, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 24)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 28)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 2
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(751, 403)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(751, 399)
         Me.TableLayoutPanel1.TabIndex = 1
         '
         'FlowLayoutPanel1
@@ -61,7 +61,7 @@ Partial Class TriggerViewerForm
         Me.FlowLayoutPanel1.Controls.Add(Me.CheckBox1)
         Me.FlowLayoutPanel1.Controls.Add(Me.CheckBox2)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 369)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 365)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(745, 31)
         Me.FlowLayoutPanel1.TabIndex = 2
@@ -85,7 +85,7 @@ Partial Class TriggerViewerForm
         Me.Label1.Location = New System.Drawing.Point(126, 6)
         Me.Label1.Margin = New System.Windows.Forms.Padding(3, 6, 3, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(95, 15)
+        Me.Label1.Size = New System.Drawing.Size(119, 20)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "트리거 플레이어"
         '
@@ -95,9 +95,9 @@ Partial Class TriggerViewerForm
         Me.ComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7", "Player8"})
-        Me.ComboBox1.Location = New System.Drawing.Point(227, 3)
+        Me.ComboBox1.Location = New System.Drawing.Point(251, 3)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(167, 23)
+        Me.ComboBox1.Size = New System.Drawing.Size(167, 28)
         Me.ComboBox1.TabIndex = 1
         '
         'CheckBox1
@@ -105,10 +105,10 @@ Partial Class TriggerViewerForm
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Checked = True
         Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Location = New System.Drawing.Point(400, 6)
+        Me.CheckBox1.Location = New System.Drawing.Point(424, 6)
         Me.CheckBox1.Margin = New System.Windows.Forms.Padding(3, 6, 3, 3)
         Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(56, 19)
+        Me.CheckBox1.Size = New System.Drawing.Size(69, 24)
         Me.CheckBox1.TabIndex = 0
         Me.CheckBox1.Text = "SetTo"
         Me.CheckBox1.UseVisualStyleBackColor = True
@@ -118,20 +118,21 @@ Partial Class TriggerViewerForm
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.Checked = True
         Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox2.Location = New System.Drawing.Point(462, 6)
+        Me.CheckBox2.Location = New System.Drawing.Point(499, 6)
         Me.CheckBox2.Margin = New System.Windows.Forms.Padding(3, 6, 3, 3)
         Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(110, 19)
+        Me.CheckBox2.Size = New System.Drawing.Size(136, 24)
         Me.CheckBox2.TabIndex = 3
         Me.CheckBox2.Text = "View Comment"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.컴파일ToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(751, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(751, 28)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -139,7 +140,7 @@ Partial Class TriggerViewerForm
         '
         Me.컴파일ToolStripMenuItem.Name = "컴파일ToolStripMenuItem"
         Me.컴파일ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.컴파일ToolStripMenuItem.Size = New System.Drawing.Size(93, 20)
+        Me.컴파일ToolStripMenuItem.Size = New System.Drawing.Size(116, 24)
         Me.컴파일ToolStripMenuItem.Text = "저장(Ctrl + &S)"
         '
         'FileSystemWatcher1
@@ -149,7 +150,7 @@ Partial Class TriggerViewerForm
         '
         'TriggerViewerForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(751, 427)

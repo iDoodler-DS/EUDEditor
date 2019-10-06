@@ -104,15 +104,15 @@ Partial Class LocationSetForm
         Me.EasyCompletionComboBox1.Location = New System.Drawing.Point(3, 135)
         Me.EasyCompletionComboBox1.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.EasyCompletionComboBox1.Name = "EasyCompletionComboBox1"
-        Me.EasyCompletionComboBox1.Size = New System.Drawing.Size(347, 23)
+        Me.EasyCompletionComboBox1.Size = New System.Drawing.Size(347, 28)
         Me.EasyCompletionComboBox1.TabIndex = 19
         '
         'ListBox1
         '
         Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 15
-        Me.ListBox1.Items.AddRange(New Object() {"P1 : None", "P2 : None", "P3 : None", "P4 : None", "P5 : None", "P6 : None", "P7 : None", "P8 : None"})
+        Me.ListBox1.ItemHeight = 20
+        Me.ListBox1.Items.AddRange(New Object() {"First Human Player : None"})
         Me.ListBox1.Location = New System.Drawing.Point(3, 3)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(347, 126)
@@ -120,7 +120,7 @@ Partial Class LocationSetForm
         '
         'LocationSetForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(353, 192)
         Me.ControlBox = False
