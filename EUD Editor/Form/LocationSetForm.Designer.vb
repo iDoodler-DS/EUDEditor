@@ -28,9 +28,9 @@ Partial Class LocationSetForm
         Me.Button6 = New System.Windows.Forms.Button()
         Me.EasyCompletionComboBox1 = New SergeUtils.EasyCompletionComboBox()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.TableLayoutPanel1.SuspendLayout()
-        Me.TableLayoutPanel3.SuspendLayout()
-        Me.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout
+        Me.TableLayoutPanel3.SuspendLayout
+        Me.SuspendLayout
         '
         'TableLayoutPanel1
         '

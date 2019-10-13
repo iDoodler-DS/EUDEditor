@@ -2039,9 +2039,9 @@ Public Class Element
                     _rtext = "switch(" & Values(0) & ") {"
                 Case ElementType.Switchcase
                     If Values(0) = -1 Then
-                        _rtext = "  default:"
+                        _rtext = "default:"
                     Else
-                        _rtext = "  case " & Values(0) & ":"
+                        _rtext = "case " & Values(0) & ":"
                     End If
                 Case ElementType.Foluder
                     _rtext = Values(0)

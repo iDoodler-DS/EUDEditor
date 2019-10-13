@@ -1,3 +1,10 @@
+[ 패치노트 0.17.9.3 ]
+
+- STR 확장맵 지원 추가.
+- RotateLocation 함수 수정.
+- ChatAnnouncement에서 tct.s2u 관련 오류 수정.
+
+
 [ 패치노트 0.17.9.1 ]
 
 - MSQC 마우스 로케이션 UI 최신버전에 맞게 수정.
@@ -11,6 +18,7 @@
 - 자동 업데이트 링크 수정
 - ct.sprintf, ct.setcachedcp 관련 오류 수정
 - punitloop.py 삭제, 표준 함수 사용하게 수정
+
 
 [ 패치노트 0.17.9.0 ]
 

@@ -9,7 +9,7 @@ Namespace ProgramSet
 
 
         'Public Version As String = "vTEST 0.13"
-        Public Version As String = "0.17.9.1"
+        Public Version As String = "0.17.9.4"
         Public DatEditVersion As String = "v0.3"
         Public SCDBSerial As UInteger
 
@@ -577,7 +577,13 @@ Namespace ProjectSet
 
 
                     Dim STRpara() As Byte
-                    mem.Position = SearchCHK("STR ", buffer)
+                    Dim entry As UInteger
+                    mem.Position = SearchCHK("STRx", buffer)
+                    entry = 4
+                    If mem.Position = 0 Then
+                        mem.Position = SearchCHK("STR ", buffer)
+                        entry = 2
+                    End If
 
                     size = binary.ReadUInt32 '문자열 수
                     STRpara = binary.ReadBytes(size)
@@ -596,11 +602,19 @@ Namespace ProjectSet
                     Dim tempstring As String = ""
                     Dim strcount As Integer = 0
 
-                    size = strbinary.ReadUInt16
-                    For i = 0 To size - 1 '문자열 갯수
-                        strmem.Position = 2 + i * 2
+                    If entry = 2 Then
+                        size = strbinary.ReadUInt16
+                    ElseIf entry = 4 Then
+                        size = strbinary.ReadUInt32
+                    End If
+                    For i = 1 To size '문자열 갯수
+                        strmem.Position = i * entry
 
-                        tempindex = strbinary.ReadUInt16()
+                        If entry = 2 Then
+                            tempindex = strbinary.ReadUInt16()
+                        ElseIf entry = 4 Then
+                            tempindex = strbinary.ReadUInt32()
+                        End If
 
                         strmem.Position = tempindex
 
