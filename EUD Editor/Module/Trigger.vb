@@ -582,7 +582,7 @@ Public Class Element
 
 
                         '오프셋 구하기.
-                        returnstring = "epdread_epd(EPD(0x5187EC) + " & 3 * _tempvalue(0) & ") + 5 * " & realpos '_tempvalue(1)
+                        returnstring = "btnPtr, btnPos = EPD(0x5187EC) + " & 3 * _tempvalue(0) & ", 5 * " & realpos & ";"'_tempvalue(1)
                         Return returnstring
                     Catch ex As Exception
                         Return returnstring
@@ -1844,11 +1844,11 @@ Public Class Element
                     End Try
                 ElseIf act.Name = "DisplayCText" Then
                     If Values(1) = "1" Then
-                        _rtext = "txtPtr = dwread_epd_safe(EPD(0x640B58));" & vbCrLf & _rtext & ";" & vbCrLf & "SetMemory(0x640B58, SetTo, txtPtr);"
+                        _rtext = "txtPtr = dwread_epd(EPD(0x640B58));" & vbCrLf & _rtext & ";" & vbCrLf & "SetMemory(0x640B58, SetTo, txtPtr);"
                     End If
                 ElseIf act.Name = "DisplaySavedCText" Then
                     If Values(0) = "1" Then
-                        _rtext = "txtPtr = dwread_epd_safe(EPD(0x640B58));" & vbCrLf & _rtext & ";" & vbCrLf & "SetMemory(0x640B58, SetTo, txtPtr);"
+                        _rtext = "txtPtr = dwread_epd(EPD(0x640B58));" & vbCrLf & _rtext & ";" & vbCrLf & "SetMemory(0x640B58, SetTo, txtPtr);"
                     End If
                 ElseIf act.Name = "SetUpgrade" Then
                     '0"PlayerX",
