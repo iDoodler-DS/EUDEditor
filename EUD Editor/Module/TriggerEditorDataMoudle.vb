@@ -484,7 +484,7 @@ Module TriggerEditorDataMoudle
         End If
         strbulider.AppendLine("import tempcustomText as tct;")
 
-        strbulider.AppendLine(vbCrLf & "var txtPtr;")
+        strbulider.AppendLine(vbCrLf & "var txtPtr, btnPtr, btnPos, oldCP;")
         strbulider.AppendLine("const trgk = $T('Artanis & safhfh');")
 
         LineCount = strbulider.ToString.Split(vbCrLf).Count

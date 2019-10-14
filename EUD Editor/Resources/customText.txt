@@ -321,6 +321,15 @@ def f_setTbl(tblID, offset, length, *args):
     f_settbl2(tblID, offset, *args)
 
 
+def f_chatAnnouncement(*args):
+    args = list(args)
+    for i, arg in enumerate(args):
+        if isUnproxyInstance(arg, f_s2u):
+            arg = ptr2s(arg._value)
+            args[i] = arg
+    f_eprintln(*args)
+
+
 def f_chatAnnouncementP(player, *args):
     for oldcp in _setcurpl_block(player):
         f_eprintln(*args)
@@ -345,4 +354,3 @@ f_print = _sb.print
 f_tblptr = GetTBLAddr
 f_getTblPtr = GetTBLAddr
 f_printError = f_raise_CCMU
-f_chatAnnouncement = f_eprintln

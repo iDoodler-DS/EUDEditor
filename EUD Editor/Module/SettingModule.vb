@@ -9,7 +9,7 @@ Namespace ProgramSet
 
 
         'Public Version As String = "vTEST 0.13"
-        Public Version As String = "0.17.9.1"
+        Public Version As String = "0.17.9.7"
         Public DatEditVersion As String = "v0.3"
         Public SCDBSerial As UInteger
 
@@ -577,7 +577,33 @@ Namespace ProjectSet
 
 
                     Dim STRpara() As Byte
-                    mem.Position = SearchCHK("STR ", buffer)
+                    Dim entrysize as Integer
+                    entrysize = -1
+                    Try
+                        mem.Position = SearchCHK("STRx", buffer)
+                        entrysize = 4
+                    Catch ex1 As Exception
+                        Try
+                            mem.Position = SearchCHK("STR ", buffer)
+                            entrysize = 2
+                        Catch ex2 As Exception
+                            Throw New System.Exception("String section not found.")
+                        End Try
+                        If mem.Position = 0 Then
+                            Throw New System.Exception("String section not found.")
+                        End If
+                    End Try
+                    If mem.Position = 0 Then
+                        Try
+                            mem.Position = SearchCHK("STR ", buffer)
+                            entrysize = 2
+                        Catch ex2 As Exception
+                            Throw New System.Exception("String section not found.")
+                        End Try
+                        If mem.Position = 0 Then
+                            Throw New System.Exception("String section not found.")
+                        End If
+                    End If
 
                     size = binary.ReadUInt32 '문자열 수
                     STRpara = binary.ReadBytes(size)
@@ -596,11 +622,23 @@ Namespace ProjectSet
                     Dim tempstring As String = ""
                     Dim strcount As Integer = 0
 
-                    size = strbinary.ReadUInt16
+                    If entrysize = 4 Then
+                        size = strbinary.ReadUInt32
+                    ElseIf entrysize = 2 Then
+                        size = strbinary.ReadUInt16
+                    Else
+                        Throw New System.Exception("Unexpected entry size: " & entrysize)
+                    End If
                     For i = 0 To size - 1 '문자열 갯수
-                        strmem.Position = 2 + i * 2
+                        strmem.Position = entrysize + (i * entrysize)
 
-                        tempindex = strbinary.ReadUInt16()
+                        If entrysize = 4 Then
+                            tempindex = strbinary.ReadUInt32()
+                        ElseIf entrysize = 2 Then
+                            tempindex = strbinary.ReadUInt16()
+                        Else
+                            Throw New System.Exception("Unexpected entry size: " & entrysize)
+                        End If
 
                         strmem.Position = tempindex
 
