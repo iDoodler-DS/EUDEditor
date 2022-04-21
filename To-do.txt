@@ -1,0 +1,4 @@
+- Fix GetValue Button (Deaths/Kills Wrong address)
+- Translate New Command Card Button (Firegraft)
+- Add English Translation (Trigger Editor)
+- Disable Deprecated Functionality (GRP/BinEditor/TileSet)
