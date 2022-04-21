@@ -1,0 +1,12 @@
+Deaths
+Kills
+Score
+Resources
+Supply
+Current Upgrade
+Max Upgrade
+Current Tech
+Max Tech
+Lighting
+Game Time
+Count Time

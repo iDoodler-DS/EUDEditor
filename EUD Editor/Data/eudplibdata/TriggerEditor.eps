@@ -1,0 +1,81 @@
+import BGMPlayer as BGM;
+import tempcustomText as tct;
+
+var txtPtr, btnPtr, btnPos, oldCP;
+const trgk = $T('Artanis & safhfh');
+
+
+
+
+function ClassicTriggerExec() {
+}
+function ClassicTriggerStarter() {
+    //플레이어 1
+    if (playerexist(0)){
+        setcurpl(0);
+    }
+    //플레이어 2
+    if (playerexist(1)){
+        setcurpl(1);
+    }
+    //플레이어 3
+    if (playerexist(2)){
+        setcurpl(2);
+    }
+    //플레이어 4
+    if (playerexist(3)){
+        setcurpl(3);
+    }
+    //플레이어 5
+    if (playerexist(4)){
+        setcurpl(4);
+    }
+    //플레이어 6
+    if (playerexist(5)){
+        setcurpl(5);
+    }
+    //플레이어 7
+    if (playerexist(6)){
+        setcurpl(6);
+    }
+    //플레이어 8
+    if (playerexist(7)){
+        setcurpl(7);
+    }
+}
+function WaitableTriggerExec() {
+}
+function onPluginStart() {
+    randomize();
+    LeaderBoardScore((7), " ");
+
+}
+function beforeTriggerExec() {
+    EUDPlayerLoop()();
+        WaitableTriggerExec();
+        ClassicTriggerExec();
+    EUDEndPlayerLoop();
+    ClassicTriggerStarter();
+    BGM.Player();
+    SetMemory(0x6509A0, SetTo, 0);
+}
+function afterTriggerExec() {
+    setcurpl((0));
+    foreach(ptr, epd : EUDLoopPlayerUnit(0) ) {
+        if(
+            bread(ptr + 0x121) != 0
+        ){
+            SetScore((0), (7), bread(ptr+0x121), (7));
+            var v = bread(ptr + 0x121);
+            if (v >= 128) {v-= 128; DisplayText("P8");}
+            if (v >= 64) {v-= 64; DisplayText("P7");}
+            if (v >= 32) {v-= 32; DisplayText("P6");}
+            if (v >= 16) {v-= 16; DisplayText("P5");}
+            if (v >= 8) {v-= 8; DisplayText("P4");}
+            if (v >= 4) {v-= 4; DisplayText("P3");}
+            if (v >= 2) {v-= 2; DisplayText("P2");}
+            if (v >= 1) {v-= 1; DisplayText("P1");};
+            bwrite_epd(epd + 0x121 / 4,  0x121 % 4, 0);
+        }
+    }
+}

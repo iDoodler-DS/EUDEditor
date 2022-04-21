@@ -1,0 +1,19 @@
+Total Units Produced
+Units Produced
+Units Owned
+Units Lost
+Units Killed
+Unit Total
+Kill Total
+Structures Constructed Total
+Structures Constructed
+Structures Owned
+Structures Lost
+Structures Razed
+Buildings Total
+Razings Total
+Factories Constructed
+Factories Owned
+Factories Lost
+Factories Razed
+Custom

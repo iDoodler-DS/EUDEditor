@@ -1,0 +1,15 @@
+﻿{
+    "Label27": "필터",
+    "CheckBox5": "수정",
+    "Button5": "접기",
+    "RadioButton1": "Unit",
+    "RadioButton2": "Flingy",
+    "RadioButton4": "Images",
+    "RadioButton3": "Sprites",
+    "Button2": "취소",
+    "CheckBox2": "팅길 수 있음에 동의",
+    "Button1": "확인",
+    "Fold": "접기",
+    "Fold": "펼치기",
+    "ErrorMsg": "선택한 GRP의 프레임이 더 적습니다. 팅김에 주의하세요.\n이 메세지는 더 이상 나타나지 않습니다."
+}

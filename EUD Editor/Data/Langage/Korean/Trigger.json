@@ -1,0 +1,11 @@
+﻿{
+    "For": "For(변수 $1$를 사용하여 $2$번 반복합니다.)",
+    "AllPlayer": "모든 플레이어",
+    "Foreach": "Foreach($1$의 유닛을 epd, ptr변수로 순환합니다.)",
+    "PlayerLoop": "$1$를 순환합니다.",
+    "FuncDef": "함수정의 : $1$        대기하기 사용 : $2$",
+    "Func": "함수",
+    "ExistFunc": "존재하지 않는 함수",
+    "Wait": "대기하기",
+    "SwitchCase": "        Break 사용 : "
+}

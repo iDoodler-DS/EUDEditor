@@ -1,0 +1,13 @@
+﻿{
+    "FileFToolStripMenuItem": "File(&F)",
+    "새로만들기NToolStripMenuItem": "New(&N)",
+    "열기OToolStripMenuItem": "Open(&O)",
+    "OpenCont": "Load",
+    "파일로저장AToolStripMenuItem": "Save as File(&A)",
+    "프로젝트저장ToolStripMenuItem": "Project Save(&S)",
+    "편집ToolStripMenuItem": "Edit(&E)",
+    "실행취소ToolStripMenuItem": "Undo",
+    "다시실행ToolStripMenuItem": "Redo",
+    "모두접기ToolStripMenuItem": "Fold All",
+    "모두펼치기ToolStripMenuItem": "UnFold All"
+}

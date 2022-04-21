@@ -1,0 +1,7 @@
+﻿{
+    "초기화ToolStripMenuItem": "초기화",
+    "복사ToolStripMenuItem": "복사",
+    "붙여넣기ToolStripMenuItem": "붙여넣기",
+    "데이터로내보내기ToolStripMenuItem": "mdat로 내보내기",
+    "데이터불러오기ToolStripMenuItem": "mdat 불러오기"
+}

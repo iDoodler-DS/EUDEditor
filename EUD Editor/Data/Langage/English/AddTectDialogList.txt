@@ -1,0 +1,10 @@
+﻿Player Deaths
+Player Kills
+Player Name
+Player Resources
+Player Supply
+Game Time
+Varialbe
+String
+UnitName
+Code

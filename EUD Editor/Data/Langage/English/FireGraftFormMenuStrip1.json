@@ -1,0 +1,13 @@
+﻿{
+    "FileFToolStripMenuItem": "&File",
+    "DatFileAllSaveToolStripMenuItem": "Save datfile",
+    "DatFileAllResetToolStripMenuItem": "Reset datfile",
+    "PSaveToolStripMenuItem": "&Save Project",
+    "EditToolStripMenuItem": "&Edit",
+    "ResetToolStripMenuItem1": "Initialize",
+    "ObjResetToolStripMenuItem": "Initialize object",
+    "ObjectCopyToolStripMenuItem": "Object Copy",
+    "ObjPasteToolStripMenuItem": "Object Paste",
+    "ViewVToolStripMenuItem": "&View",
+    "ThemeSetTToolStripMenuItem": "Set &Theme"
+}

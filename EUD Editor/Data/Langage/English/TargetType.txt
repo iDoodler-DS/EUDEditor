@@ -1,0 +1,9 @@
+Air
+Ground
+Mechanical
+Organic
+Non-Building
+Non-Robotic
+Teerain
+Org. or Mech
+Own

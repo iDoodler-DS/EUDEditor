@@ -1,0 +1,14 @@
+﻿{
+    "Button5": "확인",
+    "Button6": "취소",
+    "GroupBox1": "조건",
+    "RadioButton1": "직접 입력",
+    "RadioButton2": "키보드 값",
+    "GroupBox2": "변환 값",
+    "RadioButton3": "직접 입력",
+    "RadioButton4": "유닛",
+    "Label1": "데스값 유닛",
+    "Label2": "데스값 수치",
+    "NumericUpDown1": "0",
+    "": "0"
+}

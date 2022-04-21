@@ -1,0 +1,99 @@
+import tempcustomText as tct;
+
+const musicLastTime = [0, 0, 0, 0, 0, 0, 0, 0];
+const musicFrame = [0, 0, 0, 0, 0, 0, 0, 0];
+const musicnum = [0, 0, 0, 0, 0, 0, 0, 0];
+const musicflag = [0, 0, 0, 0, 0, 0, 0, 0];
+const musicisplay = [0, 0, 0, 0, 0, 0, 0, 0];
+
+function Player() {
+    var currentid = getcurpl();
+    for (var i = 0 ; i < 8 ; i++) {
+        if (musicisplay[i] == 1 && musicflag[i] != 2) {
+            var playtime = musicLastTime[i] - dwread_epd(EPD(0x51CE8C));
+            var LastFrame;
+            const music_No = musicnum[i];
+            if (musicFrame[i] < LastFrame) {
+                if (playtime > 3080) {
+                    tct.makeText('M');
+
+                    //뮤직 이름
+                    const music_name = musicnum[i];
+                    tct.addText(music_name);
+
+                    tct.addText('_');
+
+                    //세퍼레이트 이름
+                    const music_frame = musicFrame[i];
+                    tct.addText(music_frame);
+
+                    //마지막으로 재생된 playtime
+
+                    tct.addText('.ogg');
+                    SetCurrentPlayer(i);
+                    // PlayWAV(tct.strBuffer);
+                    musicFrame[i] = musicFrame[i] + 1;
+                    musicLastTime[i] = dwread_epd(EPD(0x51CE8C));
+                }
+
+            } else {
+                //사운드 재생이 끝났을 경우
+                if (musicflag[i] == 1) {
+                    //반복 재생일 경우
+                    musicFrame[i] = 0;
+                    musicLastTime[i] = dwread_epd(EPD(0x51CE8C));
+                }else if (musicflag[i] == 0) {
+                    musicflag[i] = 2;
+                }
+            } 
+        }
+    }
+    SetCurrentPlayer(currentid);
+}
+
+function parsePlayer(tplayer) {
+    if (tplayer < 8) {
+        return tplayer;
+    }else {
+        return getcurpl();
+    }
+}
+
+function Play(tplayer,BGMNum, flag) {
+    var p = parsePlayer(tplayer);
+    if (flag == 0 && musicflag[p] == 0) {
+        if (BGMNum != musicnum[p]) {
+            musicLastTime[p] = dwread_epd(EPD(0x51CE8C)) + 3150 ;
+            musicFrame[p] = 0;
+        }
+        musicnum[p] = BGMNum;
+        musicflag[p] = flag;
+        musicisplay[p] = 1;
+    }else {
+        musicLastTime[p] = dwread_epd(EPD(0x51CE8C)) + 3150;
+        musicFrame[p] = 0;
+        musicnum[p] = BGMNum;
+        musicflag[p] = flag;
+        musicisplay[p] = 1;
+    }
+}
+
+function Stop(tplayer) {
+    var p = parsePlayer(tplayer);
+    musicisplay[p] = 0;
+}
+
+function Resume(tplayer) {
+    var p = parsePlayer(tplayer);
+    musicisplay[p] = 1;
+}
+
+function CurrentPlayMusic(tplayer) {
+    var p = parsePlayer(tplayer);
+    return musicnum[p];
+}
+
+function isplaying(tplayer) {
+    var p = parsePlayer(tplayer);
+    return musicflag[p];
+}

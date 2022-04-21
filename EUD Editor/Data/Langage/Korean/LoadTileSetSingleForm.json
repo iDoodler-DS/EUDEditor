@@ -1,0 +1,23 @@
+﻿{
+    "GroupBox5": "통행&&높이&&건설가능 설정 도구",
+    "TabDefacult": "기본 값",
+    "TabPage1": "통행가능",
+    "TabPage2": "건설가능",
+    "TabPage3": "통행불능",
+    "TabPage5": "낮음",
+    "TabPage6": "중간",
+    "TabPage7": "높음",
+    "GroupBox4": "그래픽 정보",
+    "RadioButton1": "전체 타일셋 사용",
+    "GroupBox6": "타입",
+    "RadioButton4": "참조식",
+    "RadioButton3": "대입식",
+    "GroupBox3": "파일",
+    "Button4": "저장",
+    "Button3": "비우기",
+    "Button2": "열기",
+    "RadioButton2": "부분 변경",
+    "GroupBox1": "파일",
+    "Button5": "비우기",
+    "Button1": "열기"
+}

@@ -1,0 +1,356 @@
+# -*- coding: utf-8 -*-
+from eudplib import *
+
+"""
+customText 0.5.2 by Artanis
+
+0.5.2
+- Support binding to StringBuffer.
+
+0.4.7
+- Now also supports euddraft 0.8.4.5+
+
+0.4.6
+- Reduced size of CPString.
+
+0.4.5
+- Fixed bug that caused desync when executes f_chatprint with sync condition(s).
+
+0.4.4
+- Fixed bug with f_chatprint.
+
+0.4.3
+- Fixed soundbufferPtr to use soundbuffer correctly.
+- Avoid CP cache miss.
+
+0.4.2
+- Fixed CPString's nextptr didn't restored correctly.
+- Added Display method to CPString.
+
+0.4.1
+- Fixed CPString is printed twice.
+- Added parameter nextptr in CPString.
+- Fixed f_str, f_strepd insert null byte at end.
+
+0.4.0
+- Integrated customText3 and customText4.
+- Added predicting (string offset % 4) and fitting to 0.
+
+0.3.3
+- Added f_cp949 class for stat_txt.tbl cpprint.
+
+0.3.2
+- Cleaned f_init.
+
+0.3.1
+- Fixed hptr, f_addptr functions.
+- Added independent cache for CurrentPlayer.
+
+0.3.0
+- Added CPString, f_cpprint.
+
+0.2.1
+- Fixed f_playSoundP, f_playSoundAll.
+
+0.2.0
+- Added Legacy Support: chatAnnouncement + old function names.
+- Added f_chatprintAll/_epd. Change f_chatprint: print for CurrentPlayer.
+- Added f_get(EUDVariable): retrieve current position.
+
+0.1.3
+- Fixed f_add1c_epd making malaligned string when it doesn't have a color code.
+
+0.1.2
+- Fixed EUD error when modify stat_txt.tbl.
+
+0.1.1
+- Fixed bug; ct.epd/ptr set to 0 in SC 1.16.
+
+0.1.0
+- Initial Release
+"""
+
+_sb = StringBuffer(1023)
+strBuffer = _sb.StringIndex
+CP = 0x6509B0
+ptr, epd, cp = EUDVariable(), _sb.epd, EUDVariable()
+_cpcache = EUDVariable()
+
+
+@EUDFunc
+def f_updatecpcache():
+    _cpcache << f_getcurpl()
+
+
+@EUDFunc
+def f_setcachedcp():
+    f_setcurpl(_cpcache)
+
+
+def _setcurpl_block(cp):
+    oldcp = f_getcurpl()
+    f_setcurpl(cp)
+    yield oldcp
+    f_setcurpl(oldcp)
+
+
+def f_b2i(x):
+    return int.from_bytes(x, byteorder="little")
+
+
+def _onInit():
+    global ptr, cp
+    ptr << GetMapStringAddr(strBuffer)
+    epd << EPD(ptr)
+    cp << f_getuserplayerid()
+
+
+def f_setlocalcp():
+    localcp = f_getuserplayerid()
+    VProc(localcp, [localcp.QueueAssignTo(EPD(CP))])
+
+
+def f_is116():
+    return False
+
+
+@EUDFunc
+def _epd2ptr_eudv(epd):
+    ret = epd * 4
+    ret += 0x58A364
+    return ret
+
+
+def _epd2ptr(epd):
+    if IsEUDVariable(epd):
+        return _epd2ptr_eudv(epd)
+    return (epd * 4) + 0x58A364
+
+
+@EUDFunc
+def f_cp949_to_utf8_cp(src):
+    dst = EPD(f_cp949_to_utf8_cpy(_epd2ptr(f_getcurpl()), src))
+    f_setcurpl(dst)
+    return dst
+
+
+class f_s2u:
+    def __init__(self, value):
+        self._value = value
+
+
+class f_get:  # get ptr/epd in middle of string
+    def __init__(self, value):
+        self._value = value
+
+
+def f_addbyte_cp(b):
+    cpstr = CPString(b)
+    cpstr.Display()
+    return cpstr.length
+
+
+def f_addstr_cp(src):
+    """Print string as string to CurrentPlayer
+
+    :param src: Source address (Not EPD player)
+    """
+    f_cpstr_print(ptr2s(src))
+
+
+def f_addstr_cp_epd(epd):
+    """Print string as string to CurrentPlayer
+
+    :param epd: EPD player of Source address
+    """
+    f_cpstr_print(epd2s(epd))
+
+
+def f_addstr_epd(dst, epd):
+    """Print string as string to dst. Same as strcpy except of return value.
+
+    :param dst: Destination address (Not EPD player)
+    :param epd: EPD player of Source address
+
+    :returns: dst + strlen(src)
+    """
+    return f_dbstr_print(dst, epd2s(epd))
+
+
+def f_cp949_print(dst, *args):
+    if isUnproxyInstance(dst, DBString):
+        dst = dst.GetStringMemoryAddr()
+    args = FlattenList(args)
+    for arg in args:
+        if isUnproxyInstance(arg, f_get):
+            SetVariables(arg._value, dst)
+        else:
+            dst = f_dbstr_print(dst, arg, encoding="cp949")
+
+    return dst
+
+
+def f_utf8_print(dst, *args):
+    if isUnproxyInstance(dst, DBString):
+        dst = dst.GetStringMemoryAddr()
+    args = FlattenList(args)
+    for arg in args:
+        if isUnproxyInstance(arg, f_s2u):
+            dst = f_cp949_to_utf8_cpy(dst, arg._value)
+        elif isUnproxyInstance(arg, f_get):
+            SetVariables(arg._value, dst)
+        else:
+            dst = f_dbstr_print(dst, arg)
+
+    return dst
+
+
+def f_makeText(*args):
+    _sb.insert(0)
+    _sb.append(*args)
+
+
+def f_displayTextP(player):
+    for oldcp in _setcurpl_block(player):
+        _sb.Display()
+
+
+def f_displayTextAll():
+    for oldcp in _setcurpl_block(f_getuserplayerid()):
+        _sb.Display()
+
+
+def f_printP(player, *args):
+    for oldcp in _setcurpl_block(player):
+        _sb.print(*args)
+
+
+def f_printAll(*args):
+    for oldcp in _setcurpl_block(f_getuserplayerid()):
+        _sb.print(*args)
+
+
+def f_playSound(*args):
+    f_makeText(*args)
+    _sb.Play()
+
+
+def f_playSoundP(player, *args):
+    for oldcp in _setcurpl_block(player):
+        f_playSound(*args)
+
+
+def f_playSoundAll(*args):
+    for oldcp in _setcurpl_block(f_getuserplayerid()):
+        f_playSound(*args)
+
+
+def f_reset():  # ptr, epd를 스트링 시작 주소로 설정합니다.
+    _sb.insert(0)
+
+
+EUDOnStart(_onInit)
+f_reset_epd = f_reset
+f_addText = _sb.append
+
+
+@EUDFunc
+def f_chatdst_EUDVar(line):
+    EUDReturn(0x640B60 + 218 * line)
+
+
+def f_chatdst(line):
+    if IsEUDVariable(line):
+        return f_chatdst_EUDVar(line)
+    return 0x640B60 + 218 * line
+
+
+@EUDFunc
+def f_chatepd_EUDVar(line):
+    r, m = f_div(line, 2)
+    ret = 109 * r
+    ret += EPD(0x640B60)
+    RawTrigger(conditions=m.Exactly(1), actions=ret.AddNumber((0xC3A - 0xB60) // 4))
+    return ret
+
+
+def f_chatepd(line):
+    if IsEUDVariable(line):
+        return f_chatepd_EUDVar(line)
+    return EPD(0x640B60 + 218 * line)
+
+
+def f_addChat(*args):
+    f_addText(*args)
+
+
+def _chatprint_prep(*args, line=None, acts=[]):
+    if isinstance(line, int) and line >= 0 and line <= 10:
+        DoActions([acts] + [SetMemory(0x640B58, SetTo, line), DisplayText(" ")])
+    if isinstance(line, int) and line % 2 == 1:
+        args = ("\x0D\x0D\x0D\x0D") + args
+    for oldcp in _setcurpl_block(f_chatepd(line)):
+        f_cpstr_print(*args)
+
+
+def f_chatprint(line, *args):
+    if isinstance(line, int) and line == 12:
+        f_raise_CCMU(CurrentPlayer)
+    if EUDIf()(Memory(0x6509B0, Exactly, f_getuserplayerid())):
+        _chatprint_prep(*args, line=line)
+    EUDEndIf()
+
+
+def f_chatprintP(player, line, *args):
+    if isinstance(line, int) and line == 12:
+        f_raise_CCMU(player)
+    if EUDIf()(f_getuserplayerid() == player):
+        _chatprint_prep(*args, line=line, acts=SetMemory(CP, SetTo, player))
+    EUDEndIf()
+
+
+def f_chatprintAll(line, *args):
+    if isinstance(line, int) and line == 12:
+        f_raise_CCMU(AllPlayers)
+    for oldcp in _setcurpl_block(f_chatepd(line)):
+        f_setlocalcp()
+        _chatprint_prep(*args, line=line)
+
+
+def f_setTbl(tblID, offset, length, *args):
+    f_settbl2(tblID, offset, *args)
+
+
+def f_chatAnnouncement(*args):
+    args = list(args)
+    for i, arg in enumerate(args):
+        if isUnproxyInstance(arg, f_s2u):
+            arg = ptr2s(arg._value)
+            args[i] = arg
+    f_eprintln(*args)
+
+
+def f_chatAnnouncementP(player, *args):
+    for oldcp in _setcurpl_block(player):
+        f_eprintln(*args)
+
+
+def f_chatAnnouncementAll(*args):
+    for oldcp in _setcurpl_block(f_getuserplayerid()):
+        f_eprintln(*args)
+
+
+f_str, f_strepd = ptr2s, epd2s
+f_color, Name = PColor, PName
+f_strptr = GetMapStringAddr
+f_displayText = _sb.Display
+f_adddw_cp = f_cpstr_adddw
+f_addptr_cp = f_cpstr_addptr
+f_cpprint = f_cpstr_print
+f_sprintf = f_utf8_print
+f_ct_print = f_utf8_print
+f_cprint = f_utf8_print
+f_print = _sb.print
+f_tblptr = GetTBLAddr
+f_getTblPtr = GetTBLAddr
+f_printError = f_raise_CCMU
