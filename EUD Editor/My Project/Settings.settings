@@ -27,7 +27,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Langage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Korean</Value>
+      <Value Profile="(Default)">English</Value>
     </Setting>
     <Setting Name="AutoCompile" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
