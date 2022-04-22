@@ -860,6 +860,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\**">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\dll\**">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="EUD Editor.ico" />
     <None Include="Resources\AshWorld003.dds" />
     <None Include="Resources\StringAnimater.png" />
