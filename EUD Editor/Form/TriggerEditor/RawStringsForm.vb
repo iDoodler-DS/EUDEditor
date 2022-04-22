@@ -2,8 +2,8 @@
     Public returnvalue As String
 
     Private Enum ListDef
-        Deaths = 1
-        Kills = 0
+        Deaths = 0
+        Kills = 1
         Score = 2
         Resources = 3
         Suppley = 4
