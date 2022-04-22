@@ -828,7 +828,7 @@ Namespace ProjectSet
         Public Function Close() As Boolean
             Dim ise2s As Boolean = False
             Try
-                If Mid(ProjectSet.filename, ProjectSet.filename.Length - 3) <> ".e2s" Then
+                If ProjectSet.filename And Mid(ProjectSet.filename, ProjectSet.filename.Length - 3) <> ".e2s" Then
                     ise2s = True
                 End If
             Catch ex As Exception
