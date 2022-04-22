@@ -1,4 +1,97 @@
-- Fix GetValue Button (Deaths/Kills Wrong address)
-- Translate New Command Card Button (Firegraft)
-- Add English Translation (Trigger Editor)
-- Disable Deprecated Functionality (GRP/BinEditor/TileSet)
+- [x] Fix GetValue Button (Deaths/Kills Wrong address)
+- [x] Translate New Command Card Button (Firegraft)
+- [x] Add English Translation (Trigger Editor)
+- [ ] Disable Deprecated Functionality (GRP/BinEditor/TileSet)
+- [ ] Fix DatEdit Time Cost field (Incorrect by 0.8%; Increment by {seconds>frames}; Possibly change to {seconds>milliseconds})
+- [ ] Add framework to allow additional languages
+- [ ] Add common custom condition/action to the existing list
+- [ ] Fix/Remove outdated functions (Trigger Editor)
+
+
+# FileSetting
+
+## Form
+
+"File Adress"	>	"File Address"
+
+# DatEdit
+
+## Unit/Basic
+
+"Build cost"	>	"Build Cost"
+"Armor"		>	"Upgrade"
+"Upgrade"	>	"Armor"
+"Space"		>	""(Heading for Transport space)
+"Destroy"	>	"Kill"
+"Traget Acquisition Range"	>	"Targeting Range"
+"Sight"		>	"Sight Range"
+"Unit size"	>	"Unit Size"
+
+## Unit/Advanced
+
+"Clockalbe"	>	"Cloakable"
+"invincible"	>	"Invincible"
+
+## Unit/Graphics
+
+"Unit picture Properties"	>	"Unit Graphic Properties"
+"Graphics"	>	""(Flingy?)
+"Constructio"	>	"Construction"
+
+## Unit/StarEdit
+
+"independent"	>	"Independent"
+"Rank/Subla"	>	""(Prefix for Rank line)
+
+## Unit/AI Actions
+
+"ignore "Strategic Sucide missions" Ai"	>	"Ignore "Strategic Suicide Mission" AI"(is this only Strategic Suicide Mission?)
+"Don't become a"Guard""			>	""(Ignore Guard Orders? idk)
+
+# Weapon
+
+"Bonus"		>	""(Damage/Upgrade; Change form "Damage [] + []"?)
+"Factor"	>	""(Shots/Attack)
+
+# Upgrade
+
+"Base cost"	>	"Base Cost"
+"Factor Cost"	>	""(Increase per Upgrade)
+
+# FireGraft
+
+## Form
+
+"Unit information"	>	"Unit Information"
+
+## Button Set
+
+"Use default"	>	"Use Default"
+"Available"	>	""(Requirements met)
+"Unavailabl"	>	""(Requirements not met)
+"Conditio"	>	"Condition"
+
+## Requirements
+
+"Unit"	>	"Unit Training"
+"Upgrade"	>	"Upgrade Research"
+"Technology Research"	>	"Tech Research"
+"Technology Using"	>	"Tech Using"
+
+# FileManager
+
+## Form
+
+언어
+	영어
+	한국어(음역)
+	한국어(완역)
+	사용자 설정
+이전 이름		새 이름		필터
+========================================
+Language
+	English
+	Korean(Transliteration)
+	Korean(Complete)
+	User Setting
+Old Name	New Name	Filter|
