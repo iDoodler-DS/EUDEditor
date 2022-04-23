@@ -1,2 +1,2 @@
-ignore "Strategic Sucide missions" Ai
-Don't become a"Guard"
+Ignore "Strategic Sucide missions" AI
+Ignore Becoming "Guard"

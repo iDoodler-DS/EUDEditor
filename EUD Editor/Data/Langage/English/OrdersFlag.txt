@@ -1,9 +1,9 @@
 Use Weapon Targeting
-Secondlay Order use
+Secondary Order use
 Unused3
 Unused4
 Unused5
-Can Cencle
+Can be Cancelled
 Unused7
 Can be Queued
 Unused9

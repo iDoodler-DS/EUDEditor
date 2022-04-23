@@ -7,7 +7,7 @@ Flying Building
 Hero
 Regenerate
 Animated Idle
-Clockalbe
+Cloakable
 1 Egg 2 Unit
 Single Entity
 Resource Depot
@@ -27,6 +27,6 @@ Use Medium Overlays
 Use Large Overlays
 Full Auto-Attack
 Battle Reactions
-invincible
+Invincible
 Mechanical
 Produces Units

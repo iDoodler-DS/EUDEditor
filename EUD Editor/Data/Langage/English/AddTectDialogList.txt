@@ -4,7 +4,7 @@ Player Name
 Player Resources
 Player Supply
 Game Time
-Varialbe
+Variable
 String
 UnitName
 Code

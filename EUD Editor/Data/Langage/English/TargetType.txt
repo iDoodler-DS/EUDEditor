@@ -4,6 +4,6 @@ Mechanical
 Organic
 Non-Building
 Non-Robotic
-Teerain
+Terrain
 Org. or Mech
 Own

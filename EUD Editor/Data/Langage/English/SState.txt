@@ -1,4 +1,4 @@
-Enabled
-Disable
+Set
+Clear
 Toggle
-Random
+Randomize

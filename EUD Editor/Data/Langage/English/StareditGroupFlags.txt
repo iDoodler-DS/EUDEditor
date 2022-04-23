@@ -4,5 +4,5 @@ Protoss
 Men
 Building
 Factory
-independent
+Independent
 Neutral
