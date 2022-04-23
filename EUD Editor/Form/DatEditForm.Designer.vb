@@ -23,12 +23,12 @@ Partial Class DatEditForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
-        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
-        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
-        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
+        Dim ListViewItem25 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
+        Dim ListViewItem26 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
+        Dim ListViewItem27 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
+        Dim ListViewItem28 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
+        Dim ListViewItem29 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
+        Dim ListViewItem30 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DatEditForm))
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label27 = New System.Windows.Forms.Label()
@@ -1291,10 +1291,10 @@ Partial Class DatEditForm
         Me.ListView3.CheckBoxes = True
         Me.ListView3.ForeColor = System.Drawing.SystemColors.Window
         Me.ListView3.HideSelection = False
-        ListViewItem1.StateImageIndex = 0
-        ListViewItem2.StateImageIndex = 0
-        ListViewItem3.StateImageIndex = 0
-        Me.ListView3.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3})
+        ListViewItem25.StateImageIndex = 0
+        ListViewItem26.StateImageIndex = 0
+        ListViewItem27.StateImageIndex = 0
+        Me.ListView3.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem25, ListViewItem26, ListViewItem27})
         Me.ListView3.Location = New System.Drawing.Point(107, 12)
         Me.ListView3.Name = "ListView3"
         Me.ListView3.Scrollable = False
@@ -1423,7 +1423,7 @@ Partial Class DatEditForm
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(438, 69)
+        Me.Button4.Location = New System.Drawing.Point(439, 72)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(42, 23)
         Me.Button4.TabIndex = 24
@@ -1478,7 +1478,7 @@ Partial Class DatEditForm
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(438, 22)
+        Me.Button3.Location = New System.Drawing.Point(439, 22)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(42, 23)
         Me.Button3.TabIndex = 19
@@ -1656,7 +1656,7 @@ Partial Class DatEditForm
         Me.ComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.IntegralHeight = False
-        Me.ComboBox1.Location = New System.Drawing.Point(141, 77)
+        Me.ComboBox1.Location = New System.Drawing.Point(146, 77)
         Me.ComboBox1.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(145, 21)
@@ -1665,7 +1665,7 @@ Partial Class DatEditForm
         '
         'Button51
         '
-        Me.Button51.Location = New System.Drawing.Point(289, 76)
+        Me.Button51.Location = New System.Drawing.Point(292, 76)
         Me.Button51.Name = "Button51"
         Me.Button51.Size = New System.Drawing.Size(42, 23)
         Me.Button51.TabIndex = 20
@@ -1675,7 +1675,7 @@ Partial Class DatEditForm
         '
         'Label2
         '
-        Me.Label2.Location = New System.Drawing.Point(4, 44)
+        Me.Label2.Location = New System.Drawing.Point(11, 44)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(55, 13)
         Me.Label2.TabIndex = 15
@@ -1685,7 +1685,7 @@ Partial Class DatEditForm
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox1.Location = New System.Drawing.Point(100, 77)
+        Me.PictureBox1.Location = New System.Drawing.Point(105, 77)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(36, 34)
         Me.PictureBox1.TabIndex = 13
@@ -1696,7 +1696,7 @@ Partial Class DatEditForm
         '
         Me.NumericUpDown1.BackColor = System.Drawing.SystemColors.WindowText
         Me.NumericUpDown1.ForeColor = System.Drawing.SystemColors.Window
-        Me.NumericUpDown1.Location = New System.Drawing.Point(65, 17)
+        Me.NumericUpDown1.Location = New System.Drawing.Point(70, 17)
         Me.NumericUpDown1.Name = "NumericUpDown1"
         Me.NumericUpDown1.Size = New System.Drawing.Size(97, 22)
         Me.NumericUpDown1.TabIndex = 12
@@ -1707,7 +1707,7 @@ Partial Class DatEditForm
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.BackColor = System.Drawing.SystemColors.WindowText
         Me.CheckBox1.ForeColor = System.Drawing.SystemColors.Window
-        Me.CheckBox1.Location = New System.Drawing.Point(111, 42)
+        Me.CheckBox1.Location = New System.Drawing.Point(116, 42)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(48, 17)
         Me.CheckBox1.TabIndex = 10
@@ -1720,7 +1720,7 @@ Partial Class DatEditForm
         Me.TextBox4.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox4.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox4.Location = New System.Drawing.Point(168, 17)
+        Me.TextBox4.Location = New System.Drawing.Point(173, 17)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(60, 22)
         Me.TextBox4.TabIndex = 0
@@ -1731,7 +1731,7 @@ Partial Class DatEditForm
         Me.TextBox8.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox8.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox8.Location = New System.Drawing.Point(65, 89)
+        Me.TextBox8.Location = New System.Drawing.Point(70, 89)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(30, 22)
         Me.TextBox8.TabIndex = 7
@@ -1742,7 +1742,7 @@ Partial Class DatEditForm
         Me.TextBox7.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox7.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox7.Location = New System.Drawing.Point(65, 65)
+        Me.TextBox7.Location = New System.Drawing.Point(70, 65)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(30, 22)
         Me.TextBox7.TabIndex = 6
@@ -1753,7 +1753,7 @@ Partial Class DatEditForm
         Me.TextBox6.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox6.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox6.Location = New System.Drawing.Point(65, 41)
+        Me.TextBox6.Location = New System.Drawing.Point(70, 41)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(40, 22)
         Me.TextBox6.TabIndex = 5
@@ -1762,7 +1762,7 @@ Partial Class DatEditForm
         '
         'Label4
         '
-        Me.Label4.Location = New System.Drawing.Point(4, 92)
+        Me.Label4.Location = New System.Drawing.Point(11, 92)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(55, 13)
         Me.Label4.TabIndex = 3
@@ -1771,7 +1771,7 @@ Partial Class DatEditForm
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(4, 68)
+        Me.Label3.Location = New System.Drawing.Point(11, 68)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 13)
         Me.Label3.TabIndex = 2
@@ -1780,9 +1780,9 @@ Partial Class DatEditForm
         '
         'Label1
         '
-        Me.Label1.Location = New System.Drawing.Point(0, 21)
+        Me.Label1.Location = New System.Drawing.Point(11, 21)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(59, 13)
+        Me.Label1.Size = New System.Drawing.Size(55, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "체력"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -1794,7 +1794,7 @@ Partial Class DatEditForm
         Me.TabPage10.Location = New System.Drawing.Point(4, 25)
         Me.TabPage10.Name = "TabPage10"
         Me.TabPage10.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage10.Size = New System.Drawing.Size(541, 416)
+        Me.TabPage10.Size = New System.Drawing.Size(541, 458)
         Me.TabPage10.TabIndex = 1
         Me.TabPage10.Text = "고급정보"
         Me.TabPage10.UseVisualStyleBackColor = True
@@ -1821,7 +1821,7 @@ Partial Class DatEditForm
         Me.GroupBox9.Controls.Add(Me.TextBox26)
         Me.GroupBox9.Location = New System.Drawing.Point(6, 212)
         Me.GroupBox9.Name = "GroupBox9"
-        Me.GroupBox9.Size = New System.Drawing.Size(489, 161)
+        Me.GroupBox9.Size = New System.Drawing.Size(531, 161)
         Me.GroupBox9.TabIndex = 29
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "기타정보"
@@ -1831,7 +1831,7 @@ Partial Class DatEditForm
         Me.TextBox107.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox107.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox107.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox107.Location = New System.Drawing.Point(59, 124)
+        Me.TextBox107.Location = New System.Drawing.Point(76, 126)
         Me.TextBox107.Name = "TextBox107"
         Me.TextBox107.Size = New System.Drawing.Size(40, 22)
         Me.TextBox107.TabIndex = 32
@@ -1839,7 +1839,7 @@ Partial Class DatEditForm
         '
         'Label126
         '
-        Me.Label126.Location = New System.Drawing.Point(-12, 126)
+        Me.Label126.Location = New System.Drawing.Point(5, 128)
         Me.Label126.Name = "Label126"
         Me.Label126.Size = New System.Drawing.Size(70, 13)
         Me.Label126.TabIndex = 31
@@ -1849,7 +1849,7 @@ Partial Class DatEditForm
         'PictureBox7
         '
         Me.PictureBox7.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox7.Location = New System.Drawing.Point(103, 86)
+        Me.PictureBox7.Location = New System.Drawing.Point(120, 88)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(36, 34)
         Me.PictureBox7.TabIndex = 30
@@ -1859,7 +1859,7 @@ Partial Class DatEditForm
         'PictureBox6
         '
         Me.PictureBox6.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox6.Location = New System.Drawing.Point(103, 50)
+        Me.PictureBox6.Location = New System.Drawing.Point(120, 52)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(36, 34)
         Me.PictureBox6.TabIndex = 29
@@ -1869,7 +1869,7 @@ Partial Class DatEditForm
         'PictureBox5
         '
         Me.PictureBox5.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox5.Location = New System.Drawing.Point(103, 11)
+        Me.PictureBox5.Location = New System.Drawing.Point(120, 13)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(36, 34)
         Me.PictureBox5.TabIndex = 28
@@ -1878,7 +1878,7 @@ Partial Class DatEditForm
         '
         'Label28
         '
-        Me.Label28.Location = New System.Drawing.Point(-12, 17)
+        Me.Label28.Location = New System.Drawing.Point(5, 19)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(70, 13)
         Me.Label28.TabIndex = 15
@@ -1890,7 +1890,7 @@ Partial Class DatEditForm
         Me.TextBox24.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox24.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox24.Location = New System.Drawing.Point(59, 15)
+        Me.TextBox24.Location = New System.Drawing.Point(76, 17)
         Me.TextBox24.Name = "TextBox24"
         Me.TextBox24.Size = New System.Drawing.Size(38, 22)
         Me.TextBox24.TabIndex = 16
@@ -1903,11 +1903,11 @@ Partial Class DatEditForm
         Me.ListView4.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
         Me.ListView4.ForeColor = System.Drawing.SystemColors.Window
         Me.ListView4.HideSelection = False
-        ListViewItem4.StateImageIndex = 0
-        ListViewItem5.StateImageIndex = 0
-        ListViewItem6.StateImageIndex = 0
-        Me.ListView4.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4, ListViewItem5, ListViewItem6})
-        Me.ListView4.Location = New System.Drawing.Point(360, 14)
+        ListViewItem28.StateImageIndex = 0
+        ListViewItem29.StateImageIndex = 0
+        ListViewItem30.StateImageIndex = 0
+        Me.ListView4.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem28, ListViewItem29, ListViewItem30})
+        Me.ListView4.Location = New System.Drawing.Point(377, 16)
         Me.ListView4.Name = "ListView4"
         Me.ListView4.Scrollable = False
         Me.ListView4.Size = New System.Drawing.Size(123, 80)
@@ -1932,7 +1932,7 @@ Partial Class DatEditForm
         Me.ComboBox7.FormattingEnabled = True
         Me.ComboBox7.IntegralHeight = False
         Me.ComboBox7.Items.AddRange(New Object() {"독립적크기", "소형", "중형", "대형"})
-        Me.ComboBox7.Location = New System.Drawing.Point(145, 15)
+        Me.ComboBox7.Location = New System.Drawing.Point(162, 17)
         Me.ComboBox7.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox7.Name = "ComboBox7"
         Me.ComboBox7.Size = New System.Drawing.Size(150, 21)
@@ -1941,7 +1941,7 @@ Partial Class DatEditForm
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(301, 89)
+        Me.Button6.Location = New System.Drawing.Point(318, 91)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(42, 23)
         Me.Button6.TabIndex = 26
@@ -1951,7 +1951,7 @@ Partial Class DatEditForm
         '
         'Label29
         '
-        Me.Label29.Location = New System.Drawing.Point(-12, 57)
+        Me.Label29.Location = New System.Drawing.Point(5, 59)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(70, 13)
         Me.Label29.TabIndex = 18
@@ -1960,7 +1960,7 @@ Partial Class DatEditForm
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(301, 53)
+        Me.Button2.Location = New System.Drawing.Point(318, 55)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(42, 23)
         Me.Button2.TabIndex = 25
@@ -1973,7 +1973,7 @@ Partial Class DatEditForm
         Me.TextBox25.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox25.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox25.Location = New System.Drawing.Point(59, 54)
+        Me.TextBox25.Location = New System.Drawing.Point(76, 56)
         Me.TextBox25.Name = "TextBox25"
         Me.TextBox25.Size = New System.Drawing.Size(38, 22)
         Me.TextBox25.TabIndex = 19
@@ -1981,7 +1981,7 @@ Partial Class DatEditForm
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(301, 14)
+        Me.Button1.Location = New System.Drawing.Point(318, 16)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(42, 23)
         Me.Button1.TabIndex = 24
@@ -1997,7 +1997,7 @@ Partial Class DatEditForm
         Me.ComboBox8.FormattingEnabled = True
         Me.ComboBox8.IntegralHeight = False
         Me.ComboBox8.Items.AddRange(New Object() {"독립적크기", "소형", "중형", "대형"})
-        Me.ComboBox8.Location = New System.Drawing.Point(145, 54)
+        Me.ComboBox8.Location = New System.Drawing.Point(162, 56)
         Me.ComboBox8.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox8.Name = "ComboBox8"
         Me.ComboBox8.Size = New System.Drawing.Size(150, 21)
@@ -2012,7 +2012,7 @@ Partial Class DatEditForm
         Me.ComboBox9.FormattingEnabled = True
         Me.ComboBox9.IntegralHeight = False
         Me.ComboBox9.Items.AddRange(New Object() {"독립적크기", "소형", "중형", "대형"})
-        Me.ComboBox9.Location = New System.Drawing.Point(145, 90)
+        Me.ComboBox9.Location = New System.Drawing.Point(162, 92)
         Me.ComboBox9.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox9.Name = "ComboBox9"
         Me.ComboBox9.Size = New System.Drawing.Size(150, 21)
@@ -2021,7 +2021,7 @@ Partial Class DatEditForm
         '
         'Label30
         '
-        Me.Label30.Location = New System.Drawing.Point(-12, 93)
+        Me.Label30.Location = New System.Drawing.Point(5, 95)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(70, 13)
         Me.Label30.TabIndex = 21
@@ -2033,7 +2033,7 @@ Partial Class DatEditForm
         Me.TextBox26.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox26.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox26.Location = New System.Drawing.Point(59, 90)
+        Me.TextBox26.Location = New System.Drawing.Point(76, 92)
         Me.TextBox26.Name = "TextBox26"
         Me.TextBox26.Size = New System.Drawing.Size(38, 22)
         Me.TextBox26.TabIndex = 22
@@ -2044,7 +2044,7 @@ Partial Class DatEditForm
         Me.GroupBox8.Controls.Add(Me.ListView2)
         Me.GroupBox8.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox8.Name = "GroupBox8"
-        Me.GroupBox8.Size = New System.Drawing.Size(486, 200)
+        Me.GroupBox8.Size = New System.Drawing.Size(531, 200)
         Me.GroupBox8.TabIndex = 28
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "스페셜어빌리티플래그"
@@ -2059,7 +2059,7 @@ Partial Class DatEditForm
         Me.ListView2.HideSelection = False
         Me.ListView2.Location = New System.Drawing.Point(3, 18)
         Me.ListView2.Name = "ListView2"
-        Me.ListView2.Size = New System.Drawing.Size(480, 179)
+        Me.ListView2.Size = New System.Drawing.Size(525, 179)
         Me.ListView2.TabIndex = 14
         Me.ListView2.Tag = "Special Ability Flags:"
         Me.ListView2.UseCompatibleStateImageBehavior = False
@@ -2083,7 +2083,7 @@ Partial Class DatEditForm
         Me.TabPage11.Location = New System.Drawing.Point(4, 25)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage11.Size = New System.Drawing.Size(541, 416)
+        Me.TabPage11.Size = New System.Drawing.Size(541, 458)
         Me.TabPage11.TabIndex = 2
         Me.TabPage11.Text = "사운드"
         Me.TabPage11.UseVisualStyleBackColor = True
@@ -2125,43 +2125,43 @@ Partial Class DatEditForm
         Me.GroupBox10.Controls.Add(Me.TextBox27)
         Me.GroupBox10.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(486, 394)
+        Me.GroupBox10.Size = New System.Drawing.Size(529, 446)
         Me.GroupBox10.TabIndex = 29
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "사운드"
         '
         'Label64
         '
-        Me.Label64.Location = New System.Drawing.Point(-48, 331)
+        Me.Label64.Location = New System.Drawing.Point(12, 367)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(100, 13)
+        Me.Label64.Size = New System.Drawing.Size(46, 13)
         Me.Label64.TabIndex = 59
         Me.Label64.Text = "짜증냄"
         Me.Label64.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label63
         '
-        Me.Label63.Location = New System.Drawing.Point(-48, 271)
+        Me.Label63.Location = New System.Drawing.Point(12, 288)
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(100, 13)
+        Me.Label63.Size = New System.Drawing.Size(46, 13)
         Me.Label63.TabIndex = 58
         Me.Label63.Text = "물어봄"
         Me.Label63.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label62
         '
-        Me.Label62.Location = New System.Drawing.Point(-48, 211)
+        Me.Label62.Location = New System.Drawing.Point(12, 217)
         Me.Label62.Name = "Label62"
-        Me.Label62.Size = New System.Drawing.Size(100, 13)
+        Me.Label62.Size = New System.Drawing.Size(46, 13)
         Me.Label62.TabIndex = 57
         Me.Label62.Text = "대답"
         Me.Label62.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'Label61
         '
-        Me.Label61.Location = New System.Drawing.Point(-48, 191)
+        Me.Label61.Location = New System.Drawing.Point(12, 195)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(100, 13)
+        Me.Label61.Size = New System.Drawing.Size(46, 13)
         Me.Label61.TabIndex = 56
         Me.Label61.Text = "기다림"
         Me.Label61.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -2174,14 +2174,14 @@ Partial Class DatEditForm
         Me.TableLayoutPanel3.Controls.Add(Me.ListBox4, 0, 2)
         Me.TableLayoutPanel3.Controls.Add(Me.ListBox3, 0, 1)
         Me.TableLayoutPanel3.Controls.Add(Me.ListBox2, 0, 0)
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(54, 191)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(64, 192)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 4
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(429, 200)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(459, 248)
         Me.TableLayoutPanel3.TabIndex = 55
         '
         'ListBox5
@@ -2191,10 +2191,10 @@ Partial Class DatEditForm
         Me.ListBox5.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox5.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox5.FormattingEnabled = True
-        Me.ListBox5.Location = New System.Drawing.Point(0, 140)
+        Me.ListBox5.Location = New System.Drawing.Point(0, 172)
         Me.ListBox5.Margin = New System.Windows.Forms.Padding(0)
         Me.ListBox5.Name = "ListBox5"
-        Me.ListBox5.Size = New System.Drawing.Size(429, 60)
+        Me.ListBox5.Size = New System.Drawing.Size(459, 76)
         Me.ListBox5.TabIndex = 56
         '
         'ListBox4
@@ -2204,10 +2204,10 @@ Partial Class DatEditForm
         Me.ListBox4.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox4.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox4.FormattingEnabled = True
-        Me.ListBox4.Location = New System.Drawing.Point(0, 80)
+        Me.ListBox4.Location = New System.Drawing.Point(0, 96)
         Me.ListBox4.Margin = New System.Windows.Forms.Padding(0)
         Me.ListBox4.Name = "ListBox4"
-        Me.ListBox4.Size = New System.Drawing.Size(429, 60)
+        Me.ListBox4.Size = New System.Drawing.Size(459, 76)
         Me.ListBox4.TabIndex = 55
         '
         'ListBox3
@@ -2221,7 +2221,7 @@ Partial Class DatEditForm
         Me.ListBox3.Location = New System.Drawing.Point(0, 20)
         Me.ListBox3.Margin = New System.Windows.Forms.Padding(0)
         Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(429, 60)
+        Me.ListBox3.Size = New System.Drawing.Size(459, 76)
         Me.ListBox3.TabIndex = 54
         '
         'ListBox2
@@ -2235,7 +2235,7 @@ Partial Class DatEditForm
         Me.ListBox2.Location = New System.Drawing.Point(0, 0)
         Me.ListBox2.Margin = New System.Windows.Forms.Padding(0)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(429, 20)
+        Me.ListBox2.Size = New System.Drawing.Size(459, 20)
         Me.ListBox2.TabIndex = 53
         '
         'Button12
@@ -2569,7 +2569,7 @@ Partial Class DatEditForm
         Me.TabPage12.Location = New System.Drawing.Point(4, 25)
         Me.TabPage12.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage12.Name = "TabPage12"
-        Me.TabPage12.Size = New System.Drawing.Size(541, 416)
+        Me.TabPage12.Size = New System.Drawing.Size(541, 458)
         Me.TabPage12.TabIndex = 3
         Me.TabPage12.Text = "그래픽"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -2577,7 +2577,7 @@ Partial Class DatEditForm
         'Label60
         '
         Me.Label60.AutoSize = True
-        Me.Label60.Location = New System.Drawing.Point(399, 133)
+        Me.Label60.Location = New System.Drawing.Point(413, 140)
         Me.Label60.Name = "Label60"
         Me.Label60.Size = New System.Drawing.Size(51, 13)
         Me.Label60.TabIndex = 42
@@ -2590,7 +2590,7 @@ Partial Class DatEditForm
         Me.CheckBox4.Checked = True
         Me.CheckBox4.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBox4.ForeColor = System.Drawing.SystemColors.Window
-        Me.CheckBox4.Location = New System.Drawing.Point(190, 348)
+        Me.CheckBox4.Location = New System.Drawing.Point(201, 347)
         Me.CheckBox4.Name = "CheckBox4"
         Me.CheckBox4.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBox4.Size = New System.Drawing.Size(85, 17)
@@ -2661,7 +2661,7 @@ Partial Class DatEditForm
         Me.CheckBox3.Checked = True
         Me.CheckBox3.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CheckBox3.ForeColor = System.Drawing.SystemColors.Window
-        Me.CheckBox3.Location = New System.Drawing.Point(190, 369)
+        Me.CheckBox3.Location = New System.Drawing.Point(201, 368)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CheckBox3.Size = New System.Drawing.Size(81, 17)
@@ -2674,7 +2674,7 @@ Partial Class DatEditForm
         '
         Me.NumericUpDown11.BackColor = System.Drawing.SystemColors.WindowText
         Me.NumericUpDown11.ForeColor = System.Drawing.SystemColors.Window
-        Me.NumericUpDown11.Location = New System.Drawing.Point(140, 365)
+        Me.NumericUpDown11.Location = New System.Drawing.Point(151, 364)
         Me.NumericUpDown11.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
         Me.NumericUpDown11.Name = "NumericUpDown11"
         Me.NumericUpDown11.Size = New System.Drawing.Size(44, 22)
@@ -2686,7 +2686,7 @@ Partial Class DatEditForm
         Me.Label59.AutoSize = True
         Me.Label59.BackColor = System.Drawing.SystemColors.WindowText
         Me.Label59.ForeColor = System.Drawing.SystemColors.Window
-        Me.Label59.Location = New System.Drawing.Point(137, 348)
+        Me.Label59.Location = New System.Drawing.Point(148, 346)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(18, 13)
         Me.Label59.TabIndex = 17
@@ -2869,7 +2869,7 @@ Partial Class DatEditForm
         Me.GroupBox11.Controls.Add(Me.TextBox36)
         Me.GroupBox11.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(486, 117)
+        Me.GroupBox11.Size = New System.Drawing.Size(531, 117)
         Me.GroupBox11.TabIndex = 0
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "유닛그림 정보"
@@ -3092,7 +3092,7 @@ Partial Class DatEditForm
         'PictureBox9
         '
         Me.PictureBox9.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox9.Location = New System.Drawing.Point(396, 149)
+        Me.PictureBox9.Location = New System.Drawing.Point(410, 159)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(96, 96)
         Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -3103,7 +3103,7 @@ Partial Class DatEditForm
         'PictureBox8
         '
         Me.PictureBox8.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox8.Location = New System.Drawing.Point(137, 133)
+        Me.PictureBox8.Location = New System.Drawing.Point(145, 137)
         Me.PictureBox8.Name = "PictureBox8"
         Me.PictureBox8.Size = New System.Drawing.Size(256, 256)
         Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -3119,7 +3119,7 @@ Partial Class DatEditForm
         Me.TabPage13.Location = New System.Drawing.Point(4, 25)
         Me.TabPage13.Name = "TabPage13"
         Me.TabPage13.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage13.Size = New System.Drawing.Size(541, 416)
+        Me.TabPage13.Size = New System.Drawing.Size(541, 458)
         Me.TabPage13.TabIndex = 4
         Me.TabPage13.Text = "맵에디트적용"
         Me.TabPage13.UseVisualStyleBackColor = True
@@ -3275,7 +3275,7 @@ Partial Class DatEditForm
         Me.TabPage14.Location = New System.Drawing.Point(4, 25)
         Me.TabPage14.Name = "TabPage14"
         Me.TabPage14.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage14.Size = New System.Drawing.Size(541, 416)
+        Me.TabPage14.Size = New System.Drawing.Size(541, 458)
         Me.TabPage14.TabIndex = 5
         Me.TabPage14.Text = "인공지능행동"
         Me.TabPage14.UseVisualStyleBackColor = True
@@ -3402,7 +3402,7 @@ Partial Class DatEditForm
         Me.ComboBox29.Location = New System.Drawing.Point(151, 202)
         Me.ComboBox29.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox29.Name = "ComboBox29"
-        Me.ComboBox29.Size = New System.Drawing.Size(177, 21)
+        Me.ComboBox29.Size = New System.Drawing.Size(259, 21)
         Me.ComboBox29.TabIndex = 67
         Me.ComboBox29.Tag = "Right-click Action"
         '
@@ -3663,9 +3663,9 @@ Partial Class DatEditForm
         'GroupBox24
         '
         Me.GroupBox24.Controls.Add(Me.ListView8)
-        Me.GroupBox24.Location = New System.Drawing.Point(409, 187)
+        Me.GroupBox24.Location = New System.Drawing.Point(420, 187)
         Me.GroupBox24.Name = "GroupBox24"
-        Me.GroupBox24.Size = New System.Drawing.Size(94, 172)
+        Me.GroupBox24.Size = New System.Drawing.Size(123, 174)
         Me.GroupBox24.TabIndex = 16
         Me.GroupBox24.TabStop = False
         Me.GroupBox24.Text = "대상종류"
@@ -3679,7 +3679,7 @@ Partial Class DatEditForm
         Me.ListView8.HideSelection = False
         Me.ListView8.Location = New System.Drawing.Point(3, 18)
         Me.ListView8.Name = "ListView8"
-        Me.ListView8.Size = New System.Drawing.Size(88, 151)
+        Me.ListView8.Size = New System.Drawing.Size(117, 153)
         Me.ListView8.TabIndex = 15
         Me.ListView8.Tag = "Target Flags:"
         Me.ListView8.UseCompatibleStateImageBehavior = False
@@ -3711,9 +3711,9 @@ Partial Class DatEditForm
         Me.GroupBox23.Controls.Add(Me.ComboBox34)
         Me.GroupBox23.Controls.Add(Me.TextBox60)
         Me.GroupBox23.Controls.Add(Me.Label76)
-        Me.GroupBox23.Location = New System.Drawing.Point(6, 250)
+        Me.GroupBox23.Location = New System.Drawing.Point(6, 249)
         Me.GroupBox23.Name = "GroupBox23"
-        Me.GroupBox23.Size = New System.Drawing.Size(396, 217)
+        Me.GroupBox23.Size = New System.Drawing.Size(408, 259)
         Me.GroupBox23.TabIndex = 15
         Me.GroupBox23.TabStop = False
         Me.GroupBox23.Text = "그래픽 정보"
@@ -3722,7 +3722,7 @@ Partial Class DatEditForm
         '
         Me.PictureBox19.BackColor = System.Drawing.SystemColors.WindowText
         Me.PictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox19.Location = New System.Drawing.Point(166, 91)
+        Me.PictureBox19.Location = New System.Drawing.Point(172, 108)
         Me.PictureBox19.Name = "PictureBox19"
         Me.PictureBox19.Size = New System.Drawing.Size(96, 96)
         Me.PictureBox19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -3733,7 +3733,7 @@ Partial Class DatEditForm
         'PictureBox20
         '
         Me.PictureBox20.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox20.Location = New System.Drawing.Point(114, 104)
+        Me.PictureBox20.Location = New System.Drawing.Point(119, 108)
         Me.PictureBox20.Name = "PictureBox20"
         Me.PictureBox20.Size = New System.Drawing.Size(48, 48)
         Me.PictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -3744,7 +3744,7 @@ Partial Class DatEditForm
         'PictureBox17
         '
         Me.PictureBox17.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox17.Location = New System.Drawing.Point(265, 87)
+        Me.PictureBox17.Location = New System.Drawing.Point(273, 108)
         Me.PictureBox17.Name = "PictureBox17"
         Me.PictureBox17.Size = New System.Drawing.Size(124, 124)
         Me.PictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -3754,7 +3754,7 @@ Partial Class DatEditForm
         '
         'Label82
         '
-        Me.Label82.Location = New System.Drawing.Point(6, 134)
+        Me.Label82.Location = New System.Drawing.Point(6, 138)
         Me.Label82.Name = "Label82"
         Me.Label82.Size = New System.Drawing.Size(67, 13)
         Me.Label82.TabIndex = 47
@@ -3766,15 +3766,15 @@ Partial Class DatEditForm
         Me.TextBox66.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox66.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox66.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox66.Location = New System.Drawing.Point(74, 130)
+        Me.TextBox66.Location = New System.Drawing.Point(74, 134)
         Me.TextBox66.Name = "TextBox66"
-        Me.TextBox66.Size = New System.Drawing.Size(30, 22)
+        Me.TextBox66.Size = New System.Drawing.Size(40, 22)
         Me.TextBox66.TabIndex = 48
         Me.TextBox66.Tag = "Launch Spin"
         '
         'Label83
         '
-        Me.Label83.Location = New System.Drawing.Point(6, 108)
+        Me.Label83.Location = New System.Drawing.Point(6, 112)
         Me.Label83.Name = "Label83"
         Me.Label83.Size = New System.Drawing.Size(67, 13)
         Me.Label83.TabIndex = 45
@@ -3786,7 +3786,7 @@ Partial Class DatEditForm
         Me.TextBox65.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox65.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox65.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox65.Location = New System.Drawing.Point(130, 158)
+        Me.TextBox65.Location = New System.Drawing.Point(135, 162)
         Me.TextBox65.Name = "TextBox65"
         Me.TextBox65.Size = New System.Drawing.Size(30, 22)
         Me.TextBox65.TabIndex = 42
@@ -3794,7 +3794,7 @@ Partial Class DatEditForm
         '
         'Label80
         '
-        Me.Label80.Location = New System.Drawing.Point(23, 186)
+        Me.Label80.Location = New System.Drawing.Point(28, 190)
         Me.Label80.Name = "Label80"
         Me.Label80.Size = New System.Drawing.Size(100, 13)
         Me.Label80.TabIndex = 43
@@ -3806,15 +3806,15 @@ Partial Class DatEditForm
         Me.TextBox67.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox67.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox67.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox67.Location = New System.Drawing.Point(74, 104)
+        Me.TextBox67.Location = New System.Drawing.Point(74, 108)
         Me.TextBox67.Name = "TextBox67"
-        Me.TextBox67.Size = New System.Drawing.Size(30, 22)
+        Me.TextBox67.Size = New System.Drawing.Size(40, 22)
         Me.TextBox67.TabIndex = 46
         Me.TextBox67.Tag = "Attack Angle"
         '
         'Label81
         '
-        Me.Label81.Location = New System.Drawing.Point(23, 160)
+        Me.Label81.Location = New System.Drawing.Point(28, 164)
         Me.Label81.Name = "Label81"
         Me.Label81.Size = New System.Drawing.Size(100, 13)
         Me.Label81.TabIndex = 41
@@ -3824,7 +3824,7 @@ Partial Class DatEditForm
         'PictureBox18
         '
         Me.PictureBox18.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox18.Location = New System.Drawing.Point(120, 58)
+        Me.PictureBox18.Location = New System.Drawing.Point(119, 67)
         Me.PictureBox18.Name = "PictureBox18"
         Me.PictureBox18.Size = New System.Drawing.Size(36, 34)
         Me.PictureBox18.TabIndex = 40
@@ -3836,7 +3836,7 @@ Partial Class DatEditForm
         Me.TextBox64.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox64.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox64.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox64.Location = New System.Drawing.Point(130, 184)
+        Me.TextBox64.Location = New System.Drawing.Point(135, 188)
         Me.TextBox64.Name = "TextBox64"
         Me.TextBox64.Size = New System.Drawing.Size(30, 22)
         Me.TextBox64.TabIndex = 44
@@ -3850,10 +3850,10 @@ Partial Class DatEditForm
         Me.ComboBox36.FormattingEnabled = True
         Me.ComboBox36.IntegralHeight = False
         Me.ComboBox36.Items.AddRange(New Object() {"1", "2", "3", "4"})
-        Me.ComboBox36.Location = New System.Drawing.Point(162, 62)
+        Me.ComboBox36.Location = New System.Drawing.Point(161, 67)
         Me.ComboBox36.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox36.Name = "ComboBox36"
-        Me.ComboBox36.Size = New System.Drawing.Size(189, 21)
+        Me.ComboBox36.Size = New System.Drawing.Size(193, 21)
         Me.ComboBox36.TabIndex = 39
         Me.ComboBox36.Tag = "Icon"
         '
@@ -3862,7 +3862,7 @@ Partial Class DatEditForm
         Me.TextBox63.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox63.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox63.Location = New System.Drawing.Point(74, 63)
+        Me.TextBox63.Location = New System.Drawing.Point(74, 67)
         Me.TextBox63.Name = "TextBox63"
         Me.TextBox63.Size = New System.Drawing.Size(40, 22)
         Me.TextBox63.TabIndex = 38
@@ -3870,7 +3870,7 @@ Partial Class DatEditForm
         '
         'Label79
         '
-        Me.Label79.Location = New System.Drawing.Point(6, 66)
+        Me.Label79.Location = New System.Drawing.Point(6, 70)
         Me.Label79.Name = "Label79"
         Me.Label79.Size = New System.Drawing.Size(67, 13)
         Me.Label79.TabIndex = 37
@@ -3879,9 +3879,9 @@ Partial Class DatEditForm
         '
         'Button22
         '
-        Me.Button22.Location = New System.Drawing.Point(347, 34)
+        Me.Button22.Location = New System.Drawing.Point(355, 38)
         Me.Button22.Name = "Button22"
-        Me.Button22.Size = New System.Drawing.Size(42, 23)
+        Me.Button22.Size = New System.Drawing.Size(40, 23)
         Me.Button22.TabIndex = 36
         Me.Button22.Tag = "Graphics"
         Me.Button22.Text = "확인"
@@ -3892,7 +3892,7 @@ Partial Class DatEditForm
         Me.TextBox62.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox62.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox62.Location = New System.Drawing.Point(359, 11)
+        Me.TextBox62.Location = New System.Drawing.Point(363, 15)
         Me.TextBox62.Name = "TextBox62"
         Me.TextBox62.Size = New System.Drawing.Size(30, 22)
         Me.TextBox62.TabIndex = 35
@@ -3900,9 +3900,9 @@ Partial Class DatEditForm
         '
         'Label78
         '
-        Me.Label78.Location = New System.Drawing.Point(254, 14)
+        Me.Label78.Location = New System.Drawing.Point(289, 18)
         Me.Label78.Name = "Label78"
-        Me.Label78.Size = New System.Drawing.Size(100, 13)
+        Me.Label78.Size = New System.Drawing.Size(65, 13)
         Me.Label78.TabIndex = 34
         Me.Label78.Text = "잔여시간"
         Me.Label78.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -3915,10 +3915,10 @@ Partial Class DatEditForm
         Me.ComboBox35.FormattingEnabled = True
         Me.ComboBox35.IntegralHeight = False
         Me.ComboBox35.Items.AddRange(New Object() {"독립적크기", "소형", "중형", "대형"})
-        Me.ComboBox35.Location = New System.Drawing.Point(147, 35)
+        Me.ComboBox35.Location = New System.Drawing.Point(120, 39)
         Me.ComboBox35.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox35.Name = "ComboBox35"
-        Me.ComboBox35.Size = New System.Drawing.Size(194, 21)
+        Me.ComboBox35.Size = New System.Drawing.Size(234, 21)
         Me.ComboBox35.TabIndex = 33
         Me.ComboBox35.Tag = "Graphics"
         '
@@ -3927,15 +3927,15 @@ Partial Class DatEditForm
         Me.TextBox61.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox61.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox61.Location = New System.Drawing.Point(74, 35)
+        Me.TextBox61.Location = New System.Drawing.Point(74, 39)
         Me.TextBox61.Name = "TextBox61"
-        Me.TextBox61.Size = New System.Drawing.Size(67, 22)
+        Me.TextBox61.Size = New System.Drawing.Size(40, 22)
         Me.TextBox61.TabIndex = 32
         Me.TextBox61.Tag = "Graphics"
         '
         'Label77
         '
-        Me.Label77.Location = New System.Drawing.Point(6, 39)
+        Me.Label77.Location = New System.Drawing.Point(6, 43)
         Me.Label77.Name = "Label77"
         Me.Label77.Size = New System.Drawing.Size(67, 13)
         Me.Label77.TabIndex = 31
@@ -3950,10 +3950,10 @@ Partial Class DatEditForm
         Me.ComboBox34.FormattingEnabled = True
         Me.ComboBox34.IntegralHeight = False
         Me.ComboBox34.Items.AddRange(New Object() {"독립적크기", "소형", "중형", "대형"})
-        Me.ComboBox34.Location = New System.Drawing.Point(113, 12)
+        Me.ComboBox34.Location = New System.Drawing.Point(120, 16)
         Me.ComboBox34.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox34.Name = "ComboBox34"
-        Me.ComboBox34.Size = New System.Drawing.Size(135, 21)
+        Me.ComboBox34.Size = New System.Drawing.Size(175, 21)
         Me.ComboBox34.TabIndex = 30
         Me.ComboBox34.Tag = "Weapon Behavior"
         '
@@ -3962,15 +3962,15 @@ Partial Class DatEditForm
         Me.TextBox60.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox60.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox60.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox60.Location = New System.Drawing.Point(74, 12)
+        Me.TextBox60.Location = New System.Drawing.Point(74, 16)
         Me.TextBox60.Name = "TextBox60"
-        Me.TextBox60.Size = New System.Drawing.Size(30, 22)
+        Me.TextBox60.Size = New System.Drawing.Size(40, 22)
         Me.TextBox60.TabIndex = 29
         Me.TextBox60.Tag = "Weapon Behavior"
         '
         'Label76
         '
-        Me.Label76.Location = New System.Drawing.Point(6, 15)
+        Me.Label76.Location = New System.Drawing.Point(6, 19)
         Me.Label76.Name = "Label76"
         Me.Label76.Size = New System.Drawing.Size(67, 13)
         Me.Label76.TabIndex = 28
@@ -3985,18 +3985,18 @@ Partial Class DatEditForm
         Me.GroupBox22.Controls.Add(Me.TextBox55)
         Me.GroupBox22.Controls.Add(Me.Label72)
         Me.GroupBox22.Controls.Add(Me.TextBox56)
-        Me.GroupBox22.Location = New System.Drawing.Point(408, 84)
+        Me.GroupBox22.Location = New System.Drawing.Point(420, 84)
         Me.GroupBox22.Name = "GroupBox22"
-        Me.GroupBox22.Size = New System.Drawing.Size(95, 97)
+        Me.GroupBox22.Size = New System.Drawing.Size(123, 97)
         Me.GroupBox22.TabIndex = 14
         Me.GroupBox22.TabStop = False
         Me.GroupBox22.Text = "스플레시범위"
         '
         'Label73
         '
-        Me.Label73.Location = New System.Drawing.Point(1, 73)
+        Me.Label73.Location = New System.Drawing.Point(2, 73)
         Me.Label73.Name = "Label73"
-        Me.Label73.Size = New System.Drawing.Size(39, 13)
+        Me.Label73.Size = New System.Drawing.Size(55, 13)
         Me.Label73.TabIndex = 23
         Me.Label73.Text = "외곽"
         Me.Label73.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -4006,17 +4006,17 @@ Partial Class DatEditForm
         Me.TextBox57.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox57.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox57.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox57.Location = New System.Drawing.Point(40, 69)
+        Me.TextBox57.Location = New System.Drawing.Point(63, 69)
         Me.TextBox57.Name = "TextBox57"
-        Me.TextBox57.Size = New System.Drawing.Size(49, 22)
+        Me.TextBox57.Size = New System.Drawing.Size(55, 22)
         Me.TextBox57.TabIndex = 24
         Me.TextBox57.Tag = "Outer Splash Range"
         '
         'Label71
         '
-        Me.Label71.Location = New System.Drawing.Point(1, 49)
+        Me.Label71.Location = New System.Drawing.Point(2, 49)
         Me.Label71.Name = "Label71"
-        Me.Label71.Size = New System.Drawing.Size(39, 13)
+        Me.Label71.Size = New System.Drawing.Size(55, 13)
         Me.Label71.TabIndex = 21
         Me.Label71.Text = "중간"
         Me.Label71.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -4026,17 +4026,17 @@ Partial Class DatEditForm
         Me.TextBox55.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox55.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox55.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox55.Location = New System.Drawing.Point(40, 45)
+        Me.TextBox55.Location = New System.Drawing.Point(63, 45)
         Me.TextBox55.Name = "TextBox55"
-        Me.TextBox55.Size = New System.Drawing.Size(49, 22)
+        Me.TextBox55.Size = New System.Drawing.Size(55, 22)
         Me.TextBox55.TabIndex = 22
         Me.TextBox55.Tag = "Medium Splash Range"
         '
         'Label72
         '
-        Me.Label72.Location = New System.Drawing.Point(1, 25)
+        Me.Label72.Location = New System.Drawing.Point(2, 25)
         Me.Label72.Name = "Label72"
-        Me.Label72.Size = New System.Drawing.Size(39, 13)
+        Me.Label72.Size = New System.Drawing.Size(55, 13)
         Me.Label72.TabIndex = 19
         Me.Label72.Text = "안쪽"
         Me.Label72.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -4046,9 +4046,9 @@ Partial Class DatEditForm
         Me.TextBox56.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox56.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox56.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox56.Location = New System.Drawing.Point(40, 21)
+        Me.TextBox56.Location = New System.Drawing.Point(63, 21)
         Me.TextBox56.Name = "TextBox56"
-        Me.TextBox56.Size = New System.Drawing.Size(49, 22)
+        Me.TextBox56.Size = New System.Drawing.Size(55, 22)
         Me.TextBox56.TabIndex = 20
         Me.TextBox56.Tag = "Inner Splash Range"
         '
@@ -4058,18 +4058,18 @@ Partial Class DatEditForm
         Me.GroupBox21.Controls.Add(Me.TextBox44)
         Me.GroupBox21.Controls.Add(Me.Label67)
         Me.GroupBox21.Controls.Add(Me.TextBox43)
-        Me.GroupBox21.Location = New System.Drawing.Point(392, 6)
+        Me.GroupBox21.Location = New System.Drawing.Point(420, 6)
         Me.GroupBox21.Name = "GroupBox21"
-        Me.GroupBox21.Size = New System.Drawing.Size(112, 72)
+        Me.GroupBox21.Size = New System.Drawing.Size(124, 72)
         Me.GroupBox21.TabIndex = 13
         Me.GroupBox21.TabStop = False
         Me.GroupBox21.Text = "사거리"
         '
         'Label68
         '
-        Me.Label68.Location = New System.Drawing.Point(6, 45)
+        Me.Label68.Location = New System.Drawing.Point(9, 45)
         Me.Label68.Name = "Label68"
-        Me.Label68.Size = New System.Drawing.Size(32, 13)
+        Me.Label68.Size = New System.Drawing.Size(48, 13)
         Me.Label68.TabIndex = 17
         Me.Label68.Text = "최대"
         Me.Label68.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -4079,17 +4079,17 @@ Partial Class DatEditForm
         Me.TextBox44.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox44.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox44.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox44.Location = New System.Drawing.Point(40, 41)
+        Me.TextBox44.Location = New System.Drawing.Point(63, 41)
         Me.TextBox44.Name = "TextBox44"
-        Me.TextBox44.Size = New System.Drawing.Size(67, 22)
+        Me.TextBox44.Size = New System.Drawing.Size(55, 22)
         Me.TextBox44.TabIndex = 18
         Me.TextBox44.Tag = "Maximum Range"
         '
         'Label67
         '
-        Me.Label67.Location = New System.Drawing.Point(6, 21)
+        Me.Label67.Location = New System.Drawing.Point(9, 21)
         Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(32, 13)
+        Me.Label67.Size = New System.Drawing.Size(48, 13)
         Me.Label67.TabIndex = 15
         Me.Label67.Text = "최소"
         Me.Label67.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -4099,9 +4099,9 @@ Partial Class DatEditForm
         Me.TextBox43.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox43.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox43.Location = New System.Drawing.Point(40, 17)
+        Me.TextBox43.Location = New System.Drawing.Point(63, 17)
         Me.TextBox43.Name = "TextBox43"
-        Me.TextBox43.Size = New System.Drawing.Size(67, 22)
+        Me.TextBox43.Size = New System.Drawing.Size(55, 22)
         Me.TextBox43.TabIndex = 16
         Me.TextBox43.Tag = "Minimum Range"
         '
@@ -4115,27 +4115,27 @@ Partial Class DatEditForm
         Me.GroupBox20.Controls.Add(Me.ComboBox32)
         Me.GroupBox20.Controls.Add(Me.TextBox58)
         Me.GroupBox20.Controls.Add(Me.Label74)
-        Me.GroupBox20.Location = New System.Drawing.Point(6, 164)
+        Me.GroupBox20.Location = New System.Drawing.Point(6, 165)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(396, 80)
+        Me.GroupBox20.Size = New System.Drawing.Size(408, 80)
         Me.GroupBox20.TabIndex = 12
         Me.GroupBox20.TabStop = False
         Me.GroupBox20.Text = "무기 화면정보"
         '
         'Button47
         '
-        Me.Button47.Location = New System.Drawing.Point(345, 42)
+        Me.Button47.Location = New System.Drawing.Point(355, 42)
         Me.Button47.Name = "Button47"
-        Me.Button47.Size = New System.Drawing.Size(45, 23)
+        Me.Button47.Size = New System.Drawing.Size(40, 23)
         Me.Button47.TabIndex = 35
         Me.Button47.Text = "수정"
         Me.Button47.UseVisualStyleBackColor = True
         '
         'Button46
         '
-        Me.Button46.Location = New System.Drawing.Point(345, 19)
+        Me.Button46.Location = New System.Drawing.Point(355, 19)
         Me.Button46.Name = "Button46"
-        Me.Button46.Size = New System.Drawing.Size(45, 23)
+        Me.Button46.Size = New System.Drawing.Size(40, 23)
         Me.Button46.TabIndex = 34
         Me.Button46.Text = "수정"
         Me.Button46.UseVisualStyleBackColor = True
@@ -4151,7 +4151,7 @@ Partial Class DatEditForm
         Me.ComboBox33.Location = New System.Drawing.Point(120, 43)
         Me.ComboBox33.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox33.Name = "ComboBox33"
-        Me.ComboBox33.Size = New System.Drawing.Size(221, 21)
+        Me.ComboBox33.Size = New System.Drawing.Size(234, 21)
         Me.ComboBox33.TabIndex = 33
         Me.ComboBox33.Tag = "Target Error Message"
         '
@@ -4186,7 +4186,7 @@ Partial Class DatEditForm
         Me.ComboBox32.Location = New System.Drawing.Point(120, 20)
         Me.ComboBox32.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox32.Name = "ComboBox32"
-        Me.ComboBox32.Size = New System.Drawing.Size(221, 21)
+        Me.ComboBox32.Size = New System.Drawing.Size(234, 21)
         Me.ComboBox32.TabIndex = 30
         Me.ComboBox32.Tag = "Label"
         '
@@ -4236,14 +4236,14 @@ Partial Class DatEditForm
         Me.GroupBox19.Controls.Add(Me.TextBox3)
         Me.GroupBox19.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox19.Name = "GroupBox19"
-        Me.GroupBox19.Size = New System.Drawing.Size(379, 152)
+        Me.GroupBox19.Size = New System.Drawing.Size(408, 152)
         Me.GroupBox19.TabIndex = 11
         Me.GroupBox19.TabStop = False
         Me.GroupBox19.Text = "타격정보"
         '
         'Button52
         '
-        Me.Button52.Location = New System.Drawing.Point(323, 110)
+        Me.Button52.Location = New System.Drawing.Point(355, 111)
         Me.Button52.Name = "Button52"
         Me.Button52.Size = New System.Drawing.Size(42, 23)
         Me.Button52.TabIndex = 28
@@ -4259,7 +4259,7 @@ Partial Class DatEditForm
         Me.ComboBox31.FormattingEnabled = True
         Me.ComboBox31.IntegralHeight = False
         Me.ComboBox31.Items.AddRange(New Object() {"독립적크기", "소형", "중형", "대형"})
-        Me.ComboBox31.Location = New System.Drawing.Point(247, 74)
+        Me.ComboBox31.Location = New System.Drawing.Point(271, 75)
         Me.ComboBox31.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox31.Name = "ComboBox31"
         Me.ComboBox31.Size = New System.Drawing.Size(126, 21)
@@ -4271,7 +4271,7 @@ Partial Class DatEditForm
         Me.TextBox48.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox48.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox48.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox48.Location = New System.Drawing.Point(211, 74)
+        Me.TextBox48.Location = New System.Drawing.Point(235, 75)
         Me.TextBox48.Name = "TextBox48"
         Me.TextBox48.Size = New System.Drawing.Size(30, 22)
         Me.TextBox48.TabIndex = 26
@@ -4279,7 +4279,7 @@ Partial Class DatEditForm
         '
         'Label70
         '
-        Me.Label70.Location = New System.Drawing.Point(138, 77)
+        Me.Label70.Location = New System.Drawing.Point(162, 78)
         Me.Label70.Name = "Label70"
         Me.Label70.Size = New System.Drawing.Size(70, 13)
         Me.Label70.TabIndex = 25
@@ -4294,7 +4294,7 @@ Partial Class DatEditForm
         Me.ComboBox30.FormattingEnabled = True
         Me.ComboBox30.IntegralHeight = False
         Me.ComboBox30.Items.AddRange(New Object() {"독립적크기", "소형", "중형", "대형"})
-        Me.ComboBox30.Location = New System.Drawing.Point(247, 46)
+        Me.ComboBox30.Location = New System.Drawing.Point(271, 47)
         Me.ComboBox30.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox30.Name = "ComboBox30"
         Me.ComboBox30.Size = New System.Drawing.Size(126, 21)
@@ -4306,7 +4306,7 @@ Partial Class DatEditForm
         Me.TextBox47.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox47.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox47.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox47.Location = New System.Drawing.Point(211, 46)
+        Me.TextBox47.Location = New System.Drawing.Point(235, 47)
         Me.TextBox47.Name = "TextBox47"
         Me.TextBox47.Size = New System.Drawing.Size(30, 22)
         Me.TextBox47.TabIndex = 23
@@ -4314,7 +4314,7 @@ Partial Class DatEditForm
         '
         'Label69
         '
-        Me.Label69.Location = New System.Drawing.Point(138, 49)
+        Me.Label69.Location = New System.Drawing.Point(162, 50)
         Me.Label69.Name = "Label69"
         Me.Label69.Size = New System.Drawing.Size(70, 13)
         Me.Label69.TabIndex = 22
@@ -4329,7 +4329,7 @@ Partial Class DatEditForm
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.IntegralHeight = False
         Me.ComboBox3.Items.AddRange(New Object() {"독립적크기", "소형", "중형", "대형"})
-        Me.ComboBox3.Location = New System.Drawing.Point(247, 18)
+        Me.ComboBox3.Location = New System.Drawing.Point(271, 19)
         Me.ComboBox3.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(126, 21)
@@ -4341,7 +4341,7 @@ Partial Class DatEditForm
         Me.TextBox42.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox42.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox42.Location = New System.Drawing.Point(211, 18)
+        Me.TextBox42.Location = New System.Drawing.Point(235, 19)
         Me.TextBox42.Name = "TextBox42"
         Me.TextBox42.Size = New System.Drawing.Size(30, 22)
         Me.TextBox42.TabIndex = 20
@@ -4349,7 +4349,7 @@ Partial Class DatEditForm
         '
         'Label66
         '
-        Me.Label66.Location = New System.Drawing.Point(138, 21)
+        Me.Label66.Location = New System.Drawing.Point(162, 22)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(70, 13)
         Me.Label66.TabIndex = 19
@@ -4359,7 +4359,7 @@ Partial Class DatEditForm
         'PictureBox16
         '
         Me.PictureBox16.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox16.Location = New System.Drawing.Point(110, 106)
+        Me.PictureBox16.Location = New System.Drawing.Point(120, 111)
         Me.PictureBox16.Name = "PictureBox16"
         Me.PictureBox16.Size = New System.Drawing.Size(36, 34)
         Me.PictureBox16.TabIndex = 18
@@ -4374,10 +4374,10 @@ Partial Class DatEditForm
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.IntegralHeight = False
         Me.ComboBox2.Items.AddRange(New Object() {"1", "2", "3", "4"})
-        Me.ComboBox2.Location = New System.Drawing.Point(152, 110)
+        Me.ComboBox2.Location = New System.Drawing.Point(162, 111)
         Me.ComboBox2.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(165, 21)
+        Me.ComboBox2.Size = New System.Drawing.Size(192, 21)
         Me.ComboBox2.TabIndex = 17
         Me.ComboBox2.Tag = "Damage Upgrade"
         '
@@ -4386,15 +4386,15 @@ Partial Class DatEditForm
         Me.TextBox41.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox41.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox41.Location = New System.Drawing.Point(74, 110)
+        Me.TextBox41.Location = New System.Drawing.Point(74, 111)
         Me.TextBox41.Name = "TextBox41"
-        Me.TextBox41.Size = New System.Drawing.Size(30, 22)
+        Me.TextBox41.Size = New System.Drawing.Size(40, 22)
         Me.TextBox41.TabIndex = 16
         Me.TextBox41.Tag = "Damage Upgrade"
         '
         'Label65
         '
-        Me.Label65.Location = New System.Drawing.Point(6, 113)
+        Me.Label65.Location = New System.Drawing.Point(6, 114)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(67, 13)
         Me.Label65.TabIndex = 15
@@ -4403,7 +4403,7 @@ Partial Class DatEditForm
         '
         'Label7
         '
-        Me.Label7.Location = New System.Drawing.Point(6, 85)
+        Me.Label7.Location = New System.Drawing.Point(6, 86)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(67, 13)
         Me.Label7.TabIndex = 13
@@ -4415,7 +4415,7 @@ Partial Class DatEditForm
         Me.TextBox40.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox40.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox40.Location = New System.Drawing.Point(74, 81)
+        Me.TextBox40.Location = New System.Drawing.Point(74, 82)
         Me.TextBox40.Name = "TextBox40"
         Me.TextBox40.Size = New System.Drawing.Size(40, 22)
         Me.TextBox40.TabIndex = 14
@@ -4423,7 +4423,7 @@ Partial Class DatEditForm
         '
         'Label6
         '
-        Me.Label6.Location = New System.Drawing.Point(6, 62)
+        Me.Label6.Location = New System.Drawing.Point(6, 63)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(67, 13)
         Me.Label6.TabIndex = 11
@@ -4435,7 +4435,7 @@ Partial Class DatEditForm
         Me.TextBox39.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox39.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox39.Location = New System.Drawing.Point(74, 58)
+        Me.TextBox39.Location = New System.Drawing.Point(74, 59)
         Me.TextBox39.Name = "TextBox39"
         Me.TextBox39.Size = New System.Drawing.Size(40, 22)
         Me.TextBox39.TabIndex = 12
@@ -4446,7 +4446,7 @@ Partial Class DatEditForm
         Me.TextBox1.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox1.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox1.Location = New System.Drawing.Point(74, 12)
+        Me.TextBox1.Location = New System.Drawing.Point(74, 13)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(40, 22)
         Me.TextBox1.TabIndex = 8
@@ -4455,7 +4455,7 @@ Partial Class DatEditForm
         '
         'Label25
         '
-        Me.Label25.Location = New System.Drawing.Point(6, 16)
+        Me.Label25.Location = New System.Drawing.Point(6, 17)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(67, 13)
         Me.Label25.TabIndex = 7
@@ -4464,7 +4464,7 @@ Partial Class DatEditForm
         '
         'Label26
         '
-        Me.Label26.Location = New System.Drawing.Point(6, 39)
+        Me.Label26.Location = New System.Drawing.Point(6, 40)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(67, 13)
         Me.Label26.TabIndex = 9
@@ -4476,7 +4476,7 @@ Partial Class DatEditForm
         Me.TextBox3.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox3.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox3.Location = New System.Drawing.Point(74, 35)
+        Me.TextBox3.Location = New System.Drawing.Point(74, 36)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(40, 22)
         Me.TextBox3.TabIndex = 10
