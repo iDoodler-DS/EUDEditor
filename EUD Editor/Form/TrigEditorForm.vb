@@ -2839,4 +2839,26 @@ Public Class TrigEditorForm
 
         End Try
     End Sub
+
+    Public Sub WorkSpace_ItemDrag(ByVal sender As TreeNode, ByVal e As ItemDragEventArgs)
+        Console.WriteLine(sender.Name)
+
+        'Set the drag node and initiate the DragDrop
+        DoDragDrop(e.Item, DragDropEffects.Move)
+
+    End Sub
+
+
+    Public Sub WorkSpace_DragEnter(ByVal sender As TreeNode, ByVal e As DragEventArgs)
+        Console.WriteLine(sender.Name)
+        'See if there is a TreeNode being dragged
+        If e.Data.GetDataPresent("System.Windows.Forms.TreeNode", True) Then
+            'TreeNode found allow move effect
+            e.Effect = DragDropEffects.Move
+        Else
+            'No TreeNode found, prevent move
+            e.Effect = DragDropEffects.None
+        End If
+
+    End Sub
 End Class
