@@ -1,0 +1,15 @@
+Dialog Box
+Default Button
+Button
+Option Button
+Check box
+Image
+Slider bar
+Unknown/Unused
+Text box
+Label (Left align)
+Label (Right align)
+Label (Center align)
+List box
+Combo box
+Button w/ Light-Up
