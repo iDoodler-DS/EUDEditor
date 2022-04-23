@@ -445,9 +445,8 @@ Module TriggerEditorDataMoudle
         Next
 
         For i = 0 To 7
-            strb.AppendLine(GetIntend(1) & "//플레이어 " & i + 1)
-            strb.AppendLine(GetIntend(1) & "if (playerexist(" & i & ")){")
-            strb.AppendLine(GetIntend(2) & "setcurpl(" & i & ");")
+            strb.AppendLine(GetIntend(1) & "if (playerexist($P" & i + 1 & ")){")
+            strb.AppendLine(GetIntend(2) & "setcurpl($P" & i + 1 & ");")
             For k = 0 To playerlist(i).Count - 1
                 If RawTriggers.GetElements(playerlist(i)(k)).isdisalbe = False Then
                     strb.AppendLine(GetIntend(2) & "ClassicTriggerStarter" & playerlist(i)(k) & "();")
