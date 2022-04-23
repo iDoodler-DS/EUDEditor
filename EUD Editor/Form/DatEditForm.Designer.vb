@@ -23,12 +23,12 @@ Partial Class DatEditForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ListViewItem13 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
-        Dim ListViewItem14 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
-        Dim ListViewItem15 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
-        Dim ListViewItem16 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
-        Dim ListViewItem17 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
-        Dim ListViewItem18 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
+        Dim ListViewItem19 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
+        Dim ListViewItem20 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
+        Dim ListViewItem21 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
+        Dim ListViewItem22 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
+        Dim ListViewItem23 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
+        Dim ListViewItem24 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DatEditForm))
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label27 = New System.Windows.Forms.Label()
@@ -629,141 +629,141 @@ Partial Class DatEditForm
         Me.soundLoad = New System.Windows.Forms.OpenFileDialog()
         Me.IScriptPlayer = New System.Windows.Forms.Timer(Me.components)
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
-        Me.FlowLayoutPanel1.SuspendLayout()
-        Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        Me.TableLayoutPanel2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.ListMenu.SuspendLayout()
-        Me.MainTAB.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.FlowLayoutPanel2.SuspendLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabControl2.SuspendLayout()
-        Me.TabPage9.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
-        Me.GroupBox6.SuspendLayout()
-        Me.GroupBox7.SuspendLayout()
-        Me.FlowLayoutPanel6.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox2.SuspendLayout()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage10.SuspendLayout()
-        Me.GroupBox9.SuspendLayout()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox8.SuspendLayout()
-        Me.TabPage11.SuspendLayout()
-        Me.GroupBox10.SuspendLayout()
-        Me.TableLayoutPanel3.SuspendLayout()
-        Me.TabPage12.SuspendLayout()
-        Me.GroupBox17.SuspendLayout()
-        CType(Me.NumericUpDown9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown11, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox13.SuspendLayout()
-        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox12.SuspendLayout()
-        CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox11.SuspendLayout()
-        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage13.SuspendLayout()
-        Me.GroupBox16.SuspendLayout()
-        Me.GroupBox15.SuspendLayout()
-        Me.GroupBox14.SuspendLayout()
-        Me.TabPage14.SuspendLayout()
-        Me.GroupBox18.SuspendLayout()
-        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
-        Me.GroupBox24.SuspendLayout()
-        Me.GroupBox23.SuspendLayout()
-        CType(Me.PictureBox19, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox18, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox22.SuspendLayout()
-        Me.GroupBox21.SuspendLayout()
-        Me.GroupBox20.SuspendLayout()
-        Me.GroupBox19.SuspendLayout()
-        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage3.SuspendLayout()
-        Me.GroupBox25.SuspendLayout()
-        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage4.SuspendLayout()
-        Me.GroupBox27.SuspendLayout()
-        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox26.SuspendLayout()
-        CType(Me.NumericUpDown13, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage5.SuspendLayout()
-        Me.TabControl1.SuspendLayout()
-        Me.TabPage18.SuspendLayout()
-        Me.GRPEditorControl.SuspendLayout()
-        Me.TableLayoutPanel8.SuspendLayout()
-        Me.TableLayoutPanel9.SuspendLayout()
-        Me.FlowLayoutPanel5.SuspendLayout()
-        Me.GroupBox43.SuspendLayout()
-        Me.GroupBox46.SuspendLayout()
-        Me.GroupBox45.SuspendLayout()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox41.SuspendLayout()
-        Me.TabPage17.SuspendLayout()
-        Me.GroupBox44.SuspendLayout()
-        Me.GroupBox42.SuspendLayout()
-        Me.TabPage6.SuspendLayout()
-        Me.GroupBox31.SuspendLayout()
-        Me.GroupBox30.SuspendLayout()
-        CType(Me.NumericUpDown15, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox29.SuspendLayout()
-        CType(Me.NumericUpDown14, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox28.SuspendLayout()
-        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage7.SuspendLayout()
-        Me.GroupBox34.SuspendLayout()
-        Me.GroupBox32.SuspendLayout()
-        CType(Me.NumericUpDown16, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox33.SuspendLayout()
-        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage8.SuspendLayout()
-        Me.GroupBox36.SuspendLayout()
-        Me.GroupBox35.SuspendLayout()
-        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage15.SuspendLayout()
-        Me.MPQEditorControl.SuspendLayout()
-        Me.TableLayoutPanel4.SuspendLayout()
-        Me.TableLayoutPanel5.SuspendLayout()
-        Me.FlowLayoutPanel3.SuspendLayout()
-        Me.GroupBox38.SuspendLayout()
-        Me.GroupBox37.SuspendLayout()
-        Me.TabPage16.SuspendLayout()
-        Me.GroupBox40.SuspendLayout()
-        Me.MPQEditorControl2.SuspendLayout()
-        Me.TableLayoutPanel6.SuspendLayout()
-        Me.TableLayoutPanel7.SuspendLayout()
-        Me.FlowLayoutPanel4.SuspendLayout()
-        Me.GroupBox39.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
-        Me.SuspendLayout()
+        Me.FlowLayoutPanel1.SuspendLayout
+        Me.TableLayoutPanel1.SuspendLayout
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SplitContainer1.Panel1.SuspendLayout
+        Me.SplitContainer1.Panel2.SuspendLayout
+        Me.SplitContainer1.SuspendLayout
+        Me.TableLayoutPanel2.SuspendLayout
+        Me.Panel1.SuspendLayout
+        Me.ListMenu.SuspendLayout
+        Me.MainTAB.SuspendLayout
+        Me.TabPage1.SuspendLayout
+        Me.FlowLayoutPanel2.SuspendLayout
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabControl2.SuspendLayout
+        Me.TabPage9.SuspendLayout
+        Me.GroupBox5.SuspendLayout
+        Me.GroupBox6.SuspendLayout
+        Me.GroupBox7.SuspendLayout
+        Me.FlowLayoutPanel6.SuspendLayout
+        Me.GroupBox4.SuspendLayout
+        Me.GroupBox3.SuspendLayout
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox2.SuspendLayout
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox1.SuspendLayout
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage10.SuspendLayout
+        Me.GroupBox9.SuspendLayout
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox8.SuspendLayout
+        Me.TabPage11.SuspendLayout
+        Me.GroupBox10.SuspendLayout
+        Me.TableLayoutPanel3.SuspendLayout
+        Me.TabPage12.SuspendLayout
+        Me.GroupBox17.SuspendLayout
+        CType(Me.NumericUpDown9, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NumericUpDown10, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NumericUpDown11, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox13.SuspendLayout
+        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox12.SuspendLayout
+        CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox11.SuspendLayout
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage13.SuspendLayout
+        Me.GroupBox16.SuspendLayout
+        Me.GroupBox15.SuspendLayout
+        Me.GroupBox14.SuspendLayout
+        Me.TabPage14.SuspendLayout
+        Me.GroupBox18.SuspendLayout
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage2.SuspendLayout
+        Me.GroupBox24.SuspendLayout
+        Me.GroupBox23.SuspendLayout
+        CType(Me.PictureBox19, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox18, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox22.SuspendLayout
+        Me.GroupBox21.SuspendLayout
+        Me.GroupBox20.SuspendLayout
+        Me.GroupBox19.SuspendLayout
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage3.SuspendLayout
+        Me.GroupBox25.SuspendLayout
+        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage4.SuspendLayout
+        Me.GroupBox27.SuspendLayout
+        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox26.SuspendLayout
+        CType(Me.NumericUpDown13, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage5.SuspendLayout
+        Me.TabControl1.SuspendLayout
+        Me.TabPage18.SuspendLayout
+        Me.GRPEditorControl.SuspendLayout
+        Me.TableLayoutPanel8.SuspendLayout
+        Me.TableLayoutPanel9.SuspendLayout
+        Me.FlowLayoutPanel5.SuspendLayout
+        Me.GroupBox43.SuspendLayout
+        Me.GroupBox46.SuspendLayout
+        Me.GroupBox45.SuspendLayout
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox41.SuspendLayout
+        Me.TabPage17.SuspendLayout
+        Me.GroupBox44.SuspendLayout
+        Me.GroupBox42.SuspendLayout
+        Me.TabPage6.SuspendLayout
+        Me.GroupBox31.SuspendLayout
+        Me.GroupBox30.SuspendLayout
+        CType(Me.NumericUpDown15, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox29.SuspendLayout
+        CType(Me.NumericUpDown14, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox28.SuspendLayout
+        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage7.SuspendLayout
+        Me.GroupBox34.SuspendLayout
+        Me.GroupBox32.SuspendLayout
+        CType(Me.NumericUpDown16, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.GroupBox33.SuspendLayout
+        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage8.SuspendLayout
+        Me.GroupBox36.SuspendLayout
+        Me.GroupBox35.SuspendLayout
+        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage15.SuspendLayout
+        Me.MPQEditorControl.SuspendLayout
+        Me.TableLayoutPanel4.SuspendLayout
+        Me.TableLayoutPanel5.SuspendLayout
+        Me.FlowLayoutPanel3.SuspendLayout
+        Me.GroupBox38.SuspendLayout
+        Me.GroupBox37.SuspendLayout
+        Me.TabPage16.SuspendLayout
+        Me.GroupBox40.SuspendLayout
+        Me.MPQEditorControl2.SuspendLayout
+        Me.TableLayoutPanel6.SuspendLayout
+        Me.TableLayoutPanel7.SuspendLayout
+        Me.FlowLayoutPanel4.SuspendLayout
+        Me.GroupBox39.SuspendLayout
+        Me.MenuStrip1.SuspendLayout
+        Me.SuspendLayout
         '
         'FlowLayoutPanel1
         '
@@ -771,7 +771,7 @@ Partial Class DatEditForm
         Me.FlowLayoutPanel1.Controls.Add(Me.TextBox2)
         Me.FlowLayoutPanel1.Controls.Add(Me.CheckBox5)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 467)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 509)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(227, 28)
@@ -820,7 +820,7 @@ Partial Class DatEditForm
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(227, 495)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(227, 537)
         Me.TableLayoutPanel1.TabIndex = 5
         '
         'SplitContainer1
@@ -839,8 +839,8 @@ Partial Class DatEditForm
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.ListBox1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(227, 467)
-        Me.SplitContainer1.SplitterDistance = 217
+        Me.SplitContainer1.Size = New System.Drawing.Size(227, 509)
+        Me.SplitContainer1.SplitterDistance = 236
         Me.SplitContainer1.TabIndex = 5
         '
         'TableLayoutPanel2
@@ -856,7 +856,7 @@ Partial Class DatEditForm
         Me.TableLayoutPanel2.RowCount = 2
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(227, 217)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(227, 236)
         Me.TableLayoutPanel2.TabIndex = 14
         '
         'Panel1
@@ -866,7 +866,7 @@ Partial Class DatEditForm
         Me.Panel1.Location = New System.Drawing.Point(0, 25)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(227, 192)
+        Me.Panel1.Size = New System.Drawing.Size(227, 211)
         Me.Panel1.TabIndex = 15
         '
         'ListView1
@@ -877,7 +877,7 @@ Partial Class DatEditForm
         Me.ListView1.Location = New System.Drawing.Point(0, 0)
         Me.ListView1.Margin = New System.Windows.Forms.Padding(0)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(227, 192)
+        Me.ListView1.Size = New System.Drawing.Size(227, 211)
         Me.ListView1.TabIndex = 14
         Me.ListView1.TileSize = New System.Drawing.Size(40, 38)
         Me.ListView1.UseCompatibleStateImageBehavior = False
@@ -887,51 +887,51 @@ Partial Class DatEditForm
         '
         Me.ListMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.초기화ToolStripMenuItem, Me.ToolStripSeparator1, Me.복사ToolStripMenuItem, Me.붙여넣기ToolStripMenuItem, Me.ToolStripSeparator2, Me.데이터로내보내기ToolStripMenuItem, Me.데이터불러오기ToolStripMenuItem})
         Me.ListMenu.Name = "ContextMenuStrip1"
-        Me.ListMenu.Size = New System.Drawing.Size(207, 126)
+        Me.ListMenu.Size = New System.Drawing.Size(206, 126)
         '
         '초기화ToolStripMenuItem
         '
         Me.초기화ToolStripMenuItem.Name = "초기화ToolStripMenuItem"
         Me.초기화ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.초기화ToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.초기화ToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.초기화ToolStripMenuItem.Text = "초기화"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(203, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(202, 6)
         '
         '복사ToolStripMenuItem
         '
         Me.복사ToolStripMenuItem.Name = "복사ToolStripMenuItem"
         Me.복사ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.복사ToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.복사ToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.복사ToolStripMenuItem.Text = "복사"
         '
         '붙여넣기ToolStripMenuItem
         '
         Me.붙여넣기ToolStripMenuItem.Name = "붙여넣기ToolStripMenuItem"
         Me.붙여넣기ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.붙여넣기ToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.붙여넣기ToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.붙여넣기ToolStripMenuItem.Text = "붙여넣기"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(203, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(202, 6)
         '
         '데이터로내보내기ToolStripMenuItem
         '
         Me.데이터로내보내기ToolStripMenuItem.Name = "데이터로내보내기ToolStripMenuItem"
         Me.데이터로내보내기ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.데이터로내보내기ToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.데이터로내보내기ToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.데이터로내보내기ToolStripMenuItem.Text = "mdat로 내보내기"
         '
         '데이터불러오기ToolStripMenuItem
         '
         Me.데이터불러오기ToolStripMenuItem.Name = "데이터불러오기ToolStripMenuItem"
         Me.데이터불러오기ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.데이터불러오기ToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.데이터불러오기ToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
         Me.데이터불러오기ToolStripMenuItem.Text = "mdat 불러오기"
         '
         'Button5
@@ -950,12 +950,12 @@ Partial Class DatEditForm
         Me.ListBox1.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-        Me.ListBox1.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.ListBox1.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox1.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(0, 0)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(227, 246)
+        Me.ListBox1.Size = New System.Drawing.Size(227, 269)
         Me.ListBox1.TabIndex = 7
         '
         'MainTAB
@@ -971,13 +971,13 @@ Partial Class DatEditForm
         Me.MainTAB.Controls.Add(Me.TabPage15)
         Me.MainTAB.Controls.Add(Me.TabPage16)
         Me.MainTAB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.MainTAB.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.MainTAB.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.MainTAB.HotTrack = True
         Me.MainTAB.Location = New System.Drawing.Point(227, 24)
         Me.MainTAB.Margin = New System.Windows.Forms.Padding(0)
         Me.MainTAB.Name = "MainTAB"
         Me.MainTAB.SelectedIndex = 0
-        Me.MainTAB.Size = New System.Drawing.Size(520, 495)
+        Me.MainTAB.Size = New System.Drawing.Size(557, 537)
         Me.MainTAB.TabIndex = 6
         '
         'TabPage1
@@ -987,7 +987,7 @@ Partial Class DatEditForm
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage1.Size = New System.Drawing.Size(549, 511)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "유닛"
         '
@@ -999,7 +999,7 @@ Partial Class DatEditForm
         Me.FlowLayoutPanel2.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(512, 24)
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(549, 24)
         Me.FlowLayoutPanel2.TabIndex = 2
         '
         'PictureBox4
@@ -1034,12 +1034,12 @@ Partial Class DatEditForm
         Me.TabControl2.Controls.Add(Me.TabPage13)
         Me.TabControl2.Controls.Add(Me.TabPage14)
         Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabControl2.Location = New System.Drawing.Point(0, 24)
+        Me.TabControl2.Location = New System.Drawing.Point(0, 66)
         Me.TabControl2.Margin = New System.Windows.Forms.Padding(0)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.Padding = New System.Drawing.Point(0, 0)
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(512, 445)
+        Me.TabControl2.Size = New System.Drawing.Size(549, 445)
         Me.TabControl2.TabIndex = 0
         '
         'TabPage9
@@ -1055,7 +1055,7 @@ Partial Class DatEditForm
         Me.TabPage9.Location = New System.Drawing.Point(4, 25)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage9.Size = New System.Drawing.Size(504, 416)
+        Me.TabPage9.Size = New System.Drawing.Size(541, 416)
         Me.TabPage9.TabIndex = 0
         Me.TabPage9.Text = "기본정보"
         '
@@ -1065,9 +1065,9 @@ Partial Class DatEditForm
         Me.GroupBox5.Controls.Add(Me.Label18)
         Me.GroupBox5.Controls.Add(Me.TextBox17)
         Me.GroupBox5.Controls.Add(Me.Label17)
-        Me.GroupBox5.Location = New System.Drawing.Point(191, 263)
+        Me.GroupBox5.Location = New System.Drawing.Point(224, 263)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(117, 79)
+        Me.GroupBox5.Size = New System.Drawing.Size(152, 79)
         Me.GroupBox5.TabIndex = 3
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "탑승공간"
@@ -1077,7 +1077,7 @@ Partial Class DatEditForm
         Me.TextBox18.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox18.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox18.Location = New System.Drawing.Point(54, 45)
+        Me.TextBox18.Location = New System.Drawing.Point(73, 45)
         Me.TextBox18.Name = "TextBox18"
         Me.TextBox18.Size = New System.Drawing.Size(40, 22)
         Me.TextBox18.TabIndex = 13
@@ -1085,7 +1085,7 @@ Partial Class DatEditForm
         '
         'Label18
         '
-        Me.Label18.Location = New System.Drawing.Point(-3, 48)
+        Me.Label18.Location = New System.Drawing.Point(7, 48)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(55, 13)
         Me.Label18.TabIndex = 12
@@ -1097,7 +1097,7 @@ Partial Class DatEditForm
         Me.TextBox17.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox17.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox17.Location = New System.Drawing.Point(54, 16)
+        Me.TextBox17.Location = New System.Drawing.Point(73, 16)
         Me.TextBox17.Name = "TextBox17"
         Me.TextBox17.Size = New System.Drawing.Size(40, 22)
         Me.TextBox17.TabIndex = 11
@@ -1105,7 +1105,7 @@ Partial Class DatEditForm
         '
         'Label17
         '
-        Me.Label17.Location = New System.Drawing.Point(-3, 19)
+        Me.Label17.Location = New System.Drawing.Point(7, 19)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(55, 13)
         Me.Label17.TabIndex = 10
@@ -1118,9 +1118,9 @@ Partial Class DatEditForm
         Me.GroupBox6.Controls.Add(Me.Label20)
         Me.GroupBox6.Controls.Add(Me.TextBox19)
         Me.GroupBox6.Controls.Add(Me.Label19)
-        Me.GroupBox6.Location = New System.Drawing.Point(314, 263)
+        Me.GroupBox6.Location = New System.Drawing.Point(381, 263)
         Me.GroupBox6.Name = "GroupBox6"
-        Me.GroupBox6.Size = New System.Drawing.Size(118, 79)
+        Me.GroupBox6.Size = New System.Drawing.Size(152, 79)
         Me.GroupBox6.TabIndex = 3
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "점수"
@@ -1130,7 +1130,7 @@ Partial Class DatEditForm
         Me.TextBox20.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox20.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox20.Location = New System.Drawing.Point(68, 45)
+        Me.TextBox20.Location = New System.Drawing.Point(67, 45)
         Me.TextBox20.Name = "TextBox20"
         Me.TextBox20.Size = New System.Drawing.Size(40, 22)
         Me.TextBox20.TabIndex = 13
@@ -1138,7 +1138,7 @@ Partial Class DatEditForm
         '
         'Label20
         '
-        Me.Label20.Location = New System.Drawing.Point(10, 48)
+        Me.Label20.Location = New System.Drawing.Point(6, 48)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(55, 13)
         Me.Label20.TabIndex = 12
@@ -1150,7 +1150,7 @@ Partial Class DatEditForm
         Me.TextBox19.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox19.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox19.Location = New System.Drawing.Point(68, 16)
+        Me.TextBox19.Location = New System.Drawing.Point(67, 16)
         Me.TextBox19.Name = "TextBox19"
         Me.TextBox19.Size = New System.Drawing.Size(40, 22)
         Me.TextBox19.TabIndex = 11
@@ -1158,7 +1158,7 @@ Partial Class DatEditForm
         '
         'Label19
         '
-        Me.Label19.Location = New System.Drawing.Point(10, 19)
+        Me.Label19.Location = New System.Drawing.Point(6, 19)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(55, 13)
         Me.Label19.TabIndex = 10
@@ -1170,7 +1170,7 @@ Partial Class DatEditForm
         Me.GroupBox7.Controls.Add(Me.FlowLayoutPanel6)
         Me.GroupBox7.Location = New System.Drawing.Point(6, 348)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(486, 50)
+        Me.GroupBox7.Size = New System.Drawing.Size(527, 50)
         Me.GroupBox7.TabIndex = 3
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "기타정보"
@@ -1187,7 +1187,7 @@ Partial Class DatEditForm
         Me.FlowLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel6.Location = New System.Drawing.Point(3, 18)
         Me.FlowLayoutPanel6.Name = "FlowLayoutPanel6"
-        Me.FlowLayoutPanel6.Size = New System.Drawing.Size(480, 29)
+        Me.FlowLayoutPanel6.Size = New System.Drawing.Size(521, 29)
         Me.FlowLayoutPanel6.TabIndex = 19
         '
         'Label21
@@ -1280,7 +1280,7 @@ Partial Class DatEditForm
         Me.GroupBox4.Controls.Add(Me.Label15)
         Me.GroupBox4.Location = New System.Drawing.Point(6, 263)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(179, 79)
+        Me.GroupBox4.Size = New System.Drawing.Size(214, 79)
         Me.GroupBox4.TabIndex = 4
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "인구량"
@@ -1290,14 +1290,15 @@ Partial Class DatEditForm
         Me.ListView3.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListView3.CheckBoxes = True
         Me.ListView3.ForeColor = System.Drawing.SystemColors.Window
-        ListViewItem13.StateImageIndex = 0
-        ListViewItem14.StateImageIndex = 0
-        ListViewItem15.StateImageIndex = 0
-        Me.ListView3.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem13, ListViewItem14, ListViewItem15})
+        Me.ListView3.HideSelection = False
+        ListViewItem19.StateImageIndex = 0
+        ListViewItem20.StateImageIndex = 0
+        ListViewItem21.StateImageIndex = 0
+        Me.ListView3.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem19, ListViewItem20, ListViewItem21})
         Me.ListView3.Location = New System.Drawing.Point(107, 12)
         Me.ListView3.Name = "ListView3"
         Me.ListView3.Scrollable = False
-        Me.ListView3.Size = New System.Drawing.Size(54, 61)
+        Me.ListView3.Size = New System.Drawing.Size(98, 61)
         Me.ListView3.TabIndex = 15
         Me.ListView3.Tag = "Staredit Group Flags:"
         Me.ListView3.UseCompatibleStateImageBehavior = False
@@ -1361,7 +1362,7 @@ Partial Class DatEditForm
         Me.GroupBox3.Controls.Add(Me.Label11)
         Me.GroupBox3.Location = New System.Drawing.Point(6, 136)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(486, 121)
+        Me.GroupBox3.Size = New System.Drawing.Size(527, 121)
         Me.GroupBox3.TabIndex = 3
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Tag = "Ground Weapon"
@@ -1526,16 +1527,16 @@ Partial Class DatEditForm
         Me.GroupBox2.Controls.Add(Me.Label9)
         Me.GroupBox2.Controls.Add(Me.TextBox5)
         Me.GroupBox2.Controls.Add(Me.Label8)
-        Me.GroupBox2.Location = New System.Drawing.Point(326, 6)
+        Me.GroupBox2.Location = New System.Drawing.Point(354, 6)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(166, 124)
+        Me.GroupBox2.Size = New System.Drawing.Size(179, 124)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "생산비용"
         '
         'Label5
         '
-        Me.Label5.Location = New System.Drawing.Point(1, 89)
+        Me.Label5.Location = New System.Drawing.Point(1, 94)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(60, 13)
         Me.Label5.TabIndex = 14
@@ -1547,7 +1548,7 @@ Partial Class DatEditForm
         Me.NumericUpDown2.BackColor = System.Drawing.SystemColors.WindowText
         Me.NumericUpDown2.DecimalPlaces = 1
         Me.NumericUpDown2.ForeColor = System.Drawing.SystemColors.Window
-        Me.NumericUpDown2.Location = New System.Drawing.Point(106, 65)
+        Me.NumericUpDown2.Location = New System.Drawing.Point(114, 67)
         Me.NumericUpDown2.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.NumericUpDown2.Name = "NumericUpDown2"
         Me.NumericUpDown2.ReadOnly = True
@@ -1560,7 +1561,7 @@ Partial Class DatEditForm
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.BackColor = System.Drawing.SystemColors.WindowText
         Me.CheckBox2.ForeColor = System.Drawing.SystemColors.Window
-        Me.CheckBox2.Location = New System.Drawing.Point(62, 89)
+        Me.CheckBox2.Location = New System.Drawing.Point(62, 92)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(48, 17)
         Me.CheckBox2.TabIndex = 12
@@ -1573,15 +1574,15 @@ Partial Class DatEditForm
         Me.TextBox10.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox10.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox10.Location = New System.Drawing.Point(62, 65)
+        Me.TextBox10.Location = New System.Drawing.Point(62, 67)
         Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(40, 22)
+        Me.TextBox10.Size = New System.Drawing.Size(48, 22)
         Me.TextBox10.TabIndex = 11
         Me.TextBox10.Tag = "Build Time"
         '
         'Label10
         '
-        Me.Label10.Location = New System.Drawing.Point(6, 67)
+        Me.Label10.Location = New System.Drawing.Point(6, 72)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(55, 13)
         Me.Label10.TabIndex = 10
@@ -1593,15 +1594,15 @@ Partial Class DatEditForm
         Me.TextBox9.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox9.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox9.Location = New System.Drawing.Point(62, 41)
+        Me.TextBox9.Location = New System.Drawing.Point(62, 42)
         Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(40, 22)
+        Me.TextBox9.Size = New System.Drawing.Size(48, 22)
         Me.TextBox9.TabIndex = 9
         Me.TextBox9.Tag = "Vespene Cost"
         '
         'Label9
         '
-        Me.Label9.Location = New System.Drawing.Point(6, 43)
+        Me.Label9.Location = New System.Drawing.Point(6, 46)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(55, 13)
         Me.Label9.TabIndex = 8
@@ -1615,13 +1616,13 @@ Partial Class DatEditForm
         Me.TextBox5.ForeColor = System.Drawing.SystemColors.Window
         Me.TextBox5.Location = New System.Drawing.Point(62, 17)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(40, 22)
+        Me.TextBox5.Size = New System.Drawing.Size(48, 22)
         Me.TextBox5.TabIndex = 7
         Me.TextBox5.Tag = "Mineral Cost"
         '
         'Label8
         '
-        Me.Label8.Location = New System.Drawing.Point(6, 19)
+        Me.Label8.Location = New System.Drawing.Point(6, 21)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(55, 13)
         Me.Label8.TabIndex = 6
@@ -1645,7 +1646,7 @@ Partial Class DatEditForm
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(314, 124)
+        Me.GroupBox1.Size = New System.Drawing.Size(342, 124)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "유닛 생체 수치"
@@ -1655,16 +1656,16 @@ Partial Class DatEditForm
         Me.ComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.IntegralHeight = False
-        Me.ComboBox1.Location = New System.Drawing.Point(143, 80)
+        Me.ComboBox1.Location = New System.Drawing.Point(141, 77)
         Me.ComboBox1.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(165, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(145, 21)
         Me.ComboBox1.TabIndex = 21
         Me.ComboBox1.Tag = "Armor Upgrade"
         '
         'Button51
         '
-        Me.Button51.Location = New System.Drawing.Point(143, 102)
+        Me.Button51.Location = New System.Drawing.Point(289, 76)
         Me.Button51.Name = "Button51"
         Me.Button51.Size = New System.Drawing.Size(42, 23)
         Me.Button51.TabIndex = 20
@@ -1684,7 +1685,7 @@ Partial Class DatEditForm
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox1.Location = New System.Drawing.Point(101, 85)
+        Me.PictureBox1.Location = New System.Drawing.Point(100, 77)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(36, 34)
         Me.PictureBox1.TabIndex = 13
@@ -1721,7 +1722,7 @@ Partial Class DatEditForm
         Me.TextBox4.ForeColor = System.Drawing.SystemColors.Window
         Me.TextBox4.Location = New System.Drawing.Point(168, 17)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(140, 22)
+        Me.TextBox4.Size = New System.Drawing.Size(60, 22)
         Me.TextBox4.TabIndex = 0
         Me.TextBox4.Tag = "Hit Points"
         '
@@ -1901,10 +1902,11 @@ Partial Class DatEditForm
         Me.ListView4.CheckBoxes = True
         Me.ListView4.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
         Me.ListView4.ForeColor = System.Drawing.SystemColors.Window
-        ListViewItem16.StateImageIndex = 0
-        ListViewItem17.StateImageIndex = 0
-        ListViewItem18.StateImageIndex = 0
-        Me.ListView4.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem16, ListViewItem17, ListViewItem18})
+        Me.ListView4.HideSelection = False
+        ListViewItem22.StateImageIndex = 0
+        ListViewItem23.StateImageIndex = 0
+        ListViewItem24.StateImageIndex = 0
+        Me.ListView4.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem22, ListViewItem23, ListViewItem24})
         Me.ListView4.Location = New System.Drawing.Point(360, 14)
         Me.ListView4.Name = "ListView4"
         Me.ListView4.Scrollable = False
@@ -2054,6 +2056,7 @@ Partial Class DatEditForm
         Me.ListView2.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
         Me.ListView2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView2.ForeColor = System.Drawing.SystemColors.Window
+        Me.ListView2.HideSelection = False
         Me.ListView2.Location = New System.Drawing.Point(3, 18)
         Me.ListView2.Name = "ListView2"
         Me.ListView2.Size = New System.Drawing.Size(480, 179)
@@ -2185,7 +2188,7 @@ Partial Class DatEditForm
         '
         Me.ListBox5.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListBox5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListBox5.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.ListBox5.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox5.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox5.FormattingEnabled = True
         Me.ListBox5.Location = New System.Drawing.Point(0, 140)
@@ -2198,7 +2201,7 @@ Partial Class DatEditForm
         '
         Me.ListBox4.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListBox4.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.ListBox4.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox4.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox4.FormattingEnabled = True
         Me.ListBox4.Location = New System.Drawing.Point(0, 80)
@@ -2211,7 +2214,7 @@ Partial Class DatEditForm
         '
         Me.ListBox3.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListBox3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListBox3.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.ListBox3.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox3.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox3.FormattingEnabled = True
         Me.ListBox3.Items.AddRange(New Object() {"ㅁㄴㅁㄴㅁㄴㄴㅁ"})
@@ -2225,7 +2228,7 @@ Partial Class DatEditForm
         '
         Me.ListBox2.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListBox2.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.ListBox2.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox2.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox2.FormattingEnabled = True
         Me.ListBox2.Items.AddRange(New Object() {"ㅁㄴㅇㅁㄴㅇㅁㄴㅇㄴㅁㅇ", "ㅁㄴㅇ", "ㅁㅇ", "ㄴㅁㅇ", "ㅁㅇㄴㅁㅇ"})
@@ -3232,6 +3235,7 @@ Partial Class DatEditForm
         Me.ListView6.CheckBoxes = True
         Me.ListView6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView6.ForeColor = System.Drawing.SystemColors.Window
+        Me.ListView6.HideSelection = False
         Me.ListView6.Location = New System.Drawing.Point(3, 18)
         Me.ListView6.Name = "ListView6"
         Me.ListView6.Size = New System.Drawing.Size(94, 140)
@@ -3256,6 +3260,7 @@ Partial Class DatEditForm
         Me.ListView5.CheckBoxes = True
         Me.ListView5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView5.ForeColor = System.Drawing.SystemColors.Window
+        Me.ListView5.HideSelection = False
         Me.ListView5.Location = New System.Drawing.Point(3, 18)
         Me.ListView5.Name = "ListView5"
         Me.ListView5.Size = New System.Drawing.Size(300, 140)
@@ -3318,6 +3323,7 @@ Partial Class DatEditForm
         Me.ListView7.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListView7.CheckBoxes = True
         Me.ListView7.ForeColor = System.Drawing.SystemColors.Window
+        Me.ListView7.HideSelection = False
         Me.ListView7.Location = New System.Drawing.Point(31, 237)
         Me.ListView7.Name = "ListView7"
         Me.ListView7.Size = New System.Drawing.Size(325, 50)
@@ -3670,6 +3676,7 @@ Partial Class DatEditForm
         Me.ListView8.CheckBoxes = True
         Me.ListView8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView8.ForeColor = System.Drawing.SystemColors.Window
+        Me.ListView8.HideSelection = False
         Me.ListView8.Location = New System.Drawing.Point(3, 18)
         Me.ListView8.Name = "ListView8"
         Me.ListView8.Size = New System.Drawing.Size(88, 151)
@@ -5063,7 +5070,7 @@ Partial Class DatEditForm
         '
         'Button44
         '
-        Me.Button44.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button44.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button44.Image = Global.EUD_Editor.My.Resources.Resources.FromInternel
         Me.Button44.Location = New System.Drawing.Point(3, 3)
         Me.Button44.Name = "Button44"
@@ -5075,7 +5082,7 @@ Partial Class DatEditForm
         '
         'Button42
         '
-        Me.Button42.Font = New System.Drawing.Font("맑은 고딕", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button42.Font = New System.Drawing.Font("Malgun Gothic", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button42.Image = Global.EUD_Editor.My.Resources.Resources.Open
         Me.Button42.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button42.Location = New System.Drawing.Point(3, 66)
@@ -5090,7 +5097,7 @@ Partial Class DatEditForm
         '
         'Button43
         '
-        Me.Button43.Font = New System.Drawing.Font("맑은 고딕", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button43.Font = New System.Drawing.Font("Malgun Gothic", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button43.Image = Global.EUD_Editor.My.Resources.Resources.Delete
         Me.Button43.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button43.Location = New System.Drawing.Point(3, 129)
@@ -5245,7 +5252,7 @@ Partial Class DatEditForm
         '
         Me.Label146.AutoSize = True
         Me.Label146.BackColor = System.Drawing.SystemColors.WindowText
-        Me.Label146.Font = New System.Drawing.Font("맑은 고딕", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label146.Font = New System.Drawing.Font("Malgun Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Label146.ForeColor = System.Drawing.Color.Red
         Me.Label146.Location = New System.Drawing.Point(10, 21)
         Me.Label146.Name = "Label146"
@@ -5728,6 +5735,7 @@ Partial Class DatEditForm
         Me.ListView10.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader9, Me.ColumnHeader10})
         Me.ListView10.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView10.ForeColor = System.Drawing.SystemColors.Window
+        Me.ListView10.HideSelection = False
         Me.ListView10.Location = New System.Drawing.Point(3, 18)
         Me.ListView10.Name = "ListView10"
         Me.ListView10.Size = New System.Drawing.Size(184, 49)
@@ -6530,6 +6538,7 @@ Partial Class DatEditForm
         Me.ListView9.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader6, Me.ColumnHeader7, Me.ColumnHeader8})
         Me.ListView9.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListView9.ForeColor = System.Drawing.SystemColors.Window
+        Me.ListView9.HideSelection = False
         Me.ListView9.Location = New System.Drawing.Point(3, 18)
         Me.ListView9.Name = "ListView9"
         Me.ListView9.Size = New System.Drawing.Size(497, 83)
@@ -6933,7 +6942,7 @@ Partial Class DatEditForm
         '
         'Button31
         '
-        Me.Button31.Font = New System.Drawing.Font("맑은 고딕", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button31.Font = New System.Drawing.Font("Malgun Gothic", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button31.Image = Global.EUD_Editor.My.Resources.Resources.Open
         Me.Button31.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button31.Location = New System.Drawing.Point(3, 3)
@@ -6947,7 +6956,7 @@ Partial Class DatEditForm
         '
         'Button32
         '
-        Me.Button32.Font = New System.Drawing.Font("맑은 고딕", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button32.Font = New System.Drawing.Font("Malgun Gothic", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button32.Image = Global.EUD_Editor.My.Resources.Resources.Delete
         Me.Button32.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button32.Location = New System.Drawing.Point(3, 66)
@@ -7343,7 +7352,7 @@ Partial Class DatEditForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FIleFToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewVToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(747, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(784, 24)
         Me.MenuStrip1.TabIndex = 7
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -7359,7 +7368,7 @@ Partial Class DatEditForm
         Me.DatFileResetRToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.UseEDD
         Me.DatFileResetRToolStripMenuItem.Name = "DatFileResetRToolStripMenuItem"
         Me.DatFileResetRToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.DatFileResetRToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.DatFileResetRToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.DatFileResetRToolStripMenuItem.Text = "dat파일 리셋(&R)"
         '
         'DatFileLoadToolStripMenuItem
@@ -7367,46 +7376,46 @@ Partial Class DatEditForm
         Me.DatFileLoadToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Open
         Me.DatFileLoadToolStripMenuItem.Name = "DatFileLoadToolStripMenuItem"
         Me.DatFileLoadToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
-        Me.DatFileLoadToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.DatFileLoadToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.DatFileLoadToolStripMenuItem.Text = "dat파일 불러오기(&L)"
         '
         'DatFileSaveSToolStripMenuItem
         '
         Me.DatFileSaveSToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Savefile
         Me.DatFileSaveSToolStripMenuItem.Name = "DatFileSaveSToolStripMenuItem"
-        Me.DatFileSaveSToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.DatFileSaveSToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.DatFileSaveSToolStripMenuItem.Text = "dat파일 저장(&A)"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(218, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(217, 6)
         '
         'DatFileAllSaveToolStripMenuItem
         '
         Me.DatFileAllSaveToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Savefile
         Me.DatFileAllSaveToolStripMenuItem.Name = "DatFileAllSaveToolStripMenuItem"
-        Me.DatFileAllSaveToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.DatFileAllSaveToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.DatFileAllSaveToolStripMenuItem.Text = "dat파일 모두 저장"
         '
         'DatFileAllResetToolStripMenuItem
         '
         Me.DatFileAllResetToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.UseEDD
         Me.DatFileAllResetToolStripMenuItem.Name = "DatFileAllResetToolStripMenuItem"
-        Me.DatFileAllResetToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.DatFileAllResetToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.DatFileAllResetToolStripMenuItem.Text = "dat파일 모두 리셋"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(218, 6)
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(217, 6)
         '
         'ProjectSaveToolStripMenuItem
         '
         Me.ProjectSaveToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Save
         Me.ProjectSaveToolStripMenuItem.Name = "ProjectSaveToolStripMenuItem"
         Me.ProjectSaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.ProjectSaveToolStripMenuItem.Size = New System.Drawing.Size(221, 22)
+        Me.ProjectSaveToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.ProjectSaveToolStripMenuItem.Text = "프로젝트 저장(&S)"
         '
         'EditToolStripMenuItem
@@ -7420,20 +7429,20 @@ Partial Class DatEditForm
         '
         Me.ResetToolStripMenuItem1.Name = "ResetToolStripMenuItem1"
         Me.ResetToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ResetToolStripMenuItem1.Size = New System.Drawing.Size(249, 22)
+        Me.ResetToolStripMenuItem1.Size = New System.Drawing.Size(246, 22)
         Me.ResetToolStripMenuItem1.Text = "초기화"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(246, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(243, 6)
         '
         'ObjectResetToolStripMenuItem
         '
         Me.ObjectResetToolStripMenuItem.Name = "ObjectResetToolStripMenuItem"
         Me.ObjectResetToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ObjectResetToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.ObjectResetToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.ObjectResetToolStripMenuItem.Text = "오브젝트 초기화"
         '
         'ObjectCopyToolStripMenuItem
@@ -7441,7 +7450,7 @@ Partial Class DatEditForm
         Me.ObjectCopyToolStripMenuItem.Name = "ObjectCopyToolStripMenuItem"
         Me.ObjectCopyToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.ObjectCopyToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.ObjectCopyToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.ObjectCopyToolStripMenuItem.Text = "오브젝트 복사"
         '
         'ObjectPasteToolStripMenuItem
@@ -7449,20 +7458,20 @@ Partial Class DatEditForm
         Me.ObjectPasteToolStripMenuItem.Name = "ObjectPasteToolStripMenuItem"
         Me.ObjectPasteToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.ObjectPasteToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.ObjectPasteToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.ObjectPasteToolStripMenuItem.Text = "오브젝트 붙여넣기"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(246, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(243, 6)
         '
         'DataExportToolStripMenuItem1
         '
         Me.DataExportToolStripMenuItem1.Name = "DataExportToolStripMenuItem1"
         Me.DataExportToolStripMenuItem1.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.DataExportToolStripMenuItem1.Size = New System.Drawing.Size(249, 22)
+        Me.DataExportToolStripMenuItem1.Size = New System.Drawing.Size(246, 22)
         Me.DataExportToolStripMenuItem1.Text = "데이터로 내보내기"
         '
         'DataImportToolStripMenuItem1
@@ -7470,39 +7479,39 @@ Partial Class DatEditForm
         Me.DataImportToolStripMenuItem1.Name = "DataImportToolStripMenuItem1"
         Me.DataImportToolStripMenuItem1.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.DataImportToolStripMenuItem1.Size = New System.Drawing.Size(249, 22)
+        Me.DataImportToolStripMenuItem1.Size = New System.Drawing.Size(246, 22)
         Me.DataImportToolStripMenuItem1.Text = "데이터 불러오기"
         '
         'ViewVToolStripMenuItem
         '
         Me.ViewVToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ThameSetTToolStripMenuItem, Me.ToolStripSeparator7, Me.UsedDataToolStripMenuItem, Me.TriggerViewerTToolStripMenuItem})
         Me.ViewVToolStripMenuItem.Name = "ViewVToolStripMenuItem"
-        Me.ViewVToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
+        Me.ViewVToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.ViewVToolStripMenuItem.Text = "보기(&V)"
         '
         'ThameSetTToolStripMenuItem
         '
         Me.ThameSetTToolStripMenuItem.Name = "ThameSetTToolStripMenuItem"
-        Me.ThameSetTToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.ThameSetTToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.ThameSetTToolStripMenuItem.Text = "테마 설정(&T)"
         '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(207, 6)
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(204, 6)
         '
         'UsedDataToolStripMenuItem
         '
         Me.UsedDataToolStripMenuItem.Name = "UsedDataToolStripMenuItem"
         Me.UsedDataToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.UsedDataToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.UsedDataToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.UsedDataToolStripMenuItem.Text = "사용된 데이터(&D)"
         '
         'TriggerViewerTToolStripMenuItem
         '
         Me.TriggerViewerTToolStripMenuItem.Name = "TriggerViewerTToolStripMenuItem"
         Me.TriggerViewerTToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.T), System.Windows.Forms.Keys)
-        Me.TriggerViewerTToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.TriggerViewerTToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.TriggerViewerTToolStripMenuItem.Text = "트리거 보기(&T)"
         '
         'Timer1
@@ -8552,11 +8561,11 @@ Partial Class DatEditForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(747, 519)
+        Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.MainTAB)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Font = New System.Drawing.Font("맑은 고딕", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -8565,11 +8574,11 @@ Partial Class DatEditForm
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "DatEdit in EUDEditor"
         Me.FlowLayoutPanel1.ResumeLayout(False)
-        Me.FlowLayoutPanel1.PerformLayout()
+        Me.FlowLayoutPanel1.PerformLayout
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit
         Me.SplitContainer1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
@@ -8577,172 +8586,172 @@ Partial Class DatEditForm
         Me.MainTAB.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.FlowLayoutPanel2.ResumeLayout(False)
-        Me.FlowLayoutPanel2.PerformLayout()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FlowLayoutPanel2.PerformLayout
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage9.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox5.PerformLayout()
+        Me.GroupBox5.PerformLayout
         Me.GroupBox6.ResumeLayout(False)
-        Me.GroupBox6.PerformLayout()
+        Me.GroupBox6.PerformLayout
         Me.GroupBox7.ResumeLayout(False)
         Me.FlowLayoutPanel6.ResumeLayout(False)
-        Me.FlowLayoutPanel6.PerformLayout()
+        Me.FlowLayoutPanel6.PerformLayout
         Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
+        Me.GroupBox4.PerformLayout
         Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox3.PerformLayout
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.PerformLayout
+        CType(Me.NumericUpDown2, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.PerformLayout
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage10.ResumeLayout(False)
         Me.GroupBox9.ResumeLayout(False)
-        Me.GroupBox9.PerformLayout()
-        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox9.PerformLayout
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox8.ResumeLayout(False)
         Me.TabPage11.ResumeLayout(False)
         Me.GroupBox10.ResumeLayout(False)
-        Me.GroupBox10.PerformLayout()
+        Me.GroupBox10.PerformLayout
         Me.TableLayoutPanel3.ResumeLayout(False)
         Me.TabPage12.ResumeLayout(False)
-        Me.TabPage12.PerformLayout()
+        Me.TabPage12.PerformLayout
         Me.GroupBox17.ResumeLayout(False)
-        CType(Me.NumericUpDown9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown9, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NumericUpDown10, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NumericUpDown11, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox13.ResumeLayout(False)
-        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown7, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NumericUpDown8, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox12.ResumeLayout(False)
-        CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumericUpDown6, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NumericUpDown5, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NumericUpDown4, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.NumericUpDown3, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox11.ResumeLayout(False)
-        Me.GroupBox11.PerformLayout()
-        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox11.PerformLayout
+        CType(Me.PictureBox10, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox9, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage13.ResumeLayout(False)
         Me.GroupBox16.ResumeLayout(False)
-        Me.GroupBox16.PerformLayout()
+        Me.GroupBox16.PerformLayout
         Me.GroupBox15.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
         Me.TabPage14.ResumeLayout(False)
         Me.GroupBox18.ResumeLayout(False)
-        Me.GroupBox18.PerformLayout()
-        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox18.PerformLayout
+        CType(Me.PictureBox15, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox14, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox13, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox12, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox11, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage2.ResumeLayout(False)
         Me.GroupBox24.ResumeLayout(False)
         Me.GroupBox23.ResumeLayout(False)
-        Me.GroupBox23.PerformLayout()
-        CType(Me.PictureBox19, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox18, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox23.PerformLayout
+        CType(Me.PictureBox19, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox20, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox17, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox18, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox22.ResumeLayout(False)
-        Me.GroupBox22.PerformLayout()
+        Me.GroupBox22.PerformLayout
         Me.GroupBox21.ResumeLayout(False)
-        Me.GroupBox21.PerformLayout()
+        Me.GroupBox21.PerformLayout
         Me.GroupBox20.ResumeLayout(False)
-        Me.GroupBox20.PerformLayout()
+        Me.GroupBox20.PerformLayout
         Me.GroupBox19.ResumeLayout(False)
-        Me.GroupBox19.PerformLayout()
-        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox19.PerformLayout
+        CType(Me.PictureBox16, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox25.ResumeLayout(False)
-        Me.GroupBox25.PerformLayout()
-        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox25.PerformLayout
+        CType(Me.PictureBox21, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage4.ResumeLayout(False)
         Me.GroupBox27.ResumeLayout(False)
-        Me.GroupBox27.PerformLayout()
-        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox27.PerformLayout
+        CType(Me.PictureBox22, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox26.ResumeLayout(False)
-        Me.GroupBox26.PerformLayout()
-        CType(Me.NumericUpDown13, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox26.PerformLayout
+        CType(Me.NumericUpDown13, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage5.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage18.ResumeLayout(False)
-        Me.TabPage18.PerformLayout()
+        Me.TabPage18.PerformLayout
         Me.GRPEditorControl.ResumeLayout(False)
         Me.TableLayoutPanel8.ResumeLayout(False)
-        Me.TableLayoutPanel8.PerformLayout()
+        Me.TableLayoutPanel8.PerformLayout
         Me.TableLayoutPanel9.ResumeLayout(False)
         Me.FlowLayoutPanel5.ResumeLayout(False)
         Me.GroupBox43.ResumeLayout(False)
-        Me.GroupBox43.PerformLayout()
+        Me.GroupBox43.PerformLayout
         Me.GroupBox46.ResumeLayout(False)
         Me.GroupBox45.ResumeLayout(False)
-        Me.GroupBox45.PerformLayout()
-        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox45.PerformLayout
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit
+        CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox41.ResumeLayout(False)
-        Me.GroupBox41.PerformLayout()
+        Me.GroupBox41.PerformLayout
         Me.TabPage17.ResumeLayout(False)
         Me.GroupBox44.ResumeLayout(False)
-        Me.GroupBox44.PerformLayout()
+        Me.GroupBox44.PerformLayout
         Me.GroupBox42.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
         Me.GroupBox31.ResumeLayout(False)
-        Me.GroupBox31.PerformLayout()
+        Me.GroupBox31.PerformLayout
         Me.GroupBox30.ResumeLayout(False)
-        Me.GroupBox30.PerformLayout()
-        CType(Me.NumericUpDown15, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox30.PerformLayout
+        CType(Me.NumericUpDown15, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox29.ResumeLayout(False)
-        Me.GroupBox29.PerformLayout()
-        CType(Me.NumericUpDown14, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox29.PerformLayout
+        CType(Me.NumericUpDown14, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox28.ResumeLayout(False)
-        Me.GroupBox28.PerformLayout()
-        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox28.PerformLayout
+        CType(Me.PictureBox23, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage7.ResumeLayout(False)
         Me.GroupBox34.ResumeLayout(False)
-        Me.GroupBox34.PerformLayout()
+        Me.GroupBox34.PerformLayout
         Me.GroupBox32.ResumeLayout(False)
-        Me.GroupBox32.PerformLayout()
-        CType(Me.NumericUpDown16, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox32.PerformLayout
+        CType(Me.NumericUpDown16, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox33.ResumeLayout(False)
-        Me.GroupBox33.PerformLayout()
-        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox33.PerformLayout
+        CType(Me.PictureBox24, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage8.ResumeLayout(False)
         Me.GroupBox36.ResumeLayout(False)
         Me.GroupBox35.ResumeLayout(False)
-        Me.GroupBox35.PerformLayout()
-        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox35.PerformLayout
+        CType(Me.PictureBox25, System.ComponentModel.ISupportInitialize).EndInit
         Me.TabPage15.ResumeLayout(False)
         Me.MPQEditorControl.ResumeLayout(False)
         Me.TableLayoutPanel4.ResumeLayout(False)
-        Me.TableLayoutPanel4.PerformLayout()
+        Me.TableLayoutPanel4.PerformLayout
         Me.TableLayoutPanel5.ResumeLayout(False)
         Me.FlowLayoutPanel3.ResumeLayout(False)
         Me.GroupBox38.ResumeLayout(False)
-        Me.GroupBox38.PerformLayout()
+        Me.GroupBox38.PerformLayout
         Me.GroupBox37.ResumeLayout(False)
-        Me.GroupBox37.PerformLayout()
+        Me.GroupBox37.PerformLayout
         Me.TabPage16.ResumeLayout(False)
         Me.GroupBox40.ResumeLayout(False)
         Me.MPQEditorControl2.ResumeLayout(False)
         Me.TableLayoutPanel6.ResumeLayout(False)
-        Me.TableLayoutPanel6.PerformLayout()
+        Me.TableLayoutPanel6.PerformLayout
         Me.TableLayoutPanel7.ResumeLayout(False)
         Me.FlowLayoutPanel4.ResumeLayout(False)
         Me.GroupBox39.ResumeLayout(False)
-        Me.GroupBox39.PerformLayout()
+        Me.GroupBox39.PerformLayout
         Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
+        Me.MenuStrip1.PerformLayout
         Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.PerformLayout
 
     End Sub
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
