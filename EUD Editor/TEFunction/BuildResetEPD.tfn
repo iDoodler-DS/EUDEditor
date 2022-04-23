@@ -1,0 +1,68 @@
+Type:16,False,False,False
+BuildResetEPDஐFalse
+ElementsCount:2
+Type:17,False,False,False
+ElementsCount:1
+Type:8,False,False,False
+act:CreateVariableWithNoini
+unitEPDஐ35
+ElementsCount:0
+END
+END
+Type:18,False,False,False
+ElementsCount:2
+Type:21,False,False,False
+/*ToolTipஐ*/ஐTrue
+ElementsCount:1
+Type:22,False,False,False
+ElementsCount:2
+Type:21,False,False,False
+KoreanஐKoreanஐFalse
+ElementsCount:1
+Type:22,False,False,False
+ElementsCount:3
+Type:8,False,False,False
+act:RawCode
+구조오프셋EPD
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+unitEPDஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+의 생산 대기열을 초기화합니다.
+ElementsCount:0
+END
+END
+END
+Type:21,False,False,False
+EnglishஐEnglishஐFalse
+ElementsCount:1
+Type:22,False,False,False
+ElementsCount:0
+END
+END
+END
+END
+Type:8,False,False,False
+act:RawCode
+unitEPD += 0x098 / 4;
+const oldcp = getcurpl();
+setcurpl(unitEPD);
+DoActions(list(
+    SetDeaths(CurrentPlayer, SetTo, 0xE400E4, 0),
+    SetMemory(0x6509B0, Add, 1),
+    SetDeaths(CurrentPlayer, SetTo, 0xE400E4, 0),
+    SetMemory(0x6509B0, Add, 1),
+    SetDeathsX(CurrentPlayer, SetTo, 228, 0, 0xFFFF),
+    SetMemory(0x6509B0, Add, 1),
+    SetDeathsX(CurrentPlayer, SetTo, 0x20000, 0, 0xFF0000),
+));
+setcurpl(oldcp);
+ElementsCount:0
+END
+END
+END
