@@ -3,5 +3,8 @@
     "Button6": "취소",
     "CheckBox1": "P",
     "Label1": "변수 명",
-    "Label2": "초기값"
+    "Label2": "초기값",
+    "VariableTypeRadioButton": "Variable",
+    "PlayerVariableTypeRadioButton": "Player Variable",
+    "ArrayVariableTypeRadioButton": "Array Variable"
 }

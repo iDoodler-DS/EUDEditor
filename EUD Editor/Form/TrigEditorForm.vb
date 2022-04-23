@@ -1932,11 +1932,15 @@ Public Class TrigEditorForm
 
         CreateValForm.TextBox1.Text = ""
         CreateValForm.NumericUpDown1.Value = 0
-        CreateValForm.CheckBox1.Checked = False
-        CreateValForm.CheckBox1.Enabled = True
+        CreateValForm.VariableTypeRadioButton.Checked = True
+        CreateValForm.ArrayVariableTypeRadioButton.Enabled = True
+        CreateValForm.PlayerVariableTypeRadioButton.Enabled = True
+        CreateValForm.VariableTypeRadioButton.Enabled = True
         If CreateValForm.ShowDialog = DialogResult.OK Then
             Dim valuename As String
-            If CreateValForm.CheckBox1.Checked = True Then
+            If CreateValForm.ArrayVariableTypeRadioButton.Checked = True Then
+                valuename = "CreateArrayVariableEmpty"
+            ElseIf CreateValForm.PlayerVariableTypeRadioButton.Checked = True Then
                 valuename = "CreatePlayerVariable"
             Else
                 valuename = "CreateVariable"
@@ -1946,7 +1950,6 @@ Public Class TrigEditorForm
                     _index = i
                 End If
             Next
-
 
             GlobalVar.AddElements(New Element(GlobalVar, ElementType.액션, _index, {CreateValForm.TextBox1.Text, CreateValForm.NumericUpDown1.Value}))
             ListBox1.Items.Add(CreateValForm.TextBox1.Text)
@@ -1964,12 +1967,17 @@ Public Class TrigEditorForm
             CreateValForm.TextBox1.Text = GlobalVar.GetElementList(ListBox1.SelectedIndex).Values(0)
             CreateValForm.NumericUpDown1.Value = GlobalVar.GetElementList(ListBox1.SelectedIndex).Values(1)
 
-            If GlobalVar.GetElementList(ListBox1.SelectedIndex).act.Name = "CreateVariable" Then
-                CreateValForm.CheckBox1.Checked = False
+            Dim name = GlobalVar.GetElementList(ListBox1.SelectedIndex).act.Name
+            If name = "CreateArrayVariableEmpty" Then
+                CreateValForm.ArrayVariableTypeRadioButton.Checked = True
+            ElseIf name = "CreatePlayerVariable" Then
+                CreateValForm.PlayerVariableTypeRadioButton.Checked = True
             Else
-                CreateValForm.CheckBox1.Checked = True
+                CreateValForm.VariableTypeRadioButton.Checked = True
             End If
-            CreateValForm.CheckBox1.Enabled = False
+            CreateValForm.ArrayVariableTypeRadioButton.Enabled = False
+            CreateValForm.PlayerVariableTypeRadioButton.Enabled = False
+            CreateValForm.VariableTypeRadioButton.Enabled = False
 
             If CreateValForm.ShowDialog = DialogResult.OK Then
                 GlobalVar.GetElementList(ListBox1.SelectedIndex).SetValue({CreateValForm.TextBox1.Text, CreateValForm.NumericUpDown1.Value})
@@ -2730,12 +2738,18 @@ Public Class TrigEditorForm
             CreateValForm.TextBox1.Text = GlobalVar.GetElementList(ListBox1.SelectedIndex).Values(0)
             CreateValForm.NumericUpDown1.Value = GlobalVar.GetElementList(ListBox1.SelectedIndex).Values(1)
 
-            If GlobalVar.GetElementList(ListBox1.SelectedIndex).act.Name = "CreateVariable" Then
-                CreateValForm.CheckBox1.Checked = False
+
+            Dim name = GlobalVar.GetElementList(ListBox1.SelectedIndex).act.Name
+            If name = "CreateArrayVariableEmpty" Then
+                CreateValForm.ArrayVariableTypeRadioButton.Checked = True
+            ElseIf name = "CreatePlayerVariable" Then
+                CreateValForm.PlayerVariableTypeRadioButton.Checked = True
             Else
-                CreateValForm.CheckBox1.Checked = True
+                CreateValForm.VariableTypeRadioButton.Checked = True
             End If
-            CreateValForm.CheckBox1.Enabled = False
+            CreateValForm.ArrayVariableTypeRadioButton.Enabled = False
+            CreateValForm.PlayerVariableTypeRadioButton.Enabled = False
+            CreateValForm.VariableTypeRadioButton.Enabled = False
 
             If CreateValForm.ShowDialog = DialogResult.OK Then
                 GlobalVar.GetElementList(ListBox1.SelectedIndex).SetValue({CreateValForm.TextBox1.Text, CreateValForm.NumericUpDown1.Value})
