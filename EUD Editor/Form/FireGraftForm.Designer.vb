@@ -102,22 +102,19 @@ Partial Class FireGraftForm
         Me.Label6 = New System.Windows.Forms.Label()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.FlowLayoutPanel4 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox12 = New SergeUtils.EasyCompletionComboBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.ComboBox11 = New SergeUtils.EasyCompletionComboBox()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.FlowLayoutPanel4 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.ComboBox12 = New SergeUtils.EasyCompletionComboBox()
         Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.ReqList = New System.Windows.Forms.ListBox()
         Me.FlowLayoutPanel3 = New System.Windows.Forms.FlowLayoutPanel()
@@ -125,6 +122,9 @@ Partial Class FireGraftForm
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
+        Me.ComboBox11 = New SergeUtils.EasyCompletionComboBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
@@ -179,9 +179,9 @@ Partial Class FireGraftForm
         Me.GroupBox5.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
-        Me.FlowLayoutPanel4.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox10.SuspendLayout()
+        Me.FlowLayoutPanel4.SuspendLayout()
         Me.GroupBox8.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
         Me.FlowLayoutPanel3.SuspendLayout()
@@ -211,7 +211,7 @@ Partial Class FireGraftForm
         '
         Me.PSaveToolStripMenuItem.Name = "PSaveToolStripMenuItem"
         Me.PSaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.PSaveToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
+        Me.PSaveToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.PSaveToolStripMenuItem.Text = "프로젝트 저장(&S)"
         '
         'EditToolStripMenuItem
@@ -225,20 +225,20 @@ Partial Class FireGraftForm
         '
         Me.ResetToolStripMenuItem1.Name = "ResetToolStripMenuItem1"
         Me.ResetToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ResetToolStripMenuItem1.Size = New System.Drawing.Size(249, 22)
+        Me.ResetToolStripMenuItem1.Size = New System.Drawing.Size(246, 22)
         Me.ResetToolStripMenuItem1.Text = "초기화"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(246, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(243, 6)
         '
         'ObjResetToolStripMenuItem
         '
         Me.ObjResetToolStripMenuItem.Name = "ObjResetToolStripMenuItem"
         Me.ObjResetToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ObjResetToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.ObjResetToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.ObjResetToolStripMenuItem.Text = "오브젝트 초기화"
         '
         'ObjectCopyToolStripMenuItem
@@ -246,7 +246,7 @@ Partial Class FireGraftForm
         Me.ObjectCopyToolStripMenuItem.Name = "ObjectCopyToolStripMenuItem"
         Me.ObjectCopyToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.ObjectCopyToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.ObjectCopyToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.ObjectCopyToolStripMenuItem.Text = "오브젝트 복사"
         '
         'ObjPasteToolStripMenuItem
@@ -254,20 +254,20 @@ Partial Class FireGraftForm
         Me.ObjPasteToolStripMenuItem.Name = "ObjPasteToolStripMenuItem"
         Me.ObjPasteToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.ObjPasteToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.ObjPasteToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.ObjPasteToolStripMenuItem.Text = "오브젝트 붙여넣기"
         '
         'ViewVToolStripMenuItem
         '
         Me.ViewVToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ThemeSetTToolStripMenuItem})
         Me.ViewVToolStripMenuItem.Name = "ViewVToolStripMenuItem"
-        Me.ViewVToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
+        Me.ViewVToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.ViewVToolStripMenuItem.Text = "보기(&V)"
         '
         'ThemeSetTToolStripMenuItem
         '
         Me.ThemeSetTToolStripMenuItem.Name = "ThemeSetTToolStripMenuItem"
-        Me.ThemeSetTToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.ThemeSetTToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
         Me.ThemeSetTToolStripMenuItem.Text = "테마 설정(&T)"
         '
         'TableLayoutPanel1
@@ -420,7 +420,7 @@ Partial Class FireGraftForm
         Me.ListBox1.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.ListBox1.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.ListBox1.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox1.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(0, 0)
@@ -813,7 +813,7 @@ Partial Class FireGraftForm
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(122, 68)
+        Me.Button2.Location = New System.Drawing.Point(152, 68)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(55, 23)
         Me.Button2.TabIndex = 34
@@ -822,7 +822,7 @@ Partial Class FireGraftForm
         '
         'Button45
         '
-        Me.Button45.Location = New System.Drawing.Point(122, 16)
+        Me.Button45.Location = New System.Drawing.Point(152, 16)
         Me.Button45.Name = "Button45"
         Me.Button45.Size = New System.Drawing.Size(55, 23)
         Me.Button45.TabIndex = 33
@@ -831,7 +831,7 @@ Partial Class FireGraftForm
         '
         'TextBox11
         '
-        Me.TextBox11.Location = New System.Drawing.Point(76, 68)
+        Me.TextBox11.Location = New System.Drawing.Point(106, 68)
         Me.TextBox11.Name = "TextBox11"
         Me.TextBox11.Size = New System.Drawing.Size(40, 23)
         Me.TextBox11.TabIndex = 23
@@ -850,16 +850,16 @@ Partial Class FireGraftForm
         '
         'Label12
         '
-        Me.Label12.Location = New System.Drawing.Point(10, 71)
+        Me.Label12.Location = New System.Drawing.Point(5, 71)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(63, 13)
+        Me.Label12.Size = New System.Drawing.Size(98, 13)
         Me.Label12.TabIndex = 21
         Me.Label12.Text = "사용불가"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'TextBox10
         '
-        Me.TextBox10.Location = New System.Drawing.Point(76, 16)
+        Me.TextBox10.Location = New System.Drawing.Point(106, 16)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.Size = New System.Drawing.Size(40, 23)
         Me.TextBox10.TabIndex = 20
@@ -878,9 +878,9 @@ Partial Class FireGraftForm
         '
         'Label11
         '
-        Me.Label11.Location = New System.Drawing.Point(10, 19)
+        Me.Label11.Location = New System.Drawing.Point(5, 19)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(63, 13)
+        Me.Label11.Size = New System.Drawing.Size(98, 13)
         Me.Label11.TabIndex = 18
         Me.Label11.Text = "사용가능"
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -1020,63 +1020,6 @@ Partial Class FireGraftForm
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "요구사항"
         '
-        'FlowLayoutPanel4
-        '
-        Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton1)
-        Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton2)
-        Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton3)
-        Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton4)
-        Me.FlowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(277, 19)
-        Me.FlowLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
-        Me.FlowLayoutPanel4.Name = "FlowLayoutPanel4"
-        Me.FlowLayoutPanel4.Size = New System.Drawing.Size(177, 103)
-        Me.FlowLayoutPanel4.TabIndex = 12
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(3, 3)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(89, 19)
-        Me.RadioButton1.TabIndex = 8
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "기본값 사용"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(3, 28)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(73, 19)
-        Me.RadioButton2.TabIndex = 9
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "사용안함"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
-        'RadioButton3
-        '
-        Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(3, 53)
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(85, 19)
-        Me.RadioButton3.TabIndex = 10
-        Me.RadioButton3.TabStop = True
-        Me.RadioButton3.Text = "무조건허용"
-        Me.RadioButton3.UseVisualStyleBackColor = True
-        '
-        'RadioButton4
-        '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Location = New System.Drawing.Point(3, 78)
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(89, 19)
-        Me.RadioButton4.TabIndex = 11
-        Me.RadioButton4.TabStop = True
-        Me.RadioButton4.Text = "사용자 정의"
-        Me.RadioButton4.UseVisualStyleBackColor = True
-        '
         'GroupBox11
         '
         Me.GroupBox11.Controls.Add(Me.Button10)
@@ -1137,47 +1080,62 @@ Partial Class FireGraftForm
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "정보"
         '
-        'ComboBox12
+        'FlowLayoutPanel4
         '
-        Me.ComboBox12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox12.FormattingEnabled = True
-        Me.ComboBox12.IntegralHeight = False
-        Me.ComboBox12.Items.AddRange(New Object() {"Or", "Current unit is...", "Must have... ", "Must have add-on", "Is not lifted off", "Is lifted off", "Is not training or morphing", "Is not constructing add-on", "Is not researching", "Is not upgrading", "Is not constructing", "Does not have add-on attached", "Does not have exit", "Has hangar space", "Must be researched", "Does not have loaded nuke", "Is not burrowed", "Can attack", "Can set rally point", "Can move", "Has weapon", "Is worker", "Is flying building", "Is transport", "Is powerup", "Is Subunit", "Has spidermines", "Is hero and enabled", "Can hold position", "Allow on hallucinations", "Upgrade Lv-1 Require...", "Upgrade Lv-2 Require...", "Upgrade Lv-3+ Require...", "Grey", "Blank", "Must be Brood War", "Is researched...", "Is burrowed", "(Must have... )", "==End of Sublist=="})
-        Me.ComboBox12.Location = New System.Drawing.Point(63, 45)
-        Me.ComboBox12.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
-        Me.ComboBox12.Name = "ComboBox12"
-        Me.ComboBox12.Size = New System.Drawing.Size(196, 23)
-        Me.ComboBox12.TabIndex = 10
+        Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton1)
+        Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton2)
+        Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton3)
+        Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton4)
+        Me.FlowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(277, 19)
+        Me.FlowLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
+        Me.FlowLayoutPanel4.Name = "FlowLayoutPanel4"
+        Me.FlowLayoutPanel4.Size = New System.Drawing.Size(177, 103)
+        Me.FlowLayoutPanel4.TabIndex = 12
         '
-        'Label15
+        'RadioButton1
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(20, 48)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(37, 15)
-        Me.Label15.TabIndex = 9
-        Me.Label15.Text = "Value"
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Location = New System.Drawing.Point(3, 3)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(89, 19)
+        Me.RadioButton1.TabIndex = 8
+        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.Text = "기본값 사용"
+        Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'ComboBox11
+        'RadioButton2
         '
-        Me.ComboBox11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ComboBox11.FormattingEnabled = True
-        Me.ComboBox11.IntegralHeight = False
-        Me.ComboBox11.Items.AddRange(New Object() {"Or", "Current unit is...", "Must have... ", "Must have add-on", "Is not lifted off", "Is lifted off", "Is not training or morphing", "Is not constructing add-on", "Is not researching", "Is not upgrading", "Is not constructing", "Does not have add-on attached", "Does not have exit", "Has hangar space", "Must be researched", "Does not have loaded nuke", "Is not burrowed", "Can attack", "Can set rally point", "Can move", "Has weapon", "Is worker", "Is flying building", "Is transport", "Is powerup", "Is Subunit", "Has spidermines", "Is hero and enabled", "Can hold position", "Allow on hallucinations", "Upgrade Lv-1 Require...", "Upgrade Lv-2 Require...", "Upgrade Lv-3+ Require...", "Grey", "Blank", "Must be Brood War", "Is researched...", "Is burrowed", "(Must have... )", "==End of Sublist=="})
-        Me.ComboBox11.Location = New System.Drawing.Point(63, 16)
-        Me.ComboBox11.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
-        Me.ComboBox11.Name = "ComboBox11"
-        Me.ComboBox11.Size = New System.Drawing.Size(196, 23)
-        Me.ComboBox11.TabIndex = 7
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(3, 28)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(73, 19)
+        Me.RadioButton2.TabIndex = 9
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "사용안함"
+        Me.RadioButton2.UseVisualStyleBackColor = True
         '
-        'Label14
+        'RadioButton3
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(8, 19)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(49, 15)
-        Me.Label14.TabIndex = 6
-        Me.Label14.Text = "Opcode"
+        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.Location = New System.Drawing.Point(3, 53)
+        Me.RadioButton3.Name = "RadioButton3"
+        Me.RadioButton3.Size = New System.Drawing.Size(85, 19)
+        Me.RadioButton3.TabIndex = 10
+        Me.RadioButton3.TabStop = True
+        Me.RadioButton3.Text = "무조건허용"
+        Me.RadioButton3.UseVisualStyleBackColor = True
+        '
+        'RadioButton4
+        '
+        Me.RadioButton4.AutoSize = True
+        Me.RadioButton4.Location = New System.Drawing.Point(3, 78)
+        Me.RadioButton4.Name = "RadioButton4"
+        Me.RadioButton4.Size = New System.Drawing.Size(89, 19)
+        Me.RadioButton4.TabIndex = 11
+        Me.RadioButton4.TabStop = True
+        Me.RadioButton4.Text = "사용자 정의"
+        Me.RadioButton4.UseVisualStyleBackColor = True
         '
         'GroupBox8
         '
@@ -1192,6 +1150,18 @@ Partial Class FireGraftForm
         Me.GroupBox8.TabIndex = 1
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "요구사항"
+        '
+        'ComboBox12
+        '
+        Me.ComboBox12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox12.FormattingEnabled = True
+        Me.ComboBox12.IntegralHeight = False
+        Me.ComboBox12.Items.AddRange(New Object() {"Or", "Current unit is...", "Must have... ", "Must have add-on", "Is not lifted off", "Is lifted off", "Is not training or morphing", "Is not constructing add-on", "Is not researching", "Is not upgrading", "Is not constructing", "Does not have add-on attached", "Does not have exit", "Has hangar space", "Must be researched", "Does not have loaded nuke", "Is not burrowed", "Can attack", "Can set rally point", "Can move", "Has weapon", "Is worker", "Is flying building", "Is transport", "Is powerup", "Is Subunit", "Has spidermines", "Is hero and enabled", "Can hold position", "Allow on hallucinations", "Upgrade Lv-1 Require...", "Upgrade Lv-2 Require...", "Upgrade Lv-3+ Require...", "Grey", "Blank", "Must be Brood War", "Is researched...", "Is burrowed", "(Must have... )", "==End of Sublist=="})
+        Me.ComboBox12.Location = New System.Drawing.Point(63, 45)
+        Me.ComboBox12.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
+        Me.ComboBox12.Name = "ComboBox12"
+        Me.ComboBox12.Size = New System.Drawing.Size(196, 23)
+        Me.ComboBox12.TabIndex = 10
         '
         'TableLayoutPanel4
         '
@@ -1284,6 +1254,36 @@ Partial Class FireGraftForm
         Me.Button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button7.UseVisualStyleBackColor = True
         '
+        'ComboBox11
+        '
+        Me.ComboBox11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox11.FormattingEnabled = True
+        Me.ComboBox11.IntegralHeight = False
+        Me.ComboBox11.Items.AddRange(New Object() {"Or", "Current unit is...", "Must have... ", "Must have add-on", "Is not lifted off", "Is lifted off", "Is not training or morphing", "Is not constructing add-on", "Is not researching", "Is not upgrading", "Is not constructing", "Does not have add-on attached", "Does not have exit", "Has hangar space", "Must be researched", "Does not have loaded nuke", "Is not burrowed", "Can attack", "Can set rally point", "Can move", "Has weapon", "Is worker", "Is flying building", "Is transport", "Is powerup", "Is Subunit", "Has spidermines", "Is hero and enabled", "Can hold position", "Allow on hallucinations", "Upgrade Lv-1 Require...", "Upgrade Lv-2 Require...", "Upgrade Lv-3+ Require...", "Grey", "Blank", "Must be Brood War", "Is researched...", "Is burrowed", "(Must have... )", "==End of Sublist=="})
+        Me.ComboBox11.Location = New System.Drawing.Point(63, 16)
+        Me.ComboBox11.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
+        Me.ComboBox11.Name = "ComboBox11"
+        Me.ComboBox11.Size = New System.Drawing.Size(196, 23)
+        Me.ComboBox11.TabIndex = 7
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(20, 48)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(37, 15)
+        Me.Label15.TabIndex = 9
+        Me.Label15.Text = "Value"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(8, 19)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(49, 15)
+        Me.Label14.TabIndex = 6
+        Me.Label14.Text = "Opcode"
+        '
         'TabControl2
         '
         Me.TabControl2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
@@ -1354,131 +1354,131 @@ Partial Class FireGraftForm
         '
         Me.ListMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ResetToolStripMenuItem, Me.ToolStripSeparator1, Me.CopyToolStripMenuItem, Me.PasteToolStripMenuItem})
         Me.ListMenu.Name = "ContextMenuStrip1"
-        Me.ListMenu.Size = New System.Drawing.Size(165, 76)
+        Me.ListMenu.Size = New System.Drawing.Size(164, 76)
         '
         'ResetToolStripMenuItem
         '
         Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
         Me.ResetToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.ResetToolStripMenuItem.Text = "초기화"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(161, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(160, 6)
         '
         'CopyToolStripMenuItem
         '
         Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
         Me.CopyToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.CopyToolStripMenuItem.Text = "복사"
         '
         'PasteToolStripMenuItem
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
         Me.PasteToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.PasteToolStripMenuItem.Text = "붙여넣기"
         '
         'BtnlistMenu
         '
         Me.BtnlistMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnmenuNEW, Me.btnmenuDUMP, Me.ToolStripSeparator2, Me.btnmenuCUT, Me.btnmenuCOPY, Me.btnmenuPASTE, Me.btnmenuDELETE})
         Me.BtnlistMenu.Name = "ContextMenuStrip1"
-        Me.BtnlistMenu.Size = New System.Drawing.Size(199, 142)
+        Me.BtnlistMenu.Size = New System.Drawing.Size(198, 142)
         '
         'btnmenuNEW
         '
         Me.btnmenuNEW.Name = "btnmenuNEW"
         Me.btnmenuNEW.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.btnmenuNEW.Size = New System.Drawing.Size(198, 22)
+        Me.btnmenuNEW.Size = New System.Drawing.Size(197, 22)
         Me.btnmenuNEW.Text = "새로 만들기(&N)"
         '
         'btnmenuDUMP
         '
         Me.btnmenuDUMP.Name = "btnmenuDUMP"
         Me.btnmenuDUMP.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.btnmenuDUMP.Size = New System.Drawing.Size(198, 22)
+        Me.btnmenuDUMP.Size = New System.Drawing.Size(197, 22)
         Me.btnmenuDUMP.Text = "덮어쓰기"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(195, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(194, 6)
         '
         'btnmenuCUT
         '
         Me.btnmenuCUT.Name = "btnmenuCUT"
         Me.btnmenuCUT.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.btnmenuCUT.Size = New System.Drawing.Size(198, 22)
+        Me.btnmenuCUT.Size = New System.Drawing.Size(197, 22)
         Me.btnmenuCUT.Text = "잘라내기(&T)"
         '
         'btnmenuCOPY
         '
         Me.btnmenuCOPY.Name = "btnmenuCOPY"
         Me.btnmenuCOPY.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.btnmenuCOPY.Size = New System.Drawing.Size(198, 22)
+        Me.btnmenuCOPY.Size = New System.Drawing.Size(197, 22)
         Me.btnmenuCOPY.Text = "복사(&C)"
         '
         'btnmenuPASTE
         '
         Me.btnmenuPASTE.Name = "btnmenuPASTE"
         Me.btnmenuPASTE.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.btnmenuPASTE.Size = New System.Drawing.Size(198, 22)
+        Me.btnmenuPASTE.Size = New System.Drawing.Size(197, 22)
         Me.btnmenuPASTE.Text = "붙여넣기(&P)"
         '
         'btnmenuDELETE
         '
         Me.btnmenuDELETE.Name = "btnmenuDELETE"
         Me.btnmenuDELETE.ShortcutKeys = System.Windows.Forms.Keys.Delete
-        Me.btnmenuDELETE.Size = New System.Drawing.Size(198, 22)
+        Me.btnmenuDELETE.Size = New System.Drawing.Size(197, 22)
         Me.btnmenuDELETE.Text = "삭제(&D)"
         '
         'ReqMenu
         '
         Me.ReqMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripSeparator4, Me.ToolStripMenuItem3, Me.ToolStripMenuItem4, Me.ToolStripMenuItem5, Me.ToolStripMenuItem6})
         Me.ReqMenu.Name = "ContextMenuStrip1"
-        Me.ReqMenu.Size = New System.Drawing.Size(199, 120)
+        Me.ReqMenu.Size = New System.Drawing.Size(198, 120)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(198, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(197, 22)
         Me.ToolStripMenuItem1.Text = "새로 만들기(&N)"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(195, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(194, 6)
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
         Me.ToolStripMenuItem3.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(198, 22)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(197, 22)
         Me.ToolStripMenuItem3.Text = "잘라내기(&T)"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
         Me.ToolStripMenuItem4.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(198, 22)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(197, 22)
         Me.ToolStripMenuItem4.Text = "복사(&C)"
         '
         'ToolStripMenuItem5
         '
         Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
         Me.ToolStripMenuItem5.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(198, 22)
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(197, 22)
         Me.ToolStripMenuItem5.Text = "붙여넣기(&P)"
         '
         'ToolStripMenuItem6
         '
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
         Me.ToolStripMenuItem6.ShortcutKeys = System.Windows.Forms.Keys.Delete
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(198, 22)
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(197, 22)
         Me.ToolStripMenuItem6.Text = "삭제(&D)"
         '
         'FireGraftForm
@@ -1488,7 +1488,7 @@ Partial Class FireGraftForm
         Me.ClientSize = New System.Drawing.Size(748, 554)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Font = New System.Drawing.Font("맑은 고딕", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MaximizeBox = False
@@ -1532,11 +1532,11 @@ Partial Class FireGraftForm
         Me.GroupBox5.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
-        Me.FlowLayoutPanel4.ResumeLayout(False)
-        Me.FlowLayoutPanel4.PerformLayout()
         Me.GroupBox11.ResumeLayout(False)
         Me.GroupBox11.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
+        Me.FlowLayoutPanel4.ResumeLayout(False)
+        Me.FlowLayoutPanel4.PerformLayout()
         Me.GroupBox8.ResumeLayout(False)
         Me.GroupBox8.PerformLayout()
         Me.TableLayoutPanel4.ResumeLayout(False)
