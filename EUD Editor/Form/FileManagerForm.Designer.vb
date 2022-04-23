@@ -219,7 +219,7 @@ Partial Class FileManagerForm
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(47, 15)
         Me.Label6.TabIndex = 5
-        Me.Label6.Text = "새 이름"
+        Me.Label6.Text = "New Name"
         '
         'TextBox3
         '
@@ -238,7 +238,7 @@ Partial Class FileManagerForm
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(81, 24)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "필터"
+        Me.Button1.Text = "Filter"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'FlowLayoutPanel2
@@ -268,7 +268,7 @@ Partial Class FileManagerForm
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(59, 15)
         Me.Label5.TabIndex = 2
-        Me.Label5.Text = "이전 이름"
+        Me.Label5.Text = "Old Name"
         '
         'TabControl1
         '
@@ -298,7 +298,7 @@ Partial Class FileManagerForm
         Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Items.AddRange(New Object() {"영어", "한국어(음역)", "한국어(완역)", "사용자 설정"})
+        Me.ComboBox3.Items.AddRange(New Object() {"English", "Korean(Transliteration)", "Korean(Complete)", "User Setting"})
         Me.ComboBox3.Location = New System.Drawing.Point(519, 0)
         Me.ComboBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ComboBox3.Name = "ComboBox3"
@@ -313,7 +313,7 @@ Partial Class FileManagerForm
         Me.Label4.Padding = New System.Windows.Forms.Padding(0, 6, 0, 0)
         Me.Label4.Size = New System.Drawing.Size(31, 21)
         Me.Label4.TabIndex = 0
-        Me.Label4.Text = "언어"
+        Me.Label4.Text = "Language"
         '
         'TabPage2
         '
