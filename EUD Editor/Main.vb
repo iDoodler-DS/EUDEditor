@@ -9,6 +9,9 @@
 Imports System.IO
 
 Public Class Main
+
+    Dim RecentlyOpenedFiles As New ArrayList()
+
     Public Sub refreshSet()
         If ProjectSet.isload = True Then
             If ProgramSet.StarVersion = "Remastered" Then
@@ -276,11 +279,10 @@ Public Class Main
         SaveFileDialog1.Filter = Lan.GetText(Me.Name, "SaveFilter")
         OpenFileDialog1.Filter = Lan.GetText(Me.Name, "OpenFilter")
 
+        RefreshRecentlyOpenedList()
 
         refreshSet()
     End Sub
-
-
 
     Private Sub Main_Closed(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         If ShutDown = False Then
@@ -722,6 +724,62 @@ Public Class Main
 
     Private Sub UpdateViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateViewToolStripMenuItem.Click
         CheckUpdateForm.ShowDialog()
-
     End Sub
+
+    Private Sub RecentFileMenuItem_Click(sender As ToolStripMenuItem, e As EventArgs)
+        Dim fileName = sender.Text
+        If ProjectSet.Close() = True Then
+            ProjectSet.Load(fileName)
+            CheckMapFile()
+            Dim fileinfo As New FileInfo(ProjectSet.InputMap)
+            LastData = fileinfo.LastWriteTime
+        End If
+        refreshSet()
+    End Sub
+    Public Sub SaveRecentFile(strPath As String)
+        OpenRecentToolStripMenuItem.DropDownItems.Clear()
+        LoadRecentList()
+        If (RecentlyOpenedFiles.Contains(strPath)) Then
+            RecentlyOpenedFiles.Remove(strPath)
+        End If
+        RecentlyOpenedFiles.Add(strPath)
+        While RecentlyOpenedFiles.Count > 15
+            RecentlyOpenedFiles.RemoveAt(0)
+        End While
+        Dim stringToWrite As New StreamWriter(System.Environment.CurrentDirectory + "\Recent.txt")
+        For Each item As String In RecentlyOpenedFiles
+            stringToWrite.WriteLine(item)
+        Next
+        stringToWrite.Flush()
+        stringToWrite.Close()
+    End Sub
+
+    Private Sub LoadRecentList()
+        RecentlyOpenedFiles.Clear()
+        Try
+            Dim srStream As New StreamReader(System.Environment.CurrentDirectory + "\Recent.txt")
+            Dim strLine As String = ""
+            While (InlineAssignHelper(strLine, srStream.ReadLine())) IsNot Nothing
+                RecentlyOpenedFiles.Add(strLine)
+            End While
+            srStream.Close()
+        Catch ex As Exception
+        End Try
+        RecentlyOpenedFiles.Reverse()
+        OpenRecentToolStripMenuItem.Visible = RecentlyOpenedFiles.Count > 0
+    End Sub
+
+    Public Sub RefreshRecentlyOpenedList()
+        LoadRecentList()
+        For Each item As String In RecentlyOpenedFiles
+            Dim fileRecent As New ToolStripMenuItem(item, Nothing, New EventHandler(AddressOf RecentFileMenuItem_Click))
+            OpenRecentToolStripMenuItem.DropDownItems.Add(fileRecent)
+        Next
+    End Sub
+
+    Private Shared Function InlineAssignHelper(Of T) _
+          (ByRef target As T, ByVal value As T) As T
+        target = value
+        Return value
+    End Function
 End Class

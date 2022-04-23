@@ -79,6 +79,7 @@ Partial Class Main
         Me.FlowLayoutPanel4 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckMapWrite = New System.Windows.Forms.Timer(Me.components)
+        Me.OpenRecentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -112,7 +113,7 @@ Partial Class Main
         '
         Me.Button2.Enabled = False
         Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button2.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button2.Image = Global.EUD_Editor.My.Resources.Resources.ICON_DatEdit
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button2.Location = New System.Drawing.Point(1, 1)
@@ -129,7 +130,7 @@ Partial Class Main
         '
         Me.Button3.Enabled = False
         Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button3.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button3.Image = Global.EUD_Editor.My.Resources.Resources.ICON_FireGraft
         Me.Button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button3.Location = New System.Drawing.Point(68, 1)
@@ -146,7 +147,7 @@ Partial Class Main
         '
         Me.Button5.Enabled = False
         Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button5.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button5.Image = Global.EUD_Editor.My.Resources.Resources.ICON_BinEditor
         Me.Button5.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button5.Location = New System.Drawing.Point(135, 1)
@@ -163,7 +164,7 @@ Partial Class Main
         '
         Me.Button6.Enabled = False
         Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button6.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button6.Image = Global.EUD_Editor.My.Resources.Resources.ICON_TileSet
         Me.Button6.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button6.Location = New System.Drawing.Point(202, 1)
@@ -180,7 +181,7 @@ Partial Class Main
         '
         Me.Button7.Enabled = False
         Me.Button7.FlatAppearance.BorderSize = 0
-        Me.Button7.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button7.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button7.Image = Global.EUD_Editor.My.Resources.Resources.ICON_SoundPlayer
         Me.Button7.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button7.Location = New System.Drawing.Point(269, 1)
@@ -197,7 +198,7 @@ Partial Class Main
         '
         Me.Button15.Enabled = False
         Me.Button15.FlatAppearance.BorderSize = 0
-        Me.Button15.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button15.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button15.Image = Global.EUD_Editor.My.Resources.Resources.ICON_FileManager
         Me.Button15.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button15.Location = New System.Drawing.Point(1, 53)
@@ -214,7 +215,7 @@ Partial Class Main
         '
         Me.Button8.Enabled = False
         Me.Button8.FlatAppearance.BorderSize = 0
-        Me.Button8.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button8.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button8.Image = Global.EUD_Editor.My.Resources.Resources.ICON_GRP
         Me.Button8.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button8.Location = New System.Drawing.Point(68, 53)
@@ -231,7 +232,7 @@ Partial Class Main
         '
         Me.Button9.Enabled = False
         Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button9.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button9.Image = Global.EUD_Editor.My.Resources.Resources.ICON_TriggerEditor
         Me.Button9.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button9.Location = New System.Drawing.Point(135, 53)
@@ -247,7 +248,7 @@ Partial Class Main
         '
         Me.Button10.Enabled = False
         Me.Button10.FlatAppearance.BorderSize = 0
-        Me.Button10.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button10.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button10.Image = Global.EUD_Editor.My.Resources.Resources.ICON_plugin
         Me.Button10.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button10.Location = New System.Drawing.Point(202, 53)
@@ -263,7 +264,7 @@ Partial Class Main
         '
         Me.Button13.Enabled = False
         Me.Button13.FlatAppearance.BorderSize = 0
-        Me.Button13.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button13.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button13.Image = Global.EUD_Editor.My.Resources.Resources.ICON_MPQEditor
         Me.Button13.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button13.Location = New System.Drawing.Point(269, 53)
@@ -281,7 +282,7 @@ Partial Class Main
         Me.Button11.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Button11.Enabled = False
         Me.Button11.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button11.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button11.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button11.Image = Global.EUD_Editor.My.Resources.Resources.FileSetting
         Me.Button11.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button11.Location = New System.Drawing.Point(1, 53)
@@ -297,7 +298,7 @@ Partial Class Main
         '
         Me.Button12.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Button12.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button12.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button12.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button12.Image = Global.EUD_Editor.My.Resources.Resources.Debug
         Me.Button12.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button12.Location = New System.Drawing.Point(68, 1)
@@ -325,7 +326,7 @@ Partial Class Main
         '
         Me.Button4.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button4.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button4.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button4.Location = New System.Drawing.Point(0, 0)
         Me.Button4.Margin = New System.Windows.Forms.Padding(0)
         Me.Button4.Name = "Button4"
@@ -340,7 +341,7 @@ Partial Class Main
         '
         Me.Button16.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Button16.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button16.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button16.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button16.Location = New System.Drawing.Point(74, 0)
         Me.Button16.Margin = New System.Windows.Forms.Padding(2, 0, 0, 0)
         Me.Button16.Name = "Button16"
@@ -355,7 +356,7 @@ Partial Class Main
         Me.Button14.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Button14.Enabled = False
         Me.Button14.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button14.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button14.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button14.Image = Global.EUD_Editor.My.Resources.Resources.Insert
         Me.Button14.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button14.Location = New System.Drawing.Point(213, 1)
@@ -380,7 +381,7 @@ Partial Class Main
         '
         'FileFToolStripMenuItem
         '
-        Me.FileFToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewNToolStripMenuItem, Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveasToolStripMenuItem, Me.ProCloseToolStripMenuItem, Me.ToolStripSeparator1, Me.ExitToolStripMenuItem})
+        Me.FileFToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewNToolStripMenuItem, Me.OpenToolStripMenuItem, Me.OpenRecentToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveasToolStripMenuItem, Me.ProCloseToolStripMenuItem, Me.ToolStripSeparator1, Me.ExitToolStripMenuItem})
         Me.FileFToolStripMenuItem.Name = "FileFToolStripMenuItem"
         Me.FileFToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
         Me.FileFToolStripMenuItem.Text = "파일(&F)"
@@ -389,14 +390,14 @@ Partial Class Main
         '
         Me.NewNToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.NewFile
         Me.NewNToolStripMenuItem.Name = "NewNToolStripMenuItem"
-        Me.NewNToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
+        Me.NewNToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.NewNToolStripMenuItem.Text = "새로 만들기(&N)"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Open
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.OpenToolStripMenuItem.Text = "열기(&O)"
         '
         'SaveToolStripMenuItem
@@ -405,14 +406,14 @@ Partial Class Main
         Me.SaveToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Save
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
         Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.SaveToolStripMenuItem.Text = "저장(&S)"
         '
         'SaveasToolStripMenuItem
         '
         Me.SaveasToolStripMenuItem.Enabled = False
         Me.SaveasToolStripMenuItem.Name = "SaveasToolStripMenuItem"
-        Me.SaveasToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
+        Me.SaveasToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.SaveasToolStripMenuItem.Text = "다른이름으로 저장"
         '
         'ProCloseToolStripMenuItem
@@ -420,39 +421,39 @@ Partial Class Main
         Me.ProCloseToolStripMenuItem.Enabled = False
         Me.ProCloseToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Cancle
         Me.ProCloseToolStripMenuItem.Name = "ProCloseToolStripMenuItem"
-        Me.ProCloseToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
+        Me.ProCloseToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.ProCloseToolStripMenuItem.Text = "프로젝트닫기(&C)"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(175, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(181, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Close
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(178, 26)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
         Me.ExitToolStripMenuItem.Text = "끝내기(&X)"
         '
         'ViewVToolStripMenuItem
         '
         Me.ViewVToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PyViewVToolStripMenuItem, Me.EdsViewEToolStripMenuItem})
         Me.ViewVToolStripMenuItem.Name = "ViewVToolStripMenuItem"
-        Me.ViewVToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
+        Me.ViewVToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.ViewVToolStripMenuItem.Text = "보기(&V)"
         '
         'PyViewVToolStripMenuItem
         '
         Me.PyViewVToolStripMenuItem.Name = "PyViewVToolStripMenuItem"
-        Me.PyViewVToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.PyViewVToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PyViewVToolStripMenuItem.Text = "py파일 보기(&P)"
         '
         'EdsViewEToolStripMenuItem
         '
         Me.EdsViewEToolStripMenuItem.Name = "EdsViewEToolStripMenuItem"
-        Me.EdsViewEToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.EdsViewEToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.EdsViewEToolStripMenuItem.Text = "eds파일 보기(&D)"
         '
         'ToolTToolStripMenuItem
@@ -468,7 +469,7 @@ Partial Class Main
         Me.MpainjectWToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Insert
         Me.MpainjectWToolStripMenuItem.Name = "MpainjectWToolStripMenuItem"
         Me.MpainjectWToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
-        Me.MpainjectWToolStripMenuItem.Size = New System.Drawing.Size(202, 26)
+        Me.MpainjectWToolStripMenuItem.Size = New System.Drawing.Size(197, 26)
         Me.MpainjectWToolStripMenuItem.Text = "맵에 삽입(&W)"
         '
         'EDDOpenDToolStripMenuItem
@@ -477,33 +478,33 @@ Partial Class Main
         Me.EDDOpenDToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.UseEDD
         Me.EDDOpenDToolStripMenuItem.Name = "EDDOpenDToolStripMenuItem"
         Me.EDDOpenDToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.EDDOpenDToolStripMenuItem.Size = New System.Drawing.Size(202, 26)
+        Me.EDDOpenDToolStripMenuItem.Size = New System.Drawing.Size(197, 26)
         Me.EDDOpenDToolStripMenuItem.Text = "EDD로 삽입(&D)"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(199, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(194, 6)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Enabled = False
         Me.ToolStripMenuItem1.Image = Global.EUD_Editor.My.Resources.Resources.MapEditor
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(202, 26)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(197, 26)
         Me.ToolStripMenuItem1.Text = "맵 열기(&M)"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(199, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(194, 6)
         '
         'TriggerviewTToolStripMenuItem
         '
         Me.TriggerviewTToolStripMenuItem.Enabled = False
         Me.TriggerviewTToolStripMenuItem.Name = "TriggerviewTToolStripMenuItem"
         Me.TriggerviewTToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.T), System.Windows.Forms.Keys)
-        Me.TriggerviewTToolStripMenuItem.Size = New System.Drawing.Size(202, 26)
+        Me.TriggerviewTToolStripMenuItem.Size = New System.Drawing.Size(197, 26)
         Me.TriggerviewTToolStripMenuItem.Text = "트리거보기(&T)"
         '
         'ToclipEToolStripMenuItem
@@ -511,7 +512,7 @@ Partial Class Main
         Me.ToclipEToolStripMenuItem.Enabled = False
         Me.ToclipEToolStripMenuItem.Name = "ToclipEToolStripMenuItem"
         Me.ToclipEToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.ToclipEToolStripMenuItem.Size = New System.Drawing.Size(202, 26)
+        Me.ToclipEToolStripMenuItem.Size = New System.Drawing.Size(197, 26)
         Me.ToclipEToolStripMenuItem.Text = "클립보드로(&E)"
         '
         'HelpHToolStripMenuItem
@@ -530,7 +531,7 @@ Partial Class Main
         'UpdateViewToolStripMenuItem
         '
         Me.UpdateViewToolStripMenuItem.Name = "UpdateViewToolStripMenuItem"
-        Me.UpdateViewToolStripMenuItem.Size = New System.Drawing.Size(95, 20)
+        Me.UpdateViewToolStripMenuItem.Size = New System.Drawing.Size(94, 20)
         Me.UpdateViewToolStripMenuItem.Text = "업데이트 보기"
         '
         'SaveFileDialog1
@@ -583,7 +584,7 @@ Partial Class Main
         '
         Me.btn_NewFile.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.btn_NewFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_NewFile.Font = New System.Drawing.Font("맑은 고딕", 6.75!)
+        Me.btn_NewFile.Font = New System.Drawing.Font("Malgun Gothic", 6.75!)
         Me.btn_NewFile.Image = Global.EUD_Editor.My.Resources.Resources.NewFile
         Me.btn_NewFile.Location = New System.Drawing.Point(1, 1)
         Me.btn_NewFile.Margin = New System.Windows.Forms.Padding(1)
@@ -595,7 +596,7 @@ Partial Class Main
         '
         Me.btn_OpenFile.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.btn_OpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_OpenFile.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.btn_OpenFile.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.btn_OpenFile.Image = Global.EUD_Editor.My.Resources.Resources.Open
         Me.btn_OpenFile.Location = New System.Drawing.Point(53, 1)
         Me.btn_OpenFile.Margin = New System.Windows.Forms.Padding(1)
@@ -607,7 +608,7 @@ Partial Class Main
         '
         Me.btn_Save.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.btn_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_Save.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.btn_Save.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.btn_Save.Image = Global.EUD_Editor.My.Resources.Resources.Save
         Me.btn_Save.Location = New System.Drawing.Point(105, 1)
         Me.btn_Save.Margin = New System.Windows.Forms.Padding(1)
@@ -619,7 +620,7 @@ Partial Class Main
         '
         Me.btn_close.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_close.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.btn_close.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.btn_close.Image = Global.EUD_Editor.My.Resources.Resources.Close
         Me.btn_close.Location = New System.Drawing.Point(157, 1)
         Me.btn_close.Margin = New System.Windows.Forms.Padding(1)
@@ -632,7 +633,7 @@ Partial Class Main
         Me.Button17.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Button17.Enabled = False
         Me.Button17.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button17.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button17.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button17.Image = Global.EUD_Editor.My.Resources.Resources.UseEDD
         Me.Button17.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button17.Location = New System.Drawing.Point(263, 1)
@@ -650,7 +651,7 @@ Partial Class Main
         Me.Button18.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Button18.Enabled = False
         Me.Button18.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button18.Font = New System.Drawing.Font("맑은 고딕", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button18.Font = New System.Drawing.Font("Malgun Gothic", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button18.Image = Global.EUD_Editor.My.Resources.Resources.MapEditor
         Me.Button18.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button18.Location = New System.Drawing.Point(313, 1)
@@ -707,7 +708,7 @@ Partial Class Main
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button1.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button1.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button1.Image = Global.EUD_Editor.My.Resources.Resources.Setting
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button1.Location = New System.Drawing.Point(1, 1)
@@ -725,6 +726,12 @@ Partial Class Main
         Me.CheckMapWrite.Enabled = True
         Me.CheckMapWrite.Interval = 1000
         '
+        'OpenRecentToolStripMenuItem
+        '
+        Me.OpenRecentToolStripMenuItem.Name = "OpenRecentToolStripMenuItem"
+        Me.OpenRecentToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.OpenRecentToolStripMenuItem.Text = "Open &Recent"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -732,7 +739,7 @@ Partial Class Main
         Me.ClientSize = New System.Drawing.Size(472, 177)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Font = New System.Drawing.Font("맑은 고딕", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MainMenuStrip = Me.MenuStrip1
@@ -810,4 +817,5 @@ Partial Class Main
     Friend WithEvents CheckMapWrite As Timer
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents UpdateViewToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OpenRecentToolStripMenuItem As ToolStripMenuItem
 End Class

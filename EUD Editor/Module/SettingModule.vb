@@ -1381,6 +1381,8 @@ Namespace ProjectSet
                     ProjectSet.filename = MapName
                     ProjectSet.saveStatus = True
                     ProjectSet.isload = True
+                    Main.SaveRecentFile(ProjectSet.filename)
+                    Main.RefreshRecentlyOpenedList()
                 Case ".ees"
 
                     euddraftuse = True
