@@ -15,5 +15,6 @@
     "Label5": "hanger",
     "TabPage2": "변수",
     "TabPage3": "직접 입력",
-    "Button3": "값 가져오기"
+    "Button3": "값 가져오기",
+    "Button4": "함수"
 }
