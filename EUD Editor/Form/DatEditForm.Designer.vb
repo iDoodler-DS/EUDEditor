@@ -23,12 +23,12 @@ Partial Class DatEditForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
-        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
-        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
-        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
+        Dim ListViewItem7 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
+        Dim ListViewItem8 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
+        Dim ListViewItem9 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
+        Dim ListViewItem10 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
+        Dim ListViewItem11 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
+        Dim ListViewItem12 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DatEditForm))
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label27 = New System.Windows.Forms.Label()
@@ -394,15 +394,6 @@ Partial Class DatEditForm
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage18 = New System.Windows.Forms.TabPage()
         Me.TextBox123 = New System.Windows.Forms.TextBox()
-        Me.GRPEditorControl = New System.Windows.Forms.Panel()
-        Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanel9 = New System.Windows.Forms.TableLayoutPanel()
-        Me.ListBox10 = New System.Windows.Forms.ListBox()
-        Me.FlowLayoutPanel5 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Button44 = New System.Windows.Forms.Button()
-        Me.Button42 = New System.Windows.Forms.Button()
-        Me.Button43 = New System.Windows.Forms.Button()
-        Me.Label145 = New System.Windows.Forms.Label()
         Me.GroupBox43 = New System.Windows.Forms.GroupBox()
         Me.ComboBox56 = New SergeUtils.EasyCompletionComboBox()
         Me.TextBox113 = New System.Windows.Forms.TextBox()
@@ -415,6 +406,15 @@ Partial Class DatEditForm
         Me.ListBox9 = New System.Windows.Forms.ListBox()
         Me.GroupBox45 = New System.Windows.Forms.GroupBox()
         Me.Label146 = New System.Windows.Forms.Label()
+        Me.GRPEditorControl = New System.Windows.Forms.Panel()
+        Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanel9 = New System.Windows.Forms.TableLayoutPanel()
+        Me.ListBox10 = New System.Windows.Forms.ListBox()
+        Me.FlowLayoutPanel5 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Button44 = New System.Windows.Forms.Button()
+        Me.Button42 = New System.Windows.Forms.Button()
+        Me.Button43 = New System.Windows.Forms.Button()
+        Me.Label145 = New System.Windows.Forms.Label()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.PictureBox26 = New System.Windows.Forms.PictureBox()
         Me.GroupBox41 = New System.Windows.Forms.GroupBox()
@@ -717,13 +717,13 @@ Partial Class DatEditForm
         Me.TabPage5.SuspendLayout
         Me.TabControl1.SuspendLayout
         Me.TabPage18.SuspendLayout
+        Me.GroupBox43.SuspendLayout
+        Me.GroupBox46.SuspendLayout
+        Me.GroupBox45.SuspendLayout
         Me.GRPEditorControl.SuspendLayout
         Me.TableLayoutPanel8.SuspendLayout
         Me.TableLayoutPanel9.SuspendLayout
         Me.FlowLayoutPanel5.SuspendLayout
-        Me.GroupBox43.SuspendLayout
-        Me.GroupBox46.SuspendLayout
-        Me.GroupBox45.SuspendLayout
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit
         CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).BeginInit
         Me.GroupBox41.SuspendLayout
@@ -1291,10 +1291,10 @@ Partial Class DatEditForm
         Me.ListView3.CheckBoxes = True
         Me.ListView3.ForeColor = System.Drawing.SystemColors.Window
         Me.ListView3.HideSelection = False
-        ListViewItem1.StateImageIndex = 0
-        ListViewItem2.StateImageIndex = 0
-        ListViewItem3.StateImageIndex = 0
-        Me.ListView3.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3})
+        ListViewItem7.StateImageIndex = 0
+        ListViewItem8.StateImageIndex = 0
+        ListViewItem9.StateImageIndex = 0
+        Me.ListView3.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem7, ListViewItem8, ListViewItem9})
         Me.ListView3.Location = New System.Drawing.Point(107, 12)
         Me.ListView3.Name = "ListView3"
         Me.ListView3.Scrollable = False
@@ -1546,8 +1546,9 @@ Partial Class DatEditForm
         'NumericUpDown2
         '
         Me.NumericUpDown2.BackColor = System.Drawing.SystemColors.WindowText
-        Me.NumericUpDown2.DecimalPlaces = 1
+        Me.NumericUpDown2.DecimalPlaces = 3
         Me.NumericUpDown2.ForeColor = System.Drawing.SystemColors.Window
+        Me.NumericUpDown2.Increment = New Decimal(New Integer() {42, 0, 0, 196608})
         Me.NumericUpDown2.Location = New System.Drawing.Point(114, 67)
         Me.NumericUpDown2.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.NumericUpDown2.Name = "NumericUpDown2"
@@ -1903,10 +1904,10 @@ Partial Class DatEditForm
         Me.ListView4.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
         Me.ListView4.ForeColor = System.Drawing.SystemColors.Window
         Me.ListView4.HideSelection = False
-        ListViewItem4.StateImageIndex = 0
-        ListViewItem5.StateImageIndex = 0
-        ListViewItem6.StateImageIndex = 0
-        Me.ListView4.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4, ListViewItem5, ListViewItem6})
+        ListViewItem10.StateImageIndex = 0
+        ListViewItem11.StateImageIndex = 0
+        ListViewItem12.StateImageIndex = 0
+        Me.ListView4.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem10, ListViewItem11, ListViewItem12})
         Me.ListView4.Location = New System.Drawing.Point(377, 16)
         Me.ListView4.Name = "ListView4"
         Me.ListView4.Scrollable = False
@@ -5001,124 +5002,6 @@ Partial Class DatEditForm
         Me.TextBox123.Size = New System.Drawing.Size(210, 22)
         Me.TextBox123.TabIndex = 67
         '
-        'GRPEditorControl
-        '
-        Me.GRPEditorControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.GRPEditorControl.Controls.Add(Me.TableLayoutPanel8)
-        Me.GRPEditorControl.Location = New System.Drawing.Point(4, 274)
-        Me.GRPEditorControl.Name = "GRPEditorControl"
-        Me.GRPEditorControl.Size = New System.Drawing.Size(391, 263)
-        Me.GRPEditorControl.TabIndex = 66
-        Me.GRPEditorControl.Visible = False
-        '
-        'TableLayoutPanel8
-        '
-        Me.TableLayoutPanel8.BackColor = System.Drawing.Color.White
-        Me.TableLayoutPanel8.ColumnCount = 1
-        Me.TableLayoutPanel8.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel8.Controls.Add(Me.TableLayoutPanel9, 0, 1)
-        Me.TableLayoutPanel8.Controls.Add(Me.Label145, 0, 0)
-        Me.TableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel8.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel8.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanel8.Name = "TableLayoutPanel8"
-        Me.TableLayoutPanel8.RowCount = 2
-        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.160305!))
-        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.83969!))
-        Me.TableLayoutPanel8.Size = New System.Drawing.Size(389, 261)
-        Me.TableLayoutPanel8.TabIndex = 0
-        '
-        'TableLayoutPanel9
-        '
-        Me.TableLayoutPanel9.BackColor = System.Drawing.SystemColors.Control
-        Me.TableLayoutPanel9.ColumnCount = 2
-        Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63.0!))
-        Me.TableLayoutPanel9.Controls.Add(Me.ListBox10, 0, 0)
-        Me.TableLayoutPanel9.Controls.Add(Me.FlowLayoutPanel5, 1, 0)
-        Me.TableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel9.Location = New System.Drawing.Point(0, 23)
-        Me.TableLayoutPanel9.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanel9.Name = "TableLayoutPanel9"
-        Me.TableLayoutPanel9.RowCount = 1
-        Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel9.Size = New System.Drawing.Size(389, 238)
-        Me.TableLayoutPanel9.TabIndex = 0
-        '
-        'ListBox10
-        '
-        Me.ListBox10.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListBox10.FormattingEnabled = True
-        Me.ListBox10.Location = New System.Drawing.Point(0, 0)
-        Me.ListBox10.Margin = New System.Windows.Forms.Padding(0)
-        Me.ListBox10.Name = "ListBox10"
-        Me.ListBox10.Size = New System.Drawing.Size(326, 238)
-        Me.ListBox10.TabIndex = 0
-        '
-        'FlowLayoutPanel5
-        '
-        Me.FlowLayoutPanel5.Controls.Add(Me.Button44)
-        Me.FlowLayoutPanel5.Controls.Add(Me.Button42)
-        Me.FlowLayoutPanel5.Controls.Add(Me.Button43)
-        Me.FlowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel5.Location = New System.Drawing.Point(326, 0)
-        Me.FlowLayoutPanel5.Margin = New System.Windows.Forms.Padding(0)
-        Me.FlowLayoutPanel5.Name = "FlowLayoutPanel5"
-        Me.FlowLayoutPanel5.Size = New System.Drawing.Size(63, 238)
-        Me.FlowLayoutPanel5.TabIndex = 1
-        '
-        'Button44
-        '
-        Me.Button44.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Button44.Image = Global.EUD_Editor.My.Resources.Resources.FromInternel
-        Me.Button44.Location = New System.Drawing.Point(3, 3)
-        Me.Button44.Name = "Button44"
-        Me.Button44.Size = New System.Drawing.Size(58, 60)
-        Me.Button44.TabIndex = 55
-        Me.Button44.Text = "GRP추출"
-        Me.Button44.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.Button44.UseVisualStyleBackColor = True
-        '
-        'Button42
-        '
-        Me.Button42.Font = New System.Drawing.Font("Malgun Gothic", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Button42.Image = Global.EUD_Editor.My.Resources.Resources.Open
-        Me.Button42.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button42.Location = New System.Drawing.Point(3, 66)
-        Me.Button42.Margin = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.Button42.Name = "Button42"
-        Me.Button42.Size = New System.Drawing.Size(58, 60)
-        Me.Button42.TabIndex = 1
-        Me.Button42.Text = "외부파일"
-        Me.Button42.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button42.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.Button42.UseVisualStyleBackColor = True
-        '
-        'Button43
-        '
-        Me.Button43.Font = New System.Drawing.Font("Malgun Gothic", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
-        Me.Button43.Image = Global.EUD_Editor.My.Resources.Resources.Delete
-        Me.Button43.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button43.Location = New System.Drawing.Point(3, 129)
-        Me.Button43.Margin = New System.Windows.Forms.Padding(3, 0, 3, 3)
-        Me.Button43.Name = "Button43"
-        Me.Button43.Size = New System.Drawing.Size(58, 60)
-        Me.Button43.TabIndex = 2
-        Me.Button43.Text = "삭제"
-        Me.Button43.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button43.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.Button43.UseVisualStyleBackColor = True
-        '
-        'Label145
-        '
-        Me.Label145.AutoSize = True
-        Me.Label145.Location = New System.Drawing.Point(3, 5)
-        Me.Label145.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
-        Me.Label145.Name = "Label145"
-        Me.Label145.Size = New System.Drawing.Size(59, 13)
-        Me.Label145.TabIndex = 0
-        Me.Label145.Text = "GRPEditor"
-        '
         'GroupBox43
         '
         Me.GroupBox43.Controls.Add(Me.ComboBox56)
@@ -5260,6 +5143,124 @@ Partial Class DatEditForm
         Me.Label146.TabIndex = 64
         Me.Label146.Text = "255"
         '
+        'GRPEditorControl
+        '
+        Me.GRPEditorControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GRPEditorControl.Controls.Add(Me.TableLayoutPanel8)
+        Me.GRPEditorControl.Location = New System.Drawing.Point(4, 274)
+        Me.GRPEditorControl.Name = "GRPEditorControl"
+        Me.GRPEditorControl.Size = New System.Drawing.Size(391, 263)
+        Me.GRPEditorControl.TabIndex = 66
+        Me.GRPEditorControl.Visible = False
+        '
+        'TableLayoutPanel8
+        '
+        Me.TableLayoutPanel8.BackColor = System.Drawing.Color.White
+        Me.TableLayoutPanel8.ColumnCount = 1
+        Me.TableLayoutPanel8.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel8.Controls.Add(Me.TableLayoutPanel9, 0, 1)
+        Me.TableLayoutPanel8.Controls.Add(Me.Label145, 0, 0)
+        Me.TableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel8.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel8.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel8.Name = "TableLayoutPanel8"
+        Me.TableLayoutPanel8.RowCount = 2
+        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.160305!))
+        Me.TableLayoutPanel8.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.83969!))
+        Me.TableLayoutPanel8.Size = New System.Drawing.Size(389, 261)
+        Me.TableLayoutPanel8.TabIndex = 0
+        '
+        'TableLayoutPanel9
+        '
+        Me.TableLayoutPanel9.BackColor = System.Drawing.SystemColors.Control
+        Me.TableLayoutPanel9.ColumnCount = 2
+        Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel9.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63.0!))
+        Me.TableLayoutPanel9.Controls.Add(Me.ListBox10, 0, 0)
+        Me.TableLayoutPanel9.Controls.Add(Me.FlowLayoutPanel5, 1, 0)
+        Me.TableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel9.Location = New System.Drawing.Point(0, 23)
+        Me.TableLayoutPanel9.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel9.Name = "TableLayoutPanel9"
+        Me.TableLayoutPanel9.RowCount = 1
+        Me.TableLayoutPanel9.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel9.Size = New System.Drawing.Size(389, 238)
+        Me.TableLayoutPanel9.TabIndex = 0
+        '
+        'ListBox10
+        '
+        Me.ListBox10.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ListBox10.FormattingEnabled = True
+        Me.ListBox10.Location = New System.Drawing.Point(0, 0)
+        Me.ListBox10.Margin = New System.Windows.Forms.Padding(0)
+        Me.ListBox10.Name = "ListBox10"
+        Me.ListBox10.Size = New System.Drawing.Size(326, 238)
+        Me.ListBox10.TabIndex = 0
+        '
+        'FlowLayoutPanel5
+        '
+        Me.FlowLayoutPanel5.Controls.Add(Me.Button44)
+        Me.FlowLayoutPanel5.Controls.Add(Me.Button42)
+        Me.FlowLayoutPanel5.Controls.Add(Me.Button43)
+        Me.FlowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FlowLayoutPanel5.Location = New System.Drawing.Point(326, 0)
+        Me.FlowLayoutPanel5.Margin = New System.Windows.Forms.Padding(0)
+        Me.FlowLayoutPanel5.Name = "FlowLayoutPanel5"
+        Me.FlowLayoutPanel5.Size = New System.Drawing.Size(63, 238)
+        Me.FlowLayoutPanel5.TabIndex = 1
+        '
+        'Button44
+        '
+        Me.Button44.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button44.Image = Global.EUD_Editor.My.Resources.Resources.FromInternel
+        Me.Button44.Location = New System.Drawing.Point(3, 3)
+        Me.Button44.Name = "Button44"
+        Me.Button44.Size = New System.Drawing.Size(58, 60)
+        Me.Button44.TabIndex = 55
+        Me.Button44.Text = "GRP추출"
+        Me.Button44.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.Button44.UseVisualStyleBackColor = True
+        '
+        'Button42
+        '
+        Me.Button42.Font = New System.Drawing.Font("Malgun Gothic", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button42.Image = Global.EUD_Editor.My.Resources.Resources.Open
+        Me.Button42.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button42.Location = New System.Drawing.Point(3, 66)
+        Me.Button42.Margin = New System.Windows.Forms.Padding(3, 0, 3, 3)
+        Me.Button42.Name = "Button42"
+        Me.Button42.Size = New System.Drawing.Size(58, 60)
+        Me.Button42.TabIndex = 1
+        Me.Button42.Text = "외부파일"
+        Me.Button42.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button42.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.Button42.UseVisualStyleBackColor = True
+        '
+        'Button43
+        '
+        Me.Button43.Font = New System.Drawing.Font("Malgun Gothic", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Button43.Image = Global.EUD_Editor.My.Resources.Resources.Delete
+        Me.Button43.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button43.Location = New System.Drawing.Point(3, 129)
+        Me.Button43.Margin = New System.Windows.Forms.Padding(3, 0, 3, 3)
+        Me.Button43.Name = "Button43"
+        Me.Button43.Size = New System.Drawing.Size(58, 60)
+        Me.Button43.TabIndex = 2
+        Me.Button43.Text = "삭제"
+        Me.Button43.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button43.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.Button43.UseVisualStyleBackColor = True
+        '
+        'Label145
+        '
+        Me.Label145.AutoSize = True
+        Me.Label145.Location = New System.Drawing.Point(3, 5)
+        Me.Label145.Margin = New System.Windows.Forms.Padding(3, 5, 3, 0)
+        Me.Label145.Name = "Label145"
+        Me.Label145.Size = New System.Drawing.Size(59, 13)
+        Me.Label145.TabIndex = 0
+        Me.Label145.Text = "GRPEditor"
+        '
         'TrackBar1
         '
         Me.TrackBar1.LargeChange = 1
@@ -5398,7 +5399,7 @@ Partial Class DatEditForm
         Me.TabPage17.Location = New System.Drawing.Point(4, 25)
         Me.TabPage17.Name = "TabPage17"
         Me.TabPage17.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage17.Size = New System.Drawing.Size(504, 440)
+        Me.TabPage17.Size = New System.Drawing.Size(541, 482)
         Me.TabPage17.TabIndex = 0
         Me.TabPage17.Text = "일반 정보"
         Me.TabPage17.UseVisualStyleBackColor = True
@@ -5897,8 +5898,9 @@ Partial Class DatEditForm
         'NumericUpDown15
         '
         Me.NumericUpDown15.BackColor = System.Drawing.SystemColors.WindowText
-        Me.NumericUpDown15.DecimalPlaces = 1
+        Me.NumericUpDown15.DecimalPlaces = 3
         Me.NumericUpDown15.ForeColor = System.Drawing.SystemColors.Window
+        Me.NumericUpDown15.Increment = New Decimal(New Integer() {42, 0, 0, 196608})
         Me.NumericUpDown15.Location = New System.Drawing.Point(106, 69)
         Me.NumericUpDown15.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.NumericUpDown15.Name = "NumericUpDown15"
@@ -5986,8 +5988,9 @@ Partial Class DatEditForm
         'NumericUpDown14
         '
         Me.NumericUpDown14.BackColor = System.Drawing.SystemColors.WindowText
-        Me.NumericUpDown14.DecimalPlaces = 1
+        Me.NumericUpDown14.DecimalPlaces = 3
         Me.NumericUpDown14.ForeColor = System.Drawing.SystemColors.Window
+        Me.NumericUpDown14.Increment = New Decimal(New Integer() {42, 0, 0, 196608})
         Me.NumericUpDown14.Location = New System.Drawing.Point(106, 69)
         Me.NumericUpDown14.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.NumericUpDown14.Name = "NumericUpDown14"
@@ -6332,8 +6335,9 @@ Partial Class DatEditForm
         'NumericUpDown16
         '
         Me.NumericUpDown16.BackColor = System.Drawing.SystemColors.WindowText
-        Me.NumericUpDown16.DecimalPlaces = 1
+        Me.NumericUpDown16.DecimalPlaces = 3
         Me.NumericUpDown16.ForeColor = System.Drawing.SystemColors.Window
+        Me.NumericUpDown16.Increment = New Decimal(New Integer() {42, 0, 0, 196608})
         Me.NumericUpDown16.Location = New System.Drawing.Point(106, 69)
         Me.NumericUpDown16.Maximum = New Decimal(New Integer() {3000, 0, 0, 0})
         Me.NumericUpDown16.Name = "NumericUpDown16"
@@ -8683,16 +8687,16 @@ Partial Class DatEditForm
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage18.ResumeLayout(False)
         Me.TabPage18.PerformLayout
-        Me.GRPEditorControl.ResumeLayout(False)
-        Me.TableLayoutPanel8.ResumeLayout(False)
-        Me.TableLayoutPanel8.PerformLayout
-        Me.TableLayoutPanel9.ResumeLayout(False)
-        Me.FlowLayoutPanel5.ResumeLayout(False)
         Me.GroupBox43.ResumeLayout(False)
         Me.GroupBox43.PerformLayout
         Me.GroupBox46.ResumeLayout(False)
         Me.GroupBox45.ResumeLayout(False)
         Me.GroupBox45.PerformLayout
+        Me.GRPEditorControl.ResumeLayout(False)
+        Me.TableLayoutPanel8.ResumeLayout(False)
+        Me.TableLayoutPanel8.PerformLayout
+        Me.TableLayoutPanel9.ResumeLayout(False)
+        Me.FlowLayoutPanel5.ResumeLayout(False)
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.PictureBox26, System.ComponentModel.ISupportInitialize).EndInit
         Me.GroupBox41.ResumeLayout(False)

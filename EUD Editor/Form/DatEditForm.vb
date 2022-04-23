@@ -1259,7 +1259,7 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox5, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox9, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox10, _OBJECTNUM)
-        NumericUpDown2.Value = TextBox10.Text / 24
+        NumericUpDown2.Value = TextBox10.Text * 42 / 1000
         NumericUpDown2.BackColor = TextBox10.BackColor
 
         DatEditDATA(DTYPE.units).ReadToCHECKBOX(CheckBox2, _OBJECTNUM)
@@ -1734,7 +1734,7 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox82, _OBJECTNUM)
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox81, _OBJECTNUM)
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox80, _OBJECTNUM)
-        NumericUpDown14.Value = TextBox80.Text / 24
+        NumericUpDown14.Value = TextBox80.Text * 42 / 1000
         NumericUpDown14.BackColor = TextBox80.BackColor
 
 
@@ -1742,7 +1742,7 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox85, _OBJECTNUM)
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox84, _OBJECTNUM)
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox83, _OBJECTNUM)
-        NumericUpDown15.Value = TextBox83.Text / 24
+        NumericUpDown15.Value = TextBox83.Text * 42 / 1000
         NumericUpDown15.BackColor = TextBox83.BackColor
 
 
@@ -2944,7 +2944,7 @@ Public Class DatEditForm
             loadSTATUS = False
             DatEditDATA(TAB_INDEX).WriteToTEXTBOX(TextBox10, _OBJECTNUM)
             Try
-                NumericUpDown2.Value = TextBox10.Text / 24
+                NumericUpDown2.Value = TextBox10.Text * 42 / 1000
             Catch ex As Exception
 
             End Try
@@ -2954,7 +2954,7 @@ Public Class DatEditForm
     End Sub
     Private Sub BuildTime_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
         If loadSTATUS = True Then
-            TextBox10.Text = NumericUpDown2.Value * 24
+            TextBox10.Text = NumericUpDown2.Value * 1000 / 42
             NumericUpDown2.BackColor = TextBox10.BackColor
         End If
     End Sub
@@ -4206,7 +4206,7 @@ Public Class DatEditForm
         If loadSTATUS = True Then
             DatEditDATA(TAB_INDEX).WriteToTEXTBOX(TextBox80, _OBJECTNUM)
             Try
-                NumericUpDown14.Value = TextBox80.Text / 24
+                NumericUpDown14.Value = TextBox80.Text * 42 / 1000
             Catch ex As Exception
 
             End Try
@@ -4217,7 +4217,7 @@ Public Class DatEditForm
 
     Private Sub NumericUpDown14_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown14.ValueChanged
         If loadSTATUS = True Then
-            TextBox80.Text = NumericUpDown14.Value * 24
+            TextBox80.Text = NumericUpDown14.Value * 1000 / 42
 
             NumericUpDown14.BackColor = TextBox80.BackColor
             NumericUpDown14.Visible = TextBox80.Visible
@@ -4240,7 +4240,7 @@ Public Class DatEditForm
         If loadSTATUS = True Then
             DatEditDATA(TAB_INDEX).WriteToTEXTBOX(TextBox83, _OBJECTNUM)
             Try
-                NumericUpDown15.Value = TextBox83.Text / 24
+                NumericUpDown15.Value = TextBox83.Text * 42 / 1000
             Catch ex As Exception
 
             End Try
@@ -4251,7 +4251,7 @@ Public Class DatEditForm
 
     Private Sub NumericUpDown15_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown15.ValueChanged
         If loadSTATUS = True Then
-            TextBox83.Text = NumericUpDown15.Value * 24
+            TextBox83.Text = NumericUpDown15.Value * 1000 / 42
 
             NumericUpDown15.BackColor = TextBox83.BackColor
             NumericUpDown15.Visible = TextBox83.Visible
@@ -4350,7 +4350,7 @@ Public Class DatEditForm
         If loadSTATUS = True Then
             DatEditDATA(TAB_INDEX).WriteToTEXTBOX(TextBox86, _OBJECTNUM)
             Try
-                NumericUpDown16.Value = TextBox86.Text / 24
+                NumericUpDown16.Value = TextBox86.Text * 42 / 1000
             Catch ex As Exception
 
             End Try
@@ -4361,7 +4361,7 @@ Public Class DatEditForm
 
     Private Sub NumericUpDown16_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown16.ValueChanged
         If loadSTATUS = True Then
-            TextBox86.Text = NumericUpDown16.Value * 24
+            TextBox86.Text = NumericUpDown16.Value * 1000 / 42
 
             NumericUpDown16.BackColor = TextBox86.BackColor
             NumericUpDown16.Visible = TextBox86.Visible
