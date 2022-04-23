@@ -23,12 +23,12 @@ Partial Class DatEditForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ListViewItem19 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
-        Dim ListViewItem20 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
-        Dim ListViewItem21 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
-        Dim ListViewItem22 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
-        Dim ListViewItem23 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
-        Dim ListViewItem24 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
+        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
+        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
+        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("저그")
+        Dim ListViewItem5 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("테란")
+        Dim ListViewItem6 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("플토")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DatEditForm))
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label27 = New System.Windows.Forms.Label()
@@ -1034,12 +1034,12 @@ Partial Class DatEditForm
         Me.TabControl2.Controls.Add(Me.TabPage13)
         Me.TabControl2.Controls.Add(Me.TabPage14)
         Me.TabControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TabControl2.Location = New System.Drawing.Point(0, 66)
+        Me.TabControl2.Location = New System.Drawing.Point(0, 24)
         Me.TabControl2.Margin = New System.Windows.Forms.Padding(0)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.Padding = New System.Drawing.Point(0, 0)
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(549, 445)
+        Me.TabControl2.Size = New System.Drawing.Size(549, 487)
         Me.TabControl2.TabIndex = 0
         '
         'TabPage9
@@ -1055,7 +1055,7 @@ Partial Class DatEditForm
         Me.TabPage9.Location = New System.Drawing.Point(4, 25)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage9.Size = New System.Drawing.Size(541, 416)
+        Me.TabPage9.Size = New System.Drawing.Size(541, 458)
         Me.TabPage9.TabIndex = 0
         Me.TabPage9.Text = "기본정보"
         '
@@ -1291,10 +1291,10 @@ Partial Class DatEditForm
         Me.ListView3.CheckBoxes = True
         Me.ListView3.ForeColor = System.Drawing.SystemColors.Window
         Me.ListView3.HideSelection = False
-        ListViewItem19.StateImageIndex = 0
-        ListViewItem20.StateImageIndex = 0
-        ListViewItem21.StateImageIndex = 0
-        Me.ListView3.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem19, ListViewItem20, ListViewItem21})
+        ListViewItem1.StateImageIndex = 0
+        ListViewItem2.StateImageIndex = 0
+        ListViewItem3.StateImageIndex = 0
+        Me.ListView3.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3})
         Me.ListView3.Location = New System.Drawing.Point(107, 12)
         Me.ListView3.Name = "ListView3"
         Me.ListView3.Scrollable = False
@@ -1794,7 +1794,7 @@ Partial Class DatEditForm
         Me.TabPage10.Location = New System.Drawing.Point(4, 25)
         Me.TabPage10.Name = "TabPage10"
         Me.TabPage10.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage10.Size = New System.Drawing.Size(504, 416)
+        Me.TabPage10.Size = New System.Drawing.Size(541, 416)
         Me.TabPage10.TabIndex = 1
         Me.TabPage10.Text = "고급정보"
         Me.TabPage10.UseVisualStyleBackColor = True
@@ -1903,10 +1903,10 @@ Partial Class DatEditForm
         Me.ListView4.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
         Me.ListView4.ForeColor = System.Drawing.SystemColors.Window
         Me.ListView4.HideSelection = False
-        ListViewItem22.StateImageIndex = 0
-        ListViewItem23.StateImageIndex = 0
-        ListViewItem24.StateImageIndex = 0
-        Me.ListView4.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem22, ListViewItem23, ListViewItem24})
+        ListViewItem4.StateImageIndex = 0
+        ListViewItem5.StateImageIndex = 0
+        ListViewItem6.StateImageIndex = 0
+        Me.ListView4.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4, ListViewItem5, ListViewItem6})
         Me.ListView4.Location = New System.Drawing.Point(360, 14)
         Me.ListView4.Name = "ListView4"
         Me.ListView4.Scrollable = False
@@ -2083,7 +2083,7 @@ Partial Class DatEditForm
         Me.TabPage11.Location = New System.Drawing.Point(4, 25)
         Me.TabPage11.Name = "TabPage11"
         Me.TabPage11.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage11.Size = New System.Drawing.Size(504, 416)
+        Me.TabPage11.Size = New System.Drawing.Size(541, 416)
         Me.TabPage11.TabIndex = 2
         Me.TabPage11.Text = "사운드"
         Me.TabPage11.UseVisualStyleBackColor = True
@@ -2569,7 +2569,7 @@ Partial Class DatEditForm
         Me.TabPage12.Location = New System.Drawing.Point(4, 25)
         Me.TabPage12.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage12.Name = "TabPage12"
-        Me.TabPage12.Size = New System.Drawing.Size(504, 416)
+        Me.TabPage12.Size = New System.Drawing.Size(541, 416)
         Me.TabPage12.TabIndex = 3
         Me.TabPage12.Text = "그래픽"
         Me.TabPage12.UseVisualStyleBackColor = True
@@ -3119,7 +3119,7 @@ Partial Class DatEditForm
         Me.TabPage13.Location = New System.Drawing.Point(4, 25)
         Me.TabPage13.Name = "TabPage13"
         Me.TabPage13.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage13.Size = New System.Drawing.Size(504, 416)
+        Me.TabPage13.Size = New System.Drawing.Size(541, 416)
         Me.TabPage13.TabIndex = 4
         Me.TabPage13.Text = "맵에디트적용"
         Me.TabPage13.UseVisualStyleBackColor = True
@@ -3275,7 +3275,7 @@ Partial Class DatEditForm
         Me.TabPage14.Location = New System.Drawing.Point(4, 25)
         Me.TabPage14.Name = "TabPage14"
         Me.TabPage14.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage14.Size = New System.Drawing.Size(504, 416)
+        Me.TabPage14.Size = New System.Drawing.Size(541, 416)
         Me.TabPage14.TabIndex = 5
         Me.TabPage14.Text = "인공지능행동"
         Me.TabPage14.UseVisualStyleBackColor = True
@@ -3656,7 +3656,7 @@ Partial Class DatEditForm
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage2.Size = New System.Drawing.Size(549, 511)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "무기"
         '
@@ -4488,7 +4488,7 @@ Partial Class DatEditForm
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage3.Size = New System.Drawing.Size(549, 511)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "비행정보"
         '
@@ -4717,7 +4717,7 @@ Partial Class DatEditForm
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage4.Size = New System.Drawing.Size(549, 511)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "스프라이트"
         '
@@ -4962,7 +4962,7 @@ Partial Class DatEditForm
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage5.Size = New System.Drawing.Size(549, 511)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "이미지"
         '
@@ -4976,7 +4976,7 @@ Partial Class DatEditForm
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(512, 469)
+        Me.TabControl1.Size = New System.Drawing.Size(549, 511)
         Me.TabControl1.TabIndex = 4
         '
         'TabPage18
@@ -4990,7 +4990,7 @@ Partial Class DatEditForm
         Me.TabPage18.Location = New System.Drawing.Point(4, 25)
         Me.TabPage18.Name = "TabPage18"
         Me.TabPage18.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage18.Size = New System.Drawing.Size(504, 440)
+        Me.TabPage18.Size = New System.Drawing.Size(541, 482)
         Me.TabPage18.TabIndex = 1
         Me.TabPage18.Text = "그래픽 정보"
         Me.TabPage18.UseVisualStyleBackColor = True
@@ -5761,7 +5761,7 @@ Partial Class DatEditForm
         Me.TabPage6.Location = New System.Drawing.Point(4, 22)
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage6.Size = New System.Drawing.Size(549, 511)
         Me.TabPage6.TabIndex = 5
         Me.TabPage6.Text = "업그레이드"
         '
@@ -6172,7 +6172,7 @@ Partial Class DatEditForm
         Me.TabPage7.Location = New System.Drawing.Point(4, 22)
         Me.TabPage7.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage7.Size = New System.Drawing.Size(549, 511)
         Me.TabPage7.TabIndex = 6
         Me.TabPage7.Text = "기술"
         '
@@ -6517,7 +6517,7 @@ Partial Class DatEditForm
         Me.TabPage8.Location = New System.Drawing.Point(4, 22)
         Me.TabPage8.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage8.Name = "TabPage8"
-        Me.TabPage8.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage8.Size = New System.Drawing.Size(549, 511)
         Me.TabPage8.TabIndex = 7
         Me.TabPage8.Text = "명령"
         '
@@ -6871,7 +6871,7 @@ Partial Class DatEditForm
         Me.TabPage15.Location = New System.Drawing.Point(4, 22)
         Me.TabPage15.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage15.Name = "TabPage15"
-        Me.TabPage15.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage15.Size = New System.Drawing.Size(549, 511)
         Me.TabPage15.TabIndex = 8
         Me.TabPage15.Text = "사운드"
         '
@@ -7156,7 +7156,7 @@ Partial Class DatEditForm
         Me.TabPage16.Location = New System.Drawing.Point(4, 22)
         Me.TabPage16.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage16.Name = "TabPage16"
-        Me.TabPage16.Size = New System.Drawing.Size(512, 469)
+        Me.TabPage16.Size = New System.Drawing.Size(549, 511)
         Me.TabPage16.TabIndex = 9
         Me.TabPage16.Text = "얼굴사진"
         '
