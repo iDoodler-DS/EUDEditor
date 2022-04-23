@@ -170,7 +170,7 @@ Public Class Main
                 Button5.Visible = False
 
                 Button6.Enabled = False 'tileSet
-                'Button6.Visible = False
+                Button6.Visible = False
 
                 Button7.Enabled = False
                 Button8.Enabled = False 'GRP
