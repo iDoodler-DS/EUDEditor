@@ -227,13 +227,13 @@ Public Class Main
             Else
                 Dim name As String = ProjectSet.filename.Split("\").Last
 
-                Me.Text = name & issaved & " -  EUD Editor 2 " & ProgramSet.Version & "." & ProgramSet.StarVersion
+                Me.Text = name & issaved & " -  EUD Editor 2.5 " & ProgramSet.Version & "." & ProgramSet.StarVersion
                 DatEditForm.Text = name & issaved & " - " & ProgramSet.DatEditName & " " & ProgramSet.Version
 
                 FireGraftForm.Text = name & issaved & " - " & ProgramSet.FireGraftName & " " & ProgramSet.Version
             End If
         Else
-            Me.Text = "EUD Editor 2 " & ProgramSet.Version & "." & ProgramSet.StarVersion
+            Me.Text = "EUD Editor 2.5 " & ProgramSet.Version & "." & ProgramSet.StarVersion
         End If
 
     End Sub
