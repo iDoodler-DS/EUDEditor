@@ -53,7 +53,7 @@ Several new EUD Actions have been added to the <em>Custom</em> section. More to 
     + Select your Starcraft.exe for the StarExe field. ( Starcraft installation folder > `x86_64` or `x86` )
     + Select your euddraft.exe in the folder where it was extracted.
 4. Select each of the MPQ files. ( `Patch_rt` `BrooDat` `BroodWar` `StarDat` )
-5. Enjoy making your map!
+5. Enjoy map making!
 
 ---
 
