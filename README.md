@@ -1,4 +1,4 @@
-# EUD Editor 2 Special Edition
+# EUD Editor 2 SE
 
 <p align="center">
     <a href="https://github.com/iDoodler-DS/EUDEditor/releases/"><img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/MainIcon.png" /></a>
@@ -45,5 +45,8 @@ Several new EUD Actions have been added to the <em>Custom</em> section. More to 
 
 ---
 
-# How to contribute
+## How to contribute
 Found a bug? Have ideas for improvements? Reach out in [#starcraft-tools on the Staredit.Net Discord](https://discord.gg/bnGF7pgDgT)!
+
+## Notes
+EUD Editor 2 SE is not backwards compatible with EUD Editor 2. Files saved with EUD Editor 2 SE will not work in EUD Editor 2.
