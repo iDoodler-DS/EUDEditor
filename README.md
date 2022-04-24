@@ -49,4 +49,4 @@ Several new EUD Actions have been added to the <em>Custom</em> section. More to 
 Found a bug? Have ideas for improvements? Reach out in [#starcraft-tools on the Staredit.Net Discord](https://discord.gg/bnGF7pgDgT)!
 
 ## Notes
-EUD Editor 2 SE is not backwards compatible with EUD Editor 2. Files saved with EUD Editor 2 SE will not work in EUD Editor 2.
+EUD Editor 2 SE is not backwards compatible with EUD Editor 2. For instance, EUD Trigger Actions created with with EUD Editor 2 SE will not load in EUD Editor 2.
