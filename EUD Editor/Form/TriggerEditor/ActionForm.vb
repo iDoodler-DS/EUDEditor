@@ -488,7 +488,7 @@ Public Class ActionForm
                     Dim overlapcount As Integer = 1
                     '중복 인수 체크
                     For i = 0 To LinkLabels.Count - 2
-                        If LinkLabels(i).Text.Contains(LinkLabels.Last.Text) Then
+                        If LinkLabels(i).Text = LinkLabels.Last.Text Then
                             overlapcount += 1
                         End If
                     Next
