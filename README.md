@@ -10,36 +10,37 @@ EUD Editor 2 SE is a fork of the official [EUD Editor 2](https://github.com/armo
 
 ## Features
 <p align="center">
-<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_Layout.png"><br>
-Several translation improvements, bug fixes, and interface layout adjustments have been implemented - and the window has been resized.
+Several translation improvements, bug fixes, and interface layout adjustments have been implemented - and the window has been resized.<br><br>
+<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_Layout.png">
 </p>
 
 ---
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_Recent.png"><br>
-The <em>Open Recent</em> menu provides quick access to recent projects.
+The <em>Open Recent</em> menu provides quick access to recent projects.<br><br>
+<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_Recent.png">
 </p>
 
 ---
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_Array.png"><br>
-The new <em>Array</em> option in <em>Global Variable</em> dialog provides a larger array variable capacity than the existing 8 provided by <em>PlayerVariable</em>.
+The new <em>Array</em> option in <em>Global Variable</em> dialog provides a larger array variable capacity than the existing 8 provided by <em>PlayerVariable</em>.<br><br>
+<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_Array.png">
 </p>
 
 ---
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_BuildingLog.png"><br>
-The redesigned <em>Build Log</em> makes output more readable and errors easier to distinguish.
+The redesigned <em>Build Log</em> makes output more readable and errors easier to distinguish.<br><br>
+<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_BuildingLog.png">
 </p>
 
 ---
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_NewActions.png"><br>
 Several new EUD Actions have been added to the <em>Custom</em> section. More to come!
+<br><br>
+<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_NewActions.png">
 </p>
 
 ---
