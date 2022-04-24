@@ -91,7 +91,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>EUD Editor.ico</ApplicationIcon>
+    <ApplicationIcon>EUD Editor SE.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevIL.NET">
@@ -865,6 +865,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EUD Editor SE.ico" />
     <Content Include="TEFunction\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

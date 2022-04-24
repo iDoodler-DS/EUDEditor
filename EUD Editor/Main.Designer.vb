@@ -45,6 +45,7 @@ Partial Class Main
         Me.FileFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewNToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenRecentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProCloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -79,7 +80,6 @@ Partial Class Main
         Me.FlowLayoutPanel4 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckMapWrite = New System.Windows.Forms.Timer(Me.components)
-        Me.OpenRecentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -390,15 +390,21 @@ Partial Class Main
         '
         Me.NewNToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.NewFile
         Me.NewNToolStripMenuItem.Name = "NewNToolStripMenuItem"
-        Me.NewNToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.NewNToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
         Me.NewNToolStripMenuItem.Text = "새로 만들기(&N)"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Open
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
         Me.OpenToolStripMenuItem.Text = "열기(&O)"
+        '
+        'OpenRecentToolStripMenuItem
+        '
+        Me.OpenRecentToolStripMenuItem.Name = "OpenRecentToolStripMenuItem"
+        Me.OpenRecentToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
+        Me.OpenRecentToolStripMenuItem.Text = "Open &Recent"
         '
         'SaveToolStripMenuItem
         '
@@ -406,14 +412,14 @@ Partial Class Main
         Me.SaveToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Save
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
         Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
         Me.SaveToolStripMenuItem.Text = "저장(&S)"
         '
         'SaveasToolStripMenuItem
         '
         Me.SaveasToolStripMenuItem.Enabled = False
         Me.SaveasToolStripMenuItem.Name = "SaveasToolStripMenuItem"
-        Me.SaveasToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.SaveasToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
         Me.SaveasToolStripMenuItem.Text = "다른이름으로 저장"
         '
         'ProCloseToolStripMenuItem
@@ -421,20 +427,20 @@ Partial Class Main
         Me.ProCloseToolStripMenuItem.Enabled = False
         Me.ProCloseToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Cancle
         Me.ProCloseToolStripMenuItem.Name = "ProCloseToolStripMenuItem"
-        Me.ProCloseToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.ProCloseToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
         Me.ProCloseToolStripMenuItem.Text = "프로젝트닫기(&C)"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(181, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(174, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Image = Global.EUD_Editor.My.Resources.Resources.Close
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.F4), System.Windows.Forms.Keys)
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(177, 26)
         Me.ExitToolStripMenuItem.Text = "끝내기(&X)"
         '
         'ViewVToolStripMenuItem
@@ -447,13 +453,13 @@ Partial Class Main
         'PyViewVToolStripMenuItem
         '
         Me.PyViewVToolStripMenuItem.Name = "PyViewVToolStripMenuItem"
-        Me.PyViewVToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PyViewVToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.PyViewVToolStripMenuItem.Text = "py파일 보기(&P)"
         '
         'EdsViewEToolStripMenuItem
         '
         Me.EdsViewEToolStripMenuItem.Name = "EdsViewEToolStripMenuItem"
-        Me.EdsViewEToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.EdsViewEToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.EdsViewEToolStripMenuItem.Text = "eds파일 보기(&D)"
         '
         'ToolTToolStripMenuItem
@@ -726,12 +732,6 @@ Partial Class Main
         Me.CheckMapWrite.Enabled = True
         Me.CheckMapWrite.Interval = 1000
         '
-        'OpenRecentToolStripMenuItem
-        '
-        Me.OpenRecentToolStripMenuItem.Name = "OpenRecentToolStripMenuItem"
-        Me.OpenRecentToolStripMenuItem.Size = New System.Drawing.Size(184, 26)
-        Me.OpenRecentToolStripMenuItem.Text = "Open &Recent"
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -747,7 +747,7 @@ Partial Class Main
         Me.MinimumSize = New System.Drawing.Size(488, 212)
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "EUD Editor"
+        Me.Text = "EUD Editor SE"
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel2.ResumeLayout(False)
         Me.MenuStrip1.ResumeLayout(False)
