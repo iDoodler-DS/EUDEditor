@@ -2044,7 +2044,7 @@ Public Class Element
                         _rtext = "case " & Values(0) & ":"
                     End If
                 Case ElementType.Foluder
-                    _rtext = Values(0)
+                    _rtext = "// " & Values(0)
                 Case ElementType.조건문if, ElementType.조건문ifelse, ElementType.와일
                     _rtext = ""
                 Case ElementType.조건절, ElementType.TriggerCond
@@ -2503,8 +2503,10 @@ Public Class Element
                     _stringb.Append(GetIntend(intend - 1) & "}" & vbCrLf)
                 End If
             Case ElementType.Foluder
-                LineCount += 1
-                _stringb.AppendLine(GetIntend(intend + 1) & Values(1))
+                If Values(1).Length > 0 Then
+                    LineCount += 1
+                    _stringb.AppendLine(GetIntend(intend + 1) & "// " & Values(1))
+                End If
         End Select
 
 
