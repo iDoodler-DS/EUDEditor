@@ -45,6 +45,18 @@ Several new EUD Actions have been added to the <em>Custom</em> section. More to 
 
 ---
 
+## How to get started
+
+1. Download the latest release of [EUD Editor SE](https://github.com/iDoodler-DS/EUDEditor/releases), [euddraft](https://github.com/armoha/euddraft/releases), and the [MPQ Files](https://drive.google.com/drive/folders/1L-fJDZpuCpfIUGnEHYzjQEeyjwnswDdS).
+2. Extract the ZIP files. ( Preferably to their own respective folders )
+3. Run EUD Editor.exe, select your preferred language.
+    + Select your Starcraft.exe for the StarExe field. ( Starcraft installation folder > `x86_64` or `x86` )
+    + Select your euddraft.exe in the folder where it was extracted.
+4. Select each of the MPQ files. ( `Patch_rt` `BrooDat` `BroodWar` `StarDat` )
+5. Enjoy making your map!
+
+---
+
 ## How to contribute
 Found a bug? Have ideas for improvements? Reach out in [#starcraft-tools on the Staredit.Net Discord](https://discord.gg/bnGF7pgDgT)!
 
