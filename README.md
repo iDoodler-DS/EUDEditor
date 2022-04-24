@@ -1,15 +1,20 @@
 # EUD Editor 2 Special Edition
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/MainIcon.png" />
+    <a href="https://github.com/iDoodler-DS/EUDEditor/releases/"><img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/MainIcon.png" /></a>
 </p>
 
-EUD Editor 2 SE is a fork of the official [EUD Editor 2](https://github.com/armoha/EUDEditor) program. It aims to improve the user experience and workflow for creators who still prefer EUD Editor 2 as an alternative to the newer and more frequently updated [EUD Editor 3](https://github.com/Buizz/EUD-Editor-3) program.
+EUD Editor 2 SE is a fork of the official [EUD Editor 2](https://github.com/armoha/EUDEditor) program. It aims to improve the user experience and workflow for creators who still prefer EE 2 to the newer and more frequently updated [EUD Editor 3](https://github.com/Buizz/EUD-Editor-3) program.
 
 <h3 align="center"><a href="https://github.com/iDoodler-DS/EUDEditor/releases/">⇲ Download the latest version from the releases page</a></h3>
 
 ## Features
-Several translation improvements, bug fixes and interface layout adjustments.
+<p align="center">
+<img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_Layout.png"><br>
+Several translation improvements, bug fixes, and interface layout adjustments have been implemented - and the window has been resized.
+</p>
+
+---
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/Screenshot_Recent.png"><br>
