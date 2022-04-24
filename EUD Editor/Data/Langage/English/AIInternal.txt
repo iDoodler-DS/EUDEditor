@@ -1,2 +1,2 @@
-Ignore "Strategic Sucide missions" AI
-Ignore Becoming "Guard"
+Ignore "Strategic Suicide Missions" AI
+Ignore "Guard" Orders
