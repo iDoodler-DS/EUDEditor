@@ -223,20 +223,20 @@ Public Class Main
 
         If ProjectSet.isload = True Then
             If ProjectSet.filename = "" Then
-                Me.Text = Lan.GetMsgText("Defacultname") & " " & issaved & " -  EUD Editor 2.5 " & ProgramSet.Version & "." & ProgramSet.StarVersion
+                Me.Text = Lan.GetMsgText("Defacultname") & " " & issaved & " -  EUD Editor SE " & ProgramSet.Version & "." & ProgramSet.StarVersion
                 DatEditForm.Text = ProgramSet.DatEditName & issaved & " " & ProgramSet.Version
 
                 FireGraftForm.Text = ProgramSet.FireGraftName & issaved & " " & ProgramSet.Version
             Else
                 Dim name As String = ProjectSet.filename.Split("\").Last
 
-                Me.Text = name & issaved & " -  EUD Editor 2.5 " & ProgramSet.Version & "." & ProgramSet.StarVersion
+                Me.Text = name & issaved & " -  EUD Editor SE " & ProgramSet.Version & "." & ProgramSet.StarVersion
                 DatEditForm.Text = name & issaved & " - " & ProgramSet.DatEditName & " " & ProgramSet.Version
 
                 FireGraftForm.Text = name & issaved & " - " & ProgramSet.FireGraftName & " " & ProgramSet.Version
             End If
         Else
-            Me.Text = "EUD Editor 2.5 " & ProgramSet.Version & "." & ProgramSet.StarVersion
+            Me.Text = "EUD Editor SE " & ProgramSet.Version & "." & ProgramSet.StarVersion
         End If
 
     End Sub
