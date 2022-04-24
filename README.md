@@ -1,7 +1,7 @@
 # EUD Editor 2 Special Edition
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/MainIcon.png" />
+    <a href="https://github.com/iDoodler-DS/EUDEditor/releases/"><img src="https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/External%20Resources/MainIcon.png" /></a>
 </p>
 
 EUD Editor 2 SE is a fork of the official [EUD Editor 2](https://github.com/armoha/EUDEditor) program. It aims to improve the user experience and workflow for creators who still prefer EE 2 to the newer and more frequently updated [EUD Editor 3](https://github.com/Buizz/EUD-Editor-3) program.
