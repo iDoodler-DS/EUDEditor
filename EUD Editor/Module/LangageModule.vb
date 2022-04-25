@@ -5,7 +5,7 @@ Namespace Lan
     Module LangageModule
 
         Dim textCache = New Dictionary(Of String, Dictionary(Of String, String))
-        Dim msgTextCache = New Dictionary(Of String, Dictionary(Of String, String))
+        Dim msgTextCache = New Dictionary(Of String, String)
         Dim arrayCache = New Dictionary(Of String, Dictionary(Of String, String))
 
 
@@ -239,7 +239,7 @@ Namespace Lan
             _streamreader.Close()
             _filestream.Close()
 
-            msgTextCache.Add(key, dic)
+            msgTextCache.Add(key, dic(key))
 
             Return dic(key)
         End Function
