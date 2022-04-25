@@ -35,6 +35,10 @@ Public Class DatEditForm
     Private _unusedColor As Color = Color.LightGray
     Public _OBJECTNUM As Integer
 
+    Private comboBoxCache = New Dictionary(Of String, String)
+    Private listViewCache = New Dictionary(Of String, String)
+
+
 
     Private Sub SELECTLIST(index As Integer)
         For i = 0 To ListBox1.Items.Count - 1
@@ -136,6 +140,8 @@ Public Class DatEditForm
         End With
     End Sub
     Private Sub DatEditForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.SuspendLayout()
+
         Lan.SetLangage(Me)
         Lan.SetMenu(Me, MenuStrip1)
         Lan.SetMenu(Me, ListMenu)
@@ -172,6 +178,7 @@ Public Class DatEditForm
 
         End If
         LoadData()
+        Me.ResumeLayout()
     End Sub
 
 
@@ -524,31 +531,72 @@ Public Class DatEditForm
 
 
     Private Sub LoadComboBoxFromFile(ByRef Combobox As ComboBox, filename As String)
-        filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename
-        Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
-        Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
-
         Combobox.Items.Clear()
 
-        While (stream.EndOfStream = False)
-            Combobox.Items.Add(stream.ReadLine)
-        End While
+        If (comboBoxCache.ContainsKey(filename)) Then
+            Dim stream = New StringReader(comboBoxCache(filename))
 
-        stream.Close()
-        file.Close()
+            While True
+                Dim line = stream.ReadLine()
+                If line Is Nothing Then
+                    Exit While
+                Else
+                    Combobox.Items.Add(line)
+                End If
+            End While
+
+            stream.Close()
+        Else
+            filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename
+            Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
+            Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
+
+            While (stream.EndOfStream = False)
+                Combobox.Items.Add(stream.ReadLine)
+            End While
+            file.Position = 0
+            stream.DiscardBufferedData()
+            comboBoxCache(filename) = stream.ReadToEnd
+
+
+            stream.Close()
+            file.Close()
+        End If
+
     End Sub
     Private Sub LoadListviewFromFile(ByRef Listview As ListView, filename As String)
-        filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename
-        Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
-        Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
 
-        Listview.Items.Clear()
-        While (stream.EndOfStream = False)
-            Listview.Items.Add(stream.ReadLine)
-        End While
+        If (listViewCache.ContainsKey(filename)) Then
+            Dim stream = New StringReader(listViewCache(filename))
+            Listview.Items.Clear()
 
-        stream.Close()
-        file.Close()
+            While True
+                Dim line = stream.ReadLine()
+                If line Is Nothing Then
+                    Exit While
+                Else
+                    Listview.Items.Add(line)
+                End If
+            End While
+
+            stream.Close()
+        Else
+            filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename
+            Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
+            Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
+            Listview.Items.Clear()
+
+            While (stream.EndOfStream = False)
+                Listview.Items.Add(stream.ReadLine)
+            End While
+            file.Position = 0
+            stream.DiscardBufferedData()
+            listViewCache.Add(filename, stream.ReadToEnd)
+
+
+            stream.Close()
+            file.Close()
+        End If
     End Sub
 
 
@@ -1178,6 +1226,7 @@ Public Class DatEditForm
 
 
     Public Sub LoadData()
+        Me.SuspendLayout()
         'Timer1.Enabled = False
         loadSTATUS = False
         Select Case MainTAB.SelectedIndex
@@ -1206,6 +1255,7 @@ Public Class DatEditForm
 
         loadSTATUS = True
         HPloadSTATUS = True
+        Me.ResumeLayout()
     End Sub
 
     Private Sub UnitDataLOAD()

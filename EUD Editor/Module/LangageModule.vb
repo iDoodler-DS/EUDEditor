@@ -3,6 +3,12 @@ Imports Newtonsoft.Json
 
 Namespace Lan
     Module LangageModule
+
+        Dim textCache = New Dictionary(Of String, Dictionary(Of String, String))
+        Dim msgTextCache = New Dictionary(Of String, Dictionary(Of String, String))
+        Dim arrayCache = New Dictionary(Of String, Dictionary(Of String, String))
+
+
         Private Function getcontrolname(controls As Control)
             Dim _str As New Text.StringBuilder
 
@@ -216,6 +222,10 @@ Namespace Lan
         End Sub
 
         Public Function GetMsgText(key As String) As String
+            If msgTextCache.ContainsKey(key) Then
+                Return msgTextCache(key)
+            End If
+
             Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\Msgbox.json"
 
             Dim _filestream As New FileStream(Langagepath, FileMode.Open)
@@ -229,9 +239,16 @@ Namespace Lan
             _streamreader.Close()
             _filestream.Close()
 
+            msgTextCache.Add(key, dic)
+
             Return dic(key)
         End Function
         Public Function GetText(filename As String, key As String) As String
+
+            If textCache.ContainsKey(filename) Then
+                Return textCache(filename)(key)
+            End If
+
             Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename & ".json"
 
             Dim _filestream As New FileStream(Langagepath, FileMode.Open)
@@ -244,11 +261,17 @@ Namespace Lan
 
             _streamreader.Close()
             _filestream.Close()
+
+            textCache.Add(filename, dic)
 
             Return dic(key)
         End Function
 
         Public Function GetArray(filename As String, key As String) As String()
+            If arrayCache.ContainsKey(filename) Then
+                Return arrayCache(filename)(key).Split("\")
+            End If
+
             Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename & ".json"
 
             Dim _filestream As New FileStream(Langagepath, FileMode.Open)
@@ -261,6 +284,8 @@ Namespace Lan
 
             _streamreader.Close()
             _filestream.Close()
+
+            arrayCache.Add(filename, dic)
 
             Return dic(key).Split("\")
         End Function
