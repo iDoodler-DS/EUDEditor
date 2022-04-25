@@ -405,7 +405,7 @@ Public Class Main
         If Dialog = DialogResult.Cancel Then
         Else
             If ProjectSet.Close() = True Then
-                ProjectSet.Load(OpenFileDialog1.FileName)
+                ProjectSet.Load(OpenFileDialog1.FileName, Nothing)
                 CheckMapFile()
                 Dim fileinfo As New FileInfo(ProjectSet.InputMap)
                 LastData = fileinfo.LastWriteTime
@@ -722,6 +722,23 @@ Public Class Main
 
     Private Sub UpdateViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateViewToolStripMenuItem.Click
         CheckUpdateForm.ShowDialog()
+    End Sub
 
+    Private Sub RecentFileMenuItem_Click(sender As ToolStripMenuItem, e As EventArgs)
+        Dim fileName = sender.Text
+        If ProjectSet.Close() = True Then
+            ProjectSet.Load(fileName, AddressOf FileLoaded)
+            'CheckMapFile()
+            'Dim fileinfo As New FileInfo(ProjectSet.InputMap)
+            'LastData = fileinfo.LastWriteTime
+        End If
+        'refreshSet()
+    End Sub
+
+    Public Sub FileLoaded(success As Boolean)
+        CheckMapFile()
+        Dim fileinfo As New FileInfo(ProjectSet.InputMap)
+        LastData = fileinfo.LastWriteTime
+        refreshSet()
     End Sub
 End Class

@@ -199,7 +199,7 @@ Module initModule
         If My.Application.CommandLineArgs.Count <> 0 Then '연결로 실행되었을 경우.
             ProjectSet.Reset()
             My.Forms.SettingForm.StartPosition = FormStartPosition.CenterScreen
-            ProjectSet.Load(My.Application.CommandLineArgs(0))
+            ProjectSet.Load(My.Application.CommandLineArgs(0), Nothing)
             'MsgBox(My.Application.CommandLineArgs(0))
             My.Forms.SettingForm.StartPosition = FormStartPosition.CenterParent
             CheckMapFile()
@@ -207,7 +207,7 @@ Module initModule
             If hyperLink Then
                 ProjectSet.Reset()
                 My.Forms.SettingForm.StartPosition = FormStartPosition.CenterScreen
-                ProjectSet.Load("C:\Users\skslj\Desktop\EUD에디터Save1.e2s") 'C:\Users\skslj\Desktop\EUD에디터Save1.e2s") '"C:\Users\skslj\Desktop\EUD에디터Save1.e2s")
+                ProjectSet.Load("C:\Users\skslj\Desktop\EUD에디터Save1.e2s", Nothing) 'C:\Users\skslj\Desktop\EUD에디터Save1.e2s") '"C:\Users\skslj\Desktop\EUD에디터Save1.e2s")
                 My.Forms.SettingForm.StartPosition = FormStartPosition.CenterParent
                 CheckMapFile()
             End If

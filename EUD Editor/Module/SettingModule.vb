@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Text
 Imports System.Threading
+Imports System.ComponentModel
 
 Namespace ProgramSet
     Module ProgramSettingModule
@@ -87,6 +88,7 @@ Namespace ProjectSet
         Public UNITSTR(227) As UInteger
 
 
+        Public TriggerLoader As BackgroundWorker
 
         Public Enum Settingtype
             DatEdit = 0
@@ -867,7 +869,37 @@ Namespace ProjectSet
             ProjectLoadingForm.Label1.Text = MapName
             ProjectLoadingForm.ShowDialog()
         End Sub
-        Public Sub Load(MapName As String)
+
+        Public loadCallback As Action(Of Boolean)
+        Public Sub Load(MapName As String, callback As Action(Of Boolean))
+            loadCallback = callback
+            TriggerLoader = New BackgroundWorker()
+            TriggerLoader.WorkerReportsProgress = True
+            TriggerLoader.WorkerSupportsCancellation = True
+            AddHandler TriggerLoader.DoWork, AddressOf TriggerLoader_DoWork
+            AddHandler TriggerLoader.ProgressChanged, AddressOf TriggerLoader_ProgressChanged
+            AddHandler TriggerLoader.RunWorkerCompleted, AddressOf TriggerLoader_RunWorkerCompleted
+            TriggerLoader.RunWorkerAsync(MapName)
+        End Sub
+
+
+        Public Sub TriggerLoader_DoWork(ByVal sender As BackgroundWorker, ByVal e As DoWorkEventArgs)
+            Console.WriteLine("TriggerLoader_DoWork")
+            Dim MapName As String = CStr(e.Argument)
+            LoadActual(MapName)
+        End Sub
+
+        Public Sub TriggerLoader_ProgressChanged(ByVal sender As BackgroundWorker, ByVal e As ProgressChangedEventArgs)
+            Console.WriteLine("ProgressChanged")
+        End Sub
+
+        Public Sub TriggerLoader_RunWorkerCompleted(ByVal sender As BackgroundWorker, ByVal e As RunWorkerCompletedEventArgs)
+            Console.WriteLine("RunWorkerCompleted")
+            LoadFileimportable()
+            loadCallback(True)
+        End Sub
+
+        Public Sub LoadActual(MapName As String)
             For i = 0 To 7
                 UsedSetting(i) = False
             Next
@@ -1771,7 +1803,6 @@ Namespace ProjectSet
                 RenameFileAll()
             End If
 
-            LoadFileimportable()
         End Sub
 
 
