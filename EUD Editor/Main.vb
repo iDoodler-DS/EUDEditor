@@ -489,7 +489,6 @@ Public Class Main
         My.Forms.Main.Visible = False
 
         DatEditForm.Show()
-        DatEditForm.RefreshForm()
         My.Forms.DatEditForm.Activate()
     End Sub
 

@@ -35,6 +35,7 @@ Public Class DatEditForm
     Private _unusedColor As Color = Color.LightGray
     Public _OBJECTNUM As Integer
 
+    Private INITIAL_SETUP As Boolean = True
     Private comboBoxCache = New Dictionary(Of String, String)
     Private listViewCache = New Dictionary(Of String, String)
 
@@ -179,6 +180,8 @@ Public Class DatEditForm
         End If
         LoadData()
         Me.ResumeLayout()
+        RefreshForm()
+        INITIAL_SETUP = False
     End Sub
 
 
@@ -516,13 +519,12 @@ Public Class DatEditForm
 
     Public Sub RefreshForm()
         Dim oldselectindex As Integer = _OBJECTNUM
-        ListDraw()
-        PaletDraw()
+        If Not INITIAL_SETUP Then
+            ListDraw()
+            PaletDraw()
+        End If
 
         SELECTLIST(oldselectindex)
-
-
-
     End Sub
     Private Sub CheckBox5_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox5.CheckedChanged
         RefreshForm()
@@ -3022,7 +3024,9 @@ Public Class DatEditForm
     End Sub
 
     Private Sub Search_TextChanged(sender As Object, e As KeyEventArgs) Handles TextBox2.KeyUp
+        If LISTFILTER = TextBox2.Text Then Return
         LISTFILTER = TextBox2.Text
+
         ListDraw()
         PaletDraw()
     End Sub
