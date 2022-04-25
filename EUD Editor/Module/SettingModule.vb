@@ -146,11 +146,6 @@ Namespace ProjectSet
         End Function
 
 
-
-
-
-
-
         Public Sub LoadCHKdata()
             LoadTILEDATA()
 
@@ -163,8 +158,6 @@ Namespace ProjectSet
 
             Dim key As String
 
-
-
             For i = 0 To DatEditDATA.Count - 1
                 For j = 0 To DatEditDATA(i).mapdata.Count - 1
                     For p = 0 To DatEditDATA(i).mapdata(j).Count - 1
@@ -172,10 +165,6 @@ Namespace ProjectSet
                     Next
                 Next
             Next
-
-
-
-
 
             Dim hmpq As UInteger
             Dim hfile As UInteger
@@ -186,7 +175,6 @@ Namespace ProjectSet
             Dim pdwread As IntPtr
 
             StormLib.SFileOpenArchive(InputMap, 0, 0, hmpq)
-
 
             Dim openFilename As String = "staredit\scenario.chk"
 
@@ -201,24 +189,6 @@ Namespace ProjectSet
                 Dim mem As MemoryStream = New MemoryStream(buffer)
                 Dim binary As BinaryReader = New BinaryReader(mem)
                 Dim stream As StreamReader = New StreamReader(mem, Text.Encoding.ASCII)
-
-                Try
-                    mem.Position = SearchCHK("TYPE", buffer)
-                Catch ex As Exception
-                    LoadFromCHK = False
-                    Exit Sub
-                End Try
-
-                size = binary.ReadUInt32
-
-                Dim value As UInteger = binary.ReadUInt32
-                If (value <> 1113014610) Then
-                    LoadFromCHK = False
-                    Exit Sub
-                End If
-
-
-
 
                 mem.Position = SearchCHK("SIDE", buffer)
 
