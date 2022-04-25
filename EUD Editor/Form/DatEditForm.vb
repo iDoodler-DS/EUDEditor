@@ -538,6 +538,8 @@ Public Class DatEditForm
         If (comboBoxCache.ContainsKey(filename)) Then
             Dim stream = New StringReader(comboBoxCache(filename))
 
+            Combobox.SuspendLayout()
+            Combobox.BeginUpdate()
             While True
                 Dim line = stream.ReadLine()
                 If line Is Nothing Then
@@ -546,16 +548,21 @@ Public Class DatEditForm
                     Combobox.Items.Add(line)
                 End If
             End While
-
+            Combobox.EndUpdate()
+            Combobox.ResumeLayout()
             stream.Close()
         Else
             filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename
             Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
             Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
 
+            Combobox.SuspendLayout()
+            Combobox.BeginUpdate()
             While (stream.EndOfStream = False)
                 Combobox.Items.Add(stream.ReadLine)
             End While
+            Combobox.EndUpdate()
+            Combobox.ResumeLayout()
             file.Position = 0
             stream.DiscardBufferedData()
             comboBoxCache(filename) = stream.ReadToEnd
@@ -572,6 +579,8 @@ Public Class DatEditForm
             Dim stream = New StringReader(listViewCache(filename))
             Listview.Items.Clear()
 
+            Listview.SuspendLayout()
+            Listview.BeginUpdate()
             While True
                 Dim line = stream.ReadLine()
                 If line Is Nothing Then
@@ -580,7 +589,8 @@ Public Class DatEditForm
                     Listview.Items.Add(line)
                 End If
             End While
-
+            Listview.EndUpdate()
+            Listview.ResumeLayout()
             stream.Close()
         Else
             filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename
@@ -588,9 +598,13 @@ Public Class DatEditForm
             Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
             Listview.Items.Clear()
 
+            Listview.SuspendLayout()
+            Listview.BeginUpdate()
             While (stream.EndOfStream = False)
                 Listview.Items.Add(stream.ReadLine)
             End While
+            Listview.EndUpdate()
+            Listview.ResumeLayout()
             file.Position = 0
             stream.DiscardBufferedData()
             listViewCache.Add(filename, stream.ReadToEnd)
@@ -806,6 +820,7 @@ Public Class DatEditForm
         ListBox1.Refresh()
     End Sub
     Private Sub ListDraw()
+        ListBox1.SuspendLayout()
         ListBox1.BeginUpdate()
 
         Dim listNum As Integer = MainTAB.SelectedIndex
@@ -899,6 +914,7 @@ Public Class DatEditForm
 
 
         ListBox1.EndUpdate()
+        ListBox1.ResumeLayout()
     End Sub
 
 
@@ -1017,52 +1033,98 @@ Public Class DatEditForm
 
         End If
 
-
+        ComboBox22.SuspendLayout()
+        ComboBox22.BeginUpdate()
         ComboBox22.Items.Clear()
         ComboBox22.Items.AddRange(stat_txt)
         For i = 0 To 1300
             ComboBox22.Items.RemoveAt(0)
         Next
+        ComboBox22.EndUpdate()
+        ComboBox22.ResumeLayout()
+
+        ComboBox32.SuspendLayout()
+        ComboBox32.BeginUpdate()
         ComboBox32.Items.Clear()
         ComboBox32.Items.Add("None")
         ComboBox32.Items.AddRange(stat_txt)
+        ComboBox32.EndUpdate()
+        ComboBox32.ResumeLayout()
+
+        ComboBox33.SuspendLayout()
+        ComboBox33.BeginUpdate()
         ComboBox33.Items.Clear()
         ComboBox33.Items.Add("None")
         ComboBox33.Items.AddRange(stat_txt)
+        ComboBox33.EndUpdate()
+        ComboBox33.ResumeLayout()
+
+        ComboBox42.SuspendLayout()
+        ComboBox42.BeginUpdate()
         ComboBox42.Items.Clear()
         ComboBox42.Items.Add("None")
         ComboBox42.Items.AddRange(stat_txt)
+        ComboBox42.EndUpdate()
+        ComboBox42.ResumeLayout()
+
+
+        ComboBox44.SuspendLayout()
+        ComboBox44.BeginUpdate()
         ComboBox44.Items.Clear()
         ComboBox44.Items.Add("None")
         ComboBox44.Items.AddRange(stat_txt)
+        ComboBox44.EndUpdate()
+        ComboBox44.ResumeLayout()
+
+
+        ComboBox50.SuspendLayout()
+        ComboBox50.BeginUpdate()
         ComboBox50.Items.Clear()
         ComboBox50.Items.Add("None")
         ComboBox50.Items.AddRange(stat_txt)
+        ComboBox50.EndUpdate()
+        ComboBox50.ResumeLayout()
 
-
-
-
-        FireGraftForm.ComboBox10.Items.Clear()
+        FireGraftForm.ComboBox9.SuspendLayout()
+        FireGraftForm.ComboBox9.BeginUpdate()
         FireGraftForm.ComboBox9.Items.Clear()
-
-        FireGraftForm.ComboBox10.Items.Add("None")
         FireGraftForm.ComboBox9.Items.Add("None")
-
-        FireGraftForm.ComboBox10.Items.AddRange(stat_txt)
         FireGraftForm.ComboBox9.Items.AddRange(stat_txt)
+        FireGraftForm.ComboBox9.EndUpdate()
+        FireGraftForm.ComboBox9.ResumeLayout()
+
+        FireGraftForm.ComboBox10.SuspendLayout()
+        FireGraftForm.ComboBox10.BeginUpdate()
+        FireGraftForm.ComboBox10.Items.Clear()
+        FireGraftForm.ComboBox10.Items.Add("None")
+        FireGraftForm.ComboBox10.Items.AddRange(stat_txt)
+        FireGraftForm.ComboBox10.EndUpdate()
+        FireGraftForm.ComboBox10.ResumeLayout()
     End Sub
     Private Sub LoadComboBoxAndList()
         Loadstattxt()
 
 
+        ComboBox1.SuspendLayout()
+        ComboBox1.BeginUpdate()
         ComboBox1.Items.Clear()
         ComboBox1.Items.AddRange(CODE(DTYPE.upgrades).ToArray)
+        ComboBox1.EndUpdate()
+        ComboBox1.ResumeLayout()
 
-
+        ComboBox4.SuspendLayout()
+        ComboBox4.BeginUpdate()
         ComboBox4.Items.Clear()
         ComboBox4.Items.AddRange(CODE(DTYPE.weapons).ToArray)
+        ComboBox4.EndUpdate()
+        ComboBox4.ResumeLayout()
+
+        ComboBox5.SuspendLayout()
+        ComboBox5.BeginUpdate()
         ComboBox5.Items.Clear()
         ComboBox5.Items.AddRange(CODE(DTYPE.weapons).ToArray)
+        ComboBox5.EndUpdate()
+        ComboBox5.ResumeLayout()
 
 
         LoadComboBoxFromFile(ComboBox6, "UnitSize.txt")
@@ -1077,64 +1139,144 @@ Public Class DatEditForm
 
         LoadListviewFromFile(ListView9, "OrdersFlag.txt")
 
+        ComboBox23.SuspendLayout()
+        ComboBox23.BeginUpdate()
         ComboBox23.Items.Clear()
         ComboBox23.Items.Add("Default")
         ComboBox23.Items.AddRange(ProjectSet.CHKSTRING.ToArray)
+        ComboBox23.EndUpdate()
+        ComboBox23.ResumeLayout()
 
-
+        ComboBox7.BeginUpdate()
+        ComboBox7.SuspendLayout()
         ComboBox7.Items.Clear()
         ComboBox7.Items.AddRange(CODE(DTYPE.units).ToArray)
         ComboBox7.Items.Add("None")
+        ComboBox7.EndUpdate()
+        ComboBox7.ResumeLayout()
+
+        ComboBox8.SuspendLayout()
+        ComboBox8.BeginUpdate()
         ComboBox8.Items.Clear()
         ComboBox8.Items.AddRange(CODE(DTYPE.units).ToArray)
         ComboBox8.Items.Add("None")
+        ComboBox8.EndUpdate()
+        ComboBox8.ResumeLayout()
+
+        ComboBox9.SuspendLayout()
+        ComboBox9.BeginUpdate()
         ComboBox9.Items.Clear()
         ComboBox9.Items.AddRange(CODE(DTYPE.units).ToArray)
         ComboBox9.Items.Add("None")
+        ComboBox9.EndUpdate()
+        ComboBox9.ResumeLayout()
 
-
-
+        ComboBox10.SuspendLayout()
+        ComboBox10.BeginUpdate()
         ComboBox10.Items.Clear()
         ComboBox10.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
+        ComboBox10.EndUpdate()
+        ComboBox10.ResumeLayout()
 
+        ComboBox11.SuspendLayout()
+        ComboBox11.BeginUpdate()
         ComboBox11.Items.Clear()
         ComboBox11.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
+        ComboBox11.EndUpdate()
+        ComboBox11.ResumeLayout()
+
+        ComboBox12.SuspendLayout()
+        ComboBox12.BeginUpdate()
         ComboBox12.Items.Clear()
         ComboBox12.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
+        ComboBox12.EndUpdate()
+        ComboBox12.ResumeLayout()
 
+        ComboBox13.SuspendLayout()
+        ComboBox13.BeginUpdate()
         ComboBox13.Items.Clear()
         ComboBox13.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
+        ComboBox13.EndUpdate()
+        ComboBox13.ResumeLayout()
+
+        ComboBox14.SuspendLayout()
+        ComboBox14.BeginUpdate()
         ComboBox14.Items.Clear()
         ComboBox14.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
+        ComboBox14.EndUpdate()
+        ComboBox14.ResumeLayout()
 
+        ComboBox15.SuspendLayout()
+        ComboBox15.BeginUpdate()
         ComboBox15.Items.Clear()
         ComboBox15.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
+        ComboBox15.EndUpdate()
+        ComboBox15.ResumeLayout()
+
+        ComboBox16.SuspendLayout()
+        ComboBox16.BeginUpdate()
         ComboBox16.Items.Clear()
         ComboBox16.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
+        ComboBox16.EndUpdate()
+        ComboBox16.ResumeLayout()
 
 
-
+        ComboBox17.SuspendLayout()
+        ComboBox17.BeginUpdate()
         ComboBox17.Items.Clear()
         ComboBox17.Items.AddRange(CODE(DTYPE.portdata).ToArray)
+        ComboBox17.EndUpdate()
+        ComboBox17.ResumeLayout()
+
+        ComboBox18.SuspendLayout()
+        ComboBox18.BeginUpdate()
         ComboBox18.Items.Clear()
         ComboBox18.Items.AddRange(CODE(DTYPE.images).ToArray)
+        ComboBox18.EndUpdate()
+        ComboBox18.ResumeLayout()
+
+        ComboBox19.SuspendLayout()
+        ComboBox19.BeginUpdate()
         ComboBox19.Items.Clear()
         ComboBox19.Items.AddRange(CODE(DTYPE.flingy).ToArray)
+        ComboBox19.EndUpdate()
+        ComboBox19.ResumeLayout()
 
 
-
-
-
+        ComboBox24.SuspendLayout()
+        ComboBox24.BeginUpdate()
         ComboBox24.Items.Clear()
         ComboBox24.Items.AddRange(CODE(DTYPE.orders).ToArray)
+        ComboBox24.EndUpdate()
+        ResumeLayout()
+
+        ComboBox25.SuspendLayout()
+        ComboBox25.BeginUpdate()
         ComboBox25.Items.Clear()
         ComboBox25.Items.AddRange(CODE(DTYPE.orders).ToArray)
+        ComboBox25.EndUpdate()
+        ComboBox25.ResumeLayout()
+
+        ComboBox26.SuspendLayout()
+        ComboBox26.BeginUpdate()
         ComboBox26.Items.Clear()
         ComboBox26.Items.AddRange(CODE(DTYPE.orders).ToArray)
+        ComboBox26.EndUpdate()
+        ComboBox26.ResumeLayout()
+
+        ComboBox27.SuspendLayout()
+        ComboBox27.BeginUpdate()
         ComboBox27.Items.Clear()
         ComboBox27.Items.AddRange(CODE(DTYPE.orders).ToArray)
+        ComboBox27.EndUpdate()
+        ComboBox27.ResumeLayout()
+
+        ComboBox28.SuspendLayout()
+        ComboBox28.BeginUpdate()
         ComboBox28.Items.Clear()
         ComboBox28.Items.AddRange(CODE(DTYPE.orders).ToArray)
+        ComboBox28.EndUpdate()
+        ComboBox28.ResumeLayout()
 
         LoadComboBoxFromFile(ComboBox29, "Rightclick.txt")
         LoadListviewFromFile(ListView7, "AIInternal.txt")
@@ -1142,31 +1284,53 @@ Public Class DatEditForm
 
         LoadComboBoxFromFile(ComboBox3, "DamTypes.txt")
         LoadComboBoxFromFile(ComboBox30, "Explosions.txt")
+        ComboBox31.SuspendLayout()
+        ComboBox31.BeginUpdate()
         ComboBox31.Items.Clear()
         ComboBox31.Items.AddRange(CODE(DTYPE.techdata).ToArray)
+        ComboBox31.EndUpdate()
+        ComboBox31.ResumeLayout()
+
+        ComboBox2.SuspendLayout()
+        ComboBox2.BeginUpdate()
         ComboBox2.Items.Clear()
         ComboBox2.Items.AddRange(CODE(DTYPE.upgrades).ToArray)
-
+        ComboBox2.EndUpdate()
+        ComboBox2.ResumeLayout()
 
         LoadListviewFromFile(ListView8, "TargetType.txt")
         LoadComboBoxFromFile(ComboBox34, "Behaviours.txt")
 
-
+        ComboBox35.SuspendLayout()
+        ComboBox35.BeginUpdate()
         ComboBox35.Items.Clear()
         ComboBox35.Items.AddRange(CODE(DTYPE.flingy).ToArray)
+        ComboBox35.EndUpdate()
+        ComboBox35.ResumeLayout()
         LoadComboBoxFromFile(ComboBox36, "Icon.txt")
 
+        ComboBox37.SuspendLayout()
+        ComboBox37.BeginUpdate()
         ComboBox37.Items.Clear()
         ComboBox37.Items.AddRange(CODE(DTYPE.sprites).ToArray)
-
+        ComboBox37.EndUpdate()
+        ComboBox37.ResumeLayout()
 
         LoadComboBoxFromFile(ComboBox38, "FlingyControl.txt")
 
+        ComboBox39.SuspendLayout()
+        ComboBox39.BeginUpdate()
         ComboBox39.Items.Clear()
         ComboBox39.Items.AddRange(CODE(DTYPE.images).ToArray)
+        ComboBox39.EndUpdate()
+        ComboBox39.ResumeLayout()
 
+        ComboBox40.SuspendLayout()
+        ComboBox40.BeginUpdate()
         ComboBox40.Items.Clear()
         ComboBox40.Items.AddRange(CODE(DTYPE.images).ToArray)
+        ComboBox40.EndUpdate()
+        ComboBox40.ResumeLayout()
         For i = 0 To 560
             ComboBox40.Items.RemoveAt(0)
         Next
@@ -1187,12 +1351,26 @@ Public Class DatEditForm
         LoadComboBoxFromFile(ComboBox46, "Races.txt")
         ComboBox46.Items.Add("All")
 
+        ComboBox47.SuspendLayout()
+        ComboBox47.BeginUpdate()
         ComboBox47.Items.Clear()
         ComboBox47.Items.AddRange(CODE(DTYPE.weapons).ToArray)
+        ComboBox47.EndUpdate()
+        ComboBox47.ResumeLayout()
+
+        ComboBox48.SuspendLayout()
+        ComboBox48.BeginUpdate()
         ComboBox48.Items.Clear()
         ComboBox48.Items.AddRange(CODE(DTYPE.techdata).ToArray)
+        ComboBox48.EndUpdate()
+        ComboBox48.ResumeLayout()
+
+        ComboBox49.SuspendLayout()
+        ComboBox49.BeginUpdate()
         ComboBox49.Items.Clear()
         ComboBox49.Items.AddRange(CODE(DTYPE.orders).ToArray)
+        ComboBox49.EndUpdate()
+        ComboBox49.ResumeLayout()
 
 
         LoadComboBoxFromFile(ComboBox51, "Animations.txt")
@@ -1200,14 +1378,22 @@ Public Class DatEditForm
 
 
 
+        ComboBox53.SuspendLayout()
+        ComboBox53.BeginUpdate()
         ComboBox53.Items.Clear()
         ComboBox53.Items.Add("None")
         ComboBox53.Items.AddRange(sfxdata)
+        ComboBox53.EndUpdate()
+        ComboBox53.ResumeLayout()
 
 
+        ComboBox54.SuspendLayout()
+        ComboBox54.BeginUpdate()
         ComboBox54.Items.Clear()
         ComboBox54.Items.Add("None")
         ComboBox54.Items.AddRange(portdata)
+        ComboBox54.EndUpdate()
+        ComboBox54.ResumeLayout()
 
         LoadComboBoxFromFile(ComboBox55, "DrawList.txt")
         LoadComboBoxFromFile(ComboBox56, "Remapping.txt")

@@ -123,9 +123,12 @@ Namespace Lan
                 End If
             End If
 
+            controls.SuspendLayout()
             For i = 0 To controls.Controls.Count - 1
                 setcontrols(controls.Controls(i))
             Next
+            controls.ResumeLayout()
+
         End Sub
 
         Dim labels As Dictionary(Of String, String)
@@ -144,11 +147,13 @@ Namespace Lan
             _streamreader.Close()
             _filestream.Close()
 
-
+            forms.SuspendLayout()
             For i = 0 To forms.Controls.Count - 1
                 setcontrols(forms.Controls(i))
                 '_str.Append(getcontrolname(baseform.Controls(i)))
             Next
+            forms.ResumeLayout()
+
         End Sub
 
 
