@@ -45,25 +45,25 @@
     'EUD Editor 테마
     'EUD Editor2 테마
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click, Button5.Click
         ColorDialog1.ShowDialog()
         ProgramSet.FORECOLOR = ColorDialog1.Color
         ColorSet()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click, Button6.Click
         ColorDialog1.ShowDialog()
         ProgramSet.BACKCOLOR = ColorDialog1.Color
         ColorSet()
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click, Button7.Click
         ColorDialog1.ShowDialog()
         ProgramSet.CHANGECOLOR = ColorDialog1.Color
         ColorSet()
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click, Button8.Click
         ColorDialog1.ShowDialog()
         ProgramSet.LISTCOLOR = ColorDialog1.Color
         ColorSet()
