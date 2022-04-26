@@ -95,6 +95,7 @@ Public Class SettingForm
             End If
         Next
 
+        ThemeSetForm.SetControlColor(Me)
 
 
 

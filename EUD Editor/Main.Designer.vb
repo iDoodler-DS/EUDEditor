@@ -81,6 +81,7 @@ Partial Class Main
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckMapWrite = New System.Windows.Forms.Timer(Me.components)
         Me.ThemeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ThemeSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -465,7 +466,7 @@ Partial Class Main
         '
         'ToolTToolStripMenuItem
         '
-        Me.ToolTToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MpainjectWToolStripMenuItem, Me.EDDOpenDToolStripMenuItem, Me.ToolStripSeparator3, Me.ToolStripMenuItem1, Me.ToolStripSeparator2, Me.TriggerviewTToolStripMenuItem, Me.ToclipEToolStripMenuItem})
+        Me.ToolTToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MpainjectWToolStripMenuItem, Me.EDDOpenDToolStripMenuItem, Me.ToolStripSeparator3, Me.ToolStripMenuItem1, Me.ToolStripSeparator2, Me.TriggerviewTToolStripMenuItem, Me.ToclipEToolStripMenuItem, Me.ThemeSettingsToolStripMenuItem})
         Me.ToolTToolStripMenuItem.Name = "ToolTToolStripMenuItem"
         Me.ToolTToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
         Me.ToolTToolStripMenuItem.Text = "도구(&T)"
@@ -739,6 +740,12 @@ Partial Class Main
         Me.ThemeToolStripMenuItem.Size = New System.Drawing.Size(197, 26)
         Me.ThemeToolStripMenuItem.Text = "Theme"
         '
+        'ThemeSettingsToolStripMenuItem
+        '
+        Me.ThemeSettingsToolStripMenuItem.Name = "ThemeSettingsToolStripMenuItem"
+        Me.ThemeSettingsToolStripMenuItem.Size = New System.Drawing.Size(197, 26)
+        Me.ThemeSettingsToolStripMenuItem.Text = "Theme Settings"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -826,4 +833,5 @@ Partial Class Main
     Friend WithEvents UpdateViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenRecentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ThemeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ThemeSettingsToolStripMenuItem As ToolStripMenuItem
 End Class

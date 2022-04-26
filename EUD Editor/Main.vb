@@ -793,7 +793,7 @@ Public Class Main
         Return value
     End Function
 
-    Private Sub ThemeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThemeToolStripMenuItem.Click
+    Private Sub ThemeSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThemeSettingsToolStripMenuItem.Click
         ThemeSetForm.ShowDialog()
         SaveTheme()
         refreshSet()

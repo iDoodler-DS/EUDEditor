@@ -167,8 +167,22 @@
         'Public colorCheckedBackground As Color
         'Public colorCodeBackground As Color
         'Public colorPanelBackground As Color
+        c.BackColor = ProgramSet.colorBackground
+        c.ForeColor = ProgramSet.colorLabelText
+
+        If (c.GetType() = GetType(Button)) Then
+            Dim b As Button = c
+            b.FlatStyle = FlatStyle.Flat
+            b.FlatAppearance.BorderSize = 1
+            b.FlatAppearance.BorderColor = ProgramSet.colorPanelBackground
+            b.ForeColor = ProgramSet.colorLabelText
+        ElseIf c.GetType() = GetType(TableLayoutPanel) Or c.GetType() = GetType(FlowLayoutPanel) Then
+            AddHandler c.Paint, AddressOf Panel_Paint
+        End If
+
+
         Select Case c.GetType()
-            Case GetType(Form), GetType(MenuStrip), GetType(TableLayoutPanel), GetType(FlowLayoutPanel), GetType(Button)
+            Case GetType(Form), GetType(MenuStrip), GetType(ToolStrip), GetType(ToolStripMenuItem), GetType(TableLayoutPanel), GetType(FlowLayoutPanel), GetType(TabPage)
                 c.BackColor = ProgramSet.colorBackground
                 c.ForeColor = ProgramSet.colorLabelText
             Case GetType(TextBox), GetType(NumericUpDown), GetType(ComboBox), GetType(CheckBox), GetType(ListBox)
@@ -179,5 +193,9 @@
         For Each control As Control In c.Controls
             SetControlColor(control)
         Next
+    End Sub
+
+    Private Sub Panel_Paint(panel As Panel, e As PaintEventArgs)
+        ControlPaint.DrawBorder(e.Graphics, panel.ClientRectangle, Color.Red, ButtonBorderStyle.None)
     End Sub
 End Class
