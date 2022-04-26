@@ -32,14 +32,14 @@ Namespace ProgramSet
         'Public AutoLogin As Boolean
         'Public Remember As Boolean
 
-
-
-        Public FORECOLOR As Color
-
-        Public BACKCOLOR As Color
-        Public CHANGECOLOR As Color
-
-        Public LISTCOLOR As Color
+        Public colorBackground As Color
+        Public colorLabelText As Color
+        Public colorFieldBackground As Color
+        Public colorFieldText As Color
+        Public colorChangedBackground As Color
+        Public colorCheckedBackground As Color
+        Public colorCodeBackground As Color
+        Public colorPanelBackground As Color
     End Module
 
 End Namespace

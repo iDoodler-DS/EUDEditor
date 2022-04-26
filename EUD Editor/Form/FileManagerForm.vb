@@ -6,12 +6,12 @@
     Dim wirefram As New GRP
 
     Private Sub ColorReset()
-        NumericUpDown1.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown1.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown3.ForeColor = ProgramSet.FORECOLOR
+        NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
+        NumericUpDown1.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
+        NumericUpDown2.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
+        NumericUpDown3.ForeColor = ProgramSet.colorFieldText
     End Sub
 
     Private loadcmp As Boolean = False
@@ -262,9 +262,9 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
                     NumericUpDown1.Value = wireframData(_OBJECTNUM)
 
                     If wireframData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown1.BackColor = ProgramSet.BACKCOLOR
+                        NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
                     Else
-                        NumericUpDown1.BackColor = ProgramSet.CHANGECOLOR
+                        NumericUpDown1.BackColor = ProgramSet.colorChangedBackground
                     End If
                     NumericUpDown1.Visible = True
                 Else
@@ -276,9 +276,9 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
                     NumericUpDown2.Value = grpwireData(_OBJECTNUM)
 
                     If grpwireData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
+                        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
                     Else
-                        NumericUpDown2.BackColor = ProgramSet.CHANGECOLOR
+                        NumericUpDown2.BackColor = ProgramSet.colorChangedBackground
                     End If
                     NumericUpDown2.Visible = True
                 Else
@@ -291,9 +291,9 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
                     NumericUpDown3.Value = tranwireData(_OBJECTNUM)
 
                     If tranwireData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
+                        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
                     Else
-                        NumericUpDown3.BackColor = ProgramSet.CHANGECOLOR
+                        NumericUpDown3.BackColor = ProgramSet.colorChangedBackground
                     End If
                     NumericUpDown3.Visible = True
                 Else

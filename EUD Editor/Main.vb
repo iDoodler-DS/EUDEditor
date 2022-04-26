@@ -307,10 +307,14 @@ Public Class Main
                 My.Settings.StarVersion = ProgramSet.StarVersion
                 My.Settings.AutoCompile = ProgramSet.isAutoCompile
 
-                My.Settings.DatEditColor1 = ProgramSet.FORECOLOR
-                My.Settings.DatEditColor2 = ProgramSet.BACKCOLOR
-                My.Settings.DatEditColor3 = ProgramSet.CHANGECOLOR
-                My.Settings.DatEditColor4 = ProgramSet.LISTCOLOR
+                My.Settings.DatEditColor1 = ProgramSet.colorFieldText
+                My.Settings.DatEditColor2 = ProgramSet.colorFieldBackground
+                My.Settings.DatEditColor3 = ProgramSet.colorChangedBackground
+                My.Settings.DatEditColor4 = ProgramSet.colorCheckedBackground
+                My.Settings.DatEditColor5 = ProgramSet.colorBackground
+                My.Settings.DatEditColor6 = ProgramSet.colorLabelText
+                My.Settings.DatEditColor7 = ProgramSet.colorCodeBackground
+                My.Settings.DatEditColor8 = ProgramSet.colorPanelBackground
 
                 My.Settings.mpqDirec = String.Join(",", ProgramSet.DatMPQDirec)
 

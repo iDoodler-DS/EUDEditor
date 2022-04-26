@@ -19,29 +19,29 @@
 
         '57F0F0 미네랄
         If NumericUpDown1.Focused Then
-            NumericUpDown1.ForeColor = ProgramSet.BACKCOLOR
-            NumericUpDown1.BackColor = ProgramSet.FORECOLOR
+            NumericUpDown1.ForeColor = ProgramSet.colorFieldBackground
+            NumericUpDown1.BackColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown1.ForeColor = ProgramSet.FORECOLOR
-            NumericUpDown1.BackColor = ProgramSet.BACKCOLOR
+            NumericUpDown1.ForeColor = ProgramSet.colorFieldText
+            NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
             NumericUpDown1.Value = WinAPI.ReadValue(&H57F0F0 + PlayerNum * 4, 4)
         End If
 
         If NumericUpDown2.Focused Then
-            NumericUpDown2.ForeColor = ProgramSet.BACKCOLOR
-            NumericUpDown2.BackColor = ProgramSet.FORECOLOR
+            NumericUpDown2.ForeColor = ProgramSet.colorFieldBackground
+            NumericUpDown2.BackColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
-            NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
+            NumericUpDown2.ForeColor = ProgramSet.colorFieldText
+            NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
             NumericUpDown2.Value = WinAPI.ReadValue(&H57F120 + PlayerNum * 4, 4)
         End If
 
         If CheckedListBox3.Focused Then
-            CheckedListBox3.ForeColor = ProgramSet.BACKCOLOR
-            CheckedListBox3.BackColor = ProgramSet.FORECOLOR
+            CheckedListBox3.ForeColor = ProgramSet.colorFieldBackground
+            CheckedListBox3.BackColor = ProgramSet.colorFieldText
         Else
-            CheckedListBox3.ForeColor = ProgramSet.FORECOLOR
-            CheckedListBox3.BackColor = ProgramSet.BACKCOLOR
+            CheckedListBox3.ForeColor = ProgramSet.colorFieldText
+            CheckedListBox3.BackColor = ProgramSet.colorFieldBackground
 
             Dim buffer() As Byte = WinAPI.ReadValue(&H58D634 + PlayerNum * 12, 12)
             For i = 0 To 11
@@ -51,11 +51,11 @@
 
 
         If CheckedListBox1.Focused Then
-            CheckedListBox1.ForeColor = ProgramSet.BACKCOLOR
-            CheckedListBox1.BackColor = ProgramSet.FORECOLOR
+            CheckedListBox1.ForeColor = ProgramSet.colorFieldBackground
+            CheckedListBox1.BackColor = ProgramSet.colorFieldText
         Else
-            CheckedListBox1.ForeColor = ProgramSet.FORECOLOR
-            CheckedListBox1.BackColor = ProgramSet.BACKCOLOR
+            CheckedListBox1.ForeColor = ProgramSet.colorFieldText
+            CheckedListBox1.BackColor = ProgramSet.colorFieldBackground
 
             Dim buffer As UInteger = WinAPI.ReadValue(&H57F1EC + PlayerNum * 4, 4)
             For i = 0 To 7

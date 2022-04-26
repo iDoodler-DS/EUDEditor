@@ -1709,13 +1709,13 @@ Module ProgramData
 
 
         Public Sub CheckChange(key As String, index As UInteger, obj As Object)
-            obj.ForeColor = ProgramSet.FORECOLOR
+            obj.ForeColor = ProgramSet.colorFieldText
             Try
                 If projectdata(keyDic(key))(index - keyINFO(keyDic(key)).VarStart) = 0 Then
-                    obj.BackColor = ProgramSet.BACKCOLOR
+                    obj.BackColor = ProgramSet.colorFieldBackground
                     'Return False
                 Else
-                    obj.BackColor = ProgramSet.CHANGECOLOR
+                    obj.BackColor = ProgramSet.colorChangedBackground
                     'Return True
                 End If
             Catch ex As Exception
@@ -1724,10 +1724,10 @@ Module ProgramData
 
 
         Public Sub ChecklistChange(key As String, index As UInteger, checkedlistBox As ListView)
-            checkedlistBox.ForeColor = ProgramSet.FORECOLOR
+            checkedlistBox.ForeColor = ProgramSet.colorFieldText
 
             Try
-                checkedlistBox.BackColor = ProgramSet.BACKCOLOR
+                checkedlistBox.BackColor = ProgramSet.colorFieldBackground
 
                 Dim provalue As Long = projectdata(keyDic(key))(index - keyINFO(keyDic(key)).VarStart)
                 Dim mapvalue As Long = data(keyDic(key))(index - keyINFO(keyDic(key)).VarStart)
@@ -1747,13 +1747,13 @@ Module ProgramData
 
                     'and시 0이 아니면 현재 수치가 존재한다.
                     If (oldvalue And (2 ^ i)) <> (newvalue And (2 ^ i)) Then
-                        checkedlistBox.Items(i).BackColor = ProgramSet.CHANGECOLOR
+                        checkedlistBox.Items(i).BackColor = ProgramSet.colorChangedBackground
                         'Return False
                     Else
                         If checkedlistBox.Items(i).Checked = True Then
-                            checkedlistBox.Items(i).BackColor = ProgramSet.LISTCOLOR
+                            checkedlistBox.Items(i).BackColor = ProgramSet.colorCheckedBackground
                         Else
-                            checkedlistBox.Items(i).BackColor = ProgramSet.BACKCOLOR
+                            checkedlistBox.Items(i).BackColor = ProgramSet.colorFieldBackground
                         End If
                         'Return True
                     End If
