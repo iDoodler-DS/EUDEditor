@@ -286,12 +286,16 @@ Namespace ProjectSet
                         binary.ReadUInt16()
                     Next
 
-                    mem.Position = SearchCHK("SWNM", buffer)
-
-                    size = binary.ReadUInt32
-                    For i = 0 To 255
-                        CHKSWITCHNAME.Add(binary.ReadUInt32)
-                    Next
+                    Try
+                        mem.Position = SearchCHK("SWNM", buffer)
+                    Catch ex As Exception
+                        Exit Try
+                    Finally
+                        size = binary.ReadUInt32
+                        For i = 0 To 255
+                            CHKSWITCHNAME.Add(binary.ReadUInt32)
+                        Next
+                    End Try
 
 
                     mem.Position = SearchCHK("UPGx", buffer)
