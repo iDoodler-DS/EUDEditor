@@ -560,9 +560,6 @@ Namespace ProjectSet
                         Catch ex2 As Exception
                             Throw New System.Exception("String section not found.")
                         End Try
-                        If mem.Position = 0 Then
-                            Throw New System.Exception("String section not found.")
-                        End If
                     End Try
                     If mem.Position = 0 Then
                         Try
@@ -582,11 +579,11 @@ Namespace ProjectSet
                     binary.Close()
                     mem.Close()
 
-
-
                     Dim strmem As MemoryStream = New MemoryStream(STRpara)
-                    Dim strstream As StreamReader = New StreamReader(strmem, Text.Encoding.GetEncoding("ks_c_5601-1987"))
-                    Dim strbinary As BinaryReader = New BinaryReader(strmem, Text.Encoding.GetEncoding("ks_c_5601-1987"))
+                    'TODO: support UTF-8
+                    Dim strencoding As Text.Encoding = Text.Encoding.GetEncoding("ks_c_5601-1987")
+                    Dim strstream As StreamReader = New StreamReader(strmem, strencoding)
+                    Dim strbinary As BinaryReader = New BinaryReader(strmem, strencoding)
 
                     Dim tempindex As UInteger
                     Dim tempindex2 As Char
@@ -614,17 +611,20 @@ Namespace ProjectSet
                         strmem.Position = tempindex
 
                         strcount = 0
-                        tempindex2 = strbinary.ReadChar
-                        While (AscW(tempindex2) <> &H0)
+                        Try
                             tempindex2 = strbinary.ReadChar
-                            strcount += 1
-                        End While
-                        strmem.Position = tempindex
-
-
-
-                        tempstring = strbinary.ReadChars(strcount)
-                        tempstring = tempstring.Replace(ChrW(0), "")
+                            While (AscW(tempindex2) <> &H0)  'search null terminator
+                                tempindex2 = strbinary.ReadChar
+                                strcount += 1
+                            End While
+                        Catch ex As Exception
+                            tempstring = ""
+                            Exit Try
+                        Finally
+                            strmem.Position = tempindex  'goto start of string
+                            tempstring = strbinary.ReadChars(strcount)
+                            tempstring = tempstring.Replace(ChrW(0), "")
+                        End Try
 
                         If tempstring <> "" Then
                             CHKSTRING.Add(tempstring)
@@ -632,8 +632,6 @@ Namespace ProjectSet
                             CHKSTRING.Add("Null")
                         End If
                     Next
-
-
 
                     strbinary.Close()
                     strstream.Close()
