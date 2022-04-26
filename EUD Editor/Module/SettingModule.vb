@@ -217,19 +217,16 @@ Namespace ProjectSet
                         Exit Sub
                     End If
 
+                    Try
+                        mem.Position = SearchCHK("WAV ", buffer)
 
-                    mem.Position = SearchCHK("WAV ", buffer)
-
-                    size = binary.ReadUInt32
-                    For i = 0 To size / 4 - 1
-                        'binary.ReadUInt32()
-                        '    binary.ReadUInt32()
-                        '    binary.ReadUInt32()
-                        '    binary.ReadUInt32()
-
-                        CHKWAVLIST.Add(binary.ReadUInt32())
-                        '    binary.ReadUInt16()
-                    Next
+                        size = binary.ReadUInt32
+                        For i = 0 To size / 4 - 1
+                            CHKWAVLIST.Add(binary.ReadUInt32())
+                        Next
+                    Catch ex As Exception
+                        Exit Try
+                    End Try
 
                     Dim _playerFlag(8) As Boolean
                     mem.Position = SearchCHK("OWNR", buffer)
