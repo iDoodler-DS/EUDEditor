@@ -93,51 +93,51 @@ Public Class DatEditForm
     End Sub
 
     Public Sub ColorReset()
-        ListBox9.BackColor = ProgramSet.BACKCOLOR
-        ListBox9.ForeColor = ProgramSet.FORECOLOR
+        ListBox9.BackColor = ProgramSet.colorFieldBackground
+        ListBox9.ForeColor = ProgramSet.colorFieldText
 
 
-        ListView9.BackColor = ProgramSet.BACKCOLOR
-        ListView10.BackColor = ProgramSet.BACKCOLOR
+        ListView9.BackColor = ProgramSet.colorFieldBackground
+        ListView10.BackColor = ProgramSet.colorFieldBackground
 
-        NumericUpDown1.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown3.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown4.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown5.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown6.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown7.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown8.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown9.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown10.ForeColor = ProgramSet.FORECOLOR
+        NumericUpDown1.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown2.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown3.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown4.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown5.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown6.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown7.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown8.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown9.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown10.ForeColor = ProgramSet.colorFieldText
 
 
-        NumericUpDown13.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown14.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown15.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown16.ForeColor = ProgramSet.FORECOLOR
+        NumericUpDown13.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown14.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown15.ForeColor = ProgramSet.colorFieldText
+        NumericUpDown16.ForeColor = ProgramSet.colorFieldText
 
 
 
         With ListBox8
-            .ForeColor = ProgramSet.FORECOLOR
-            .BackColor = ProgramSet.BACKCOLOR
+            .ForeColor = ProgramSet.colorFieldText
+            .BackColor = ProgramSet.colorFieldBackground
         End With
         With ListBox2
-            .ForeColor = ProgramSet.FORECOLOR
-            .BackColor = ProgramSet.BACKCOLOR
+            .ForeColor = ProgramSet.colorFieldText
+            .BackColor = ProgramSet.colorFieldBackground
         End With
         With ListBox3
-            .ForeColor = ProgramSet.FORECOLOR
-            .BackColor = ProgramSet.BACKCOLOR
+            .ForeColor = ProgramSet.colorFieldText
+            .BackColor = ProgramSet.colorFieldBackground
         End With
         With ListBox4
-            .ForeColor = ProgramSet.FORECOLOR
-            .BackColor = ProgramSet.BACKCOLOR
+            .ForeColor = ProgramSet.colorFieldText
+            .BackColor = ProgramSet.colorFieldBackground
         End With
         With ListBox5
-            .ForeColor = ProgramSet.FORECOLOR
-            .BackColor = ProgramSet.BACKCOLOR
+            .ForeColor = ProgramSet.colorFieldText
+            .BackColor = ProgramSet.colorFieldBackground
         End With
     End Sub
     Private Sub DatEditForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -974,20 +974,20 @@ Public Class DatEditForm
         ' Draw the background of the ListBox control for each item.
         e.DrawBackground()
 
-            ' Define the default color of the brush as black.
-            Dim myBrush As Brush
+        ' Define the default color of the brush as black.
+        Dim myBrush As Brush
 
-            ' Determine the color of the brush to draw each item based on   
-            ' the index of the item to draw.
-            myBrush = Brushes.White
-            'rect.Height -= 1
-            If ListBox1.Items(e.Index)(2) = 1 Then
-                'ToolStripStatusLabel1.Text = e.Index
-                myBrush = Brushes.IndianRed
-            End If
+        ' Determine the color of the brush to draw each item based on   
+        ' the index of the item to draw.
+        myBrush = Brushes.White
+        'rect.Height -= 1
+        If ListBox1.Items(e.Index)(2) = 1 Then
+            'ToolStripStatusLabel1.Text = e.Index
+            myBrush = Brushes.IndianRed
+        End If
 
 
-            e.Graphics.DrawString(ListBox1.Items(e.Index)(0).ToString,
+        e.Graphics.DrawString(ListBox1.Items(e.Index)(0).ToString,
         e.Font, myBrush, e.Bounds, StringFormat.GenericDefault)
 
 
@@ -1882,8 +1882,8 @@ Public Class DatEditForm
             DatEditDATA(DTYPE.images).CheckChange(strings, _OBJECTNUM, ListView10.Items(i))
 
             Dim value As Boolean = DatEditDATA(DTYPE.images).ReadValue(strings, _OBJECTNUM)
-            If value = True And ListView10.Items(i).BackColor = ProgramSet.BACKCOLOR Then
-                ListView10.Items(i).BackColor = ProgramSet.LISTCOLOR
+            If value = True And ListView10.Items(i).BackColor = ProgramSet.colorFieldBackground Then
+                ListView10.Items(i).BackColor = ProgramSet.colorCheckedBackground
             End If
         Next
 
@@ -2084,8 +2084,8 @@ Public Class DatEditForm
                 DatEditDATA(DTYPE.orders).CheckChange(strings, _OBJECTNUM, ListView9.Items(i))
 
                 Dim value As Boolean = DatEditDATA(DTYPE.orders).ReadValue(strings, _OBJECTNUM)
-                If value = True And ListView9.Items(i).BackColor = ProgramSet.BACKCOLOR Then
-                    ListView9.Items(i).BackColor = ProgramSet.LISTCOLOR
+                If value = True And ListView9.Items(i).BackColor = ProgramSet.colorFieldBackground Then
+                    ListView9.Items(i).BackColor = ProgramSet.colorCheckedBackground
                 End If
             Catch ex As Exception
                 ListView9.Items(i).Checked = False
@@ -4758,8 +4758,8 @@ Public Class DatEditForm
 
 
                 Dim value As Boolean = DatEditDATA(DTYPE.orders).ReadValue(strings, _OBJECTNUM)
-                If value = True And ListView9.Items(i).BackColor = ProgramSet.BACKCOLOR Then
-                    ListView9.Items(i).BackColor = ProgramSet.LISTCOLOR
+                If value = True And ListView9.Items(i).BackColor = ProgramSet.colorFieldBackground Then
+                    ListView9.Items(i).BackColor = ProgramSet.colorCheckedBackground
                 End If
             Next
 
@@ -5212,8 +5212,8 @@ Public Class DatEditForm
 
 
                 Dim value As Boolean = DatEditDATA(DTYPE.images).ReadValue(strings, _OBJECTNUM)
-                If value = True And ListView10.Items(i).BackColor = ProgramSet.BACKCOLOR Then
-                    ListView10.Items(i).BackColor = ProgramSet.LISTCOLOR
+                If value = True And ListView10.Items(i).BackColor = ProgramSet.colorFieldBackground Then
+                    ListView10.Items(i).BackColor = ProgramSet.colorCheckedBackground
                 End If
             Next
 

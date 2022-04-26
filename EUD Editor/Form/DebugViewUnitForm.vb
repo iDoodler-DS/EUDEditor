@@ -201,11 +201,11 @@ Public Class DebugViewUnitForm
                     Next
 
 
-                    CheckedListBox1.BackColor = ProgramSet.BACKCOLOR
-                    CheckedListBox1.ForeColor = ProgramSet.FORECOLOR
+                    CheckedListBox1.BackColor = ProgramSet.colorFieldBackground
+                    CheckedListBox1.ForeColor = ProgramSet.colorFieldText
                 Else
-                    CheckedListBox1.BackColor = ProgramSet.FORECOLOR
-                    CheckedListBox1.ForeColor = ProgramSet.BACKCOLOR
+                    CheckedListBox1.BackColor = ProgramSet.colorFieldText
+                    CheckedListBox1.ForeColor = ProgramSet.colorFieldBackground
                 End If
 
 
@@ -214,10 +214,10 @@ Public Class DebugViewUnitForm
                 memstr.Position = selectindex * 336 + &H28
                 TextBox5.Text = binreader.ReadUInt16 / 32
                 TextBox6.Text = binreader.ReadUInt16 / 32
-                TextBox5.BackColor = ProgramSet.BACKCOLOR
-                TextBox5.ForeColor = ProgramSet.FORECOLOR
-                TextBox6.BackColor = ProgramSet.BACKCOLOR
-                TextBox6.ForeColor = ProgramSet.FORECOLOR
+                TextBox5.BackColor = ProgramSet.colorFieldBackground
+                TextBox5.ForeColor = ProgramSet.colorFieldText
+                TextBox6.BackColor = ProgramSet.colorFieldBackground
+                TextBox6.ForeColor = ProgramSet.colorFieldText
 
                 '/*0x13C*
                 '        struct
@@ -234,11 +234,11 @@ Public Class DebugViewUnitForm
                     If ComboBox1.Focused = False Then
                         memstr.Position = selectindex * 336 + &H4C
                         ComboBox1.SelectedIndex = binreader.ReadByte()
-                        ComboBox1.BackColor = ProgramSet.BACKCOLOR
-                        ComboBox1.ForeColor = ProgramSet.FORECOLOR
+                        ComboBox1.BackColor = ProgramSet.colorFieldBackground
+                        ComboBox1.ForeColor = ProgramSet.colorFieldText
                     Else
-                        ComboBox1.BackColor = ProgramSet.FORECOLOR
-                        ComboBox1.ForeColor = ProgramSet.BACKCOLOR
+                        ComboBox1.BackColor = ProgramSet.colorFieldText
+                        ComboBox1.ForeColor = ProgramSet.colorFieldBackground
                     End If
 
 
@@ -251,12 +251,12 @@ Public Class DebugViewUnitForm
                     Dim maxhp As Integer = WinAPI.ReadValue(&H662350 + 4 * UnitID, 4)
 
                     If TextBox1.Focused = False Then
-                        TextBox1.BackColor = ProgramSet.BACKCOLOR
-                        TextBox1.ForeColor = ProgramSet.FORECOLOR
+                        TextBox1.BackColor = ProgramSet.colorFieldBackground
+                        TextBox1.ForeColor = ProgramSet.colorFieldText
                         TextBox1.Text = hp \ 256
                     Else
-                        TextBox1.BackColor = ProgramSet.FORECOLOR
-                        TextBox1.ForeColor = ProgramSet.BACKCOLOR
+                        TextBox1.BackColor = ProgramSet.colorFieldText
+                        TextBox1.ForeColor = ProgramSet.colorFieldBackground
                     End If
 
                     If NumericUpDown1.Focused = False Then
@@ -265,11 +265,11 @@ Public Class DebugViewUnitForm
                         Catch ex As Exception
                             NumericUpDown1.Value = 0
                         End Try
-                        NumericUpDown1.BackColor = ProgramSet.BACKCOLOR
-                        NumericUpDown1.ForeColor = ProgramSet.FORECOLOR
+                        NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
+                        NumericUpDown1.ForeColor = ProgramSet.colorFieldText
                     Else
-                        NumericUpDown1.BackColor = ProgramSet.FORECOLOR
-                        NumericUpDown1.ForeColor = ProgramSet.BACKCOLOR
+                        NumericUpDown1.BackColor = ProgramSet.colorFieldText
+                        NumericUpDown1.ForeColor = ProgramSet.colorFieldBackground
                     End If
 
                     Try
@@ -290,11 +290,11 @@ Public Class DebugViewUnitForm
 
                     If TextBox2.Focused = False Then
                         TextBox2.Text = Shield \ 256
-                        TextBox2.BackColor = ProgramSet.BACKCOLOR
-                        TextBox2.ForeColor = ProgramSet.FORECOLOR
+                        TextBox2.BackColor = ProgramSet.colorFieldBackground
+                        TextBox2.ForeColor = ProgramSet.colorFieldText
                     Else
-                        TextBox2.BackColor = ProgramSet.FORECOLOR
-                        TextBox2.ForeColor = ProgramSet.BACKCOLOR
+                        TextBox2.BackColor = ProgramSet.colorFieldText
+                        TextBox2.ForeColor = ProgramSet.colorFieldBackground
                     End If
 
                     If NumericUpDown2.Focused = False Then
@@ -303,11 +303,11 @@ Public Class DebugViewUnitForm
                         Catch ex As Exception
                             NumericUpDown2.Value = 0
                         End Try
-                        NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
-                        NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
+                        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
+                        NumericUpDown2.ForeColor = ProgramSet.colorFieldText
                     Else
-                        NumericUpDown2.BackColor = ProgramSet.FORECOLOR
-                        NumericUpDown2.ForeColor = ProgramSet.BACKCOLOR
+                        NumericUpDown2.BackColor = ProgramSet.colorFieldText
+                        NumericUpDown2.ForeColor = ProgramSet.colorFieldBackground
                     End If
                     Try
                         NumericUpDown2.Maximum = (Integer.MaxValue / maxShield) * 100
@@ -326,11 +326,11 @@ Public Class DebugViewUnitForm
                     Dim Energy As UInt16 = binreader.ReadUInt16()
                     If TextBox3.Focused = False Then
                         TextBox3.Text = Energy \ 256
-                        TextBox3.BackColor = ProgramSet.BACKCOLOR
-                        TextBox3.ForeColor = ProgramSet.FORECOLOR
+                        TextBox3.BackColor = ProgramSet.colorFieldBackground
+                        TextBox3.ForeColor = ProgramSet.colorFieldText
                     Else
-                        TextBox3.BackColor = ProgramSet.FORECOLOR
-                        TextBox3.ForeColor = ProgramSet.BACKCOLOR
+                        TextBox3.BackColor = ProgramSet.colorFieldText
+                        TextBox3.ForeColor = ProgramSet.colorFieldBackground
                     End If
 
                     If NumericUpDown3.Focused = False Then
@@ -348,11 +348,11 @@ Public Class DebugViewUnitForm
                         Catch ex As Exception
                             NumericUpDown3.Value = 0
                         End Try
-                        NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
-                        NumericUpDown3.ForeColor = ProgramSet.FORECOLOR
+                        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
+                        NumericUpDown3.ForeColor = ProgramSet.colorFieldText
                     Else
-                        NumericUpDown3.BackColor = ProgramSet.FORECOLOR
-                        NumericUpDown3.ForeColor = ProgramSet.BACKCOLOR
+                        NumericUpDown3.BackColor = ProgramSet.colorFieldText
+                        NumericUpDown3.ForeColor = ProgramSet.colorFieldBackground
                     End If
 
 
@@ -361,11 +361,11 @@ Public Class DebugViewUnitForm
                     If TextBox4.Focused = False Then
                         memstr.Position = selectindex * 336 + &HD0
                         TextBox4.Text = binreader.ReadUInt16()
-                        TextBox4.BackColor = ProgramSet.BACKCOLOR
-                        TextBox4.ForeColor = ProgramSet.FORECOLOR
+                        TextBox4.BackColor = ProgramSet.colorFieldBackground
+                        TextBox4.ForeColor = ProgramSet.colorFieldText
                     Else
-                        TextBox4.BackColor = ProgramSet.FORECOLOR
-                        TextBox4.ForeColor = ProgramSet.BACKCOLOR
+                        TextBox4.BackColor = ProgramSet.colorFieldText
+                        TextBox4.ForeColor = ProgramSet.colorFieldBackground
                     End If
                     '플레이어ID,/* 0x04C*/ u8
                     '현재 체력량,/* 0x008*/ s32

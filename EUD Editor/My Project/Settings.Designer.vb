@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -227,6 +227,50 @@ Namespace My
             End Get
             Set
                 Me("IgnoreUpdate") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property DatEditColor5() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("DatEditColor5"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("DatEditColor5") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property DatEditColor6() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("DatEditColor6"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("DatEditColor6") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property DatEditColor7() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("DatEditColor7"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("DatEditColor7") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property DatEditColor8() As Global.System.Drawing.Color
+            Get
+                Return CType(Me("DatEditColor8"),Global.System.Drawing.Color)
+            End Get
+            Set
+                Me("DatEditColor8") = value
             End Set
         End Property
     End Class

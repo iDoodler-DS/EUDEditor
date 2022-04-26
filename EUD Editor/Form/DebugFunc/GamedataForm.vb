@@ -11,35 +11,35 @@ Public Class GamedataForm
 
         NumericUpDown1.BackColor = Color.GhostWhite
 
-        NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
+        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
+        NumericUpDown2.ForeColor = ProgramSet.colorFieldText
 
-        NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown3.ForeColor = ProgramSet.FORECOLOR
+        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
+        NumericUpDown3.ForeColor = ProgramSet.colorFieldText
 
-        NumericUpDown4.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown4.ForeColor = ProgramSet.FORECOLOR
+        NumericUpDown4.BackColor = ProgramSet.colorFieldBackground
+        NumericUpDown4.ForeColor = ProgramSet.colorFieldText
 
-        CheckBox1.BackColor = ProgramSet.BACKCOLOR
-        CheckBox1.ForeColor = ProgramSet.FORECOLOR
+        CheckBox1.BackColor = ProgramSet.colorFieldBackground
+        CheckBox1.ForeColor = ProgramSet.colorFieldText
 
-        CheckBox2.BackColor = ProgramSet.BACKCOLOR
-        CheckBox2.ForeColor = ProgramSet.FORECOLOR
+        CheckBox2.BackColor = ProgramSet.colorFieldBackground
+        CheckBox2.ForeColor = ProgramSet.colorFieldText
 
-        CheckBox3.BackColor = ProgramSet.BACKCOLOR
-        CheckBox3.ForeColor = ProgramSet.FORECOLOR
+        CheckBox3.BackColor = ProgramSet.colorFieldBackground
+        CheckBox3.ForeColor = ProgramSet.colorFieldText
 
-        CheckBox4.BackColor = ProgramSet.BACKCOLOR
-        CheckBox4.ForeColor = ProgramSet.FORECOLOR
+        CheckBox4.BackColor = ProgramSet.colorFieldBackground
+        CheckBox4.ForeColor = ProgramSet.colorFieldText
 
-        CheckBox5.BackColor = ProgramSet.BACKCOLOR
-        CheckBox5.ForeColor = ProgramSet.FORECOLOR
+        CheckBox5.BackColor = ProgramSet.colorFieldBackground
+        CheckBox5.ForeColor = ProgramSet.colorFieldText
 
-        ComboBox1.BackColor = ProgramSet.BACKCOLOR
-        ComboBox1.ForeColor = ProgramSet.FORECOLOR
+        ComboBox1.BackColor = ProgramSet.colorFieldBackground
+        ComboBox1.ForeColor = ProgramSet.colorFieldText
 
-        ComboBox2.BackColor = ProgramSet.BACKCOLOR
-        ComboBox2.ForeColor = ProgramSet.FORECOLOR
+        ComboBox2.BackColor = ProgramSet.colorFieldBackground
+        ComboBox2.ForeColor = ProgramSet.colorFieldText
 
     End Sub
     '0057FD3C	1.16.1	Win	Map File Name	260	1	The current map's file name.
@@ -117,18 +117,18 @@ Public Class GamedataForm
             Catch ex As Exception
                 ComboBox1.SelectedIndex = -1
             End Try
-            ComboBox1.BackColor = ProgramSet.BACKCOLOR
-            ComboBox1.ForeColor = ProgramSet.FORECOLOR
+            ComboBox1.BackColor = ProgramSet.colorFieldBackground
+            ComboBox1.ForeColor = ProgramSet.colorFieldText
 
             NumericUpDown4.Value = WinAPI.ReadValue(&H51CE88, 4)
-            NumericUpDown4.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown4.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown4.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown4.ForeColor = ProgramSet.colorFieldText
         Else
-            ComboBox1.BackColor = ProgramSet.FORECOLOR
-            ComboBox1.ForeColor = ProgramSet.BACKCOLOR
+            ComboBox1.BackColor = ProgramSet.colorFieldText
+            ComboBox1.ForeColor = ProgramSet.colorFieldBackground
 
-            NumericUpDown4.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown4.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown4.BackColor = ProgramSet.colorFieldText
+            NumericUpDown4.ForeColor = ProgramSet.colorFieldBackground
         End If
 
 
@@ -151,18 +151,18 @@ Public Class GamedataForm
                 Case Else
                     ComboBox2.SelectedIndex = -1
             End Select
-            ComboBox2.BackColor = ProgramSet.BACKCOLOR
-            ComboBox2.ForeColor = ProgramSet.FORECOLOR
+            ComboBox2.BackColor = ProgramSet.colorFieldBackground
+            ComboBox2.ForeColor = ProgramSet.colorFieldText
 
             NumericUpDown3.Value = WinAPI.ReadValue(&H5124F0, 4)
-            NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown3.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown3.ForeColor = ProgramSet.colorFieldText
         Else
-            ComboBox2.BackColor = ProgramSet.FORECOLOR
-            ComboBox2.ForeColor = ProgramSet.BACKCOLOR
+            ComboBox2.BackColor = ProgramSet.colorFieldText
+            ComboBox2.ForeColor = ProgramSet.colorFieldBackground
 
-            NumericUpDown3.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown3.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown3.BackColor = ProgramSet.colorFieldText
+            NumericUpDown3.ForeColor = ProgramSet.colorFieldBackground
         End If
 
 
@@ -174,48 +174,48 @@ Public Class GamedataForm
 
         If CheckBox1.Focused = False Then
             CheckBox1.Checked = WinAPI.ReadValue(&H57F0B4, 1)
-            CheckBox1.BackColor = ProgramSet.BACKCOLOR
-            CheckBox1.ForeColor = ProgramSet.FORECOLOR
+            CheckBox1.BackColor = ProgramSet.colorFieldBackground
+            CheckBox1.ForeColor = ProgramSet.colorFieldText
         Else
-            CheckBox1.BackColor = ProgramSet.FORECOLOR
-            CheckBox1.ForeColor = ProgramSet.BACKCOLOR
+            CheckBox1.BackColor = ProgramSet.colorFieldText
+            CheckBox1.ForeColor = ProgramSet.colorFieldBackground
         End If
 
         If CheckBox2.Focused = False Then
             CheckBox2.Checked = WinAPI.ReadValue(&H6509C4, 1)
-            CheckBox2.BackColor = ProgramSet.BACKCOLOR
-            CheckBox2.ForeColor = ProgramSet.FORECOLOR
+            CheckBox2.BackColor = ProgramSet.colorFieldBackground
+            CheckBox2.ForeColor = ProgramSet.colorFieldText
         Else
-            CheckBox2.BackColor = ProgramSet.FORECOLOR
-            CheckBox2.ForeColor = ProgramSet.BACKCOLOR
+            CheckBox2.BackColor = ProgramSet.colorFieldText
+            CheckBox2.ForeColor = ProgramSet.colorFieldBackground
         End If
 
         If CheckBox3.Focused = False Then
             CheckBox3.Checked = WinAPI.ReadValue(&H6556E0, 4)
-            CheckBox3.BackColor = ProgramSet.BACKCOLOR
-            CheckBox3.ForeColor = ProgramSet.FORECOLOR
+            CheckBox3.BackColor = ProgramSet.colorFieldBackground
+            CheckBox3.ForeColor = ProgramSet.colorFieldText
         Else
-            CheckBox3.BackColor = ProgramSet.FORECOLOR
-            CheckBox3.ForeColor = ProgramSet.BACKCOLOR
+            CheckBox3.BackColor = ProgramSet.colorFieldText
+            CheckBox3.ForeColor = ProgramSet.colorFieldBackground
         End If
 
 
         If NumericUpDown2.Focused = False Then
             NumericUpDown2.Value = WinAPI.ReadValue(&H58D6F4, 4)
-            NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown2.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown2.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown2.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown2.BackColor = ProgramSet.colorFieldText
+            NumericUpDown2.ForeColor = ProgramSet.colorFieldBackground
         End If
 
         If CheckBox5.Focused = False Then
             CheckBox5.Checked = WinAPI.ReadValue(&H58F04C, 4)
-            CheckBox5.BackColor = ProgramSet.BACKCOLOR
-            CheckBox5.ForeColor = ProgramSet.FORECOLOR
+            CheckBox5.BackColor = ProgramSet.colorFieldBackground
+            CheckBox5.ForeColor = ProgramSet.colorFieldText
         Else
-            CheckBox5.BackColor = ProgramSet.FORECOLOR
-            CheckBox5.ForeColor = ProgramSet.BACKCOLOR
+            CheckBox5.BackColor = ProgramSet.colorFieldText
+            CheckBox5.ForeColor = ProgramSet.colorFieldBackground
         End If
     End Sub
 

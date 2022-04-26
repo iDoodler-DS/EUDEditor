@@ -601,16 +601,16 @@ Public Class FireGraftForm
     Private Sub changeColor(ByRef _object As Object, _value As Integer)
         If _value = 0 Then
             With _object
-                .ForeColor = ProgramSet.FORECOLOR
-                .BackColor = ProgramSet.BACKCOLOR
+                .ForeColor = ProgramSet.colorFieldText
+                .BackColor = ProgramSet.colorFieldBackground
             End With
         Else
             If ListBox1.SelectedIndex <> -1 Then
                 ListBox1.SelectedItem(LITEM.ischange) = True
             End If
             With _object
-                .ForeColor = ProgramSet.FORECOLOR
-                .BackColor = ProgramSet.CHANGECOLOR
+                .ForeColor = ProgramSet.colorFieldText
+                .BackColor = ProgramSet.colorChangedBackground
             End With
         End If
     End Sub
@@ -676,13 +676,13 @@ Public Class FireGraftForm
 
                 If ProjectUnitStatusFn1(_OBJECTNUM) = 0 And ProjectUnitStatusFn2(_OBJECTNUM) = 0 Then
                     With ComboBox3
-                        .ForeColor = ProgramSet.FORECOLOR
-                        .BackColor = ProgramSet.BACKCOLOR
+                        .ForeColor = ProgramSet.colorFieldText
+                        .BackColor = ProgramSet.colorFieldBackground
                     End With
                 Else
                     With ComboBox3
-                        .ForeColor = ProgramSet.FORECOLOR
-                        .BackColor = ProgramSet.CHANGECOLOR
+                        .ForeColor = ProgramSet.colorFieldText
+                        .BackColor = ProgramSet.colorChangedBackground
                     End With
                 End If
 
@@ -1254,13 +1254,13 @@ Handles ListBox1.DrawItem
 
             If ProjectUnitStatusFn1(_OBJECTNUM) = 0 And ProjectUnitStatusFn2(_OBJECTNUM) = 0 Then
                 With ComboBox3
-                    .ForeColor = ProgramSet.FORECOLOR
-                    .BackColor = ProgramSet.BACKCOLOR
+                    .ForeColor = ProgramSet.colorFieldText
+                    .BackColor = ProgramSet.colorFieldBackground
                 End With
             Else
                 With ComboBox3
-                    .ForeColor = ProgramSet.FORECOLOR
-                    .BackColor = ProgramSet.CHANGECOLOR
+                    .ForeColor = ProgramSet.colorFieldText
+                    .BackColor = ProgramSet.colorChangedBackground
                 End With
             End If
         End If
@@ -1330,57 +1330,57 @@ Handles ListBox1.DrawItem
 
     Private Sub ColorReset()
 
-        TextBox4.BackColor = ProgramSet.BACKCOLOR
-        TextBox4.ForeColor = ProgramSet.FORECOLOR
+        TextBox4.BackColor = ProgramSet.colorFieldBackground
+        TextBox4.ForeColor = ProgramSet.colorFieldText
 
-        TextBox3.BackColor = ProgramSet.BACKCOLOR
-        TextBox3.ForeColor = ProgramSet.FORECOLOR
-        TextBox5.BackColor = ProgramSet.BACKCOLOR
-        TextBox5.ForeColor = ProgramSet.FORECOLOR
-        ComboBox4.BackColor = ProgramSet.BACKCOLOR
-        ComboBox4.ForeColor = ProgramSet.FORECOLOR
+        TextBox3.BackColor = ProgramSet.colorFieldBackground
+        TextBox3.ForeColor = ProgramSet.colorFieldText
+        TextBox5.BackColor = ProgramSet.colorFieldBackground
+        TextBox5.ForeColor = ProgramSet.colorFieldText
+        ComboBox4.BackColor = ProgramSet.colorFieldBackground
+        ComboBox4.ForeColor = ProgramSet.colorFieldText
 
-        TextBox10.BackColor = ProgramSet.BACKCOLOR
-        TextBox10.ForeColor = ProgramSet.FORECOLOR
-        ComboBox10.BackColor = ProgramSet.BACKCOLOR
-        ComboBox10.ForeColor = ProgramSet.FORECOLOR
+        TextBox10.BackColor = ProgramSet.colorFieldBackground
+        TextBox10.ForeColor = ProgramSet.colorFieldText
+        ComboBox10.BackColor = ProgramSet.colorFieldBackground
+        ComboBox10.ForeColor = ProgramSet.colorFieldText
 
-        TextBox11.BackColor = ProgramSet.BACKCOLOR
-        TextBox11.ForeColor = ProgramSet.FORECOLOR
-        ComboBox9.BackColor = ProgramSet.BACKCOLOR
-        ComboBox9.ForeColor = ProgramSet.FORECOLOR
-
-
-        TextBox7.BackColor = ProgramSet.BACKCOLOR
-        TextBox7.ForeColor = ProgramSet.FORECOLOR
-        TextBox6.BackColor = ProgramSet.BACKCOLOR
-        TextBox6.ForeColor = ProgramSet.FORECOLOR
-        TextBox9.BackColor = ProgramSet.BACKCOLOR
-        TextBox9.ForeColor = ProgramSet.FORECOLOR
-        TextBox8.BackColor = ProgramSet.BACKCOLOR
-        TextBox8.ForeColor = ProgramSet.FORECOLOR
+        TextBox11.BackColor = ProgramSet.colorFieldBackground
+        TextBox11.ForeColor = ProgramSet.colorFieldText
+        ComboBox9.BackColor = ProgramSet.colorFieldBackground
+        ComboBox9.ForeColor = ProgramSet.colorFieldText
 
 
+        TextBox7.BackColor = ProgramSet.colorFieldBackground
+        TextBox7.ForeColor = ProgramSet.colorFieldText
+        TextBox6.BackColor = ProgramSet.colorFieldBackground
+        TextBox6.ForeColor = ProgramSet.colorFieldText
+        TextBox9.BackColor = ProgramSet.colorFieldBackground
+        TextBox9.ForeColor = ProgramSet.colorFieldText
+        TextBox8.BackColor = ProgramSet.colorFieldBackground
+        TextBox8.ForeColor = ProgramSet.colorFieldText
 
-        ComboBox6.BackColor = ProgramSet.BACKCOLOR
-        ComboBox6.ForeColor = ProgramSet.FORECOLOR
-        ComboBox5.BackColor = ProgramSet.BACKCOLOR
-        ComboBox5.ForeColor = ProgramSet.FORECOLOR
-        ComboBox7.BackColor = ProgramSet.BACKCOLOR
-        ComboBox7.ForeColor = ProgramSet.FORECOLOR
-        ComboBox8.BackColor = ProgramSet.BACKCOLOR
-        ComboBox8.ForeColor = ProgramSet.FORECOLOR
 
-        ComboBox11.BackColor = ProgramSet.BACKCOLOR
-        ComboBox11.ForeColor = ProgramSet.FORECOLOR
-        ComboBox12.BackColor = ProgramSet.BACKCOLOR
-        ComboBox12.ForeColor = ProgramSet.FORECOLOR
 
-        ListBox2.BackColor = ProgramSet.BACKCOLOR
-        ListBox2.ForeColor = ProgramSet.FORECOLOR
+        ComboBox6.BackColor = ProgramSet.colorFieldBackground
+        ComboBox6.ForeColor = ProgramSet.colorFieldText
+        ComboBox5.BackColor = ProgramSet.colorFieldBackground
+        ComboBox5.ForeColor = ProgramSet.colorFieldText
+        ComboBox7.BackColor = ProgramSet.colorFieldBackground
+        ComboBox7.ForeColor = ProgramSet.colorFieldText
+        ComboBox8.BackColor = ProgramSet.colorFieldBackground
+        ComboBox8.ForeColor = ProgramSet.colorFieldText
 
-        ReqList.BackColor = ProgramSet.BACKCOLOR
-        ReqList.ForeColor = ProgramSet.FORECOLOR
+        ComboBox11.BackColor = ProgramSet.colorFieldBackground
+        ComboBox11.ForeColor = ProgramSet.colorFieldText
+        ComboBox12.BackColor = ProgramSet.colorFieldBackground
+        ComboBox12.ForeColor = ProgramSet.colorFieldText
+
+        ListBox2.BackColor = ProgramSet.colorFieldBackground
+        ListBox2.ForeColor = ProgramSet.colorFieldText
+
+        ReqList.BackColor = ProgramSet.colorFieldBackground
+        ReqList.ForeColor = ProgramSet.colorFieldText
     End Sub
     Private Sub 테마설정TToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThemeSetTToolStripMenuItem.Click
         ThemeSetForm.ShowDialog()
