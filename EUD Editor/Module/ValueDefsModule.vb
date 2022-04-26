@@ -337,12 +337,12 @@ Module ValueDefsModule
     '정의 번호를 역으로 넣는다.
     Public Function GetDefValueDefs(_name As String) As ValueDefs
         Dim valuedef As String
-        Try
-            valuedef = _name.Split(".")(1)
-        Catch ex As Exception
-            valuedef = _name
-        End Try
-
+        Dim nameSplit = _name.Split(".")
+        If nameSplit.Count > 1 Then
+            valuedef = nameSplit(1)
+        Else
+            valuedef = nameSplit(0)
+        End If
 
         For i = 0 To ValueDefiniction.Count - 1
             For j = 0 To ValueDefiniction(i).Name.Count - 1

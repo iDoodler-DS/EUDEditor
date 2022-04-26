@@ -289,6 +289,7 @@ Public Class TrigEditorForm
     Dim playerlist As List(Of List(Of Integer))
     Dim listboxdata As New List(Of Byte)
     Private Sub ReDrawTriggerList()
+        ListControl1.SuspendLayout()
         ListControl1.Clear()
         ListBox2.Items.Clear()
         listboxdata.Clear()
@@ -325,9 +326,12 @@ Public Class TrigEditorForm
         If ListBox2.Items.Count <> 0 Then
             ListBox2.SelectedIndex = 0
         End If
+        ListControl1.ResumeLayout()
     End Sub
 
     Private Sub ReDrawList()
+        WorkSpace.Parent.SuspendLayout()
+        WorkSpace.SuspendLayout()
         WorkSpace.BeginUpdate()
         WorkSpace.Nodes.Clear()
 
@@ -341,7 +345,6 @@ Public Class TrigEditorForm
         WorkSpace.Nodes.Add(StartElement.ToTreeNode())
         WorkSpace.Nodes.Add(BeforeElement.ToTreeNode())
         WorkSpace.Nodes.Add(AfterElement.ToTreeNode())
-
 
         WorkSpace.Nodes(0).Text = "functions"
         WorkSpace.Nodes(0).Tag = functions
@@ -368,6 +371,8 @@ Public Class TrigEditorForm
         'Next
 
         WorkSpace.EndUpdate()
+        WorkSpace.ResumeLayout()
+        WorkSpace.Parent.ResumeLayout()
     End Sub
 
 
@@ -2413,6 +2418,9 @@ Public Class TrigEditorForm
     End Sub
 
     Private Sub ReDrawPlayerTriggerList()
+        ListControl1.SuspendLayout()
+        ListControl1.flpListBox.SuspendLayout()
+
         ListControl1.Clear()
         Button10.Enabled = False
         Button11.Enabled = False
@@ -2425,6 +2433,8 @@ Public Class TrigEditorForm
                 ListControl1.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
             Next
         End If
+        ListControl1.flpListBox.ResumeLayout()
+        ListControl1.ResumeLayout()
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
