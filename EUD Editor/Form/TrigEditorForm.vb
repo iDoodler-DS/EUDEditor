@@ -1511,7 +1511,8 @@ Public Class TrigEditorForm
                 Dim _filestream As New FileStream(filename, FileMode.Open)
                 Dim _streamreader As New StreamReader(_filestream)
 
-                newElement.LoadFile(_streamreader.ReadToEnd(), 0)
+                Dim splitDatas() = _streamreader.ReadToEnd().Split(vbCrLf)
+                newElement.LoadFile(splitDatas, 0)
 
                 Select Case _tempele.GetTypeV
                     Case ElementType.Functions

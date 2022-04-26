@@ -259,7 +259,8 @@ Module TriggerEditorDataMoudle
         Dim _filestream As New FileStream(FuncName, FileMode.Open)
         Dim _streamreader As New StreamReader(_filestream)
 
-        newElement.LoadFile(_streamreader.ReadToEnd(), 0)
+        Dim splitData() = _streamreader.ReadToEnd().Split(vbCrLf)
+        newElement.LoadFile(splitData, 0)
 
         Select Case _tempele.GetTypeV
             Case ElementType.Functions
@@ -328,21 +329,22 @@ Module TriggerEditorDataMoudle
             BeforeElement = New Element(BeforeElement, ElementType.main)
             AfterElement = New Element(AfterElement, ElementType.main)
 
+            Dim splitData() = datas.Split(vbCrLf)
             Try
-                AddText.LoadFile(datas, findSection(datas, "&AddText&"))
+                AddText.LoadFile(splitData, findSection(datas, "&AddText&"))
             Catch ex As Exception
 
             End Try
-            functions.LoadFile(datas, findSection(datas, "&functions&"), isfirst)
-            GlobalVar.LoadFile(datas, findSection(datas, "&GlobalVar&"))
+            functions.LoadFile(splitData, findSection(datas, "&functions&"), isfirst)
+            GlobalVar.LoadFile(splitData, findSection(datas, "&GlobalVar&"))
             Try
-                RawTriggers.LoadFile(datas, findSection(datas, "&RawTriggers&"))
+                RawTriggers.LoadFile(splitData, findSection(datas, "&RawTriggers&"))
             Catch ex As Exception
                 RawTriggers = New Element(RawTriggers, ElementType.RawTriggers)
             End Try
-            StartElement.LoadFile(datas, findSection(datas, "&onPluginStart&"))
-            BeforeElement.LoadFile(datas, findSection(datas, "&beforeTriggerExec&"))
-            AfterElement.LoadFile(datas, findSection(datas, "&afterTriggerExec&"))
+            StartElement.LoadFile(splitData, findSection(datas, "&onPluginStart&"))
+            BeforeElement.LoadFile(splitData, findSection(datas, "&beforeTriggerExec&"))
+            AfterElement.LoadFile(splitData, findSection(datas, "&afterTriggerExec&"))
         Catch ex As Exception
             MsgBox(Lan.GetText("Msgbox", "tfError"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
         End Try
@@ -356,22 +358,23 @@ Module TriggerEditorDataMoudle
         End If
 
         Try
+            Dim splitData() = datas.Split(vbCrLf)
             Try
-                AddText.LoadFile(datas, findSection(datas, "&AddText&"))
+                AddText.LoadFile(splitData, findSection(datas, "&AddText&"))
             Catch ex As Exception
 
             End Try
-            functions.LoadFile(datas, findSection(datas, "&functions&"))
-            GlobalVar.LoadFile(datas, findSection(datas, "&GlobalVar&"))
+            functions.LoadFile(splitData, findSection(datas, "&functions&"))
+            GlobalVar.LoadFile(splitData, findSection(datas, "&GlobalVar&"))
             Try
-                RawTriggers.LoadFile(datas, findSection(datas, "&RawTriggers&"))
+                RawTriggers.LoadFile(splitData, findSection(datas, "&RawTriggers&"))
             Catch ex As Exception
                 RawTriggers = New Element(RawTriggers, ElementType.RawTriggers)
             End Try
 
-            StartElement.LoadFile(datas, findSection(datas, "&onPluginStart&"))
-            BeforeElement.LoadFile(datas, findSection(datas, "&beforeTriggerExec&"))
-            AfterElement.LoadFile(datas, findSection(datas, "&afterTriggerExec&"))
+            StartElement.LoadFile(splitData, findSection(datas, "&onPluginStart&"))
+            BeforeElement.LoadFile(splitData, findSection(datas, "&beforeTriggerExec&"))
+            AfterElement.LoadFile(splitData, findSection(datas, "&afterTriggerExec&"))
         Catch ex As Exception
             MsgBox(Lan.GetText("Msgbox", "tfError"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
         End Try

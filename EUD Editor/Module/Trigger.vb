@@ -107,8 +107,9 @@ Public Class Element
     Public Function GetValueTodef(valdef As String) As String
         Dim returnstring As String = ""
 
-        Dim valuecount As Integer = valdef.Split(".")(0)
-        Dim valuedef As String = valdef.Split(".")(1)
+        Dim valdefChars = valdef.Split(".")
+        Dim valuecount As Integer = valdefChars(0)
+        Dim valuedef As String = valdefChars(1)
 
         'MsgBox(valuedef)
 
@@ -145,8 +146,9 @@ Public Class Element
         Return returnstring
     End Function
     Public Sub SetValueTodef(valdef As String, value As String)
-        Dim valuecount As Integer = valdef.Split(".")(0)
-        Dim valuedef As String = valdef.Split(".")(1)
+        Dim valdefChars = valdef.Split(".")
+        Dim valuecount As Integer = valdefChars(0)
+        Dim valuedef As String = valdefChars(1)
 
         'MsgBox(valuecount)
 
@@ -792,37 +794,35 @@ Public Class Element
         Return _stringb.ToString
     End Function
 
-    Public Function LoadFile(_str As String, index As Integer, Optional isfrist As Boolean = False) As Integer
-        Dim tempstr() As String
+    Public Function LoadFile(ByRef splitStr As String(), index As Integer, Optional isfrist As Boolean = False) As Integer
 
         Dim actconname As String = ""
         Dim _index As Integer = index
-        tempstr = _str.Split(vbCrLf)
 
-        Dim typeflag As String = NextLine(tempstr(_index), _index)
+        Dim typeflag As String = NextLine(splitStr(_index), _index)
 
-
-        Select Case typeflag.Split(",").Count
+        Dim lineData = typeflag.Split(",")
+        Select Case lineData.Count
             Case 1
-                Type = typeflag.Split(",")(0)
+                Type = lineData(0)
                 isdisalbe = False
                 isFloding = False
                 isNotcon = False
             Case 2
-                Type = typeflag.Split(",")(0)
-                isdisalbe = typeflag.Split(",")(1)
+                Type = lineData(0)
+                isdisalbe = lineData(1)
                 isFloding = False
                 isNotcon = False
             Case 3
-                Type = typeflag.Split(",")(0)
-                isdisalbe = typeflag.Split(",")(1)
-                isFloding = typeflag.Split(",")(2)
+                Type = lineData(0)
+                isdisalbe = lineData(1)
+                isFloding = lineData(2)
                 isNotcon = False
             Case 4
-                Type = typeflag.Split(",")(0)
-                isdisalbe = typeflag.Split(",")(1)
-                isFloding = typeflag.Split(",")(2)
-                isNotcon = typeflag.Split(",")(3)
+                Type = lineData(0)
+                isdisalbe = lineData(1)
+                isFloding = lineData(2)
+                isNotcon = lineData(3)
         End Select
 
 
@@ -830,12 +830,12 @@ Public Class Element
 
         Select Case Type
             Case ElementType.액션
-                actconname = NextLine(tempstr(_index), _index)
+                actconname = NextLine(splitStr(_index), _index)
 
                 act = SeachAct(actconname)
                 isreadvalue = True
             Case ElementType.조건
-                actconname = NextLine(tempstr(_index), _index)
+                actconname = NextLine(splitStr(_index), _index)
 
                 con = SeachCon(actconname)
                 isreadvalue = True
@@ -846,10 +846,10 @@ Public Class Element
         If isreadvalue = True Then
             Values = New List(Of String)
             Dim _valuestring As String = ""
-            _valuestring = _valuestring & tempstr(_index).Trim
+            _valuestring = _valuestring & splitStr(_index).Trim
             _index += 1
-            While (tempstr(_index).Trim.IndexOf("ElementsCount") = -1)
-                _valuestring = _valuestring & vbCrLf & tempstr(_index).Trim
+            While (splitStr(_index).Trim.IndexOf("ElementsCount") = -1)
+                _valuestring = _valuestring & vbCrLf & splitStr(_index).Trim
                 _index += 1
             End While
 
@@ -989,12 +989,12 @@ Public Class Element
         '호환성코드
 
 
-        Dim elecount As Integer = NextLine(tempstr(_index), _index)
+        Dim elecount As Integer = NextLine(splitStr(_index), _index)
 
 
         For i = 0 To elecount - 1
             Dim _ele As New Element(Me, ElementType.main)
-            _index = _ele.LoadFile(_str, _index, isfrist)
+            _index = _ele.LoadFile(splitStr, _index, isfrist)
 
 
 
@@ -1014,7 +1014,7 @@ Public Class Element
             End If
 
         Next
-        NextLine(tempstr(_index), _index)
+        NextLine(splitStr(_index), _index)
 
         Return _index
     End Function
