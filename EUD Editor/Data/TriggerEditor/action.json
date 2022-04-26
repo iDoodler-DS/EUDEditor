@@ -821,7 +821,7 @@
       "Korean",
       "$Where$에 위치하는 $Owner$소유의 $Unit$, $Count$의 격납 유닛을 $Add$만큼 추가합니다.",
       "English",
-      "Add at most $Add$ to hangar for $Count$ $Owner$ at '$Where$' owned by $Owner$."
+      "Add at most $Add$ to hangar for $Count$ $Unit$ at '$Where$' owned by $Owner$."
     ],
     "CodeText": "ModifyUnitHangarCount($Add$, $Count$, $Unit$, $Owner$, $Where$)",
     "ToolTip": "None",
