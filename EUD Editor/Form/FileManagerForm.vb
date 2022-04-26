@@ -6,12 +6,7 @@
     Dim wirefram As New GRP
 
     Private Sub ColorReset()
-        NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown1.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown2.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown3.ForeColor = ProgramSet.colorFieldText
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private loadcmp As Boolean = False

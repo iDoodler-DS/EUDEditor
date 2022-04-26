@@ -93,52 +93,7 @@ Public Class DatEditForm
     End Sub
 
     Public Sub ColorReset()
-        ListBox9.BackColor = ProgramSet.colorFieldBackground
-        ListBox9.ForeColor = ProgramSet.colorFieldText
-
-
-        ListView9.BackColor = ProgramSet.colorFieldBackground
-        ListView10.BackColor = ProgramSet.colorFieldBackground
-
-        NumericUpDown1.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown2.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown3.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown4.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown5.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown6.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown7.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown8.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown9.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown10.ForeColor = ProgramSet.colorFieldText
-
-
-        NumericUpDown13.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown14.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown15.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown16.ForeColor = ProgramSet.colorFieldText
-
-
-
-        With ListBox8
-            .ForeColor = ProgramSet.colorFieldText
-            .BackColor = ProgramSet.colorFieldBackground
-        End With
-        With ListBox2
-            .ForeColor = ProgramSet.colorFieldText
-            .BackColor = ProgramSet.colorFieldBackground
-        End With
-        With ListBox3
-            .ForeColor = ProgramSet.colorFieldText
-            .BackColor = ProgramSet.colorFieldBackground
-        End With
-        With ListBox4
-            .ForeColor = ProgramSet.colorFieldText
-            .BackColor = ProgramSet.colorFieldBackground
-        End With
-        With ListBox5
-            .ForeColor = ProgramSet.colorFieldText
-            .BackColor = ProgramSet.colorFieldBackground
-        End With
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub DatEditForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.SuspendLayout()

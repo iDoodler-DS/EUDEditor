@@ -8,7 +8,7 @@ Public Class TrigEditorForm
         'LoadTriggerFile()
         CheckBox1.Checked = ProjectSet.SCDBUse
         Button8.Enabled = ProjectSet.SCDBUse
-
+        ThemeSetForm.SetControlColor(Me)
         UndoRedoBtnRefresh()
         ReDrawTriggerList()
         ReDrawList()

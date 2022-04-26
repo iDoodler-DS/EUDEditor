@@ -13,6 +13,8 @@ Public Class Main
     Dim RecentlyOpenedFiles As New ArrayList()
 
     Public Sub refreshSet()
+        ThemeSetForm.SetControlColor(Me)
+
         If ProjectSet.isload = True Then
             If ProgramSet.StarVersion = "Remastered" Then
                 CheckCompatiblity()
@@ -307,14 +309,7 @@ Public Class Main
                 My.Settings.StarVersion = ProgramSet.StarVersion
                 My.Settings.AutoCompile = ProgramSet.isAutoCompile
 
-                My.Settings.DatEditColor1 = ProgramSet.colorFieldText
-                My.Settings.DatEditColor2 = ProgramSet.colorFieldBackground
-                My.Settings.DatEditColor3 = ProgramSet.colorChangedBackground
-                My.Settings.DatEditColor4 = ProgramSet.colorCheckedBackground
-                My.Settings.DatEditColor5 = ProgramSet.colorBackground
-                My.Settings.DatEditColor6 = ProgramSet.colorLabelText
-                My.Settings.DatEditColor7 = ProgramSet.colorCodeBackground
-                My.Settings.DatEditColor8 = ProgramSet.colorPanelBackground
+                SaveTheme()
 
                 My.Settings.mpqDirec = String.Join(",", ProgramSet.DatMPQDirec)
 
@@ -323,6 +318,18 @@ Public Class Main
                 e.Cancel = True
             End If
         End If
+    End Sub
+
+    Sub SaveTheme()
+        My.Settings.DatEditColor1 = ProgramSet.colorFieldText
+        My.Settings.DatEditColor2 = ProgramSet.colorFieldBackground
+        My.Settings.DatEditColor3 = ProgramSet.colorChangedBackground
+        My.Settings.DatEditColor4 = ProgramSet.colorCheckedBackground
+        My.Settings.DatEditColor5 = ProgramSet.colorBackground
+        My.Settings.DatEditColor6 = ProgramSet.colorLabelText
+        My.Settings.DatEditColor7 = ProgramSet.colorCodeBackground
+        My.Settings.DatEditColor8 = ProgramSet.colorPanelBackground
+        My.Settings.Save()
     End Sub
 
 
@@ -785,4 +792,10 @@ Public Class Main
         target = value
         Return value
     End Function
+
+    Private Sub ThemeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThemeToolStripMenuItem.Click
+        ThemeSetForm.ShowDialog()
+        SaveTheme()
+        refreshSet()
+    End Sub
 End Class

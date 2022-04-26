@@ -80,6 +80,7 @@ Partial Class Main
         Me.FlowLayoutPanel4 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckMapWrite = New System.Windows.Forms.Timer(Me.components)
+        Me.ThemeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -732,6 +733,12 @@ Partial Class Main
         Me.CheckMapWrite.Enabled = True
         Me.CheckMapWrite.Interval = 1000
         '
+        'ThemeToolStripMenuItem
+        '
+        Me.ThemeToolStripMenuItem.Name = "ThemeToolStripMenuItem"
+        Me.ThemeToolStripMenuItem.Size = New System.Drawing.Size(197, 26)
+        Me.ThemeToolStripMenuItem.Text = "Theme"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -818,4 +825,5 @@ Partial Class Main
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents UpdateViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenRecentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ThemeToolStripMenuItem As ToolStripMenuItem
 End Class

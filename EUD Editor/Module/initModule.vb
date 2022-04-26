@@ -137,17 +137,24 @@ Module initModule
 
 
         If My.Settings.DatEditColor1 = Nothing Then
-            ProgramSet.colorFieldText = Color.White
-
-            ProgramSet.colorFieldBackground = Color.FromArgb(&HFF193333)
-            ProgramSet.colorChangedBackground = Color.DarkSlateBlue
-
-            ProgramSet.colorCheckedBackground = Color.FromArgb(&HFF538585) ''FromArgb(&HFF4D9999)
+            ProgramSet.colorBackground = ThemeSetForm.darkModeColorBackground
+            ProgramSet.colorLabelText = ThemeSetForm.darkModeColorLabelText
+            ProgramSet.colorFieldBackground = ThemeSetForm.darkModeColorFieldBackground
+            ProgramSet.colorFieldText = ThemeSetForm.darkModeColorFieldText
+            ProgramSet.colorCodeBackground = ThemeSetForm.darkModeColorCodeBackground
+            ProgramSet.colorPanelBackground = ThemeSetForm.darkModeColorPanelBackground
+            ProgramSet.colorChangedBackground = ThemeSetForm.darkModeColorChangedBackground
+            ProgramSet.colorCheckedBackground = ThemeSetForm.darkModeColorCheckedBackground
         Else
             ProgramSet.colorFieldText = My.Settings.DatEditColor1
             ProgramSet.colorFieldBackground = My.Settings.DatEditColor2
             ProgramSet.colorChangedBackground = My.Settings.DatEditColor3
             ProgramSet.colorCheckedBackground = My.Settings.DatEditColor4
+            ProgramSet.colorChangedBackground = My.Settings.DatEditColor5
+            ProgramSet.colorCheckedBackground = My.Settings.DatEditColor6
+            ProgramSet.colorCodeBackground = My.Settings.DatEditColor7
+            ProgramSet.colorPanelBackground = My.Settings.DatEditColor8
+
         End If
 
 

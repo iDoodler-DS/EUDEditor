@@ -1,5 +1,13 @@
 ﻿Public Class ThemeSetForm
     Dim loadstatus As Boolean = False
+    Public darkModeColorBackground = Color.FromArgb(&HFF1F1F1F)
+    Public darkModeColorLabelText = Color.FromArgb(&HFFE5E5E5)
+    Public darkModeColorFieldBackground = Color.FromArgb(&HFF3D3D3D)
+    Public darkModeColorFieldText = Color.White
+    Public darkModeColorCodeBackground = Color.FromArgb(&HFF1E1E1E)
+    Public darkModeColorPanelBackground = Color.FromArgb(&HFF3D3D3D)
+    Public darkModeColorChangedBackground = Color.DarkSlateBlue
+    Public darkModeColorCheckedBackground = Color.FromArgb(&HFF538585)
     Private Sub ColorSet()
         PictureBox1.BackColor = ProgramSet.colorFieldText
         PictureBox2.BackColor = ProgramSet.colorFieldBackground
@@ -34,14 +42,14 @@
             ComboBox1.SelectedIndex = 3
         End If ''FromArgb(&HFF4D9999)
 
-        If ProgramSet.colorBackground = Color.FromArgb(&HFF1F1F1F) And
-            ProgramSet.colorLabelText = Color.FromArgb(&HFFE5E5E5) And
-            ProgramSet.colorFieldBackground = Color.FromArgb(&HFF3D3D3D) And
-            ProgramSet.colorFieldText = Color.White And
-            ProgramSet.colorCodeBackground = Color.FromArgb(&HFF1E1E1E) And
-            ProgramSet.colorPanelBackground = Color.FromArgb(&HFF3D3D3D) And
-            ProgramSet.colorChangedBackground = Color.DarkSlateBlue And
-            ProgramSet.colorCheckedBackground = Color.FromArgb(&HFF538585) Then
+        If ProgramSet.colorBackground = Me.darkModeColorBackground And
+            ProgramSet.colorLabelText = Me.darkModeColorLabelText And
+            ProgramSet.colorFieldBackground = Me.darkModeColorFieldBackground And
+            ProgramSet.colorFieldText = Me.darkModeColorFieldText And
+            ProgramSet.colorCodeBackground = Me.darkModeColorCodeBackground And
+            ProgramSet.colorPanelBackground = Me.darkModeColorPanelBackground And
+            ProgramSet.colorChangedBackground = Me.darkModeColorChangedBackground And
+            ProgramSet.colorCheckedBackground = Me.darkModeColorCheckedBackground Then
             ComboBox1.SelectedIndex = 4
         End If
         loadstatus = False
@@ -130,14 +138,14 @@
 
                     ProgramSet.colorCheckedBackground = Color.FromArgb(&HFF538585) ''FromArgb(&HFF4D9999)
                 Case 4
-                    ProgramSet.colorBackground = Color.FromArgb(&HFF1F1F1F)
-                    ProgramSet.colorLabelText = Color.FromArgb(&HFFE5E5E5)
-                    ProgramSet.colorFieldBackground = Color.FromArgb(&HFF3D3D3D)
-                    ProgramSet.colorFieldText = Color.White
-                    ProgramSet.colorCodeBackground = Color.FromArgb(&HFF1E1E1E)
-                    ProgramSet.colorPanelBackground = Color.FromArgb(&HFF3D3D3D)
-                    ProgramSet.colorChangedBackground = Color.DarkSlateBlue
-                    ProgramSet.colorCheckedBackground = Color.FromArgb(&HFF538585)
+                    ProgramSet.colorBackground = Me.darkModeColorBackground
+                    ProgramSet.colorLabelText = Me.darkModeColorLabelText
+                    ProgramSet.colorFieldBackground = Me.darkModeColorFieldBackground
+                    ProgramSet.colorFieldText = Me.darkModeColorFieldText
+                    ProgramSet.colorCodeBackground = Me.darkModeColorCodeBackground
+                    ProgramSet.colorPanelBackground = Me.darkModeColorPanelBackground
+                    ProgramSet.colorChangedBackground = Me.darkModeColorChangedBackground
+                    ProgramSet.colorCheckedBackground = Me.darkModeColorCheckedBackground
             End Select
 
 
@@ -148,5 +156,28 @@
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
 
+    End Sub
+
+    Sub SetControlColor(c As Control)
+        'Public colorBackground As Color
+        'Public colorLabelText As Color
+        'Public colorFieldBackground As Color
+        'Public colorFieldText As Color
+        'Public colorChangedBackground As Color
+        'Public colorCheckedBackground As Color
+        'Public colorCodeBackground As Color
+        'Public colorPanelBackground As Color
+        Select Case c.GetType()
+            Case GetType(Form), GetType(MenuStrip), GetType(TableLayoutPanel), GetType(FlowLayoutPanel), GetType(Button)
+                c.BackColor = ProgramSet.colorBackground
+                c.ForeColor = ProgramSet.colorLabelText
+            Case GetType(TextBox), GetType(NumericUpDown), GetType(ComboBox), GetType(CheckBox), GetType(ListBox)
+                c.BackColor = ProgramSet.colorFieldBackground
+                c.ForeColor = ProgramSet.colorFieldText
+        End Select
+
+        For Each control As Control In c.Controls
+            SetControlColor(control)
+        Next
     End Sub
 End Class

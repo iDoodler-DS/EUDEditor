@@ -3,44 +3,7 @@
 Public Class GamedataForm
     Public TriggerExecTimer As Boolean
     Private Sub ColorReset()
-        TextBox1.BackColor = Color.GhostWhite
-
-        TextBox2.BackColor = Color.GhostWhite
-
-        TextBox3.BackColor = Color.GhostWhite
-
-        NumericUpDown1.BackColor = Color.GhostWhite
-
-        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown2.ForeColor = ProgramSet.colorFieldText
-
-        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown3.ForeColor = ProgramSet.colorFieldText
-
-        NumericUpDown4.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown4.ForeColor = ProgramSet.colorFieldText
-
-        CheckBox1.BackColor = ProgramSet.colorFieldBackground
-        CheckBox1.ForeColor = ProgramSet.colorFieldText
-
-        CheckBox2.BackColor = ProgramSet.colorFieldBackground
-        CheckBox2.ForeColor = ProgramSet.colorFieldText
-
-        CheckBox3.BackColor = ProgramSet.colorFieldBackground
-        CheckBox3.ForeColor = ProgramSet.colorFieldText
-
-        CheckBox4.BackColor = ProgramSet.colorFieldBackground
-        CheckBox4.ForeColor = ProgramSet.colorFieldText
-
-        CheckBox5.BackColor = ProgramSet.colorFieldBackground
-        CheckBox5.ForeColor = ProgramSet.colorFieldText
-
-        ComboBox1.BackColor = ProgramSet.colorFieldBackground
-        ComboBox1.ForeColor = ProgramSet.colorFieldText
-
-        ComboBox2.BackColor = ProgramSet.colorFieldBackground
-        ComboBox2.ForeColor = ProgramSet.colorFieldText
-
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     '0057FD3C	1.16.1	Win	Map File Name	260	1	The current map's file name.
     '0057FE40	1.16.1	Win	Map Title	32	1	The current map's title.

@@ -71,36 +71,7 @@ Public Class DethesViewerForm
 
 
     Private Sub ColorReset()
-        NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown1.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown2.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown3.ForeColor = ProgramSet.colorFieldText
-
-
-        NumericUpDown4.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown4.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown5.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown5.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown6.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown6.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown7.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown7.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown8.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown8.ForeColor = ProgramSet.colorFieldText
-
-
-        NumericUpDown9.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown9.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown10.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown10.ForeColor = ProgramSet.colorFieldText
-
-
-        NumericUpDown11.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown11.ForeColor = ProgramSet.colorFieldText
-        NumericUpDown12.BackColor = ProgramSet.colorFieldBackground
-        NumericUpDown12.ForeColor = ProgramSet.colorFieldText
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub LoadData()
