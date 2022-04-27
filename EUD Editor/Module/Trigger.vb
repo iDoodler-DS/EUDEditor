@@ -592,12 +592,7 @@ Public Class Element
                 End If
             Case "Location"
                 If isTocode = True And isnumber = True Then
-                    Try
-                        returnstring -= 1
-                        Return returnstring
-                    Catch ex As Exception
-
-                    End Try
+                    Return returnstring
                 End If
             Case "CText"
                 If isTocode = True Then
