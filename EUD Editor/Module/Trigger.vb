@@ -607,7 +607,7 @@ Public Class Element
                 End If
             Case "DBText"
                 If isTocode = True Then
-                    returnstring = "Db(u2utf8(" & returnstring & "))"
+                    returnstring = "Db(" & returnstring & ")"
 
                     Return returnstring
                 End If
