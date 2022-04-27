@@ -60,6 +60,7 @@ Public Class StatTextForm
 
         loadned = True
         LoadText()
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub LoadText()

@@ -26,6 +26,7 @@
             ArrayVariableTypeRadioButton.Visible = True
             NumericUpDown1.Enabled = Not PlayerVariableTypeRadioButton.Checked
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

@@ -124,6 +124,7 @@ Public Class FunctionForm
         RegisterHotKey(Me.Handle, 200, 0, Keys.Tab)
         RegisterHotKey(Me.Handle, 300, MOD_Shift, Keys.Tab)
         RegisterHotKey(Me.Handle, 500, MOD_CTRL, Keys.Q)
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

@@ -18,6 +18,7 @@
         Catch ex As Exception
             ComboBox1.SelectedIndex = 3
         End Try
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged

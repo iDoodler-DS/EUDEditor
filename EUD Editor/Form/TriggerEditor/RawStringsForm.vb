@@ -180,5 +180,6 @@
         ListBox1.Items.AddRange(Readtextfile("RawStringsList").ToArray)
         ListBox1.SelectedIndex = 0
         ListBox3.SelectedIndex = 0
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 End Class

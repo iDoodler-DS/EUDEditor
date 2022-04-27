@@ -71,6 +71,7 @@
         Next
         Conbtnrefreash()
         Actbtnrefreash()
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

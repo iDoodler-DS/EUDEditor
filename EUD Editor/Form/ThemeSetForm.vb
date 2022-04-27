@@ -1,4 +1,6 @@
-﻿Public Class ThemeSetForm
+﻿Imports FastColoredTextBoxNS
+
+Public Class ThemeSetForm
     Dim loadstatus As Boolean = False
     Public darkModeColorBackground = Color.FromArgb(&HFF1F1F1F)
     Public darkModeColorLabelText = Color.FromArgb(&HFFE5E5E5)
@@ -178,6 +180,33 @@
             b.ForeColor = ProgramSet.colorLabelText
         ElseIf c.GetType() = GetType(TableLayoutPanel) Or c.GetType() = GetType(FlowLayoutPanel) Then
             AddHandler c.Paint, AddressOf Panel_Paint
+        ElseIf c.GetType() = GetType(FastColoredTextBox) Then
+            Dim t As FastColoredTextBox = c
+            t.BackColor = ProgramSet.colorFieldBackground
+            t.BookmarkColor = ProgramSet.colorFieldText
+            t.TextAreaBorderColor = ProgramSet.colorPanelBackground
+            t.CurrentLineColor = ProgramSet.colorPanelBackground
+            t.ChangedLineColor = ProgramSet.colorPanelBackground
+            t.LineNumberColor = ProgramSet.colorFieldText
+            t.IndentBackColor = ProgramSet.colorFieldBackground
+            t.PaddingBackColor = ProgramSet.colorPanelBackground
+            t.DisabledColor = ProgramSet.colorPanelBackground
+            t.CaretColor = ProgramSet.colorFieldText
+            t.ServiceLinesColor = ProgramSet.colorFieldText
+            t.FoldingIndicatorColor = ProgramSet.colorFieldText
+
+        ElseIf (c.GetType() = GetType(DataGridView)) Then
+            Dim g As DataGridView = c
+            g.ColumnHeadersDefaultCellStyle.BackColor = ProgramSet.colorPanelBackground
+            g.ColumnHeadersDefaultCellStyle.ForeColor = ProgramSet.colorLabelText
+            g.EnableHeadersVisualStyles = False
+            g.BackColor = ProgramSet.colorFieldBackground
+            g.GridColor = ProgramSet.colorFieldBackground
+            g.ForeColor = ProgramSet.colorFieldText
+            g.DefaultCellStyle.BackColor = ProgramSet.colorFieldBackground
+            g.DefaultCellStyle.ForeColor = ProgramSet.colorFieldText
+            g.DefaultCellStyle.SelectionBackColor = ProgramSet.colorCheckedBackground
+            g.DefaultCellStyle.SelectionForeColor = ProgramSet.colorFieldBackground
         End If
 
 
@@ -185,7 +214,7 @@
             Case GetType(Form), GetType(MenuStrip), GetType(ToolStrip), GetType(ToolStripMenuItem), GetType(TableLayoutPanel), GetType(FlowLayoutPanel), GetType(TabPage)
                 c.BackColor = ProgramSet.colorBackground
                 c.ForeColor = ProgramSet.colorLabelText
-            Case GetType(TextBox), GetType(NumericUpDown), GetType(ComboBox), GetType(CheckBox), GetType(ListBox)
+            Case GetType(DataGridViewCell), GetType(TextBox), GetType(NumericUpDown), GetType(ComboBox), GetType(CheckBox), GetType(ListBox), GetType(RichTextBox)
                 c.BackColor = ProgramSet.colorFieldBackground
                 c.ForeColor = ProgramSet.colorFieldText
         End Select

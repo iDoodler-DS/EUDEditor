@@ -14,5 +14,6 @@
     Private Sub WaitDailog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Lan.SetLangage(Me)
         NumericUpDown2.Value = NumericUpDown1.Value * 42
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 End Class

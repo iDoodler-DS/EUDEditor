@@ -16,6 +16,7 @@
             Button5.Enabled = False
         End If
 
+        ThemeSetForm.SetControlColor(Me)
 
     End Sub
 

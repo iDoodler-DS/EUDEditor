@@ -41,6 +41,7 @@ Public Class TextEditor
         TextBox1.Text = RawText
         Textrefresh()
         Textrefresh()
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub TextEditor_Closing(sender As Object, e As EventArgs) Handles MyBase.Closing

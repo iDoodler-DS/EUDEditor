@@ -66,6 +66,7 @@ Public Class SCDBForm
         'isopenBtnDeath = True
         'isopenBtnLoc = False
         'isopenBtnVarb = False
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub BtnSetting_Click(sender As Object, e As EventArgs) Handles BtnSetting.Click

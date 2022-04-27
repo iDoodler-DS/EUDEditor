@@ -1,6 +1,7 @@
 ﻿Public Class SetMPQForm
     Private Sub SetMPQForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         refreshform()
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub refreshform()

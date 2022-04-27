@@ -47,6 +47,7 @@ Public Class PluginTriggerAddForm
         Else
             Button5.Enabled = True
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub LoadData()

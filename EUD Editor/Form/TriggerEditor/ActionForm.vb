@@ -129,6 +129,7 @@ Public Class ActionForm
         RegisterHotKey(Me.Handle, 300, MOD_Shift, Keys.Tab)
         RegisterHotKey(Me.Handle, 400, MOD_CTRL, Keys.Tab)
         RegisterHotKey(Me.Handle, 500, MOD_CTRL, Keys.Q)
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub TabControl2_KeyDown(sender As Object, e As KeyEventArgs) Handles TabControl2.KeyDown

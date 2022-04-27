@@ -45,7 +45,6 @@
         'Next
 
         'My.Computer.Clipboard.SetText(ImageToGRP("C:\Users\skslj\Desktop\LightBlock.bmp"))
-        ColorReset()
 
 
         grpwire.Reset()
@@ -76,6 +75,7 @@
         LoadData()
         LoadList()
         PaletDraw()
+        ColorReset()
         loadcmp = True
     End Sub
 
@@ -130,8 +130,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
 
         If (e.Index < 0) Then Exit Sub
 
-        Dim myBrush As Brush
-        myBrush = Brushes.White
+        Dim myBrush = New SolidBrush(ProgramSet.colorFieldText)
 
         If ListBox1.Items(e.Index)(LITEM.ischange) = True Then
             myBrush = Brushes.IndianRed

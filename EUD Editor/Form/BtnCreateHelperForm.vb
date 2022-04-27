@@ -369,6 +369,7 @@
     Private Sub BtnCreateHelperForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ListBox1.SelectedIndex = 0
         btnreset()
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

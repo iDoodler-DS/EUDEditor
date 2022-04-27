@@ -13,6 +13,7 @@
 
         ishavevalue = False
         ListBox1.Visible = False
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub ResetList()
         Dim selindex As Integer = ListBox1.SelectedIndex

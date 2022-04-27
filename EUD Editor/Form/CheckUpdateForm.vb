@@ -11,6 +11,7 @@
             Button1.Enabled = False
             Button1.Text = Lan.GetText("CheckUpdateForm", "Button1")
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged

@@ -63,6 +63,7 @@
         isloading = False
 
         Refreshcont()
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

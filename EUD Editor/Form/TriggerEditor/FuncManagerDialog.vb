@@ -21,6 +21,7 @@
             End If
         Next
         loading = True
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub CheckedListBox1_SelectedIndexChanged(sender As Object, e As ItemCheckEventArgs) Handles CheckedListBox1.ItemCheck

@@ -6,6 +6,7 @@
         Else
             Button5.Enabled = False
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged

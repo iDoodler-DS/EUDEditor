@@ -38,6 +38,7 @@
             lists(0) = liststr(0)
             ListBox1.Items(0) = "First Human Player : " & EasyCompletionComboBox1.Items(liststr(0))
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

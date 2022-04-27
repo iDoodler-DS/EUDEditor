@@ -8,6 +8,7 @@ Public Class MPQForm
             MsgBox("정상적인 맵 파일이 아닙니다." & vbCrLf & "1. 프로텍트가 걸린 맵." & vbCrLf & "2. 정상적이지 않은 맵." & vbCrLf & "3. 현재 실행 중인 맵.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             Me.Close()
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

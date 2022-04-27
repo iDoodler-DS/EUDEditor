@@ -263,7 +263,7 @@ Handles ListBox1.DrawItem
 
         LoadStatus = True
         SELECTLIST(Value)
-
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

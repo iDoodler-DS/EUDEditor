@@ -34,6 +34,7 @@
         Else
             RadioButton2.Checked = True
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub SwitchDialog_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
         If EasyCompletionComboBox1.Enabled = True Then
