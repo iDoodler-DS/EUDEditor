@@ -115,19 +115,6 @@ Namespace eudplib
             '    End If
             'End If
 
-            returntext.AppendLine("[dataDumper]")
-            If ProjectSet.UsedSetting(ProjectSet.Settingtype.filemanager) = True And stattextdic.Count <> 0 Then
-                returntext.Append(Getstattextbin.Replace(":", "\:") & " : 0x" & ReadOffset("stat_txt.tbl"))
-                returntext.Append(", copy")
-                returntext.AppendLine()
-            End If
-            If ProjectSet.UsedSetting(ProjectSet.Settingtype.FireGraft) = True Then
-                RepDataToFile()
-                '호환성버그고치기
-                returntext.Append(My.Application.Info.DirectoryPath.Replace(":", "\:") & "\Data\temp\" & "RequireData : 0x" & ReadOffset("Vanilla"))
-                returntext.Append(", copy")
-                returntext.AppendLine()
-            End If
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.Plugin) = True Then
                 If nqcuse = True Then
                     returntext.AppendLine("[MSQC]")
@@ -200,7 +187,7 @@ Namespace eudplib
                         End If
                     End If
                 End If
-
+            End If
 
                 'Public dataDumper_grpwire As String
                 'Public dataDumper_tranwire As String
@@ -223,6 +210,21 @@ Namespace eudplib
 
 
 
+            returntext.AppendLine("[dataDumper]")
+            If ProjectSet.UsedSetting(ProjectSet.Settingtype.filemanager) = True And stattextdic.Count <> 0 Then
+                returntext.Append(Getstattextbin.Replace(":", "\:") & " : 0x" & ReadOffset("stat_txt.tbl"))
+                returntext.Append(", copy")
+                returntext.AppendLine()
+            End If
+            If ProjectSet.UsedSetting(ProjectSet.Settingtype.FireGraft) = True Then
+                RepDataToFile()
+                '호환성버그고치기
+                returntext.Append(My.Application.Info.DirectoryPath.Replace(":", "\:") & "\Data\temp\" & "RequireData : 0x" & ReadOffset("Vanilla"))
+                returntext.Append(", copy")
+                returntext.AppendLine()
+            End If
+
+            If ProjectSet.UsedSetting(ProjectSet.Settingtype.Plugin) = True Then
                 If dataDumperuse = True Then
                     If ProjectSet.UsedSetting(ProjectSet.Settingtype.BinEditor) = True Then
                         If ProjectSet.PlayerRace <> 255 Then
