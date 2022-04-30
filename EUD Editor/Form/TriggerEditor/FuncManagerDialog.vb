@@ -1,7 +1,7 @@
 ﻿Public Class FuncManagerDialog
     Dim loading As Boolean = False
     Private Sub FuncManagerDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         loading = False
         CheckedListBox1.Items.Clear()

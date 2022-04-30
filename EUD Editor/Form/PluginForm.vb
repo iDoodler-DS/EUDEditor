@@ -49,7 +49,7 @@ Public Class PluginForm
 
 
     Private Sub PluginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         DataGridView2.Columns(0).HeaderText = Lan.GetText("PluginForm", "FileName")
         DataGridView2.Columns(1).HeaderText = Lan.GetText("PluginForm", "Fileoffset")

@@ -2,7 +2,7 @@
 
 Public Class TrigEditorForm
     Private Sub TrigEditorForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         Lan.SetMenu(Me, ContextMenuStrip1)
         Lan.SetMenu(Me, MenuStrip1)
         'LoadTriggerFile()

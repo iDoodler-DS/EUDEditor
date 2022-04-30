@@ -62,10 +62,10 @@ Public Class FireGraftForm
         Lan.SetMenu(Me, ListMenu, "ListMenu")
         Lan.SetMenu(Me, ReqMenu, "ReqMenu")
         Lan.SetMenu(Me, MenuStrip1)
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         If FristRun = False Then
             CheckBox2.Checked = True
-            Dim file As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\Icon.txt", FileMode.Open, FileAccess.Read)
+            Dim file As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\Icon.txt", FileMode.Open, FileAccess.Read)
             Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
 
 
@@ -81,7 +81,7 @@ Public Class FireGraftForm
             file.Close()
 
             ComboBox3.Items.Clear()
-            file = New FileStream(My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\FireGraftStatus.txt", FileMode.Open, FileAccess.Read)
+            file = New FileStream(My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\FireGraftStatus.txt", FileMode.Open, FileAccess.Read)
             stream = New StreamReader(file, System.Text.Encoding.Default)
 
 
@@ -708,7 +708,7 @@ Public Class FireGraftForm
                 CheckBox1.Checked = Not ProjectBtnUSE(_OBJECTNUM)
                 Panel2.Enabled = ProjectBtnUSE(_OBJECTNUM)
 
-                Dim file As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\Icon.txt", FileMode.Open, FileAccess.Read)
+                Dim file As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\Icon.txt", FileMode.Open, FileAccess.Read)
                 Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
 
                 Dim Icon() As String

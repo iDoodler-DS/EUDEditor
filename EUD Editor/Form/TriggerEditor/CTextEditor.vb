@@ -44,7 +44,7 @@ Public Class CTextEditor
     End Function
 
     Private Sub TextEditor_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         RawText = RawText.Replace("\n", vbCrLf)
         RawText = RawText.Replace("\""", """")

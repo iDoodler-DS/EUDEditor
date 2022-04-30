@@ -5,7 +5,7 @@ Public Class SCDBForm
     Public locs As New List(Of String)
 
     Private Sub SCDBForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         TextBox2.Text = SCDBMaker
         TextBox3.Text = SCDBMapName

@@ -37,7 +37,7 @@
 
 
     Private Sub TriggerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         TabControl1.SelectedIndex = 0
 

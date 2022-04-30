@@ -98,7 +98,7 @@ Public Class DatEditForm
     Private Sub DatEditForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.SuspendLayout()
 
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         Lan.SetMenu(Me, MenuStrip1)
         Lan.SetMenu(Me, ListMenu)
 
@@ -507,7 +507,7 @@ Public Class DatEditForm
             Combobox.ResumeLayout()
             stream.Close()
         Else
-            filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename
+            filename = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename
             Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
             Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
 
@@ -548,7 +548,7 @@ Public Class DatEditForm
             Listview.ResumeLayout()
             stream.Close()
         Else
-            filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename
+            filename = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename
             Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
             Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
             Listview.Items.Clear()

@@ -1,6 +1,6 @@
 ﻿Public Class CheckUpdateForm
     Private Sub CheckUpdateForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         CheckBox1.Checked = My.Settings.IgnoreUpdate
         RichTextBox1.Text = GetPatchNote()

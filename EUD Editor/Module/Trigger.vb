@@ -1417,7 +1417,7 @@ Public Class Element
 
                         '언어선택
                         For i = 0 To funcdef.Elements(1).Elements(0).Elements(0).GetElementsCount - 1
-                            If funcdef.Elements(1).Elements(0).Elements(0).GetElements(i).Values(0) = My.Settings.Langage Then
+                            If funcdef.Elements(1).Elements(0).Elements(0).GetElements(i).Values(0) = My.Settings.Language Then
                                 tooltipdef = funcdef.Elements(1).Elements(0).Elements(0).GetElements(i).Elements(0)
                                 Exit For
                             End If

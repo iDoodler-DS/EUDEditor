@@ -419,7 +419,7 @@ Partial Class SettingForm
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(84, 15)
         Me.Label8.TabIndex = 9
-        Me.Label8.Text = "언어(Langage)"
+        Me.Label8.Text = "언어(Language)"
         '
         'ComboBox3
         '

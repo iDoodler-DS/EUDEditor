@@ -8,7 +8,7 @@ Public Class LoadTileSetSingleForm
         RefreshBMP()
     End Sub
     Private Sub LoadTileSetSingleForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         dbool = False
         TabMove.SelectedIndex = 3

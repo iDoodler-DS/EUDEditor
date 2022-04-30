@@ -1548,7 +1548,7 @@ Module ProgramData
 
 
     Private Sub LoadCodeLIST(filename As String)
-        Dim filepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename & ".txt"
+        Dim filepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename & ".txt"
 
         Dim File As FileStream = New FileStream(filepath, FileMode.Open)
         Dim Reader As StreamReader = New StreamReader(File)

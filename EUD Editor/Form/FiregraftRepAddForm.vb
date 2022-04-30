@@ -4,7 +4,7 @@
     Public ishavevalue As Boolean
 
     Private Sub FiregraftRepAddForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         Opcode = 0
         Value = 0
