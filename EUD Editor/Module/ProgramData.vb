@@ -979,13 +979,13 @@ Module ProgramData
         'LoadFileimportable()
     End Sub
 
-
+    Public CMDIconBitmapList = New List(Of Bitmap)
     Public Sub LoadFileimportable()
         Dim mpq As New SFMpq
 
         Dim icongrp As New GRP
 
-        DatEditForm.ICONILIST.Images.Clear()
+        CMDIconBitmapList.Clear()
 
         If dataDumper_cmdicons_f <> 0 And CheckFileExist(dataDumper_cmdicons) = False Then
             Dim FileStream As New FileStream(dataDumper_cmdicons, FileMode.Open)
@@ -1002,7 +1002,7 @@ Module ProgramData
 
                 grp.DrawImage(icongrp.DrawGRP(i), (36 - icongrp.GRPFrame(i).frameWidth) \ 2, (34 - icongrp.GRPFrame(i).frameHeight) \ 2)
 
-                DatEditForm.ICONILIST.Images.Add(bitmap)
+                CMDIconBitmapList.Add(bitmap)
             Next
 
 
@@ -1022,8 +1022,7 @@ Module ProgramData
 
                 grp.DrawImage(icongrp.DrawGRP(i), (36 - icongrp.GRPFrame(i).frameWidth) \ 2, (34 - icongrp.GRPFrame(i).frameHeight) \ 2)
 
-                DatEditForm.ICONILIST.Images.Add(bitmap)
-                'DatEditForm.ICONILIST.ImageSize = Bitmap.Size
+                CMDIconBitmapList.Add(bitmap)
             Next
         End If
 

@@ -668,8 +668,6 @@ Namespace ProjectSet
             For i = 0 To 7
                 DatEditDATA(i).Reset()
             Next
-            DatEditForm.MainTAB.SelectedIndex = 0
-            DatEditForm.TAB_INDEX = 0
 
             Soundlist.Clear()
             Soundinterval = 3
@@ -784,8 +782,11 @@ Namespace ProjectSet
             NewTriggerFile()
 
 
-            '폼 리셋
-            DatEditForm.Close()
+            If DatEditForm IsNot Nothing Then
+                DatEditForm.MainTAB.SelectedIndex = 0
+                DatEditForm.TAB_INDEX = 0
+                DatEditForm.Close()
+            End If
 
 
 
