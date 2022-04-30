@@ -57,7 +57,7 @@ Public Class ThemeSetForm
         loadstatus = False
     End Sub
     Private Sub ThemeSetForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         ComboBox1.Items.Clear()
         ComboBox1.Items.AddRange(Lan.GetArray(Me.Name, "Combobox1"))

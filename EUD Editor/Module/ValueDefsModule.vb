@@ -148,7 +148,7 @@ Module ValueDefsModule
 
                     End Select
 
-                    Dim filename As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & Name(k) & ".txt"
+                    Dim filename As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & Name(k) & ".txt"
                     If CheckFileExist(filename) = False Then
                         Dim filestream As New FileStream(filename, FileMode.Open)
                         Dim strreader As New StreamReader(filestream, Text.Encoding.Default)

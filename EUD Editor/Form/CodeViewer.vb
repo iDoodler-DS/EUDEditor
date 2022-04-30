@@ -255,7 +255,7 @@ Handles ListBox1.DrawItem
 
     Private LoadStatus As Boolean = True
     Private Sub CodeViewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         LoadStatus = False
         ListDraw()

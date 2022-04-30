@@ -17,7 +17,7 @@ Public Class StatTextForm
 
     Private Sub StatTextForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ComboBox2.Items.Clear()
-        Dim File As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\StatText.txt", FileMode.Open, FileAccess.Read)
+        Dim File As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\StatText.txt", FileMode.Open, FileAccess.Read)
         Dim Stream As StreamReader = New StreamReader(File, System.Text.Encoding.Default)
 
         ComboBox2.Items.AddRange(Stream.ReadToEnd.Split(vbCrLf))
@@ -25,7 +25,7 @@ Public Class StatTextForm
         Stream.Close()
         File.Close()
 
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
 
 

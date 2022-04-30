@@ -683,7 +683,7 @@ Module TriggerEditorDataMoudle
 
         For i = 0 To Actions.Count - 1
             Try
-                Actions(i).Text = Actions(i).Texts(Actions(i).Texts.IndexOf(My.Settings.Langage) + 1)
+                Actions(i).Text = Actions(i).Texts(Actions(i).Texts.IndexOf(My.Settings.Language) + 1)
             Catch ex As Exception
 
             End Try
@@ -704,7 +704,7 @@ Module TriggerEditorDataMoudle
 
         For i = 0 To Condictions.Count - 1
             Try
-                Condictions(i).Text = Condictions(i).Texts(Condictions(i).Texts.IndexOf(My.Settings.Langage) + 1)
+                Condictions(i).Text = Condictions(i).Texts(Condictions(i).Texts.IndexOf(My.Settings.Language) + 1)
             Catch ex As Exception
 
             End Try

@@ -2,7 +2,7 @@
 Imports Newtonsoft.Json
 
 Namespace Lan
-    Module LangageModule
+    Module LanguageModule
 
         Dim textCache = New Dictionary(Of String, Dictionary(Of String, String))
         Dim msgTextCache = New Dictionary(Of String, String)
@@ -23,7 +23,7 @@ Namespace Lan
             Return _str.ToString
         End Function
 
-        Public Sub GetLangage(baseform As Form)
+        Public Sub GetLanguage(baseform As Form)
             Dim _str As New Text.StringBuilder
             _str.AppendLine("{")
             For i = 0 To baseform.Controls.Count - 1
@@ -32,10 +32,10 @@ Namespace Lan
             _str.Remove(_str.Length - 3, 1)
             _str.AppendLine("}")
 
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & baseform.Name & ".json"
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & baseform.Name & ".json"
 
 
-            Dim filestream As New FileStream(Langagepath, FileMode.Create)
+            Dim filestream As New FileStream(Languagepath, FileMode.Create)
             Dim streamwriter As New StreamWriter(filestream, System.Text.Encoding.UTF8)
             streamwriter.Write(_str.ToString)
 
@@ -76,9 +76,9 @@ Namespace Lan
             _str.Remove(_str.Length - 3, 1)
             _str.AppendLine("}")
 
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & baseform.Name & meun.Name & name & ".json"
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & baseform.Name & meun.Name & name & ".json"
 
-            Dim filestream As New FileStream(Langagepath, FileMode.Create)
+            Dim filestream As New FileStream(Languagepath, FileMode.Create)
             Dim streamwriter As New StreamWriter(filestream, System.Text.Encoding.UTF8)
             streamwriter.Write(_str.ToString)
 
@@ -103,9 +103,9 @@ Namespace Lan
 
             _str.AppendLine("}")
 
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & baseform.Name & meun.Name & ".json"
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & baseform.Name & meun.Name & ".json"
 
-            Dim filestream As New FileStream(Langagepath, FileMode.Create)
+            Dim filestream As New FileStream(Languagepath, FileMode.Create)
             Dim streamwriter As New StreamWriter(filestream, System.Text.Encoding.UTF8)
             streamwriter.Write(_str.ToString)
 
@@ -132,11 +132,11 @@ Namespace Lan
         End Sub
 
         Dim labels As Dictionary(Of String, String)
-        Public Sub SetLangage(ByRef forms As Form)
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & forms.Name & ".json"
+        Public Sub SetLanguage(ByRef forms As Form)
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & forms.Name & ".json"
 
 
-            Dim _filestream As New FileStream(Langagepath, FileMode.Open)
+            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
             Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
 
             Dim jsonString As String = _streamreader.ReadToEnd
@@ -175,10 +175,10 @@ Namespace Lan
         End Sub
 
         Public Sub SetMenu(ByRef forms As Form, meun As Object, Optional name As String = "")
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & forms.Name & meun.Name & name & ".json"
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & forms.Name & meun.Name & name & ".json"
 
 
-            Dim _filestream As New FileStream(Langagepath, FileMode.Open)
+            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
             Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
 
             Dim jsonString As String = _streamreader.ReadToEnd
@@ -201,10 +201,10 @@ Namespace Lan
         End Sub
 
         Public Sub SetTooltip(forms As Form, meun As ToolStrip)
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & forms.Name & meun.Name & ".json"
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & forms.Name & meun.Name & ".json"
 
 
-            Dim _filestream As New FileStream(Langagepath, FileMode.Open)
+            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
             Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
 
             Dim jsonString As String = _streamreader.ReadToEnd
@@ -231,9 +231,9 @@ Namespace Lan
                 Return msgTextCache(key)
             End If
 
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\Msgbox.json"
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\Msgbox.json"
 
-            Dim _filestream As New FileStream(Langagepath, FileMode.Open)
+            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
             Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
 
             Dim jsonString As String = _streamreader.ReadToEnd
@@ -254,9 +254,9 @@ Namespace Lan
                 Return textCache(filename)(key)
             End If
 
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename & ".json"
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename & ".json"
 
-            Dim _filestream As New FileStream(Langagepath, FileMode.Open)
+            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
             Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
 
             Dim jsonString As String = _streamreader.ReadToEnd
@@ -277,9 +277,9 @@ Namespace Lan
                 Return arrayCache(filename)(key).Split("\")
             End If
 
-            Dim Langagepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename & ".json"
+            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename & ".json"
 
-            Dim _filestream As New FileStream(Langagepath, FileMode.Open)
+            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
             Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
 
             Dim jsonString As String = _streamreader.ReadToEnd

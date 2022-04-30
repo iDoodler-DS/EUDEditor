@@ -122,7 +122,7 @@ Public Class ActionForm
 
 
     Private Sub Form_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         RegisterHotKey(Me.Handle, 100, MOD_Shift, Keys.Enter)
         RegisterHotKey(Me.Handle, 200, 0, Keys.Tab)

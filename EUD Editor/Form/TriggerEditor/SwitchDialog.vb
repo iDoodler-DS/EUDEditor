@@ -22,7 +22,7 @@
 
 
     Private Sub SwitchDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
 
         EasyCompletionComboBox1.Items.Clear()

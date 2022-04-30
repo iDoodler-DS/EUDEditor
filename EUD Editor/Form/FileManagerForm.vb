@@ -12,7 +12,7 @@
     Private loadcmp As Boolean = False
     Private Sub FileManagerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loadcmp = False
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         Lan.SetMenu(Me, MenuStrip1)
         Lan.SetMenu(Me, ListMenu)
 

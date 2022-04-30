@@ -25,7 +25,7 @@
     End Sub
 
     Private Sub GRPForm_ListForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         ListDraw()
         PaletDraw()
 

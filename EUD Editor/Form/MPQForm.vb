@@ -2,7 +2,7 @@
 
 Public Class MPQForm
     Private Sub MPQForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         If MPQlib.ReadListfile(ListBox1) = False Then
             MsgBox("정상적인 맵 파일이 아닙니다." & vbCrLf & "1. 프로텍트가 걸린 맵." & vbCrLf & "2. 정상적이지 않은 맵." & vbCrLf & "3. 현재 실행 중인 맵.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)

@@ -276,7 +276,7 @@ Public Class Main
             Me.Close()
         End If
         Lan.SetMenu(Me, MenuStrip1)
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         SaveFileDialog1.Filter = Lan.GetText(Me.Name, "SaveFilter")
         OpenFileDialog1.Filter = Lan.GetText(Me.Name, "OpenFilter")
