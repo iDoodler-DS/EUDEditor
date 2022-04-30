@@ -1,6 +1,10 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 
 Public Class TrigEditorForm
+
+    Private triggerBindingList As BindingList(Of Element) = New BindingList(Of Element)
+    Private triggerBindingSource As BindingSource = New BindingSource(triggerBindingList)
     Private Sub TrigEditorForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Lan.SetLangage(Me)
         Lan.SetMenu(Me, ContextMenuStrip1)
@@ -13,6 +17,11 @@ Public Class TrigEditorForm
         ReDrawTriggerList()
         ReDrawList()
         RedrawCode()
+
+        ClassicTriggerListView.AutoGenerateColumns = False
+        ClassicTriggerListView.DataSource = triggerBindingSource
+        ClassicTriggerListView.DataMember = "Summary"
+        triggerBindingList.RaiseListChangedEvents = True
     End Sub
 
 
@@ -2411,11 +2420,18 @@ Public Class TrigEditorForm
         Button13.Enabled = False
         Button15.Enabled = False
 
+        triggerBindingList.Clear()
+
         If ListBox2.SelectedIndex <> -1 Then
             For i = 0 To playerlist(listboxdata(ListBox2.SelectedIndex)).Count - 1
-                ListControl1.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
+                'ListControl1.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
+                triggerBindingList.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
+                'ClassicTriggerListView.Rows.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
             Next
         End If
+        triggerBindingList.ResetBindings()
+        ListControl1.flpListBox.ResumeLayout()
+        ListControl1.ResumeLayout()
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged

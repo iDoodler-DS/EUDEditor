@@ -36,6 +36,11 @@ End Enum
 
 
 Public Class Element
+    Public ReadOnly Property Summary() As String
+        Get
+            Return "Trigger"
+        End Get
+    End Property
     Private Function ElementNames(Et As ElementType) As String
         Dim temp() As String = {
                "",'0
@@ -1487,7 +1492,7 @@ Public Class Element
                 Dim bexit As Boolean = False
                 While (bexit = False)
                     For i = 0 To act.ValuesDef.Count - 1
-                        _rtext = Replace(_rtext,  "$" & act.ValuesDef(i) & "$", "(" & ValueParser(i) & ")", , 1)
+                        _rtext = Replace(_rtext, "$" & act.ValuesDef(i) & "$", "(" & ValueParser(i) & ")", , 1)
                     Next
                     bexit = True
                     For i = 0 To act.ValuesDef.Count - 1
@@ -1593,16 +1598,16 @@ Public Class Element
                             End Try
                         Next
                     Else
-                            _rtext = Lan.GetText("Trigger", "Func") & " : " & Values(0) & "("
-                            Dim valdef As String = ""
+                        _rtext = Lan.GetText("Trigger", "Func") & " : " & Values(0) & "("
+                        Dim valdef As String = ""
 
-                            If Values.Count <> 1 Then
-                                _rtext = _rtext & ValueParser(Values(1), GetFuncDEf(1))
-                                For i = 2 To Values.Count - 1
-                                    _rtext = _rtext & "," & ValueParser(Values(i), GetFuncDEf(i))
-                                Next
-                            End If
-                            _rtext = _rtext & ")"
+                        If Values.Count <> 1 Then
+                            _rtext = _rtext & ValueParser(Values(1), GetFuncDEf(1))
+                            For i = 2 To Values.Count - 1
+                                _rtext = _rtext & "," & ValueParser(Values(i), GetFuncDEf(i))
+                            Next
+                        End If
+                        _rtext = _rtext & ")"
                     End If
                 Else
                     _rtext = Lan.GetText("Trigger", "ExistFunc") & " : " & Values(0)
@@ -2419,7 +2424,7 @@ Public Class Element
 
 
 
-            Select Case Type
+        Select Case Type
             Case ElementType.Switchcase
                 If Values(1) Then
                     LineCount += 1
