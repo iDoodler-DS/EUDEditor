@@ -465,7 +465,6 @@ Public Class Main
             ProjectSet.Save(ProjectSet.filename)
         End If
         If ProgramSet.isAutoCompile = True Then
-            LoadTILEDATA(False, True)
             eudplib.Toflie()
         End If
         refreshSet()
@@ -554,7 +553,6 @@ Public Class Main
     Private Sub TileSet_Click(sender As Object, e As EventArgs) Handles Button6.Click
         ProjectSet.saveStatus = False
 
-        LoadTILEDATA(False, True)
         My.Forms.Main.Visible = False
         TileSetForm.ShowDialog()
         My.Forms.Main.Visible = True
@@ -586,21 +584,17 @@ Public Class Main
 
 
     Private Sub EDD켜기DToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EDDOpenDToolStripMenuItem.Click
-        LoadTILEDATA(False, True)
         eudplib.Toflie(True)
     End Sub
 
     Private Sub EDD켜기_Click(sender As Object, e As EventArgs) Handles Button17.Click
-        LoadTILEDATA(False, True)
         eudplib.Toflie(True)
     End Sub
     Private Sub 맵에삽입_Click(sender As Object, e As EventArgs) Handles Button14.Click
-        LoadTILEDATA(False, True)
         eudplib.Toflie()
     End Sub
 
     Private Sub 맵에삽입WToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MpainjectWToolStripMenuItem.Click
-        LoadTILEDATA(False, True)
         eudplib.Toflie()
     End Sub
     Private Sub TriggerCopy_Click(sender As Object, e As EventArgs) Handles Button16.Click
@@ -703,7 +697,6 @@ Public Class Main
 
                     ProjectSet.LoadCHKdata()
                     If ProgramSet.isAutoCompile = True Then
-                        LoadTILEDATA(False, True)
                         eudplib.Toflie()
                     End If
                 End If

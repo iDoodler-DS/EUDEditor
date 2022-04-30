@@ -1905,9 +1905,6 @@ Public Class TrigEditorForm
     End Sub
 
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
-        LoadTILEDATA(False, True)
-
-
         For i = 0 To DebugDic.Count - 1
             Try
                 DebugDic.Values(i).ReDrawColor()

@@ -39,8 +39,6 @@ Public Class DatEditForm
     Private comboBoxCache = New Dictionary(Of String, String)
     Private listViewCache = New Dictionary(Of String, String)
 
-
-
     Private Sub SELECTLIST(index As Integer)
         For i = 0 To ListBox1.Items.Count - 1
             If ListBox1.Items(i)(1) = index Then

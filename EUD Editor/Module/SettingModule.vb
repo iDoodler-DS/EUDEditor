@@ -147,8 +147,6 @@ Namespace ProjectSet
 
 
         Public Sub LoadCHKdata()
-            LoadTILEDATA()
-
             CHKSTRING.Clear()
             CHKSWITCHNAME.Clear()
             CHKLOCATIONNAME.Clear()
