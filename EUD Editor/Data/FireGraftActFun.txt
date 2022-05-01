@@ -11,7 +11,7 @@ Move	424440
 Stop	4233F0
 Attack	424380
 Attack(Suicide)	424320
-Attack(building)	4242C0
+Attack(Building)	4242C0
 Move(Carrier/Reaver)	424260
 Stop Carrier	4233D0
 Stop Reaver	4233B0
@@ -22,7 +22,7 @@ Patrol	424140
 Hold Position	423370
 Research Technology	423350	6
 Cancel Technology Research	423330
-Use Thchnology	423F70	6
+Use Technology	423F70	6
 StimPack	4234D0	6
 Research Upgrade	423310	5
 Cancel Upgrade Research	4232F0
@@ -48,13 +48,13 @@ Load	423B40
 Unload	423B00
 Archon Warp	423210	0
 Dark Archon Warp	4231F0	0
-Recharge Shiedls	423AA0
-Nulear Strike	423A40
+Recharge Shields	423AA0
+Nuclear Strike	423A40
 Cancel Nuclear Strike	4231D0
 Heal	4239E0	6
 Slow Down Replay	4DF300
 Play/Pause Replay	4DF2C0
-Spedd Up RePlay	4DF260
+Speed Up Replay	4DF260
 Cancel	429770
 Cancel Place Buildings	429780
 Change Displayed Buttons	459AF0	11

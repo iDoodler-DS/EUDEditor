@@ -58,6 +58,7 @@ Partial Class FireGraftForm
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
@@ -100,7 +101,6 @@ Partial Class FireGraftForm
         Me.ComboBox4 = New SergeUtils.EasyCompletionComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.GroupBox11 = New System.Windows.Forms.GroupBox()
         Me.Button10 = New System.Windows.Forms.Button()
@@ -110,8 +110,8 @@ Partial Class FireGraftForm
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
         Me.FlowLayoutPanel4 = New System.Windows.Forms.FlowLayoutPanel()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton3 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton4 = New System.Windows.Forms.RadioButton()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
         Me.ComboBox12 = New SergeUtils.EasyCompletionComboBox()
@@ -318,10 +318,12 @@ Partial Class FireGraftForm
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(3, 7)
-        Me.Label27.Margin = New System.Windows.Forms.Padding(3, 7, 3, 0)
+        Me.Label27.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label27.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label27.Location = New System.Drawing.Point(3, 8)
+        Me.Label27.Margin = New System.Windows.Forms.Padding(3, 8, 3, 0)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(31, 15)
+        Me.Label27.Size = New System.Drawing.Size(29, 21)
         Me.Label27.TabIndex = 3
         Me.Label27.Text = "필터"
         '
@@ -330,17 +332,19 @@ Partial Class FireGraftForm
         Me.TextBox2.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox2.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox2.Location = New System.Drawing.Point(40, 3)
+        Me.TextBox2.Location = New System.Drawing.Point(38, 3)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(128, 23)
+        Me.TextBox2.Size = New System.Drawing.Size(130, 23)
         Me.TextBox2.TabIndex = 2
         '
         'CheckBox5
         '
         Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Location = New System.Drawing.Point(174, 3)
+        Me.CheckBox5.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.CheckBox5.Location = New System.Drawing.Point(174, 6)
+        Me.CheckBox5.Margin = New System.Windows.Forms.Padding(3, 6, 3, 3)
         Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(50, 19)
+        Me.CheckBox5.Size = New System.Drawing.Size(48, 17)
         Me.CheckBox5.TabIndex = 5
         Me.CheckBox5.Text = "수정"
         Me.CheckBox5.UseVisualStyleBackColor = True
@@ -407,6 +411,7 @@ Partial Class FireGraftForm
         'Button5
         '
         Me.Button5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Button5.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button5.Location = New System.Drawing.Point(0, 0)
         Me.Button5.Margin = New System.Windows.Forms.Padding(0)
         Me.Button5.Name = "Button5"
@@ -434,6 +439,7 @@ Partial Class FireGraftForm
         Me.MainTab.Controls.Add(Me.TabPage2)
         Me.MainTab.Controls.Add(Me.TabPage3)
         Me.MainTab.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MainTab.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.MainTab.Location = New System.Drawing.Point(227, 0)
         Me.MainTab.Margin = New System.Windows.Forms.Padding(0)
         Me.MainTab.Name = "MainTab"
@@ -444,10 +450,10 @@ Partial Class FireGraftForm
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.GroupBox1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(549, 509)
+        Me.TabPage1.Size = New System.Drawing.Size(549, 511)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "유닛정보"
         '
@@ -461,102 +467,121 @@ Partial Class FireGraftForm
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(6, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(535, 200)
+        Me.GroupBox1.Size = New System.Drawing.Size(295, 117)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "상태정보"
         '
         'Label4
         '
-        Me.Label4.Location = New System.Drawing.Point(7, 157)
+        Me.Label4.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label4.Location = New System.Drawing.Point(7, 87)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(100, 15)
+        Me.Label4.Size = New System.Drawing.Size(100, 22)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "DebugID"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(117, 154)
+        Me.TextBox1.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(112, 87)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 23)
+        Me.TextBox1.Size = New System.Drawing.Size(36, 22)
         Me.TextBox1.TabIndex = 6
         '
         'ComboBox3
         '
         Me.ComboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox3.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.IntegralHeight = False
         Me.ComboBox3.Items.AddRange(New Object() {"건물", "유닛", "격납유닛", "수송유닛", "수송인구유닛", "파워업유닛", "부화유닛(에그)", "합체유닛(다크아칸)", "선택불가(핵미사일,스캔)", "스캐럽, 맵리벌레", "UnusedProtossBuilding"})
-        Me.ComboBox3.Location = New System.Drawing.Point(117, 34)
+        Me.ComboBox3.Location = New System.Drawing.Point(112, 16)
         Me.ComboBox3.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(397, 23)
+        Me.ComboBox3.Size = New System.Drawing.Size(175, 21)
         Me.ComboBox3.TabIndex = 5
         '
         'ComboBox2
         '
         Me.ComboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox2.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.IntegralHeight = False
         Me.ComboBox2.Items.AddRange(New Object() {"기능1", "기능2", "기능3", "기능4", "기능5", "기능6", "기능7", "기능8", "기능9"})
-        Me.ComboBox2.Location = New System.Drawing.Point(117, 109)
+        Me.ComboBox2.Location = New System.Drawing.Point(112, 63)
         Me.ComboBox2.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(397, 23)
+        Me.ComboBox2.Size = New System.Drawing.Size(175, 21)
         Me.ComboBox2.TabIndex = 4
         '
         'ComboBox1
         '
         Me.ComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox1.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.IntegralHeight = False
         Me.ComboBox1.Items.AddRange(New Object() {"기능1", "기능2", "기능3", "기능4", "기능5", "기능6", "기능7", "기능8", "기능9"})
-        Me.ComboBox1.Location = New System.Drawing.Point(117, 79)
+        Me.ComboBox1.Location = New System.Drawing.Point(112, 40)
         Me.ComboBox1.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(397, 23)
+        Me.ComboBox1.Size = New System.Drawing.Size(175, 21)
         Me.ComboBox1.TabIndex = 3
         '
         'Label3
         '
-        Me.Label3.Location = New System.Drawing.Point(7, 112)
+        Me.Label3.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label3.Location = New System.Drawing.Point(6, 63)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(100, 15)
+        Me.Label3.Size = New System.Drawing.Size(100, 21)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "표시기능"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label2
         '
-        Me.Label2.Location = New System.Drawing.Point(7, 82)
+        Me.Label2.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label2.Location = New System.Drawing.Point(6, 40)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(100, 15)
+        Me.Label2.Size = New System.Drawing.Size(100, 21)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "상태기능"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label1
         '
-        Me.Label1.Location = New System.Drawing.Point(7, 37)
+        Me.Label1.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label1.Location = New System.Drawing.Point(6, 16)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(100, 15)
+        Me.Label1.Size = New System.Drawing.Size(100, 21)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "상태목록"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.CheckBox1)
         Me.TabPage2.Controls.Add(Me.Panel2)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(549, 509)
+        Me.TabPage2.Size = New System.Drawing.Size(549, 511)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "버튼셋"
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(6, 211)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(85, 17)
+        Me.CheckBox1.TabIndex = 6
+        Me.CheckBox1.Text = "기본값 사용"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Panel2
         '
@@ -569,7 +594,7 @@ Partial Class FireGraftForm
         Me.Panel2.Controls.Add(Me.GroupBox4)
         Me.Panel2.Controls.Add(Me.GroupBox5)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 1)
+        Me.Panel2.Location = New System.Drawing.Point(0, 3)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(549, 508)
@@ -580,7 +605,7 @@ Partial Class FireGraftForm
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.Location = New System.Drawing.Point(3, 487)
         Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(106, 19)
+        Me.CheckBox2.Size = New System.Drawing.Size(100, 17)
         Me.CheckBox2.TabIndex = 18
         Me.CheckBox2.Text = "조건 만족 여부"
         Me.CheckBox2.UseVisualStyleBackColor = True
@@ -599,10 +624,9 @@ Partial Class FireGraftForm
         '
         Me.ListBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.ItemHeight = 15
-        Me.ListBox2.Location = New System.Drawing.Point(3, 19)
+        Me.ListBox2.Location = New System.Drawing.Point(3, 18)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(131, 185)
+        Me.ListBox2.Size = New System.Drawing.Size(131, 186)
         Me.ListBox2.TabIndex = 0
         '
         'Panel3
@@ -618,7 +642,7 @@ Partial Class FireGraftForm
         '
         'PictureBox2
         '
-        Me.PictureBox2.Location = New System.Drawing.Point(49, 36)
+        Me.PictureBox2.Location = New System.Drawing.Point(189, 58)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(46, 54)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -687,24 +711,26 @@ Partial Class FireGraftForm
         Me.ComboBox7.FormattingEnabled = True
         Me.ComboBox7.IntegralHeight = False
         Me.ComboBox7.Items.AddRange(New Object() {"기능1", "기능2", "기능3", "기능4", "기능5", "기능6", "기능7", "기능8", "기능9"})
-        Me.ComboBox7.Location = New System.Drawing.Point(141, 76)
+        Me.ComboBox7.Location = New System.Drawing.Point(141, 64)
         Me.ComboBox7.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox7.Name = "ComboBox7"
-        Me.ComboBox7.Size = New System.Drawing.Size(250, 23)
+        Me.ComboBox7.Size = New System.Drawing.Size(250, 21)
         Me.ComboBox7.TabIndex = 21
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(95, 102)
+        Me.TextBox8.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox8.Location = New System.Drawing.Point(97, 87)
         Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(40, 23)
+        Me.TextBox8.Size = New System.Drawing.Size(41, 22)
         Me.TextBox8.TabIndex = 20
         '
         'TextBox9
         '
-        Me.TextBox9.Location = New System.Drawing.Point(95, 76)
+        Me.TextBox9.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox9.Location = New System.Drawing.Point(97, 64)
         Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(40, 23)
+        Me.TextBox9.Size = New System.Drawing.Size(41, 22)
         Me.TextBox9.TabIndex = 16
         '
         'ComboBox8
@@ -713,29 +739,31 @@ Partial Class FireGraftForm
         Me.ComboBox8.FormattingEnabled = True
         Me.ComboBox8.IntegralHeight = False
         Me.ComboBox8.Items.AddRange(New Object() {"기능1", "기능2", "기능3", "기능4", "기능5", "기능6", "기능7", "기능8", "기능9"})
-        Me.ComboBox8.Location = New System.Drawing.Point(141, 102)
+        Me.ComboBox8.Location = New System.Drawing.Point(141, 87)
         Me.ComboBox8.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox8.Name = "ComboBox8"
-        Me.ComboBox8.Size = New System.Drawing.Size(250, 23)
+        Me.ComboBox8.Size = New System.Drawing.Size(250, 21)
         Me.ComboBox8.TabIndex = 19
         '
         'Label9
         '
-        Me.Label9.Location = New System.Drawing.Point(6, 107)
+        Me.Label9.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label9.Location = New System.Drawing.Point(6, 87)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(83, 13)
+        Me.Label9.Size = New System.Drawing.Size(85, 22)
         Me.Label9.TabIndex = 18
         Me.Label9.Text = "액션값"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label10
         '
-        Me.Label10.Location = New System.Drawing.Point(6, 81)
+        Me.Label10.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label10.Location = New System.Drawing.Point(6, 64)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(83, 13)
+        Me.Label10.Size = New System.Drawing.Size(85, 22)
         Me.Label10.TabIndex = 17
         Me.Label10.Text = "액션"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'ComboBox6
         '
@@ -746,21 +774,23 @@ Partial Class FireGraftForm
         Me.ComboBox6.Location = New System.Drawing.Point(141, 16)
         Me.ComboBox6.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox6.Name = "ComboBox6"
-        Me.ComboBox6.Size = New System.Drawing.Size(250, 23)
+        Me.ComboBox6.Size = New System.Drawing.Size(250, 21)
         Me.ComboBox6.TabIndex = 15
         '
         'TextBox6
         '
-        Me.TextBox6.Location = New System.Drawing.Point(95, 42)
+        Me.TextBox6.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox6.Location = New System.Drawing.Point(97, 39)
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(40, 23)
+        Me.TextBox6.Size = New System.Drawing.Size(41, 22)
         Me.TextBox6.TabIndex = 14
         '
         'TextBox7
         '
-        Me.TextBox7.Location = New System.Drawing.Point(95, 16)
+        Me.TextBox7.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox7.Location = New System.Drawing.Point(97, 16)
         Me.TextBox7.Name = "TextBox7"
-        Me.TextBox7.Size = New System.Drawing.Size(40, 23)
+        Me.TextBox7.Size = New System.Drawing.Size(41, 22)
         Me.TextBox7.TabIndex = 10
         '
         'ComboBox5
@@ -769,29 +799,31 @@ Partial Class FireGraftForm
         Me.ComboBox5.FormattingEnabled = True
         Me.ComboBox5.IntegralHeight = False
         Me.ComboBox5.Items.AddRange(New Object() {"기능1", "기능2", "기능3", "기능4", "기능5", "기능6", "기능7", "기능8", "기능9"})
-        Me.ComboBox5.Location = New System.Drawing.Point(141, 42)
+        Me.ComboBox5.Location = New System.Drawing.Point(141, 39)
         Me.ComboBox5.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox5.Name = "ComboBox5"
-        Me.ComboBox5.Size = New System.Drawing.Size(250, 23)
+        Me.ComboBox5.Size = New System.Drawing.Size(250, 21)
         Me.ComboBox5.TabIndex = 13
         '
         'Label7
         '
-        Me.Label7.Location = New System.Drawing.Point(6, 47)
+        Me.Label7.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label7.Location = New System.Drawing.Point(6, 39)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(83, 13)
+        Me.Label7.Size = New System.Drawing.Size(85, 22)
         Me.Label7.TabIndex = 12
         Me.Label7.Text = "조건값"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label8
         '
-        Me.Label8.Location = New System.Drawing.Point(6, 21)
+        Me.Label8.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label8.Location = New System.Drawing.Point(6, 16)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(83, 13)
+        Me.Label8.Size = New System.Drawing.Size(85, 22)
         Me.Label8.TabIndex = 11
         Me.Label8.Text = "조건"
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'GroupBox6
         '
@@ -813,7 +845,7 @@ Partial Class FireGraftForm
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(13, 103)
+        Me.Button2.Location = New System.Drawing.Point(6, 92)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(40, 23)
         Me.Button2.TabIndex = 34
@@ -822,7 +854,7 @@ Partial Class FireGraftForm
         '
         'Button45
         '
-        Me.Button45.Location = New System.Drawing.Point(13, 43)
+        Me.Button45.Location = New System.Drawing.Point(6, 41)
         Me.Button45.Name = "Button45"
         Me.Button45.Size = New System.Drawing.Size(40, 23)
         Me.Button45.TabIndex = 33
@@ -831,9 +863,10 @@ Partial Class FireGraftForm
         '
         'TextBox11
         '
-        Me.TextBox11.Location = New System.Drawing.Point(106, 75)
+        Me.TextBox11.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox11.Location = New System.Drawing.Point(110, 67)
         Me.TextBox11.Name = "TextBox11"
-        Me.TextBox11.Size = New System.Drawing.Size(40, 23)
+        Me.TextBox11.Size = New System.Drawing.Size(41, 22)
         Me.TextBox11.TabIndex = 23
         '
         'ComboBox9
@@ -842,26 +875,28 @@ Partial Class FireGraftForm
         Me.ComboBox9.FormattingEnabled = True
         Me.ComboBox9.IntegralHeight = False
         Me.ComboBox9.Items.AddRange(New Object() {"기능1", "기능2", "기능3", "기능4", "기능5", "기능6", "기능7", "기능8", "기능9"})
-        Me.ComboBox9.Location = New System.Drawing.Point(59, 103)
+        Me.ComboBox9.Location = New System.Drawing.Point(49, 93)
         Me.ComboBox9.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox9.Name = "ComboBox9"
-        Me.ComboBox9.Size = New System.Drawing.Size(332, 23)
+        Me.ComboBox9.Size = New System.Drawing.Size(342, 21)
         Me.ComboBox9.TabIndex = 22
         '
         'Label12
         '
-        Me.Label12.Location = New System.Drawing.Point(5, 78)
+        Me.Label12.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label12.Location = New System.Drawing.Point(6, 67)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(98, 13)
+        Me.Label12.Size = New System.Drawing.Size(98, 22)
         Me.Label12.TabIndex = 21
         Me.Label12.Text = "사용불가"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TextBox10
         '
-        Me.TextBox10.Location = New System.Drawing.Point(106, 15)
+        Me.TextBox10.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox10.Location = New System.Drawing.Point(110, 16)
         Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.Size = New System.Drawing.Size(40, 23)
+        Me.TextBox10.Size = New System.Drawing.Size(41, 22)
         Me.TextBox10.TabIndex = 20
         '
         'ComboBox10
@@ -870,20 +905,21 @@ Partial Class FireGraftForm
         Me.ComboBox10.FormattingEnabled = True
         Me.ComboBox10.IntegralHeight = False
         Me.ComboBox10.Items.AddRange(New Object() {"기능1", "기능2", "기능3", "기능4", "기능5", "기능6", "기능7", "기능8", "기능9"})
-        Me.ComboBox10.Location = New System.Drawing.Point(59, 43)
+        Me.ComboBox10.Location = New System.Drawing.Point(49, 42)
         Me.ComboBox10.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox10.Name = "ComboBox10"
-        Me.ComboBox10.Size = New System.Drawing.Size(332, 23)
+        Me.ComboBox10.Size = New System.Drawing.Size(342, 21)
         Me.ComboBox10.TabIndex = 19
         '
         'Label11
         '
-        Me.Label11.Location = New System.Drawing.Point(5, 18)
+        Me.Label11.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label11.Location = New System.Drawing.Point(6, 16)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(98, 13)
+        Me.Label11.Size = New System.Drawing.Size(98, 22)
         Me.Label11.TabIndex = 18
         Me.Label11.Text = "사용가능"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'GroupBox4
         '
@@ -901,10 +937,10 @@ Partial Class FireGraftForm
         Me.FlowLayoutPanel2.Controls.Add(Me.TextBox4)
         Me.FlowLayoutPanel2.Controls.Add(Me.Button1)
         Me.FlowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(3, 19)
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(3, 18)
         Me.FlowLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(293, 70)
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(293, 71)
         Me.FlowLayoutPanel2.TabIndex = 2
         '
         'TextBox4
@@ -946,25 +982,27 @@ Partial Class FireGraftForm
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.SystemColors.WindowText
-        Me.PictureBox1.Location = New System.Drawing.Point(101, 22)
+        Me.PictureBox1.Location = New System.Drawing.Point(144, 21)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(35, 35)
+        Me.PictureBox1.Size = New System.Drawing.Size(36, 34)
         Me.PictureBox1.TabIndex = 14
         Me.PictureBox1.TabStop = False
         Me.PictureBox1.Tag = "Icon"
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(55, 42)
+        Me.TextBox5.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox5.Location = New System.Drawing.Point(97, 39)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(40, 23)
+        Me.TextBox5.Size = New System.Drawing.Size(41, 22)
         Me.TextBox5.TabIndex = 9
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(55, 16)
+        Me.TextBox3.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.TextBox3.Location = New System.Drawing.Point(97, 16)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(40, 23)
+        Me.TextBox3.Size = New System.Drawing.Size(41, 22)
         Me.TextBox3.TabIndex = 0
         '
         'ComboBox4
@@ -972,51 +1010,43 @@ Partial Class FireGraftForm
         Me.ComboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBox4.FormattingEnabled = True
         Me.ComboBox4.IntegralHeight = False
-        Me.ComboBox4.ItemHeight = 15
+        Me.ComboBox4.ItemHeight = 13
         Me.ComboBox4.Items.AddRange(New Object() {"기능1", "기능2", "기능3", "기능4", "기능5", "기능6", "기능7", "기능8", "기능9"})
-        Me.ComboBox4.Location = New System.Drawing.Point(142, 28)
+        Me.ComboBox4.Location = New System.Drawing.Point(186, 28)
         Me.ComboBox4.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(249, 23)
+        Me.ComboBox4.Size = New System.Drawing.Size(205, 21)
         Me.ComboBox4.TabIndex = 8
         '
         'Label5
         '
-        Me.Label5.Location = New System.Drawing.Point(6, 45)
+        Me.Label5.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label5.Location = New System.Drawing.Point(6, 39)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(50, 13)
+        Me.Label5.Size = New System.Drawing.Size(85, 22)
         Me.Label5.TabIndex = 6
         Me.Label5.Text = "아이콘"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.TopRight
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label6
         '
-        Me.Label6.Location = New System.Drawing.Point(6, 19)
+        Me.Label6.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label6.Location = New System.Drawing.Point(6, 16)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(50, 13)
+        Me.Label6.Size = New System.Drawing.Size(85, 22)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "위치"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 211)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(90, 19)
-        Me.CheckBox1.TabIndex = 6
-        Me.CheckBox1.Text = "기본값 사용"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.GroupBox11)
         Me.TabPage3.Controls.Add(Me.GroupBox10)
         Me.TabPage3.Controls.Add(Me.TabControl2)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 24)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(549, 509)
+        Me.TabPage3.Size = New System.Drawing.Size(549, 511)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "요구사항"
         '
@@ -1028,54 +1058,56 @@ Partial Class FireGraftForm
         Me.GroupBox11.Controls.Add(Me.Label13)
         Me.GroupBox11.Location = New System.Drawing.Point(6, 29)
         Me.GroupBox11.Name = "GroupBox11"
-        Me.GroupBox11.Size = New System.Drawing.Size(501, 43)
+        Me.GroupBox11.Size = New System.Drawing.Size(471, 43)
         Me.GroupBox11.TabIndex = 6
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Text = "전체 용량 관리"
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(307, 13)
+        Me.Button10.Location = New System.Drawing.Point(259, 13)
         Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(91, 25)
+        Me.Button10.Size = New System.Drawing.Size(100, 25)
         Me.Button10.TabIndex = 3
         Me.Button10.Text = "무조건허용"
         Me.Button10.UseVisualStyleBackColor = True
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(404, 13)
+        Me.Button9.Location = New System.Drawing.Point(365, 13)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(91, 25)
+        Me.Button9.Size = New System.Drawing.Size(100, 25)
         Me.Button9.TabIndex = 2
         Me.Button9.Text = "사용안함"
         Me.Button9.UseVisualStyleBackColor = True
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(210, 13)
+        Me.Button8.Location = New System.Drawing.Point(153, 13)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(91, 25)
+        Me.Button8.Size = New System.Drawing.Size(100, 25)
         Me.Button8.TabIndex = 1
         Me.Button8.Text = "기본값"
         Me.Button8.UseVisualStyleBackColor = True
         '
         'Label13
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(7, 19)
+        Me.Label13.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label13.Location = New System.Drawing.Point(3, 18)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(94, 15)
+        Me.Label13.Padding = New System.Windows.Forms.Padding(3, 0, 0, 6)
+        Me.Label13.Size = New System.Drawing.Size(140, 22)
         Me.Label13.TabIndex = 0
         Me.Label13.Text = "용량 : 전체 용량"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'GroupBox10
         '
         Me.GroupBox10.Controls.Add(Me.FlowLayoutPanel4)
         Me.GroupBox10.Controls.Add(Me.GroupBox8)
-        Me.GroupBox10.Location = New System.Drawing.Point(7, 73)
+        Me.GroupBox10.Location = New System.Drawing.Point(6, 73)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(499, 423)
+        Me.GroupBox10.Size = New System.Drawing.Size(471, 423)
         Me.GroupBox10.TabIndex = 5
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "정보"
@@ -1087,7 +1119,7 @@ Partial Class FireGraftForm
         Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton2)
         Me.FlowLayoutPanel4.Controls.Add(Me.RadioButton4)
         Me.FlowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(274, 24)
+        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(274, 21)
         Me.FlowLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel4.Name = "FlowLayoutPanel4"
         Me.FlowLayoutPanel4.Size = New System.Drawing.Size(177, 103)
@@ -1098,40 +1130,40 @@ Partial Class FireGraftForm
         Me.RadioButton1.AutoSize = True
         Me.RadioButton1.Location = New System.Drawing.Point(3, 3)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(89, 19)
+        Me.RadioButton1.Size = New System.Drawing.Size(84, 17)
         Me.RadioButton1.TabIndex = 8
         Me.RadioButton1.TabStop = True
         Me.RadioButton1.Text = "기본값 사용"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(3, 53)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(73, 19)
-        Me.RadioButton2.TabIndex = 9
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "사용안함"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
         'RadioButton3
         '
         Me.RadioButton3.AutoSize = True
-        Me.RadioButton3.Location = New System.Drawing.Point(3, 28)
+        Me.RadioButton3.Location = New System.Drawing.Point(3, 26)
         Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.Size = New System.Drawing.Size(85, 19)
+        Me.RadioButton3.Size = New System.Drawing.Size(80, 17)
         Me.RadioButton3.TabIndex = 10
         Me.RadioButton3.TabStop = True
         Me.RadioButton3.Text = "무조건허용"
         Me.RadioButton3.UseVisualStyleBackColor = True
         '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(3, 49)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(69, 17)
+        Me.RadioButton2.TabIndex = 9
+        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.Text = "사용안함"
+        Me.RadioButton2.UseVisualStyleBackColor = True
+        '
         'RadioButton4
         '
         Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Location = New System.Drawing.Point(3, 78)
+        Me.RadioButton4.Location = New System.Drawing.Point(3, 72)
         Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.Size = New System.Drawing.Size(89, 19)
+        Me.RadioButton4.Size = New System.Drawing.Size(84, 17)
         Me.RadioButton4.TabIndex = 11
         Me.RadioButton4.TabStop = True
         Me.RadioButton4.Text = "사용자 정의"
@@ -1144,7 +1176,7 @@ Partial Class FireGraftForm
         Me.GroupBox8.Controls.Add(Me.ComboBox11)
         Me.GroupBox8.Controls.Add(Me.Label15)
         Me.GroupBox8.Controls.Add(Me.Label14)
-        Me.GroupBox8.Location = New System.Drawing.Point(9, 19)
+        Me.GroupBox8.Location = New System.Drawing.Point(9, 16)
         Me.GroupBox8.Name = "GroupBox8"
         Me.GroupBox8.Size = New System.Drawing.Size(262, 395)
         Me.GroupBox8.TabIndex = 1
@@ -1157,10 +1189,10 @@ Partial Class FireGraftForm
         Me.ComboBox12.FormattingEnabled = True
         Me.ComboBox12.IntegralHeight = False
         Me.ComboBox12.Items.AddRange(New Object() {"Or", "Current unit is...", "Must have... ", "Must have add-on", "Is not lifted off", "Is lifted off", "Is not training or morphing", "Is not constructing add-on", "Is not researching", "Is not upgrading", "Is not constructing", "Does not have add-on attached", "Does not have exit", "Has hangar space", "Must be researched", "Does not have loaded nuke", "Is not burrowed", "Can attack", "Can set rally point", "Can move", "Has weapon", "Is worker", "Is flying building", "Is transport", "Is powerup", "Is Subunit", "Has spidermines", "Is hero and enabled", "Can hold position", "Allow on hallucinations", "Upgrade Lv-1 Require...", "Upgrade Lv-2 Require...", "Upgrade Lv-3+ Require...", "Grey", "Blank", "Must be Brood War", "Is researched...", "Is burrowed", "(Must have... )", "==End of Sublist=="})
-        Me.ComboBox12.Location = New System.Drawing.Point(63, 45)
+        Me.ComboBox12.Location = New System.Drawing.Point(60, 39)
         Me.ComboBox12.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox12.Name = "ComboBox12"
-        Me.ComboBox12.Size = New System.Drawing.Size(196, 23)
+        Me.ComboBox12.Size = New System.Drawing.Size(196, 21)
         Me.ComboBox12.TabIndex = 10
         '
         'TableLayoutPanel4
@@ -1170,23 +1202,22 @@ Partial Class FireGraftForm
         Me.TableLayoutPanel4.Controls.Add(Me.ReqList, 0, 0)
         Me.TableLayoutPanel4.Controls.Add(Me.FlowLayoutPanel3, 0, 1)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 74)
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 66)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 2
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(256, 318)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(256, 326)
         Me.TableLayoutPanel4.TabIndex = 1
         '
         'ReqList
         '
         Me.ReqList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ReqList.FormattingEnabled = True
-        Me.ReqList.ItemHeight = 15
         Me.ReqList.Location = New System.Drawing.Point(0, 0)
         Me.ReqList.Margin = New System.Windows.Forms.Padding(0)
         Me.ReqList.Name = "ReqList"
-        Me.ReqList.Size = New System.Drawing.Size(256, 266)
+        Me.ReqList.Size = New System.Drawing.Size(256, 274)
         Me.ReqList.TabIndex = 0
         '
         'FlowLayoutPanel3
@@ -1196,7 +1227,7 @@ Partial Class FireGraftForm
         Me.FlowLayoutPanel3.Controls.Add(Me.Button6)
         Me.FlowLayoutPanel3.Controls.Add(Me.Button7)
         Me.FlowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(0, 266)
+        Me.FlowLayoutPanel3.Location = New System.Drawing.Point(0, 274)
         Me.FlowLayoutPanel3.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel3.Name = "FlowLayoutPanel3"
         Me.FlowLayoutPanel3.Size = New System.Drawing.Size(256, 52)
@@ -1260,29 +1291,29 @@ Partial Class FireGraftForm
         Me.ComboBox11.FormattingEnabled = True
         Me.ComboBox11.IntegralHeight = False
         Me.ComboBox11.Items.AddRange(New Object() {"Or", "Current unit is...", "Must have... ", "Must have add-on", "Is not lifted off", "Is lifted off", "Is not training or morphing", "Is not constructing add-on", "Is not researching", "Is not upgrading", "Is not constructing", "Does not have add-on attached", "Does not have exit", "Has hangar space", "Must be researched", "Does not have loaded nuke", "Is not burrowed", "Can attack", "Can set rally point", "Can move", "Has weapon", "Is worker", "Is flying building", "Is transport", "Is powerup", "Is Subunit", "Has spidermines", "Is hero and enabled", "Can hold position", "Allow on hallucinations", "Upgrade Lv-1 Require...", "Upgrade Lv-2 Require...", "Upgrade Lv-3+ Require...", "Grey", "Blank", "Must be Brood War", "Is researched...", "Is burrowed", "(Must have... )", "==End of Sublist=="})
-        Me.ComboBox11.Location = New System.Drawing.Point(63, 16)
+        Me.ComboBox11.Location = New System.Drawing.Point(60, 16)
         Me.ComboBox11.MatchingMethod = SergeUtils.StringMatchingMethod.UseWildcards
         Me.ComboBox11.Name = "ComboBox11"
-        Me.ComboBox11.Size = New System.Drawing.Size(196, 23)
+        Me.ComboBox11.Size = New System.Drawing.Size(196, 21)
         Me.ComboBox11.TabIndex = 7
         '
         'Label15
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(20, 48)
+        Me.Label15.Location = New System.Drawing.Point(6, 39)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(37, 15)
+        Me.Label15.Size = New System.Drawing.Size(50, 21)
         Me.Label15.TabIndex = 9
         Me.Label15.Text = "Value"
+        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label14
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(8, 19)
+        Me.Label14.Location = New System.Drawing.Point(6, 16)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(49, 15)
+        Me.Label14.Size = New System.Drawing.Size(50, 21)
         Me.Label14.TabIndex = 6
         Me.Label14.Text = "Opcode"
+        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TabControl2
         '
@@ -1302,7 +1333,7 @@ Partial Class FireGraftForm
         '
         'TabPage4
         '
-        Me.TabPage4.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 25)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage4.Size = New System.Drawing.Size(535, 0)
@@ -1312,7 +1343,7 @@ Partial Class FireGraftForm
         '
         'TabPage5
         '
-        Me.TabPage5.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage5.Location = New System.Drawing.Point(4, 25)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage5.Size = New System.Drawing.Size(535, 0)
@@ -1322,7 +1353,7 @@ Partial Class FireGraftForm
         '
         'TabPage6
         '
-        Me.TabPage6.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage6.Location = New System.Drawing.Point(4, 25)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage6.Size = New System.Drawing.Size(535, 0)
@@ -1533,12 +1564,10 @@ Partial Class FireGraftForm
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox11.ResumeLayout(False)
-        Me.GroupBox11.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
         Me.FlowLayoutPanel4.ResumeLayout(False)
         Me.FlowLayoutPanel4.PerformLayout()
         Me.GroupBox8.ResumeLayout(False)
-        Me.GroupBox8.PerformLayout()
         Me.TableLayoutPanel4.ResumeLayout(False)
         Me.FlowLayoutPanel3.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
