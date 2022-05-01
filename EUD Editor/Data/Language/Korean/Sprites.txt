@@ -314,7 +314,7 @@ Vespene Geyser Smoke2
 Vespene Geyser Smoke3
 Vespene Geyser Smoke4
 Vespene Geyser Smoke5
-Unknown316
+Small Explosion (Unused)
 Double Explosion
 Cursor Marker
 Egg Spawn
@@ -342,7 +342,7 @@ Fusion Cutter Hit
 Gauss Rifle Hit
 Gemini Missiles
 Fragmentation Grenade
-Unknown344
+Magna Pulse (Unused)
 Lockdown/LongBolt/Hellfire Missile
 C-10 Canister Rifle Hit
 ATS/ATA Laser Battery
@@ -352,7 +352,7 @@ Yamato Gun
 Yamato Gun Trail
 EMP Shockwave Missile
 Needle Spine Hit
-Unknown354
+Plasma Drip Hit (Unused)
 Sunken Colony Tentacle
 Venom (Unused Zerg Weapon)
 Acid Spore
@@ -370,7 +370,7 @@ Seeker Spores Overlay
 Phase Disruptor (Unused)
 White Circle
 Acid Spray (Unused)
-Unknown372
+Plasma Drip (Unused)
 Scarab/Anti-Matter Missile Overlay
 Hallucination Death1
 Hallucination Death2
@@ -505,10 +505,10 @@ Disruption Web
 White Circle
 Halo Rockets Trail
 Neutron Flare
-Corsair Attack Overlay (Unused)
+Neutron Flare Overlay (Unused)
 Optical Flare Grenade
 Halo Rockets
-Unknown510
+Subterranean Spines Hit
 Subterranean Spines
 Corrosive Acid Shot
 Corrosive Acid Hit

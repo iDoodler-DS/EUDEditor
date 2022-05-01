@@ -358,7 +358,7 @@ Terran Beacon
 Terran Beacon Overlay
 Protoss Beacon
 Protoss Beacon Overlay
-Unknown360
+Magna Pulse (Unused)
 Lockdown Field (Small)
 Lockdown Field (Medium)
 Lockdown Field (Large)
@@ -418,12 +418,12 @@ Young Chrysalis Shadow (Carried)
 Psi Emitter Shadow (Ground)
 Psi Emitter Shadow (Carried)
 Acid Spray (Unused)
-Unknown420
+Plasma Drip (Unused)
 FlameThrower
 Longbolt/Gemini Missiles Trail
 Burrowing Dust
 Shield Overlay
-Unknown425
+Small Explosion (Unused)
 Double Explosion
 Phase Disruptor Hit
 Nuclear Missile Death
@@ -433,11 +433,11 @@ Vespene Geyser Smoke2
 Vespene Geyser Smoke3
 Vespene Geyser Smoke4
 Vespene Geyser Smoke5
-Unknown435
-Unknown436
-Unknown437
-Unknown438
-Unknown439
+Vespene Geyser Smoke1 Overlay
+Vespene Geyser Smoke2 Overlay
+Vespene Geyser Smoke3 Overlay
+Vespene Geyser Smoke4 Overlay
+Vespene Geyser Smoke5 Overlay
 Fragmentation Grenade Hit
 Grenade Shot Smoke
 Anti-Matter Missile Hit
@@ -446,7 +446,7 @@ Scarab Hit
 Cursor Marker
 Battlecruiser Attack Overlay
 Burst Lasers Hit
-Unknown448
+Burst Lasers Overlay (Unused)
 High Templar Glow
 Flames1 Type1 (Small)
 Flames1 Type2 (Small)
@@ -503,7 +503,7 @@ Building Lifting Dust Type3
 Building Lifting Dust Type4
 White Circle
 Needle Spine Hit
-Unknown505
+Plasma Drip Hit (Unused)
 Sunken Colony Tentacle
 Venom (Unused Zerg Weapon)
 Venom Hit (Unused)
@@ -545,7 +545,7 @@ Yamato Gun Overlay
 Yamato Gun Hit
 Hallucination Hit
 Scanner Sweep Hit
-Unknown547
+Archon Birth (Unused)
 Psionic Shockwave Hit
 Archon Beam
 Psionic Storm Part1
@@ -930,7 +930,7 @@ Dark Archon Death
 Corsair
 Corsair Shadow
 Corsair Engines
-Corsair Attack Overlay (Unused)
+Neutron Flare Overlay (Unused)
 Dark Templar (Unit)
 Warp Gate
 Warp Gate Shadow
@@ -960,7 +960,7 @@ Uraj
 Khalis
 Halo Rockets Trail
 Subterranean Spines
-Coroosive Acid Shot
+Corrosive Acid Shot
 Corrosive Acid Hit
 Neutron Flare
 Halo Rockets
@@ -968,9 +968,9 @@ Optical Flare Grenade
 Restoration Hit (Small)
 Restoration Hit (Medium)
 Restoration Hit (Large)
-Heal (Small)
-Heal (medium)
-Heal (Large)
+Unused Heal (Small)
+Unused Heal (Medium)
+Unused Heal (Large)
 Mind Control Hit (Small)
 Mind Control Hit (Medium)
 Mind Control Hit (Large)
@@ -983,7 +983,7 @@ Feedback Hit (Large)
 Maelstorm Overlay (Small)
 Maelstorm Overlay (Medium)
 Maelstorm Overlay (Large)
-Unknown985
+Subterranean Spines Hit
 Acid Spores (1) Overlay (Small)
 Acid Spores (2-3) Overlay (Small)
 Acid Spores (4-5) Overlay (Small)
