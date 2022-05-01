@@ -793,11 +793,12 @@ Public Class DatEditForm
             temp = CODE(listNum)(i)
             If temp <> "None" Then
                 If listNum = DTYPE.units Then
-                    If DatEditDATA(DTYPE.units).ReadValue("Unit Map String", index) = 0 Then
+                    Dim unitMapStringIndex = DatEditDATA(DTYPE.units).ReadValue("Unit Map String", index)
+                    If unitMapStringIndex = 0 Then
                         temp2(0) = temp
                     Else
                         Try
-                            temp2(0) = ProjectSet.CHKSTRING(-1 + DatEditDATA(DTYPE.units).ReadValue("Unit Map String", i)) & " (" & temp & ")" 'ProjectSet.UNITSTR(index)
+                            temp2(0) = ProjectSet.CHKSTRING(-1 + unitMapStringIndex) & " (" & temp & ")" 'ProjectSet.UNITSTR(index)
                         Catch ex As Exception
                             temp2(0) = Stringisnot 'ProjectSet.UNITSTR(index)
                         End Try

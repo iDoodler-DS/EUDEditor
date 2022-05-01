@@ -1623,9 +1623,9 @@ Module ProgramData
 
 
         Public Function ReadValue(key As String, index As UInteger)
-
-            Return data(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart) + projectdata(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart) + mapdata(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart)
-
+            Dim keyDicValue = keyDic.Item(key)
+            Dim lookupIndex = index - keyINFO(keyDicValue).VarStart
+            Return data(keyDicValue)(lookupIndex) + projectdata(keyDicValue)(lookupIndex) + mapdata(keyDicValue)(lookupIndex)
         End Function
         Public Function ReadValueNum(key As Integer, index As UInteger)
             Return data(key)(index - keyINFO(key).VarStart) + projectdata(key)(index - keyINFO(key).VarStart) + mapdata(key)(index - keyINFO(key).VarStart)
