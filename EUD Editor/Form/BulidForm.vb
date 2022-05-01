@@ -15,8 +15,8 @@
     Public Sub CompileStart(basefolder As String)
         base = basefolder
         Errormsg = ""
-        RichTextBox1.Text = ""
-        RichTextBox2.Text = Lan.GetMsgText("build")
+
+        RichTextBox1.Text = Lan.GetMsgText("build") & vbCrLf
 
         Dim filename As String = basefolder & "\eudplibdata\EUDEditor.eds"
 
@@ -66,7 +66,6 @@
             RichTextBox1.Text = RichTextBox1.Text & process.StandardOutput.ReadToEnd()
             If process.HasExited Then
                 If InStr(Errormsg, "zipimport.ZipImportError: can't decompress data; zlib not available") <> 0 Then
-                    'RichTextBox2.Text = "재시도 합니다."
                     'Me.Text = count & "번째 재시도 합니다"
                     CompileStart(base)
                 ElseIf Errormsg <> "" Or InStr(RichTextBox1.Text, "[Error]") <> 0 Then
@@ -77,9 +76,15 @@
                     TEErrorText = Errormsg
                     TEErrorText2 = RichTextBox1.Text
 
-                    RichTextBox2.Text = Lan.GetMsgText("buildError") & vbCrLf & Errormsg
+                    Dim originalString = RichTextBox1.Text
+
+                    Dim errorString = vbCrLf & vbCrLf & Lan.GetMsgText("buildError") & vbCrLf & vbCrLf & Errormsg
+
+                    RichTextBox1.Text = RichTextBox1.Text & errorString
+                    RichTextBox1.Select(originalString.Length, errorString.Length)
+                    RichTextBox1.SelectionColor = Color.LightSalmon
+                    RichTextBox1.DeselectAll()
                     Me.Activate()
-                    MsgBox(RichTextBox2.Text, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                     count = 0
                     Exit Sub
                 Else
@@ -92,7 +97,7 @@
                     count = 0
                     Exit Sub
                 End If
-                End If
+            End If
             'Me.Text = count & "번째 시도 완료"
         End While
     End Sub

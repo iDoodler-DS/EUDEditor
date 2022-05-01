@@ -1,0 +1,589 @@
+﻿[
+  {
+    "Name": "Accumulate",
+    "Texts": [
+    "Korean","$Player$이 $ResourceType$를 $Number$ $Comparison$ 보유 했을 경우",
+    "English","$Player$ accumulates $Comparison$ $Number$ $ResourceType$"
+  ],
+    "CodeText": "Accumulate($Player$, $Comparison$, $Number$, $ResourceType$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Comparison",
+      "Number",
+      "ResourceType"
+    ]
+  },
+  {
+    "Name": "Always",
+    "Texts": [
+    "Korean","항상 액션을 실행합니다.",
+    "English","Always"
+  ],
+    "CodeText": "Always()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "Bring",
+    "Texts": [
+    "Korean","$Player$가 $Unit$을 $Location$에서 $Number$ $Comparison$ 보유 했을 경우",
+    "English","$Player$ brings $Comparison$ $Number$ $Unit$ to '$Location$'."
+  ],
+    "CodeText": "Bring($Player$, $Comparison$, $Number$, $Unit$, $Location$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Comparison",
+      "Number",
+      "Unit",
+      "Location"
+    ]
+  },
+  {
+    "Name": "Command",
+    "Texts": [
+    "Korean","$Player$가 $Unit$을 $Number$ $Comparison$ 보유 했을 경우",
+    "English","$Player$ commands $Comparison$ $Number$ $Unit$."
+  ],
+    "CodeText": "Command($Player$, $Comparison$, $Number$, $Unit$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Comparison",
+      "Number",
+      "Unit"
+    ]
+  },
+  {
+    "Name": "CommandLeast",
+    "Texts": [
+    "Korean","해당 플레이어가 $Unit$을 가장 적게 보유 했을 경우",
+    "English","Current Player commands the least $Unit$."
+  ],
+    "CodeText": "CommandLeast($Unit$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit"
+    ]
+  },
+  {
+    "Name": "CommandLeastAt",
+    "Texts": [
+    "Korean","해당 플레이어가 $Location$에서 $Unit$을 가장 적게 보유 했을 경우",
+    "English","Current Player commands the least $Unit$ at $Location$."
+  ],
+    "CodeText": "CommandLeastAt($Unit$, $Location$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Location"
+    ]
+  },
+  {
+    "Name": "CommandMost",
+    "Texts": [
+    "Korean","해당 플레이어가 $Unit$을 가장 많이 보유 했을 경우",
+    "English","Current Player commands the most $Unit$."
+  ],
+    "CodeText": "CommandMost($Unit$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit"
+    ]
+  },
+  {
+    "Name": "CommandMostAt",
+    "Texts": [
+    "Korean","해당 플레이어가 $Location$에서 $Unit$을 가장 많이 보유 했을 경우",
+    "English","Current Player commands the most $Unit$ at $Location$."
+  ],
+    "CodeText": "CommandMostAt($Unit$, $Location$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Location"
+    ]
+  },
+  {
+    "Name": "CountdownTimer",
+    "Texts": [
+    "Korean","카운트 타이머가 $Time$보다 $Comparison$할 경우",
+    "English","Countdown Timer is $Comparison$ $Time$ game seconds."
+  ],
+    "CodeText": "CountdownTimer($Comparison$, $Time$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Comparison",
+      "Time"
+    ]
+  },
+  {
+    "Name": "Deaths",
+    "Texts": [
+    "Korean","$Player$이 $Unit$를 $Number$ $Comparison$ 죽었을 경우",
+    "English","$Player$ has suffered $Comparison$ $Number$ deaths of $Unit$."
+  ],
+    "CodeText": "Deaths($Player$, $Comparison$, $Number$, $Unit$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Comparison",
+      "Number",
+      "Unit"
+    ]
+  },
+  {
+    "Name": "ElapsedTime",
+    "Texts": [
+    "Korean","게임 시간이 $Time$ $Comparison$일 경우",
+    "English","Elapsed scenario time is $Comparison$ $Time$ game seconds."
+  ],
+    "CodeText": "ElapsedTime($Comparison$, $Time$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Comparison",
+      "Time"
+    ]
+  },
+  {
+    "Name": "HighestScore",
+    "Texts": [
+    "Korean","해당 플레이어가 $ScoreType$을 가장 많이 획득 했을 경우",
+    "English","Current player has highest score $ScoreType$."
+  ],
+    "CodeText": "HighestScore($ScoreType$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "ScoreType"
+    ]
+  },
+  {
+    "Name": "Kills",
+    "Texts": [
+    "Korean","$Player$이 $Unit$를 $Number$ $Comparison$ 잡았을 경우",
+    "English","$Player$ kills $Comparison$ $Number$ $Unit$."
+  ],
+    "CodeText": "Kills($Player$, $Comparison$, $Number$, $Unit$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Comparison",
+      "Number",
+      "Unit"
+    ]
+  },
+  {
+    "Name": "LeastKills",
+    "Texts": [
+    "Korean","해당 플레이어가 $Unit$을 가장 적게 잡았을 경우",
+    "English","Current Player has least kills of $Unit$."
+  ],
+    "CodeText": "LeastKills($Unit$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit"
+    ]
+  },
+  {
+    "Name": "LeastResources",
+    "Texts": [
+    "Korean","해당 플레이어가 $ResourceType$을 가장 적게 채취 했을 경우",
+    "English","Current Player has least $ResourceType$."
+  ],
+    "CodeText": "LeastResources($ResourceType$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "ResourceType"
+    ]
+  },
+  {
+    "Name": "LowestScore",
+    "Texts": [
+    "Korean","해당 플레이어가 $ScoreType$을 가장 적게 획득 했을 경우",
+    "English","Current player has lowest score $ScoreType$."
+  ],
+    "CodeText": "LowestScore($ScoreType$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "ScoreType"
+    ]
+  },
+  {
+    "Name": "MostKills",
+    "Texts": [
+    "Korean","해당 플레이어가 $Unit$을 가장 많이 잡았을 경우",
+    "English","Current Player has most kills of $Unit$."
+  ],
+    "CodeText": "MostKills($Unit$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit"
+    ]
+  },
+  {
+    "Name": "MostResources",
+    "Texts": [
+    "Korean","해당 플레이어가 $ResourceType$을 가장 많이 채취 했을 경우",
+    "English","Current Player has most $ResourceType$."
+  ],
+    "CodeText": "MostResources($ResourceType$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "ResourceType"
+    ]
+  },
+  {
+    "Name": "Never",
+    "Texts": [
+    "Korean","절대로 액션을 실행하지 않습니다.",
+    "English","Never"
+  ],
+    "CodeText": "Never()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "Opponents",
+    "Texts": [
+    "Korean","$Player$의 적대자가 $Number$ $Comparison$일 경우",
+    "English","$Player$ has $Comparison$ $Number$ opponents remaining in the game."
+  ],
+    "CodeText": "Opponents($Player$, $Comparison$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Comparison",
+      "Number"
+    ]
+  },
+  {
+    "Name": "Score",
+    "Texts": [
+    "Korean","$Player$이 $ScoreType$을 $Number$ $Comparison$ 획득했을 경우",
+    "English","$Player$ $ScoreType$ score is $Comparison$ $Number$."
+  ],
+    "CodeText": "Score($Player$, $ScoreType$, $Comparison$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "ScoreType",
+      "Comparison",
+      "Number"
+    ]
+  },
+  {
+    "Name": "Switch",
+    "Texts": [
+    "Korean","스위치 $Switch$가 $CState$일 경우",
+    "English","'$Switch$' is $CState$."
+  ],
+    "CodeText": "Switch($Switch$, $CState$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Switch",
+      "CState"
+    ]
+  },
+  {
+    "Name": "Briefing",
+    "Texts": [
+    "Korean","브리핑(Unused)",
+    "English","Briefing (Unused)"
+  ],
+    "CodeText": "Briefing()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "EUDPart",
+    "Texts": [
+    "Korean","EUDPart",
+    "English","EUDPart"
+  ],
+    "CodeText": "EUDPart",
+    "ToolTip": "EUDPart",
+    "ValuesDef": [
+      "EUDPart"
+    ]
+  },
+  {
+    "Name": "Memory",
+    "Texts": [
+    "Korean","메모리 주소 $Offset$의 값이 $Number$ $Comparison$경우",
+    "English","Memory at $Offset$ is $Comparison$ $Number$."
+  ],
+    "CodeText": "Memory($Offset$, $Comparison$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Offset",
+      "Number",
+      "Comparison"
+    ]
+  },
+  {
+    "Name": "MemoryEPD",
+    "Texts": [
+    "Korean","메모리 주소 EPD $Offset$의 값이 $Number$ $Comparison$경우",
+    "English","Memory at Death Table (+-)$Offset$ is $Comparison$ $Number$."
+  ],
+    "CodeText": "MemoryEPD($Offset$, $Comparison$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Offset",
+      "Number",
+      "Comparison"
+    ]
+  },
+  {
+    "Name": "LocalCurrentPlayer",
+    "Texts": [
+    "Korean","비공유 플레이어가 $PlayerX$일 경우",
+    "English","Current Player is $PlayerX$ (will desync)."
+  ],
+    "CodeText": "Memory(0x57F1B0, Exactly, $PlayerX$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX"
+    ]
+  },
+  {
+    "Name": "ScoreEUD",
+    "Texts": [
+    "Korean","$PlayerX$이 $ScoreOffset$을 $Number$ $Comparison$ 획득했을 경우",
+    "English","$PlayerX$ $ScoreOffset$ score is $Comparison$ $Number$."
+  ],
+    "CodeText": "MemoryEPD(EPD($ScoreOffset$) + $PlayerX$, $Comparison$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "ScoreOffset",
+      "Number",
+      "Comparison"
+    ]
+  },
+  {
+    "Name": "Supply",
+    "Texts": [
+    "Korean","$PlayerX$의 $Races$의 $SupplyType$이 $Amount$ $Comparison$ 일 경우.",
+    "English","$PlayerX$ $Races$ $SupplyType$ is $Comparison$ $Amount$."
+  ],
+    "CodeText": "MemoryEPD(EPD(0x582144) + $Races$ * 36 + $SupplyType$ * 12 + $PlayerX$, $Comparison$, $Amount$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "Races",
+      "SupplyType",
+      "Amount",
+      "Comparison"
+    ]
+  },
+  {
+    "Name": "Upgrade",
+    "Texts": [
+    "Korean","$PlayerX$의 $Upgrade$의 $UTType$를 $Count$ $VariableComparison$ 경우",
+    "English","$PlayerX$ $Upgrade$ $UTType$ is $VariableComparison$ $Count$."
+  ],
+    "CodeText": "bread($Offset$ + $PlayerX$ * (46 - 31 * ($Upgrade$ / 46)) + ($Upgrade$ % 46)) $VariableComparison$ $Count$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "Upgrade",
+      "UTType",
+      "Count",
+      "VariableComparison"
+    ]
+  },
+  {
+    "Name": "Tech",
+    "Texts": [
+    "Korean","$PlayerX$의 $Techdata$의 $UTType$를 $Count$ $VariableComparison$ 경우",
+    "English","$PlayerX$ $Techdata$ $UTType$ is $VariableComparison$ $Count$."
+  ],
+    "CodeText": "bread($Offset$ + $PlayerX$ * (24 - 4 * ($Techdata$ / 24)) + ($Techdata$ % 24)) $VariableComparison$ $Count$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "Techdata",
+      "UTType",
+      "Count",
+      "VariableComparison"
+    ]
+  },
+  {
+    "Name": "Variable",
+    "Texts": [
+    "Korean","변수 $Variable$가 $Count$ $VariableComparison$ 경우",
+    "English","$Variable$ is $VariableComparison$ $Count$."
+  ],
+    "CodeText": "$Variable$ $VariableComparison$ $Count$",
+    "ToolTip": "변수를 판단합니다.",
+    "ValuesDef": [
+      "Variable",
+      "Count",
+      "VariableComparison"
+    ]
+  },
+  {
+    "Name": "KeyDetect",
+    "Texts": [
+    "Korean","$KeyCode$키를 누른 경우",
+    "English","$KeyCode$ key is pressed (will desync)."
+  ],
+    "CodeText": "MemoryX(0x596A18 + $KeyCode$, AtLeast, 1, 1 << (8 * ($KeyCode$ % 4)))",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "KeyCode"
+    ]
+  },
+  {
+    "Name": "Datfile",
+    "Texts": [
+    "Korean","$DatFile$ $Object$의 $OffsetName$가 $Count$ $VariableComparison$ 경우",
+    "English","$DatFile$ $Object$ $OffsetName$ is $VariableComparison$ $Count$."
+  ],
+    "CodeText": "$writedef$read($DatFile$ + $OffsetName$ + $Object$ * &SIZE&) $VariableComparison$ $Count$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "DatFile",
+      "OffsetName",
+      "Object",
+      "VariableComparison",
+      "Count"
+    ]
+  },
+  {
+    "Name": "STRUCTPart",
+    "Texts": [
+    "Korean","STRUCTPart",
+    "English","STRUCTPart"
+  ],
+    "CodeText": "STRUCTPart",
+    "ToolTip": "STRUCTPart",
+    "ValuesDef": [
+      "STRUCTPart"
+    ]
+  },
+  {
+    "Name": "CUnitData",
+    "Texts": [
+    "Korean","구조오프셋Ptr $UnitPTR$의 $StructOffset$가 $SValue$ $VariableComparison$ 경우",
+    "English","CUnitPTR $UnitPTR$ $StructOffset$ is $VariableComparison$ $SValue$."
+  ],
+    "CodeText": "$writedef$read($UnitPTR$ + $StructOffset$) $VariableComparison$ $SValue$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitPTR",
+      "StructOffset",
+      "VariableComparison",
+      "SValue"
+    ]
+  },
+  {
+    "Name": "CUnitDataEPD",
+    "Texts": [
+    "Korean","구조오프셋EPD $UnitEPD$의 $StructOffset$가 $SValue$ $VariableComparison$ 경우",
+    "English","CUnitEPD $UnitEPD$ $StructOffset$ is $VariableComparison$ $SValue$."
+  ],
+    "CodeText": "$writedef$read_epd($UnitEPD$ + $StructOffset$ / 4,  $StructOffset$ % 4) $VariableComparison$ $SValue$|$NotFlag$MemoryEPD($UnitEPD$ + $StructOffset$ / 4, $Comparison$, $SValue$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD",
+      "StructOffset",
+      "VariableComparison",
+      "SValue"
+    ]
+  },
+  {
+    "Name": "CUSTOMPart",
+    "Texts": [
+    "Korean","CUSTOMPart",
+    "English","CUSTOMPart"
+  ],
+    "CodeText": "CUSTOMPart",
+    "ToolTip": "CUSTOMPart",
+    "ValuesDef": [
+      "CUSTOMPart"
+    ]
+  },
+  {
+    "Name": "RawCode",
+    "Texts": [
+    "Korean","코드 : $RawString$",
+    "English","Code: $RawString$"
+  ],
+    "CodeText": "$RawString$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "RawString"
+    ]
+  },
+  {
+    "Name": "CurrentBGM",
+    "Texts": [
+    "Korean","$Player$의 재생중인 음악이 $BGM$일 경우",
+    "English","$Player$ currently playing BGM music is $BGM$"
+  ],
+    "CodeText": "BGM.CurrentPlayMusic($Player$) == $BGM$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "BGM"
+    ]
+  },
+  {
+    "Name": "BGMPlaying",
+    "Texts": [
+    "Korean","$Player$의 음악 상태가 $BGMFlag$인 경우",
+    "English","$Player$ state of current BGM music is $BGMFlag$"
+  ],
+    "CodeText": "BGM.isplaying($Player$) == $BGMFlag$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "BGMFlag"
+    ]
+  },
+  {
+    "Name": "SCDB:Msg",
+    "Texts": [
+    "Korean","SCDB: 마지막 알람이 $SCDBMsgType$일 경우",
+    "English","SCDB: Latest notification is $SCDBMsgType$."
+  ],
+    "CodeText": "scdb.GetLastMsg() == $SCDBMsgType$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "SCDBMsgType"
+    ]
+  },
+  {
+    "Name": "SCDB:Connect",
+    "Texts": [
+    "Korean","SCDB: 연결 상태가 $SCDBConnectStatus$일 경우",
+    "English","SCDB: Connection state is $SCDBConnectStatus$"
+  ],
+    "CodeText": "scdb.GetStatus() == $SCDBConnectStatus$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "SCDBConnectStatus"
+    ]
+  },
+  {
+    "Name": "SCDB:Loadable",
+    "Texts": [
+    "Korean","SCDB: 데이터 로드가 가능한 경우",
+    "English","SCDB: Current Player is able to load their data."
+  ],
+    "CodeText": "scdb.isLoadable() == 1",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  }
+]

@@ -6,18 +6,13 @@
     Dim wirefram As New GRP
 
     Private Sub ColorReset()
-        NumericUpDown1.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown1.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown3.ForeColor = ProgramSet.FORECOLOR
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private loadcmp As Boolean = False
     Private Sub FileManagerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loadcmp = False
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         Lan.SetMenu(Me, MenuStrip1)
         Lan.SetMenu(Me, ListMenu)
 
@@ -50,7 +45,6 @@
         'Next
 
         'My.Computer.Clipboard.SetText(ImageToGRP("C:\Users\skslj\Desktop\LightBlock.bmp"))
-        ColorReset()
 
 
         grpwire.Reset()
@@ -81,6 +75,7 @@
         LoadData()
         LoadList()
         PaletDraw()
+        ColorReset()
         loadcmp = True
     End Sub
 
@@ -135,8 +130,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
 
         If (e.Index < 0) Then Exit Sub
 
-        Dim myBrush As Brush
-        myBrush = Brushes.White
+        Dim myBrush = New SolidBrush(ProgramSet.colorFieldText)
 
         If ListBox1.Items(e.Index)(LITEM.ischange) = True Then
             myBrush = Brushes.IndianRed
@@ -262,9 +256,9 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
                     NumericUpDown1.Value = wireframData(_OBJECTNUM)
 
                     If wireframData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown1.BackColor = ProgramSet.BACKCOLOR
+                        NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
                     Else
-                        NumericUpDown1.BackColor = ProgramSet.CHANGECOLOR
+                        NumericUpDown1.BackColor = ProgramSet.colorChangedBackground
                     End If
                     NumericUpDown1.Visible = True
                 Else
@@ -276,9 +270,9 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
                     NumericUpDown2.Value = grpwireData(_OBJECTNUM)
 
                     If grpwireData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
+                        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
                     Else
-                        NumericUpDown2.BackColor = ProgramSet.CHANGECOLOR
+                        NumericUpDown2.BackColor = ProgramSet.colorChangedBackground
                     End If
                     NumericUpDown2.Visible = True
                 Else
@@ -291,9 +285,9 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
                     NumericUpDown3.Value = tranwireData(_OBJECTNUM)
 
                     If tranwireData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
+                        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
                     Else
-                        NumericUpDown3.BackColor = ProgramSet.CHANGECOLOR
+                        NumericUpDown3.BackColor = ProgramSet.colorChangedBackground
                     End If
                     NumericUpDown3.Visible = True
                 Else

@@ -210,6 +210,7 @@ Public Class MPQForm_ListForm
             End If
             'TreeView1.Nodes.Add(filenames(i))
         Next
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub TreeView1_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles TreeView1.AfterSelect

@@ -1,0 +1,8 @@
+Zerg
+Terran
+Protoss
+Men
+Building
+Factory
+Independent
+Neutral

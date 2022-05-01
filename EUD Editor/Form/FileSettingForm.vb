@@ -4,6 +4,7 @@
     End Function
 
     Private Sub FileSettingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         DataGridView2.Columns(0).HeaderText = Lan.GetText("FileSettingForm", "FileName")
         DataGridView2.Columns(1).HeaderText = Lan.GetText("FileSettingForm", "Fileoffset")
 
@@ -37,6 +38,7 @@
 
 
         ' ProjectSet.saveStatus = False
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellContentClick

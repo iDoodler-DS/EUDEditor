@@ -1,0 +1,10 @@
+새로 그리지않기
+ofire.pcx (오랜지)
+gfire.pcx (녹색)
+bfire.pcx (파랑)
+bexpl.pcx (파랑2)
+Special (자기자신 클로킹)
+(crash)
+(crash)
+알수없음8 (?)
+알수없음9 (?)

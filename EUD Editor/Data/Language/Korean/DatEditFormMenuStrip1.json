@@ -1,0 +1,20 @@
+﻿{
+    "FIleFToolStripMenuItem": "파일(&F)",
+    "DatFileResetRToolStripMenuItem": "dat파일 리셋(&R)",
+    "DatFileLoadToolStripMenuItem": "dat파일 불러오기(&L)",
+    "DatFileSaveSToolStripMenuItem": "dat파일 저장(&A)",
+    "DatFileAllSaveToolStripMenuItem": "dat파일 모두 저장",
+    "DatFileAllResetToolStripMenuItem": "dat파일 모두 리셋",
+    "ProjectSaveToolStripMenuItem": "프로젝트 저장(&S)",
+    "EditToolStripMenuItem": "편집(&E)",
+    "ResetToolStripMenuItem1": "초기화",
+    "ObjectResetToolStripMenuItem": "오브젝트 초기화",
+    "ObjectCopyToolStripMenuItem": "오브젝트 복사",
+    "ObjectPasteToolStripMenuItem": "오브젝트 붙여넣기",
+    "DataExportToolStripMenuItem1": "데이터로 내보내기",
+    "DataImportToolStripMenuItem1": "데이터 불러오기",
+    "ViewVToolStripMenuItem": "보기(&V)",
+    "ThameSetTToolStripMenuItem": "테마 설정(&T)",
+    "UsedDataToolStripMenuItem": "사용된 데이터(&D)",
+    "TriggerViewerTToolStripMenuItem": "트리거 보기(&T)"
+}

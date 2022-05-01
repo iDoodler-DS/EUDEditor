@@ -1,0 +1,20 @@
+﻿{
+    "Button5": "확인",
+    "Button6": "취소",
+    "TabPage4": "클래식",
+    "TabPage5": "EUD",
+    "TabPage6": "구조오프셋",
+    "TabPage7": "커스텀",
+    "TabPage1": "추천",
+    "Button2": "새 창으로 열기",
+    "Button1": "새 창으로 열기",
+    "Label1": "hitpoint",
+    "Label2": "shield",
+    "Label3": "energy",
+    "Label4": "resource",
+    "Label5": "hanger",
+    "TabPage2": "변수",
+    "TabPage3": "직접 입력",
+    "Button3": "값 가져오기",
+    "Button4": "함수"
+}

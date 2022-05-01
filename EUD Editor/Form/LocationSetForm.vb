@@ -4,7 +4,7 @@
 
 
     Private Sub LocationSetForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         ListBox1.SelectedIndex = -1
         EasyCompletionComboBox1.Enabled = False
@@ -38,6 +38,7 @@
             lists(0) = liststr(0)
             ListBox1.Items(0) = "First Human Player : " & EasyCompletionComboBox1.Items(liststr(0))
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

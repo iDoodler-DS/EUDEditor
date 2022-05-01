@@ -4,7 +4,7 @@
     End Function
 
     Private Sub SoundPlayerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         ListBox1.Items.Clear()
 
@@ -18,6 +18,7 @@
         Catch ex As Exception
             ComboBox1.SelectedIndex = 3
         End Try
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged

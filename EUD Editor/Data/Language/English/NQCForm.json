@@ -1,0 +1,12 @@
+﻿{
+    "Button5": "Ok",
+    "Button6": "Cancel",
+    "GroupBox1": "Condition",
+    "RadioButton1": "Custom",
+    "RadioButton2": "KeyBoard",
+    "GroupBox2": "Result",
+    "RadioButton3": "Custom",
+    "RadioButton4": "Unit",
+    "Label1": "Deaths Unit",
+    "Label2": "Count"
+}

@@ -1,0 +1,7 @@
+﻿{
+    "초기화ToolStripMenuItem": "Reset",
+    "복사ToolStripMenuItem": "Copy",
+    "붙여넣기ToolStripMenuItem": "Paste",
+    "데이터로내보내기ToolStripMenuItem": "mdat Export",
+    "데이터불러오기ToolStripMenuItem": "mdat Import"
+}

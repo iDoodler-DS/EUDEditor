@@ -1,0 +1,21 @@
+﻿{
+    "FileFToolStripMenuItem": "&File",
+    "NewNToolStripMenuItem": "&New",
+    "OpenToolStripMenuItem": "&Open",
+    "SaveToolStripMenuItem": "&Save",
+    "SaveasToolStripMenuItem": "Save As",
+    "ProCloseToolStripMenuItem": "&Close Project",
+    "ExitToolStripMenuItem": "E&xit",
+    "ViewVToolStripMenuItem": "&View",
+    "PyViewVToolStripMenuItem": "View &Py",
+    "EdsViewEToolStripMenuItem": "View e&ds",
+    "ToolTToolStripMenuItem": "&Tool",
+    "MpainjectWToolStripMenuItem": "Insert(&W)",
+    "EDDOpenDToolStripMenuItem": "Insert E&DD",
+    "ToolStripMenuItem1": "Open &Map",
+    "TriggerviewTToolStripMenuItem": "View &Trigger",
+    "ToclipEToolStripMenuItem": "To Cli&pboard",
+    "HelpHToolStripMenuItem": "&Help",
+    "BlogHelpToolStripMenuItem": "Blog Manual",
+    "UpdateViewToolStripMenuItem": "Update"
+}

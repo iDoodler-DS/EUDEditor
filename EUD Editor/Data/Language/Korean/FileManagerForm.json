@@ -1,0 +1,19 @@
+﻿{
+    "TabPage1": "스타 텍스트",
+    "GroupBox1": "Stat_text",
+    "TabPage2": "와이어 프레임",
+    "Label27": "필터",
+    "CheckBox5": "수정",
+    "Button5": "접기",
+    "Fold": "접기",
+    "UnFold": "펼치기",
+    "GroupBox4": "TranFrame",
+    "Label3": "FrameNum",
+    "GroupBox3": "GrpFrame",
+    "Label2": "FrameNum",
+    "GroupBox2": "WireFrame",
+    "Label1": "FrameNum",
+    "OldText": "이전 이름",
+    "NewText": "새 이름",
+    "Edit": "편집"
+}

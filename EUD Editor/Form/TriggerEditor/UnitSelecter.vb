@@ -7,6 +7,7 @@
         For i = 0 To SCDBForm.units.Count - 1
             DataGridView1.Rows.Add(i, SCDBForm.units(i), CStr(SCDBLocationData.GetUnitCount(i)))
         Next
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

@@ -1,0 +1,23 @@
+﻿{
+    "GroupBox5": "Pass&&Elevation&&Construction Tools",
+    "TabDefacult": "Default",
+    "TabPage1": "Passable",
+    "TabPage2": "Buildable",
+    "TabPage3": "Inpassable",
+    "TabPage5": "Low",
+    "TabPage6": "middle",
+    "TabPage7": "High",
+    "GroupBox4": "Graphic Properties",
+    "RadioButton1": "Full Changer",
+    "GroupBox6": "Type",
+    "RadioButton4": "Reference",
+    "RadioButton3": "SetTo",
+    "GroupBox3": "File",
+    "Button4": "Save",
+    "Button3": "Empty",
+    "Button2": "Open",
+    "RadioButton2": "Partial Changer",
+    "GroupBox1": "File",
+    "Button5": "Empty",
+    "Button1": "Open"
+}

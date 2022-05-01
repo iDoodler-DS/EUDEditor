@@ -22,7 +22,7 @@
 
 
     Private Sub SwitchDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
 
         EasyCompletionComboBox1.Items.Clear()
@@ -34,6 +34,7 @@
         Else
             RadioButton2.Checked = True
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub SwitchDialog_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
         If EasyCompletionComboBox1.Enabled = True Then

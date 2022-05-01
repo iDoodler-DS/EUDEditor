@@ -1,7 +1,7 @@
 ﻿Public Class FuctionNameForm
 
     Private Sub CreateValForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         Button5.Enabled = True
         If TextBox1.Text <> "" Then
             For i = 0 To functions.GetElementsCount - 1
@@ -16,6 +16,7 @@
             Button5.Enabled = False
         End If
 
+        ThemeSetForm.SetControlColor(Me)
 
     End Sub
 

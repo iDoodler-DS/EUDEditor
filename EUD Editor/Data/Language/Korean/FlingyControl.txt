@@ -1,0 +1,3 @@
+Flingy.dat 파일로제어
+부분적으로 제어, 무기형태
+Iscript.bin 파일로제어

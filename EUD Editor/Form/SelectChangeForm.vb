@@ -33,6 +33,7 @@
                 Next
             Next
         Next
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub SelectChangeForm_Close(sender As Object, e As EventArgs) Handles MyBase.Closing
         DataGridView1.EndEdit()

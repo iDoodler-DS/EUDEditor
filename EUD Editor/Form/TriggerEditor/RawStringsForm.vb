@@ -2,8 +2,8 @@
     Public returnvalue As String
 
     Private Enum ListDef
-        Deaths = 1
-        Kills = 0
+        Deaths = 0
+        Kills = 1
         Score = 2
         Resources = 3
         Suppley = 4
@@ -180,5 +180,6 @@
         ListBox1.Items.AddRange(Readtextfile("RawStringsList").ToArray)
         ListBox1.SelectedIndex = 0
         ListBox3.SelectedIndex = 0
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 End Class

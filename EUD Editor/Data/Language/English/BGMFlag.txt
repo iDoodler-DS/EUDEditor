@@ -1,0 +1,3 @@
+Single Play
+Repeat Play
+Stop Play

@@ -18,12 +18,12 @@ Module initModule
 
     Public Function init() As Boolean
         Dim filename As String
-        filename = My.Application.Info.DirectoryPath & "\Data\Langage\한국어(Korean)"
+        filename = My.Application.Info.DirectoryPath & "\Data\Language\한국어(Korean)"
         If System.IO.Directory.Exists(filename) Then
             DeleteFilesFromFolder(filename)
             System.IO.Directory.Delete(filename)
         End If
-        filename = My.Application.Info.DirectoryPath & "\Data\Langage\English(English)"
+        filename = My.Application.Info.DirectoryPath & "\Data\Language\English(English)"
         If System.IO.Directory.Exists(filename) Then
             DeleteFilesFromFolder(filename)
             System.IO.Directory.Delete(filename)
@@ -34,9 +34,9 @@ Module initModule
             System.IO.Directory.Delete(filename)
         End If
 
-        filename = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage
+        filename = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language
         If System.IO.Directory.Exists(filename) = False Then
-            My.Settings.Langage = "Korean"
+            My.Settings.Language = "Korean"
         End If
 
         Dim hyperLink As Boolean = False
@@ -137,17 +137,24 @@ Module initModule
 
 
         If My.Settings.DatEditColor1 = Nothing Then
-            ProgramSet.FORECOLOR = Color.White
-
-            ProgramSet.BACKCOLOR = Color.FromArgb(&HFF193333)
-            ProgramSet.CHANGECOLOR = Color.DarkSlateBlue
-
-            ProgramSet.LISTCOLOR = Color.FromArgb(&HFF538585) ''FromArgb(&HFF4D9999)
+            ProgramSet.colorBackground = ThemeSetForm.darkModeColorBackground
+            ProgramSet.colorLabelText = ThemeSetForm.darkModeColorLabelText
+            ProgramSet.colorFieldBackground = ThemeSetForm.darkModeColorFieldBackground
+            ProgramSet.colorFieldText = ThemeSetForm.darkModeColorFieldText
+            ProgramSet.colorCodeBackground = ThemeSetForm.darkModeColorCodeBackground
+            ProgramSet.colorPanelBackground = ThemeSetForm.darkModeColorPanelBackground
+            ProgramSet.colorChangedBackground = ThemeSetForm.darkModeColorChangedBackground
+            ProgramSet.colorCheckedBackground = ThemeSetForm.darkModeColorCheckedBackground
         Else
-            ProgramSet.FORECOLOR = My.Settings.DatEditColor1
-            ProgramSet.BACKCOLOR = My.Settings.DatEditColor2
-            ProgramSet.CHANGECOLOR = My.Settings.DatEditColor3
-            ProgramSet.LISTCOLOR = My.Settings.DatEditColor4
+            ProgramSet.colorFieldText = My.Settings.DatEditColor1
+            ProgramSet.colorFieldBackground = My.Settings.DatEditColor2
+            ProgramSet.colorChangedBackground = My.Settings.DatEditColor3
+            ProgramSet.colorCheckedBackground = My.Settings.DatEditColor4
+            ProgramSet.colorChangedBackground = My.Settings.DatEditColor5
+            ProgramSet.colorCheckedBackground = My.Settings.DatEditColor6
+            ProgramSet.colorCodeBackground = My.Settings.DatEditColor7
+            ProgramSet.colorPanelBackground = My.Settings.DatEditColor8
+
         End If
 
 

@@ -1,0 +1,8 @@
+﻿{
+    "btnmenuNEW": "새로 만들기(&N)",
+    "btnmenuDUMP": "덮어쓰기",
+    "btnmenuCUT": "잘라내기(&T)",
+    "btnmenuCOPY": "복사(&C)",
+    "btnmenuPASTE": "붙여넣기(&P)",
+    "btnmenuDELETE": "삭제(&D)"
+}

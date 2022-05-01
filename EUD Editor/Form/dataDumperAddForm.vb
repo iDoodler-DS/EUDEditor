@@ -27,7 +27,7 @@ Public Class dataDumperAddForm
 
     Dim loadcomp As Boolean
     Private Sub dataDumperAddForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         loadcomp = True
         LoadData()

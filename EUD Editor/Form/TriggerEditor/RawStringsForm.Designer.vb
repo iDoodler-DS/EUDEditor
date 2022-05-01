@@ -99,7 +99,7 @@ Partial Class RawStringsForm
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(103, 40)
         Me.Button5.TabIndex = 13
-        Me.Button5.Text = "확인"
+        Me.Button5.Text = "Ok"
         Me.Button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Button5.UseVisualStyleBackColor = True
         '
@@ -114,7 +114,7 @@ Partial Class RawStringsForm
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(104, 40)
         Me.Button6.TabIndex = 14
-        Me.Button6.Text = "취소"
+        Me.Button6.Text = "Cancel"
         Me.Button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Button6.UseVisualStyleBackColor = True
         '
@@ -190,7 +190,7 @@ Partial Class RawStringsForm
         Me.ClientSize = New System.Drawing.Size(207, 270)
         Me.ControlBox = False
         Me.Controls.Add(Me.TableLayoutPanel1)
-        Me.Font = New System.Drawing.Font("맑은 고딕", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MaximizeBox = False

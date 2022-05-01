@@ -9,7 +9,12 @@
 Imports System.IO
 
 Public Class Main
+
+    Dim RecentlyOpenedFiles As New ArrayList()
+
     Public Sub refreshSet()
+        ThemeSetForm.SetControlColor(Me)
+
         If ProjectSet.isload = True Then
             If ProgramSet.StarVersion = "Remastered" Then
                 CheckCompatiblity()
@@ -170,7 +175,7 @@ Public Class Main
                 Button5.Visible = False
 
                 Button6.Enabled = False 'tileSet
-                'Button6.Visible = False
+                Button6.Visible = False
 
                 Button7.Enabled = False
                 Button8.Enabled = False 'GRP
@@ -220,20 +225,21 @@ Public Class Main
 
         If ProjectSet.isload = True Then
             If ProjectSet.filename = "" Then
-                Me.Text = Lan.GetMsgText("Defacultname") & " " & issaved & " -  EUD Editor 2 " & ProgramSet.Version & "." & ProgramSet.StarVersion
-                DatEditForm.Text = ProgramSet.DatEditName & issaved & " " & ProgramSet.Version
+                Me.Text = Lan.GetMsgText("Defacultname") & " " & issaved & " -  EUD Editor SE " & ProgramSet.Version & "." & ProgramSet.StarVersion
 
-                FireGraftForm.Text = ProgramSet.FireGraftName & issaved & " " & ProgramSet.Version
+                If DatEditForm IsNot Nothing Then DatEditForm.Text = ProgramSet.DatEditName & issaved & " " & ProgramSet.Version
+
+                If FireGraftForm IsNot Nothing Then FireGraftForm.Text = ProgramSet.FireGraftName & issaved & " " & ProgramSet.Version
             Else
                 Dim name As String = ProjectSet.filename.Split("\").Last
 
-                Me.Text = name & issaved & " -  EUD Editor 2 " & ProgramSet.Version & "." & ProgramSet.StarVersion
-                DatEditForm.Text = name & issaved & " - " & ProgramSet.DatEditName & " " & ProgramSet.Version
+                Me.Text = name & issaved & " -  EUD Editor SE " & ProgramSet.Version & "." & ProgramSet.StarVersion
+                If DatEditForm IsNot Nothing Then DatEditForm.Text = name & issaved & " - " & ProgramSet.DatEditName & " " & ProgramSet.Version
 
-                FireGraftForm.Text = name & issaved & " - " & ProgramSet.FireGraftName & " " & ProgramSet.Version
+                If FireGraftForm IsNot Nothing Then FireGraftForm.Text = name & issaved & " - " & ProgramSet.FireGraftName & " " & ProgramSet.Version
             End If
         Else
-            Me.Text = "EUD Editor 2 " & ProgramSet.Version & "." & ProgramSet.StarVersion
+            Me.Text = "EUD Editor SE " & ProgramSet.Version & "." & ProgramSet.StarVersion
         End If
 
     End Sub
@@ -271,16 +277,15 @@ Public Class Main
             Me.Close()
         End If
         Lan.SetMenu(Me, MenuStrip1)
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         SaveFileDialog1.Filter = Lan.GetText(Me.Name, "SaveFilter")
         OpenFileDialog1.Filter = Lan.GetText(Me.Name, "OpenFilter")
 
+        RefreshRecentlyOpenedList()
 
         refreshSet()
     End Sub
-
-
 
     Private Sub Main_Closed(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         If ShutDown = False Then
@@ -305,10 +310,7 @@ Public Class Main
                 My.Settings.StarVersion = ProgramSet.StarVersion
                 My.Settings.AutoCompile = ProgramSet.isAutoCompile
 
-                My.Settings.DatEditColor1 = ProgramSet.FORECOLOR
-                My.Settings.DatEditColor2 = ProgramSet.BACKCOLOR
-                My.Settings.DatEditColor3 = ProgramSet.CHANGECOLOR
-                My.Settings.DatEditColor4 = ProgramSet.LISTCOLOR
+                SaveTheme()
 
                 My.Settings.mpqDirec = String.Join(",", ProgramSet.DatMPQDirec)
 
@@ -317,6 +319,18 @@ Public Class Main
                 e.Cancel = True
             End If
         End If
+    End Sub
+
+    Sub SaveTheme()
+        My.Settings.DatEditColor1 = ProgramSet.colorFieldText
+        My.Settings.DatEditColor2 = ProgramSet.colorFieldBackground
+        My.Settings.DatEditColor3 = ProgramSet.colorChangedBackground
+        My.Settings.DatEditColor4 = ProgramSet.colorCheckedBackground
+        My.Settings.DatEditColor5 = ProgramSet.colorBackground
+        My.Settings.DatEditColor6 = ProgramSet.colorLabelText
+        My.Settings.DatEditColor7 = ProgramSet.colorCodeBackground
+        My.Settings.DatEditColor8 = ProgramSet.colorPanelBackground
+        My.Settings.Save()
     End Sub
 
 
@@ -451,7 +465,6 @@ Public Class Main
             ProjectSet.Save(ProjectSet.filename)
         End If
         If ProgramSet.isAutoCompile = True Then
-            LoadTILEDATA(False, True)
             eudplib.Toflie()
         End If
         refreshSet()
@@ -487,7 +500,6 @@ Public Class Main
         My.Forms.Main.Visible = False
 
         DatEditForm.Show()
-        DatEditForm.RefreshForm()
         My.Forms.DatEditForm.Activate()
     End Sub
 
@@ -541,7 +553,6 @@ Public Class Main
     Private Sub TileSet_Click(sender As Object, e As EventArgs) Handles Button6.Click
         ProjectSet.saveStatus = False
 
-        LoadTILEDATA(False, True)
         My.Forms.Main.Visible = False
         TileSetForm.ShowDialog()
         My.Forms.Main.Visible = True
@@ -573,21 +584,17 @@ Public Class Main
 
 
     Private Sub EDD켜기DToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EDDOpenDToolStripMenuItem.Click
-        LoadTILEDATA(False, True)
         eudplib.Toflie(True)
     End Sub
 
     Private Sub EDD켜기_Click(sender As Object, e As EventArgs) Handles Button17.Click
-        LoadTILEDATA(False, True)
         eudplib.Toflie(True)
     End Sub
     Private Sub 맵에삽입_Click(sender As Object, e As EventArgs) Handles Button14.Click
-        LoadTILEDATA(False, True)
         eudplib.Toflie()
     End Sub
 
     Private Sub 맵에삽입WToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MpainjectWToolStripMenuItem.Click
-        LoadTILEDATA(False, True)
         eudplib.Toflie()
     End Sub
     Private Sub TriggerCopy_Click(sender As Object, e As EventArgs) Handles Button16.Click
@@ -690,7 +697,6 @@ Public Class Main
 
                     ProjectSet.LoadCHKdata()
                     If ProgramSet.isAutoCompile = True Then
-                        LoadTILEDATA(False, True)
                         eudplib.Toflie()
                     End If
                 End If
@@ -722,6 +728,68 @@ Public Class Main
 
     Private Sub UpdateViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateViewToolStripMenuItem.Click
         CheckUpdateForm.ShowDialog()
+    End Sub
 
+    Private Sub RecentFileMenuItem_Click(sender As ToolStripMenuItem, e As EventArgs)
+        Dim fileName = sender.Text
+        If ProjectSet.Close() = True Then
+            ProjectSet.Load(fileName)
+            CheckMapFile()
+            Dim fileinfo As New FileInfo(ProjectSet.InputMap)
+            LastData = fileinfo.LastWriteTime
+        End If
+        refreshSet()
+    End Sub
+    Public Sub SaveRecentFile(strPath As String)
+        OpenRecentToolStripMenuItem.DropDownItems.Clear()
+        LoadRecentList()
+        If (RecentlyOpenedFiles.Contains(strPath)) Then
+            RecentlyOpenedFiles.Remove(strPath)
+        End If
+        RecentlyOpenedFiles.Add(strPath)
+        While RecentlyOpenedFiles.Count > 15
+            RecentlyOpenedFiles.RemoveAt(0)
+        End While
+        Dim stringToWrite As New StreamWriter(System.Environment.CurrentDirectory + "\Recent.txt")
+        For Each item As String In RecentlyOpenedFiles
+            stringToWrite.WriteLine(item)
+        Next
+        stringToWrite.Flush()
+        stringToWrite.Close()
+    End Sub
+
+    Private Sub LoadRecentList()
+        RecentlyOpenedFiles.Clear()
+        Try
+            Dim srStream As New StreamReader(System.Environment.CurrentDirectory + "\Recent.txt")
+            Dim strLine As String = ""
+            While (InlineAssignHelper(strLine, srStream.ReadLine())) IsNot Nothing
+                RecentlyOpenedFiles.Add(strLine)
+            End While
+            srStream.Close()
+        Catch ex As Exception
+        End Try
+        RecentlyOpenedFiles.Reverse()
+        OpenRecentToolStripMenuItem.Visible = RecentlyOpenedFiles.Count > 0
+    End Sub
+
+    Public Sub RefreshRecentlyOpenedList()
+        LoadRecentList()
+        For Each item As String In RecentlyOpenedFiles
+            Dim fileRecent As New ToolStripMenuItem(item, Nothing, New EventHandler(AddressOf RecentFileMenuItem_Click))
+            OpenRecentToolStripMenuItem.DropDownItems.Add(fileRecent)
+        Next
+    End Sub
+
+    Private Shared Function InlineAssignHelper(Of T) _
+          (ByRef target As T, ByVal value As T) As T
+        target = value
+        Return value
+    End Function
+
+    Private Sub ThemeSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThemeSettingsToolStripMenuItem.Click
+        ThemeSetForm.ShowDialog()
+        SaveTheme()
+        refreshSet()
     End Sub
 End Class

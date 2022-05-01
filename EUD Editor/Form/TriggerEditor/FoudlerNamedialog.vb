@@ -1,11 +1,12 @@
 ﻿Public Class FoudlerNamedialog
     Private Sub FoudlerNamedialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         If TextBox1.Text <> "" Then
             Button5.Enabled = True
         Else
             Button5.Enabled = False
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged

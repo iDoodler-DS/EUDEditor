@@ -170,10 +170,11 @@
     End Sub
 
     Private Sub AddTectDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         ListBox1.Items.Clear()
         ListBox1.Items.AddRange(REadtextfile("AddTectDialogList").ToArray)
         ListBox1.SelectedIndex = 0
         ListBox3.SelectedIndex = 0
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 End Class

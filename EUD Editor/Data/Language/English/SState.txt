@@ -1,0 +1,4 @@
+Set
+Clear
+Toggle
+Randomize

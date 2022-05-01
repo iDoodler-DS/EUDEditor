@@ -1,0 +1,15 @@
+﻿{
+    "Button5": "Ok",
+    "Button6": "Cancel",
+    "TabPage1": "Default",
+    "Button2": "Edit",
+    "Button1": "Edit",
+    "Label1": "hitpoint",
+    "Label2": "shield",
+    "Label3": "energy",
+    "Label4": "resource",
+    "Label5": "hanger",
+    "TabPage2": "Variable",
+    "TabPage3": "Custom",
+    "Button3": "Get Value"
+}

@@ -4,7 +4,7 @@
     Public ishavevalue As Boolean
 
     Private Sub FiregraftRepAddForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         Opcode = 0
         Value = 0
@@ -13,6 +13,7 @@
 
         ishavevalue = False
         ListBox1.Visible = False
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub ResetList()
         Dim selindex As Integer = ListBox1.SelectedIndex

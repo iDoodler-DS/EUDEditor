@@ -1,0 +1,12 @@
+Use Weapon Targeting
+Secondary Order use
+Unused3
+Unused4
+Unused5
+Can be Cancelled
+Unused7
+Can be Queued
+Unused9
+Can be Obstructed
+Unused11
+Unused12

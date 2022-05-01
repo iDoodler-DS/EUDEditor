@@ -979,13 +979,13 @@ Module ProgramData
         'LoadFileimportable()
     End Sub
 
-
+    Public CMDIconBitmapList = New List(Of Bitmap)
     Public Sub LoadFileimportable()
         Dim mpq As New SFMpq
 
         Dim icongrp As New GRP
 
-        DatEditForm.ICONILIST.Images.Clear()
+        CMDIconBitmapList.Clear()
 
         If dataDumper_cmdicons_f <> 0 And CheckFileExist(dataDumper_cmdicons) = False Then
             Dim FileStream As New FileStream(dataDumper_cmdicons, FileMode.Open)
@@ -1002,7 +1002,7 @@ Module ProgramData
 
                 grp.DrawImage(icongrp.DrawGRP(i), (36 - icongrp.GRPFrame(i).frameWidth) \ 2, (34 - icongrp.GRPFrame(i).frameHeight) \ 2)
 
-                DatEditForm.ICONILIST.Images.Add(bitmap)
+                CMDIconBitmapList.Add(bitmap)
             Next
 
 
@@ -1022,8 +1022,7 @@ Module ProgramData
 
                 grp.DrawImage(icongrp.DrawGRP(i), (36 - icongrp.GRPFrame(i).frameWidth) \ 2, (34 - icongrp.GRPFrame(i).frameHeight) \ 2)
 
-                DatEditForm.ICONILIST.Images.Add(bitmap)
-                'DatEditForm.ICONILIST.ImageSize = Bitmap.Size
+                CMDIconBitmapList.Add(bitmap)
             Next
         End If
 
@@ -1548,7 +1547,7 @@ Module ProgramData
 
 
     Private Sub LoadCodeLIST(filename As String)
-        Dim filepath As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & filename & ".txt"
+        Dim filepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename & ".txt"
 
         Dim File As FileStream = New FileStream(filepath, FileMode.Open)
         Dim Reader As StreamReader = New StreamReader(File)
@@ -1624,9 +1623,9 @@ Module ProgramData
 
 
         Public Function ReadValue(key As String, index As UInteger)
-
-            Return data(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart) + projectdata(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart) + mapdata(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart)
-
+            Dim keyDicValue = keyDic.Item(key)
+            Dim lookupIndex = index - keyINFO(keyDicValue).VarStart
+            Return data(keyDicValue)(lookupIndex) + projectdata(keyDicValue)(lookupIndex) + mapdata(keyDicValue)(lookupIndex)
         End Function
         Public Function ReadValueNum(key As Integer, index As UInteger)
             Return data(key)(index - keyINFO(key).VarStart) + projectdata(key)(index - keyINFO(key).VarStart) + mapdata(key)(index - keyINFO(key).VarStart)
@@ -1709,13 +1708,13 @@ Module ProgramData
 
 
         Public Sub CheckChange(key As String, index As UInteger, obj As Object)
-            obj.ForeColor = ProgramSet.FORECOLOR
+            obj.ForeColor = ProgramSet.colorFieldText
             Try
                 If projectdata(keyDic(key))(index - keyINFO(keyDic(key)).VarStart) = 0 Then
-                    obj.BackColor = ProgramSet.BACKCOLOR
+                    obj.BackColor = ProgramSet.colorFieldBackground
                     'Return False
                 Else
-                    obj.BackColor = ProgramSet.CHANGECOLOR
+                    obj.BackColor = ProgramSet.colorChangedBackground
                     'Return True
                 End If
             Catch ex As Exception
@@ -1724,10 +1723,10 @@ Module ProgramData
 
 
         Public Sub ChecklistChange(key As String, index As UInteger, checkedlistBox As ListView)
-            checkedlistBox.ForeColor = ProgramSet.FORECOLOR
+            checkedlistBox.ForeColor = ProgramSet.colorFieldText
 
             Try
-                checkedlistBox.BackColor = ProgramSet.BACKCOLOR
+                checkedlistBox.BackColor = ProgramSet.colorFieldBackground
 
                 Dim provalue As Long = projectdata(keyDic(key))(index - keyINFO(keyDic(key)).VarStart)
                 Dim mapvalue As Long = data(keyDic(key))(index - keyINFO(keyDic(key)).VarStart)
@@ -1747,13 +1746,13 @@ Module ProgramData
 
                     'and시 0이 아니면 현재 수치가 존재한다.
                     If (oldvalue And (2 ^ i)) <> (newvalue And (2 ^ i)) Then
-                        checkedlistBox.Items(i).BackColor = ProgramSet.CHANGECOLOR
+                        checkedlistBox.Items(i).BackColor = ProgramSet.colorChangedBackground
                         'Return False
                     Else
                         If checkedlistBox.Items(i).Checked = True Then
-                            checkedlistBox.Items(i).BackColor = ProgramSet.LISTCOLOR
+                            checkedlistBox.Items(i).BackColor = ProgramSet.colorCheckedBackground
                         Else
-                            checkedlistBox.Items(i).BackColor = ProgramSet.BACKCOLOR
+                            checkedlistBox.Items(i).BackColor = ProgramSet.colorFieldBackground
                         End If
                         'Return True
                     End If

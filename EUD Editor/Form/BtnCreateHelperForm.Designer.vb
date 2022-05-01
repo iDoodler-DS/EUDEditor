@@ -54,7 +54,7 @@ Partial Class BtnCreateHelperForm
         Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 15
-        Me.ListBox1.Items.AddRange(New Object() {"기본 커맨드", "이동 가능한 빌딩 커맨드", "버러우 커맨드", "채취자 커맨드", "운송수단 커맨드", "빈 버튼", "유닛 훈련", "유닛 훈련 - 변태", "기술 연구", "업글 연구", "기술 사용", "건물 건설 - 변태", "건물 건설 - 저그", "건물 건설 - 테란", "건물 건설 - 프로토스", "건물 건설 - 애드온"})
+        Me.ListBox1.Items.AddRange(New Object() {"SET | Unit", "SET | Flying Building", "SET | Burrow", "SET | Harvester", "SET | Transport", "Blank Button", "Train Unit", "Morph Unit", "Research Tech", "Research Upgrade", "Use Tech", "Morph Building", "Build Zerg", "Build Terran", "Build Protoss", "Add Addon"})
         Me.ListBox1.Location = New System.Drawing.Point(3, 20)
         Me.ListBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListBox1.Name = "ListBox1"
@@ -82,7 +82,7 @@ Partial Class BtnCreateHelperForm
         Me.GroupBox1.Size = New System.Drawing.Size(157, 271)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "버튼 목록"
+        Me.GroupBox1.Text = "Type"
         '
         'GroupBox2
         '
@@ -94,7 +94,7 @@ Partial Class BtnCreateHelperForm
         Me.GroupBox2.Size = New System.Drawing.Size(211, 271)
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "선택 옵션"
+        Me.GroupBox2.Text = "Options"
         '
         'GroupBox3
         '
@@ -106,7 +106,7 @@ Partial Class BtnCreateHelperForm
         Me.GroupBox3.Size = New System.Drawing.Size(200, 271)
         Me.GroupBox3.TabIndex = 4
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "위치"
+        Me.GroupBox3.Text = "Position"
         '
         'FlowLayoutPanel2
         '
@@ -249,7 +249,7 @@ Partial Class BtnCreateHelperForm
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(294, 44)
         Me.Button11.TabIndex = 23
-        Me.Button11.Text = "확인"
+        Me.Button11.Text = "Ok"
         Me.Button11.UseVisualStyleBackColor = True
         '
         'Button10
@@ -262,7 +262,7 @@ Partial Class BtnCreateHelperForm
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(294, 44)
         Me.Button10.TabIndex = 24
-        Me.Button10.Text = "취소"
+        Me.Button10.Text = "Cancel"
         Me.Button10.UseVisualStyleBackColor = True
         '
         'BtnCreateHelperForm
@@ -278,7 +278,7 @@ Partial Class BtnCreateHelperForm
         Me.MinimizeBox = False
         Me.Name = "BtnCreateHelperForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "버튼 추가"
+        Me.Text = "Add button"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)

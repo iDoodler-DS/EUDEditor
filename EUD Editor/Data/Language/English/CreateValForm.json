@@ -1,0 +1,9 @@
+﻿{
+    "Button5": "Ok",
+    "Button6": "Cancel",
+    "Label1": "Name",
+    "Label2": "Value",
+    "VariableTypeRadioButton": "Variable",
+    "PlayerVariableTypeRadioButton": "Player Variable",
+    "ArrayVariableTypeRadioButton": "Array Variable"
+}
