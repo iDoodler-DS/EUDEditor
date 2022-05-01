@@ -2498,10 +2498,8 @@ Public Class Element
                     _stringb.Append(GetIntend(intend - 1) & "}" & vbCrLf)
                 End If
             Case ElementType.Foluder
-                If Values(1).Length > 0 Then
-                    LineCount += 1
-                    _stringb.AppendLine(GetIntend(intend + 1) & "// " & Values(1))
-                End If
+                LineCount += 1
+                _stringb.AppendLine(GetIntend(intend + 1) & Values(1))
         End Select
 
 
