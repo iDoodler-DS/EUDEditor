@@ -88,7 +88,7 @@ Science Vessel (Base)
 Science Vessel (Turret)
 Vulture
 Spider Mine
-Terran Academy
+Academy
 Barracks
 Armory
 Comsat Station
@@ -145,7 +145,7 @@ C-10 Canister Rifle Hit
 Gemini Missiles
 Fragmentation Grenade
 Lockdown/LongBolt/Hellfire Missile
-Unknown147
+Unused Lockdown
 ATS/ATA Laser Battery
 Burst Lasers
 Arclite Shock Cannon Hit
@@ -162,7 +162,7 @@ STA/STS Cannon Overlay
 Sunken Colony Tentacle
 Venom (Unused Zerg Weapon)
 Acid Spore
-Unknown164
+Plasma Drip Hit (Unused)
 Glave Wurm
 Seeker Spores
 Queen Spell Carrier

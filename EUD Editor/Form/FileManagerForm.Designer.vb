@@ -29,13 +29,10 @@ Partial Class FileManagerForm
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -81,11 +78,10 @@ Partial Class FileManagerForm
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.복사ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.붙여넣기ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        Me.TableLayoutPanel4.SuspendLayout()
         Me.TableLayoutPanel5.SuspendLayout()
-        Me.FlowLayoutPanel2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -120,14 +116,13 @@ Partial Class FileManagerForm
         Me.DataGridView1.AllowUserToResizeRows = False
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column4, Me.Column1, Me.Column2, Me.Column3})
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridView1.Location = New System.Drawing.Point(0, 22)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(0)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowTemplate.Height = 23
-        Me.DataGridView1.Size = New System.Drawing.Size(657, 426)
+        Me.DataGridView1.Size = New System.Drawing.Size(657, 424)
         Me.DataGridView1.TabIndex = 0
         '
         'Column4
@@ -162,32 +157,18 @@ Partial Class FileManagerForm
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.TableLayoutPanel4)
+        Me.GroupBox1.Controls.Add(Me.ComboBox3)
+        Me.GroupBox1.Controls.Add(Me.Label4)
+        Me.GroupBox1.Controls.Add(Me.TableLayoutPanel5)
+        Me.GroupBox1.Controls.Add(Me.DataGridView1)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 8)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(0)
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(0)
-        Me.GroupBox1.Size = New System.Drawing.Size(657, 466)
+        Me.GroupBox1.Size = New System.Drawing.Size(657, 471)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Stat_text"
-        '
-        'TableLayoutPanel4
-        '
-        Me.TableLayoutPanel4.ColumnCount = 1
-        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.Controls.Add(Me.DataGridView1, 0, 0)
-        Me.TableLayoutPanel4.Controls.Add(Me.TableLayoutPanel5, 0, 1)
-        Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 16)
-        Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
-        Me.TableLayoutPanel4.RowCount = 2
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(657, 450)
-        Me.TableLayoutPanel4.TabIndex = 2
         '
         'TableLayoutPanel5
         '
@@ -196,34 +177,36 @@ Partial Class FileManagerForm
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81.0!))
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+        Me.TableLayoutPanel5.Controls.Add(Me.Label5, 0, 0)
+        Me.TableLayoutPanel5.Controls.Add(Me.TextBox1, 1, 0)
         Me.TableLayoutPanel5.Controls.Add(Me.Label6, 2, 0)
         Me.TableLayoutPanel5.Controls.Add(Me.TextBox3, 3, 0)
         Me.TableLayoutPanel5.Controls.Add(Me.Button1, 4, 0)
-        Me.TableLayoutPanel5.Controls.Add(Me.FlowLayoutPanel2, 1, 0)
-        Me.TableLayoutPanel5.Controls.Add(Me.Label5, 0, 0)
-        Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 426)
+        Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 447)
         Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
-        Me.TableLayoutPanel5.RowCount = 1
-        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(657, 24)
+        Me.TableLayoutPanel5.RowCount = 2
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(657, 23)
         Me.TableLayoutPanel5.TabIndex = 1
         '
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label6.Location = New System.Drawing.Point(291, 4)
         Me.Label6.Margin = New System.Windows.Forms.Padding(3, 4, 3, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(47, 15)
+        Me.Label6.Size = New System.Drawing.Size(74, 15)
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "New Name"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TextBox3
         '
-        Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox3.Dock = System.Windows.Forms.DockStyle.Top
         Me.TextBox3.Location = New System.Drawing.Point(368, 0)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(0)
         Me.TextBox3.Name = "TextBox3"
@@ -232,43 +215,26 @@ Partial Class FileManagerForm
         '
         'Button1
         '
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Button1.Location = New System.Drawing.Point(576, 0)
         Me.Button1.Margin = New System.Windows.Forms.Padding(0)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(81, 24)
+        Me.Button1.Size = New System.Drawing.Size(81, 23)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "Filter"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'FlowLayoutPanel2
-        '
-        Me.FlowLayoutPanel2.Controls.Add(Me.TextBox1)
-        Me.FlowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(80, 0)
-        Me.FlowLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
-        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(208, 24)
-        Me.FlowLayoutPanel2.TabIndex = 1
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBox1.Location = New System.Drawing.Point(0, 0)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(0)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(199, 23)
-        Me.TextBox1.TabIndex = 5
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Dock = System.Windows.Forms.DockStyle.Top
         Me.Label5.Location = New System.Drawing.Point(3, 4)
         Me.Label5.Margin = New System.Windows.Forms.Padding(3, 4, 3, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(59, 15)
+        Me.Label5.Size = New System.Drawing.Size(74, 15)
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "Old Name"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TabControl1
         '
@@ -283,8 +249,6 @@ Partial Class FileManagerForm
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.ComboBox3)
-        Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(0)
@@ -299,7 +263,7 @@ Partial Class FileManagerForm
         Me.ComboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Items.AddRange(New Object() {"English", "Korean(Transliteration)", "Korean(Complete)", "User Setting"})
-        Me.ComboBox3.Location = New System.Drawing.Point(519, 0)
+        Me.ComboBox3.Location = New System.Drawing.Point(519, -3)
         Me.ComboBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(138, 23)
@@ -307,13 +271,12 @@ Partial Class FileManagerForm
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(483, -2)
+        Me.Label4.Location = New System.Drawing.Point(444, -3)
         Me.Label4.Name = "Label4"
-        Me.Label4.Padding = New System.Windows.Forms.Padding(0, 6, 0, 0)
-        Me.Label4.Size = New System.Drawing.Size(31, 21)
+        Me.Label4.Size = New System.Drawing.Size(75, 23)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Language"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TabPage2
         '
@@ -475,7 +438,7 @@ Partial Class FileManagerForm
         Me.ListBox1.BackColor = System.Drawing.SystemColors.WindowText
         Me.ListBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.ListBox1.Font = New System.Drawing.Font("맑은 고딕", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.ListBox1.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.ListBox1.ForeColor = System.Drawing.SystemColors.Window
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(0, 0)
@@ -516,20 +479,20 @@ Partial Class FileManagerForm
         '
         Me.초기화ToolStripMenuItem1.Name = "초기화ToolStripMenuItem1"
         Me.초기화ToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.초기화ToolStripMenuItem1.Size = New System.Drawing.Size(249, 22)
+        Me.초기화ToolStripMenuItem1.Size = New System.Drawing.Size(246, 22)
         Me.초기화ToolStripMenuItem1.Text = "초기화"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(246, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(243, 6)
         '
         '오브젝트초기화ToolStripMenuItem
         '
         Me.오브젝트초기화ToolStripMenuItem.Name = "오브젝트초기화ToolStripMenuItem"
         Me.오브젝트초기화ToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.오브젝트초기화ToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.오브젝트초기화ToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.오브젝트초기화ToolStripMenuItem.Text = "오브젝트 초기화"
         '
         '오브젝트복사ToolStripMenuItem
@@ -537,7 +500,7 @@ Partial Class FileManagerForm
         Me.오브젝트복사ToolStripMenuItem.Name = "오브젝트복사ToolStripMenuItem"
         Me.오브젝트복사ToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.오브젝트복사ToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.오브젝트복사ToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.오브젝트복사ToolStripMenuItem.Text = "오브젝트 복사"
         '
         '오브젝트붙여넣기ToolStripMenuItem
@@ -545,20 +508,20 @@ Partial Class FileManagerForm
         Me.오브젝트붙여넣기ToolStripMenuItem.Name = "오브젝트붙여넣기ToolStripMenuItem"
         Me.오브젝트붙여넣기ToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.오브젝트붙여넣기ToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
+        Me.오브젝트붙여넣기ToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.오브젝트붙여넣기ToolStripMenuItem.Text = "오브젝트 붙여넣기"
         '
         '보기VToolStripMenuItem
         '
         Me.보기VToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.테마설정TToolStripMenuItem})
         Me.보기VToolStripMenuItem.Name = "보기VToolStripMenuItem"
-        Me.보기VToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
+        Me.보기VToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.보기VToolStripMenuItem.Text = "보기(&V)"
         '
         '테마설정TToolStripMenuItem
         '
         Me.테마설정TToolStripMenuItem.Name = "테마설정TToolStripMenuItem"
-        Me.테마설정TToolStripMenuItem.Size = New System.Drawing.Size(140, 22)
+        Me.테마설정TToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.테마설정TToolStripMenuItem.Text = "테마 설정(&T)"
         '
         'GroupBox4
@@ -682,33 +645,42 @@ Partial Class FileManagerForm
         '
         Me.ListMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.초기화ToolStripMenuItem, Me.ToolStripSeparator1, Me.복사ToolStripMenuItem, Me.붙여넣기ToolStripMenuItem})
         Me.ListMenu.Name = "ContextMenuStrip1"
-        Me.ListMenu.Size = New System.Drawing.Size(165, 76)
+        Me.ListMenu.Size = New System.Drawing.Size(164, 76)
         '
         '초기화ToolStripMenuItem
         '
         Me.초기화ToolStripMenuItem.Name = "초기화ToolStripMenuItem"
         Me.초기화ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.초기화ToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.초기화ToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.초기화ToolStripMenuItem.Text = "초기화"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(161, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(160, 6)
         '
         '복사ToolStripMenuItem
         '
         Me.복사ToolStripMenuItem.Name = "복사ToolStripMenuItem"
         Me.복사ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.복사ToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.복사ToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.복사ToolStripMenuItem.Text = "복사"
         '
         '붙여넣기ToolStripMenuItem
         '
         Me.붙여넣기ToolStripMenuItem.Name = "붙여넣기ToolStripMenuItem"
         Me.붙여넣기ToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.붙여넣기ToolStripMenuItem.Size = New System.Drawing.Size(164, 22)
+        Me.붙여넣기ToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
         Me.붙여넣기ToolStripMenuItem.Text = "붙여넣기"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TextBox1.Location = New System.Drawing.Point(80, 0)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(0)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(208, 23)
+        Me.TextBox1.TabIndex = 5
         '
         'FileManagerForm
         '
@@ -717,7 +689,7 @@ Partial Class FileManagerForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(665, 502)
         Me.Controls.Add(Me.TabControl1)
-        Me.Font = New System.Drawing.Font("맑은 고딕", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MaximizeBox = False
@@ -726,14 +698,10 @@ Partial Class FileManagerForm
         Me.Text = "FileManager"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
-        Me.TableLayoutPanel4.ResumeLayout(False)
         Me.TableLayoutPanel5.ResumeLayout(False)
         Me.TableLayoutPanel5.PerformLayout()
-        Me.FlowLayoutPanel2.ResumeLayout(False)
-        Me.FlowLayoutPanel2.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel2.ResumeLayout(False)
@@ -810,18 +778,16 @@ Partial Class FileManagerForm
     Friend WithEvents 오브젝트붙여넣기ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 보기VToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 테마설정TToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents Label4 As Label
     Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
     Friend WithEvents Label6 As Label
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewButtonColumn
+    Friend WithEvents TextBox1 As TextBox
 End Class

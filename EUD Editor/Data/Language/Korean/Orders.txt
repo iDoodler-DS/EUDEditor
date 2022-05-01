@@ -6,7 +6,7 @@ Guard (Subunit)
 Guard (Bunker)
 Ignore (Normal)
 Stop (Reaver)
-Attack 1
+Attack
 Attack (Obscured)
 Attack Unit (Normal)
 Attack In Range
@@ -80,7 +80,7 @@ Is Spawning Larva
 Move to Harvest
 Move to Harvest Obscured
 Move to Harvest Gas
-Can Entry Gas Mine
+Can Enter Gas Mine
 Enter/Exit Gas Mine
 Return Gas
 Move to Harvest Minerals
@@ -112,8 +112,8 @@ Decloak
 Unload Unit (Transport)
 Move&Unload Unit (Transport)
 Cast Spell (Yamato Gun)
-Cast Spell On Obscured (Yamato Gun)
-Cast Spell (Lockdown)
+Cast Spell  On Obscured (Yamato Gun)
+Cast Spell  (Lockdown)
 Burrow
 Idle (Burrowed)
 Unburrow

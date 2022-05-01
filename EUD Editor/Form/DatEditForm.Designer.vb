@@ -778,10 +778,12 @@ Partial Class DatEditForm
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(3, 7)
-        Me.Label27.Margin = New System.Windows.Forms.Padding(3, 7, 3, 0)
+        Me.Label27.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label27.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Label27.Location = New System.Drawing.Point(3, 8)
+        Me.Label27.Margin = New System.Windows.Forms.Padding(3, 8, 3, 0)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(31, 15)
+        Me.Label27.Size = New System.Drawing.Size(29, 18)
         Me.Label27.TabIndex = 3
         Me.Label27.Text = "필터"
         '
@@ -789,18 +791,22 @@ Partial Class DatEditForm
         '
         Me.TextBox2.BackColor = System.Drawing.SystemColors.WindowText
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TextBox2.ForeColor = System.Drawing.SystemColors.Window
-        Me.TextBox2.Location = New System.Drawing.Point(40, 3)
+        Me.TextBox2.Location = New System.Drawing.Point(38, 3)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(128, 23)
+        Me.TextBox2.Size = New System.Drawing.Size(130, 23)
         Me.TextBox2.TabIndex = 2
         '
         'CheckBox5
         '
         Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Location = New System.Drawing.Point(174, 3)
+        Me.CheckBox5.Dock = System.Windows.Forms.DockStyle.Right
+        Me.CheckBox5.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.CheckBox5.Location = New System.Drawing.Point(174, 6)
+        Me.CheckBox5.Margin = New System.Windows.Forms.Padding(3, 6, 3, 3)
         Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(50, 19)
+        Me.CheckBox5.Size = New System.Drawing.Size(48, 17)
         Me.CheckBox5.TabIndex = 5
         Me.CheckBox5.Text = "수정"
         Me.CheckBox5.UseVisualStyleBackColor = True
@@ -935,6 +941,7 @@ Partial Class DatEditForm
         'Button5
         '
         Me.Button5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Button5.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.Button5.Location = New System.Drawing.Point(0, 0)
         Me.Button5.Margin = New System.Windows.Forms.Padding(0)
         Me.Button5.Name = "Button5"

@@ -47,7 +47,7 @@ Burrowed (Stop - Lurker)	428360
 Has No Exit	428340	0
 Zerg Basic Buildings	428CB0
 Zerg Advanced Buildings	428C30
-Has interceptors	4286E0
+Has Interceptors	4286E0
 Has Scarabs	4286A0
 2 Units Selected & Not Researched(Archon Merge)	4296F0	6
 2 Units Selected (Archon Warp)	4296B0	0
