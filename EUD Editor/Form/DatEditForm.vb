@@ -5158,18 +5158,23 @@ Public Class DatEditForm
             'ListView8.Items(0).Checked
             For i = 0 To 3
                 Dim strings As String = DatEditDATA(DTYPE.images).keyDic.Keys(i + 1)
+                If ListView10.Items.Count >= i + 1 Then
+                    Dim Item = ListView10.Items(i)
+                    If Item IsNot Nothing Then
 
-                If ListView10.Items(i).Checked = True Then
-                    DatEditDATA(DTYPE.images).WriteValue(strings, _OBJECTNUM, 1)
-                Else
-                    DatEditDATA(DTYPE.images).WriteValue(strings, _OBJECTNUM, 0)
-                End If
-                DatEditDATA(DTYPE.images).CheckChange(strings, _OBJECTNUM, ListView10.Items(i))
+                        If Item.Checked = True Then
+                            DatEditDATA(DTYPE.images).WriteValue(strings, _OBJECTNUM, 1)
+                        Else
+                            DatEditDATA(DTYPE.images).WriteValue(strings, _OBJECTNUM, 0)
+                        End If
+                        DatEditDATA(DTYPE.images).CheckChange(strings, _OBJECTNUM, Item)
 
 
-                Dim value As Boolean = DatEditDATA(DTYPE.images).ReadValue(strings, _OBJECTNUM)
-                If value = True And ListView10.Items(i).BackColor = ProgramSet.colorFieldBackground Then
-                    ListView10.Items(i).BackColor = ProgramSet.colorCheckedBackground
+                        Dim value As Boolean = DatEditDATA(DTYPE.images).ReadValue(strings, _OBJECTNUM)
+                        If value = True And Item.BackColor = ProgramSet.colorFieldBackground Then
+                            Item.BackColor = ProgramSet.colorCheckedBackground
+                        End If
+                    End If
                 End If
             Next
 
