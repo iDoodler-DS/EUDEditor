@@ -2,9 +2,8 @@
 Imports System.IO
 
 Public Class TrigEditorForm
-
-    Private triggerBindingList As BindingList(Of Element) = New BindingList(Of Element)
-    Private triggerBindingSource As BindingSource = New BindingSource(triggerBindingList)
+    Private classicTriggerDataList As New List(Of Element)
+    Private classicTriggerBindingSource As New BindingSource()
     Private Sub TrigEditorForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Lan.SetLanguage(Me)
         Lan.SetMenu(Me, ContextMenuStrip1)
@@ -18,12 +17,44 @@ Public Class TrigEditorForm
         ReDrawList()
         RedrawCode()
 
-        ClassicTriggerListView.AutoGenerateColumns = False
-        ClassicTriggerListView.DataSource = triggerBindingSource
-        ClassicTriggerListView.DataMember = "Summary"
-        triggerBindingList.RaiseListChangedEvents = True
+        classicTriggerBindingSource.DataSource = classicTriggerDataList
+        ClassicTriggerListView.DataSource = classicTriggerBindingSource
     End Sub
 
+    Private Sub RefreshClassicTriggerListData()
+        classicTriggerBindingSource.ResetBindings(False)
+    End Sub
+
+    Private Sub AddClassicTrigger()
+    End Sub
+
+    Private Sub EditRow(sender As DataGridView, e As DataGridViewCellMouseEventArgs) Handles ClassicTriggerListView.CellMouseDoubleClick
+        Dim index = ClassicTriggerListView.Rows(e.RowIndex).Index
+
+        TriggerForm.MainTrigger = RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(index)).Clone
+        If TriggerForm.ShowDialog() = DialogResult.OK Then
+            RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(index)).Copy(TriggerForm.MainTrigger)
+
+            Dim playerflag As Integer = TriggerForm.MainTrigger.Values(0)
+
+            If (playerflag And Math.Pow(2, listboxdata(ListBox2.SelectedIndex))) = 0 Then
+                ListControl1.Remove(index)
+            End If
+
+            ListControl1.Refresh()
+            ClassbuttonRefresh()
+            ReDrawPlayerList()
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles ClassicTriggerListView.CellFormatting
+        If (e.RowIndex >= classicTriggerDataList.Count) Then Return
+        Dim elm = classicTriggerDataList(e.RowIndex)
+        If elm.isdisalbe Then
+            e.CellStyle.BackColor = Color.Gray
+            e.CellStyle.ForeColor = Color.White
+        End If
+    End Sub
 
     Private Sub UndoRedoBtnRefresh()
         Button18.Enabled = TaskManager.Isundoable
@@ -2434,16 +2465,16 @@ Public Class TrigEditorForm
         Button13.Enabled = False
         Button15.Enabled = False
 
-        triggerBindingList.Clear()
-
         If ListBox2.SelectedIndex <> -1 Then
+            classicTriggerDataList.Clear()
             For i = 0 To playerlist(listboxdata(ListBox2.SelectedIndex)).Count - 1
-                'ListControl1.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
-                triggerBindingList.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
-                'ClassicTriggerListView.Rows.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
+                classicTriggerDataList.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
             Next
+            RefreshClassicTriggerListData()
+            'For i = 0 To playerlist(listboxdata(ListBox2.SelectedIndex)).Count - 1
+            '    ListControl1.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
+            'Next
         End If
-        triggerBindingList.ResetBindings()
         ListControl1.flpListBox.ResumeLayout()
         ListControl1.ResumeLayout()
     End Sub
@@ -2455,16 +2486,19 @@ Public Class TrigEditorForm
     End Sub
 
     Private Function GetSelectTrigger(Optional index As SByte = 0) As Element
-        If ListControl1.SelectedIndex <> -1 Then
-            Return RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ListControl1.SelectedIndex + index))
+        If ClassicTriggerListView.CurrentRow.Index <> -1 Then
+            Return RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ClassicTriggerListView.CurrentRow.Index + index))
         Else
             Return Nothing
         End If
     End Function
+    Private Function GetTriggerAtPosition(index As SByte) As Element
+        Return RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ClassicTriggerListView.CurrentRow.Index + index))
+    End Function
 
     Private Sub ClassbuttonRefresh(Optional index As Integer = -1)
         If index = -1 Then
-            index = ListControl1.SelectedIndex
+            index = ClassicTriggerListView.CurrentRow.Index
         End If
         If index <> -1 Then
             Button10.Enabled = True
@@ -2491,25 +2525,25 @@ Public Class TrigEditorForm
         End If
     End Sub
 
-    Private Sub ListControl1_ItemClick(sender As Object, index As Integer) Handles ListControl1.ItemClick
-        ClassbuttonRefresh(index)
-    End Sub
-    Private Sub ListControl1_DoubleClick(sender As Object) Handles ListControl1.ItemDoubleClick
-        TriggerForm.MainTrigger = RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ListControl1.SelectedIndex)).Clone
-        If TriggerForm.ShowDialog() = DialogResult.OK Then
-            RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ListControl1.SelectedIndex)).Copy(TriggerForm.MainTrigger)
+    'Private Sub ListControl1_ItemClick(sender As Object, index As Integer) Handles ListControl1.ItemClick
+    '    ClassbuttonRefresh(index)
+    'End Sub
+    'Private Sub ListControl1_DoubleClick(sender As Object) Handles ListControl1.ItemDoubleClick
+    '    TriggerForm.MainTrigger = RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ClassicTriggerListView.CurrentRow.Index)).Clone
+    '    If TriggerForm.ShowDialog() = DialogResult.OK Then
+    '        RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ClassicTriggerListView.CurrentRow.Index)).Copy(TriggerForm.MainTrigger)
 
-            Dim playerflag As Integer = TriggerForm.MainTrigger.Values(0)
+    '        Dim playerflag As Integer = TriggerForm.MainTrigger.Values(0)
 
-            If (playerflag And Math.Pow(2, listboxdata(ListBox2.SelectedIndex))) = 0 Then
-                ListControl1.Remove(ListControl1.SelectedIndex)
-            End If
+    '        If (playerflag And Math.Pow(2, listboxdata(ListBox2.SelectedIndex))) = 0 Then
+    '            ListControl1.Remove(ClassicTriggerListView.CurrentRow.Index)
+    '        End If
 
-            ListControl1.Refresh()
-            ClassbuttonRefresh()
-            ReDrawPlayerList()
-        End If
-    End Sub
+    '        ListControl1.Refresh()
+    '        ClassbuttonRefresh()
+    '        ReDrawPlayerList()
+    '    End If
+    'End Sub
 
 
     Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message, keyData As System.Windows.Forms.Keys) As Boolean
@@ -2578,8 +2612,8 @@ Public Class TrigEditorForm
 
 
     Private Sub _NewTrigger()
-        'If ListControl1.SelectedIndex = -1 Then
-        '    ListControl1.SelectedIndex = 0
+        'If ClassicTriggerListView.CurrentRow.Index = -1 Then
+        '    ClassicTriggerListView.CurrentRow.Index = 0
         'End If
         TriggerForm.MainTrigger = New Element(RawTriggers, ElementType.RawTrigger)
         TriggerForm.MainTrigger.SetValue({0})
@@ -2603,8 +2637,8 @@ Public Class TrigEditorForm
 
             If ListBox2.SelectedIndex <> -1 Then
                 If (playerflag And Math.Pow(2, listboxdata(ListBox2.SelectedIndex))) > 0 Then
-                    If ListControl1.SelectedIndex <> -1 Then
-                        Dim lastindex As Integer = ListControl1.SelectedIndex
+                    If ClassicTriggerListView.CurrentRow.Index <> -1 Then
+                        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
 
                         ListControl1.Add(ListControl1.Items(ListControl1.Count - 1).Trigger)
                         For i = ListControl1.Count - 1 To lastindex + 1 Step -1
@@ -2639,14 +2673,14 @@ Public Class TrigEditorForm
     End Sub
 
     Private Sub _Modify()
-        TriggerForm.MainTrigger = RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ListControl1.SelectedIndex)).Clone
+        TriggerForm.MainTrigger = RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ClassicTriggerListView.CurrentRow.Index)).Clone
         If TriggerForm.ShowDialog() = DialogResult.OK Then
-            RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ListControl1.SelectedIndex)).Copy(TriggerForm.MainTrigger)
+            RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ClassicTriggerListView.CurrentRow.Index)).Copy(TriggerForm.MainTrigger)
 
             Dim playerflag As Integer = TriggerForm.MainTrigger.Values(0)
 
             If (playerflag And Math.Pow(2, listboxdata(ListBox2.SelectedIndex))) = 0 Then
-                ListControl1.Remove(ListControl1.SelectedIndex)
+                ListControl1.Remove(ClassicTriggerListView.CurrentRow.Index)
             End If
 
             ListControl1.Refresh()
@@ -2657,13 +2691,14 @@ Public Class TrigEditorForm
 
 
     Private Sub _Delete()
-        Dim lastindex As Integer = ListControl1.SelectedIndex
+        Return 'TODO SUPPORT
+        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
         GetSelectTrigger.Delete()
         ListControl1.Remove(lastindex)
         If ListControl1.Count - 1 >= lastindex Then
-            ListControl1.SelectedIndex = lastindex
+            ClassicTriggerListView.Rows(lastindex).Selected = True
         Else
-            ListControl1.SelectedIndex = ListControl1.Count - 1
+            ClassicTriggerListView.Rows(ListControl1.Count - 1).Selected = True
             If ListControl1.Count = 0 Then
                 Button10.Enabled = False
                 Button11.Enabled = False
@@ -2676,12 +2711,13 @@ Public Class TrigEditorForm
     End Sub
 
     Private Sub _Copy()
+        Return 'TODO SUPPORT
         Dim orgele As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
         Dim orgparrent As Element = GetSelectTrigger.Parrent
         Dim index As Integer = GetSelectTrigger.Getindex()
         orgparrent.AddElements(index, orgele)
 
-        Dim lastindex As Integer = ListControl1.SelectedIndex
+        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
 
         ListControl1.Add(ListControl1.Items(ListControl1.Count - 1).Trigger)
         For i = ListControl1.Count - 1 To lastindex + 1 Step -1
@@ -2691,12 +2727,13 @@ Public Class TrigEditorForm
         ListControl1.Items(lastindex).Trigger = orgparrent.GetElementList(index) 'orgele
 
 
-        ListControl1.SelectedIndex = lastindex + 1
+        ClassicTriggerListView.Rows(lastindex + 1).Selected = True
 
         ReDrawPlayerList()
     End Sub
 
     Private Sub _MoveUp()
+        Return 'TODO SUPPORT
         Dim orgele As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
         Dim orgparrent As Element = GetSelectTrigger.Parrent
 
@@ -2705,7 +2742,7 @@ Public Class TrigEditorForm
         GetSelectTrigger.Delete()
         orgparrent.AddElements(index - 1, orgele)
 
-        If (ListControl1.SelectedIndex > 1) Then
+        If (ClassicTriggerListView.CurrentRow.Index > 1) Then
             Button13.Enabled = True
         Else
             Button13.Enabled = False
@@ -2713,16 +2750,17 @@ Public Class TrigEditorForm
         Button15.Enabled = True
 
 
-        Dim lastindex As Integer = ListControl1.SelectedIndex
+        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
         Dim tempele As Element = ListControl1.Items(lastindex - 1).Trigger
         ListControl1.Items(lastindex - 1).Trigger = orgparrent.GetElements(index - 1)
         ListControl1.Items(lastindex).Trigger = tempele
 
 
-        ListControl1.SelectedIndex = lastindex - 1
+        ClassicTriggerListView.Rows(lastindex).Selected = True
     End Sub
 
     Private Sub _MoveDown()
+        Return 'TODO SUPPORT
         Dim orgele As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
         Dim orgparrent As Element = GetSelectTrigger.Parrent
 
@@ -2732,19 +2770,18 @@ Public Class TrigEditorForm
         orgparrent.AddElements(index + 1, orgele)
 
         Button13.Enabled = True
-        If (ListControl1.SelectedIndex < ListControl1.Count - 2) Then
+        If (ClassicTriggerListView.CurrentRow.Index < ClassicTriggerListView.Rows.Count - 2) Then
             Button15.Enabled = True
         Else
             Button15.Enabled = False
         End If
 
-        Dim lastindex As Integer = ListControl1.SelectedIndex
+        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
         Dim tempele As Element = ListControl1.Items(lastindex + 1).Trigger
         ListControl1.Items(lastindex + 1).Trigger = orgparrent.GetElements(index + 1)
         ListControl1.Items(lastindex).Trigger = tempele
 
-
-        ListControl1.SelectedIndex = lastindex + 1
+        ClassicTriggerListView.Rows(lastindex + 1).Selected = True
     End Sub
 
 

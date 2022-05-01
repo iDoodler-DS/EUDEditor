@@ -38,7 +38,69 @@ End Enum
 Public Class Element
     Public ReadOnly Property Summary() As String
         Get
-            Return "Trigger"
+            Dim str = ""
+            Dim pad = "  "
+            Dim isCommentTrigger As Boolean = False
+            Dim commentString = ""
+            Dim lineCount = 0
+            Dim maxLine = 15
+
+            For Each act As Element In Me.GetElements(1).GetElementList
+                If act.GetTypeV = ElementType.액션 Then
+                    If act.act.Name = "Comment" Then
+                        commentString = act.Values(0)
+                        isCommentTrigger = True
+                    End If
+                End If
+            Next
+
+            If Me.isdisalbe Then
+                str = "[DISABLED]" & Environment.NewLine
+                lineCount += 1
+            Else
+                'str = "[NOT DISABLED?]" & Environment.NewLine
+                'lineCount += 1
+            End If
+
+            If isCommentTrigger Then
+                str = str & commentString & Environment.NewLine
+                Return str
+            End If
+
+            str = str & "CONDITIONS:" & Environment.NewLine
+            lineCount += 1
+
+            For Each cond As Element In Me.GetElements(0).GetElementList
+                If lineCount < maxLine Then '
+                    Dim text = ""
+                    If cond.isdisalbe Then
+                        text = "[DISABLED] " & text
+                    End If
+                    str = str & pad & cond.GetText & Environment.NewLine
+                    lineCount += 1
+                End If
+            Next
+
+            If lineCount < maxLine Then
+                str = str & "ACTIONS:" & Environment.NewLine
+                lineCount += 1
+            End If
+
+            For Each act As Element In Me.GetElements(1).GetElementList
+                If lineCount < maxLine Then '
+                    Dim text = ""
+                    If act.isdisalbe Then
+                        text = "[DISABLED] " & text
+                    End If
+                    str = str & pad & act.GetText & Environment.NewLine
+                    lineCount += 1
+                End If
+            Next
+
+            If lineCount >= maxLine Then
+                str = str & pad & "(MORE)" & Environment.NewLine
+            End If
+            Return str
         End Get
     End Property
     Private Function ElementNames(Et As ElementType) As String

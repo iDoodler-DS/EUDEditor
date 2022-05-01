@@ -23,6 +23,7 @@ Partial Class TrigEditorForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TrigEditorForm))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -69,7 +70,6 @@ Partial Class TrigEditorForm
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel8 = New System.Windows.Forms.TableLayoutPanel()
         Me.ClassicTriggerListView = New System.Windows.Forms.DataGridView()
-        Me.Triggger = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FlowLayoutPanel5 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
@@ -143,6 +143,7 @@ Partial Class TrigEditorForm
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog2 = New System.Windows.Forms.SaveFileDialog()
+        Me.Trigger = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ListControl1 = New EUD_Editor.ListControl()
         Me.MenuStrip1.SuspendLayout()
         Me.TableLayoutPanel4.SuspendLayout()
@@ -693,10 +694,19 @@ Partial Class TrigEditorForm
         Me.ClassicTriggerListView.AllowUserToOrderColumns = True
         Me.ClassicTriggerListView.AllowUserToResizeColumns = False
         Me.ClassicTriggerListView.AllowUserToResizeRows = False
-        Me.ClassicTriggerListView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
+        Me.ClassicTriggerListView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.ClassicTriggerListView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.ClassicTriggerListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.ClassicTriggerListView.ColumnHeadersVisible = False
-        Me.ClassicTriggerListView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Triggger})
+        Me.ClassicTriggerListView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Trigger})
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.ClassicTriggerListView.DefaultCellStyle = DataGridViewCellStyle1
         Me.ClassicTriggerListView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ClassicTriggerListView.Location = New System.Drawing.Point(3, 3)
         Me.ClassicTriggerListView.Name = "ClassicTriggerListView"
@@ -706,14 +716,6 @@ Partial Class TrigEditorForm
         Me.ClassicTriggerListView.Size = New System.Drawing.Size(526, 449)
         Me.ClassicTriggerListView.StandardTab = True
         Me.ClassicTriggerListView.TabIndex = 2
-        '
-        'Triggger
-        '
-        Me.Triggger.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.Triggger.HeaderText = "Trigger"
-        Me.Triggger.Name = "Triggger"
-        Me.Triggger.ReadOnly = True
-        Me.Triggger.Width = 21
         '
         'FlowLayoutPanel5
         '
@@ -849,7 +851,7 @@ Partial Class TrigEditorForm
         '
         Me.SplitContainer2.Panel2.Controls.Add(Me.SplitContainer1)
         Me.SplitContainer2.Size = New System.Drawing.Size(557, 618)
-        Me.SplitContainer2.SplitterDistance = 27
+        Me.SplitContainer2.SplitterDistance = 26
         Me.SplitContainer2.TabIndex = 7
         '
         'TextBox1
@@ -858,7 +860,7 @@ Partial Class TrigEditorForm
         Me.TextBox1.Location = New System.Drawing.Point(0, 0)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(557, 27)
+        Me.TextBox1.Size = New System.Drawing.Size(557, 26)
         Me.TextBox1.TabIndex = 0
         '
         'SplitContainer1
@@ -876,7 +878,7 @@ Partial Class TrigEditorForm
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.FastColoredTextBox1)
         Me.SplitContainer1.Panel2MinSize = 5
-        Me.SplitContainer1.Size = New System.Drawing.Size(557, 587)
+        Me.SplitContainer1.Size = New System.Drawing.Size(557, 588)
         Me.SplitContainer1.SplitterDistance = 291
         Me.SplitContainer1.TabIndex = 5
         '
@@ -896,7 +898,7 @@ Partial Class TrigEditorForm
         Me.WorkSpace.Name = "WorkSpace"
         Me.WorkSpace.PathSeparator = "ஐ"
         Me.WorkSpace.SelectedImageIndex = 2
-        Me.WorkSpace.Size = New System.Drawing.Size(291, 587)
+        Me.WorkSpace.Size = New System.Drawing.Size(291, 588)
         Me.WorkSpace.TabIndex = 23
         '
         'ContextMenuStrip1
@@ -1164,7 +1166,7 @@ Partial Class TrigEditorForm
         Me.FastColoredTextBox1.RightBracket2 = Global.Microsoft.VisualBasic.ChrW(125)
         Me.FastColoredTextBox1.SelectionColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.FastColoredTextBox1.ServiceColors = CType(resources.GetObject("FastColoredTextBox1.ServiceColors"), FastColoredTextBoxNS.ServiceColors)
-        Me.FastColoredTextBox1.Size = New System.Drawing.Size(262, 587)
+        Me.FastColoredTextBox1.Size = New System.Drawing.Size(262, 588)
         Me.FastColoredTextBox1.TabIndex = 0
         Me.FastColoredTextBox1.Text = "FastColoredTextBox1"
         Me.FastColoredTextBox1.Zoom = 100
@@ -1477,6 +1479,15 @@ Partial Class TrigEditorForm
         Me.SaveFileDialog2.Filter = "Funciton파일|*.tfn"
         Me.SaveFileDialog2.Tag = ""
         '
+        'Trigger
+        '
+        Me.Trigger.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Trigger.DataPropertyName = "Summary"
+        Me.Trigger.HeaderText = "Trigger"
+        Me.Trigger.Name = "Trigger"
+        Me.Trigger.ReadOnly = True
+        Me.Trigger.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
         'ListControl1
         '
         Me.ListControl1.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -1663,5 +1674,5 @@ Partial Class TrigEditorForm
     Friend WithEvents 케이스ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As ToolStripMenuItem
     Friend WithEvents ClassicTriggerListView As DataGridView
-    Friend WithEvents Triggger As DataGridViewTextBoxColumn
+    Friend WithEvents Trigger As DataGridViewTextBoxColumn
 End Class
