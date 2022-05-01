@@ -984,9 +984,9 @@ Public Class FireGraftForm
                     TextBox3.Text = .pos
                     TextBox5.Text = .icon
                     Try
-                        PictureBox1.Image = DatEditForm.ICONILIST.Images(.icon) '방어구 아이콘
+                        PictureBox1.Image = CMDIconBitmapList(.icon) '방어구 아이콘
                     Catch ex As Exception
-                        PictureBox1.Image = DatEditForm.ICONILIST.Images(4)
+                        PictureBox1.Image = CMDIconBitmapList(4)
                     End Try
 
                     Try
@@ -1127,9 +1127,9 @@ Public Class FireGraftForm
                 Dim tpos As New Point((pos Mod 3) * 38, Math.Floor(pos / 3) * 36)
 
                 Try
-                    grptool.DrawImage(My.Forms.DatEditForm.ICONILIST.Images(ProjectBtnData(_OBJECTNUM)(i).icon), tpos)
+                    grptool.DrawImage(CMDIconBitmapList(ProjectBtnData(_OBJECTNUM)(i).icon), tpos)
                 Catch ex As Exception
-                    grptool.DrawImage(My.Forms.DatEditForm.ICONILIST.Images(4), tpos)
+                    grptool.DrawImage(CMDIconBitmapList(4), tpos)
                 End Try
             Next
             If ListBox2.SelectedIndex <> -1 Then
@@ -1147,9 +1147,9 @@ Public Class FireGraftForm
                 Dim tpos As New Point((pos Mod 3) * 38, Math.Floor(pos / 3) * 36)
 
                 Try
-                    grptool.DrawImage(My.Forms.DatEditForm.ICONILIST.Images(BtnData(_OBJECTNUM)(i).icon), tpos)
+                    grptool.DrawImage(CMDIconBitmapList(BtnData(_OBJECTNUM)(i).icon), tpos)
                 Catch ex As Exception
-                    grptool.DrawImage(My.Forms.DatEditForm.ICONILIST.Images(4), tpos)
+                    grptool.DrawImage(CMDIconBitmapList(4), tpos)
                 End Try
             Next
             If ListBox2.SelectedIndex <> -1 Then
@@ -1771,10 +1771,10 @@ Handles ListBox1.DrawItem
                         With ProjectBtnData(_OBJECTNUM)(btnnum)
                             Try
                                 ComboBox4.SelectedIndex = TextBox5.Text
-                                PictureBox1.Image = DatEditForm.ICONILIST.Images(.icon) '방어구 아이콘
+                                PictureBox1.Image = CMDIconBitmapList(.icon) '방어구 아이콘
                             Catch ex As Exception
                                 ComboBox4.SelectedIndex = -1
-                                PictureBox1.Image = DatEditForm.ICONILIST.Images(4)
+                                PictureBox1.Image = CMDIconBitmapList(4)
                             End Try
 
                             TextBox4.Text = ValueTostring(.pos) & ValueTostring(.icon) _
@@ -1822,10 +1822,10 @@ Handles ListBox1.DrawItem
                     With ProjectBtnData(_OBJECTNUM)(btnnum)
                         Try
                             TextBox5.Text = ComboBox4.SelectedIndex
-                            PictureBox1.Image = DatEditForm.ICONILIST.Images(.icon) '방어구 아이콘
+                            PictureBox1.Image = CMDIconBitmapList(.icon) '방어구 아이콘
                         Catch ex As Exception
                             ComboBox4.SelectedIndex = -1
-                            PictureBox1.Image = DatEditForm.ICONILIST.Images(4)
+                            PictureBox1.Image = CMDIconBitmapList(4)
                         End Try
 
                         TextBox4.Text = ValueTostring(.pos) & ValueTostring(.icon) _
