@@ -16,19 +16,25 @@ Public Class TrigEditorForm
         ReDrawTriggerList()
         ReDrawList()
         RedrawCode()
-
         classicTriggerBindingSource.DataSource = classicTriggerDataList
         ClassicTriggerListView.DataSource = classicTriggerBindingSource
+    End Sub
+    Private Sub FocusClassicTriggerListViewRow(row As Integer)
+        If row < 0 Or row > ClassicTriggerListView.Rows.Count - 1 Then Return
+        ClassicTriggerListView.CurrentCell = ClassicTriggerListView.Rows(row).Cells(0)
     End Sub
 
     Private Sub RefreshClassicTriggerListData()
         classicTriggerBindingSource.ResetBindings(False)
     End Sub
 
+    Private Sub ClassicTriggerListView_SelectionChanged(sender As DataGridView, e As EventArgs) Handles ClassicTriggerListView.CellMouseClick, ClassicTriggerListView.SelectionChanged
+        ClassbuttonRefresh()
+    End Sub
     Private Sub AddClassicTrigger()
     End Sub
 
-    Private Sub EditRow(sender As DataGridView, e As DataGridViewCellMouseEventArgs) Handles ClassicTriggerListView.CellMouseDoubleClick
+    Private Sub ClassicTriggerListView_DoubleClickRow(sender As DataGridView, e As DataGridViewCellMouseEventArgs) Handles ClassicTriggerListView.CellMouseDoubleClick
         Dim index = ClassicTriggerListView.Rows(e.RowIndex).Index
 
         TriggerForm.MainTrigger = RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(index)).Clone
@@ -2497,7 +2503,7 @@ Public Class TrigEditorForm
     End Function
 
     Private Sub ClassbuttonRefresh(Optional index As Integer = -1)
-        If index = -1 Then
+        If index = -1 And ClassicTriggerListView.CurrentRow IsNot Nothing Then
             index = ClassicTriggerListView.CurrentRow.Index
         End If
         If index <> -1 Then
@@ -2510,7 +2516,7 @@ Public Class TrigEditorForm
             Else
                 Button13.Enabled = False
             End If
-            If (index <> ListControl1.Count - 1) Then
+            If (index <> classicTriggerDataList.Count - 1) Then
                 Button15.Enabled = True
             Else
                 Button15.Enabled = False
@@ -2618,10 +2624,8 @@ Public Class TrigEditorForm
         TriggerForm.MainTrigger = New Element(RawTriggers, ElementType.RawTrigger)
         TriggerForm.MainTrigger.SetValue({0})
         If TriggerForm.ShowDialog() = DialogResult.OK Then
-
-
-            Dim orgele As Element = TriggerForm.MainTrigger.Clone(RawTriggers)
-            Dim orgparrent As Element = RawTriggers
+            Dim newTriggerElement As Element = TriggerForm.MainTrigger.Clone(RawTriggers)
+            Dim parentElement As Element = RawTriggers
             Dim index As Integer
             If GetSelectTrigger() Is Nothing Then
                 index = 0
@@ -2629,44 +2633,8 @@ Public Class TrigEditorForm
                 index = GetSelectTrigger.Getindex()
             End If
 
-            orgparrent.AddElements(index, orgele)
-
-
-            '만약 해당 화면에 추가되었다면
-            Dim playerflag As Integer = TriggerForm.MainTrigger.Values(0)
-
-            If ListBox2.SelectedIndex <> -1 Then
-                If (playerflag And Math.Pow(2, listboxdata(ListBox2.SelectedIndex))) > 0 Then
-                    If ClassicTriggerListView.CurrentRow.Index <> -1 Then
-                        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
-
-                        ListControl1.Add(ListControl1.Items(ListControl1.Count - 1).Trigger)
-                        For i = ListControl1.Count - 1 To lastindex + 1 Step -1
-                            ListControl1.Items(i).Trigger = ListControl1.Items(i - 1).Trigger
-                        Next
-
-                        ListControl1.Items(lastindex).Trigger = orgparrent.GetElements(index)
-                    Else
-                        If playerflag <> 0 Then
-                            ListControl1.Add(Nothing)
-                            For i = ListControl1.Count - 1 To 0 + 1 Step -1
-                                ListControl1.Items(i).Trigger = ListControl1.Items(i - 1).Trigger
-                            Next
-
-                            ListControl1.Items(0).Trigger = orgparrent.GetElements(index)
-                        End If
-                    End If
-                End If
-            Else
-                If playerflag <> 0 Then
-                    ListControl1.Add(orgparrent.GetElements(index))
-                End If
-            End If
-
-
-
-
-            ListControl1.Refresh()
+            parentElement.AddElements(index, newTriggerElement)
+            ReDrawPlayerTriggerList()
             ReDrawPlayerList()
         End If
         ClassbuttonRefresh()
@@ -2691,97 +2659,48 @@ Public Class TrigEditorForm
 
 
     Private Sub _Delete()
-        Return 'TODO SUPPORT
-        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
+        Dim index As Integer = ClassicTriggerListView.CurrentRow.Index
         GetSelectTrigger.Delete()
-        ListControl1.Remove(lastindex)
-        If ListControl1.Count - 1 >= lastindex Then
-            ClassicTriggerListView.Rows(lastindex).Selected = True
-        Else
-            ClassicTriggerListView.Rows(ListControl1.Count - 1).Selected = True
-            If ListControl1.Count = 0 Then
-                Button10.Enabled = False
-                Button11.Enabled = False
-                Button12.Enabled = False
-                Button13.Enabled = False
-                Button15.Enabled = False
-            End If
-        End If
+        ClassicTriggerListView.Rows.RemoveAt(index)
         ReDrawPlayerList()
+        ClassbuttonRefresh()
     End Sub
 
     Private Sub _Copy()
-        Return 'TODO SUPPORT
-        Dim orgele As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
-        Dim orgparrent As Element = GetSelectTrigger.Parrent
+        Dim triggerElement As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
+        Dim parentElement As Element = RawTriggers
         Dim index As Integer = GetSelectTrigger.Getindex()
-        orgparrent.AddElements(index, orgele)
-
-        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
-
-        ListControl1.Add(ListControl1.Items(ListControl1.Count - 1).Trigger)
-        For i = ListControl1.Count - 1 To lastindex + 1 Step -1
-            ListControl1.Items(i).Trigger = ListControl1.Items(i - 1).Trigger
-        Next
-
-        ListControl1.Items(lastindex).Trigger = orgparrent.GetElementList(index) 'orgele
-
-
-        ClassicTriggerListView.Rows(lastindex + 1).Selected = True
-
+        parentElement.AddElements(index, triggerElement)
+        ReDrawPlayerTriggerList()
         ReDrawPlayerList()
+        FocusClassicTriggerListViewRow(index + 1)
+        ClassbuttonRefresh()
     End Sub
 
     Private Sub _MoveUp()
-        Return 'TODO SUPPORT
-        Dim orgele As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
-        Dim orgparrent As Element = GetSelectTrigger.Parrent
-
+        If ClassicTriggerListView.CurrentRow.Index <= 0 Then Return
+        Dim triggerElement As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
+        Dim parentElement As Element = GetSelectTrigger.Parrent
         Dim index As Integer = GetSelectTrigger.Getindex()
-
         GetSelectTrigger.Delete()
-        orgparrent.AddElements(index - 1, orgele)
-
-        If (ClassicTriggerListView.CurrentRow.Index > 1) Then
-            Button13.Enabled = True
-        Else
-            Button13.Enabled = False
-        End If
-        Button15.Enabled = True
-
-
-        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
-        Dim tempele As Element = ListControl1.Items(lastindex - 1).Trigger
-        ListControl1.Items(lastindex - 1).Trigger = orgparrent.GetElements(index - 1)
-        ListControl1.Items(lastindex).Trigger = tempele
-
-
-        ClassicTriggerListView.Rows(lastindex).Selected = True
+        parentElement.AddElements(index - 1, triggerElement)
+        ReDrawPlayerTriggerList()
+        ReDrawPlayerList()
+        ClassicTriggerListView.ClearSelection()
+        FocusClassicTriggerListViewRow(index - 1)
     End Sub
 
     Private Sub _MoveDown()
-        Return 'TODO SUPPORT
-        Dim orgele As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
-        Dim orgparrent As Element = GetSelectTrigger.Parrent
-
+        If ClassicTriggerListView.CurrentRow.Index >= ClassicTriggerListView.Rows.Count - 1 Then Return
         Dim index As Integer = GetSelectTrigger.Getindex()
-
+        Dim triggerElement As Element = GetSelectTrigger.Clone(GetSelectTrigger.Parrent)
+        Dim parentElement As Element = GetSelectTrigger.Parrent
         GetSelectTrigger.Delete()
-        orgparrent.AddElements(index + 1, orgele)
-
-        Button13.Enabled = True
-        If (ClassicTriggerListView.CurrentRow.Index < ClassicTriggerListView.Rows.Count - 2) Then
-            Button15.Enabled = True
-        Else
-            Button15.Enabled = False
-        End If
-
-        Dim lastindex As Integer = ClassicTriggerListView.CurrentRow.Index
-        Dim tempele As Element = ListControl1.Items(lastindex + 1).Trigger
-        ListControl1.Items(lastindex + 1).Trigger = orgparrent.GetElements(index + 1)
-        ListControl1.Items(lastindex).Trigger = tempele
-
-        ClassicTriggerListView.Rows(lastindex + 1).Selected = True
+        parentElement.AddElements(index + 1, triggerElement)
+        ReDrawPlayerTriggerList()
+        ReDrawPlayerList()
+        ClassicTriggerListView.ClearSelection()
+        FocusClassicTriggerListViewRow(index + 1)
     End Sub
 
 

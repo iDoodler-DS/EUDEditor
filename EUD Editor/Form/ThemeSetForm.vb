@@ -206,7 +206,10 @@ Public Class ThemeSetForm
             g.DefaultCellStyle.BackColor = ProgramSet.colorFieldBackground
             g.DefaultCellStyle.ForeColor = ProgramSet.colorFieldText
             g.DefaultCellStyle.SelectionBackColor = ProgramSet.colorCheckedBackground
-            g.DefaultCellStyle.SelectionForeColor = ProgramSet.colorFieldBackground
+            g.DefaultCellStyle.SelectionForeColor = ProgramSet.colorFieldText
+            g.GridColor = Color.Black
+            g.BorderStyle = BorderStyle.Fixed3D
+            g.BackgroundColor = ProgramSet.colorFieldBackground
         End If
 
 
