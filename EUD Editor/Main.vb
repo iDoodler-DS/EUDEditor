@@ -32,8 +32,8 @@ Public Class Main
             Me.MinimumSize = New Size(423 + 66, 212)
             Me.Size = New Size(423 + 66, 212)
         Else
-            Me.MinimumSize = New Size(423 + 66 + 65 + 66, 159)
-            Me.Size = New Size(423 + 66 + 65 + 66, 159)
+            Me.MinimumSize = New Size(423 + 66 + 65, 159)
+            Me.Size = New Size(423 + 66 + 65, 159)
         End If
 
 
