@@ -951,6 +951,40 @@
     ]
   },
   {
+    "Name": "SetMemoryX",
+    "Texts": [
+      "Korean",
+      "메모리 주소 $Offset$을 $Number$로 $Modifier$합니다. 비트마스크: $Bitmask$",
+      "English",
+      "Modify memory address $Offset$: $Modifier$ $Number$ with $Bitmask$"
+    ],
+    "CodeText": "SetMemoryX($Offset$, $Modifier$, $Number$, $Bitmask$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Offset",
+      "Number",
+      "Modifier",
+      "Bitmask"
+    ]
+  },
+  {
+    "Name": "SetMemoryXEPD",
+    "Texts": [
+      "Korean",
+      "EPD 주소 $Epd$을 $Number$로 $Modifier$합니다. 비트마스크: $Bitmask$",
+      "English",
+      "Modify EPD address $Epd$: $Modifier$ $Number$ with $Bitmask$"
+    ],
+    "CodeText": "SetMemoryXEPD($Epd$, $Modifier$, $Number$, $Bitmask$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Epd",
+      "Number",
+      "Modifier",
+      "Bitmask"
+    ]
+  },
+  {
     "Name": "SetCurrentPlayer",
     "Texts": [
       "Korean",
@@ -1772,7 +1806,6 @@
       "English",
       "Set hitpoints for unit: $UnitEPD$. Set to $Number$"
     ],
-
     "CodeText": "SetMemoryEPD($UnitEPD$ + 0x008 / 4, SetTo, $Number$ * 256)",
     "ToolTip": "None",
     "ValuesDef": [
@@ -1788,7 +1821,6 @@
       "English",
       "Set energy for unit: $UnitEPD$. Set to $Number$"
     ],
-
     "CodeText": "SetMemoryXEPD($UnitEPD$ + 0xA0 / 4, SetTo, $Number$ << 24, 0xFFFF0000)",
     "ToolTip": "None",
     "ValuesDef": [
