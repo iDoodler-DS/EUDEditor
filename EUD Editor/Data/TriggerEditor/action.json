@@ -985,6 +985,24 @@
     ]
   },
   {
+    "Name": "SetDeathsX",
+    "Texts": [
+      "Korean",
+      "$Player$의 $Unit$가 죽은 수를 $Number$만큼 $Modifier$합니다. 비트마스크: $Bitmask",
+      "English",
+      "Modify death counts for $Player$: $Modifier$ $Number$ for $Unit$ with $Bitmask$."
+    ],
+    "CodeText": "SetDeathsX($Player$, $Modifier$, $Number$, $Unit$, $Bitmask$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Modifier",
+      "Number",
+      "Unit",
+      "Bitmask"
+    ]
+  },
+  {
     "Name": "SetCurrentPlayer",
     "Texts": [
       "Korean",
@@ -1684,6 +1702,91 @@
     "ToolTip": "None",
     "ValuesDef": [
       "RawString"
+    ]
+  },
+  {
+    "Name": "DisplayTextAll",
+    "Texts": [
+      "Korean",
+      "모든 플레이어에게 텍스트를 보여줍니다:\n$Text$",
+      "English",
+      "Display for all players:\n$Text$"
+    ],
+    "CodeText": "DisplayTextAll($Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Text"
+    ]
+  },
+  {
+    "Name": "PlayWAVAll",
+    "Texts": [
+      "Korean",
+      "모든 플레이어에게 사운드를 재생합니다:\n$WAVName$",
+      "English",
+      "Play sound for all players:\n$WAVName$"
+    ],
+    "CodeText": "PlayWAVAll($WAVName$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "WAVName"
+    ]
+  },
+  {
+    "Name": "MinimapPingAll",
+    "Texts": [
+      "Korean",
+      "로케이션 $Where$에 모든 플레이어한테 미니맵 핑을 합니다.",
+      "English",
+      "Show minimap ping for all players at location '$Where$'."
+    ],
+    "CodeText": "MinimapPingAll($Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Where"
+    ]
+  },
+  {
+    "Name": "CenterViewAll",
+    "Texts": [
+      "Korean",
+      "$Where$로 모든 플레이어의 화면을 이동합니다.",
+      "English",
+      "Center view for all players at location '$Where$'"
+    ],
+    "CodeText": "CenterViewAll($Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Where"
+    ]
+  },
+  {
+    "Name": "SetMissionObjectivesAll",
+    "Texts": [
+      "Korean",
+      "모든 플레이어의 미션 오브젝트를 $Text$로 설정합니다.",
+      "English",
+      "Set Mission Objectives for all players:\n$Text$"
+    ],
+    "CodeText": "SetMissionObjectivesAll($Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Text"
+    ]
+  },
+  {
+    "Name": "TalkingPortraitAll",
+    "Texts": [
+      "Korean",
+      "모든 플레이어에게 $Unit$의 포트레잇을 $Time$간 띄웁니다.",
+      "English",
+      "Show $Unit$ talking to all players for $Time$ milliseconds."
+    ],
+    "CodeText": "TalkingPortraitAll($Unit$, $Time$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Time"
     ]
   },
   {

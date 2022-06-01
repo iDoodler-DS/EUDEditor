@@ -428,6 +428,24 @@
     ]
   },
   {
+    "Name": "DeathsX",
+    "Texts": [
+      "Korean",
+      "$Player$이 $Unit$를 $Comparison$ $Number$ 죽었을 경우. 비트마스크: $Bitmask$",
+      "English",
+      "$Player$ has suffered $Comparison$ $Number$ deaths of $Unit$ with $Bitmask$."
+    ],
+    "CodeText": "DeathsX($Player$, $Comparison$, $Number$, $Unit$, $Bitmask$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Comparison",
+      "Number",
+      "Unit",
+      "Bitmask"
+    ]
+  },
+  {
     "Name": "LocalCurrentPlayer",
     "Texts": [
       "Korean",
