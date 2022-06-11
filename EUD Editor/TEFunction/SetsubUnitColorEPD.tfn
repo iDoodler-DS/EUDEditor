@@ -1,21 +1,16 @@
 Type:16,False,False,False
-ScreenShakeஐFalse
+SetsubUnitColorEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
-ElementsCount:3
+ElementsCount:2
 Type:8,False,False,False
 act:CreateVariableWithNoini
-xஐ1
+UnitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-yஐ1
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-tempLocஐ1
+Colorஐ1
 ElementsCount:0
 END
 END
@@ -33,27 +28,27 @@ Type:22,False,False,False
 ElementsCount:5
 Type:8,False,False,False
 act:RawCode
-화면을
+구조오프셋EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-xஐ1
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-yஐ1
+UnitEPDஐ33
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-만큼 흔듭니다. tempLoc :
+과 부가유닛의 색상을
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-tempLocஐ1
+Colorஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+로 바꿉니다.
 ElementsCount:0
 END
 END
@@ -67,9 +62,8 @@ END
 END
 END
 END
-Type:8,False,False,False
-act:RawCode
-const randX, randY = rand(), rand();
+Type:19,False,False,False
+SetUnitColorEPDஐUnitEPDஐColor
 ElementsCount:0
 END
 Type:1,False,False,False
@@ -78,56 +72,25 @@ Type:3,False,False,False
 And
 ElementsCount:1
 Type:7,False,False,False
-con:RawCode
-IsUserCP()
+con:CUnitDataEPD
+UnitEPDஐ48ஐ2ஐ0x59CCA8
 ElementsCount:0
 END
 END
 Type:5,False,False,False
-ElementsCount:8
+ElementsCount:3
 Type:8,False,False,False
-act:RawCode
-const rX, rY = (randX % x) - x/2, (randY % y) - y/2;
+act:CreateVariableWithNoini
+subUnitEPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-const ScreenX = dwread_epd(EPD(0x628448));
-const ScreenY = dwread_epd(EPD(0x628470));
-ElementsCount:0
-END
-Type:8,False,False,False
-act:RawCode
-VProc(list(rX, rY), list(
-rX.QueueAddTo(ScreenX),
-rY.QueueAddTo(ScreenY)
-));
+subUnitEPD = epdread_epd(UnitEPD + 0x070 / 4);
 ElementsCount:0
 END
 Type:19,False,False,False
-SetLocationஐtempLocஐScreenXஐScreenYஐ0ஐ0
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CenterView
-64
-ElementsCount:0
-END
-Type:8,False,False,False
-act:RawCode
-py_exec("chkt = GetChkTokenized()");
-py_exec("dim = chkt.getsection('DIM')");
-const mapX = py_eval("b2i2(dim) << 4");
-const mapY = py_eval("b2i2(dim, 2) << 4");
-ElementsCount:0
-END
-Type:19,False,False,False
-EUDMoveLocationஐtempLocஐmapX - dwread_epd(EPD(0x628448))ஐdwread_epd(EPD(0x628470)) - mapY
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CenterView
-tempLoc + 1
+SetUnitColorEPDஐsubUnitEPDஐColor
 ElementsCount:0
 END
 END
