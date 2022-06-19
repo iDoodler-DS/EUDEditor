@@ -975,7 +975,7 @@ Public Class Element
                 End Select
             Case ElementType.Foluder
                 If Values.Count = 1 Then
-                    Values(0) = "//" & Values(0)
+                    Values(0) = Values(0)
                     Values.Add(Values(0))
                     Values.Add("False")
                 End If
@@ -2044,7 +2044,7 @@ Public Class Element
                         _rtext = "case " & Values(0) & ":"
                     End If
                 Case ElementType.Foluder
-                    _rtext = "// " & Values(0)
+                    _rtext = Values(0)
                 Case ElementType.조건문if, ElementType.조건문ifelse, ElementType.와일
                     _rtext = ""
                 Case ElementType.조건절, ElementType.TriggerCond
