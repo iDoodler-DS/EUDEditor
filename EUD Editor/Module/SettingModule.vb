@@ -9,7 +9,7 @@ Namespace ProgramSet
 
 
         'Public Version As String = "vTEST 0.13"
-        Public Version As String = "0.18.0.0"
+        Public Version As String = "0.18.0.1"
         Public DatEditVersion As String = "v0.3"
         Public SCDBSerial As UInteger
 
