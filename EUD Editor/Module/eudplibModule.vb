@@ -30,7 +30,6 @@ Namespace eudplib
             Dim returntext As New StringBuilder
 
 
-
             returntext.AppendLine("[main]")
             returntext.AppendLine()
 
@@ -165,7 +164,6 @@ Namespace eudplib
                     End If
 
 
-
                     If nqclocs.Split(",").Count = 1 Then
                         Dim locs() As String = nqclocs.Split(",")
                         Dim _flag As Boolean = True
@@ -208,8 +206,6 @@ Namespace eudplib
                 'DataDumper옵션 사용체크해야지 자동으로 삽입되는 형식.
 
 
-
-
             returntext.AppendLine("[dataDumper]")
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.filemanager) = True And stattextdic.Count <> 0 Then
                 returntext.Append(Getstattextbin.Replace(":", "\:") & " : 0x" & ReadOffset("stat_txt.tbl"))
@@ -247,36 +243,36 @@ Namespace eudplib
                         End If
                     End If
                     If dataDumperuse = True Then
-                        If dataDumper_grpwire_f <> 0 Then
-                            returntext.Append(dataDumper_grpwire.Replace(":", "\:") & " : 0x" & ReadOffset("grpwire.grp"))
-                            Select Case dataDumper_grpwire_f
-                                Case 2
-                                    returntext.Append(", copy")
-                                Case 3
-                                    returntext.Append(", unpatchable")
-                            End Select
-                            returntext.AppendLine()
-                        End If
-                        If dataDumper_tranwire_f <> 0 Then
-                            returntext.Append(dataDumper_tranwire.Replace(":", "\:") & " : 0x" & ReadOffset("tranwire.grp"))
-                            Select Case dataDumper_tranwire_f
-                                Case 2
-                                    returntext.Append(", copy")
-                                Case 3
-                                    returntext.Append(", unpatchable")
-                            End Select
-                            returntext.AppendLine()
-                        End If
-                        If dataDumper_wirefram_f <> 0 Then
-                            returntext.Append(dataDumper_wirefram.Replace(":", "\:") & " : 0x" & ReadOffset("wirefram.grp"))
-                            Select Case dataDumper_wirefram_f
-                                Case 2
-                                    returntext.Append(", copy")
-                                Case 3
-                                    returntext.Append(", unpatchable")
-                            End Select
-                            returntext.AppendLine()
-                        End If
+                        'If dataDumper_grpwire_f <> 0 Then
+                        '    returntext.Append(dataDumper_grpwire.Replace(":", "\:") & " : 0x" & ReadOffset("grpwire.grp"))
+                        '    Select Case dataDumper_grpwire_f
+                        '        Case 2
+                        '            returntext.Append(", copy")
+                        '        Case 3
+                        '            returntext.Append(", unpatchable")
+                        '    End Select
+                        '    returntext.AppendLine()
+                        'End If
+                        'If dataDumper_tranwire_f <> 0 Then
+                        '    returntext.Append(dataDumper_tranwire.Replace(":", "\:") & " : 0x" & ReadOffset("tranwire.grp"))
+                        '    Select Case dataDumper_tranwire_f
+                        '        Case 2
+                        '            returntext.Append(", copy")
+                        '        Case 3
+                        '            returntext.Append(", unpatchable")
+                        '    End Select
+                        '    returntext.AppendLine()
+                        'End If
+                        'If dataDumper_wirefram_f <> 0 Then
+                        '    returntext.Append(dataDumper_wirefram.Replace(":", "\:") & " : 0x" & ReadOffset("wirefram.grp"))
+                        '    Select Case dataDumper_wirefram_f
+                        '        Case 2
+                        '            returntext.Append(", copy")
+                        '        Case 3
+                        '            returntext.Append(", unpatchable")
+                        '    End Select
+                        '    returntext.AppendLine()
+                        'End If
                         If dataDumper_cmdicons_f <> 0 Then
                             returntext.Append(dataDumper_cmdicons.Replace(":", "\:") & " : 0x" & ReadOffset("cmdicons.grp"))
                             Select Case dataDumper_cmdicons_f
@@ -332,9 +328,6 @@ Namespace eudplib
                 End If
 
 
-
-
-
                 If iscriptPatcheruse = True Then
                     returntext.AppendLine("[iscriptPatcher]" & vbCrLf &
                                                       "iscript : " & iscriptPatcher & vbCrLf)
@@ -369,7 +362,6 @@ Namespace eudplib
                 Dim textraedssetting As String = extraedssetting
                 Extractextraedssetting(returntext, textraedssetting, "[dataDumper]")
                 Extractextraedssetting(returntext, textraedssetting, "[grpinjector]")
-
 
 
                 returntext.AppendLine(textraedssetting)
@@ -412,14 +404,10 @@ Namespace eudplib
             contents = contents.Trim
 
 
-
-
-
             mainstr = New StringBuilder(Replace(mainstr.ToString, contentname, contents))
 
             extraeds = resultextraeds
         End Sub
-
 
 
         Public Function GetPYtext() As String
@@ -455,8 +443,6 @@ Namespace eudplib
             'GRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRP
 
 
-            returntext.AppendLine("def onPluginStart():")
-
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.BtnSet) = True Then
 
                 Dim tempfoluder As String = My.Application.Info.DirectoryPath & "\Data\temp\"
@@ -472,7 +458,7 @@ Namespace eudplib
                             Exit While
                         End If
 
-                        returntext.AppendLine("    MPQAddFile(""M" & i & "_" & index & ".ogg"" ,open(""" & _temp.Replace("\", "\\") & """, ""rb"").read() ,False);")
+                        returntext.AppendLine("MPQAddFile(""M" & i & "_" & index & ".ogg"", open(""" & _temp.Replace("\", "\\") & """, ""rb"").read(), False)")
                         index += 1
                     End While
                 Next
@@ -508,168 +494,31 @@ Namespace eudplib
 
 
                 If checkflag Then
-                    Dim mpq As New SFMpq
-
-                    Dim fStream As FileStream
-                    Dim memStream As MemoryStream
-                    Dim binaryReader As BinaryReader
-                    Dim binaryWriter As BinaryWriter
-
-                    Dim grpframecount As UInt16
-                    If dataDumper_wirefram_f <> 0 Then
-                        fStream = New FileStream(dataDumper_wirefram, FileMode.Open)
-                        binaryReader = New BinaryReader(fStream)
-                        binaryWriter = New BinaryWriter(fStream)
-                    Else
-                        memStream = New MemoryStream(mpq.ReaddatFile("unit\wirefram\wirefram.grp"))
-                        binaryReader = New BinaryReader(memStream)
-                        binaryWriter = New BinaryWriter(memStream)
-                    End If
-                    grpframecount = binaryReader.ReadUInt16
-                    Dim grpdata(grpframecount - 1) As UInt64
-                    For i = 0 To grpframecount - 1
+                    returntext.AppendLine("try:")
+                    returntext.AppendLine("    InitialWireframe")
+                    returntext.AppendLine("except NameError:")
+                    returntext.AppendLine("    raise EPError('euddraft 버전이 낮습니다! euddraft 0.9.8.6 이후 버전만 지원합니다.')")
+                    For i = 0 To wireframData.Count - 1
+                        If (i <= tranwireData.Count - 1 And wireframData(i) <> i And wireframData(i) = tranwireData(i) And tranwireData(i) = grpwireData(i)) Then
+                            returntext.AppendLine("InitialWireframe.wireframes(" & i & ", " & wireframData(i) & ")")
+                            Continue For
+                        End If
                         If wireframData(i) <> i Then
-                            binaryReader.BaseStream.Position = 6 + 8 * wireframData(i)
-
-                            grpdata(i) = binaryReader.ReadUInt64
+                            returntext.AppendLine("InitialWireframe.wirefram(" & i & ", " & wireframData(i) & ")")
+                        End If
+                        If (i <= grpwireData.Count - 1 And grpwireData(i) <> i) Then
+                            returntext.AppendLine("InitialWireframe.grpwire(" & i & ", " & grpwireData(i) & ")")
+                        End If
+                        If (i <= tranwireData.Count - 1 And tranwireData(i) <> i) Then
+                            returntext.AppendLine("InitialWireframe.tranwire(" & i & ", " & tranwireData(i) & ")")
                         End If
                     Next
-
-                    For i = 0 To grpframecount - 1
-                        If wireframData(i) <> i Then
-                            binaryReader.BaseStream.Position = 6 + 8 * i
-                            binaryWriter.Write(grpdata(i))
-                        End If
-                    Next
-
-
-                    returntext.AppendLine("    WireOffset = f_dwread_epd(EPD(0x" & ReadOffset("wirefram.grp") & "))")
-                    returntext.AppendLine("    DoActions([")
-                    For i = 0 To grpframecount - 1
-                        If wireframData(i) <> i Then
-                            binaryReader.BaseStream.Position = 4 + 8 * i
-                            returntext.AppendLine("    SetMemory(WireOffset + " & 4 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                            returntext.AppendLine("    SetMemory(WireOffset + " & 8 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                            returntext.AppendLine("    SetMemory(WireOffset + " & 12 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                        End If
-                    Next
-                    returntext.AppendLine("    ])")
-
-
-                    binaryReader.BaseStream.Close()
-                    binaryReader.Close()
-                    binaryWriter.Close()
-
-
-
-
-
-
-                    If dataDumper_grpwire_f <> 0 Then
-                        fStream = New FileStream(dataDumper_grpwire, FileMode.Open)
-                        binaryReader = New BinaryReader(fStream)
-                        binaryWriter = New BinaryWriter(fStream)
-                    Else
-                        memStream = New MemoryStream(mpq.ReaddatFile("unit\wirefram\grpwire.grp"))
-                        binaryReader = New BinaryReader(memStream)
-                        binaryWriter = New BinaryWriter(memStream)
-                    End If
-                    grpframecount = binaryReader.ReadUInt16
-                    ReDim grpdata(grpframecount - 1)
-                    For i = 0 To grpframecount - 1
-                        If grpwireData(i) <> i Then
-                            binaryReader.BaseStream.Position = 6 + 8 * grpwireData(i)
-
-                            grpdata(i) = binaryReader.ReadUInt64
-                        End If
-                    Next
-
-                    For i = 0 To grpframecount - 1
-                        If grpwireData(i) <> i Then
-                            binaryReader.BaseStream.Position = 6 + 8 * i
-                            binaryWriter.Write(grpdata(i))
-                        End If
-                    Next
-
-
-                    returntext.AppendLine("    GrpOffset = f_dwread_epd(EPD(0x" & ReadOffset("grpwire.grp") & "))")
-                    returntext.AppendLine("    DoActions([")
-                    For i = 0 To grpframecount - 1
-                        If grpwireData(i) <> i Then
-                            binaryReader.BaseStream.Position = 4 + 8 * i
-                            returntext.AppendLine("    SetMemory(GrpOffset + " & 4 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                            returntext.AppendLine("    SetMemory(GrpOffset + " & 8 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                            returntext.AppendLine("    SetMemory(GrpOffset + " & 12 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                        End If
-                    Next
-                    returntext.AppendLine("    ])")
-
-
-                    binaryReader.BaseStream.Close()
-                    binaryReader.Close()
-                    binaryWriter.Close()
-
-
-
-                    If dataDumper_tranwire_f <> 0 Then
-                        fStream = New FileStream(dataDumper_tranwire, FileMode.Open)
-                        binaryReader = New BinaryReader(fStream)
-                        binaryWriter = New BinaryWriter(fStream)
-                    Else
-                        memStream = New MemoryStream(mpq.ReaddatFile("unit\wirefram\grpwire.grp"))
-                        binaryReader = New BinaryReader(memStream)
-                        binaryWriter = New BinaryWriter(memStream)
-                    End If
-                    grpframecount = binaryReader.ReadUInt16
-                    ReDim grpdata(grpframecount - 1)
-                    For i = 0 To grpframecount - 1
-                        If tranwireData(i) <> i Then
-                            binaryReader.BaseStream.Position = 6 + 8 * tranwireData(i)
-
-                            grpdata(i) = binaryReader.ReadUInt64
-                        End If
-                    Next
-
-                    For i = 0 To grpframecount - 1
-                        If tranwireData(i) <> i Then
-                            binaryReader.BaseStream.Position = 6 + 8 * i
-                            binaryWriter.Write(grpdata(i))
-                        End If
-                    Next
-
-
-                    returntext.AppendLine("    tranOffset = f_dwread_epd(EPD(0x" & ReadOffset("tranwire.grp") & "))")
-                    returntext.AppendLine("    DoActions([")
-                    For i = 0 To grpframecount - 1
-                        If tranwireData(i) <> i Then
-                            binaryReader.BaseStream.Position = 4 + 8 * i
-                            returntext.AppendLine("    SetMemory(tranOffset + " & 4 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                            returntext.AppendLine("    SetMemory(tranOffset + " & 8 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                            returntext.AppendLine("    SetMemory(tranOffset + " & 12 + 8 * i & ", SetTo, " & binaryReader.ReadUInt32 & "),")
-                        End If
-                    Next
-                    returntext.AppendLine("    ])")
-
-
-                    binaryReader.BaseStream.Close()
-                    binaryReader.Close()
-                    binaryWriter.Close()
-
-
-                    'If dataDumper_tranwire_f <> 0 Then
-                    '    fStream = New FileStream(dataDumper_tranwire, FileMode.Open)
-                    '    binaryReader = New BinaryReader(fStream)
-                    'Else
-                    '    memStream = New MemoryStream(mpq.ReaddatFile("unit\wirefram\tranwire.grp"))
-                    '    binaryReader = New BinaryReader(memStream)
-                    'End If
-
-
                 End If
-            End If
-                'FileManager
+            End If 'FileManager
+                
+            returntext.AppendLine("def onPluginStart():")
 
-                If ProjectSet.UsedSetting(ProjectSet.Settingtype.BinEditor) = True Then
+            If ProjectSet.UsedSetting(ProjectSet.Settingtype.BinEditor) = True Then
                 If ProjectSet.PlayerRace = 255 Then
                     MsgBox("플레이어의 종족이 올바르지 않습니다." & vbCrLf & "BinEidt 옵션이 해제됩니다." & vbCrLf & "(이는 심각한 에러는 아니지만 콘솔 변경이 적용되지 않습니다.)", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                     ProjectSet.UsedSetting(ProjectSet.Settingtype.BinEditor) = False
@@ -725,70 +574,122 @@ Namespace eudplib
             'GRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRPGRP
 
             'MsgBox("파이어그래프트 빌드시작")
+            returntext.AppendLine("    DoActions([")
             '==================================BtnSet===============================
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.FireGraft) = True Then
                 For i = 0 To ProjectBtnUSE.Count - 1
-                    'Dim passflag As Boolean = False
-                    '모든 버튼 정보를 조사해서 같은 게 있으면 몽땅 어드레스 등록하기.
-                    '후방을 조사해서 같은거 모두 적는다.
-                    '전방에 같은게 있다면 패스한다.
-                    'If ProjectBtnUSE(i) = True Then
-
-                    '    For k = 0 To i - 1 '전방검사 검사
-                    '        If ProjectBtnUSE(k) = True Then
-                    '            'MsgBox(i & " 전방검사 : " & k)
-                    '            If GetTextValue(i) = GetTextValue(k) Then
-                    '                'MsgBox("같음") '패스하기
-                    '                passflag = True
-                    '            End If
-                    '        End If
-                    '    Next
-                    'End If
-
-                    'If passflag = False Then
-                    '    If ProjectBtnUSE(i) = True Then
-
-                    '        returntext.AppendLine("    bytebuffer = bytearray([" & GetTextValue(i) & "])")
-                    '        returntext.AppendLine("    btnptr = Db(bytebuffer)")
-
-                    '        returntext.AppendLine("    DoActions([")
-                    '        For k = i To ProjectBtnUSE.Count - 1 '후방 검사
-                    '            If ProjectBtnUSE(k) = True Then
-                    '                'MsgBox(i & " 후방검사 : " & k)
-                    '                If GetTextValue(i) = GetTextValue(k) Then
-                    '                    'MsgBox("같음") '같이적기
-                    '                    returntext.AppendLine("        SetMemory(0x" & Hex(Val("&H" & ReadOffset("FG_BtnAddress")) + 12 * k) & ", SetTo, btnptr),")
-
-                    '                End If
-                    '            End If
-                    '        Next
-                    '        returntext.AppendLine("    ])")
-                    '    End If
-                    'End If
                     If ProjectBtnUSE(i) = True Then
-
-                        returntext.AppendLine("    bytebuffer = bytearray([" & GetTextValue(i) & "])")
-                        returntext.AppendLine("    btnptr = Db(bytebuffer)")
-
-                        returntext.AppendLine("    DoActions([")
-                        returntext.AppendLine("        SetMemory(0x" & Hex(Val("&H" & ReadOffset("FG_BtnAddress")) + 12 * i) & ", SetTo, btnptr),")
-                        returntext.AppendLine("    ])")
+                        returntext.AppendLine("        SetMemory(0x" & Hex(Val("&H" & ReadOffset("FG_BtnAddress")) + 12 * i) & ", SetTo, Db(bytearray([" & GetTextValue(i) & "]))),")
                     End If
                 Next
 
-
-                returntext.AppendLine("    DoActions([")
                 For i = 0 To ProjectBtnUSE.Count - 1
                     If ProjectBtnUSE(i) = True Then
                         returntext.AppendLine("        SetMemory(0x" & Hex(Val("&H" & ReadOffset("FG_BtnNum")) + 12 * i) & ", SetTo, " & ProjectBtnData(i).Count & "),")
                     End If
                 Next
-                returntext.AppendLine("    ])")
             End If
             '==================================BtnSet===============================
             'MsgBox("파이어그래프트 빌드끝")
 
+            If ProjectSet.UsedSetting(ProjectSet.Settingtype.DatEdit) = True Then
 
+                For k = 0 To DatEditDATA.Count - 1
+                    For i = 0 To DatEditDATA(k).projectdata.Count - 1
+                        For j = 0 To DatEditDATA(k).projectdata(i).Count - 1
+                            If DatEditDATA(k).projectdata(i)(j) <> 0 Then ' 하나라도 0이 아니라면. 즉 하나라도 수정되어있다면.
+                                Dim Offsetname As String = DatEditDATA(k).typeName & "_" & DatEditDATA(k).keyDic.Keys.ToList(i)
+                                Dim typeName As String = DatEditDATA(k).keyDic.Keys.ToList(i)
+
+                                Dim _size As Integer = DatEditDATA(k).keyINFO(i).realSize
+
+                                Dim _value As Long = DatEditDATA(k).projectdata(i)(j)
+                                Dim _oldvalue As Long = DatEditDATA(k).data(i)(j)
+
+                                Dim _lastvalue As Long = 0
+
+                                Dim _offsetNum As Long = Val("&H" & ReadOffset(Offsetname)) + _size * j
+
+
+                                Dim _byte2 As Long = (j * _size) Mod 4
+                                Dim _byte As Long = _offsetNum Mod 4
+                                _offsetNum = _offsetNum - _byte
+
+                                Dim _offset As String = Hex(_offsetNum)
+
+                                Dim temptext As String = "       SetMemory(0x" & _offset & ", "
+
+                                _lastvalue = _value * 256 ^ _byte
+                                If _lastvalue > 0 Then
+                                    temptext = temptext & "Add"
+                                Else
+                                    temptext = temptext & "Subtract"
+                                    _lastvalue = _lastvalue * -1
+                                End If
+                                temptext = temptext & ", " & _lastvalue & "),"
+
+
+                                returntext.AppendLine(temptext)
+                            End If
+                        Next
+                    Next
+                Next
+            End If
+
+
+            If ProjectSet.UsedSetting(ProjectSet.Settingtype.FireGraft) = True Then
+                For i = 0 To ProjectUnitStatusFn1.Count - 1
+                    Dim narr() As String = {"FG_Debug", "FG_Status", "FG_Display"}
+
+                    For sname = 0 To 2
+                        Dim checkvalue As Long
+                        Dim _lastvalue As Long
+
+                        Select Case sname
+                            Case 0
+                                checkvalue = ProjectDebugID(i)
+                                _lastvalue = ProjectDebugID(i)
+                            Case 1
+                                checkvalue = ProjectUnitStatusFn1(i)
+                                _lastvalue = CLng(statusFn1(ProjectUnitStatusFn1(i) + UnitStatusFn1(i))) - statusFn1(UnitStatusFn1(i))
+
+                            Case 2
+                                checkvalue = ProjectUnitStatusFn2(i)
+                                _lastvalue = CLng(statusFn2(ProjectUnitStatusFn2(i) + UnitStatusFn2(i))) - statusFn2(UnitStatusFn2(i))
+                        End Select
+
+
+                        Dim _offsetNum As Long = Val("&H" & ReadOffset(narr(sname))) + 12 * i
+                        Dim _offset As String = Hex(_offsetNum)
+
+
+                        Dim _modifier As String
+
+
+                        If _lastvalue > 0 Then
+                            _modifier = "Add"
+                        Else
+                            _modifier = "Subtract"
+                            _lastvalue = _lastvalue * -1
+                        End If
+
+
+                        If checkvalue <> 0 Then
+
+
+                            returntext.AppendLine("       SetMemory(" & "0x" & _offset & ", " & _modifier & ", " & _lastvalue & "),")
+
+                        End If
+                    Next
+
+                Next
+
+
+                returntext.AppendLine("       SetMemory(0x" & ReadOffset("Vanilla") & ", SetTo, 0x" & ReadOffset("FG_ReqUnit") & "),")
+            End If
+            'returntext.AppendLine("       SetMemory(0x6647C0, Add, 255),")
+
+            returntext.AppendLine("    ])")
 
             '==================================TileSet===============================
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.TileSet) = True Then
@@ -884,8 +785,6 @@ Namespace eudplib
                                 cv5mem.Position = &H14 + 52 * tgroup + 2 * tindex
 
 
-
-
                                 vx4mem.Position = 32 * cv5binary.ReadUInt16()
                                 For j = 0 To 15
                                     Dim tvalue As UInt16 = vx4binary.ReadUInt16()
@@ -932,7 +831,6 @@ Namespace eudplib
                                 Next
 
                             End If
-
 
 
                             ptData.Close()
@@ -990,7 +888,6 @@ Namespace eudplib
                 returntext.AppendLine("    ])")
 
 
-
                 cv5binary.Close()
                 cv5mem.Close()
 
@@ -1002,125 +899,7 @@ Namespace eudplib
             '==================================TileSet===============================
 
 
-
-            If ProjectSet.UsedSetting(ProjectSet.Settingtype.DatEdit) = True Or ProjectSet.UsedSetting(ProjectSet.Settingtype.FireGraft) = True Then
-                returntext.AppendLine("    DoActions([")
-            End If
-
-            If ProjectSet.UsedSetting(ProjectSet.Settingtype.DatEdit) = True Then
-
-                For k = 0 To DatEditDATA.Count - 1
-                    For i = 0 To DatEditDATA(k).projectdata.Count - 1
-                        For j = 0 To DatEditDATA(k).projectdata(i).Count - 1
-                            If DatEditDATA(k).projectdata(i)(j) <> 0 Then ' 하나라도 0이 아니라면. 즉 하나라도 수정되어있다면.
-                                Dim Offsetname As String = DatEditDATA(k).typeName & "_" & DatEditDATA(k).keyDic.Keys.ToList(i)
-                                Dim typeName As String = DatEditDATA(k).keyDic.Keys.ToList(i)
-
-                                Dim _size As Integer = DatEditDATA(k).keyINFO(i).realSize
-
-                                Dim _value As Long = DatEditDATA(k).projectdata(i)(j)
-                                Dim _oldvalue As Long = DatEditDATA(k).data(i)(j)
-
-                                Dim _lastvalue As Long = 0
-
-                                Dim _offsetNum As Long = Val("&H" & ReadOffset(Offsetname)) + _size * j
-
-
-
-                                Dim _byte2 As Long = (j * _size) Mod 4
-                                Dim _byte As Long = _offsetNum Mod 4
-                                _offsetNum = _offsetNum - _byte
-
-                                Dim _offset As String = Hex(_offsetNum)
-
-                                Dim temptext As String = "       SetMemory(0x" & _offset & ", "
-
-                                _lastvalue = _value * 256 ^ _byte
-                                If _lastvalue > 0 Then
-                                    temptext = temptext & "Add"
-                                Else
-                                    temptext = temptext & "Subtract"
-                                    _lastvalue = _lastvalue * -1
-                                End If
-                                temptext = temptext & ", " & _lastvalue & "),"
-
-
-                                returntext.AppendLine(temptext)
-                            End If
-                        Next
-                    Next
-                Next
-            End If
-
-
-            If ProjectSet.UsedSetting(ProjectSet.Settingtype.FireGraft) = True Then
-                For i = 0 To ProjectUnitStatusFn1.Count - 1
-                    Dim narr() As String = {"FG_Debug", "FG_Status", "FG_Display"}
-
-                    For sname = 0 To 2
-                        Dim checkvalue As Long
-                        Dim _lastvalue As Long
-
-                        Select Case sname
-                            Case 0
-                                checkvalue = ProjectDebugID(i)
-                                _lastvalue = ProjectDebugID(i)
-                            Case 1
-                                checkvalue = ProjectUnitStatusFn1(i)
-                                _lastvalue = CLng(statusFn1(ProjectUnitStatusFn1(i) + UnitStatusFn1(i))) - statusFn1(UnitStatusFn1(i))
-
-                            Case 2
-                                checkvalue = ProjectUnitStatusFn2(i)
-                                _lastvalue = CLng(statusFn2(ProjectUnitStatusFn2(i) + UnitStatusFn2(i))) - statusFn2(UnitStatusFn2(i))
-                        End Select
-
-
-
-                        Dim _offsetNum As Long = Val("&H" & ReadOffset(narr(sname))) + 12 * i
-                        Dim _offset As String = Hex(_offsetNum)
-
-
-                        Dim _modifier As String
-
-
-                        If _lastvalue > 0 Then
-                            _modifier = "Add"
-                        Else
-                            _modifier = "Subtract"
-                            _lastvalue = _lastvalue * -1
-                        End If
-
-
-
-                        If checkvalue <> 0 Then
-
-
-
-
-
-                            returntext.AppendLine("       SetMemory(" & "0x" & _offset & ", " & _modifier & ", " & _lastvalue & "),")
-
-                        End If
-                    Next
-
-                Next
-
-
-
-                returntext.AppendLine("       SetMemory(0x" & ReadOffset("Vanilla") & ", SetTo, 0x" & ReadOffset("FG_ReqUnit") & "),")
-            End If
-            'returntext.AppendLine("       SetMemory(0x6647C0, Add, 255),")
-
-            If ProjectSet.UsedSetting(ProjectSet.Settingtype.DatEdit) = True Or ProjectSet.UsedSetting(ProjectSet.Settingtype.FireGraft) = True Then
-
-                returntext.AppendLine("    ])")
-            End If
-
             returntext.AppendLine()
-
-
-
-
 
 
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.FireGraft) = True Then
@@ -1129,9 +908,6 @@ Namespace eudplib
                 returntext.AppendLine(RepDataToTrigger())
                 returntext.AppendLine()
             End If
-
-
-
 
 
             Return returntext.ToString
@@ -1166,9 +942,6 @@ Namespace eudplib
                         Next
                     Next
                 End With
-
-
-
 
 
                 Dim bytearr As String = ""
@@ -1207,12 +980,10 @@ Namespace eudplib
             End Select
 
 
-
             binwriter.Close()
             memstr.Close()
             Return rstr
         End Function
-
 
 
         Sub DeleteFilesFromFolder(Folder As String)
@@ -1296,7 +1067,6 @@ Namespace eudplib
             filestream.Close()
 
 
-
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.Struct) = True Then
                 filename = basefolder & "\eudplibdata\tempcustomText.py"
                 filestream = New FileStream(filename, FileMode.Create)
@@ -1357,7 +1127,6 @@ Namespace eudplib
                 'startInfo.CreateNoWindow = True
 
                 'startInfo.UseShellExecute = False
-
 
 
                 process.StartInfo = startInfo
@@ -1458,7 +1227,6 @@ Namespace eudplib
                 '    'MsgBox(lasttext)
 
 
-
                 'End Try
                 'process.Close()
                 '==================================================
@@ -1475,12 +1243,6 @@ Namespace eudplib
                 'End If
 
 
-
-
-
-
-
-
                 'filename = My.Application.Info.DirectoryPath & "\Data\eudplibdata\EUDEditor.eds"
 
                 'startInfo.FileName = ProgramSet.euddraftDirec
@@ -1491,7 +1253,6 @@ Namespace eudplib
                 'startInfo.CreateNoWindow = True
 
                 'startInfo.UseShellExecute = False
-
 
 
                 'process.StartInfo = startInfo
@@ -1621,7 +1382,6 @@ Namespace eudplib
 
                 '    My.Computer.Clipboard.SetText(console)
                 '    'MsgBox(lasttext)
-
 
 
                 'End Try

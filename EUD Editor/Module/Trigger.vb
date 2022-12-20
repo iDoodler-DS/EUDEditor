@@ -2043,21 +2043,21 @@ Public Class Element
                 Case ElementType.조건문if, ElementType.조건문ifelse, ElementType.와일
                     _rtext = ""
                 Case ElementType.조건절, ElementType.TriggerCond
-                    _rtext = "if("
+                    _rtext = "if ("
                 Case ElementType.만족안함
-                    _rtext = "else{"
+                    _rtext = "else {"
                 Case ElementType.만족
-                    _rtext = "){"
+                    _rtext = ") {"
                 Case ElementType.와일조건
-                    _rtext = "while("
+                    _rtext = "while ("
                 Case ElementType.와일만족
-                    _rtext = "){"
+                    _rtext = ") {"
                 Case ElementType.포
                     Select Case Values(0)
                         Case "Counting"
-                            _rtext = "for(var " & Values(1) & " = 0 ; " & Values(1) & " < " & Values(2) & " ; " & Values(1) & "++){"
+                            _rtext = "for(var " & Values(1) & " = 0 ; " & Values(1) & " < " & Values(2) & " ; " & Values(1) & "++) {"
                         Case "Custom"
-                            _rtext = "for(" & Values(1) & "){"
+                            _rtext = "for(" & Values(1) & ") {"
                         Case "AllUnit"
                             Dim _playerText As String
 
@@ -2079,7 +2079,7 @@ Public Class Element
 
 
 
-                    _rtext = "" '"for(var j = 0 ; j <= MaxPlayer ; j++){"
+                    _rtext = "" '"for(var j = 0 ; j <= MaxPlayer ; j++) {"
                 Case ElementType.함수정의
                     _rtext = "function" & " " & Values(0) & "("
 
@@ -2091,7 +2091,7 @@ Public Class Element
                     End If
                     _rtext = _rtext & ") {"
                 Case ElementType.RawTrigger
-                    _rtext = "function" & " ClassicTrigger(){"
+                    _rtext = "function" & " ClassicTrigger() {"
                 Case ElementType.TriggerAct
                     _rtext = "if (" & VarialbeName & " == 1) {"
                 Case ElementType.함수

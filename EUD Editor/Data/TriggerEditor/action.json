@@ -1426,6 +1426,66 @@
     ]
   },
   {
+    "Name": "SetWireframes",
+    "Texts": [
+      "Korean",
+      "$Unit$의 와이어프레임들을 $Wireframe$로 변경합니다. (TranWire.grp, GrpWire.grp, Wirefram.grp)",
+      "English",
+      "Change $Unit$'s wireframes to $Wireframe$. (TranWire.grp, GrpWire.grp, Wirefram.grp)"
+    ],
+    "CodeText": "SetWireframes($Unit$, $Wireframe$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Wireframe"
+    ]
+  },
+  {
+    "Name": "SetWirefram",
+    "Texts": [
+      "Korean",
+      "$Unit$의 Wirefram.grp 와이어프레임을 $Wireframe$로 변경합니다.",
+      "English",
+      "Change $Unit$'s Wirefram.grp wireframe to $Wireframe$."
+    ],
+    "CodeText": "SetWirefram($Unit$, $Wireframe$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Wireframe"
+    ]
+  },
+  {
+    "Name": "SetGrpWire",
+    "Texts": [
+      "Korean",
+      "$Unit$의 GrpWire.grp 와이어프레임을 $Wireframe$로 변경합니다.",
+      "English",
+      "Change $Unit$'s GrpWire.grp wireframe to $Wireframe$."
+    ],
+    "CodeText": "SetGrpWire($Unit$, $Wireframe$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Wireframe"
+    ]
+  },
+  {
+    "Name": "SetTranWire",
+    "Texts": [
+      "Korean",
+      "$Unit$의 TranWire.grp 와이어프레임을 $Wireframe$로 변경합니다.",
+      "English",
+      "Change $Unit$'s TranWire.grp wireframe to $Wireframe$."
+    ],
+    "CodeText": "SetTranWire($Unit$, $Wireframe$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Wireframe"
+    ]
+  },
+  {
     "Name": "STRUCTPart",
     "Texts": [
       "Korean",
