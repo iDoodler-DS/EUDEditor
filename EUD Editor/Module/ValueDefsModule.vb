@@ -95,7 +95,7 @@ Module ValueDefsModule
                                 _values.Add(sound)
                             Next
                             '스타에딧웨이브파일 넣어보자.
-                        Case "Unit", "UnitType", "OnUnit"
+                        Case "Unit", "UnitType", "OnUnit", "Wireframe"
                             For i = 0 To CODE(0).Count - 1
                                 If DatEditDATA(DTYPE.units).ReadValue("Unit Map String", i) = 0 Then
                                     _values.Add(CODE(0)(i))
@@ -207,7 +207,7 @@ Module ValueDefsModule
 
         ' "Script", "Unit", "UnitType", "OnUnit", "WAVName", "Switch", "StartLocation", "DestLocation", "Location", "Where",
         ValueDefiniction.Add(New ValueDefs("Script", ValueDefs.OutPutType.ComboboxString))
-        ValueDefiniction.Add(New ValueDefs({"Unit", "UnitType", "OnUnit"}, ValueDefs.OutPutType.Combobox))
+        ValueDefiniction.Add(New ValueDefs({"Unit", "UnitType", "OnUnit", "Wireframe"}, ValueDefs.OutPutType.Combobox))
         ValueDefiniction.Add(New ValueDefs("WAVName", ValueDefs.OutPutType.ComboboxString))
         ValueDefiniction.Add(New ValueDefs("Switch", ValueDefs.OutPutType.Combobox))
         ValueDefiniction.Add(New ValueDefs({"Location", "DestLocation", "StartLocation", "Where"}, ValueDefs.OutPutType.Combobox))

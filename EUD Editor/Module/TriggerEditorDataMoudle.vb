@@ -448,8 +448,8 @@ Module TriggerEditorDataMoudle
         Next
 
         For i = 0 To 7
-            strb.AppendLine(GetIntend(1) & "if (playerexist($P" & i + 1 & ")){")
-            strb.AppendLine(GetIntend(2) & "setcurpl($P" & i + 1 & ");")
+            strb.AppendLine(GetIntend(1) & "if (playerexist(P" & i + 1 & ")) {")
+            strb.AppendLine(GetIntend(2) & "setcurpl(P" & i + 1 & ");")
             For k = 0 To playerlist(i).Count - 1
                 If RawTriggers.GetElements(playerlist(i)(k)).isdisalbe = False Then
                     strb.AppendLine(GetIntend(2) & "ClassicTriggerStarter" & playerlist(i)(k) & "();")
@@ -513,10 +513,10 @@ Module TriggerEditorDataMoudle
                 If funcs.Values(1) = True Then
                     WaitCounter = 1
                     For i = 0 To funcs.GetElements(0).GetElementsCount - 1
-                        strbulider.AppendLine("const " & funcs.Values(0) & funcs.GetElements(0).GetElements(i).Values(0) & " = [0, 0, 0, 0, 0, 0, 0, 0];")
+                        strbulider.AppendLine("const " & funcs.Values(0) & funcs.GetElements(0).GetElements(i).Values(0) & " = EUDArray(8);")
                     Next
                     VarialbeName = funcs.Values(0) & "Timer[getcurpl()]"
-                    strbulider.AppendLine("const " & funcs.Values(0) & "Timer = [0, 0, 0, 0, 0, 0, 0, 0];")
+                    strbulider.AppendLine("const " & funcs.Values(0) & "Timer = EUDArray(8);")
 
                 End If
             End If
@@ -535,7 +535,7 @@ Module TriggerEditorDataMoudle
         For i = 0 To RawTriggers.GetElementsCount - 1
             With RawTriggers.GetElements(i)
                 VarialbeName = "ClassicTriggerExecTimer" & i & "[getcurpl()]"
-                strbulider.AppendLine("const ClassicTriggerExecTimer" & i & " = [0, 0, 0, 0, 0, 0, 0, 0];")
+                strbulider.AppendLine("const ClassicTriggerExecTimer" & i & " = EUDArray(8);")
 
                 'strbulider.Append(LineCount & " : ")
                 strbulider.AppendLine("function ClassicTriggerExec" & i & "() {")
@@ -555,9 +555,9 @@ Module TriggerEditorDataMoudle
                 LineCount = strbulider.ToString.Split(vbCrLf).Count
                 'strbulider.Append(LineCount & " : ")
                 strbulider.Append(.GetElements(0).ToCode(1, isbulid))
-                strbulider.AppendLine(GetIntend(1) & "){")
+                strbulider.AppendLine(GetIntend(1) & ") {")
 
-                strbulider.AppendLine(GetIntend(2) & "if (ClassicTriggerExecTimer" & i & "[getcurpl()] == 0){")
+                strbulider.AppendLine(GetIntend(2) & "if (ClassicTriggerExecTimer" & i & "[getcurpl()] == 0) {")
                 strbulider.AppendLine(GetIntend(3) & "ClassicTriggerExecTimer" & i & "[getcurpl()] = 1;")
                 strbulider.AppendLine(GetIntend(3) & "ClassicTriggerExec" & i & "();")
                 strbulider.AppendLine(GetIntend(2) & "}")
