@@ -3318,7 +3318,7 @@ Partial Class DatEditForm
         Me.ListView7.HideSelection = False
         Me.ListView7.Location = New System.Drawing.Point(7, 220)
         Me.ListView7.Name = "ListView7"
-        Me.ListView7.Size = New System.Drawing.Size(485, 22)
+        Me.ListView7.Size = New System.Drawing.Size(500, 36)  'See https://github.com/iDoodler-DS/EUDEditor/issues/15
         Me.ListView7.TabIndex = 73
         Me.ListView7.Tag = "AI Internal"
         Me.ListView7.UseCompatibleStateImageBehavior = False
