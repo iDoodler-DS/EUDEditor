@@ -62,10 +62,10 @@ Public Class FireGraftForm
         Lan.SetMenu(Me, ListMenu, "ListMenu")
         Lan.SetMenu(Me, ReqMenu, "ReqMenu")
         Lan.SetMenu(Me, MenuStrip1)
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         If FristRun = False Then
             CheckBox2.Checked = True
-            Dim file As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\Icon.txt", FileMode.Open, FileAccess.Read)
+            Dim file As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\Icon.txt", FileMode.Open, FileAccess.Read)
             Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
 
 
@@ -81,7 +81,7 @@ Public Class FireGraftForm
             file.Close()
 
             ComboBox3.Items.Clear()
-            file = New FileStream(My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\FireGraftStatus.txt", FileMode.Open, FileAccess.Read)
+            file = New FileStream(My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\FireGraftStatus.txt", FileMode.Open, FileAccess.Read)
             stream = New StreamReader(file, System.Text.Encoding.Default)
 
 
@@ -601,16 +601,16 @@ Public Class FireGraftForm
     Private Sub changeColor(ByRef _object As Object, _value As Integer)
         If _value = 0 Then
             With _object
-                .ForeColor = ProgramSet.FORECOLOR
-                .BackColor = ProgramSet.BACKCOLOR
+                .ForeColor = ProgramSet.colorFieldText
+                .BackColor = ProgramSet.colorFieldBackground
             End With
         Else
             If ListBox1.SelectedIndex <> -1 Then
                 ListBox1.SelectedItem(LITEM.ischange) = True
             End If
             With _object
-                .ForeColor = ProgramSet.FORECOLOR
-                .BackColor = ProgramSet.CHANGECOLOR
+                .ForeColor = ProgramSet.colorFieldText
+                .BackColor = ProgramSet.colorChangedBackground
             End With
         End If
     End Sub
@@ -676,13 +676,13 @@ Public Class FireGraftForm
 
                 If ProjectUnitStatusFn1(_OBJECTNUM) = 0 And ProjectUnitStatusFn2(_OBJECTNUM) = 0 Then
                     With ComboBox3
-                        .ForeColor = ProgramSet.FORECOLOR
-                        .BackColor = ProgramSet.BACKCOLOR
+                        .ForeColor = ProgramSet.colorFieldText
+                        .BackColor = ProgramSet.colorFieldBackground
                     End With
                 Else
                     With ComboBox3
-                        .ForeColor = ProgramSet.FORECOLOR
-                        .BackColor = ProgramSet.CHANGECOLOR
+                        .ForeColor = ProgramSet.colorFieldText
+                        .BackColor = ProgramSet.colorChangedBackground
                     End With
                 End If
 
@@ -708,7 +708,7 @@ Public Class FireGraftForm
                 CheckBox1.Checked = Not ProjectBtnUSE(_OBJECTNUM)
                 Panel2.Enabled = ProjectBtnUSE(_OBJECTNUM)
 
-                Dim file As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\Icon.txt", FileMode.Open, FileAccess.Read)
+                Dim file As FileStream = New FileStream(My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\Icon.txt", FileMode.Open, FileAccess.Read)
                 Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
 
                 Dim Icon() As String
@@ -984,9 +984,9 @@ Public Class FireGraftForm
                     TextBox3.Text = .pos
                     TextBox5.Text = .icon
                     Try
-                        PictureBox1.Image = DatEditForm.ICONILIST.Images(.icon) '방어구 아이콘
+                        PictureBox1.Image = CMDIconBitmapList(.icon) '방어구 아이콘
                     Catch ex As Exception
-                        PictureBox1.Image = DatEditForm.ICONILIST.Images(4)
+                        PictureBox1.Image = CMDIconBitmapList(4)
                     End Try
 
                     Try
@@ -1127,9 +1127,9 @@ Public Class FireGraftForm
                 Dim tpos As New Point((pos Mod 3) * 38, Math.Floor(pos / 3) * 36)
 
                 Try
-                    grptool.DrawImage(My.Forms.DatEditForm.ICONILIST.Images(ProjectBtnData(_OBJECTNUM)(i).icon), tpos)
+                    grptool.DrawImage(CMDIconBitmapList(ProjectBtnData(_OBJECTNUM)(i).icon), tpos)
                 Catch ex As Exception
-                    grptool.DrawImage(My.Forms.DatEditForm.ICONILIST.Images(4), tpos)
+                    grptool.DrawImage(CMDIconBitmapList(4), tpos)
                 End Try
             Next
             If ListBox2.SelectedIndex <> -1 Then
@@ -1147,9 +1147,9 @@ Public Class FireGraftForm
                 Dim tpos As New Point((pos Mod 3) * 38, Math.Floor(pos / 3) * 36)
 
                 Try
-                    grptool.DrawImage(My.Forms.DatEditForm.ICONILIST.Images(BtnData(_OBJECTNUM)(i).icon), tpos)
+                    grptool.DrawImage(CMDIconBitmapList(BtnData(_OBJECTNUM)(i).icon), tpos)
                 Catch ex As Exception
-                    grptool.DrawImage(My.Forms.DatEditForm.ICONILIST.Images(4), tpos)
+                    grptool.DrawImage(CMDIconBitmapList(4), tpos)
                 End Try
             Next
             If ListBox2.SelectedIndex <> -1 Then
@@ -1254,13 +1254,13 @@ Handles ListBox1.DrawItem
 
             If ProjectUnitStatusFn1(_OBJECTNUM) = 0 And ProjectUnitStatusFn2(_OBJECTNUM) = 0 Then
                 With ComboBox3
-                    .ForeColor = ProgramSet.FORECOLOR
-                    .BackColor = ProgramSet.BACKCOLOR
+                    .ForeColor = ProgramSet.colorFieldText
+                    .BackColor = ProgramSet.colorFieldBackground
                 End With
             Else
                 With ComboBox3
-                    .ForeColor = ProgramSet.FORECOLOR
-                    .BackColor = ProgramSet.CHANGECOLOR
+                    .ForeColor = ProgramSet.colorFieldText
+                    .BackColor = ProgramSet.colorChangedBackground
                 End With
             End If
         End If
@@ -1329,58 +1329,7 @@ Handles ListBox1.DrawItem
     End Sub
 
     Private Sub ColorReset()
-
-        TextBox4.BackColor = ProgramSet.BACKCOLOR
-        TextBox4.ForeColor = ProgramSet.FORECOLOR
-
-        TextBox3.BackColor = ProgramSet.BACKCOLOR
-        TextBox3.ForeColor = ProgramSet.FORECOLOR
-        TextBox5.BackColor = ProgramSet.BACKCOLOR
-        TextBox5.ForeColor = ProgramSet.FORECOLOR
-        ComboBox4.BackColor = ProgramSet.BACKCOLOR
-        ComboBox4.ForeColor = ProgramSet.FORECOLOR
-
-        TextBox10.BackColor = ProgramSet.BACKCOLOR
-        TextBox10.ForeColor = ProgramSet.FORECOLOR
-        ComboBox10.BackColor = ProgramSet.BACKCOLOR
-        ComboBox10.ForeColor = ProgramSet.FORECOLOR
-
-        TextBox11.BackColor = ProgramSet.BACKCOLOR
-        TextBox11.ForeColor = ProgramSet.FORECOLOR
-        ComboBox9.BackColor = ProgramSet.BACKCOLOR
-        ComboBox9.ForeColor = ProgramSet.FORECOLOR
-
-
-        TextBox7.BackColor = ProgramSet.BACKCOLOR
-        TextBox7.ForeColor = ProgramSet.FORECOLOR
-        TextBox6.BackColor = ProgramSet.BACKCOLOR
-        TextBox6.ForeColor = ProgramSet.FORECOLOR
-        TextBox9.BackColor = ProgramSet.BACKCOLOR
-        TextBox9.ForeColor = ProgramSet.FORECOLOR
-        TextBox8.BackColor = ProgramSet.BACKCOLOR
-        TextBox8.ForeColor = ProgramSet.FORECOLOR
-
-
-
-        ComboBox6.BackColor = ProgramSet.BACKCOLOR
-        ComboBox6.ForeColor = ProgramSet.FORECOLOR
-        ComboBox5.BackColor = ProgramSet.BACKCOLOR
-        ComboBox5.ForeColor = ProgramSet.FORECOLOR
-        ComboBox7.BackColor = ProgramSet.BACKCOLOR
-        ComboBox7.ForeColor = ProgramSet.FORECOLOR
-        ComboBox8.BackColor = ProgramSet.BACKCOLOR
-        ComboBox8.ForeColor = ProgramSet.FORECOLOR
-
-        ComboBox11.BackColor = ProgramSet.BACKCOLOR
-        ComboBox11.ForeColor = ProgramSet.FORECOLOR
-        ComboBox12.BackColor = ProgramSet.BACKCOLOR
-        ComboBox12.ForeColor = ProgramSet.FORECOLOR
-
-        ListBox2.BackColor = ProgramSet.BACKCOLOR
-        ListBox2.ForeColor = ProgramSet.FORECOLOR
-
-        ReqList.BackColor = ProgramSet.BACKCOLOR
-        ReqList.ForeColor = ProgramSet.FORECOLOR
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub 테마설정TToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThemeSetTToolStripMenuItem.Click
         ThemeSetForm.ShowDialog()
@@ -1822,10 +1771,10 @@ Handles ListBox1.DrawItem
                         With ProjectBtnData(_OBJECTNUM)(btnnum)
                             Try
                                 ComboBox4.SelectedIndex = TextBox5.Text
-                                PictureBox1.Image = DatEditForm.ICONILIST.Images(.icon) '방어구 아이콘
+                                PictureBox1.Image = CMDIconBitmapList(.icon) '방어구 아이콘
                             Catch ex As Exception
                                 ComboBox4.SelectedIndex = -1
-                                PictureBox1.Image = DatEditForm.ICONILIST.Images(4)
+                                PictureBox1.Image = CMDIconBitmapList(4)
                             End Try
 
                             TextBox4.Text = ValueTostring(.pos) & ValueTostring(.icon) _
@@ -1873,10 +1822,10 @@ Handles ListBox1.DrawItem
                     With ProjectBtnData(_OBJECTNUM)(btnnum)
                         Try
                             TextBox5.Text = ComboBox4.SelectedIndex
-                            PictureBox1.Image = DatEditForm.ICONILIST.Images(.icon) '방어구 아이콘
+                            PictureBox1.Image = CMDIconBitmapList(.icon) '방어구 아이콘
                         Catch ex As Exception
                             ComboBox4.SelectedIndex = -1
-                            PictureBox1.Image = DatEditForm.ICONILIST.Images(4)
+                            PictureBox1.Image = CMDIconBitmapList(4)
                         End Try
 
                         TextBox4.Text = ValueTostring(.pos) & ValueTostring(.icon) _

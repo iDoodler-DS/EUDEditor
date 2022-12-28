@@ -1,0 +1,13 @@
+﻿{
+    "FileFToolStripMenuItem": "파일(&F)",
+    "DatFileAllSaveToolStripMenuItem": "dat파일 저장",
+    "DatFileAllResetToolStripMenuItem": "dat파일 리셋",
+    "PSaveToolStripMenuItem": "프로젝트 저장(&S)",
+    "EditToolStripMenuItem": "편집(&E)",
+    "ResetToolStripMenuItem1": "초기화",
+    "ObjResetToolStripMenuItem": "오브젝트 초기화",
+    "ObjectCopyToolStripMenuItem": "오브젝트 복사",
+    "ObjPasteToolStripMenuItem": "오브젝트 붙여넣기",
+    "ViewVToolStripMenuItem": "보기(&V)",
+    "ThemeSetTToolStripMenuItem": "테마 설정(&T)"
+}

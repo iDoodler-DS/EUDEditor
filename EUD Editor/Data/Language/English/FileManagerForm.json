@@ -1,0 +1,19 @@
+﻿{
+    "TabPage1": "Stat_text",
+    "GroupBox1": "Stat_text",
+    "TabPage2": "WireFrame",
+    "Label27": "Filter",
+    "CheckBox5": "Edit",
+    "Button5": "Fold",
+    "Fold": "Fold",
+    "UnFold": "UnFold",
+    "GroupBox4": "TranFrame",
+    "Label3": "FrameNum",
+    "GroupBox3": "GrpFrame",
+    "Label2": "FrameNum",
+    "GroupBox2": "WireFrame",
+    "Label1": "FrameNum",
+    "OldText": "Old Text",
+    "NewText": "New Text",
+    "Edit": "Edit"
+}

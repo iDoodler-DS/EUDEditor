@@ -71,36 +71,7 @@ Public Class DethesViewerForm
 
 
     Private Sub ColorReset()
-        NumericUpDown1.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown1.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown3.ForeColor = ProgramSet.FORECOLOR
-
-
-        NumericUpDown4.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown4.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown5.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown5.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown6.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown6.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown7.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown7.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown8.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown8.ForeColor = ProgramSet.FORECOLOR
-
-
-        NumericUpDown9.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown9.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown10.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown10.ForeColor = ProgramSet.FORECOLOR
-
-
-        NumericUpDown11.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown11.ForeColor = ProgramSet.FORECOLOR
-        NumericUpDown12.BackColor = ProgramSet.BACKCOLOR
-        NumericUpDown12.ForeColor = ProgramSet.FORECOLOR
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub LoadData()
@@ -116,121 +87,121 @@ Public Class DethesViewerForm
 
         If NumericUpDown1.Focused = False Then
             NumericUpDown1.Value = binaryReader.ReadUInt32()
-            NumericUpDown1.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown1.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown1.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown1.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown1.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown1.BackColor = ProgramSet.colorFieldText
+            NumericUpDown1.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown2.Focused = False Then
             NumericUpDown2.Value = binaryReader.ReadUInt32()
-            NumericUpDown2.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown2.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown2.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown2.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown2.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown2.BackColor = ProgramSet.colorFieldText
+            NumericUpDown2.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown3.Focused = False Then
             NumericUpDown3.Value = binaryReader.ReadUInt32()
-            NumericUpDown3.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown3.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown3.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown3.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown3.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown3.BackColor = ProgramSet.colorFieldText
+            NumericUpDown3.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown4.Focused = False Then
             NumericUpDown4.Value = binaryReader.ReadUInt32()
-            NumericUpDown4.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown4.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown4.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown4.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown4.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown4.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown4.BackColor = ProgramSet.colorFieldText
+            NumericUpDown4.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown5.Focused = False Then
             NumericUpDown5.Value = binaryReader.ReadUInt32()
-            NumericUpDown5.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown5.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown5.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown5.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown5.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown5.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown5.BackColor = ProgramSet.colorFieldText
+            NumericUpDown5.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown6.Focused = False Then
             NumericUpDown6.Value = binaryReader.ReadUInt32()
-            NumericUpDown6.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown6.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown6.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown6.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown6.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown6.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown6.BackColor = ProgramSet.colorFieldText
+            NumericUpDown6.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown7.Focused = False Then
             NumericUpDown7.Value = binaryReader.ReadUInt32()
-            NumericUpDown7.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown7.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown7.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown7.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown7.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown7.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown7.BackColor = ProgramSet.colorFieldText
+            NumericUpDown7.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown8.Focused = False Then
             NumericUpDown8.Value = binaryReader.ReadUInt32()
-            NumericUpDown8.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown8.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown8.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown8.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown8.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown8.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown8.BackColor = ProgramSet.colorFieldText
+            NumericUpDown8.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown9.Focused = False Then
             NumericUpDown9.Value = binaryReader.ReadUInt32()
-            NumericUpDown9.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown9.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown9.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown9.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown9.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown9.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown9.BackColor = ProgramSet.colorFieldText
+            NumericUpDown9.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown10.Focused = False Then
             NumericUpDown10.Value = binaryReader.ReadUInt32()
-            NumericUpDown10.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown10.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown10.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown10.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown10.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown10.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown10.BackColor = ProgramSet.colorFieldText
+            NumericUpDown10.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown11.Focused = False Then
             NumericUpDown11.Value = binaryReader.ReadUInt32()
-            NumericUpDown11.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown11.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown11.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown11.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown11.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown11.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown11.BackColor = ProgramSet.colorFieldText
+            NumericUpDown11.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 
         If NumericUpDown12.Focused = False Then
             NumericUpDown12.Value = binaryReader.ReadUInt32()
-            NumericUpDown12.BackColor = ProgramSet.BACKCOLOR
-            NumericUpDown12.ForeColor = ProgramSet.FORECOLOR
+            NumericUpDown12.BackColor = ProgramSet.colorFieldBackground
+            NumericUpDown12.ForeColor = ProgramSet.colorFieldText
         Else
-            NumericUpDown12.BackColor = ProgramSet.FORECOLOR
-            NumericUpDown12.ForeColor = ProgramSet.BACKCOLOR
+            NumericUpDown12.BackColor = ProgramSet.colorFieldText
+            NumericUpDown12.ForeColor = ProgramSet.colorFieldBackground
             binaryReader.ReadUInt32()
         End If
 

@@ -1,0 +1,4 @@
+﻿{
+    "TextBox1": "Do not use Wait for at least 4 seconds after starting. \nPlease place triggers on \"computer player\". \nPlease put this trigger on top. \n\nIt works fine even without this trigger, but it does not detect the speed.",
+    "Name": "Speed Detection Trigger"
+}

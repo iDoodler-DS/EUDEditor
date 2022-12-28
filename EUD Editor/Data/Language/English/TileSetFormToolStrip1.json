@@ -1,0 +1,14 @@
+﻿{
+    "ToolStripButton1": "Save",
+    "ToolStripButton2": "Undo",
+    "ToolStripButton3": "Redo",
+    "ToolStripButton11": "Palette",
+    "ToolStripButton12": "Copy",
+    "ToolStripButton4": "Basic",
+    "ToolStripButton5": "Passable",
+    "ToolStripButton6": "Buildable",
+    "ToolStripButton7": "Inpassable",
+    "ToolStripButton8": "Low",
+    "ToolStripButton9": "Middle",
+    "ToolStripButton10": "High"
+}

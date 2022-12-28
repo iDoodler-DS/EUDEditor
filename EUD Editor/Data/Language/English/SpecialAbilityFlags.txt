@@ -1,0 +1,32 @@
+Building
+Addon
+Flyer
+Resource Miner
+Subunit
+Flying Building
+Hero
+Regenerate
+Animated Idle
+Cloakable
+1 Egg 2 Unit
+Single Entity
+Resource Depot
+Resource Container
+Robotic
+Detector
+Organic
+Requires Creep
+Unused
+Requires Psi
+Burrowable
+Spellcaster
+Permanent Cloak
+Pickup Item
+Ignore Supply Check
+Use Medium Overlays
+Use Large Overlays
+Full Auto-Attack
+Battle Reactions
+Invincible
+Mechanical
+Produces Units

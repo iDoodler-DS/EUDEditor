@@ -107,8 +107,9 @@ Public Class Element
     Public Function GetValueTodef(valdef As String) As String
         Dim returnstring As String = ""
 
-        Dim valuecount As Integer = valdef.Split(".")(0)
-        Dim valuedef As String = valdef.Split(".")(1)
+        Dim valdefChars = valdef.Split(".")
+        Dim valuecount As Integer = valdefChars(0)
+        Dim valuedef As String = valdefChars(1)
 
         'MsgBox(valuedef)
 
@@ -145,8 +146,9 @@ Public Class Element
         Return returnstring
     End Function
     Public Sub SetValueTodef(valdef As String, value As String)
-        Dim valuecount As Integer = valdef.Split(".")(0)
-        Dim valuedef As String = valdef.Split(".")(1)
+        Dim valdefChars = valdef.Split(".")
+        Dim valuecount As Integer = valdefChars(0)
+        Dim valuedef As String = valdefChars(1)
 
         'MsgBox(valuecount)
 
@@ -590,12 +592,7 @@ Public Class Element
                 End If
             Case "Location"
                 If isTocode = True And isnumber = True Then
-                    Try
-                        returnstring -= 1
-                        Return returnstring
-                    Catch ex As Exception
-
-                    End Try
+                    Return returnstring
                 End If
             Case "CText"
                 If isTocode = True Then
@@ -605,7 +602,7 @@ Public Class Element
                 End If
             Case "DBText"
                 If isTocode = True Then
-                    returnstring = "Db(u2utf8(" & returnstring & "))"
+                    returnstring = "Db(" & returnstring & ")"
 
                     Return returnstring
                 End If
@@ -792,37 +789,35 @@ Public Class Element
         Return _stringb.ToString
     End Function
 
-    Public Function LoadFile(_str As String, index As Integer, Optional isfrist As Boolean = False) As Integer
-        Dim tempstr() As String
+    Public Function LoadFile(ByRef splitStr As String(), index As Integer, Optional isfrist As Boolean = False) As Integer
 
         Dim actconname As String = ""
         Dim _index As Integer = index
-        tempstr = _str.Split(vbCrLf)
 
-        Dim typeflag As String = NextLine(tempstr(_index), _index)
+        Dim typeflag As String = NextLine(splitStr(_index), _index)
 
-
-        Select Case typeflag.Split(",").Count
+        Dim lineData = typeflag.Split(",")
+        Select Case lineData.Count
             Case 1
-                Type = typeflag.Split(",")(0)
+                Type = lineData(0)
                 isdisalbe = False
                 isFloding = False
                 isNotcon = False
             Case 2
-                Type = typeflag.Split(",")(0)
-                isdisalbe = typeflag.Split(",")(1)
+                Type = lineData(0)
+                isdisalbe = lineData(1)
                 isFloding = False
                 isNotcon = False
             Case 3
-                Type = typeflag.Split(",")(0)
-                isdisalbe = typeflag.Split(",")(1)
-                isFloding = typeflag.Split(",")(2)
+                Type = lineData(0)
+                isdisalbe = lineData(1)
+                isFloding = lineData(2)
                 isNotcon = False
             Case 4
-                Type = typeflag.Split(",")(0)
-                isdisalbe = typeflag.Split(",")(1)
-                isFloding = typeflag.Split(",")(2)
-                isNotcon = typeflag.Split(",")(3)
+                Type = lineData(0)
+                isdisalbe = lineData(1)
+                isFloding = lineData(2)
+                isNotcon = lineData(3)
         End Select
 
 
@@ -830,12 +825,12 @@ Public Class Element
 
         Select Case Type
             Case ElementType.액션
-                actconname = NextLine(tempstr(_index), _index)
+                actconname = NextLine(splitStr(_index), _index)
 
                 act = SeachAct(actconname)
                 isreadvalue = True
             Case ElementType.조건
-                actconname = NextLine(tempstr(_index), _index)
+                actconname = NextLine(splitStr(_index), _index)
 
                 con = SeachCon(actconname)
                 isreadvalue = True
@@ -846,10 +841,10 @@ Public Class Element
         If isreadvalue = True Then
             Values = New List(Of String)
             Dim _valuestring As String = ""
-            _valuestring = _valuestring & tempstr(_index).Trim
+            _valuestring = _valuestring & splitStr(_index).Trim
             _index += 1
-            While (tempstr(_index).Trim.IndexOf("ElementsCount") = -1)
-                _valuestring = _valuestring & vbCrLf & tempstr(_index).Trim
+            While (splitStr(_index).Trim.IndexOf("ElementsCount") = -1)
+                _valuestring = _valuestring & vbCrLf & splitStr(_index).Trim
                 _index += 1
             End While
 
@@ -975,7 +970,7 @@ Public Class Element
                 End Select
             Case ElementType.Foluder
                 If Values.Count = 1 Then
-                    Values(0) = "//" & Values(0)
+                    Values(0) = Values(0)
                     Values.Add(Values(0))
                     Values.Add("False")
                 End If
@@ -989,12 +984,12 @@ Public Class Element
         '호환성코드
 
 
-        Dim elecount As Integer = NextLine(tempstr(_index), _index)
+        Dim elecount As Integer = NextLine(splitStr(_index), _index)
 
 
         For i = 0 To elecount - 1
             Dim _ele As New Element(Me, ElementType.main)
-            _index = _ele.LoadFile(_str, _index, isfrist)
+            _index = _ele.LoadFile(splitStr, _index, isfrist)
 
 
 
@@ -1014,7 +1009,7 @@ Public Class Element
             End If
 
         Next
-        NextLine(tempstr(_index), _index)
+        NextLine(splitStr(_index), _index)
 
         Return _index
     End Function
@@ -1422,7 +1417,7 @@ Public Class Element
 
                         '언어선택
                         For i = 0 To funcdef.Elements(1).Elements(0).Elements(0).GetElementsCount - 1
-                            If funcdef.Elements(1).Elements(0).Elements(0).GetElements(i).Values(0) = My.Settings.Langage Then
+                            If funcdef.Elements(1).Elements(0).Elements(0).GetElements(i).Values(0) = My.Settings.Language Then
                                 tooltipdef = funcdef.Elements(1).Elements(0).Elements(0).GetElements(i).Elements(0)
                                 Exit For
                             End If
@@ -2048,21 +2043,21 @@ Public Class Element
                 Case ElementType.조건문if, ElementType.조건문ifelse, ElementType.와일
                     _rtext = ""
                 Case ElementType.조건절, ElementType.TriggerCond
-                    _rtext = "if("
+                    _rtext = "if ("
                 Case ElementType.만족안함
-                    _rtext = "else{"
+                    _rtext = "else {"
                 Case ElementType.만족
-                    _rtext = "){"
+                    _rtext = ") {"
                 Case ElementType.와일조건
-                    _rtext = "while("
+                    _rtext = "while ("
                 Case ElementType.와일만족
-                    _rtext = "){"
+                    _rtext = ") {"
                 Case ElementType.포
                     Select Case Values(0)
                         Case "Counting"
-                            _rtext = "for(var " & Values(1) & " = 0 ; " & Values(1) & " < " & Values(2) & " ; " & Values(1) & "++){"
+                            _rtext = "for(var " & Values(1) & " = 0 ; " & Values(1) & " < " & Values(2) & " ; " & Values(1) & "++) {"
                         Case "Custom"
-                            _rtext = "for(" & Values(1) & "){"
+                            _rtext = "for(" & Values(1) & ") {"
                         Case "AllUnit"
                             Dim _playerText As String
 
@@ -2084,7 +2079,7 @@ Public Class Element
 
 
 
-                    _rtext = "" '"for(var j = 0 ; j <= MaxPlayer ; j++){"
+                    _rtext = "" '"for(var j = 0 ; j <= MaxPlayer ; j++) {"
                 Case ElementType.함수정의
                     _rtext = "function" & " " & Values(0) & "("
 
@@ -2096,7 +2091,7 @@ Public Class Element
                     End If
                     _rtext = _rtext & ") {"
                 Case ElementType.RawTrigger
-                    _rtext = "function" & " ClassicTrigger(){"
+                    _rtext = "function" & " ClassicTrigger() {"
                 Case ElementType.TriggerAct
                     _rtext = "if (" & VarialbeName & " == 1) {"
                 Case ElementType.함수

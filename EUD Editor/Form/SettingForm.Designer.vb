@@ -419,7 +419,7 @@ Partial Class SettingForm
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(84, 15)
         Me.Label8.TabIndex = 9
-        Me.Label8.Text = "언어(Langage)"
+        Me.Label8.Text = "언어(Language)"
         '
         'ComboBox3
         '
@@ -521,7 +521,7 @@ Partial Class SettingForm
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.RadioButton1)
         Me.Controls.Add(Me.RadioButton2)
-        Me.Font = New System.Drawing.Font("맑은 고딕", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
+        Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.MaximizeBox = False

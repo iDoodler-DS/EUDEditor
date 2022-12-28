@@ -259,7 +259,8 @@ Module TriggerEditorDataMoudle
         Dim _filestream As New FileStream(FuncName, FileMode.Open)
         Dim _streamreader As New StreamReader(_filestream)
 
-        newElement.LoadFile(_streamreader.ReadToEnd(), 0)
+        Dim splitData() = _streamreader.ReadToEnd().Split(vbCrLf)
+        newElement.LoadFile(splitData, 0)
 
         Select Case _tempele.GetTypeV
             Case ElementType.Functions
@@ -328,21 +329,22 @@ Module TriggerEditorDataMoudle
             BeforeElement = New Element(BeforeElement, ElementType.main)
             AfterElement = New Element(AfterElement, ElementType.main)
 
+            Dim splitData() = datas.Split(vbCrLf)
             Try
-                AddText.LoadFile(datas, findSection(datas, "&AddText&"))
+                AddText.LoadFile(splitData, findSection(datas, "&AddText&"))
             Catch ex As Exception
 
             End Try
-            functions.LoadFile(datas, findSection(datas, "&functions&"), isfirst)
-            GlobalVar.LoadFile(datas, findSection(datas, "&GlobalVar&"))
+            functions.LoadFile(splitData, findSection(datas, "&functions&"), isfirst)
+            GlobalVar.LoadFile(splitData, findSection(datas, "&GlobalVar&"))
             Try
-                RawTriggers.LoadFile(datas, findSection(datas, "&RawTriggers&"))
+                RawTriggers.LoadFile(splitData, findSection(datas, "&RawTriggers&"))
             Catch ex As Exception
                 RawTriggers = New Element(RawTriggers, ElementType.RawTriggers)
             End Try
-            StartElement.LoadFile(datas, findSection(datas, "&onPluginStart&"))
-            BeforeElement.LoadFile(datas, findSection(datas, "&beforeTriggerExec&"))
-            AfterElement.LoadFile(datas, findSection(datas, "&afterTriggerExec&"))
+            StartElement.LoadFile(splitData, findSection(datas, "&onPluginStart&"))
+            BeforeElement.LoadFile(splitData, findSection(datas, "&beforeTriggerExec&"))
+            AfterElement.LoadFile(splitData, findSection(datas, "&afterTriggerExec&"))
         Catch ex As Exception
             MsgBox(Lan.GetText("Msgbox", "tfError"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
         End Try
@@ -356,22 +358,23 @@ Module TriggerEditorDataMoudle
         End If
 
         Try
+            Dim splitData() = datas.Split(vbCrLf)
             Try
-                AddText.LoadFile(datas, findSection(datas, "&AddText&"))
+                AddText.LoadFile(splitData, findSection(datas, "&AddText&"))
             Catch ex As Exception
 
             End Try
-            functions.LoadFile(datas, findSection(datas, "&functions&"))
-            GlobalVar.LoadFile(datas, findSection(datas, "&GlobalVar&"))
+            functions.LoadFile(splitData, findSection(datas, "&functions&"))
+            GlobalVar.LoadFile(splitData, findSection(datas, "&GlobalVar&"))
             Try
-                RawTriggers.LoadFile(datas, findSection(datas, "&RawTriggers&"))
+                RawTriggers.LoadFile(splitData, findSection(datas, "&RawTriggers&"))
             Catch ex As Exception
                 RawTriggers = New Element(RawTriggers, ElementType.RawTriggers)
             End Try
 
-            StartElement.LoadFile(datas, findSection(datas, "&onPluginStart&"))
-            BeforeElement.LoadFile(datas, findSection(datas, "&beforeTriggerExec&"))
-            AfterElement.LoadFile(datas, findSection(datas, "&afterTriggerExec&"))
+            StartElement.LoadFile(splitData, findSection(datas, "&onPluginStart&"))
+            BeforeElement.LoadFile(splitData, findSection(datas, "&beforeTriggerExec&"))
+            AfterElement.LoadFile(splitData, findSection(datas, "&afterTriggerExec&"))
         Catch ex As Exception
             MsgBox(Lan.GetText("Msgbox", "tfError"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
         End Try
@@ -445,9 +448,8 @@ Module TriggerEditorDataMoudle
         Next
 
         For i = 0 To 7
-            strb.AppendLine(GetIntend(1) & "//플레이어 " & i + 1)
-            strb.AppendLine(GetIntend(1) & "if (playerexist(" & i & ")){")
-            strb.AppendLine(GetIntend(2) & "setcurpl(" & i & ");")
+            strb.AppendLine(GetIntend(1) & "if (playerexist(P" & i + 1 & ")) {")
+            strb.AppendLine(GetIntend(2) & "setcurpl(P" & i + 1 & ");")
             For k = 0 To playerlist(i).Count - 1
                 If RawTriggers.GetElements(playerlist(i)(k)).isdisalbe = False Then
                     strb.AppendLine(GetIntend(2) & "ClassicTriggerStarter" & playerlist(i)(k) & "();")
@@ -511,10 +513,10 @@ Module TriggerEditorDataMoudle
                 If funcs.Values(1) = True Then
                     WaitCounter = 1
                     For i = 0 To funcs.GetElements(0).GetElementsCount - 1
-                        strbulider.AppendLine("const " & funcs.Values(0) & funcs.GetElements(0).GetElements(i).Values(0) & " = [0, 0, 0, 0, 0, 0, 0, 0];")
+                        strbulider.AppendLine("const " & funcs.Values(0) & funcs.GetElements(0).GetElements(i).Values(0) & " = EUDArray(8);")
                     Next
                     VarialbeName = funcs.Values(0) & "Timer[getcurpl()]"
-                    strbulider.AppendLine("const " & funcs.Values(0) & "Timer = [0, 0, 0, 0, 0, 0, 0, 0];")
+                    strbulider.AppendLine("const " & funcs.Values(0) & "Timer = EUDArray(8);")
 
                 End If
             End If
@@ -533,7 +535,7 @@ Module TriggerEditorDataMoudle
         For i = 0 To RawTriggers.GetElementsCount - 1
             With RawTriggers.GetElements(i)
                 VarialbeName = "ClassicTriggerExecTimer" & i & "[getcurpl()]"
-                strbulider.AppendLine("const ClassicTriggerExecTimer" & i & " = [0, 0, 0, 0, 0, 0, 0, 0];")
+                strbulider.AppendLine("const ClassicTriggerExecTimer" & i & " = EUDArray(8);")
 
                 'strbulider.Append(LineCount & " : ")
                 strbulider.AppendLine("function ClassicTriggerExec" & i & "() {")
@@ -553,9 +555,9 @@ Module TriggerEditorDataMoudle
                 LineCount = strbulider.ToString.Split(vbCrLf).Count
                 'strbulider.Append(LineCount & " : ")
                 strbulider.Append(.GetElements(0).ToCode(1, isbulid))
-                strbulider.AppendLine(GetIntend(1) & "){")
+                strbulider.AppendLine(GetIntend(1) & ") {")
 
-                strbulider.AppendLine(GetIntend(2) & "if (ClassicTriggerExecTimer" & i & "[getcurpl()] == 0){")
+                strbulider.AppendLine(GetIntend(2) & "if (ClassicTriggerExecTimer" & i & "[getcurpl()] == 0) {")
                 strbulider.AppendLine(GetIntend(3) & "ClassicTriggerExecTimer" & i & "[getcurpl()] = 1;")
                 strbulider.AppendLine(GetIntend(3) & "ClassicTriggerExec" & i & "();")
                 strbulider.AppendLine(GetIntend(2) & "}")
@@ -681,7 +683,7 @@ Module TriggerEditorDataMoudle
 
         For i = 0 To Actions.Count - 1
             Try
-                Actions(i).Text = Actions(i).Texts(Actions(i).Texts.IndexOf(My.Settings.Langage) + 1)
+                Actions(i).Text = Actions(i).Texts(Actions(i).Texts.IndexOf(My.Settings.Language) + 1)
             Catch ex As Exception
 
             End Try
@@ -702,7 +704,7 @@ Module TriggerEditorDataMoudle
 
         For i = 0 To Condictions.Count - 1
             Try
-                Condictions(i).Text = Condictions(i).Texts(Condictions(i).Texts.IndexOf(My.Settings.Langage) + 1)
+                Condictions(i).Text = Condictions(i).Texts(Condictions(i).Texts.IndexOf(My.Settings.Language) + 1)
             Catch ex As Exception
 
             End Try

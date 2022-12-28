@@ -4,6 +4,7 @@ Imports System.Text.RegularExpressions
 Public Class ErrorDialog
     Private Sub ErrorDialog_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Timer1.Enabled = True
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
     Private Sub ErrorParse(text As String)

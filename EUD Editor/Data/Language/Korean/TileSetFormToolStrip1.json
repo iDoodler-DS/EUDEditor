@@ -1,0 +1,14 @@
+﻿{
+    "ToolStripButton1": "저장",
+    "ToolStripButton2": "실행취소",
+    "ToolStripButton3": "다시실행",
+    "ToolStripButton11": "팔레트",
+    "ToolStripButton12": "지형복사",
+    "ToolStripButton4": "기본",
+    "ToolStripButton5": "통행가능",
+    "ToolStripButton6": "건설가능",
+    "ToolStripButton7": "통행불능",
+    "ToolStripButton8": "낮음",
+    "ToolStripButton9": "중간",
+    "ToolStripButton10": "높음"
+}

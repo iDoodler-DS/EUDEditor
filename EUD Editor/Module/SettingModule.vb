@@ -9,7 +9,7 @@ Namespace ProgramSet
 
 
         'Public Version As String = "vTEST 0.13"
-        Public Version As String = "0.17.9.7"
+        Public Version As String = "0.18.1.0"
         Public DatEditVersion As String = "v0.3"
         Public SCDBSerial As UInteger
 
@@ -32,14 +32,14 @@ Namespace ProgramSet
         'Public AutoLogin As Boolean
         'Public Remember As Boolean
 
-
-
-        Public FORECOLOR As Color
-
-        Public BACKCOLOR As Color
-        Public CHANGECOLOR As Color
-
-        Public LISTCOLOR As Color
+        Public colorBackground As Color
+        Public colorLabelText As Color
+        Public colorFieldBackground As Color
+        Public colorFieldText As Color
+        Public colorChangedBackground As Color
+        Public colorCheckedBackground As Color
+        Public colorCodeBackground As Color
+        Public colorPanelBackground As Color
     End Module
 
 End Namespace
@@ -146,11 +146,6 @@ Namespace ProjectSet
         End Function
 
 
-
-
-
-
-
         Public Sub LoadCHKdata()
             LoadTILEDATA()
 
@@ -163,8 +158,6 @@ Namespace ProjectSet
 
             Dim key As String
 
-
-
             For i = 0 To DatEditDATA.Count - 1
                 For j = 0 To DatEditDATA(i).mapdata.Count - 1
                     For p = 0 To DatEditDATA(i).mapdata(j).Count - 1
@@ -172,10 +165,6 @@ Namespace ProjectSet
                     Next
                 Next
             Next
-
-
-
-
 
             Dim hmpq As UInteger
             Dim hfile As UInteger
@@ -186,7 +175,6 @@ Namespace ProjectSet
             Dim pdwread As IntPtr
 
             StormLib.SFileOpenArchive(InputMap, 0, 0, hmpq)
-
 
             Dim openFilename As String = "staredit\scenario.chk"
 
@@ -201,24 +189,6 @@ Namespace ProjectSet
                 Dim mem As MemoryStream = New MemoryStream(buffer)
                 Dim binary As BinaryReader = New BinaryReader(mem)
                 Dim stream As StreamReader = New StreamReader(mem, Text.Encoding.ASCII)
-
-                Try
-                    mem.Position = SearchCHK("TYPE", buffer)
-                Catch ex As Exception
-                    LoadFromCHK = False
-                    Exit Sub
-                End Try
-
-                size = binary.ReadUInt32
-
-                Dim value As UInteger = binary.ReadUInt32
-                If (value <> 1113014610) Then
-                    LoadFromCHK = False
-                    Exit Sub
-                End If
-
-
-
 
                 mem.Position = SearchCHK("SIDE", buffer)
 
@@ -247,19 +217,16 @@ Namespace ProjectSet
                         Exit Sub
                     End If
 
+                    Try
+                        mem.Position = SearchCHK("WAV ", buffer)
 
-                    mem.Position = SearchCHK("WAV ", buffer)
-
-                    size = binary.ReadUInt32
-                    For i = 0 To size / 4 - 1
-                        'binary.ReadUInt32()
-                        '    binary.ReadUInt32()
-                        '    binary.ReadUInt32()
-                        '    binary.ReadUInt32()
-
-                        CHKWAVLIST.Add(binary.ReadUInt32())
-                        '    binary.ReadUInt16()
-                    Next
+                        size = binary.ReadUInt32
+                        For i = 0 To size / 4 - 1
+                            CHKWAVLIST.Add(binary.ReadUInt32())
+                        Next
+                    Catch ex As Exception
+                        Exit Try
+                    End Try
 
                     Dim _playerFlag(8) As Boolean
                     mem.Position = SearchCHK("OWNR", buffer)
@@ -319,12 +286,16 @@ Namespace ProjectSet
                         binary.ReadUInt16()
                     Next
 
-                    mem.Position = SearchCHK("SWNM", buffer)
-
-                    size = binary.ReadUInt32
-                    For i = 0 To 255
-                        CHKSWITCHNAME.Add(binary.ReadUInt32)
-                    Next
+                    Try
+                        mem.Position = SearchCHK("SWNM", buffer)
+                    Catch ex As Exception
+                        Exit Try
+                    Finally
+                        size = binary.ReadUInt32
+                        For i = 0 To 255
+                            CHKSWITCHNAME.Add(binary.ReadUInt32)
+                        Next
+                    End Try
 
 
                     mem.Position = SearchCHK("UPGx", buffer)
@@ -589,9 +560,6 @@ Namespace ProjectSet
                         Catch ex2 As Exception
                             Throw New System.Exception("String section not found.")
                         End Try
-                        If mem.Position = 0 Then
-                            Throw New System.Exception("String section not found.")
-                        End If
                     End Try
                     If mem.Position = 0 Then
                         Try
@@ -611,11 +579,11 @@ Namespace ProjectSet
                     binary.Close()
                     mem.Close()
 
-
-
                     Dim strmem As MemoryStream = New MemoryStream(STRpara)
-                    Dim strstream As StreamReader = New StreamReader(strmem, Text.Encoding.GetEncoding("ks_c_5601-1987"))
-                    Dim strbinary As BinaryReader = New BinaryReader(strmem, Text.Encoding.GetEncoding("ks_c_5601-1987"))
+                    'TODO: support UTF-8
+                    Dim strencoding As Text.Encoding = Text.Encoding.GetEncoding("ks_c_5601-1987")
+                    Dim strstream As StreamReader = New StreamReader(strmem, strencoding)
+                    Dim strbinary As BinaryReader = New BinaryReader(strmem, strencoding)
 
                     Dim tempindex As UInteger
                     Dim tempindex2 As Char
@@ -643,17 +611,20 @@ Namespace ProjectSet
                         strmem.Position = tempindex
 
                         strcount = 0
-                        tempindex2 = strbinary.ReadChar
-                        While (AscW(tempindex2) <> &H0)
+                        Try
                             tempindex2 = strbinary.ReadChar
-                            strcount += 1
-                        End While
-                        strmem.Position = tempindex
-
-
-
-                        tempstring = strbinary.ReadChars(strcount)
-                        tempstring = tempstring.Replace(ChrW(0), "")
+                            While (AscW(tempindex2) <> &H0)  'search null terminator
+                                tempindex2 = strbinary.ReadChar
+                                strcount += 1
+                            End While
+                        Catch ex As Exception
+                            tempstring = ""
+                            Exit Try
+                        Finally
+                            strmem.Position = tempindex  'goto start of string
+                            tempstring = strbinary.ReadChars(strcount)
+                            tempstring = tempstring.Replace(ChrW(0), "")
+                        End Try
 
                         If tempstring <> "" Then
                             CHKSTRING.Add(tempstring)
@@ -661,8 +632,6 @@ Namespace ProjectSet
                             CHKSTRING.Add("Null")
                         End If
                     Next
-
-
 
                     strbinary.Close()
                     strstream.Close()
@@ -699,8 +668,6 @@ Namespace ProjectSet
             For i = 0 To 7
                 DatEditDATA(i).Reset()
             Next
-            DatEditForm.MainTAB.SelectedIndex = 0
-            DatEditForm.TAB_INDEX = 0
 
             Soundlist.Clear()
             Soundinterval = 3
@@ -815,8 +782,11 @@ Namespace ProjectSet
             NewTriggerFile()
 
 
-            '폼 리셋
-            DatEditForm.Close()
+            If DatEditForm IsNot Nothing Then
+                DatEditForm.MainTAB.SelectedIndex = 0
+                DatEditForm.TAB_INDEX = 0
+                DatEditForm.Close()
+            End If
 
 
 
@@ -828,7 +798,7 @@ Namespace ProjectSet
         Public Function Close() As Boolean
             Dim ise2s As Boolean = False
             Try
-                If Mid(ProjectSet.filename, ProjectSet.filename.Length - 3) <> ".e2s" Then
+                If ProjectSet.filename And Mid(ProjectSet.filename, ProjectSet.filename.Length - 3) <> ".e2s" Then
                     ise2s = True
                 End If
             Catch ex As Exception
@@ -1381,6 +1351,8 @@ Namespace ProjectSet
                     ProjectSet.filename = MapName
                     ProjectSet.saveStatus = True
                     ProjectSet.isload = True
+                    Main.SaveRecentFile(ProjectSet.filename)
+                    Main.RefreshRecentlyOpenedList()
                 Case ".ees"
 
                     euddraftuse = True

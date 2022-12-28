@@ -1,0 +1,15 @@
+﻿{
+    "Label27": "Filter",
+    "CheckBox5": "Edit",
+    "Button5": "Fold",
+    "RadioButton1": "Unit",
+    "RadioButton2": "Flingy",
+    "RadioButton4": "Images",
+    "RadioButton3": "Sprites",
+    "Button2": "Cancel",
+    "CheckBox2": "Agree To Crash",
+    "Button1": "Ok",
+    "Fold": "Fold",
+    "Fold": "UnFold",
+    "ErrorMsg": "The selected GRP has fewer frames. Be careful of crashes. \nThis message no longer appears."
+}

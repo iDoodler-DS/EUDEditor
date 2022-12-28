@@ -2,7 +2,7 @@
 
     Dim lastval As Long
     Private Sub CreateValForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         lastval = NumericUpDown1.Value
         Button5.Enabled = True
         If TextBox1.Text <> "" Then
@@ -17,15 +17,16 @@
         End If
 
         If EasyCompletionComboBox1.Visible = True Then
-            CheckBox1.Visible = False
+            VariableTypeRadioButton.Visible = False
+            PlayerVariableTypeRadioButton.Visible = False
+            ArrayVariableTypeRadioButton.Visible = False
         Else
-            CheckBox1.Visible = True
-            If CheckBox1.Checked = True Then
-                NumericUpDown1.Enabled = False
-            Else
-                NumericUpDown1.Enabled = True
-            End If
+            VariableTypeRadioButton.Visible = True
+            PlayerVariableTypeRadioButton.Visible = True
+            ArrayVariableTypeRadioButton.Visible = True
+            NumericUpDown1.Enabled = Not PlayerVariableTypeRadioButton.Checked
         End If
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 
@@ -59,12 +60,8 @@
 
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked = True Then
-            NumericUpDown1.Enabled = False
-        Else
-            NumericUpDown1.Enabled = True
-        End If
+    Private Sub VariableType_CheckedChanged(sender As RadioButton, e As EventArgs) Handles VariableTypeRadioButton.CheckedChanged, PlayerVariableTypeRadioButton.CheckedChanged, ArrayVariableTypeRadioButton.CheckedChanged
+        NumericUpDown1.Enabled = Not PlayerVariableTypeRadioButton.Checked
     End Sub
 
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged

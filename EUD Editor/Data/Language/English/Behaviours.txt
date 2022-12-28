@@ -1,0 +1,10 @@
+Fly to Target Position
+Fly to Target
+Appear on Target Position
+Persist on Target Position
+Appear on Target Position
+Appear on Attacker
+Self-Destruct
+Bounce
+Attack Target 3x3 Area
+Go to Max. Range

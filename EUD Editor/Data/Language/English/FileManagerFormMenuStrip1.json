@@ -1,0 +1,9 @@
+﻿{
+    "편집ToolStripMenuItem": "&Edit",
+    "초기화ToolStripMenuItem1": "Reset",
+    "오브젝트초기화ToolStripMenuItem": "Object Reset",
+    "오브젝트복사ToolStripMenuItem": "Object Copy",
+    "오브젝트붙여넣기ToolStripMenuItem": "Object Paste",
+    "보기VToolStripMenuItem": "&View",
+    "테마설정TToolStripMenuItem": "Set &Theme"
+}

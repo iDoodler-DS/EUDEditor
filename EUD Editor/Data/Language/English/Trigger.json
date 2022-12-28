@@ -1,0 +1,11 @@
+﻿{
+    "For": "For(Use variable $1$, $2$ times repeat.)",
+    "AllPlayer": "AllPlayers",
+    "Foreach": "Foreach(Player $1$'s' Unit, Cycle to epd, ptr variable.)",
+    "PlayerLoop": "Cycle $1$ times.",
+    "FuncDef": "Function Def : $1$        Use Wait : $2$",
+    "Func": "Function",
+    "ExistFunc": "Function not defined",
+    "Wait": "Wait",
+    "SwitchCase": "        Use Break : "
+}

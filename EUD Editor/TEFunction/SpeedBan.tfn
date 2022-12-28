@@ -1,0 +1,35 @@
+Type:16,False,False,False
+SpeedBanஐFalse
+ElementsCount:2
+Type:17,False,False,False
+ElementsCount:0
+END
+Type:18,False,False,False
+ElementsCount:3
+Type:8,False,False,False
+act:RawCode
+const a = dwread_epd_safe(EPD(0x51CE84));
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+const b = dwread_epd_safe(EPD(0x51CE88));
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+if(a == 1000){if(b == 1000) return;}
+else if(a == 1042){if(b == 1190) return;}
+else if(a == 1302){if(b == 1488) return;}
+else if(a == 1488){if(b == 1701) return;}
+else if(a == 1736){if(b == 1984) return;}
+else if(a == 2083){if(b == 2381) return;}
+else if(a == 2604){if(b == 2976) return;}
+else{
+foreach(cp : EUDLoopPlayer('Human', None, None)){setcurpl(cp); DisplayText("\x13\x1E배속 플레이는 금지하고 있습니다.",4);}
+if(Memory(0x000000, Exactly, 0)){Defeat();}
+}
+ElementsCount:0
+END
+END
+END

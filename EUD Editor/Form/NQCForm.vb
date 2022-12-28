@@ -37,7 +37,7 @@
 
     Dim tload As Boolean = False
     Private Sub NQCForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
 
         TextBox1.Text = ""
         TextBox2.Text = ""

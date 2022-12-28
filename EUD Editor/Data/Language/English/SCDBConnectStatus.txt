@@ -1,0 +1,7 @@
+Disconnected
+Sign In
+Trying to Sign In
+Trying to Sign In for Load
+Trying to Sign In for Save
+Saving
+Loading

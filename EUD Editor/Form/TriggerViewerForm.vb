@@ -51,6 +51,7 @@ Public Class TriggerViewerForm
         loadS = True
         savestatus = True
         updatame_text()
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

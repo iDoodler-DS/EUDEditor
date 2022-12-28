@@ -45,7 +45,7 @@
     End Sub
     Dim isloading As Boolean = False
     Private Sub ForEditing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         isloading = True
         CheckedListBox1.Items.Clear()
         For i = 1 To 8
@@ -63,6 +63,7 @@
         isloading = False
 
         Refreshcont()
+        ThemeSetForm.SetControlColor(Me)
     End Sub
 
 

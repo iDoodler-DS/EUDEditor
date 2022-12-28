@@ -95,7 +95,7 @@ Module ValueDefsModule
                                 _values.Add(sound)
                             Next
                             '스타에딧웨이브파일 넣어보자.
-                        Case "Unit", "UnitType", "OnUnit"
+                        Case "Unit", "UnitType", "OnUnit", "Wireframe"
                             For i = 0 To CODE(0).Count - 1
                                 If DatEditDATA(DTYPE.units).ReadValue("Unit Map String", i) = 0 Then
                                     _values.Add(CODE(0)(i))
@@ -148,7 +148,7 @@ Module ValueDefsModule
 
                     End Select
 
-                    Dim filename As String = My.Application.Info.DirectoryPath & "\Data\Langage\" & My.Settings.Langage & "\" & Name(k) & ".txt"
+                    Dim filename As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & Name(k) & ".txt"
                     If CheckFileExist(filename) = False Then
                         Dim filestream As New FileStream(filename, FileMode.Open)
                         Dim strreader As New StreamReader(filestream, Text.Encoding.Default)
@@ -207,7 +207,7 @@ Module ValueDefsModule
 
         ' "Script", "Unit", "UnitType", "OnUnit", "WAVName", "Switch", "StartLocation", "DestLocation", "Location", "Where",
         ValueDefiniction.Add(New ValueDefs("Script", ValueDefs.OutPutType.ComboboxString))
-        ValueDefiniction.Add(New ValueDefs({"Unit", "UnitType", "OnUnit"}, ValueDefs.OutPutType.Combobox))
+        ValueDefiniction.Add(New ValueDefs({"Unit", "UnitType", "OnUnit", "Wireframe"}, ValueDefs.OutPutType.Combobox))
         ValueDefiniction.Add(New ValueDefs("WAVName", ValueDefs.OutPutType.ComboboxString))
         ValueDefiniction.Add(New ValueDefs("Switch", ValueDefs.OutPutType.Combobox))
         ValueDefiniction.Add(New ValueDefs({"Location", "DestLocation", "StartLocation", "Where"}, ValueDefs.OutPutType.Combobox))
@@ -337,12 +337,12 @@ Module ValueDefsModule
     '정의 번호를 역으로 넣는다.
     Public Function GetDefValueDefs(_name As String) As ValueDefs
         Dim valuedef As String
-        Try
-            valuedef = _name.Split(".")(1)
-        Catch ex As Exception
-            valuedef = _name
-        End Try
-
+        Dim nameSplit = _name.Split(".")
+        If nameSplit.Count > 1 Then
+            valuedef = nameSplit(1)
+        Else
+            valuedef = nameSplit(0)
+        End If
 
         For i = 0 To ValueDefiniction.Count - 1
             For j = 0 To ValueDefiniction(i).Name.Count - 1

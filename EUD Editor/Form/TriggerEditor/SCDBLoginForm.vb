@@ -11,6 +11,7 @@
 
         NumericUpDown1.Value = SCDBDataSize
         ' Me.DialogResult = DialogResult.Yes
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub SCDBLoginForm_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
         SCDBMaker = TextBox1.Text

@@ -2,13 +2,13 @@
 
 Public Class TrigEditorForm
     Private Sub TrigEditorForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         Lan.SetMenu(Me, ContextMenuStrip1)
         Lan.SetMenu(Me, MenuStrip1)
         'LoadTriggerFile()
         CheckBox1.Checked = ProjectSet.SCDBUse
         Button8.Enabled = ProjectSet.SCDBUse
-
+        ThemeSetForm.SetControlColor(Me)
         UndoRedoBtnRefresh()
         ReDrawTriggerList()
         ReDrawList()
@@ -289,6 +289,7 @@ Public Class TrigEditorForm
     Dim playerlist As List(Of List(Of Integer))
     Dim listboxdata As New List(Of Byte)
     Private Sub ReDrawTriggerList()
+        ListControl1.SuspendLayout()
         ListControl1.Clear()
         ListBox2.Items.Clear()
         listboxdata.Clear()
@@ -325,9 +326,12 @@ Public Class TrigEditorForm
         If ListBox2.Items.Count <> 0 Then
             ListBox2.SelectedIndex = 0
         End If
+        ListControl1.ResumeLayout()
     End Sub
 
     Private Sub ReDrawList()
+        WorkSpace.Parent.SuspendLayout()
+        WorkSpace.SuspendLayout()
         WorkSpace.BeginUpdate()
         WorkSpace.Nodes.Clear()
 
@@ -341,7 +345,6 @@ Public Class TrigEditorForm
         WorkSpace.Nodes.Add(StartElement.ToTreeNode())
         WorkSpace.Nodes.Add(BeforeElement.ToTreeNode())
         WorkSpace.Nodes.Add(AfterElement.ToTreeNode())
-
 
         WorkSpace.Nodes(0).Text = "functions"
         WorkSpace.Nodes(0).Tag = functions
@@ -368,6 +371,8 @@ Public Class TrigEditorForm
         'Next
 
         WorkSpace.EndUpdate()
+        WorkSpace.ResumeLayout()
+        WorkSpace.Parent.ResumeLayout()
     End Sub
 
 
@@ -1511,7 +1516,8 @@ Public Class TrigEditorForm
                 Dim _filestream As New FileStream(filename, FileMode.Open)
                 Dim _streamreader As New StreamReader(_filestream)
 
-                newElement.LoadFile(_streamreader.ReadToEnd(), 0)
+                Dim splitDatas() = _streamreader.ReadToEnd().Split(vbCrLf)
+                newElement.LoadFile(splitDatas, 0)
 
                 Select Case _tempele.GetTypeV
                     Case ElementType.Functions
@@ -1899,9 +1905,6 @@ Public Class TrigEditorForm
     End Sub
 
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
-        LoadTILEDATA(False, True)
-
-
         For i = 0 To DebugDic.Count - 1
             Try
                 DebugDic.Values(i).ReDrawColor()
@@ -1932,11 +1935,15 @@ Public Class TrigEditorForm
 
         CreateValForm.TextBox1.Text = ""
         CreateValForm.NumericUpDown1.Value = 0
-        CreateValForm.CheckBox1.Checked = False
-        CreateValForm.CheckBox1.Enabled = True
+        CreateValForm.VariableTypeRadioButton.Checked = True
+        CreateValForm.ArrayVariableTypeRadioButton.Enabled = True
+        CreateValForm.PlayerVariableTypeRadioButton.Enabled = True
+        CreateValForm.VariableTypeRadioButton.Enabled = True
         If CreateValForm.ShowDialog = DialogResult.OK Then
             Dim valuename As String
-            If CreateValForm.CheckBox1.Checked = True Then
+            If CreateValForm.ArrayVariableTypeRadioButton.Checked = True Then
+                valuename = "CreateArrayVariableEmpty"
+            ElseIf CreateValForm.PlayerVariableTypeRadioButton.Checked = True Then
                 valuename = "CreatePlayerVariable"
             Else
                 valuename = "CreateVariable"
@@ -1946,7 +1953,6 @@ Public Class TrigEditorForm
                     _index = i
                 End If
             Next
-
 
             GlobalVar.AddElements(New Element(GlobalVar, ElementType.액션, _index, {CreateValForm.TextBox1.Text, CreateValForm.NumericUpDown1.Value}))
             ListBox1.Items.Add(CreateValForm.TextBox1.Text)
@@ -1964,12 +1970,17 @@ Public Class TrigEditorForm
             CreateValForm.TextBox1.Text = GlobalVar.GetElementList(ListBox1.SelectedIndex).Values(0)
             CreateValForm.NumericUpDown1.Value = GlobalVar.GetElementList(ListBox1.SelectedIndex).Values(1)
 
-            If GlobalVar.GetElementList(ListBox1.SelectedIndex).act.Name = "CreateVariable" Then
-                CreateValForm.CheckBox1.Checked = False
+            Dim name = GlobalVar.GetElementList(ListBox1.SelectedIndex).act.Name
+            If name = "CreateArrayVariableEmpty" Then
+                CreateValForm.ArrayVariableTypeRadioButton.Checked = True
+            ElseIf name = "CreatePlayerVariable" Then
+                CreateValForm.PlayerVariableTypeRadioButton.Checked = True
             Else
-                CreateValForm.CheckBox1.Checked = True
+                CreateValForm.VariableTypeRadioButton.Checked = True
             End If
-            CreateValForm.CheckBox1.Enabled = False
+            CreateValForm.ArrayVariableTypeRadioButton.Enabled = False
+            CreateValForm.PlayerVariableTypeRadioButton.Enabled = False
+            CreateValForm.VariableTypeRadioButton.Enabled = False
 
             If CreateValForm.ShowDialog = DialogResult.OK Then
                 GlobalVar.GetElementList(ListBox1.SelectedIndex).SetValue({CreateValForm.TextBox1.Text, CreateValForm.NumericUpDown1.Value})
@@ -2404,6 +2415,9 @@ Public Class TrigEditorForm
     End Sub
 
     Private Sub ReDrawPlayerTriggerList()
+        ListControl1.SuspendLayout()
+        ListControl1.flpListBox.SuspendLayout()
+
         ListControl1.Clear()
         Button10.Enabled = False
         Button11.Enabled = False
@@ -2416,6 +2430,8 @@ Public Class TrigEditorForm
                 ListControl1.Add(RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(i)))
             Next
         End If
+        ListControl1.flpListBox.ResumeLayout()
+        ListControl1.ResumeLayout()
     End Sub
 
     Private Sub ListBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox2.SelectedIndexChanged
@@ -2730,12 +2746,18 @@ Public Class TrigEditorForm
             CreateValForm.TextBox1.Text = GlobalVar.GetElementList(ListBox1.SelectedIndex).Values(0)
             CreateValForm.NumericUpDown1.Value = GlobalVar.GetElementList(ListBox1.SelectedIndex).Values(1)
 
-            If GlobalVar.GetElementList(ListBox1.SelectedIndex).act.Name = "CreateVariable" Then
-                CreateValForm.CheckBox1.Checked = False
+
+            Dim name = GlobalVar.GetElementList(ListBox1.SelectedIndex).act.Name
+            If name = "CreateArrayVariableEmpty" Then
+                CreateValForm.ArrayVariableTypeRadioButton.Checked = True
+            ElseIf name = "CreatePlayerVariable" Then
+                CreateValForm.PlayerVariableTypeRadioButton.Checked = True
             Else
-                CreateValForm.CheckBox1.Checked = True
+                CreateValForm.VariableTypeRadioButton.Checked = True
             End If
-            CreateValForm.CheckBox1.Enabled = False
+            CreateValForm.ArrayVariableTypeRadioButton.Enabled = False
+            CreateValForm.PlayerVariableTypeRadioButton.Enabled = False
+            CreateValForm.VariableTypeRadioButton.Enabled = False
 
             If CreateValForm.ShowDialog = DialogResult.OK Then
                 GlobalVar.GetElementList(ListBox1.SelectedIndex).SetValue({CreateValForm.TextBox1.Text, CreateValForm.NumericUpDown1.Value})

@@ -1,0 +1,7 @@
+No Commands / Auto Attack
+Normal Movement / Normal Attack
+Normal Movement / No Attack
+No Movement / Normal Attack
+Harvest
+Harvest & Repair
+Nothing (With Indicator)

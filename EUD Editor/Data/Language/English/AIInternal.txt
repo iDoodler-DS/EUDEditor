@@ -1,0 +1,2 @@
+Ignore "Strategic Suicide Missions" AI
+Ignore "Guard" Orders

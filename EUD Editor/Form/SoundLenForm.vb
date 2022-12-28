@@ -22,6 +22,7 @@
         Timer1.Enabled = True
         workstatus = 0
         proc.StartInfo.FileName = IO.Path.Combine(Application.StartupPath, "ffmpeg.exe")
+        ThemeSetForm.SetControlColor(Me)
     End Sub
     Private Sub SoundLenForm_Closing(sender As Object, e As EventArgs) Handles MyBase.Closing
         Timer1.Enabled = False

@@ -82,19 +82,20 @@ Public Class SettingForm
 
 
     Private Sub SettingForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Lan.GetLangage(Me)
-        Lan.SetLangage(Me)
+        'Lan.GetLanguage(Me)
+        Lan.SetLanguage(Me)
         ComboBox3.Items.Clear()
-        Dim Folder As String = My.Application.Info.DirectoryPath & "\Data\Langage"
+        Dim Folder As String = My.Application.Info.DirectoryPath & "\Data\Language"
         For Each _file As String In IO.Directory.GetDirectories(Folder)
             ComboBox3.Items.Add(_file.Split("\").Last)
         Next
         For i = 0 To ComboBox3.Items.Count - 1
-            If My.Settings.Langage = ComboBox3.Items(i) Then
+            If My.Settings.Language = ComboBox3.Items(i) Then
                 ComboBox3.SelectedIndex = i
             End If
         Next
 
+        ThemeSetForm.SetControlColor(Me)
 
 
 
@@ -387,8 +388,8 @@ retry:
     End Sub
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
-        My.Settings.Langage = ComboBox3.SelectedItem
-        Lan.SetLangage(Me)
+        My.Settings.Language = ComboBox3.SelectedItem
+        Lan.SetLanguage(Me)
     End Sub
 
     Private Sub CheckBox4_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox4.CheckedChanged

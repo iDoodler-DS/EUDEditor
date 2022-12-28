@@ -2,7 +2,7 @@
     Dim Grp As New GRP
 
     Private Sub GRPForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLangage(Me)
+        Lan.SetLanguage(Me)
         ProjectSet.saveStatus = False
 
         Size = New Size(221, 438)

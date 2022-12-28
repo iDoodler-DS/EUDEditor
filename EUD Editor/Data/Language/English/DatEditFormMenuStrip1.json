@@ -1,0 +1,20 @@
+﻿{
+    "FIleFToolStripMenuItem": "&File",
+    "DatFileResetRToolStripMenuItem": "datFile &Reset",
+    "DatFileLoadToolStripMenuItem": "datFile &Load",
+    "DatFileSaveSToolStripMenuItem": "datFile S&ave",
+    "DatFileAllSaveToolStripMenuItem": "datFile All Save",
+    "DatFileAllResetToolStripMenuItem": "datFile All Reset",
+    "ProjectSaveToolStripMenuItem": "Project &Save",
+    "EditToolStripMenuItem": "&Edit",
+    "ResetToolStripMenuItem1": "Reset",
+    "ObjectResetToolStripMenuItem": "Object Reset",
+    "ObjectCopyToolStripMenuItem": "Object Copy",
+    "ObjectPasteToolStripMenuItem": "Object Paste",
+    "DataExportToolStripMenuItem1": "Object Export",
+    "DataImportToolStripMenuItem1": "Object Import",
+    "ViewVToolStripMenuItem": "&View",
+    "ThameSetTToolStripMenuItem": "&Theme Setting",
+    "UsedDataToolStripMenuItem": "Used &Data",
+    "TriggerViewerTToolStripMenuItem": "&Trigger View"
+}

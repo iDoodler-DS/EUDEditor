@@ -1,7 +1,7 @@
 ﻿Public Class SwitchViewerForm
     Private Sub SwitchViewerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CheckedListBox1.BackColor = ProgramSet.BACKCOLOR
-        CheckedListBox1.ForeColor = ProgramSet.FORECOLOR
+        CheckedListBox1.BackColor = ProgramSet.colorFieldBackground
+        CheckedListBox1.ForeColor = ProgramSet.colorFieldText
 
 
         '58DC40

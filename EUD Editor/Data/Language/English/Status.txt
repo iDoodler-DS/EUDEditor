@@ -1,0 +1,3 @@
+Enemy
+Ally
+Allied Victory

@@ -1,3 +1,17 @@
+[ Patch notes 0.18.1.0 ]
+
+- Support wireframe for 32 & 64 bit StarCraft
+
+[ Patch notes 0.18.0.0 ]
+
+- Special Edition fork, branching off from main version (https://github.com/armoha/EUDEditor)
+- Several translation improvements, bug fixes, and interface layout adjustments have been implemented.
+- Added Open Recent to provide quick access to recent projects.
+- Added new Array option in Global Variable dialog.
+- Redesigned Build Log.
+- Added several new EUD Actions to the Custom section.
+- NOTE: EUD Editor 2 SE is not backwards compatible with EUD Editor 2. For instance, EUD Trigger Actions created with with EUD Editor 2 SE will not load in EUD Editor 2.
+
 [ 패치노트 0.17.9.7 ]
 
 - 업데이트 프로그램 교체.

@@ -1,0 +1,2043 @@
+﻿[
+  {
+    "Name": "Victory",
+    "Texts": [
+      "Korean",
+      "플레이어가 게임에서 승리합니다.",
+      "English",
+      "End scenario in victory for current player."
+    ],
+    "CodeText": "Victory()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "Defeat",
+    "Texts": [
+      "Korean",
+      "플레이어가 게임에서 패배합니다.",
+      "English",
+      "End scenario in defeat for current player."
+    ],
+    "CodeText": "Defeat()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "PreserveTrigger",
+    "Texts": [
+      "Korean",
+      "트리거를 무한 반복 합니다.",
+      "English",
+      "Preserve Trigger"
+    ],
+    "CodeText": "PreserveTrigger()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "Wait(Don't Use)",
+    "Texts": [
+      "Korean",
+      "$Time$만큼 기다립니다.(쓰지 않는걸 추천합니다.)",
+      "English",
+      "Wait for $Time$ milliseconds. (Not recommended to use)"
+    ],
+    "CodeText": "Wait($Time$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Time"
+    ]
+  },
+  {
+    "Name": "PauseGame",
+    "Texts": [
+      "Korean",
+      "게임을 멈춥니다.",
+      "English",
+      "Pause Game"
+    ],
+    "CodeText": "PauseGame()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "UnpauseGame",
+    "Texts": [
+      "Korean",
+      "게임을 재게합니다.",
+      "English",
+      "Unpause the game."
+    ],
+    "CodeText": "UnpauseGame()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "Transmission",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Unit$의 말하는 애니메이션을 $WAVName$을 재생하면서 보여줍니다. 트랜스 미션 시간을 $Time$ 만큼 $TimeModifier$합니다. $Text$를 $AlwaysDisplay$ 보여줍니다.",
+      "English",
+      "Send transmission to current player from $Unit$ at '$Where$'.\nPlay '$WAVName$'.\nModify transmission duration: $TimeModifier$ $Time$ milliseconds.\nDisplay the following text:\n$Text$\n$AlwaysDisplay$"
+    ],
+    "CodeText": "Transmission($Unit$, $Where$, $WAVName$, $TimeModifier$, $Time$, $Text$, $AlwaysDisplay$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Where",
+      "WAVName",
+      "TimeModifier",
+      "Time",
+      "Text",
+      "AlwaysDisplay"
+    ]
+  },
+  {
+    "Name": "PlayWAV",
+    "Texts": [
+      "Korean",
+      "$WAVName$을 재생합니다.",
+      "English",
+      "Play $WAVName$"
+    ],
+    "CodeText": "PlayWAV($WAVName$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "WAVName"
+    ]
+  },
+  {
+    "Name": "DisplayText",
+    "Texts": [
+      "Korean",
+      "$Text$를 $AlwaysDisplay$의 옵션으로 해당플레이어에게 보여줍니다.",
+      "English",
+      "Display for current player:\n$Text$\non $AlwaysDisplay$"
+    ],
+    "CodeText": "DisplayText($Text$, $AlwaysDisplay$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Text",
+      "AlwaysDisplay"
+    ]
+  },
+  {
+    "Name": "CenterView",
+    "Texts": [
+      "Korean",
+      "$Where$로 화면을 이동합니다.",
+      "English",
+      "Center view for current player at $Where$"
+    ],
+    "CodeText": "CenterView($Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Where"
+    ]
+  },
+  {
+    "Name": "CreateUnitWithProperties",
+    "Texts": [
+      "Korean",
+      "$Player$의 $Unit$을 $Count$만큼 $Where$에서 $Properties$로 생산합니다.",
+      "English",
+      "Create $Count$ $Unit$ for $Player$ at $Where$ with $Properties$"
+    ],
+    "CodeText": "CreateUnitWithProperties($Count$, $Unit$, $Where$, $Player$, $Properties$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "Unit",
+      "Where",
+      "Player",
+      "Properties"
+    ]
+  },
+  {
+    "Name": "SetMissionObjectives",
+    "Texts": [
+      "Korean",
+      "미션 오브젝트를 $Text$로 설정합니다.",
+      "English",
+      "Set Mission Objectives to:\n$Text$"
+    ],
+    "CodeText": "SetMissionObjectives($Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Text"
+    ]
+  },
+  {
+    "Name": "SetSwitch",
+    "Texts": [
+      "Korean",
+      "$Switch$의 상태를 $SState$합니다.",
+      "English",
+      "$SState$ '$Switch$'."
+    ],
+    "CodeText": "SetSwitch($Switch$, $SState$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Switch",
+      "SState"
+    ]
+  },
+  {
+    "Name": "SetCountdownTimer",
+    "Texts": [
+      "Korean",
+      "카운트 타이머를 $Time$만큼 $TimeModifier$합니다.",
+      "English",
+      "Modify Countdown Timer: $TimeModifier$ $Time$ seconds."
+    ],
+    "CodeText": "SetCountdownTimer($TimeModifier$, $Time$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "TimeModifier",
+      "Time"
+    ]
+  },
+  {
+    "Name": "RunAIScript",
+    "Texts": [
+      "Korean",
+      "인공지능 $Script$을 실행합니다.",
+      "English",
+      "Run AI Script '$Script$'"
+    ],
+    "CodeText": "RunAIScript($Script$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Script"
+    ]
+  },
+  {
+    "Name": "RunAIScriptAt",
+    "Texts": [
+      "Korean",
+      "인공지능 $Script$을 $Where$에서 실행합니다..",
+      "English",
+      "Run AI Script $Script$ at location $Where$"
+    ],
+    "CodeText": "RunAIScriptAt($Script$, $Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Script",
+      "Where"
+    ]
+  },
+  {
+    "Name": "LeaderBoardControl",
+    "Texts": [
+      "Korean",
+      "$Unit$의 보유 수를 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for most control of $Unit$.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardControl($Unit$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Label"
+    ]
+  },
+  {
+    "Name": "LeaderBoardControlAt",
+    "Texts": [
+      "Korean",
+      "$Location$에 위치하는 $Unit$의 보유 수를 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for most control of $Unit$ at '$Location$'.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardControlAt($Unit$, $Location$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Location",
+      "Label"
+    ]
+  },
+  {
+    "Name": "LeaderBoardResources",
+    "Texts": [
+      "Korean",
+      "$ResourceType$의 채집 량을 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for accumulation of most $ResourceType$.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardResources($ResourceType$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "ResourceType",
+      "Label"
+    ]
+  },
+  {
+    "Name": "LeaderBoardKills",
+    "Texts": [
+      "Korean",
+      "$Unit$를 죽인 수를 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for most kill of $Unit$.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardKills($Unit$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Label"
+    ]
+  },
+  {
+    "Name": "LeaderBoardScore",
+    "Texts": [
+      "Korean",
+      "$ScoreType$를 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for most $ScoreType$.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardScore($ScoreType$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "ScoreType",
+      "Label"
+    ]
+  },
+  {
+    "Name": "KillUnit",
+    "Texts": [
+      "Korean",
+      "$Player$의 모든 $Unit$을 죽입니다.",
+      "English",
+      "Kill all $Unit$ for $Player$."
+    ],
+    "CodeText": "KillUnit($Unit$, $Player$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Player"
+    ]
+  },
+  {
+    "Name": "KillUnitAt",
+    "Texts": [
+      "Korean",
+      "$ForPlayer$의 $Where$에 위치하는 $Unit$을 $Count$만큼 죽입니다.",
+      "English",
+      "Kill $Count$ $Unit$ for $ForPlayer$ at '$Where$'."
+    ],
+    "CodeText": "KillUnitAt($Count$, $Unit$, $Where$, $ForPlayer$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "Unit",
+      "Where",
+      "ForPlayer"
+    ]
+  },
+  {
+    "Name": "RemoveUnit",
+    "Texts": [
+      "Korean",
+      "$Player$의 모든 $Unit$을 제거합니다.",
+      "English",
+      "Remove all $Unit$ for $Player$"
+    ],
+    "CodeText": "RemoveUnit($Unit$, $Player$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Player"
+    ]
+  },
+  {
+    "Name": "RemoveUnitAt",
+    "Texts": [
+      "Korean",
+      "$ForPlayer$의 $Where$에 위치하는 $Unit$을 $Count$만큼 제거합니다.",
+      "English",
+      "Remove $Count$ $Unit$ for $ForPlayer$ at '$Where$'."
+    ],
+    "CodeText": "RemoveUnitAt($Count$, $Unit$, $Where$, $ForPlayer$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "Unit",
+      "Where",
+      "ForPlayer"
+    ]
+  },
+  {
+    "Name": "SetResources",
+    "Texts": [
+      "Korean",
+      "$Player$의 $ResourceType$를 $Amount$만큼 $Modifier$합니다.",
+      "English",
+      "Modify resources for $Player$: $Modifier$ $Amount$ $ResourceType$."
+    ],
+    "CodeText": "SetResources($Player$, $Modifier$, $Amount$, $ResourceType$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Modifier",
+      "Amount",
+      "ResourceType"
+    ]
+  },
+  {
+    "Name": "SetScore",
+    "Texts": [
+      "Korean",
+      "$Player$의 $ScoreType$를 $Amount$만큼 $Modifier$합니다.",
+      "English",
+      "Modify score for $Player$: $Modifier$ $Amount$ $ScoreType$."
+    ],
+    "CodeText": "SetScore($Player$, $Modifier$, $Amount$, $ScoreType$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Modifier",
+      "Amount",
+      "ScoreType"
+    ]
+  },
+  {
+    "Name": "MinimapPing",
+    "Texts": [
+      "Korean",
+      "$Where$에 미니맵 핑을 합니다.",
+      "English",
+      "Show minimap ping for current player at '$Where$'."
+    ],
+    "CodeText": "MinimapPing($Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Where"
+    ]
+  },
+  {
+    "Name": "TalkingPortrait",
+    "Texts": [
+      "Korean",
+      "$Unit$의 포트레잇을 $Time$간 띄웁니다.",
+      "English",
+      "Show $Unit$ talking to current player for $Time$ milliseconds."
+    ],
+    "CodeText": "TalkingPortrait($Unit$, $Time$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Time"
+    ]
+  },
+  {
+    "Name": "MuteUnitSpeech",
+    "Texts": [
+      "Korean",
+      "게임 소리를 끕니다.",
+      "English",
+      "Mute all non-trigger unit sounds for current player."
+    ],
+    "CodeText": "MuteUnitSpeech()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "UnMuteUnitSpeech",
+    "Texts": [
+      "Korean",
+      "게임 소리를 킵니다.",
+      "English",
+      "Unmute all non-trigger unit sounds for current player."
+    ],
+    "CodeText": "UnMuteUnitSpeech()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "LeaderBoardComputerPlayers",
+    "Texts": [
+      "Korean",
+      "리더보드에 컴퓨터 플레이어를 $State$합니다.",
+      "English",
+      "$State$ use of computer players in leaderboard calculations."
+    ],
+    "CodeText": "LeaderBoardComputerPlayers($State$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "State"
+    ]
+  },
+  {
+    "Name": "LeaderBoardGoalControl",
+    "Texts": [
+      "Korean",
+      "$Unit$의 보유 수가 $Goal$와 가장 가까운 순으로 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for player closest to control of $Goal$ of $Unit$.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardGoalControl($Goal$, $Unit$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Goal",
+      "Unit",
+      "Label"
+    ]
+  },
+  {
+    "Name": "LeaderBoardGoalControlAt",
+    "Texts": [
+      "Korean",
+      "$Location$에 위치하는 $Unit$의 보유 수가 $Goal$와 가장 가까운 순으로 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for player closest to control of $Goal$ of $Unit$ at '$Location$'.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardGoalControlAt($Goal$, $Unit$, $Location$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Goal",
+      "Unit",
+      "Location",
+      "Label"
+    ]
+  },
+  {
+    "Name": "LeaderBoardGoalResources",
+    "Texts": [
+      "Korean",
+      "$ResourceType$의 채집 량이 $Goal$와 가장 가까운 순으로 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for player closest to accumulation of $Goal$ $ResourceType$.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardGoalResources($Goal$, $ResourceType$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Goal",
+      "ResourceType",
+      "Label"
+    ]
+  },
+  {
+    "Name": "LeaderBoardGoalKills",
+    "Texts": [
+      "Korean",
+      "$Unit$을 죽인 수가 $Goal$와 가장 가까운 순으로 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for player closest to control of $Goal$ kills of $Unit$.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardGoalKills($Goal$, $Unit$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Goal",
+      "Unit",
+      "Label"
+    ]
+  },
+  {
+    "Name": "LeaderBoardGoalScore",
+    "Texts": [
+      "Korean",
+      "$ScoreType$이 $Goal$와 가장 가까운 순으로 $Label$리더보드로 띄웁니다.",
+      "English",
+      "Show Leader Board for player closest to control of $Goal$ $ScoreType$.\nDisplay Label : '$Label$'"
+    ],
+    "CodeText": "LeaderBoardGoalScore($Goal$, $ScoreType$, $Label$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Goal",
+      "ScoreType",
+      "Label"
+    ]
+  },
+  {
+    "Name": "MoveLocation",
+    "Texts": [
+      "Korean",
+      "$Location$을 $DestLocation$에 위치하는 $Owner$의 $OnUnit$으로 옮깁니다.",
+      "English",
+      "Center location labeled '$Location$' on $OnUnit$ owned by $Owner$ at '$DestLocation$'."
+    ],
+    "CodeText": "MoveLocation($Location$, $OnUnit$, $Owner$, $DestLocation$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Location",
+      "OnUnit",
+      "Owner",
+      "DestLocation"
+    ]
+  },
+  {
+    "Name": "MoveUnit",
+    "Texts": [
+      "Korean",
+      "$Owner$의 $UnitType$을 $Count$만큼 $StartLocation$에서 $DestLocation$으로 옮깁니다.",
+      "English",
+      "Move $Count$ $UnitType$ for $Owner$ at '$StartLocation$' to '$DestLocation$'."
+    ],
+    "CodeText": "MoveUnit($Count$, $UnitType$, $Owner$, $StartLocation$, $DestLocation$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "UnitType",
+      "Owner",
+      "StartLocation",
+      "DestLocation"
+    ]
+  },
+  {
+    "Name": "LeaderBoardGreed",
+    "Texts": [
+      "Korean",
+      "미네랄과 가스의 채집 량이 $Goal$와 가장 가까운 순으로 동시에 리더보드로 띄웁니다.",
+      "English",
+      "Show Greed Leader Board for player closest to accumulation of $Goal$ ore and gas."
+    ],
+    "CodeText": "LeaderBoardGreed($Goal$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Goal"
+    ]
+  },
+  {
+    "Name": "SetNextScenario",
+    "Texts": [
+      "Korean",
+      "$ScenarioName$을 다음 시나리오로 설정합니다.",
+      "English",
+      "Load '$ScenarioName$' after completion of current game."
+    ],
+    "CodeText": "SetNextScenario($ScenarioName$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "ScenarioName"
+    ]
+  },
+  {
+    "Name": "SetDoodadState",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Owner$의 $Unit$를 $State$로 설정합니다.",
+      "English",
+      "$State$ doodad state for $Unit$ for $Owner$ at '$Where$'."
+    ],
+    "CodeText": "SetDoodadState($State$, $Unit$, $Owner$, $Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "State",
+      "Unit",
+      "Owner",
+      "Where"
+    ]
+  },
+  {
+    "Name": "SetInvincibility",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Owner$의 $Unit$의 무적 상태를 $State$로 설정합니다.",
+      "English",
+      "$State$ invincibility for $Unit$ owned by $Owner$ at '$Where$'."
+    ],
+    "CodeText": "SetInvincibility($State$, $Unit$, $Owner$, $Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "State",
+      "Unit",
+      "Owner",
+      "Where"
+    ]
+  },
+  {
+    "Name": "CreateUnit",
+    "Texts": [
+      "Korean",
+      "$ForPlayer$의 $Unit$을 $Number$만큼 $Where$에 생성합니다.",
+      "English",
+      "Create $Number$ $Unit$ at '$Where$' for $ForPlayer$."
+    ],
+    "CodeText": "CreateUnit($Number$, $Unit$, $Where$, $ForPlayer$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Number",
+      "Unit",
+      "Where",
+      "ForPlayer"
+    ]
+  },
+  {
+    "Name": "SetDeaths",
+    "Texts": [
+      "Korean",
+      "$Player$의 $Unit$가 죽은 수를 $Number$만큼 $Modifier$합니다.",
+      "English",
+      "Modify death counts for $Player$: $Modifier$ $Number$ for $Unit$."
+    ],
+    "CodeText": "SetDeaths($Player$, $Modifier$, $Number$, $Unit$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Modifier",
+      "Number",
+      "Unit"
+    ]
+  },
+  {
+    "Name": "Order",
+    "Texts": [
+      "Korean",
+      "$Owner$의 $Unit$를 $StartLocation$에서 $DestLocation$까지 $OrderType$합니다.",
+      "English",
+      "Issue order to all $Unit$ owned by $Owner$ at '$StartLocation$':\n$OrderType$ to '$DestLocation$'."
+    ],
+    "CodeText": "Order($Unit$, $Owner$, $StartLocation$, $OrderType$, $DestLocation$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Owner",
+      "StartLocation",
+      "OrderType",
+      "DestLocation"
+    ]
+  },
+  {
+    "Name": "Comment",
+    "Texts": [
+      "Korean",
+      "$Text$으로 주석처리합니다.",
+      "English",
+      "Comment:\n$Text$"
+    ],
+    "CodeText": "Comment($Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Text"
+    ]
+  },
+  {
+    "Name": "GiveUnits",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Owner$의 $Unit$을 $Count$만큼 $NewOwner$에게 줍니다.",
+      "English",
+      "Give $Count$ $Unit$ owned by $Owner$ at '$Where$' to $NewOwner$."
+    ],
+    "CodeText": "GiveUnits($Count$, $Unit$, $Owner$, $Where$, $NewOwner$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "Unit",
+      "Owner",
+      "Where",
+      "NewOwner"
+    ]
+  },
+  {
+    "Name": "ModifyUnitHitPoints",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Owner$소유의 $Unit$, $Count$의 체력을 $Percent$%로 설정합니다.",
+      "English",
+      "Set hit points for $Count$ $Unit$ owned by $Owner$. at '$Where$' to $Percent$%."
+    ],
+    "CodeText": "ModifyUnitHitPoints($Count$, $Unit$, $Owner$, $Where$, $Percent$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "Unit",
+      "Owner",
+      "Where",
+      "Percent"
+    ]
+  },
+  {
+    "Name": "ModifyUnitEnergy",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Owner$소유의 $Unit$, $Count$의 에너지를 $Percent$%로 설정합니다.",
+      "English",
+      "Set energy points for $Count$ $Unit$ owned by $Owner$ at '$Where$' to $Percent$%."
+    ],
+    "CodeText": "ModifyUnitEnergy($Count$, $Unit$, $Owner$, $Where$, $Percent$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "Unit",
+      "Owner",
+      "Where",
+      "Percent"
+    ]
+  },
+  {
+    "Name": "ModifyUnitShields",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Owner$소유의 $Unit$, $Count$의 쉴드를 $Percent$%로 설정합니다.",
+      "English",
+      "Set shield points for $Count$ $Unit$ owned by $Owner$. at '$Where$' to $Percent$%%."
+    ],
+    "CodeText": "ModifyUnitShields($Count$, $Unit$, $Owner$, $Where$, $Percent$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "Unit",
+      "Owner",
+      "Where",
+      "Percent"
+    ]
+  },
+  {
+    "Name": "ModifyUnitResourceAmount",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Owner$소유의 자원 $Count$개의 매장량을 $NewValue$로 설정합니다.",
+      "English",
+      "Set resource amount for $Count$ resource sources owned by $Owner$. at '$Where$' to $NewValue$."
+    ],
+    "CodeText": "ModifyUnitResourceAmount($Count$, $Owner$, $Where$, $NewValue$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Count",
+      "Owner",
+      "Where",
+      "NewValue"
+    ]
+  },
+  {
+    "Name": "ModifyUnitHangarCount",
+    "Texts": [
+      "Korean",
+      "$Where$에 위치하는 $Owner$소유의 $Unit$, $Count$의 격납 유닛을 $Add$만큼 추가합니다.",
+      "English",
+      "Add at most $Add$ to hangar for $Count$ $Unit$ at '$Where$' owned by $Owner$."
+    ],
+    "CodeText": "ModifyUnitHangarCount($Add$, $Count$, $Unit$, $Owner$, $Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Add",
+      "Count",
+      "Unit",
+      "Owner",
+      "Where"
+    ]
+  },
+  {
+    "Name": "PauseTimer",
+    "Texts": [
+      "Korean",
+      "타이머를 멈춥니다.",
+      "English",
+      "Pause the countdown timer."
+    ],
+    "CodeText": "PauseTimer()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "UnpauseTimer",
+    "Texts": [
+      "Korean",
+      "타이머를 다시 작동시킵니다.",
+      "English",
+      "Unpause the countdown timer."
+    ],
+    "CodeText": "UnpauseTimer()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "Draw",
+    "Texts": [
+      "Korean",
+      "게임에서 비깁니다.",
+      "English",
+      "End scenario in a draw for all players."
+    ],
+    "CodeText": "Draw()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "SetAllianceStatus",
+    "Texts": [
+      "Korean",
+      "$Player$와의 동맹상태를 $Status$로 설정합니다.",
+      "English",
+      "Set $Player$ to $Status$."
+    ],
+    "CodeText": "SetAllianceStatus($Player$, $Status$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Status"
+    ]
+  },
+  {
+    "Name": "EUDPart",
+    "Texts": [
+      "Korean",
+      "EUDPart",
+      "English",
+      "EUDPart"
+    ],
+    "CodeText": "EUDPart",
+    "ToolTip": "EUDPart",
+    "ValuesDef": [
+      "EUDPart"
+    ]
+  },
+  {
+    "Name": "EUDTurbo",
+    "Texts": [
+      "Korean",
+      "EUD터보를 사용합니다.",
+      "English",
+      "Enable EUD Turbo."
+    ],
+    "CodeText": "SetMemory(0x6509A0, SetTo, 0)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "SetMemory",
+    "Texts": [
+      "Korean",
+      "메모리 주소 $Offset$을 $Number$로 $Modifier$합니다.",
+      "English",
+      "Modify memory address $Offset$: $Modifier$ $Number$."
+    ],
+    "CodeText": "SetMemory($Offset$, $Modifier$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Offset",
+      "Number",
+      "Modifier"
+    ]
+  },
+  {
+    "Name": "SetMemoryEPD",
+    "Texts": [
+      "Korean",
+      "메모리 주소 EPD $Offset$을 $Number$로 $Modifier$합니다.",
+      "English",
+      "Modify EPD memory address $Offset$: $Modifier$ $Number$."
+    ],
+    "CodeText": "SetMemoryEPD($Offset$, $Modifier$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Offset",
+      "Number",
+      "Modifier"
+    ]
+  },
+  {
+    "Name": "SetMemoryX",
+    "Texts": [
+      "Korean",
+      "메모리 주소 $Offset$을 $Number$로 $Modifier$합니다. 비트마스크: $Bitmask$",
+      "English",
+      "Modify memory address $Offset$: $Modifier$ $Number$ with $Bitmask$"
+    ],
+    "CodeText": "SetMemoryX($Offset$, $Modifier$, $Number$, $Bitmask$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Offset",
+      "Number",
+      "Modifier",
+      "Bitmask"
+    ]
+  },
+  {
+    "Name": "SetMemoryXEPD",
+    "Texts": [
+      "Korean",
+      "EPD 주소 $Epd$을 $Number$로 $Modifier$합니다. 비트마스크: $Bitmask$",
+      "English",
+      "Modify EPD address $Epd$: $Modifier$ $Number$ with $Bitmask$"
+    ],
+    "CodeText": "SetMemoryXEPD($Epd$, $Modifier$, $Number$, $Bitmask$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Epd",
+      "Number",
+      "Modifier",
+      "Bitmask"
+    ]
+  },
+  {
+    "Name": "SetDeathsX",
+    "Texts": [
+      "Korean",
+      "$Player$의 $Unit$가 죽은 수를 $Number$만큼 $Modifier$합니다. 비트마스크: $Bitmask",
+      "English",
+      "Modify death counts for $Player$: $Modifier$ $Number$ for $Unit$ with $Bitmask$."
+    ],
+    "CodeText": "SetDeathsX($Player$, $Modifier$, $Number$, $Unit$, $Bitmask$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "Modifier",
+      "Number",
+      "Unit",
+      "Bitmask"
+    ]
+  },
+  {
+    "Name": "SetCurrentPlayer",
+    "Texts": [
+      "Korean",
+      "현재 플레이어를 $Player$로 설정합니다.",
+      "English",
+      "Sets the current player variable to $Player$."
+    ],
+    "CodeText": "setcurpl($Player$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player"
+    ]
+  },
+  {
+    "Name": "SetKills",
+    "Texts": [
+      "Korean",
+      "$PlayerX$가 $Unit$을 잡은 수를 $Number$만큼 $Modifier$합니다.",
+      "English",
+      "Modify $Unit$ Kills: $Modifier$ $Number$ for $PlayerX$"
+    ],
+    "CodeText": "SetMemoryEPD(EPD(0x5878A4) + $PlayerX$ + ($Unit$) * 12, $Modifier$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "Unit",
+      "Number",
+      "Modifier"
+    ]
+  },
+  {
+    "Name": "SetSupply",
+    "Texts": [
+      "Korean",
+      "$PlayerX$의 $Races$의 $SupplyType$을 $Amount$만큼 $Modifier$합니다.",
+      "English",
+      "Modify $Races$ $SupplyType$: $Modifier$ $Amount$ for $PlayerX$."
+    ],
+    "CodeText": "SetMemoryEPD(EPD(0x582144) + $Races$ * 36 + $SupplyType$ * 12 + $PlayerX$, $Modifier$, $Amount$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "Races",
+      "SupplyType",
+      "Amount",
+      "Modifier"
+    ]
+  },
+  {
+    "Name": "SetScoreEUD",
+    "Texts": [
+      "Korean",
+      "$PlayerX$의 $ScoreOffset$를 $Amount$만큼 $Modifier$합니다.",
+      "English",
+      "Modify $ScoreOffset$: $Modifier$ $Amount$ for $PlayerX$."
+    ],
+    "CodeText": "SetMemoryEPD(EPD($ScoreOffset$) + $PlayerX$, $Modifier$, $Amount$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "ScoreOffset",
+      "Amount",
+      "Modifier"
+    ]
+  },
+  {
+    "Name": "SetLight",
+    "Texts": [
+      "Korean",
+      "화면의 밝기를 $Number$만큼 $Modifier$합니다.",
+      "English",
+      "Modify screen brightness for the current player: $Modifier$ $Number$. (0 to 31)"
+    ],
+    "CodeText": "SetMemoryEPD(EPD(0x657A9C), $Modifier$, $Number$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Number",
+      "Modifier"
+    ]
+  },
+  {
+    "Name": "SetUpgrade",
+    "Texts": [
+      "Korean",
+      "$PlayerX$의 $Upgrade$의 $UTType$를 $Count$만큼 $Modifier$합니다.",
+      "English",
+      "Modify $Upgrade$ $UTType$: $Modifier$ $Count$ for $PlayerX$."
+    ],
+    "CodeText": "SetMemoryEPD(EPD($Offset$ + $PlayerX$ * (46 - 31 * ($Upgrade$ / 46)) + ($Upgrade$ % 46)), $Modifier$, bitlshift($Count$, 8 * (($PlayerX$ * (46 - 31 * ($Upgrade$ / 46)) + ($Upgrade$ % 46)) % 4)))|bwrite($Offset$ + $PlayerX$ * (46 - 31 * ($Upgrade$ / 46)) + ($Upgrade$ % 46), $Count$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "Upgrade",
+      "UTType",
+      "Count",
+      "Modifier"
+    ]
+  },
+  {
+    "Name": "SetTech",
+    "Texts": [
+      "Korean",
+      "$PlayerX$의 $Techdata$의 $UTType$를 $Count$만큼 $Modifier$합니다.",
+      "English",
+      "Modify $Techdata$ $UTType$: $Modifier$ $Count$ for $PlayerX$."
+    ],
+    "CodeText": "SetMemoryEPD(EPD($Offset$ + $PlayerX$ * (24 - 4 * ($Techdata$ / 24)) + ($Techdata$ % 24)), $Modifier$, bitlshift($Count$, 8 * (($PlayerX$ * (24 - 4 * ($Techdata$ / 24)) + ($Techdata$ % 24)) % 4)))|bwrite($Offset$ + $PlayerX$ * (24 - 4 * ($Techdata$ / 24)) + ($Techdata$ % 24), $Count$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "Techdata",
+      "UTType",
+      "Count",
+      "Modifier"
+    ]
+  },
+  {
+    "Name": "SetDatfile",
+    "Texts": [
+      "Korean",
+      "$DatFile$ $Object$의 $OffsetName$을 $DValue$로 설정합니다.",
+      "English",
+      "Modify $DatFile$ $Object$ $OffsetName$: Set to $DValue$."
+    ],
+    "CodeText": "$writedef$write($DatFile$ + $OffsetName$ + $Object$ * &SIZE&, $DValue$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "DatFile",
+      "Object",
+      "OffsetName",
+      "DValue"
+    ]
+  },
+  {
+    "Name": "AddDatfile",
+    "Texts": [
+      "Korean",
+      "$DatFile$ $Object$의 $OffsetName$을 $DValue$만큼 더합니다.",
+      "English",
+      "Modify $DatFile$ $Object$ $OffsetName$: Add $DValue$."
+    ],
+    "CodeText": "$writedef$write($DatFile$ + $OffsetName$ + $Object$ * &SIZE&, $writedef$read($DatFile$ + $OffsetName$ + $Object$ * &SIZE&) + $DValue$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "DatFile",
+      "Object",
+      "OffsetName",
+      "DValue"
+    ]
+  },
+  {
+    "Name": "CreatePlayerVariable",
+    "Texts": [
+      "Korean",
+      "플레이어 변수 $Name$를 선언합니다.",
+      "English",
+      "Declare the player variable $Name$."
+    ],
+    "CodeText": "const $Name$ = [0, 0, 0, 0, 0, 0, 0, 0];",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Name"
+    ]
+  },
+  {
+    "Name": "CreateVariable",
+    "Texts": [
+      "Korean",
+      "변수 $Name$를 초기값 $Count$으로 선언합니다.",
+      "English",
+      "Declare variable $Name$ with initial value $Count$."
+    ],
+    "CodeText": "var $Name$ = $Count$",
+    "ToolTip": "변수를 선언하고 초기화 합니다.",
+    "ValuesDef": [
+      "Name",
+      "Count"
+    ]
+  },
+  {
+    "Name": "CreateVariableWithNoini",
+    "Texts": [
+      "Korean",
+      "변수 $Name$를 선언합니다.",
+      "English",
+      "Declare the variable $Name$."
+    ],
+    "CodeText": "var $Name$",
+    "ToolTip": "변수를 선언합니다.",
+    "ValuesDef": [
+      "Name"
+    ]
+  },
+  {
+    "Name": "CreateArrayVariableEmpty",
+    "Texts": [
+      "Korean",
+      "Declare the array variable $Name$ with a capacity of $Count$.",
+      "English",
+      "Declare the array variable $Name$ with a capacity of $Count$."
+    ],
+    "CodeText": "const $Name$ = EUDArray($Count$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Name",
+      "Count"
+    ]
+  },
+  {
+    "Name": "Rand",
+    "Texts": [
+      "Korean",
+      "변수 $Variable$를 0부터 $Count$까지의 난수만큼 $VariableModifier$합니다.",
+      "English",
+      "Modify $Variable$: $VariableModifier$ a random number from 0 to $Count$."
+    ],
+    "CodeText": "$Variable$ $VariableModifier$ dwrand() % ($Count$ + 1)",
+    "ToolTip": "변수를 설정합니다.",
+    "ValuesDef": [
+      "Variable",
+      "Count",
+      "VariableModifier"
+    ]
+  },
+  {
+    "Name": "SetVariable",
+    "Texts": [
+      "Korean",
+      "변수 $Variable$를 $Count$만큼 $VariableModifier$합니다.",
+      "English",
+      "Modify $Variable$: $VariableModifier$ $Count$."
+    ],
+    "CodeText": "$Variable$ $VariableModifier$ $Count$",
+    "ToolTip": "변수를 설정합니다.",
+    "ValuesDef": [
+      "Variable",
+      "Count",
+      "VariableModifier"
+    ]
+  },
+  {
+    "Name": "SetVariableDeaths",
+    "Texts": [
+      "Korean",
+      "변수 $Variable$를 $PlayerX$소유의 $Unit$이 죽은 수 만큼 $VariableModifier$합니다.",
+      "English",
+      "Modify $Variable$: $VariableModifier$ $PlayerX$ deaths of $Unit$."
+    ],
+    "CodeText": "$Variable$ $VariableModifier$ dwread_epd($PlayerX$ + $Unit$ * 12)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Variable",
+      "VariableModifier",
+      "PlayerX",
+      "Unit",
+      "Number"
+    ]
+  },
+  {
+    "Name": "SetVariableKills",
+    "Texts": [
+      "Korean",
+      "변수 $Variable$를 $PlayerX$가 $Unit$을 죽인 수 만큼 $VariableModifier$합니다.",
+      "English",
+      "Modify $Variable$: $VariableModifier$ $PlayerX$ kill counts of $Unit$."
+    ],
+    "CodeText": "$Variable$ $VariableModifier$ dwread_epd(EPD(0x5878A4) + $PlayerX$ + $Unit$ * 12)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Variable",
+      "VariableModifier",
+      "PlayerX",
+      "Unit",
+      "Number"
+    ]
+  },
+  {
+    "Name": "SetVariableScore",
+    "Texts": [
+      "Korean",
+      "변수 $Variable$를 $PlayerX$의 $ScoreOffset$ 만큼 $VariableModifier$합니다.",
+      "English",
+      "Modify $Variable$: $VariableModifier$ $ScoreOffset$ of $PlayerX$."
+    ],
+    "CodeText": "$Variable$ $VariableModifier$ dwread_epd(EPD($ScoreOffset$) + $PlayerX$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Variable",
+      "VariableModifier",
+      "PlayerX",
+      "ScoreOffset"
+    ]
+  },
+  {
+    "Name": "SetVariableDatFile",
+    "Texts": [
+      "Korean",
+      "$DatFile$ $Object$의 $OffsetName$을 $Variable$에 $VariableModifier$합니다.",
+      "English",
+      "Modify $Variable$: $VariableModifier$ $DatFile$ $Object$ $OffsetName$."
+    ],
+    "CodeText": "$Variable$ $VariableModifier$ $writedef$read($DatFile$ + $OffsetName$ + $Object$ * &SIZE&)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "DatFile",
+      "Object",
+      "OffsetName",
+      "Variable",
+      "VariableModifier"
+    ]
+  },
+  {
+    "Name": "SetVariableCUnitData",
+    "Texts": [
+      "Korean",
+      "구조오프셋Ptr $UnitPTR$의 $StructOffset$을 $Variable$에 $VariableModifier$합니다.",
+      "English",
+      "Modify $Variable$: $VariableModifier$ $StructOffset$ for unit with PTR pointer $UnitPTR."
+    ],
+    "CodeText": "$Variable$ $VariableModifier$ $writedef$read($UnitPTR$ + $StructOffset$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitPTR",
+      "StructOffset",
+      "Variable",
+      "VariableModifier"
+    ]
+  },
+  {
+    "Name": "SetVariableCUnitDataEPD",
+    "Texts": [
+      "Korean",
+      "구조오프셋EPD $UnitEPD$의 $StructOffset$을 $Variable$에 $VariableModifier$합니다.",
+      "English",
+      "Modify $Variable$: $VariableModifier$ $StructOffset$ for unit with EPD pointer $UnitEPD$."
+    ],
+    "CodeText": "$Variable$ $VariableModifier$ $writedef$read_epd($UnitEPD$ + $StructOffset$ / 4,  $StructOffset$ % 4)|$Variable$ $VariableModifier$ $writedef$read_epd($UnitEPD$ + $StructOffset$ / 4)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD",
+      "StructOffset",
+      "Variable",
+      "VariableModifier"
+    ]
+  },
+  {
+    "Name": "SetButton",
+    "Texts": [
+      "Korean",
+      "$UnitBtn$을 $BtnData$로 교체합니다.",
+      "English",
+      "Replace $UnitBtn$ with $BtnData$."
+    ],
+    "CodeText": "$UnitBtn$\r\ndwadd_epd(btnPtr, 0);\r\nbtnPos += epdread_epd(btnPtr);\r\noldCP = getcurpl();\r\nDoActions(list(\r\nSetMemory(0x6509B0, SetTo, btnPos),\r\nSetDeaths(CurrentPlayer, SetTo, Offset1, 0),\r\nSetMemory(0x6509B0, Add, 1),\r\nSetDeaths(CurrentPlayer, SetTo, Offset2, 0),\r\nSetMemory(0x6509B0, Add, 1),\r\nSetDeaths(CurrentPlayer, SetTo, Offset3, 0),\r\nSetMemory(0x6509B0, Add, 1),\r\nSetDeaths(CurrentPlayer, SetTo, Offset4, 0),\r\nSetMemory(0x6509B0, Add, 1),\r\nSetDeaths(CurrentPlayer, SetTo, Offset5, 0),\r\nSetMemory(0x6509B0, SetTo, oldCP),\r\n));",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitBtn",
+      "BtnData"
+    ]
+  },
+  {
+    "Name": "ButtonRefresh",
+    "Texts": [
+      "Korean",
+      "버튼을 다시그립니다.",
+      "English",
+      "Refresh all command card buttons."
+    ],
+    "CodeText": "const btntemp1 = wread_epd(EPD(0x6615AA), 2);\r\nSetMemoryX(0x6615AA, SetTo, 0x20000, 0xFFFF0000);\r\nconst btntemp2, btntemp3 = cunitepdread_epd(EPD(0x628438));\r\nCreateUnit(1, 73, 64, 7);\r\nif(!Memory(0x628438, Exactly, btntemp2)) {\r\nwwrite_epd(btntemp3 + 0x110/4, 0, 1);\r\nwwrite_epd(EPD(0x6615AA), 2, btntemp1);\r\n}",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "ChangeStarText",
+    "Texts": [
+      "Korean",
+      "$stat_txt$의 $Number$번 내용물을 $Text$로 교체합니다.",
+      "English",
+      "Change string $stat_txt$ to $Text$ at position $Number$."
+    ],
+    "CodeText": "tct.setTbl($stat_txt$, Offset, len, Dummy);\r\ntct.setTbl($stat_txt$, Offset, len, $Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "stat_txt",
+      "Number",
+      "Text"
+    ]
+  },
+  {
+    "Name": "ChangeButtonEnableMsg",
+    "Texts": [
+      "Korean",
+      "버튼 사용가능 문자열 $BtnEnableTxt$의 $Number$번 내용물을 $Text$로 교체합니다.",
+      "English",
+      "Set button $BtnUnEnableTxt$’s enabled text to $Text$ at position $Number$."
+    ],
+    "CodeText": "tct.setTbl($BtnEnableTxt$, Offset, len, Dummy);\r\ntct.setTbl($BtnEnableTxt$, Offset, len, $Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "BtnEnableTxt",
+      "Number",
+      "Text"
+    ]
+  },
+  {
+    "Name": "ChangeButtonUnEnableMsg",
+    "Texts": [
+      "Korean",
+      "버튼 사용불가 문자열 $BtnUnEnableTxt$의 $Number$번 내용물을 $Text$로 교체합니다.",
+      "English",
+      "Set button $BtnUnEnableTxt$’s disabled text to $Text$ at position $Number$."
+    ],
+    "CodeText": "tct.setTbl($BtnUnEnableTxt$, Offset, len, Dummy);\r\ntct.setTbl($BtnUnEnableTxt$, Offset, len, $Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "BtnUnEnableTxt",
+      "Number",
+      "Text"
+    ]
+  },
+  {
+    "Name": "SetWireframes",
+    "Texts": [
+      "Korean",
+      "$Unit$의 와이어프레임들을 $Wireframe$로 변경합니다. (TranWire.grp, GrpWire.grp, Wirefram.grp)",
+      "English",
+      "Change $Unit$'s wireframes to $Wireframe$. (TranWire.grp, GrpWire.grp, Wirefram.grp)"
+    ],
+    "CodeText": "SetWireframes($Unit$, $Wireframe$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Wireframe"
+    ]
+  },
+  {
+    "Name": "SetWirefram",
+    "Texts": [
+      "Korean",
+      "$Unit$의 Wirefram.grp 와이어프레임을 $Wireframe$로 변경합니다.",
+      "English",
+      "Change $Unit$'s Wirefram.grp wireframe to $Wireframe$."
+    ],
+    "CodeText": "SetWirefram($Unit$, $Wireframe$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Wireframe"
+    ]
+  },
+  {
+    "Name": "SetGrpWire",
+    "Texts": [
+      "Korean",
+      "$Unit$의 GrpWire.grp 와이어프레임을 $Wireframe$로 변경합니다.",
+      "English",
+      "Change $Unit$'s GrpWire.grp wireframe to $Wireframe$."
+    ],
+    "CodeText": "SetGrpWire($Unit$, $Wireframe$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Wireframe"
+    ]
+  },
+  {
+    "Name": "SetTranWire",
+    "Texts": [
+      "Korean",
+      "$Unit$의 TranWire.grp 와이어프레임을 $Wireframe$로 변경합니다.",
+      "English",
+      "Change $Unit$'s TranWire.grp wireframe to $Wireframe$."
+    ],
+    "CodeText": "SetTranWire($Unit$, $Wireframe$);",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Wireframe"
+    ]
+  },
+  {
+    "Name": "STRUCTPart",
+    "Texts": [
+      "Korean",
+      "STRUCTPart",
+      "English",
+      "STRUCTPart"
+    ],
+    "CodeText": "STRUCTPart",
+    "ToolTip": "STRUCTPart",
+    "ValuesDef": [
+      "STRUCTPart"
+    ]
+  },
+  {
+    "Name": "SetNextUnitPtr",
+    "Texts": [
+      "Korean",
+      "변수 $Variable$에 생성될 유닛의 포인터를 Ptr로 저장합니다.",
+      "English",
+      "Set $Variable$ to the PTR pointer for the next created unit."
+    ],
+    "CodeText": "$Variable$ = dwread_epd(EPD(0x628438))",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Variable"
+    ]
+  },
+  {
+    "Name": "SetNextUnitEPD",
+    "Texts": [
+      "Korean",
+      "변수 $Variable$에 생성될 유닛의 포인터를 EPD로 저장합니다.",
+      "English",
+      "Set $Variable$ to the EPD pointer for the next created unit."
+    ],
+    "CodeText": "$Variable$ = epdread_epd(EPD(0x628438))",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Variable"
+    ]
+  },
+  {
+    "Name": "SetCUnitData",
+    "Texts": [
+      "Korean",
+      "구조오프셋Ptr $UnitPTR$의 $StructOffset$을 $SValue$로 설정합니다.",
+      "English",
+      "Modify unit with PTR pointer $UnitPTR$: Set $StructOffset$ to $SValue$."
+    ],
+    "CodeText": "$writedef$write($UnitPTR$ + $StructOffset$, $SValue$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitPTR",
+      "StructOffset",
+      "SValue"
+    ]
+  },
+  {
+    "Name": "AddCUnitData",
+    "Texts": [
+      "Korean",
+      "구조오프셋Ptr $UnitPTR$의 $StructOffset$을 $SValue$만큼 더합니다.",
+      "English",
+      "Modify unit with PTR pointer $UnitPTR$: Add $SValue$ to $StructOffset$."
+    ],
+    "CodeText": "$writedef$write($UnitPTR$ + $StructOffset$, $writedef$read($UnitPTR$ + $StructOffset$) + $SValue$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitPTR",
+      "StructOffset",
+      "SValue"
+    ]
+  },
+  {
+    "Name": "SetCUnitDataEPD",
+    "Texts": [
+      "Korean",
+      "구조오프셋EPD $UnitEPD$의 $StructOffset$을 $SValue$로 설정합니다.",
+      "English",
+      "Modify unit with EPD pointer $UnitEPD$: Set $SValue$ to $StructOffset$."
+    ],
+    "CodeText": "$writedef$write_epd($UnitEPD$ + $StructOffset$ / 4,  $StructOffset$ % 4, $SValue$)|SetMemoryEPD($UnitEPD$ + $StructOffset$ / 4, SetTo, $SValue$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD",
+      "StructOffset",
+      "SValue"
+    ]
+  },
+  {
+    "Name": "AddCUnitDataEPD",
+    "Texts": [
+      "Korean",
+      "구조오프셋EPD $UnitEPD$의 $StructOffset$을 $SValue$만큼 더합니다.",
+      "English",
+      "Modify unit with EPD pointer $UnitEPD$: Add $SValue$ to $StructOffset$."
+    ],
+    "CodeText": "SetMemoryEPD($UnitEPD$ + $StructOffset$ / 4, Add, $SValue$ * $Byte$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD",
+      "StructOffset",
+      "SValue"
+    ]
+  },
+  {
+    "Name": "CUSTOMPart",
+    "Texts": [
+      "Korean",
+      "CUSTOMPart",
+      "English",
+      "CUSTOMPart"
+    ],
+    "CodeText": "CUSTOMPart",
+    "ToolTip": "CUSTOMPart",
+    "ValuesDef": [
+      "CUSTOMPart"
+    ]
+  },
+  {
+    "Name": "RawCode",
+    "Texts": [
+      "Korean",
+      "코드 : $RawString$",
+      "English",
+      "Run epScript code: $RawString$"
+    ],
+    "CodeText": "$RawString$",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "RawString"
+    ]
+  },
+  {
+    "Name": "BGMStop",
+    "Texts": [
+      "Korean",
+      "$PlayerX$의 재생중인 BGM을 멈춥니다.",
+      "English",
+      "Stop playing BGM music for $PlayerX$."
+    ],
+    "CodeText": "BGM.Stop($PlayerX$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX"
+    ]
+  },
+  {
+    "Name": "BGMResume",
+    "Texts": [
+      "Korean",
+      "$PlayerX$의 멈췄던 BMG을 다시 재생합니다.",
+      "English",
+      "Resume BGM music for $PlayerX$"
+    ],
+    "CodeText": "BGM.Resume($PlayerX$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX"
+    ]
+  },
+  {
+    "Name": "BGMPlay",
+    "Texts": [
+      "Korean",
+      "$PlayerX$의 $BGM$을 $BGMFlag$로 재생합니다.",
+      "English",
+      "Play $BGM$ music for $PlayerX$ with flag $BGMFlag$."
+    ],
+    "CodeText": "BGM.Play($PlayerX$, $BGM$, $BGMFlag$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX",
+      "BGM",
+      "BGMFlag"
+    ]
+  },
+  {
+    "Name": "PrintError",
+    "Texts": [
+      "Korean",
+      "$PlayerX$에게 오류문구를 출력합니다.",
+      "English",
+      "Display an error message to $PlayerX$."
+    ],
+    "CodeText": "tct.printError($PlayerX$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "PlayerX"
+    ]
+  },
+  {
+    "Name": "ChatWrite",
+    "Texts": [
+      "Korean",
+      "$Text$를 모든플레이어에게 $Line$라인에 보여줍니다.",
+      "English",
+      "Display $Text$ to all players on line $Line$."
+    ],
+    "CodeText": "tct.chatwrite($Line$, $Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Line",
+      "Text"
+    ]
+  },
+  {
+    "Name": "ChatAnnouncement",
+    "Texts": [
+      "Korean",
+      "$CText$를 해당플레이어에게 안내 메세지로 보여줍니다.",
+      "English",
+      "Display $CText$ as a centered message(Announcement line) to the current player."
+    ],
+    "CodeText": "tct.chatAnnouncement($CText$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Player",
+      "CText"
+    ]
+  },
+  {
+    "Name": "DisplayCText",
+    "Texts": [
+      "Korean",
+      "$CText$를 $DisplayOption$의 옵션으로 보여줍니다.",
+      "English",
+      "Display $CText$ with options $DisplayOption$"
+    ],
+    "CodeText": "tct.print($CText$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "CText",
+      "DisplayOption"
+    ]
+  },
+  {
+    "Name": "MakeCText",
+    "Texts": [
+      "Korean",
+      "$CText$를 초기 상태로 설정합니다.",
+      "English",
+      "Set current CText to $CText$"
+    ],
+    "CodeText": "tct.makeText($CText$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "CText"
+    ]
+  },
+  {
+    "Name": "AddCText",
+    "Texts": [
+      "Korean",
+      "$CText$를 텍스트로 ct에 추가합니다.",
+      "English",
+      "Append $CText$ to current CText."
+    ],
+    "CodeText": "tct.addText($CText$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "CText"
+    ]
+  },
+  {
+    "Name": "AddCode",
+    "Texts": [
+      "Korean",
+      "$RawString$를 코드로 ct에 추가합니다.",
+      "English",
+      "Add $RawString$ (code) to current CText."
+    ],
+    "CodeText": "tct.addText($RawString$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "RawString"
+    ]
+  },
+  {
+    "Name": "DisplayTextAll",
+    "Texts": [
+      "Korean",
+      "모든 플레이어에게 텍스트를 보여줍니다:\n$Text$",
+      "English",
+      "Display for all players:\n$Text$"
+    ],
+    "CodeText": "DisplayTextAll($Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Text"
+    ]
+  },
+  {
+    "Name": "PlayWAVAll",
+    "Texts": [
+      "Korean",
+      "모든 플레이어에게 사운드를 재생합니다:\n$WAVName$",
+      "English",
+      "Play sound for all players:\n$WAVName$"
+    ],
+    "CodeText": "PlayWAVAll($WAVName$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "WAVName"
+    ]
+  },
+  {
+    "Name": "MinimapPingAll",
+    "Texts": [
+      "Korean",
+      "로케이션 $Where$에 모든 플레이어한테 미니맵 핑을 합니다.",
+      "English",
+      "Show minimap ping for all players at location '$Where$'."
+    ],
+    "CodeText": "MinimapPingAll($Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Where"
+    ]
+  },
+  {
+    "Name": "CenterViewAll",
+    "Texts": [
+      "Korean",
+      "$Where$로 모든 플레이어의 화면을 이동합니다.",
+      "English",
+      "Center view for all players at location '$Where$'"
+    ],
+    "CodeText": "CenterViewAll($Where$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Where"
+    ]
+  },
+  {
+    "Name": "SetMissionObjectivesAll",
+    "Texts": [
+      "Korean",
+      "모든 플레이어의 미션 오브젝트를 $Text$로 설정합니다.",
+      "English",
+      "Set Mission Objectives for all players:\n$Text$"
+    ],
+    "CodeText": "SetMissionObjectivesAll($Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Text"
+    ]
+  },
+  {
+    "Name": "TalkingPortraitAll",
+    "Texts": [
+      "Korean",
+      "모든 플레이어에게 $Unit$의 포트레잇을 $Time$간 띄웁니다.",
+      "English",
+      "Show $Unit$ talking to all players for $Time$ milliseconds."
+    ],
+    "CodeText": "TalkingPortraitAll($Unit$, $Time$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Unit",
+      "Time"
+    ]
+  },
+  {
+    "Name": "DisplaySavedCText",
+    "Texts": [
+      "Korean",
+      "저장된 CText를 $DisplayOption$의 옵션으로 보여줍니다.",
+      "English",
+      "Display saved CText with options $DisplayOption$."
+    ],
+    "CodeText": "tct.displayText()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "DisplayOption"
+    ]
+  },
+  {
+    "Name": "SCDB:SaveData",
+    "Texts": [
+      "Korean",
+      "SCDB: 데이터를 저장합니다.",
+      "English",
+      "SCDB: Save data."
+    ],
+    "CodeText": "scdb.isSaveStart[getcurpl()] = 1",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "SCDB:LoadData",
+    "Texts": [
+      "Korean",
+      "SCDB: 데이터를 불러옵니다.",
+      "English",
+      "SCDB: Load data."
+    ],
+    "CodeText": "scdb.isLoadStart[getcurpl()] = 1",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "SCDB:UseCustomMsg",
+    "Texts": [
+      "Korean",
+      "SCDB: 메세지의 자체적 출력을 $Boolean$ 설정합니다.",
+      "English",
+      "SCDB: Set whether to use a custom message to $Boolean$."
+    ],
+    "CodeText": "scdb.UseCustomMsg($Boolean$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Boolean"
+    ]
+  },
+  {
+    "Name": "SCDB:LastMsgReset",
+    "Texts": [
+      "Korean",
+      "SCDB: 마지막 알람을 초기화합니다.",
+      "English",
+      "SCDB: Reset the last message sent."
+    ],
+    "CodeText": "scdb.msgReset()",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "None"
+    ]
+  },
+  {
+    "Name": "DisplayTextToAll",
+    "Texts": [
+      "Korean",
+      "Display for all players: $Text$",
+      "English",
+      "Display for all players: $Text$"
+    ],
+    "CodeText": "f_printAll($Text$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Text"
+    ]
+  },
+  {
+    "Name": "KillUnitEPD",
+    "Texts": [
+      "Korean",
+      "Kill unit: $UnitEPD$",
+      "English",
+      "Kill unit: $UnitEPD$"
+    ],
+    "CodeText": "bwrite_epd($UnitEPD$ + 0x04D / 4,  0x04D % 4, 0)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD"
+    ]
+  },
+  {
+    "Name": "StopUnitEPD",
+    "Texts": [
+      "Korean",
+      "Stop unit: $UnitEPD$",
+      "English",
+      "Stop unit: $UnitEPD$"
+    ],
+    "CodeText": "bwrite_epd($UnitEPD$ + 0x04D / 4,  0x04D % 4, 1)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD"
+    ]
+  },
+  {
+    "Name": "SetUnitHitpointsEPD",
+    "Texts": [
+      "Korean",
+      "Set hitpoints for unit: $UnitEPD$. Set to $Number$",
+      "English",
+      "Set hitpoints for unit: $UnitEPD$. Set to $Number$"
+    ],
+    "CodeText": "SetMemoryEPD($UnitEPD$ + 0x008 / 4, SetTo, $Number$ * 256)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD",
+      "Count"
+    ]
+  },
+  {
+    "Name": "SetUnitEnergyEPD",
+    "Texts": [
+      "Korean",
+      "Set energy for unit: $UnitEPD$. Set to $Number$",
+      "English",
+      "Set energy for unit: $UnitEPD$. Set to $Number$"
+    ],
+    "CodeText": "SetMemoryXEPD($UnitEPD$ + 0xA0 / 4, SetTo, $Number$ << 24, 0xFFFF0000)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD",
+      "Count"
+    ]
+  },
+  {
+    "Name": "SetVariableToNewUnitEPD",
+    "Texts": [
+      "Korean",
+      "Set $UnitEPD$ to a new $Unit$ created at '$Where$' for $ForPlayer$",
+      "English",
+      "Set $UnitEPD$ to a new $Unit$ created at '$Where$' for $ForPlayer$"
+    ],
+    "CodeText": "$UnitEPD$ = cunitepdread_epd(EPD(0x628438))[[1]]; CreateUnit(1, $Unit$, $Where$, $ForPlayer$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "UnitEPD",
+      "Unit",
+      "Where",
+      "ForPlayer"
+    ]
+  },
+  {
+    "Name": "CreateVariableWithNewUnitEPD",
+    "Texts": [
+      "Korean",
+      "Declare and set the variable $Name$ to $Unit$ created at '$Where$' for $ForPlayer$.",
+      "English",
+      "Declare and set the variable $Name$ to $Unit$ created at '$Where$' for $ForPlayer$."
+    ],
+    "CodeText": "var $Name$ = cunitepdread_epd(EPD(0x628438))[[1]]; CreateUnit(1, $Unit$, $Where$, $ForPlayer$)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Name",
+      "Unit",
+      "Where",
+      "ForPlayer"
+    ]
+  },
+  {
+    "Name": "CenterLocationOnUnit",
+    "Texts": [
+      "Korean",
+      "Move location $Location$ to $UnitEPD$.",
+      "English",
+      "Move location $Location$ to $UnitEPD$."
+    ],
+    "CodeText": "setloc_epd($Location$, $UnitEPD$ + 0x028 / 4)",
+    "ToolTip": "None",
+    "ValuesDef": [
+      "Location",
+      "UnitEPD"
+    ]
+  }
+]

@@ -1,0 +1,2 @@
+"Strategic Sucide missions" AI를 무시한다.
+"Guard" 상태가 되지 않는다.

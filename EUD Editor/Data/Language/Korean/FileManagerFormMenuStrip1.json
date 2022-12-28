@@ -1,0 +1,9 @@
+﻿{
+    "편집ToolStripMenuItem": "편집(&E)",
+    "초기화ToolStripMenuItem1": "초기화",
+    "오브젝트초기화ToolStripMenuItem": "오브젝트 초기화",
+    "오브젝트복사ToolStripMenuItem": "오브젝트 복사",
+    "오브젝트붙여넣기ToolStripMenuItem": "오브젝트 붙여넣기",
+    "보기VToolStripMenuItem": "보기(&V)",
+    "테마설정TToolStripMenuItem": "테마 설정(&T)"
+}
