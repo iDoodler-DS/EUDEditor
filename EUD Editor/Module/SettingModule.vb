@@ -9,7 +9,7 @@ Namespace ProgramSet
 
 
         'Public Version As String = "vTEST 0.13"
-        Public Version As String = "0.18.1.0"
+        Public Version As String = "0.18.1.1"
         Public DatEditVersion As String = "v0.3"
         Public SCDBSerial As UInteger
 
@@ -580,69 +580,15 @@ Namespace ProjectSet
                     mem.Close()
 
                     Dim strmem As MemoryStream = New MemoryStream(STRpara)
-                    'Map string encoding automatic detection
-                    Dim strbr As BinaryReader = New BinaryReader(strmem)
-                    Dim tempindex As UInteger
-                    Dim strcount As Integer = 0
-                    Dim utf8unitcount As UInteger = 0
-                    Dim cp949unitcount As UInteger = 0
-                    For i = 0 To 227
-                        If UNITSTR(i) == 0 Then
-                            Continue For
-                        End If
-                        strmem.Position = entrysize + (UNITSTR(i) * entrysize)
-                        If entrysize = 4 Then
-                            tempindex = strbr.ReadUInt32()
-                        ElseIf entrysize = 2 Then
-                            tempindex = strbr.ReadUInt16()
-                        Else
-                            Throw New System.Exception("Unexpected entry size: " & entrysize)
-                        End If
-
-                        strmem.Position = tempindex
-
-                        strcount = 0
-                        Dim nameBuffer() As Byte
-                        Dim tempByte As Byte
-                        Try
-                            tempByte = strb.ReadByte
-                            While (tempByte <> &H0)  'search null terminator
-                                nameBuffer(strcount) = tempByte
-                                tempByte = strb.ReadByte
-                                strcount += 1
-                            End While
-                        Catch ex As Exception
-                            Exit Try
-                        Finally
-                            Array.Resize(nameBuffer, strcount)
-                            Try
-                                Text.Encoding.UTF8.GetString(nameBuffer)
-                            Catch ex As Exception
-                                Exit Try
-                            Finally
-                                utf8unitcount += 1
-                            Exit Try
-                            Try
-                                Text.Encoding.UTF8.GetEncoding("ks_c_5601-1987").GetString(nameBuffer)
-                            Catch ex As Exception
-                                Exit Try
-                            Finally
-                                cp949unitcount += 1
-                            Exit Try
-                        End Try
-                    End For
-                    'Count unit name string
-                    Dim strencoding As Text.Encoding
-                    If utf8unitcount > cp949unitcount Then
-                        strencoding = Text.Encoding.UTF8
-                    Else
-                        strencoding = Text.Encoding.GetEncoding("ks_c_5601-1987")
-                    End If
+                    'TODO: support UTF-8
+                    Dim strencoding As Text.Encoding = Text.Encoding.GetEncoding("ks_c_5601-1987")
                     Dim strstream As StreamReader = New StreamReader(strmem, strencoding)
                     Dim strbinary As BinaryReader = New BinaryReader(strmem, strencoding)
 
+                    Dim tempindex As UInteger
                     Dim tempindex2 As Char
                     Dim tempstring As String = ""
+                    Dim strcount As Integer = 0
 
                     If entrysize = 4 Then
                         size = strbinary.ReadUInt32
