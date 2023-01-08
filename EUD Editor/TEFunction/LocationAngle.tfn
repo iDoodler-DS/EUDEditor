@@ -52,44 +52,40 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:4
+Type:8,False,False,False
+act:RawCode
+Get angle from origin
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+originஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+to
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+destஐ6
+ElementsCount:0
+END
 END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-const locOrigin, locDest = origin * 5, dest * 5;
-DoActions(list(
-locOrigin.AddNumber(EPD(0x58DC60)),
-locDest.AddNumber(EPD(0x58DC60)),
-));
-
-const x1 = dwread_epd(locOrigin);
-const x3 = dwread_epd(locDest);
-DoActions(list(
-locOrigin.AddNumber(1),
-locDest.AddNumber(1),
-));
-const y1 = dwread_epd(locOrigin);
-const y3 = dwread_epd(locDest);
-DoActions(list(
-locOrigin.AddNumber(1),
-locDest.AddNumber(1),
-));
-const x2 = dwread_epd(locOrigin);
-const x4 = dwread_epd(locDest);
-DoActions(list(
-locOrigin.AddNumber(1),
-locDest.AddNumber(1),
-));
-const y2 = dwread_epd(locOrigin);
-const y4 = dwread_epd(locDest);
-
-const ox, oy = (x1+x2)/2, (y1+y2)/2;
-const dx, dy = (x3+x4)/2, (y3+y4)/2;
-
-return atan2((dx - ox), (oy - dy));
+    const ox1, oy1, ox2, oy2 = tct.__GetLocCoord(originLoc);
+    const dx1, dy1, dx2, dy2 = tct.__GetLocCoord(destLoc);
+    const x1 = ox1 + ox2;
+    const y1 = oy1 + oy2;
+    const x2 = dx1 + dx2;
+    const y2 = dy1 + dy2;
+    return atan2(x2 - x1, y1 - y2);
 ElementsCount:0
 END
 END

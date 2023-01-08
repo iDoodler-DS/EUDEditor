@@ -15,7 +15,7 @@ ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:3
+ElementsCount:2
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -57,54 +57,67 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
-ElementsCount:0
-END
-END
-END
-END
-Type:1,False,True,False
-ElementsCount:2
-Type:3,False,True,False
-Or
-ElementsCount:5
-Type:7,False,False,False
-con:CUnitDataEPD
-unitEPDஐ70ஐ0ஐUnit
-ElementsCount:0
-END
-Type:7,False,False,False
-con:CUnitDataEPD
-unitEPDஐ71ஐ0ஐUnit
-ElementsCount:0
-END
-Type:7,False,False,False
-con:CUnitDataEPD
-unitEPDஐ72ஐ0ஐUnit
-ElementsCount:0
-END
-Type:7,False,False,False
-con:CUnitDataEPD
-unitEPDஐ73ஐ0ஐUnit
-ElementsCount:0
-END
-Type:7,False,False,False
-con:CUnitDataEPD
-unitEPDஐ74ஐ0ஐUnit
-ElementsCount:0
-END
-END
-Type:5,False,True,False
-ElementsCount:1
+ElementsCount:4
 Type:8,False,False,False
 act:RawCode
-return True
+Check whether CUnit EPD
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+unitEPDஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+is training an unit:
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Unitஐ3
+ElementsCount:0
+END
+END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-return False
+    unitEPD += 0x98 / 4;  // buildQueue
+    const checkUnit = Forward();
+    if (MemoryEPD(unitEPD, Exactly, 0xE400E4)) {
+        unitEPD += 1;
+        if (MemoryEPD(unitEPD, Exactly, 0xE400E4)) {
+            unitEPD += 1;
+            if (MemoryXEPD(unitEPD, Exactly, 0xE4, 0xFFFF)) return False;
+            unitEPD -= 2;
+            SetNextTrigger(checkUnit);
+        }
+        unitEPD -= 1;
+    }
+    checkUnit.__lshift__(NextTrigger());
+    if (MemoryXEPD(unitEPD, Exactly, unit, 0xFFFF)) {
+        return True;
+    } else {
+        const mulUnit = unit * 65536;
+        if (MemoryXEPD(unitEPD, Exactly, mulUnit, 0xFFFF0000)) {
+            return True;
+        } else {
+            unitEPD += 1;
+            if (MemoryXEPD(unitEPD, Exactly, unit, 0xFFFF)) {
+                return True;
+            } else if (MemoryXEPD(unitEPD, Exactly, mulUnit, 0xFFFF0000)) {
+                return True;
+            } else {
+                unitEPD += 1;
+                if (MemoryXEPD(unitEPD, Exactly, unit, 0xFFFF)) {
+                    return True;
+                }
+            }
+        }
+    }
+    return False;
 ElementsCount:0
 END
 END

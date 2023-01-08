@@ -57,14 +57,33 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:4
+Type:8,False,False,False
+act:RawCode
+Remove statusFlags of CUnit ptr
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+UnitPTRஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+flags:
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+flagsஐ65
 ElementsCount:0
 END
 END
 END
 END
-Type:8,False,False,False
-act:RawCode
-dwsubtract_epd(EPD(UnitPTR) + 0xDC / 4, flags & dwread_epd(EPD(UnitPTR) + 0xDC / 4));
+END
+Type:19,False,False,False
+RemoveStatusFlagsஐEPD(UnitPTR)ஐflags
 ElementsCount:0
 END
 END

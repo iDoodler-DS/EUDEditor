@@ -20,7 +20,7 @@ ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:6
+ElementsCount:2
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -72,36 +72,48 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:7
+Type:8,False,False,False
+act:RawCode
+Order CUnit ptr
 ElementsCount:0
 END
-END
-END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+UnitPTRஐ33
+ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-const locTable = EPD(0x58DC60);
-const x = dwread_epd(locTable + loc * 5) + dwread_epd(locTable + loc * 5 + 2);
-const y = dwread_epd(locTable + loc * 5 + 1) + dwread_epd(locTable + loc * 5 + 3);
+to build
 ElementsCount:0
 END
 Type:8,False,False,False
-act:SetCUnitData
-UnitPTRஐ31ஐ31
+act:CreateVariableWithNoini
+Buildingஐ3
 ElementsCount:0
 END
 Type:8,False,False,False
-act:SetCUnitData
-UnitPTRஐ70ஐBuilding
+act:RawCode
+at location
 ElementsCount:0
 END
 Type:8,False,False,False
-act:SetCUnitData
-UnitPTRஐ40ஐx / 2
+act:CreateVariableWithNoini
+locஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
-act:SetCUnitData
-UnitPTRஐ41ஐy / 2
+act:RawCode
+by Protoss Warp Building. (Does not need Working animation)
+ElementsCount:0
+END
+END
+END
+END
+END
+Type:19,False,False,False
+BuildProbeEPDஐEPD(UnitPTR)ஐlocஐBuilding
 ElementsCount:0
 END
 END

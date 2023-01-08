@@ -87,16 +87,53 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:8
+Type:8,False,False,False
+act:RawCode
+Move location
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+locationஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+to CUnit EPD
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+unitEPDஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+'s X offset
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+CUnitOffsetXஐ60
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+and Y offset
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+CUnitOffsetYஐ60
 ElementsCount:0
 END
 END
 END
 END
-Type:8,False,False,False
-act:RawCode
-const x = wread(UnitPTR + X);
-const y = wread(UnitPTR + Y);
-setloc(Location, x, y);
+END
+Type:19,False,False,False
+SetLocationToUnitEPDஐLocationஐEPD(UnitPTR)ஐXஐY
 ElementsCount:0
 END
 END

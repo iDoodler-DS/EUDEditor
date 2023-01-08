@@ -1,31 +1,21 @@
 Type:16,False,False,False
-CheckNoneTargetSkillஐFalse
+CBringEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
-ElementsCount:5
+ElementsCount:3
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+unitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Rangeஐ1
+locationஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitLocஐ6
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-TargetLocஐ6
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-SkillOrderஐ15
+dummyUnitஐ3
 ElementsCount:0
 END
 END
@@ -40,60 +30,45 @@ Type:21,False,False,False
 KoreanஐKoreanஐFalse
 ElementsCount:1
 Type:22,False,False,False
-ElementsCount:11
+ElementsCount:8
 Type:8,False,False,False
 act:RawCode
-[논타겟팅] 구조오프셋Ptr
+구조오프셋 EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+unitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-이
+가 로케이션
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-SkillOrderஐ15
+locationஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-을
+에 있는지 확인합니다.
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+더미유닛ID :
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Rangeஐ1
+dummyUnitஐ3
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-의 범위 안에서 시전하는 걸 체크합니다.
-ElementsCount:0
-END
-Type:8,False,False,False
-act:RawCode
-유닛부착 :
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-UnitLocஐ6
-ElementsCount:0
-END
-Type:8,False,False,False
-act:RawCode
-타겟부착 :
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-TargetLocஐ6
+(Bring을 위해 잠시 변경할 유닛ID입니다. 사용하지 않는 UnitID를 사용하세요.)
 ElementsCount:0
 END
 END
@@ -102,63 +77,54 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
-ElementsCount:10
+ElementsCount:7
 Type:8,False,False,False
 act:RawCode
-[NoneTargeting] Check whether CUnit ptr
+Check whether CUnit EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+unitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-is casting order
+is in location
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-SkillOrderஐ15
+locationஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-within range
+, by changing its unitType to
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Rangeஐ1
+dummyUnitஐ3
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-. Caster Location:
+and restoring (Use unused unit for dummyUnit)
 ElementsCount:0
 END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-UnitLocஐ6
-ElementsCount:0
+END
+END
+END
 END
 Type:8,False,False,False
 act:RawCode
-, Target Location:
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-TargetLocஐ6
-ElementsCount:0
-END
-END
-END
-END
-END
-Type:19,False,False,False
-CheckNoneTargetSkillEPDஐEPD(UnitPTR)ஐRangeஐUnitLocஐTargetLocஐSkillOrder
+    DoActions(MoveLocation(255, 101, P11, 255), unitEPD.AddNumber(0x64/4));
+    const originalUnitType = wread_epdunitEPD, 0);
+    SetMemoryXEPD(unitEPD, SetTo, dummyUnit, 0xFFFF);
+    const ret = l2v(Bring(AllPlayers, AtLeast, 1, dummyUnit, location));
+    SetMemoryXEPD(unitEPD, SetTo, originalUnitType, 0xFFFF);
+    return ret;
 ElementsCount:0
 END
 END

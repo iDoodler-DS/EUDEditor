@@ -57,14 +57,36 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:4
+Type:8,False,False,False
+act:RawCode
+Apply statusFlags for CUnit ptr
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+UnitPTRஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+with flags:
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+flagsஐ65
+ElementsCount:0
+END
 END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-SetMemoryX(UnitPTR + 0xDC, SetTo, flags, flags);
+const epd = EPD(UnitPtr);
+DoActions(epd.AddNumber(0xDC / 4);
+SetMemoryXEPD(epd, SetTo, ~0, flags);
 ElementsCount:0
 END
 END

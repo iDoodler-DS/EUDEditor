@@ -1,21 +1,21 @@
 Type:16,False,False,False
-SetsubUnitColorEPDஐFalse
+TrainUnitEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
 ElementsCount:2
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitEPDஐ35
+epdஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Colorஐ1
+newUnitஐ3
 ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:3
+ElementsCount:2
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -33,22 +33,22 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitEPDஐ33
+epdஐ33
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-과 부가유닛의 색상을
+에서
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Colorஐ1
+newUnitஐ3
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-로 바꿉니다.
+을 생산합니다.
 ElementsCount:0
 END
 END
@@ -57,43 +57,49 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:4
+Type:8,False,False,False
+act:RawCode
+Fill build queues of CUnit EPD
 ElementsCount:0
 END
-END
-END
-END
-Type:19,False,False,False
-SetUnitColorEPDஐUnitEPDஐColor
-ElementsCount:0
-END
-Type:1,False,False,False
-ElementsCount:2
-Type:3,False,False,False
-And
-ElementsCount:1
-Type:7,False,False,False
-con:CUnitDataEPD
-UnitEPDஐ48ஐ2ஐ0x59CCA8
-ElementsCount:0
-END
-END
-Type:5,False,False,False
-ElementsCount:3
 Type:8,False,False,False
 act:CreateVariableWithNoini
-subUnitEPD
+epdஐ33
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-subUnitEPD = epdread_epd(UnitEPD + 0x070 / 4);
+to train
 ElementsCount:0
 END
-Type:19,False,False,False
-SetUnitColorEPDஐsubUnitEPDஐColor
+Type:8,False,False,False
+act:CreateVariableWithNoini
+newUnitஐ3
 ElementsCount:0
 END
 END
+END
+END
+END
+Type:8,False,False,False
+act:RawCode
+    const nU_and_lsh16 = newUnit * 65537;
+    VProc(epd, list(
+        epd.AddNumber(0x98/4),
+        epd.SetDest(EPD(0x6509B0)),
+    ));
+    DoActions(list(
+        SetDeaths(CurrentPlayer, SetTo, nU_and_lsh16, 0),
+        SetMemory(0x6509B0, Add, 1),
+        SetDeaths(CurrentPlayer, SetTo, nU_and_lsh16, 0),
+        SetMemory(0x6509B0, Add, 1),
+        SetDeathsX(CurrentPlayer, SetTo, newUnit, 0, 0xFFFF),
+        SetMemory(0x6509B0, Add, 1),
+        SetDeathsX(CurrentPlayer, SetTo, 38 << 16, 0, 0xFF0000),
+    ));
+    setcurpl2cpcache();
+ElementsCount:0
 END
 END
 END

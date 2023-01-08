@@ -20,7 +20,7 @@ ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:5
+ElementsCount:2
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -72,37 +72,44 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:6
+Type:8,False,False,False
+act:RawCode
+Issue order
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+orderஐ15
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+for CUnit EPD
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+UnitEPDஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+to location
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+locஐ6
+ElementsCount:0
+END
 END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-const locTable = loc * 5;
-DoActions(locTable.AddNumber(EPD(0x58DC60)));
-const x1 = dwread_epd(locTable);
-DoActions(locTable.AddNumber(1));
-const y1 = dwread_epd(locTable);
-DoActions(locTable.AddNumber(1));
-const x2 = dwread_epd(locTable);
-DoActions(locTable.AddNumber(1));
-const y2 = dwread_epd(locTable);
-ElementsCount:0
-END
-Type:8,False,False,False
-act:SetCUnitDataEPD
-UnitEPDஐ31ஐorder
-ElementsCount:0
-END
-Type:8,False,False,False
-act:SetCUnitDataEPD
-UnitEPDஐ40ஐ(x1+x2) / 2
-ElementsCount:0
-END
-Type:8,False,False,False
-act:SetCUnitDataEPD
-UnitEPDஐ41ஐ(y1+y2) / 2
+tct.__LocOrderBase(UnitEPD, order << 8, loc);
 ElementsCount:0
 END
 END

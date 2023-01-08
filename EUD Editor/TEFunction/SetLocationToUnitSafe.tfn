@@ -15,12 +15,12 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-posXஐ60
+posXYஐ60
 ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:3
+ElementsCount:2
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -33,7 +33,7 @@ Type:22,False,False,False
 ElementsCount:7
 Type:8,False,False,False
 act:RawCode
-[safe] 구조오프셋Ptr
+[호환성 기능] setloc_epd와 동일합니다. 구조오프셋Ptr
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -48,7 +48,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-posXஐ60
+posXYஐ60
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -72,22 +72,45 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:6
+Type:8,False,False,False
+act:RawCode
+[backward-compatibility function] Equals to setloc_epd euddraft function. Move location
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Locationஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+to CUnit ptr
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+UnitPTRஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+'s XY offset
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+posXYஐ60
+ElementsCount:0
+END
 END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-var xloc, yloc = dwbreak(dwread_epd_safe(EPD(UnitPTR + posX)))[[0, 1]];
-ElementsCount:0
-END
-Type:8,False,False,False
-act:RawCode
-SetMemory(0x58DC60 + Location * 20 + 4 * 0, SetTo, xloc);
-SetMemory(0x58DC60 + Location * 20 + 4 * 2, SetTo, xloc);
-SetMemory(0x58DC60 + Location * 20 + 4 * 1, SetTo, yloc);
-SetMemory(0x58DC60 + Location * 20 + 4 * 3, SetTo, yloc);
+    const unitEPD = EPD(UnitPTR) + posXY/4;
+    setloc_epd(location, unitEPD);
 ElementsCount:0
 END
 END

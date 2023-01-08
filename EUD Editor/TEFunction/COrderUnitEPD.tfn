@@ -1,4 +1,4 @@
-Type:16,False,True,False
+Type:16,False,False,False
 COrderUnitEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
@@ -72,7 +72,37 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:6
+Type:8,False,False,False
+act:RawCode
+Issue order
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+orderஐ15
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+for CUnit EPD
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+UnitEPDஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+to target CUnit ptr
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+targetஐ35
+ElementsCount:0
+END
 END
 END
 END

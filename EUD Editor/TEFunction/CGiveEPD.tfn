@@ -1,21 +1,11 @@
 Type:16,False,False,False
-OptCGiveஐFalse
+CGiveEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
-ElementsCount:4
-Type:8,False,False,False
-act:CreateVariableWithNoini
-ptrஐ35
-ElementsCount:0
-END
+ElementsCount:2
 Type:8,False,False,False
 act:CreateVariableWithNoini
 epdஐ35
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-Ownerஐ19
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -25,7 +15,7 @@ ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:2
+ElementsCount:3
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -35,15 +25,10 @@ Type:21,False,False,False
 KoreanஐKoreanஐFalse
 ElementsCount:1
 Type:22,False,False,False
-ElementsCount:8
+ElementsCount:5
 Type:8,False,False,False
 act:RawCode
-구조오프셋Ptr,EPD
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-ptrஐ19
+구조오프셋 EPD
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -53,17 +38,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-을 플레이어
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-Ownerஐ19
-ElementsCount:0
-END
-Type:8,False,False,False
-act:RawCode
-에서 플레이어
+를 플레이어
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -73,24 +48,19 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-에게 줍니다. (ptr, epd는 같은 유닛을 가리켜야합니다. 현재 소유주가 Owner와 일치해야합니다.)
+에게 줍니다. (현재 명령을 방해하지 않습니다)
 ElementsCount:0
 END
 END
 END
 Type:21,False,False,False
-KoreanஐKoreanஐFalse
+EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
-ElementsCount:8
+ElementsCount:5
 Type:8,False,False,False
 act:RawCode
-Give CUnit ptr, EPD
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-ptrஐ19
+Give CUnit EPD
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -100,17 +70,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-owned by player
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariableWithNoini
-Ownerஐ19
-ElementsCount:0
-END
-Type:8,False,False,False
-act:RawCode
-to new owner
+to player
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -120,7 +80,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-(ptr and EPD must point to same unit. Current owner must equal to Owner.)
+(Does not interfere ongoing order)
 ElementsCount:0
 END
 END
@@ -130,6 +90,12 @@ END
 Type:8,False,False,False
 act:RawCode
 const player = epd + 0x4C / 4;
+if (MemoryXEPD(player, Exactly, 0, 0xFF00)) return;
+const Owner = bread_epd(player, 0);
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
 SetMemoryXEPD(player, SetTo, NewOwner, 0xFF);
 const prv, nxt = epd + 0x68 / 4, epd + 0x6C / 4;
 const prev_ptr, prev_epd = cunitepdread_epd(prv);
@@ -158,7 +124,6 @@ dwwrite_epd(NewHeader, ptr);
 dwwrite_epd(prv, 0);
 dwwrite_epd(nxt, 0);
 }
-
 ElementsCount:0
 END
 END

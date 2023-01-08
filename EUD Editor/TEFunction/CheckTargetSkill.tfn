@@ -30,7 +30,7 @@ ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:4
+ElementsCount:2
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -78,7 +78,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-유닛부착 : 
+유닛부착 :
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -88,7 +88,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-타겟부착 : 
+타겟부착 :
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -102,88 +102,63 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
-ElementsCount:0
-END
-END
-END
-END
-Type:21,False,False,False
-/*ஐ*/ஐTrue
-ElementsCount:1
-Type:22,False,False,False
-ElementsCount:1
-Type:19,False,False,False
-LocationDistanceஐஐ
-ElementsCount:0
-END
-END
-END
-Type:1,False,False,False
-ElementsCount:2
-Type:3,False,False,False
-And
-ElementsCount:1
-Type:7,False,False,False
-con:CUnitData
-UnitPTRஐ31ஐ0ஐSkillOrder
-ElementsCount:0
-END
-END
-Type:5,False,False,False
-ElementsCount:3
-Type:19,False,False,False
-SetLocationToUnitSafeஐTargetLocஐUnitPTRஐ40
-ElementsCount:0
-END
-Type:19,False,False,False
-SetLocationToUnitSafeஐUnitLocஐUnitPTRஐ18
-ElementsCount:0
-END
-Type:1,False,False,False
-ElementsCount:2
-Type:3,False,False,False
-And
-ElementsCount:1
-Type:7,False,False,False
-con:Variable
-RangeஐLocationDistance(UnitLoc,TargetLoc)ஐ4
-ElementsCount:0
-END
-END
-Type:5,False,False,False
-ElementsCount:5
+ElementsCount:10
 Type:8,False,False,False
-act:MoveLocation
-TargetLoc + 1ஐ227ஐ17ஐTargetLoc + 1
+act:RawCode
+[Targeting] Check whether CUnit ptr
 ElementsCount:0
 END
 Type:8,False,False,False
-act:SetCUnitData
-UnitPTRஐ31ஐ1
-ElementsCount:0
-END
-Type:8,False,False,False
-act:SetCUnitData
-UnitPTRஐ4ஐwread(UnitPTR + 0x028)
-ElementsCount:0
-END
-Type:8,False,False,False
-act:SetCUnitData
-UnitPTRஐ5ஐwread(UnitPTR + 0x02A)
+act:CreateVariableWithNoini
+UnitPTRஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-return True
+is casting order
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+SkillOrderஐ15
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+within range
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Rangeஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+. Caster Location:
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+UnitLocஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+, Target Location:
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+TargetLocஐ6
 ElementsCount:0
 END
 END
 END
 END
 END
-Type:8,False,False,False
-act:RawCode
-return False
+Type:19,False,False,False
+CheckTargetSkillEPDஐEPD(UnitPTR)ஐRangeஐUnitLocஐTargetLocஐSkillOrder
 ElementsCount:0
 END
 END
