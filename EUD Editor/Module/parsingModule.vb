@@ -357,7 +357,7 @@ Module parsingModule
                 'If key = "extraedssetting" Then
                 '    MsgBox(InStr(text, vbCrLf) - key.Count - 4)
                 'End If
-                If InStr(text, vbCrLf) = 0 Then
+                If InStr(text, vbCrLf) = 0 Or key = "extraedssetting" Then
                     Return Mid(text, key.Count + 4)
                 Else
                     Return Mid(text, key.Count + 4, InStr(text, vbCrLf) - key.Count - 4)
