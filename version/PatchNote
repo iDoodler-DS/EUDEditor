@@ -2,7 +2,6 @@
 
 - Fixed extra eds settings bug (everything beyond the first line break getting cut) (contributed by zzt)
 - Fixed SCDB (contributed by in)
-- Fixed ChangeStarText and settblf not working on onPluginStart (reported by iDoodler)
 - Fixed updater
 
 [ Patch notes 0.18.1.2 ]

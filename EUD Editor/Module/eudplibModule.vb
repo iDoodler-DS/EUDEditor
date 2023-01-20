@@ -56,6 +56,17 @@ Namespace eudplib
             returntext.AppendLine()
 
 
+            If ProjectSet.UsedSetting(ProjectSet.Settingtype.Struct) = True Then
+                If ProjectSet.LoadFromCHK = False Then
+                    MsgBox("CHK데이터 읽어오기가 활성화 되어 있지 않아 TriggerEditor옵션이 해제됩니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                    ProjectSet.UsedSetting(ProjectSet.Settingtype.Struct) = False
+                    Main.buttonResetting()
+                Else
+                    returntext.AppendLine("[TriggerEditor.eps]")
+                    returntext.AppendLine()
+                End If
+            End If
+
             '플러그인 비활성화시 DataDumper사용 원천차단하기.
             'If ProjectSet.UsedSetting(ProjectSet.Settingtype.Plugin) = False Then
             '    If (ProjectSet.UsedSetting(ProjectSet.Settingtype.BinEditor) Or
@@ -354,17 +365,6 @@ Namespace eudplib
 
 
                 returntext.AppendLine(textraedssetting)
-            End If
-
-            If ProjectSet.UsedSetting(ProjectSet.Settingtype.Struct) = True Then
-                If ProjectSet.LoadFromCHK = False Then
-                    MsgBox("CHK데이터 읽어오기가 활성화 되어 있지 않아 TriggerEditor옵션이 해제됩니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
-                    ProjectSet.UsedSetting(ProjectSet.Settingtype.Struct) = False
-                    Main.buttonResetting()
-                Else
-                    returntext.AppendLine("[TriggerEditor.eps]")
-                    returntext.AppendLine()
-                End If
             End If
 
 
