@@ -18,8 +18,8 @@ Module CTextEncoder
         End While
         codes = GetChar(str, "{P\d_K_\d+}")
         While (codes <> "0")
-            Dim UnitNum As Integer = GetGroup(str, "P(\d)_D_(\d+)")(2)
-            Dim PlayerNum As String = GetGroup(str, "P(\d)_D_(\d+)")(1) - 1
+            Dim UnitNum As Integer = GetGroup(str, "P(\d)_K_(\d+)")(2)
+            Dim PlayerNum As String = GetGroup(str, "P(\d)_K_(\d+)")(1) - 1
 
             If PlayerNum = 8 Then
                 PlayerNum = "getcurpl()"
