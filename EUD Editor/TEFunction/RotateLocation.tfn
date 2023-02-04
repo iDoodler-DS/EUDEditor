@@ -5,12 +5,12 @@ Type:17,False,False,False
 ElementsCount:3
 Type:8,False,False,False
 act:CreateVariableWithNoini
-target_locationஐ6
+targetLocஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-origin_locationஐ6
+originLocஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -33,7 +33,7 @@ Type:22,False,False,False
 ElementsCount:6
 Type:8,False,False,False
 act:CreateVariableWithNoini
-target_locationஐ6
+targetLocஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -43,7 +43,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-origin_locationஐ6
+originLocஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -67,54 +67,85 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:6
+Type:8,False,False,False
+act:RawCode
+Rotate location
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+targetLocஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+around center
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+originLocஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+by angle
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+angleஐ1
+ElementsCount:0
+END
 END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-const locTable = EPD(0x58DC60);
-const target = target_location * 5;
-const origin = origin_location * 5;
-DoActions(list(
-target.AddNumber(locTable),
-origin.AddNumber(locTable)
-));
-const tx1 = dwread_epd(target);
-const ox1 = dwread_epd(origin);
-DoActions(list(
-target.AddNumber(1),
-origin.AddNumber(1)
-));
-const ty1 = dwread_epd(target);
-const oy1 = dwread_epd(origin);
-DoActions(list(
-target.AddNumber(1),
-origin.AddNumber(1)
-));
-const tx2 = dwread_epd(target);
-const ox2 = dwread_epd(origin);
-DoActions(list(
-target.AddNumber(1),
-origin.AddNumber(1)
-));
-const ty2 = dwread_epd(target);
-const oy2 = dwread_epd(origin);
+    const locTable = EPD(0x58DC4C);
+    const target = targetLoc * 5;
+    const origin = originLoc * 5;
+    DoActions(list(
+        target.AddNumber(locTable),
+        origin.AddNumber(locTable)
+    ));
 
-const tx, ty = (tx1+tx2)/2, (ty1+ty2)/2;
-const ox, oy = (ox1+ox2)/2, (oy1+oy2)/2;
-const dx, dy = tx-ox, ty-oy;
-const theta = atan2(dy, dx);
-const x, y = lengthdir(sqrt(dx*dx+dy*dy), theta+angle);
-const rx, ry = x-dx, y-dy;
-dwadd_epd(target, ry);
-DoActions(target.AddNumber(-1));
-dwadd_epd(target, rx);
-DoActions(target.AddNumber(-1));
-dwadd_epd(target, ry);
-DoActions(target.AddNumber(-1));
-dwadd_epd(target, rx);
+    const tx1 = dwread_epd(target);
+    const ox1 = dwread_epd(origin);
+    DoActions(list(
+        target.AddNumber(1),
+        origin.AddNumber(1)
+    ));
+    const ty1 = dwread_epd(target);
+    const oy1 = dwread_epd(origin);
+    DoActions(list(
+        target.AddNumber(1),
+        origin.AddNumber(1)
+    ));
+    const tx2 = dwread_epd(target);
+    const ox2 = dwread_epd(origin);
+    DoActions(list(
+        target.AddNumber(1),
+        origin.AddNumber(1)
+    ));
+    const ty2 = dwread_epd(target);
+    const oy2 = dwread_epd(origin);
+    
+    const tx, ty = (tx1+tx2), (ty1+ty2);
+    const ox, oy = (ox1+ox2), (oy1+oy2);
+    const dx, dy = tx-ox, ty-oy;
+    const theta = atan2(dy, dx);
+    const x, y = lengthdir(sqrt(dx*dx+dy*dy)/2, theta+angle);
+    const rx, ry = x-dx, y-dy;
+    dwadd_epd(target, ry);
+    DoActions(target.AddNumber(-1));
+    dwadd_epd(target, rx);
+    DoActions(target.AddNumber(-1));
+    dwadd_epd(target, ry);
+    DoActions(target.AddNumber(-1));
+    dwadd_epd(target, rx);
 ElementsCount:0
 END
 END

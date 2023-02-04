@@ -67,7 +67,42 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:7
+Type:8,False,False,False
+act:RawCode
+Translate(math) location
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Locationஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+horizontally
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Xஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+and vertically
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Yஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+(Positive Y = Downward, Negative Y = Upward)
+ElementsCount:0
+END
 END
 END
 END

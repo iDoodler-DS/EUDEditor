@@ -1,16 +1,16 @@
 Type:16,False,False,False
-SpawnEggஐFalse
+SpawnEggEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
 ElementsCount:2
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+epdஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-NewUnitஐ3
+newUnitஐ3
 ElementsCount:0
 END
 END
@@ -28,7 +28,7 @@ Type:22,False,False,False
 ElementsCount:5
 Type:8,False,False,False
 act:RawCode
-[에그] 구조오프셋Ptr
+[에그] 구조오프셋 EPD
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -60,12 +60,12 @@ Type:22,False,False,False
 ElementsCount:4
 Type:8,False,False,False
 act:RawCode
-[Egg] Hatch CUnit ptr
+[Egg] Hatch CUnit EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ33
+epdஐ33
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -75,7 +75,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-NewUnitஐ3
+newUnitஐ3
 ElementsCount:0
 END
 END
@@ -84,7 +84,7 @@ END
 END
 Type:8,False,False,False
 act:RawCode
-tct.__SpawnBase(EPD(UnitPTR), 36, NewUnit);
+tct.__SpawnBase(epd, 36, newUnit);
 ElementsCount:0
 END
 END

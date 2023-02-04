@@ -13,7 +13,7 @@ from urllib.request import urlopen
 import msgbox
 
 VERSION_URL = (
-    "https://raw.githubusercontent.com/armoha/EUDEditor/master/version/version"
+    "https://raw.githubusercontent.com/iDoodler-DS/EUDEditor/master/version/version"
 )
 
 

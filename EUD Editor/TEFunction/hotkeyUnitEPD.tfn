@@ -25,7 +25,7 @@ ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:5
+ElementsCount:2
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -87,52 +87,63 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:8
+Type:8,False,False,False
+act:RawCode
+Set slot
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+slotஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+(0~11) of control group
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+hotkeyஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+(1~9, 0) to CUnit EPD
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+epdஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+for player
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+playerஐ19
+ElementsCount:0
+END
 END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-const targetOrderSpecial = dwread_epd(epd + 0xA5 / 4) & 0xFF00;
-ElementsCount:0
-END
-Type:8,False,False,False
-act:CreateVariable
-alphaIDஐ0
-ElementsCount:0
-END
-Type:2,False,False,False
-ElementsCount:3
-Type:3,False,False,False
-And
-ElementsCount:1
-Type:7,False,False,False
-con:Variable
-epdஐ19025ஐ0
-ElementsCount:0
-END
-END
-Type:5,False,False,False
-ElementsCount:1
-Type:8,False,False,False
-act:SetVariable
-alphaIDஐ1 + targetOrderSpecial * 8ஐ0
-ElementsCount:0
-END
-END
-Type:6,False,False,False
-ElementsCount:1
-Type:8,False,False,False
-act:SetVariable
-alphaIDஐ1701 - (0x27821 - epd) / 0x54 + targetOrderSpecial * 8ஐ0
-ElementsCount:0
-END
-END
-END
-Type:8,False,False,False
-act:RawCode
-SetMemoryEPD(EPD(0x57FE60) + 216 * player + 12 * hotkey + slot, SetTo, alphaID);
+    epd += 0xA5 / 4;
+    const tosread_epd = readgen_epd(0xFF00, list(0, py_eval('lambda x: 8*x')));
+    const alphaID = tosread_epd(epd);
+    if (epd == 19025 + 0xA5/4) {
+        DoActions(alphaID.AddNumber(1));
+    } else {
+        const diff = 1701 - (161866 - epd) / 84;
+        VProc(diff, diff.QueueAddTo(alphaID));
+    }
+    SetDeaths(EPD(0x57FE60) + 216 * player + slot, SetTo, alphaID, hotkey);
 ElementsCount:0
 END
 END

@@ -340,6 +340,70 @@ def f_chatAnnouncementAll(*args):
         f_eprintln(*args)
 
 
+@EUDTypedFunc([None, None, TrgLocation])
+def  __LocOrderBase(epd, order_lsh8, loc):
+    CP = EPD(0x6509B0)
+    loc *= 5
+    VProc(loc, [
+        loc.AddNumber(EPD(0x58DC4C)),
+        loc.QueueAssignTo(CP),
+        epd.AddNumber(0x4C // 4)
+    ])
+
+    x = f_maskread_cp(0, 0x1FFF)
+    f_dwadd_epd(CP, 1)
+    xy = f_maskread_cp(0, 0x1FFF)
+    f_dwadd_epd(CP, 1)
+    x += f_maskread_cp(0, 0x1FFF)
+    f_dwadd_epd(CP, 1)
+    xy += f_maskread_cp(0, 0x1FFF)
+
+    xy <<= 16
+    xy += x
+    xy //= 2
+
+    DoActions(
+        SetMemoryXEPD(epd, SetTo, order_lsh8, 0xFF00),
+        epd.AddNumber(0x58 // 4 - 0x4C // 4)
+    )
+    f_dwwrite_epd(epd, xy)
+    f_setcurpl2cpcache()
+
+
+@EUDTypedFunc([None, TrgUnit, TrgUnit])
+def __SpawnBase(epd, unit, newUnit):
+    epd4C = epd + 0x4C // 4
+    if EUDIf(EUDSCAnd(
+    )(MemoryXEPD(epd + 0x64//4, Exactly, unit, 0xFFFF)
+    )(MemoryXEPD(epd4C, Exactly, 0, 0xFF0000)
+    )()):
+        DoActions(
+            SetMemoryXEPD(epd4C, SetTo, (42 << 8) + (1 << 16), 0xFFFF00),
+            SetMemoryXEPD(epd + 0x98//4, SetTo, newUnit, 0xFFFF)
+        )
+    EUDEndIf()
+
+
+@EUDTypedFunc([TrgLocation])
+def __GetLocCoord(loc):
+    CP = EPD(0x6509B0)
+    loc *= 5
+    VProc(loc, [
+        loc.AddNumber(EPD(0x58DC4C)),
+        loc.QueueAssignTo(CP)
+    ])
+
+    x1 = f_dwread_cp(0)
+    f_dwadd_epd(CP, 1)
+    y1 = f_dwread_cp(0)
+    f_dwadd_epd(CP, 1)
+    x2 = f_dwread_cp(0)
+    f_dwadd_epd(CP, 1)
+    y2 = f_dwread_cp(0)
+    f_setcurpl2cpcache()
+    EUDReturn(x1, y1, x2, y2)
+
+
 f_str, f_strepd = ptr2s, epd2s
 f_color, Name = PColor, PName
 f_strptr = GetMapStringAddr

@@ -97,7 +97,57 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:10
+Type:8,False,False,False
+act:RawCode
+Set location
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Locationஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+'s center to
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Xஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+,
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Yஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+, set width to
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Widthஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+, and set height to
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Heightஐ1
+ElementsCount:0
+END
 END
 END
 END

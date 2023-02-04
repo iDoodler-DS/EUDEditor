@@ -67,7 +67,42 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:7
+Type:8,False,False,False
+act:RawCode
+Move location
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+locஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+by
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+lengthஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+, towards
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+angleஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+° direction.
+ElementsCount:0
+END
 END
 END
 END
@@ -79,11 +114,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-const locTable = EPD(0x58DC60) + loc * 5;
-SetMemoryEPD(locTable, Add, x);
-SetMemoryEPD(locTable + 2, Add, x);
-SetMemoryEPD(locTable + 1, Add, y);
-SetMemoryEPD(locTable + 3, Add, y);
+addloc(loc, x, y);
 ElementsCount:0
 END
 END

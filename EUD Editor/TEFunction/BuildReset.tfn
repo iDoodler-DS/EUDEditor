@@ -42,7 +42,17 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:2
+Type:8,False,False,False
+act:RawCode
+Reset build queues of CUnit ptr
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+unitPTRஐ35
+ElementsCount:0
+END
 END
 END
 END

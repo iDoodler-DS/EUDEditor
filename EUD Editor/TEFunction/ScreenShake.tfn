@@ -62,7 +62,32 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:5
+Type:8,False,False,False
+act:RawCode
+Shake screen by
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+xஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+yஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+. tempLoc :
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+tempLocஐ1
+ElementsCount:0
+END
 END
 END
 END
@@ -84,7 +109,12 @@ ElementsCount:0
 END
 END
 Type:5,False,False,False
-ElementsCount:8
+ElementsCount:9
+Type:8,False,False,False
+act:RawCode
+const SCREEN_X, SCREEN_Y = EPD(0x628448), EPD(0x628470);
+ElementsCount:0
+END
 Type:8,False,False,False
 act:RawCode
 const rX, rY = (randX % x) - x/2, (randY % y) - y/2;
@@ -92,8 +122,8 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-const ScreenX = dwread_epd(EPD(0x628448));
-const ScreenY = dwread_epd(EPD(0x628470));
+const ScreenX = dwread_epd(SCREEN_X);
+const ScreenY = dwread_epd(SCREEN_Y);
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -104,8 +134,9 @@ rY.QueueAddTo(ScreenY)
 ));
 ElementsCount:0
 END
-Type:19,False,False,False
-SetLocationஐtempLocஐScreenXஐScreenYஐ0ஐ0
+Type:8,False,False,False
+act:RawCode
+setloc(tempLoc, ScreenX, ScreenY);
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -121,13 +152,14 @@ const mapX = py_eval("b2i2(dim) << 4");
 const mapY = py_eval("b2i2(dim, 2) << 4");
 ElementsCount:0
 END
-Type:19,False,False,False
-EUDMoveLocationஐtempLocஐmapX - dwread_epd(EPD(0x628448))ஐdwread_epd(EPD(0x628470)) - mapY
+Type:8,False,False,False
+act:RawCode
+addloc(tempLoc, mapX - dwread_epd(SCREEN_X), dwread_epd(SCREEN_Y) - mapY);
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CenterView
-tempLoc + 1
+tempLoc
 ElementsCount:0
 END
 END

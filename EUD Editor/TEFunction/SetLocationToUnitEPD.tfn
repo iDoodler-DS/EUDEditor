@@ -5,22 +5,22 @@ Type:17,False,False,False
 ElementsCount:4
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Locationஐ6
+locationஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitEPDஐ35
+unitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Xஐ60
+CUnitOffsetXஐ60
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Yஐ60
+CUnitOffsetYஐ60
 ElementsCount:0
 END
 END
@@ -38,12 +38,12 @@ Type:22,False,False,False
 ElementsCount:9
 Type:8,False,False,False
 act:RawCode
-구조오프셋EPD
+구조오프셋 EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitEPDஐ35
+unitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -53,7 +53,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Xஐ60
+CUnitOffsetXஐ60
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -63,7 +63,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Yஐ60
+CUnitOffsetYஐ60
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -73,7 +73,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Locationஐ6
+locationஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -87,16 +87,61 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:8
+Type:8,False,False,False
+act:RawCode
+Move location
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+locationஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+to CUnit EPD
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+unitEPDஐ35
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+'s X offset
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+CUnitOffsetXஐ60
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+and Y offset
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+CUnitOffsetYஐ60
+ElementsCount:0
+END
 END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-const xpos = wread_epd(UnitEPD + X / 4, 0);
-const ypos = wread_epd(UnitEPD + Y / 4, 2);
-setloc(Location, xpos, ypos);
+    if (CUnitOffsetX == CUnitOffsetY) {
+        unitEPD += CUnitOffsetX/4;
+        setloc_epd(location, unitEPD);
+    } else {
+        const x = wread_epd(unitEPD + CUnitOffsetX/4, 0);
+        const y = wread_epd(unitEPD + CUnitOffsetY/4, 2);
+        setloc(location, x, y);
+    }
 ElementsCount:0
 END
 END

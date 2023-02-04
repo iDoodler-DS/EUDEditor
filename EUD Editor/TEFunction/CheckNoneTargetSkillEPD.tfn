@@ -1,11 +1,11 @@
 Type:16,False,False,False
-CheckNoneTargetSkillஐFalse
+CheckNoneTargetSkillEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
 ElementsCount:5
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+unitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -15,22 +15,22 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitLocஐ6
+unitLocஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-TargetLocஐ6
+targetLocஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-SkillOrderஐ15
+skillOrderஐ15
 ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:2
+ElementsCount:3
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -43,12 +43,12 @@ Type:22,False,False,False
 ElementsCount:11
 Type:8,False,False,False
 act:RawCode
-[논타겟팅] 구조오프셋Ptr
+[논타겟팅] 구조오프셋 EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+unitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -58,7 +58,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-SkillOrderஐ15
+skillOrderஐ15
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -83,7 +83,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitLocஐ6
+unitLocஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -93,7 +93,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-TargetLocஐ6
+targetLocஐ6
 ElementsCount:0
 END
 END
@@ -105,12 +105,12 @@ Type:22,False,False,False
 ElementsCount:10
 Type:8,False,False,False
 act:RawCode
-[NoneTargeting] Check whether CUnit ptr
+[NoneTargeting] Check whether CUnit EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+unitEPDஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -120,7 +120,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-SkillOrderஐ15
+skillOrderஐ15
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -140,7 +140,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitLocஐ6
+unitLocஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -150,15 +150,44 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-TargetLocஐ6
+targetLocஐ6
 ElementsCount:0
 END
 END
 END
 END
 END
+Type:21,False,False,False
+/*ஐ*/ஐTrue
+ElementsCount:1
+Type:22,False,False,False
+ElementsCount:1
 Type:19,False,False,False
-CheckNoneTargetSkillEPDஐEPD(UnitPTR)ஐRangeஐUnitLocஐTargetLocஐSkillOrder
+LocationDistanceஐஐ
+ElementsCount:0
+END
+END
+END
+Type:8,False,False,False
+act:RawCode
+    unitEPD += 0x4D/4;
+    if (MemoryXEPD(unitEPD, Exactly, skillOrder * 256, 0xFF00)) {
+        unitEPD += -((0x4D - 0x28)/4);
+        const x, y = posread_epd(unitEPD);
+        setloc(unitLoc, x, y);
+        unitEPD += (0x58 - 0x28)/4;
+        setloc_epd(targetLoc, unitEPD);
+
+        if (Range > LocationDistance(unitLoc, targetLoc)) {
+            MoveLocation(255, 101, P11, 255);
+            unitEPD += -((0x58 - 0x4C)/4);
+            SetMemoryXEPD(unitEPD, SetTo, 0x100, 0xFF00);
+            unitEPD += -((0x4D - 0x10)/4);
+            SetMemoryEPD(unitEPD, SetTo, x + y * 65536);
+            return True;
+        }
+    }
+    return False;
 ElementsCount:0
 END
 END

@@ -97,24 +97,69 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:10
+Type:8,False,False,False
+act:RawCode
+Spawn attacking unit
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+attackUnitஐ3
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+owned by
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+playerஐ19
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+at location
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+attackLocஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+, order it to attack location:
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+targetLocஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+, target unit:
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+targetUnitஐ3
+ElementsCount:0
+END
 END
 END
 END
 END
 Type:8,False,False,False
 act:RawCode
-var ap, ae, tp, te;
-ElementsCount:0
-END
-Type:8,False,False,False
-act:RawCode
-ap, ae = cunitepdread_epd(EPD(0x628438));
+const ap, ae = cunitepdread_epd(EPD(0x628438));
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateUnit
-1ஐattackUnitஐattackLoc + 1ஐplayer
+1ஐattackUnitஐattackLocஐplayer
 ElementsCount:0
 END
 Type:1,False,False,False
@@ -144,12 +189,12 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-tp, te = cunitepdread_epd(EPD(0x628438));
+const tp, te = cunitepdread_epd(EPD(0x628438));
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateUnit
-1ஐtargetUnitஐtargetLoc + 1ஐplayer
+1ஐtargetUnitஐtargetLocஐplayer
 ElementsCount:0
 END
 Type:1,False,False,False
@@ -174,12 +219,17 @@ END
 END
 Type:8,False,False,False
 act:SetCUnitDataEPD
-tunitஐ166ஐ2
+teஐ166ஐ2
 ElementsCount:0
 END
 Type:8,False,False,False
 act:SetCUnitDataEPD
-aunitஐ42ஐtunitptr
+aeஐ42ஐtp
+ElementsCount:0
+END
+Type:8,False,False,False
+act:SetCUnitDataEPD
+aeஐ31ஐ10
 ElementsCount:0
 END
 Type:8,False,False,False

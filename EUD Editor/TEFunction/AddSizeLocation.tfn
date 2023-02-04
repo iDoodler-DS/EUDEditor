@@ -1,4 +1,4 @@
-Type:16,False,True,False
+Type:16,False,False,False
 AddSizeLocationஐFalse
 ElementsCount:2
 Type:17,False,False,False
@@ -67,7 +67,37 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:6
+Type:8,False,False,False
+act:RawCode
+Enlarge location 
 ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Locationஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+, width by
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Widthஐ1
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+, height by
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Heightஐ1
+ElementsCount:0
+END
 END
 END
 END

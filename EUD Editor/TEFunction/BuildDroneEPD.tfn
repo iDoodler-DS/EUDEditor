@@ -1,16 +1,21 @@
 Type:16,False,False,False
-SpawnEggஐFalse
+BuildDroneEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
-ElementsCount:2
+ElementsCount:3
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+epdஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-NewUnitஐ3
+locஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+buildingஐ3
 ElementsCount:0
 END
 END
@@ -25,15 +30,25 @@ Type:21,False,False,False
 KoreanஐKoreanஐFalse
 ElementsCount:1
 Type:22,False,False,False
-ElementsCount:5
+ElementsCount:7
 Type:8,False,False,False
 act:RawCode
-[에그] 구조오프셋Ptr
+구조오프셋 EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ33
+epdஐ33
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+에게
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+buildingஐ3
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -43,12 +58,12 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-NewUnitஐ3
+locஐ6
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-로 부화시킵니다.
+에 저그 형식으로 건설하도록 명령합니다.
 ElementsCount:0
 END
 END
@@ -57,25 +72,40 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
-ElementsCount:4
+ElementsCount:7
 Type:8,False,False,False
 act:RawCode
-[Egg] Hatch CUnit ptr
+Order CUnit EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ33
+epdஐ33
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-into
+to build
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-NewUnitஐ3
+buildingஐ3
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+at location
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+locஐ6
+ElementsCount:0
+END
+Type:8,False,False,False
+act:RawCode
+by Zerg Morph Building.
 ElementsCount:0
 END
 END
@@ -84,7 +114,8 @@ END
 END
 Type:8,False,False,False
 act:RawCode
-tct.__SpawnBase(EPD(UnitPTR), 36, NewUnit);
+    SetMemoryXEPD(epd + 0x98 / 4, SetTo, building, 0xFFFF);
+    tct.__LocOrderBase(epd, 25 << 8, loc);
 ElementsCount:0
 END
 END

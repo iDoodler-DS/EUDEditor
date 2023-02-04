@@ -5,17 +5,17 @@ Type:17,False,False,False
 ElementsCount:2
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitEPDஐ35
+epdஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-Colorஐ1
+Colorஐ19
 ElementsCount:0
 END
 END
 Type:18,False,False,False
-ElementsCount:4
+ElementsCount:5
 Type:21,False,False,False
 /*ToolTipஐ*/ஐTrue
 ElementsCount:1
@@ -33,7 +33,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitEPDஐ33
+epdஐ33
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -57,25 +57,111 @@ Type:21,False,False,False
 EnglishஐEnglishஐFalse
 ElementsCount:1
 Type:22,False,False,False
+ElementsCount:5
+Type:8,False,False,False
+act:RawCode
+Set color of CUnit epd
 ElementsCount:0
-END
-END
-END
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-spriteEPD
+epdஐ33
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-spriteEPD = epdread_epd(UnitEPD + 0x00C / 4);
+to color of player
+ElementsCount:0
+END
+Type:8,False,False,False
+act:CreateVariableWithNoini
+Colorஐ1
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-bwrite_epd(spriteEPD + 0x0A/4, 0x0A%4, Color)
+(Player1~Player12)
 ElementsCount:0
+END
+END
+END
+END
+END
+Type:8,False,False,False
+act:RawCode
+epd += 0x0C/4;
+const sprite = epdspriteread_epd(epd);
+Color <<= 16;
+ElementsCount:0
+END
+Type:1,False,False,False
+ElementsCount:2
+Type:3,False,False,False
+And
+ElementsCount:1
+Type:7,False,False,False
+con:Variable
+spriteஐ0ஐ1
+ElementsCount:0
+END
+END
+Type:5,False,False,False
+ElementsCount:1
+Type:8,False,False,False
+act:RawCode
+    DoActions(sprite.AddNumber(0x0A/4));
+    SetMemoryXEPD(sprite, SetTo, Color, 0xFF0000);
+ElementsCount:0
+END
+END
+END
+Type:8,False,False,False
+act:RawCode
+epd += 0x70/4 - 0x0C/4;
+const subunit = epdcunitread_epd(epd);
+ElementsCount:0
+END
+Type:1,False,False,False
+ElementsCount:2
+Type:3,False,False,False
+And
+ElementsCount:1
+Type:7,False,False,False
+con:Variable
+subunitஐ1ஐ2
+ElementsCount:0
+END
+END
+Type:5,False,False,False
+ElementsCount:2
+Type:8,False,False,False
+act:RawCode
+DoActions(subunit.AddNumber(0x0C/4));
+const subsprite = epdspriteread_epd(subunit);
+ElementsCount:0
+END
+Type:1,False,False,False
+ElementsCount:2
+Type:3,False,False,False
+And
+ElementsCount:1
+Type:7,False,False,False
+con:Variable
+subspriteஐ0ஐ1
+ElementsCount:0
+END
+END
+Type:5,False,False,False
+ElementsCount:1
+Type:8,False,False,False
+act:RawCode
+    DoActions(subsprite.AddNumber(0x0A/4));
+    SetMemoryXEPD(subsprite, SetTo, Color, 0xFF0000);
+ElementsCount:0
+END
+END
+END
+END
 END
 END
 END

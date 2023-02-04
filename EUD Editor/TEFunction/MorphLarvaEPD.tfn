@@ -1,16 +1,16 @@
 Type:16,False,False,False
-SpawnEggஐFalse
+MorphLarvaEPDஐFalse
 ElementsCount:2
 Type:17,False,False,False
 ElementsCount:2
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ35
+epdஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-NewUnitஐ3
+newUnitஐ3
 ElementsCount:0
 END
 END
@@ -28,12 +28,12 @@ Type:22,False,False,False
 ElementsCount:5
 Type:8,False,False,False
 act:RawCode
-[에그] 구조오프셋Ptr
+[라바] 구조오프셋 EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ33
+epdஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -43,12 +43,12 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-NewUnitஐ3
+newUnitஐ3
 ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
-로 부화시킵니다.
+으로 변태시킵니다.
 ElementsCount:0
 END
 END
@@ -60,12 +60,12 @@ Type:22,False,False,False
 ElementsCount:4
 Type:8,False,False,False
 act:RawCode
-[Egg] Hatch CUnit ptr
+[Larva] Morph CUnit EPD
 ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-UnitPTRஐ33
+epdஐ35
 ElementsCount:0
 END
 Type:8,False,False,False
@@ -75,7 +75,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:CreateVariableWithNoini
-NewUnitஐ3
+newUnitஐ3
 ElementsCount:0
 END
 END
@@ -84,7 +84,10 @@ END
 END
 Type:8,False,False,False
 act:RawCode
-tct.__SpawnBase(EPD(UnitPTR), 36, NewUnit);
+    if (MemoryXEPD(epd + 0x64/4, Exactly, 35, 0xFFFF)) {
+        SetMemoryXEPD(epd + 0x4D/4, SetTo, 42 << 8, 0xFFFF00);
+        SetMemoryXEPD(epd + 0x98/4, SetTo, newUnit, 0xFFFF);
+    }
 ElementsCount:0
 END
 END
