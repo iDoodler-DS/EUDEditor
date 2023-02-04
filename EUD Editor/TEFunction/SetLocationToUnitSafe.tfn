@@ -109,8 +109,8 @@ END
 END
 Type:8,False,False,False
 act:RawCode
-    const unitEPD = EPD(UnitPTR) + posXY/4;
-    setloc_epd(location, unitEPD);
+const unitEPD = EPD(UnitPTR) + posXY/4;
+setloc_epd(Location, unitEPD);
 ElementsCount:0
 END
 END

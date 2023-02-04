@@ -96,6 +96,7 @@ ElementsCount:0
 END
 Type:8,False,False,False
 act:RawCode
+const ptr = epd * 4 + 0x58A364;
 SetMemoryXEPD(player, SetTo, NewOwner, 0xFF);
 const prv, nxt = epd + 0x68 / 4, epd + 0x6C / 4;
 const prev_ptr, prev_epd = cunitepdread_epd(prv);

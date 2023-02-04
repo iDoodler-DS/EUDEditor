@@ -119,12 +119,12 @@ END
 END
 Type:8,False,False,False
 act:RawCode
-    DoActions(MoveLocation(255, 101, P11, 255), unitEPD.AddNumber(0x64/4));
-    const originalUnitType = wread_epdunitEPD, 0);
-    SetMemoryXEPD(unitEPD, SetTo, dummyUnit, 0xFFFF);
-    const ret = l2v(Bring(AllPlayers, AtLeast, 1, dummyUnit, location));
-    SetMemoryXEPD(unitEPD, SetTo, originalUnitType, 0xFFFF);
-    return ret;
+DoActions(MoveLocation(255, 101, P11, 255), unitEPD.AddNumber(0x64/4));
+const originalUnitType = bread_epd(unitEPD, 0);
+SetMemoryXEPD(unitEPD, SetTo, dummyUnit, 0xFFFF);
+const ret = l2v(Bring(AllPlayers, AtLeast, 1, dummyUnit, location));
+SetMemoryXEPD(unitEPD, SetTo, originalUnitType, 0xFFFF);
+return ret;
 ElementsCount:0
 END
 END

@@ -82,11 +82,8 @@ END
 END
 END
 END
-Type:8,False,False,False
-act:RawCode
-const epd = EPD(UnitPtr);
-DoActions(epd.AddNumber(0xDC / 4);
-SetMemoryXEPD(epd, SetTo, ~0, flags);
+Type:19,False,False,False
+AddStatusFlagsEPDஐEPD(UnitPTR)ஐflags
 ElementsCount:0
 END
 END
