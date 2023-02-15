@@ -397,7 +397,7 @@
     "Name": "MemoryX",
     "Texts": [
       "Korean",
-      "메모리 주소 $Offset$의 값이 $Comparison$ $Number$ 이라면 (비트마스크: $Bitmask)",
+      "메모리 주소 $Offset$의 값이 $Comparison$ $Number$ 이라면 ( 비트마스크: $Bitmask$ )",
       "English",
       "Memory at $Offset$ is $Comparison$ $Number$ with $Bitmask$."
     ],
@@ -414,7 +414,7 @@
     "Name": "MemoryXEPD",
     "Texts": [
       "Korean",
-      "메모리 주소 EPD $Epd$의 값이 $Comparison$ $Number$ 이라면 (비트마스크: $Bitmask)",
+      "메모리 주소 EPD $Epd$의 값이 $Comparison$ $Number$ 이라면 ( 비트마스크: $Bitmask$ )",
       "English",
       "Memory at Death Table (+-) $Epd$ is $Comparison$ $Number$ with $Bitmask$."
     ],
