@@ -725,6 +725,7 @@ Namespace ProjectSet
             dataDumper_iscript_f = 0
 
             extraedssetting = ""
+            extramainsettings = ""
 
             stattextdic.Clear()
             statlang = 0
@@ -1278,8 +1279,8 @@ Namespace ProjectSet
                         dataDumper_iscript_f = FindSetting(Section_PluginSET, "dataDumper_iscript_f")
 
 
-
                         extraedssetting = FindSetting(Section_PluginSET, "extraedssetting")
+                        extramainsettings = FindSetting(Section_PluginSET, "extramainsettings", strflag:=True)
 
                     Catch ex As Exception
 
@@ -2213,6 +2214,7 @@ Namespace ProjectSet
             _stringbdl.Append("dataDumper_iscript_f : " & dataDumper_iscript_f & vbCrLf)
 
             _stringbdl.Append("extraedssetting : " & extraedssetting & vbCrLf)
+            _stringbdl.Append("extramainsettings " & extramainsettings & vbCrLf)
 
             _stringbdl.Append("E_PluginSET" & vbCrLf)
 

@@ -36,6 +36,8 @@ Partial Class PluginForm
         Me.FlowLayoutPanel7 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.RichTextBox2 = New System.Windows.Forms.RichTextBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
@@ -224,7 +226,7 @@ Partial Class PluginForm
         Me.GroupBox5.MinimumSize = New System.Drawing.Size(400, 0)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox5.Size = New System.Drawing.Size(403, 356)
+        Me.GroupBox5.Size = New System.Drawing.Size(403, 363)
         Me.GroupBox5.TabIndex = 5
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "EtcPlugins"
@@ -236,11 +238,13 @@ Partial Class PluginForm
         Me.FlowLayoutPanel7.Controls.Add(Me.CheckedListBox1)
         Me.FlowLayoutPanel7.Controls.Add(Me.Label3)
         Me.FlowLayoutPanel7.Controls.Add(Me.RichTextBox1)
+        Me.FlowLayoutPanel7.Controls.Add(Me.Label7)
+        Me.FlowLayoutPanel7.Controls.Add(Me.RichTextBox2)
         Me.FlowLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.FlowLayoutPanel7.Location = New System.Drawing.Point(3, 20)
         Me.FlowLayoutPanel7.Name = "FlowLayoutPanel7"
-        Me.FlowLayoutPanel7.Size = New System.Drawing.Size(397, 332)
+        Me.FlowLayoutPanel7.Size = New System.Drawing.Size(397, 339)
         Me.FlowLayoutPanel7.TabIndex = 1
         '
         'Label3
@@ -257,9 +261,27 @@ Partial Class PluginForm
         Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox1.Location = New System.Drawing.Point(3, 138)
         Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(391, 191)
+        Me.RichTextBox1.Size = New System.Drawing.Size(391, 140)
         Me.RichTextBox1.TabIndex = 1
         Me.RichTextBox1.Text = ""
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(3, 281)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(89, 15)
+        Me.Label7.TabIndex = 3
+        Me.Label7.Text = "추가 eds텍스트"
+        '
+        'RichTextBox2
+        '
+        Me.RichTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RichTextBox2.Location = New System.Drawing.Point(3, 299)
+        Me.RichTextBox2.Name = "RichTextBox2"
+        Me.RichTextBox2.Size = New System.Drawing.Size(391, 37)
+        Me.RichTextBox2.TabIndex = 4
+        Me.RichTextBox2.Text = ""
         '
         'CheckBox2
         '
@@ -846,4 +868,6 @@ Partial Class PluginForm
     Friend WithEvents Button10 As Button
     Friend WithEvents ListBox3 As ListBox
     Friend WithEvents Button11 As Button
+    Friend WithEvents Label7 As Label
+    Friend WithEvents RichTextBox2 As RichTextBox
 End Class
