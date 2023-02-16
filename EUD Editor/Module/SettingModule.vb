@@ -8,8 +8,7 @@ Namespace ProgramSet
         Public FireGraftName As String = "FireGraft in EUDEditor"
 
 
-        'Public Version As String = "vTEST 0.13"
-        Public Version As String = "0.18.1.5"
+        Public Version As String = "0.18.1.6"
         Public DatEditVersion As String = "v0.3"
         Public SCDBSerial As UInteger
 

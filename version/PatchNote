@@ -1,4 +1,4 @@
-[ Patch notes 0.18.1.5 ]
+[ Patch notes 0.18.1.6 ]
 
 - Autodetect CP949/UTF-8 for map string encoding
 - Fixed typos in MemoryX, MemoryXEPD conditions in Korean (reported by 페제짱)
