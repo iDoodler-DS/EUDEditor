@@ -139,6 +139,7 @@ Module ProgramData
 
 
     Public extraedssetting As String
+    Public extramainsettings As String
 
 
     Public UnitStatusFn1(227) As Byte

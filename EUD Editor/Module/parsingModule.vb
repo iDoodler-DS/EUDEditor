@@ -357,8 +357,13 @@ Module parsingModule
                 'If key = "extraedssetting" Then
                 '    MsgBox(InStr(text, vbCrLf) - key.Count - 4)
                 'End If
-                If InStr(text, vbCrLf) = 0 Or key = "extraedssetting" Then
-                    Return Mid(text, key.Count + 4)
+                If InStr(text, vbCrLf) = 0 Or key = "extraedssetting" Or key = "extramainsettings" Then
+                    Dim setting As String = Mid(text, key.Count + 4)
+                    Dim emspos As Integer = InStr(setting, "extramainsettings")
+                    If key = "extraedssetting" And emspos <> 0 Then
+                        Return Left(setting, emspos - 3)
+                    End If
+                    Return setting
                 Else
                     Return Mid(text, key.Count + 4, InStr(text, vbCrLf) - key.Count - 4)
                 End If

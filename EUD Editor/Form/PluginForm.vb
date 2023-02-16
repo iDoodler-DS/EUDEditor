@@ -83,6 +83,7 @@ Public Class PluginForm
 
 
         RichTextBox1.Text = extraedssetting
+        RichTextBox2.Text = extramainsettings
 
         DataGridView2.Rows.Clear()
         DataGridView2.Rows.Add("grpwire.grp", dataDumper_grpwire.Split("\").Last)
@@ -205,6 +206,7 @@ Public Class PluginForm
 
     Private Sub PluginForm_Closed(sender As Object, e As EventArgs) Handles MyBase.Closed
         extraedssetting = RichTextBox1.Text
+        extramainsettings = RichTextBox2.Text
 
         DataGridView2.EndEdit()
 
@@ -832,4 +834,5 @@ Public Class PluginForm
             Next
         End If
     End Sub
+
 End Class

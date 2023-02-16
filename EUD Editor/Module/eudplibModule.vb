@@ -50,6 +50,7 @@ Namespace eudplib
                 returntext.AppendLine("debug: 1")
             End If
 
+            returntext.AppendLine(extramainsettings)
 
             returntext.AppendLine()
             returntext.AppendLine("[EUDEditor.py]")
