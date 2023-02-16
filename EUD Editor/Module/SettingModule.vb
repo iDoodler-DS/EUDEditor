@@ -8,8 +8,7 @@ Namespace ProgramSet
         Public FireGraftName As String = "FireGraft in EUDEditor"
 
 
-        'Public Version As String = "vTEST 0.13"
-        Public Version As String = "0.18.1.5"
+        Public Version As String = "0.18.1.6"
         Public DatEditVersion As String = "v0.3"
         Public SCDBSerial As UInteger
 
@@ -605,63 +604,69 @@ Namespace ProjectSet
                 Dim utf8count As Integer = 0
 
                 For i = 0 To size - 1 '문자열 갯수
-                    strmem.Position = stroffsets(i)
-                    Dim firstbyte As Byte = strbinary.ReadByte()
-                    While firstbyte <> 0
-                        While firstbyte <= &H7F
-                            firstbyte = strbinary.ReadByte()
-                        End While
-                        If firstbyte = 0 Then
-                            Continue For
-                        End If
+                    Try
+                        strmem.Position = stroffsets(i)
+                    Catch ex As ArgumentOutOfRangeException
+                        Continue For
+                    End Try
+                    Try
+                        Dim firstbyte As Byte = strbinary.ReadByte()
+                        While firstbyte <> 0
+                            While firstbyte <= &H7F
+                                firstbyte = strbinary.ReadByte()
+                            End While
+                            If firstbyte = 0 Then
+                                Continue For
+                            End If
 
-                        Dim secondbyte As Byte = strbinary.ReadByte()
-                        Dim isCP949 As Boolean = False
-                        Dim isUTF8 As Boolean = False
+                            Dim secondbyte As Byte = strbinary.ReadByte()
+                            Dim isCP949 As Boolean = False
+                            Dim isUTF8 As Boolean = False
 
-                        If (&H81 <= firstbyte And firstbyte <= &HC5) Then
-                            If ((&H41 <= secondbyte And secondbyte <= &H5A) _
-                            Or (&H61 <= secondbyte And secondbyte <= &H7A) _
-                            Or (&H81 <= secondbyte And secondbyte <= &HFE)) Then
+                            If (&H81 <= firstbyte And firstbyte <= &HC5) Then
+                                If ((&H41 <= secondbyte And secondbyte <= &H5A) _
+                                Or (&H61 <= secondbyte And secondbyte <= &H7A) _
+                                Or (&H81 <= secondbyte And secondbyte <= &HFE)) Then
+                                    isCP949 = True
+                                End If
+                            Else If firstbyte = &HC6 Then
+                                If ((&H41 <= secondbyte And secondbyte <= &H52) _
+                                Or (&HA1 <= secondbyte And secondbyte <= &HFE)) Then
+                                    isCP949 = True
+                                End If
+                            Else If ((&HA1 <= firstbyte And firstbyte <= &HFE) _
+                            And (&HA1 <= secondbyte And secondbyte <= &HFE)) Then
                                 isCP949 = True
                             End If
-                        Else If firstbyte = &HC6 Then
-                            If ((&H41 <= secondbyte And secondbyte <= &H52) _
-                            Or (&HA1 <= secondbyte And secondbyte <= &HFE)) Then
-                                isCP949 = True
+
+                            If isCP949 = True Then
+                                firstbyte = strbinary.ReadByte()
+                                Continue While
                             End If
-                        Else If ((&HA1 <= firstbyte And firstbyte <= &HFE) _
-                        And (&HA1 <= secondbyte And secondbyte <= &HFE)) Then
-                            isCP949 = True
-                        End If
 
-                        If isCP949 = True Then
-                            firstbyte = strbinary.ReadByte()
-                            Continue While
-                        End If
-
-                        If (&H80 <= secondbyte And secondbyte <= &HBF) Then
-                            If (&HC0 <= firstbyte And firstbyte <= &HDF) Then
-                                isUTF8 = True
-                            Else If &HE0 <= firstbyte Then
-                                Dim thirdbyte As Byte = strbinary.ReadByte()
-                                If (&H80 <= thirdbyte And thirdbyte <= &HBF) Then
-                                    If firstbyte <= &HEF Then
-                                        isUTF8 = True
-                                    Else
-                                        Dim fourthbyte As Byte = strbinary.ReadByte()
-                                        If (&H80 <= fourthbyte And fourthbyte <= &HBF) Then
-                                            If firstbyte <= &HF7 Then
-                                                isUTF8 = True
-                                            Else
-                                                Dim fifthbyte As Byte = strbinary.ReadByte()
-                                                If (&H80 <= fifthbyte And fifthbyte <= &HBF) Then
-                                                    If firstbyte <= &HFB Then
-                                                        isUTF8 = True
-                                                    Else
-                                                        Dim sixthbyte As Byte = strbinary.ReadByte()
-                                                        If (&H80 <= sixthbyte And sixthbyte <= &HBF) And firstbyte <= &HFD Then
+                            If (&H80 <= secondbyte And secondbyte <= &HBF) Then
+                                If (&HC0 <= firstbyte And firstbyte <= &HDF) Then
+                                    isUTF8 = True
+                                Else If &HE0 <= firstbyte Then
+                                    Dim thirdbyte As Byte = strbinary.ReadByte()
+                                    If (&H80 <= thirdbyte And thirdbyte <= &HBF) Then
+                                        If firstbyte <= &HEF Then
+                                            isUTF8 = True
+                                        Else
+                                            Dim fourthbyte As Byte = strbinary.ReadByte()
+                                            If (&H80 <= fourthbyte And fourthbyte <= &HBF) Then
+                                                If firstbyte <= &HF7 Then
+                                                    isUTF8 = True
+                                                Else
+                                                    Dim fifthbyte As Byte = strbinary.ReadByte()
+                                                    If (&H80 <= fifthbyte And fifthbyte <= &HBF) Then
+                                                        If firstbyte <= &HFB Then
                                                             isUTF8 = True
+                                                        Else
+                                                            Dim sixthbyte As Byte = strbinary.ReadByte()
+                                                            If (&H80 <= sixthbyte And sixthbyte <= &HBF) And firstbyte <= &HFD Then
+                                                                isUTF8 = True
+                                                            End If
                                                         End If
                                                     End If
                                                 End If
@@ -670,13 +675,15 @@ Namespace ProjectSet
                                     End If
                                 End If
                             End If
-                        End If
 
-                        If isUTF8 = True Then
-                            utf8count += 1
-                        End If
+                            If isUTF8 = True Then
+                                utf8count += 1
+                            End If
+                            Continue For
+                        End While
+                    Catch ex As EndOfStreamException
                         Continue For
-                    End While
+                    End Try
                 Next
 
                 If utf8count <> 0 Then
@@ -685,7 +692,12 @@ Namespace ProjectSet
                 Dim strstream As BinaryReader = New BinaryReader(strmem, strencoding)
 
                 For i = 0 To size - 1 '문자열 갯수
-                    strmem.Position = stroffsets(i)
+                    Try
+                        strmem.Position = stroffsets(i)
+                    Catch ex As ArgumentOutOfRangeException
+                        CHKSTRING.Add("Null")
+                        Continue For
+                    End Try
 
                     Dim charcount As Integer = 0
                     Dim tempstring As String = ""
