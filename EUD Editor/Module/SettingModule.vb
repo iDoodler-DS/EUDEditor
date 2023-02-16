@@ -2304,7 +2304,9 @@ Namespace ProjectSet
             _stringbdl.Append("dataDumper_iscript_f : " & dataDumper_iscript_f & vbCrLf)
 
             _stringbdl.Append("extraedssetting : " & extraedssetting & vbCrLf)
-            _stringbdl.Append("extramainsettings : " & extramainsettings & vbCrLf)
+            If String.IsNullOrWhiteSpace(extramainsettings) = False Then
+                _stringbdl.Append("extramainsettings : " & extramainsettings & vbCrLf)
+            End If
 
             _stringbdl.Append("E_PluginSET" & vbCrLf)
 
