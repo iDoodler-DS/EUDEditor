@@ -1024,7 +1024,7 @@
       "English",
       "Modify $Unit$ Kills: $Modifier$ $Number$ for $PlayerX$"
     ],
-    "CodeText": "SetMemoryEPD(EPD(0x5878A4) + $PlayerX$ + ($Unit$) * 12, $Modifier$, $Number$)",
+    "CodeText": "SetKills($PlayerX$, $Modifier$, $Number$, $Unit$)",
     "ToolTip": "None",
     "ValuesDef": [
       "PlayerX",
