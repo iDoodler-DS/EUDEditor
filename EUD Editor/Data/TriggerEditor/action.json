@@ -988,7 +988,7 @@
     "Name": "SetDeathsX",
     "Texts": [
       "Korean",
-      "$Player$의 $Unit$가 죽은 수를 $Number$만큼 $Modifier$합니다. 비트마스크: $Bitmask",
+      "$Player$의 $Unit$가 죽은 수를 $Number$만큼 $Modifier$합니다. 비트마스크: $Bitmask$",
       "English",
       "Modify death counts for $Player$: $Modifier$ $Number$ for $Unit$ with $Bitmask$."
     ],
