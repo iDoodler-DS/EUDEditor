@@ -2123,11 +2123,10 @@ Namespace ProjectSet
 
 
             _stringbdl.Append("S_TileSET" & vbCrLf)
-            If (ProjectTileUseFile Is Nothing) OrElse (Not ProjectTileUseFile) Then
-                _stringbdl.Append("ProjectTileUseFile : " & False & vbCrLf)
+            _stringbdl.Append("ProjectTileUseFile : " & ProjectTileUseFile & vbCrLf)
+            If ProjectTileSetFileName Is Nothing Then
                 _stringbdl.Append("ProjectTileSetFileName : " & vbCrLf)
             Else
-                _stringbdl.Append("ProjectTileUseFile : " & ProjectTileUseFile & vbCrLf)
                 _stringbdl.Append("ProjectTileSetFileName : " & ProjectTileSetFileName & vbCrLf)
             End If
             _stringbdl.Append("ProjectTIleMSetCount : " & ProjectTIleMSet.Count & vbCrLf)
