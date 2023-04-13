@@ -1028,7 +1028,7 @@ Namespace eudplib
             If isedd = True Then
                 filename = basefolder & "\eudplibdata\EUDEditor.edd"
                 filestream = New FileStream(filename, FileMode.Create)
-                streamwriter = New StreamWriter(filestream, Encoding.GetEncoding("ks_c_5601-1987"))
+                streamwriter = New StreamWriter(filestream) ', Encoding.GetEncoding("ks_c_5601-1987"))
 
                 streamwriter.Write(Getedstext)
                 streamwriter.Close()
