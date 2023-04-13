@@ -2123,8 +2123,13 @@ Namespace ProjectSet
 
 
             _stringbdl.Append("S_TileSET" & vbCrLf)
-            _stringbdl.Append("ProjectTileUseFile : " & ProjectTileUseFile & vbCrLf)
-            _stringbdl.Append("ProjectTileSetFileName : " & ProjectTileSetFileName & vbCrLf)
+            If ProjectTileUseFile Is Nothing OrElse ProjectTileUseFile Is False Then
+                _stringbdl.Append("ProjectTileUseFile : " & False & vbCrLf)
+                _stringbdl.Append("ProjectTileSetFileName : " & vbCrLf)
+            Else
+                _stringbdl.Append("ProjectTileUseFile : " & ProjectTileUseFile & vbCrLf)
+                _stringbdl.Append("ProjectTileSetFileName : " & ProjectTileSetFileName & vbCrLf)
+            End If
             _stringbdl.Append("ProjectTIleMSetCount : " & ProjectTIleMSet.Count & vbCrLf)
 
             Dim ProjectTIleMSetArray As String = ""
