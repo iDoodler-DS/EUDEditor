@@ -1,3 +1,10 @@
+[ Patch notes 0.18.1.7 ]
+
+- SetKills action now uses eudplib built-in SetKills action
+- Fixed encoding of .edd file from CP949 to UTF-8
+- Fixed error when saving. System.ArgumentNullException: Value cannot be null. Parameter name: source
+- Fixed typos in SetDeathsX action in Korean
+
 [ Patch notes 0.18.1.6 ]
 
 - Added [main] extra option in plugin (contributed by @Dr-zzt)
