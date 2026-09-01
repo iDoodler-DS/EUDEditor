@@ -588,6 +588,7 @@
     <Compile Include="Module\MapModule..vb" />
     <Compile Include="Module\mod_fn_HASH.vb" />
     <Compile Include="Module\MPQModule.vb" />
+    <Compile Include="Module\NativeThemeModule.vb" />
     <Compile Include="Module\NPAModule.vb" />
     <Compile Include="Module\parsingModule.vb" />
     <Compile Include="Module\ProgramData.vb" />

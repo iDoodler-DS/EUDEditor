@@ -190,6 +190,14 @@ Public Class ThemeSetForm
         Dim panelBg As Color = ProgramSet.colorPanelBackground
         Dim dark As Boolean = IsDarkTheme
 
+        If TypeOf c Is Form Then
+            SetProcessDarkMode(dark)
+            SetTitleBarColor(c, dark, bg, fg)
+        End If
+        If Not (TypeOf c Is ComboBox) Then
+            SetWindowDark(c, dark)
+        End If
+
         If TypeOf c Is Button Then
             Dim b As Button = c
             b.ForeColor = fg
@@ -257,27 +265,62 @@ Public Class ThemeSetForm
             Else
                 cb.FlatStyle = FlatStyle.Standard
             End If
+            SetComboBoxDark(cb, dark)
 
         ElseIf TypeOf c Is TextBox OrElse TypeOf c Is NumericUpDown OrElse TypeOf c Is DomainUpDown OrElse
                TypeOf c Is ListBox OrElse TypeOf c Is CheckedListBox OrElse TypeOf c Is RichTextBox OrElse
                TypeOf c Is ListView OrElse TypeOf c Is TreeView Then
             c.BackColor = fieldBg
             c.ForeColor = fieldFg
+            SetFieldBorder(c, dark)
+
             If TypeOf c Is TreeView Then
                 Dim tv As TreeView = c
                 tv.LineColor = fg
+
+            ElseIf TypeOf c Is ListView Then
+                Dim lv As ListView = c
+                SetListViewHeaderDark(lv, dark)
+                RemoveHandler lv.DrawColumnHeader, AddressOf ListView_DrawColumnHeader
+                RemoveHandler lv.DrawItem, AddressOf ListView_DrawItem
+                RemoveHandler lv.DrawSubItem, AddressOf ListView_DrawSubItem
+                If dark Then
+                    AddHandler lv.DrawColumnHeader, AddressOf ListView_DrawColumnHeader
+                    AddHandler lv.DrawItem, AddressOf ListView_DrawItem
+                    AddHandler lv.DrawSubItem, AddressOf ListView_DrawSubItem
+                End If
+                lv.OwnerDraw = dark
+
+            ElseIf TypeOf c Is UpDownBase Then
+                'Controls(0) is the internal UpDownButtons control that draws the arrows.
+                For Each child As Control In c.Controls
+                    If Not (TypeOf child Is TextBox) Then
+                        RemoveHandler child.Paint, AddressOf UpDownButtons_Paint
+                        If dark Then AddHandler child.Paint, AddressOf UpDownButtons_Paint
+                        child.Invalidate()
+                    End If
+                Next
+            End If
+
+        ElseIf TypeOf c Is CheckBox OrElse TypeOf c Is RadioButton Then
+            'Flat style draws the box/circle with ForeColor so it works on dark backgrounds.
+            c.BackColor = bg
+            c.ForeColor = fg
+            Dim bb As ButtonBase = c
+            bb.FlatStyle = If(dark, FlatStyle.Flat, FlatStyle.Standard)
+            If TypeOf c Is CheckBox Then
+                Dim chk As CheckBox = c
+                chk.FlatAppearance.CheckedBackColor = If(dark, fieldBg, Color.Empty)
             End If
 
         ElseIf TypeOf c Is TabControl Then
             Dim tc As TabControl = c
             c.BackColor = bg
             c.ForeColor = fg
-            RemoveHandler tc.DrawItem, AddressOf TabControl_DrawItem
             If dark Then
-                tc.DrawMode = TabDrawMode.OwnerDrawFixed
-                AddHandler tc.DrawItem, AddressOf TabControl_DrawItem
+                TabControlPainter.Attach(tc)
             Else
-                tc.DrawMode = TabDrawMode.Normal
+                TabControlPainter.Detach(tc)
             End If
 
         ElseIf TypeOf c Is TabPage Then
@@ -335,17 +378,13 @@ Public Class ThemeSetForm
         Next
     End Sub
 
-    Private Sub TabControl_DrawItem(sender As Object, e As DrawItemEventArgs)
-        Dim tc As TabControl = sender
-        Dim page As TabPage = tc.TabPages(e.Index)
-        Dim selected As Boolean = (e.Index = tc.SelectedIndex)
-        Dim back As Color = If(selected, ProgramSet.colorFieldBackground, ProgramSet.colorBackground)
-
-        Using brush As New SolidBrush(back)
-            e.Graphics.FillRectangle(brush, e.Bounds)
-        End Using
-        TextRenderer.DrawText(e.Graphics, page.Text, tc.Font, e.Bounds, ProgramSet.colorLabelText,
-                              TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter Or TextFormatFlags.SingleLine)
+    Private Sub SetFieldBorder(c As Control, dark As Boolean)
+        'Fixed3D draws a light bevel under visual styles; use a single line in dark mode.
+        Dim prop = c.GetType().GetProperty("BorderStyle")
+        If prop Is Nothing OrElse prop.PropertyType IsNot GetType(BorderStyle) Then Return
+        Dim current As BorderStyle = prop.GetValue(c)
+        If current = BorderStyle.None Then Return
+        prop.SetValue(c, If(dark, BorderStyle.FixedSingle, BorderStyle.Fixed3D))
     End Sub
 
     ''' <summary>
