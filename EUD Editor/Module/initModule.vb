@@ -137,24 +137,34 @@ Module initModule
 
 
         If My.Settings.DatEditColor1 = Nothing Then
-            ProgramSet.colorBackground = ThemeSetForm.darkModeColorBackground
-            ProgramSet.colorLabelText = ThemeSetForm.darkModeColorLabelText
-            ProgramSet.colorFieldBackground = ThemeSetForm.darkModeColorFieldBackground
-            ProgramSet.colorFieldText = ThemeSetForm.darkModeColorFieldText
-            ProgramSet.colorCodeBackground = ThemeSetForm.darkModeColorCodeBackground
-            ProgramSet.colorPanelBackground = ThemeSetForm.darkModeColorPanelBackground
-            ProgramSet.colorChangedBackground = ThemeSetForm.darkModeColorChangedBackground
-            ProgramSet.colorCheckedBackground = ThemeSetForm.darkModeColorCheckedBackground
+            ThemeSetForm.ApplyDarkMode()
         Else
             ProgramSet.colorFieldText = My.Settings.DatEditColor1
             ProgramSet.colorFieldBackground = My.Settings.DatEditColor2
             ProgramSet.colorChangedBackground = My.Settings.DatEditColor3
             ProgramSet.colorCheckedBackground = My.Settings.DatEditColor4
-            ProgramSet.colorChangedBackground = My.Settings.DatEditColor5
-            ProgramSet.colorCheckedBackground = My.Settings.DatEditColor6
+            ProgramSet.colorBackground = My.Settings.DatEditColor5
+            ProgramSet.colorLabelText = My.Settings.DatEditColor6
             ProgramSet.colorCodeBackground = My.Settings.DatEditColor7
             ProgramSet.colorPanelBackground = My.Settings.DatEditColor8
 
+            'Settings written by older builds only stored the four field colours (or stored
+            'empty form colours because of a load/save mismatch). Fill in the missing form
+            'colours so the theme is consistent.
+            If ProgramSet.colorBackground = Nothing Or ProgramSet.colorLabelText = Nothing Or
+               ProgramSet.colorCodeBackground = Nothing Or ProgramSet.colorPanelBackground = Nothing Then
+                If ProgramSet.colorFieldBackground = ThemeSetForm.darkModeColorFieldBackground Then
+                    ProgramSet.colorBackground = ThemeSetForm.darkModeColorBackground
+                    ProgramSet.colorLabelText = ThemeSetForm.darkModeColorLabelText
+                    ProgramSet.colorCodeBackground = ThemeSetForm.darkModeColorCodeBackground
+                    ProgramSet.colorPanelBackground = ThemeSetForm.darkModeColorPanelBackground
+                Else
+                    ProgramSet.colorBackground = ThemeSetForm.lightModeColorBackground
+                    ProgramSet.colorLabelText = ThemeSetForm.lightModeColorLabelText
+                    ProgramSet.colorCodeBackground = ThemeSetForm.lightModeColorCodeBackground
+                    ProgramSet.colorPanelBackground = ThemeSetForm.lightModeColorPanelBackground
+                End If
+            End If
         End If
 
 
