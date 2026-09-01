@@ -291,3 +291,4 @@ Updater/build
 
 # Runtime error log written next to the executable
 ErrorLog.txt
+Recent.txt
