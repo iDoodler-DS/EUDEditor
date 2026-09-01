@@ -421,8 +421,12 @@ Public Class Main
             If ProjectSet.Close() = True Then
                 ProjectSet.Load(OpenFileDialog1.FileName)
                 CheckMapFile()
-                Dim fileinfo As New FileInfo(ProjectSet.InputMap)
-                LastData = fileinfo.LastWriteTime
+                'Load bails out (with a message) on an invalid or incompatible file,
+                'leaving no input map; only stamp the map time when we really have one.
+                If ProjectSet.isload AndAlso File.Exists(ProjectSet.InputMap) Then
+                    Dim fileinfo As New FileInfo(ProjectSet.InputMap)
+                    LastData = fileinfo.LastWriteTime
+                End If
             End If
         End If
 

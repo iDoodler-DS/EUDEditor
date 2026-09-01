@@ -2129,6 +2129,11 @@ Namespace ProjectSet
             Else
                 _stringbdl.Append("ProjectTileSetFileName : " & ProjectTileSetFileName & vbCrLf)
             End If
+            'Tile arrays are only allocated once tile data has been read; a project
+            'without it (no CHK data, or a failed load) must still save.
+            If ProjectTIleMSet Is Nothing Then ReDim ProjectTIleMSet(-1)
+            If ProjectMTXMDATA Is Nothing Then ReDim ProjectMTXMDATA(-1)
+
             _stringbdl.Append("ProjectTIleMSetCount : " & ProjectTIleMSet.Count & vbCrLf)
 
             Dim ProjectTIleMSetArray As String = ""
