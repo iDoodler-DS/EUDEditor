@@ -19,7 +19,7 @@ Namespace WinAPI
             Memstream = New MemoryStream(bytes)
             binaryreader = New BinaryReader(Memstream)
             If bytes(0) = 0 Then
-                MsgBox("실패")
+                MsgBox(Lan.GetMsgText("readFail"))
             End If
             'binaryreader.ReadUInt16)
 

@@ -5,7 +5,7 @@ Public Class MPQForm
         Lan.SetLanguage(Me)
 
         If MPQlib.ReadListfile(ListBox1) = False Then
-            MsgBox("정상적인 맵 파일이 아닙니다." & vbCrLf & "1. 프로텍트가 걸린 맵." & vbCrLf & "2. 정상적이지 않은 맵." & vbCrLf & "3. 현재 실행 중인 맵.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+            MsgBox(Lan.GetMsgText("invalidMap"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             Me.Close()
         End If
         ThemeSetForm.SetControlColor(Me)
@@ -43,7 +43,7 @@ Public Class MPQForm
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         Dim inputtext As String
-        inputtext = InputBox("변경할 이름을 입력하세요.", "EUD Editor", ListBox1.SelectedItem)
+        inputtext = InputBox(Lan.GetMsgText("RenamePrompt"), "EUD Editor", ListBox1.SelectedItem)
         If inputtext <> "" Then
             Rename(ListBox1.SelectedItem, inputtext)
             ListBox1.Items.RemoveAt(ListBox1.SelectedIndex)
@@ -91,7 +91,7 @@ Public Class MPQForm
                 End If
             Else
                 Dim inputtext As String
-                inputtext = InputBox("이름을 입력하세요.", "EUD Editor", ListBox1.SelectedItem)
+                inputtext = InputBox(Lan.GetMsgText("NamePrompt"), "EUD Editor", ListBox1.SelectedItem)
                 If inputtext <> "" Then
 
 

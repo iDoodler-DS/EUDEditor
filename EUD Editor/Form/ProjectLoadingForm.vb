@@ -7,6 +7,7 @@ Public Class ProjectLoadingForm
 
     Protected Overrides Sub OnLoad(ByVal e As System.EventArgs)
         MyBase.OnLoad(e)
+        Lan.SetLanguage(Me)
         _worker = New BackgroundWorker()
         AddHandler _worker.DoWork, AddressOf WorkerDoWork
         AddHandler _worker.RunWorkerCompleted, AddressOf WorkerCompleted
@@ -36,7 +37,7 @@ Public Class ProjectLoadingForm
 
         '  ProjectLoadingForm.texts = "DatEdit 데이터 로딩중..."
         '데이터 로딩 시작
-        Label1.Text = "DatEdit 데이터 읽는 중"
+        Label1.Text = Lan.GetText(Me.Name, "LoadingDatEdit")
         For k = 0 To DatEditDATA.Count - 1
             For i = 0 To DatEditDATA(k).projectdata.Count - 1
                 For j = 0 To DatEditDATA(k).projectdata(i).Count - 1
@@ -73,7 +74,7 @@ Public Class ProjectLoadingForm
             Next
         Next
 
-        Label1.Text = "FireGraft 데이터 읽는 중"
+        Label1.Text = Lan.GetText(Me.Name, "LoadingFireGraft")
         For k = 0 To ProjectUnitStatusFn1.Count - 1
             Dim _offsetNum As Long = Val("&H" & ReadOffset("FG_Debug")) + 12 * k
             MemStream.Position = _offsetNum - &H50C000

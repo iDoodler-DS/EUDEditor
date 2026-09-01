@@ -1,0 +1,13 @@
+﻿{
+    "Button5": "OK",
+    "TabPage1": "Simple View",
+    "Label6": "Position",
+    "Label5": "Resources",
+    "Label4": "Shield",
+    "Label3": "Energy",
+    "Label2": "HP",
+    "Label1": "Owner",
+    "TabPage2": "View All",
+    "Column2": "Name",
+    "Column3": "Value"
+}

@@ -306,7 +306,7 @@ retry:
 
         If dialog = DialogResult.OK Then
             If ProjectSet.OutputMap = OpenFileDialog1.FileName Then
-                MsgBox("맵이름은 같을 수 없습니다." & vbCrLf & "LoadMap :" & OpenFileDialog1.FileName.Split("\").Last & vbCrLf & "SaveMap :" & ProjectSet.OutputMap.Split("\").Last, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                MsgBox(Lan.GetMsgText("NotSamename") & vbCrLf & "LoadMap :" & OpenFileDialog1.FileName.Split("\").Last & vbCrLf & "SaveMap :" & ProjectSet.OutputMap.Split("\").Last, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 GoTo retry
             Else
                 ProjectSet.InputMap = OpenFileDialog1.FileName

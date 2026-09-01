@@ -62,7 +62,7 @@
             If ListBox1.SelectedIndex <> -1 Then
                 For i = 0 To GRPEditorDATA.Count - 1
                     If GRPEditorDATA(i).SafeFilename = GrpD.SafeFilename Then
-                        MsgBox("이미 같은 파일이 들어가 있습니다!", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                        MsgBox(Lan.GetMsgText("DuplicateFile"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
 
                         Exit Sub
                     End If
@@ -98,7 +98,7 @@
             If ListBox1.SelectedIndex <> -1 Then
                 For i = 0 To GRPEditorDATA.Count - 1
                     If GRPEditorDATA(i).SafeFilename = GrpD.SafeFilename Then
-                        MsgBox("이미 같은 파일이 들어가 있습니다!", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                        MsgBox(Lan.GetMsgText("DuplicateFile"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
 
                         Exit Sub
                     End If

@@ -4,5 +4,7 @@
     "Label3": "Pointer",
     "Label2": "Data Type",
     "Button5": "Ok",
-    "Button6": "Cancel"
+    "Button6": "Cancel",
+    "ListBox2.Items": "Default\\copy\\unpatchable",
+    "ManualInput": "Manual input"
 }

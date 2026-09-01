@@ -95,7 +95,7 @@ Public Class dataDumperAddForm
         Dim text() As String = streamreader.ReadToEnd.Split(vbCrLf)
 
         ListBox1.Items.Clear()
-        ListBox1.Items.Add("직접 입력")
+        ListBox1.Items.Add(Lan.GetText(Me.Name, "ManualInput"))
 
         For i = 0 To text.Count - 1
             If text(i) <> "" Then

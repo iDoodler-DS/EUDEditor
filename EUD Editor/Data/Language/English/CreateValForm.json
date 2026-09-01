@@ -5,5 +5,7 @@
     "Label2": "Value",
     "VariableTypeRadioButton": "Variable",
     "PlayerVariableTypeRadioButton": "Player Variable",
-    "ArrayVariableTypeRadioButton": "Array Variable"
+    "ArrayVariableTypeRadioButton": "Array Variable",
+    "ArgType": "Argument Type",
+    "InitValue": "Initial Value"
 }

@@ -1,0 +1,13 @@
+﻿{
+    "Label1": "Player",
+    "Column1": "Variable Name",
+    "Column2": "Value",
+    "BtnDeath": "Deaths",
+    "BtnLoc": "Location",
+    "Button1": "Variable",
+    "PlayerNamePrompt": "Enter the player name.",
+    "Deaths": "Deaths",
+    "Variable": "Variable",
+    "Location": "Location",
+    "Edit": "Edit"
+}

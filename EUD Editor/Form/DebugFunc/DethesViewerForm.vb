@@ -277,13 +277,13 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
             SplitContainer1.Panel1MinSize = 93
             SplitContainer1.IsSplitterFixed = False
             SplitContainer1.SplitterDistance = LastSize '244
-            Button5.Text = "접기"
+            Button5.Text = Lan.GetText(Me.Name, "Fold")
         Else
             LastSize = SplitContainer1.SplitterDistance
             SplitContainer1.Panel1MinSize = 24
             SplitContainer1.IsSplitterFixed = True
             SplitContainer1.SplitterDistance = 24
-            Button5.Text = "펼치기"
+            Button5.Text = Lan.GetText(Me.Name, "UnFold")
         End If
     End Sub
     Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.KeyUp
@@ -401,6 +401,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
     End Sub
 
     Private Sub DethesViewerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
         LoadData()
         LoadList()
         PaletDraw()

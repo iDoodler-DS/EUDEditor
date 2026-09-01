@@ -6,6 +6,7 @@
     Dim logoutSize As New Size(186, 143)
 
     Private Sub SCDBLoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
         TextBox1.Text = SCDBMaker
         TextBox2.Text = SCDBMapName
 

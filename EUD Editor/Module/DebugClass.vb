@@ -906,7 +906,7 @@ Public Class CGameData
         Next
 
         If ErrorCount <> 0 Then
-            MsgBox(ErrorCount & "개의 잘못된 지형배치가 발견 되었습니다.", MsgBoxStyle.Exclamation, ProgramSet.ErrorFormMessage)
+            MsgBox(Lan.GetMsgText("terrainErrors").Replace("$1$", ErrorCount), MsgBoxStyle.Exclamation, ProgramSet.ErrorFormMessage)
         End If
 
 

@@ -5,7 +5,7 @@ Imports System.IO
 
 Public Class TriggerViewerForm
     Dim savestatus As Boolean = True
-    Dim formname As String = "트리거 뷰어"
+    Dim formname As String = Lan.GetText("TriggerViewerForm", "FormTitle")
 
 
     Dim viewcomment As Boolean = True
@@ -20,6 +20,8 @@ Public Class TriggerViewerForm
 
     Friend WithEvents FCTB As New FastColoredTextBox
     Private Sub TriggerViewerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
+        Lan.SetMenu(Me, MenuStrip1)
         MsgBox(Lan.GetText("Msgbox", "NotArrow"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
 
 
@@ -57,9 +59,9 @@ Public Class TriggerViewerForm
 
     'Public DafacultStyle As Style = New TextStyle(Brushes.Black, Nothing, FontStyle.Italic)
     Private Sub updatame_text()
-        Me.Text = Me.Text.Replace(" (수정됨)", "")
+        Me.Text = Me.Text.Replace(Lan.GetText(Me.Name, "Modified"), "")
         If savestatus = False Then
-            Me.Text = Me.Text & " (수정됨)"
+            Me.Text = Me.Text & Lan.GetText(Me.Name, "Modified")
         End If
     End Sub
 
@@ -582,7 +584,7 @@ Public Class TriggerViewerForm
 
 
 
-        Me.Text = formname & "    액션 수 : " & LasttriggerCount
+        Me.Text = formname & Lan.GetText(Me.Name, "ActionCount") & LasttriggerCount
 
         Return stringb.ToString
     End Function

@@ -31,7 +31,8 @@ Public Class SCDBDataCreater
 
 
     Private Sub SCDBDataCreater_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TextBox1.Text = "플레이어 이름을 입력하세요."
+        Lan.SetLanguage(Me)
+        TextBox1.Text = Lan.GetText(Me.Name, "PlayerNamePrompt")
 
 
         SCDBDeathData.Clear()
@@ -54,7 +55,7 @@ Public Class SCDBDataCreater
         DataGridView1.Rows.Clear()
         Select Case tpage
             Case TPage.Deaths
-                DataGridView1.Columns(0).HeaderText = "데스값"
+                DataGridView1.Columns(0).HeaderText = Lan.GetText(Me.Name, "Deaths")
                 DataGridView1.Columns.RemoveAt(1)
 
                 Dim temp As DataGridViewTextBoxColumn = New DataGridViewTextBoxColumn
@@ -66,7 +67,7 @@ Public Class SCDBDataCreater
                     DataGridView1.Rows.Add(SCDBForm.units(SCDBDeath(i)), SCDBDeathData(i))
                 Next
             Case TPage.Value
-                DataGridView1.Columns(0).HeaderText = "변수"
+                DataGridView1.Columns(0).HeaderText = Lan.GetText(Me.Name, "Variable")
                 DataGridView1.Columns.RemoveAt(1)
 
                 Dim temp As DataGridViewTextBoxColumn = New DataGridViewTextBoxColumn
@@ -78,7 +79,7 @@ Public Class SCDBDataCreater
                     DataGridView1.Rows.Add(SCDBVariable(i), SCDBVariableData(i))
                 Next
             Case TPage.Location
-                DataGridView1.Columns(0).HeaderText = "로케이션"
+                DataGridView1.Columns(0).HeaderText = Lan.GetText(Me.Name, "Location")
                 'DataGridView1.Columns(1).ValueType = GetType(DataGridViewButtonColumn)
                 DataGridView1.Columns.RemoveAt(1)
 
@@ -88,7 +89,7 @@ Public Class SCDBDataCreater
 
                 DataGridView1.Columns.Add(temp)
                 For i = 0 To SCDBLocLoad.Count - 1
-                    DataGridView1.Rows.Add(SCDBForm.locs(SCDBLocLoad(i)), "편집")
+                    DataGridView1.Rows.Add(SCDBForm.locs(SCDBLocLoad(i)), Lan.GetText(Me.Name, "Edit"))
                 Next
         End Select
 
@@ -351,7 +352,7 @@ Public Class SCDBDataCreater
                 If Mid(str, 1, Filename.Length) = Filename Then
                     str = str.Replace(Filename, "")
                 Else
-                    MsgBox("잘못된 플레이어 혹은 잘못된 파일입니다.")
+                    MsgBox(Lan.GetMsgText("invalidPlayerOrFile"))
                     Exit Sub
                 End If
 
@@ -459,7 +460,7 @@ Public Class SCDBDataCreater
 
                 SetDataGridView(Page)
             Catch ex As Exception
-                MsgBox("잘못된 플레이어 혹은 잘못된 파일입니다.")
+                MsgBox(Lan.GetMsgText("invalidPlayerOrFile"))
             End Try
         End If
 

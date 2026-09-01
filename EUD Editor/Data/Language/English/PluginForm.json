@@ -35,5 +35,7 @@
     "type2": "Use(Default)",
     "type3": "Use(copy)",
     "type4": "Use(unpatcher)",
-    "Label7":  "Additional [main] options (advanced)"
+    "Label7":  "Additional [main] options (advanced)",
+    "TblFilter": "tbl text file|*.tbl",
+    "IscriptFilter": "Iscript|*.bin"
 }

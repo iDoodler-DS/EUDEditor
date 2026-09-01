@@ -1,0 +1,9 @@
+﻿{
+    "Button1": "Set",
+    "Button2": "Set",
+    "Button3": "Set",
+    "Button4": "Set",
+    "Button5": "OK",
+    "Button6": "Cancel",
+    "MpqFilter": "MPQ file|$1$|All MPQ files|*.mpq"
+}

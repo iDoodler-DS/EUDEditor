@@ -1,0 +1,15 @@
+﻿{
+    "Label1": "Game Speed",
+    "Label2": "Latency",
+    "Label3": "Map File",
+    "Label4": "Map Title",
+    "CheckBox1": "Multiplayer Mode",
+    "CheckBox2": "Game Paused",
+    "CheckBox3": "Allow Commands",
+    "CheckBox4": "Run Triggers",
+    "Label5": "Elapsed Time",
+    "CheckBox5": "Run Game Timer",
+    "Label6": "Game Timer",
+    "Label7": "Room Title",
+    "ComboBox2.Items": "Default speed\\X1\\X2\\X3\\X4\\X5"
+}

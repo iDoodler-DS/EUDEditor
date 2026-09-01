@@ -1577,7 +1577,7 @@ Namespace ProjectSet
 
 
 
-                    ProjectLoadingForm.Text = """" & MapName & """에서 메모리 읽어오는 중..."
+                    ProjectLoadingForm.Text = Lan.GetMsgText("readingMemory").Replace("$1$", MapName)
 
 
                     ProjectLoadingForm.ShowDialog()
@@ -1807,7 +1807,7 @@ Namespace ProjectSet
 
                     filestream.Close()
 
-                    ProjectLoadingForm.Text = """" & MapName & """에서 메모리 읽어오는 중..."
+                    ProjectLoadingForm.Text = Lan.GetMsgText("readingMemory").Replace("$1$", MapName)
 
 
                     ProjectLoadingForm.ShowDialog()

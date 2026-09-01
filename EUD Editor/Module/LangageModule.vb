@@ -115,12 +115,59 @@ Namespace Lan
 
 
 
+        Private Function label(key As String) As String
+            If key <> "" AndAlso labels.ContainsKey(key) Then
+                Return labels(key)
+            End If
+            Return ""
+        End Function
+
+        Private Sub settoolstripitems(items As ToolStripItemCollection)
+            For Each item As ToolStripItem In items
+                If label(item.Name) <> "" Then
+                    item.Text = label(item.Name)
+                End If
+                If TypeOf item Is ToolStripDropDownItem Then
+                    settoolstripitems(DirectCast(item, ToolStripDropDownItem).DropDownItems)
+                End If
+            Next
+        End Sub
+
         Private Sub setcontrols(controls As Control)
 
-            If labels.Keys.Contains(controls.Name) Then
-                If labels(controls.Name) <> "" Then
-                    controls.Text = labels(controls.Name)
+            If label(controls.Name) <> "" Then
+                controls.Text = label(controls.Name)
+            End If
+
+            'List / drop-down items: "<Name>.Items": "first\second\third"
+            If TypeOf controls Is ComboBox OrElse TypeOf controls Is ListBox Then
+                Dim itemText As String = label(controls.Name & ".Items")
+                If itemText <> "" Then
+                    Dim items() As String = itemText.Split("\")
+                    If TypeOf controls Is ComboBox Then
+                        Dim cb As ComboBox = controls
+                        Dim sel As Integer = cb.SelectedIndex
+                        cb.Items.Clear()
+                        cb.Items.AddRange(items)
+                        If sel >= 0 AndAlso sel < items.Length Then cb.SelectedIndex = sel
+                    Else
+                        Dim lb As ListBox = controls
+                        lb.Items.Clear()
+                        lb.Items.AddRange(items)
+                    End If
                 End If
+            End If
+
+            If TypeOf controls Is DataGridView Then
+                For Each col As DataGridViewColumn In DirectCast(controls, DataGridView).Columns
+                    If label(col.Name) <> "" Then col.HeaderText = label(col.Name)
+                Next
+            ElseIf TypeOf controls Is ListView Then
+                For Each col As ColumnHeader In DirectCast(controls, ListView).Columns
+                    If label(col.Name) <> "" Then col.Text = label(col.Name)
+                Next
+            ElseIf TypeOf controls Is ToolStrip Then
+                settoolstripitems(DirectCast(controls, ToolStrip).Items)
             End If
 
             controls.SuspendLayout()
@@ -146,6 +193,11 @@ Namespace Lan
 
             _streamreader.Close()
             _filestream.Close()
+
+            'Window title: "FormTitle"
+            If label("FormTitle") <> "" Then
+                forms.Text = label("FormTitle")
+            End If
 
             forms.SuspendLayout()
             For i = 0 To forms.Controls.Count - 1

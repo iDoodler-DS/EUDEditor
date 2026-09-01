@@ -132,7 +132,7 @@ Module parsingModule
     Public Function CheckGRPFile(grpname As String) As Boolean
         Dim checkgrp As New GRP
         If checkgrp.LoadGRP(grpname) = False Then
-            MsgBox("정상적인 GRP파일이 아닙니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+            MsgBox(Lan.GetMsgText("invalidGRP"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             Return False
         End If
         Return True
@@ -151,7 +151,7 @@ Module parsingModule
                 Try
                     returnvalue = reqOpcode(opcode - &HFF00)
                 Catch ex As Exception
-                    returnvalue = "해석할 수 없는 OPcode입니다."
+                    returnvalue = Lan.GetMsgText("unknownOpcode")
                 End Try
             End If
         Else
@@ -171,7 +171,7 @@ Module parsingModule
     Public Sub CheckMapFile()
         If ProjectSet.isload = True Then
             If CheckFileExist(ProjectSet.InputMap) Then
-                MsgBox("다음 맵은 존재하지 않습니다! 다시 설정해 주세요." & vbCrLf & ProjectSet.InputMap, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                MsgBox(Lan.GetMsgText("mapNotExist") & vbCrLf & ProjectSet.InputMap, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 While True
                     If SettingForm.SetInputMap() Then
                         Exit While
@@ -186,7 +186,7 @@ Module parsingModule
 
 
             If System.IO.Directory.Exists(filename) = False Then
-                MsgBox("다음 맵은 존재하지 않습니다! 다시 설정해 주세요." & vbCrLf & ProjectSet.OutputMap, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                MsgBox(Lan.GetMsgText("mapNotExist") & vbCrLf & ProjectSet.OutputMap, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 While True
                     If SettingForm.SetOutputMap() Then
                         Exit While
@@ -196,7 +196,7 @@ Module parsingModule
 
 
 
-            Dim str As String = "다음에 해당하는 데이터들이 존재하지 않습니다. 모두 사용안함으로 전환됩니다." & vbCrLf
+            Dim str As String = Lan.GetMsgText("dataNotExist") & vbCrLf
             Dim isNoexist As Boolean = False
 
             If CheckFileExist(ProjectTileSetFileName) And ProjectTileSetFileName <> "" Then
@@ -263,7 +263,7 @@ Module parsingModule
             End If
 
 
-            str = "개의 GRP들이 존재하지 않습니다. 모두 사용안함으로 전환됩니다." & vbCrLf
+            str = Lan.GetMsgText("grpNotExist") & vbCrLf
             isNoexist = False
 
             Dim grpcount As UInt32
@@ -295,8 +295,9 @@ Module parsingModule
             Next
 
             If isNoexist Then
+                str = str.Replace("$1$", grpcount)
                 If grpcount >= 11 Then
-                    str = grpcount & str & vbCrLf & "이하 " & grpcount - 11 & "개의 GRP"
+                    str = str & vbCrLf & Lan.GetMsgText("grpMore").Replace("$1$", grpcount - 11)
                 End If
                 MsgBox(str, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             End If

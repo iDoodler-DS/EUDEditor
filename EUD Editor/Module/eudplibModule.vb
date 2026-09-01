@@ -59,7 +59,7 @@ Namespace eudplib
 
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.Struct) = True Then
                 If ProjectSet.LoadFromCHK = False Then
-                    MsgBox("CHK데이터 읽어오기가 활성화 되어 있지 않아 TriggerEditor옵션이 해제됩니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                    MsgBox(Lan.GetMsgText("chkNotLoaded"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                     ProjectSet.UsedSetting(ProjectSet.Settingtype.Struct) = False
                     Main.buttonResetting()
                 Else
@@ -182,7 +182,7 @@ Namespace eudplib
                                 End If
                             Next
 
-                            returntext.AppendLine("마우스 : " & _values(Val(locs(0))))
+                            returntext.AppendLine(Lan.GetMsgText("Mouse") & _values(Val(locs(0))))
                         End If
                     End If
                 End If
@@ -498,7 +498,7 @@ Namespace eudplib
                     returntext.AppendLine("try:")
                     returntext.AppendLine("    InitialWireframe")
                     returntext.AppendLine("except NameError:")
-                    returntext.AppendLine("    raise EPError('euddraft 버전이 낮습니다! euddraft 0.9.8.6 이후 버전만 지원합니다.')")
+                    returntext.AppendLine("    raise EPError('" & Lan.GetMsgText("euddraftTooOld") & "')")
                     For i = 0 To wireframData.Count - 1
                         If (i <= tranwireData.Count - 1 And wireframData(i) <> i And wireframData(i) = tranwireData(i) And tranwireData(i) = grpwireData(i)) Then
                             returntext.AppendLine("InitialWireframe.wireframes(" & i & ", " & wireframData(i) & ")")
@@ -521,7 +521,7 @@ Namespace eudplib
 
             If ProjectSet.UsedSetting(ProjectSet.Settingtype.BinEditor) = True Then
                 If ProjectSet.PlayerRace = 255 Then
-                    MsgBox("플레이어의 종족이 올바르지 않습니다." & vbCrLf & "BinEidt 옵션이 해제됩니다." & vbCrLf & "(이는 심각한 에러는 아니지만 콘솔 변경이 적용되지 않습니다.)", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                    MsgBox(Lan.GetMsgText("invalidRace"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                     ProjectSet.UsedSetting(ProjectSet.Settingtype.BinEditor) = False
                     Main.buttonResetting()
                 Else
@@ -1038,7 +1038,7 @@ Namespace eudplib
             Try
 
             Catch ex As Exception
-                MsgBox("맵이 실행 중입니다!. 맵을 끄고 삽입하세요.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                MsgBox(Lan.GetMsgText("mapRunning"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 streamwriter.Close()
                 filestream.Close()
                 Exit Sub
@@ -1137,7 +1137,7 @@ Namespace eudplib
                 Try
                     process.Start() ' 여기서 프로그램이 실행됩니다.
                 Catch ex As System.ComponentModel.Win32Exception
-                    MsgBox("euddraft실행 파일이 누락되었습니다.! 다시 설정해 주세요.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                    MsgBox(Lan.GetMsgText("neeuddraft"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                     SettingForm.ShowDialog()
                     Exit Sub
                 End Try
@@ -1175,7 +1175,7 @@ Namespace eudplib
                 'Try
                 '    process.Start() ' 여기서 프로그램이 실행됩니다.
                 'Catch ex As System.ComponentModel.Win32Exception
-                '    MsgBox("euddraft실행 파일이 누락되었습니다.! 다시 설정해 주세요.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                '    MsgBox(Lan.GetMsgText("neeuddraft"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 '    SettingForm.ShowDialog()
                 '    Exit Sub
                 'End Try
@@ -1263,7 +1263,7 @@ Namespace eudplib
                 'Try
                 '    process.Start() ' 여기서 프로그램이 실행됩니다.
                 'Catch ex As System.ComponentModel.Win32Exception
-                '    MsgBox("euddraft실행 파일이 누락되었습니다.! 다시 설정해 주세요.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                '    MsgBox(Lan.GetMsgText("neeuddraft"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 '    SettingForm.ShowDialog()
                 '    Exit Sub
                 'End Try

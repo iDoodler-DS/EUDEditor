@@ -472,7 +472,7 @@ Public Class SFMpq
         ReDim Buffer(0)
         For i = 0 To 3
             If CheckFileExist(ProgramSet.DatMPQDirec(i)) Then
-                MsgBox("MPQ 파일이 없습니다. 직접 선택하세요.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                MsgBox(Lan.GetMsgText("enMPQ"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 SetMPQForm.ShowDialog()
             End If
             If MPQandFileOpen(ProgramSet.DatMPQDirec(i), Filename) = True Then

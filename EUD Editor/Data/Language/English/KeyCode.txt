@@ -91,7 +91,7 @@ Y
 Z
 LWIN
 RWIN
-속성
+APPS
 Null
 SLEEP
 NUMPAD0

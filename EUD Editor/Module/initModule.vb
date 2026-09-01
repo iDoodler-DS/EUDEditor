@@ -62,12 +62,12 @@ Module initModule
 
 
                     If currentversion = False Then
-                        MsgBox("사용기간이 지났습니다. 강제로 종료됩니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                        MsgBox(Lan.GetMsgText("testExpired"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                         End
                     End If
                 End With
             Catch ex As Exception
-                MsgBox("인터넷 연결이 끊켜 실행 가능 여부를 판단 할 수 없습니다. 강제 종료됩니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                MsgBox(Lan.GetMsgText("noInternet"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 End
             End Try
         End If
@@ -95,14 +95,14 @@ Module initModule
                 Dim day As String = monthandday.Split(" ")(1)
                 Dim year As String = data.Split(" ")(2)
                 data = year & "." & Month & "." & day
-                MsgBox("현재 날짜는 " & data & "입니다." & vbCrLf & lastyear & "." & lastMonth & "." & lastday & "까지 사용 가능합니다.", MsgBoxStyle.Exclamation, ProgramSet.AlterFormMessage)
+                MsgBox(Lan.GetMsgText("testDate").Replace("$1$", data).Replace("$2$", lastyear & "." & lastMonth & "." & lastday), MsgBoxStyle.Exclamation, ProgramSet.AlterFormMessage)
 
                 If year > lastyear Or (Month <> lastMonth And Month <> lastMonth2) Or day > lastday Then
-                    MsgBox("사용기간이 지났습니다. 강제로 종료됩니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                    MsgBox(Lan.GetMsgText("testExpired"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                     End
                 End If
             Catch ex As Exception
-                MsgBox("인터넷 연결이 끊켜 날짜 확인이 불가능 합니다.. 강제로 종료됩니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                MsgBox(Lan.GetMsgText("noInternet"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 End
             End Try
         End If

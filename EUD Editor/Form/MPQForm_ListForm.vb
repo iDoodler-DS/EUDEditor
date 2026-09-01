@@ -8,6 +8,7 @@ Public Class MPQForm_ListForm
         My.Computer.Audio.Stop()
     End Sub
     Private Sub MPQForm_ListForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
         Dim filenames() As String
         Dim tempnames As New List(Of String)
         tempnames.AddRange({"music\pdefeat.wav", "music\prdyroom.wav", "music\protoss1.wav",
@@ -228,7 +229,7 @@ Public Class MPQForm_ListForm
                             My.Computer.Audio.Play(mpq.ReaddatFile(ListValue), AudioPlayMode.Background)
                         End If
                     Catch ex As Exception
-                        MsgBox("웨이브 재생에 실패했습니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                        MsgBox(Lan.GetMsgText("FailPlayWave"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
 
                     End Try
                 Case 1 'smk

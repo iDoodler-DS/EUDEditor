@@ -977,7 +977,7 @@ Public Class Element
         End Select
 
         If Compmsg.Length <> 0 Then
-            MsgBox(Compmsg & "다음 코드들이 호환성에 맞게 변경됩니다.", MsgBoxStyle.Exclamation, "TriggerEditor 자동변환")
+            MsgBox(Compmsg & Lan.GetMsgText("compatChanged"), MsgBoxStyle.Exclamation, Lan.GetMsgText("compatTitle"))
         End If
 
 

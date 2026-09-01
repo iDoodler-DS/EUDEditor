@@ -16,6 +16,7 @@
 
 
     Private Sub SoundLenForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
         Me.Text = Lan.GetMsgText("sonudsplittext")
 
         Label1.Text = ""

@@ -33,6 +33,7 @@ Public Class GamedataForm
 
 
     Private Sub GamedataForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
         ColorReset()
 
         CheckBox4.Checked = True

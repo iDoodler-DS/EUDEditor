@@ -61,7 +61,7 @@ Module tempmoudle
         strwriter.Close()
         filestrema.Close()
 
-        MsgBox("끝")
+        MsgBox("Done")
         Main.Close()
     End Sub
 End Module

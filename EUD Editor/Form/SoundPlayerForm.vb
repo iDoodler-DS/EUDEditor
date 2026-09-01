@@ -30,7 +30,7 @@
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
             If Soundlist.Contains(OpenFileDialog1.FileName) Then
-                MsgBox("이미 존재하는 파일입니다.", MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
+                MsgBox(Lan.GetMsgText("DuplicateFile"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             Else
                 Soundlist.Add(OpenFileDialog1.FileName)
                 ListBox1.Items.Add(getPureName(OpenFileDialog1.FileName))

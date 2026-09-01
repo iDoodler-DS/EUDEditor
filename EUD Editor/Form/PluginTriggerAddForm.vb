@@ -7,6 +7,7 @@ Public Class PluginTriggerAddForm
     Public TriggerString As String
 
     Private Sub PluginTriggerAddForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
         LoadData()
 
         If TriggerString <> "" Then

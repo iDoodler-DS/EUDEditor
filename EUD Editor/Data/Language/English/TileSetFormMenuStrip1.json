@@ -1,0 +1,7 @@
+﻿{
+    "파일FToolStripMenuItem": "&File",
+    "저장SToolStripMenuItem": "&Save",
+    "편집EToolStripMenuItem": "&Edit",
+    "실행취소UToolStripMenuItem": "&Undo",
+    "다시실행RToolStripMenuItem": "&Redo"
+}

@@ -2,6 +2,7 @@
     Public SCDBLocationData As SCDBDataCreater.SCDBUnitData
 
     Private Sub UnitSelecter_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
         DataGridView1.Rows.Clear()
 
         For i = 0 To SCDBForm.units.Count - 1

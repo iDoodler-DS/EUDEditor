@@ -599,7 +599,7 @@ Public Class Main
     End Sub
     Private Sub TriggerCopy_Click(sender As Object, e As EventArgs) Handles Button16.Click
         My.Computer.Clipboard.SetText(TriggerViewerForm.RedrawText())
-        MsgBox("복사가 완료되었습니다.", MsgBoxStyle.OkOnly, "EUD Editor")
+        MsgBox(Lan.GetMsgText("CopyDone"), MsgBoxStyle.OkOnly, "EUD Editor")
     End Sub
 
 
@@ -610,7 +610,7 @@ Public Class Main
 
     Private Sub 클립보드로EToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ToclipEToolStripMenuItem.Click
         My.Computer.Clipboard.SetText(TriggerViewerForm.RedrawText())
-        MsgBox("복사가 완료되었습니다.", MsgBoxStyle.OkOnly, "EUD Editor")
+        MsgBox(Lan.GetMsgText("CopyDone"), MsgBoxStyle.OkOnly, "EUD Editor")
     End Sub
 
     Private Sub Py파일보기VToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PyViewVToolStripMenuItem.Click

@@ -150,6 +150,7 @@ Public Class DebugForm
 
 
     Private Sub DebugForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Lan.SetLanguage(Me)
         ProjectSet.LoadCHKdata()
         LoadGameDATA()
     End Sub
@@ -726,7 +727,7 @@ Public Class DebugForm
             DrawTimer.Enabled = False
 
             Me.Hide()
-            MsgBox("StarCraft 메모리 읽기에 실패했습니다." _
+            MsgBox(Lan.GetMsgText("failReadstarCraft") _
                                   , MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             DialogResult = DialogResult.Abort
 
@@ -740,7 +741,7 @@ Public Class DebugForm
 
             Me.Hide()
 
-            MsgBox("게임 실행중이 아닙니다." _
+            MsgBox(Lan.GetMsgText("donotplayGame") _
                        , MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             DialogResult = DialogResult.Abort
 

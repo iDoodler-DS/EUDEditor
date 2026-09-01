@@ -4,5 +4,7 @@
     "Label3": "포인터",
     "Label2": "Data타입",
     "Button5": "확인",
-    "Button6": "취소"
+    "Button6": "취소",
+    "ListBox2.Items": "기본\\copy\\unpatchable",
+    "ManualInput": "직접 입력"
 }

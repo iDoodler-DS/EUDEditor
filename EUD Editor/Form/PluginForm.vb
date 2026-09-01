@@ -531,7 +531,7 @@ Public Class PluginForm
                     End If
                 End If
             Case 4 'stat_txt.tbl
-                OpenFileDialog2.Filter = "tbl 텍스트파일|*.tbl"
+                OpenFileDialog2.Filter = Lan.GetText(Me.Name, "TblFilter")
                 dialog = OpenFileDialog2.ShowDialog
 
                 If dialog = DialogResult.OK Then
@@ -555,7 +555,7 @@ Public Class PluginForm
                     End If
                 End If
             Case 6 'iscript.bin
-                OpenFileDialog2.Filter = "이미지스크립트|*.bin"
+                OpenFileDialog2.Filter = Lan.GetText(Me.Name, "IscriptFilter")
                 dialog = OpenFileDialog2.ShowDialog
 
                 If dialog = DialogResult.OK Then

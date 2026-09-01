@@ -1,0 +1,13 @@
+﻿{
+    "Label1": "플레이어",
+    "Column1": "변수 명",
+    "Column2": "값",
+    "BtnDeath": "데스 값",
+    "BtnLoc": "로케이션",
+    "Button1": "변수",
+    "PlayerNamePrompt": "플레이어 이름을 입력하세요.",
+    "Deaths": "데스값",
+    "Variable": "변수",
+    "Location": "로케이션",
+    "Edit": "편집"
+}
