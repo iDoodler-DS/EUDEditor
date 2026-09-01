@@ -207,6 +207,8 @@ Public Class Main
 
         btn_Save.Enabled = ProjectSet.isload
         btn_close.Enabled = ProjectSet.isload
+
+        RefreshEditorTabs()
     End Sub
 
 
@@ -478,72 +480,130 @@ Public Class Main
     End Sub
 
     Private Sub MPQFormOpen(sender As Object, e As EventArgs) Handles Button13.Click
-        ShowEditorTab(MPQForm, Button13.Text)
+        ShowEditorTab(MPQForm, Button13)
     End Sub
 
     Private Sub GRPFormOpen(sender As Object, e As EventArgs) Handles Button8.Click
         'GRPForm.Location = Me.Location
         'Size = New Size(221, 438)
-        ShowEditorTab(GRPForm, Button8.Text)
+        ShowEditorTab(GRPForm, Button8)
     End Sub
 
     Private Sub DatEditFormOpen(sender As Object, e As EventArgs) Handles Button2.Click
         DatEditForm.Timer1.Enabled = True
-        ShowEditorTab(DatEditForm, Button2.Text)
+        ShowEditorTab(DatEditForm, Button2)
     End Sub
 
     Private Sub FireGraftFormOpen(sender As Object, e As EventArgs) Handles Button3.Click
-        ShowEditorTab(FireGraftForm, Button3.Text)
+        ShowEditorTab(FireGraftForm, Button3)
         FireGraftForm.RefreshForm()
     End Sub
 
 #Region "Editor tabs"
-    ''' <summary>
-    ''' Hosts an editor form inside EditorTabControl. The form keeps all of its own
-    ''' code: it is simply re-parented into a tab page as a non-top-level window.
-    ''' Closing the form (or hiding it, for editors that cancel their close) removes
-    ''' the tab; opening it again re-creates the tab.
-    ''' </summary>
-    Private ReadOnly editorClosedActions As New Dictionary(Of Form, System.Action)
+    ' Every tool button has a blank tab while a project is open. The editor form is
+    ' loaded into its tab the first time the tab is selected (or its button clicked),
+    ' re-parented as a non-top-level window so it keeps all of its own code. When an
+    ' editor closes or hides itself, the tab goes blank again and reloads on demand.
 
-    Public Sub ShowEditorTab(editor As Form, title As String, Optional onClosed As System.Action = Nothing)
-        If onClosed IsNot Nothing Then editorClosedActions(editor) = onClosed
-        Dim page As TabPage = FindEditorTab(editor)
-        If page Is Nothing Then
-            page = New TabPage(title) With {.Tag = editor, .Padding = New Padding(0)}
-            editor.TopLevel = False
-            editor.FormBorderStyle = FormBorderStyle.None
-            editor.Dock = DockStyle.Fill
-            page.Controls.Add(editor)
-            EditorTabControl.TabPages.Add(page)
-            AddHandler editor.FormClosing, AddressOf EditorTab_FormClosing
-            AddHandler editor.VisibleChanged, AddressOf EditorTab_VisibleChanged
-        End If
-        editor.Show()
-        'An editor may close itself during Load (e.g. Debug when StarCraft is not running).
-        If page.IsDisposed OrElse editor.IsDisposed OrElse Not EditorTabControl.TabPages.Contains(page) Then Return
-        EditorTabControl.SelectedTab = page
-        editor.Select()
+    Private ReadOnly editorClosedActions As New Dictionary(Of Form, System.Action)
+    Private suppressTabLoad As Boolean
+
+    'Tool buttons in tab order; each tab page's Tag is its button.
+    Private Function ToolButtons() As Button()
+        Return {Button2, Button3, Button9, Button10, Button15, Button7, Button11, Button13, Button8, Button5, Button6, Button12}
+    End Function
+
+    'Creates blank tabs for the enabled tools and removes the others. Called after buttonResetting.
+    Public Sub RefreshEditorTabs()
+        suppressTabLoad = True
+        Try
+            Dim wanted As New List(Of Button)
+            For Each b As Button In ToolButtons()
+                If b.Visible AndAlso b.Enabled Then wanted.Add(b)
+            Next
+
+            For Each page As TabPage In EditorTabControl.TabPages.Cast(Of TabPage)().ToArray()
+                If Not wanted.Contains(TryCast(page.Tag, Button)) Then
+                    DetachEditor(page)
+                    EditorTabControl.TabPages.Remove(page)
+                    page.Dispose()
+                End If
+            Next
+
+            For i = 0 To wanted.Count - 1
+                Dim page As TabPage = FindEditorTab(wanted(i))
+                If page Is Nothing Then
+                    page = New TabPage(wanted(i).Text) With {.Tag = wanted(i), .Padding = New Padding(0)}
+                    EditorTabControl.TabPages.Insert(Math.Min(i, EditorTabControl.TabPages.Count), page)
+                Else
+                    page.Text = wanted(i).Text
+                End If
+            Next
+        Finally
+            suppressTabLoad = False
+        End Try
     End Sub
 
-    Private Function FindEditorTab(editor As Form) As TabPage
+    Private Function FindEditorTab(tool As Button) As TabPage
         For Each page As TabPage In EditorTabControl.TabPages
-            If page.Tag Is editor Then Return page
+            If page.Tag Is tool Then Return page
         Next
         Return Nothing
     End Function
 
-    Private Sub RemoveEditorTab(editor As Form)
-        Dim page As TabPage = FindEditorTab(editor)
+    Private Function FindEditorTab(editor As Form) As TabPage
+        For Each page As TabPage In EditorTabControl.TabPages
+            If page.Controls.Contains(editor) Then Return page
+        Next
+        Return Nothing
+    End Function
+
+    'Loads an editor into its tool's tab (creating the tab if needed) and selects it.
+    Public Sub ShowEditorTab(editor As Form, tool As Button, Optional onClosed As System.Action = Nothing)
+        If onClosed IsNot Nothing Then editorClosedActions(editor) = onClosed
+
+        Dim page As TabPage = FindEditorTab(tool)
+        If page Is Nothing Then
+            page = New TabPage(tool.Text) With {.Tag = tool, .Padding = New Padding(0)}
+            EditorTabControl.TabPages.Add(page)
+        End If
+
+        If Not page.Controls.Contains(editor) Then
+            DetachEditor(page)
+            editor.TopLevel = False
+            editor.FormBorderStyle = FormBorderStyle.None
+            editor.Dock = DockStyle.Fill
+            page.Controls.Add(editor)
+            AddHandler editor.FormClosing, AddressOf EditorTab_FormClosing
+            AddHandler editor.VisibleChanged, AddressOf EditorTab_VisibleChanged
+        End If
+
+        editor.Show()
+        'An editor may close itself during Load (e.g. Debug when StarCraft is not running).
+        If editor.IsDisposed OrElse page.IsDisposed OrElse Not page.Controls.Contains(editor) Then Return
+
+        suppressTabLoad = True
+        EditorTabControl.SelectedTab = page
+        suppressTabLoad = False
+        editor.Select()
+    End Sub
+
+    'Takes the editor out of its tab, leaving the tab blank, and runs the work that
+    'used to follow the modal ShowDialog call.
+    Private Sub DetachEditor(page As TabPage)
         If page Is Nothing Then Return
+        Dim editor As Form = Nothing
+        For Each c As Control In page.Controls
+            editor = TryCast(c, Form)
+            If editor IsNot Nothing Then Exit For
+        Next
+        If editor Is Nothing Then Return
+
         RemoveHandler editor.FormClosing, AddressOf EditorTab_FormClosing
         RemoveHandler editor.VisibleChanged, AddressOf EditorTab_VisibleChanged
         page.Controls.Remove(editor)
-        EditorTabControl.TabPages.Remove(page)
-        page.Dispose()
         nameResetting()
 
-        'Work that used to follow the modal ShowDialog call.
         Dim onClosed As System.Action = Nothing
         If editorClosedActions.TryGetValue(editor, onClosed) Then
             editorClosedActions.Remove(editor)
@@ -553,16 +613,36 @@ Public Class Main
 
     'Runs after the editor's own Closing handler (which may cancel and just hide).
     Private Sub EditorTab_FormClosing(sender As Object, e As FormClosingEventArgs)
-        RemoveEditorTab(DirectCast(sender, Form))
+        DetachEditor(FindEditorTab(DirectCast(sender, Form)))
     End Sub
 
-    'Editors that cancel their close just hide themselves; drop their tab then.
+    'Editors that cancel their close just hide themselves; blank their tab then.
     'Control.Visible is also False while the tab page is merely not selected, so
     'only react when the page itself is visible.
     Private Sub EditorTab_VisibleChanged(sender As Object, e As EventArgs)
         Dim editor As Form = sender
         If editor.IsDisposed OrElse editor.Visible Then Return
-        If editor.Parent IsNot Nothing AndAlso editor.Parent.Visible Then RemoveEditorTab(editor)
+        If editor.Parent IsNot Nothing AndAlso editor.Parent.Visible Then DetachEditor(FindEditorTab(editor))
+    End Sub
+
+    'Lazy load: selecting a blank tab clicks its tool button, which loads the editor.
+    Private Sub LoadSelectedTab()
+        Dim page As TabPage = EditorTabControl.SelectedTab
+        If page Is Nothing OrElse page.Controls.Count > 0 Then Return
+        Dim tool As Button = TryCast(page.Tag, Button)
+        If tool IsNot Nothing AndAlso tool.Enabled Then tool.PerformClick()
+    End Sub
+
+    Private Sub EditorTabControl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles EditorTabControl.SelectedIndexChanged
+        If suppressTabLoad Then Return
+        LoadSelectedTab()
+    End Sub
+
+    'Clicking the already selected (blank) tab does not change the selection; load it anyway.
+    Private Sub EditorTabControl_MouseUp(sender As Object, e As MouseEventArgs) Handles EditorTabControl.MouseUp
+        If e.Button <> MouseButtons.Left Then Return
+        Dim idx As Integer = EditorTabControl.SelectedIndex
+        If idx >= 0 AndAlso EditorTabControl.GetTabRect(idx).Contains(e.Location) Then LoadSelectedTab()
     End Sub
 #End Region
 
@@ -576,7 +656,7 @@ Public Class Main
     Private Sub plugin_Click(sender As Object, e As EventArgs) Handles Button10.Click
         ProjectSet.saveStatus = False
 
-        ShowEditorTab(PluginForm, Button10.Text,
+        ShowEditorTab(PluginForm, Button10,
                       Sub()
                           LoadFileimportable()
                           ProjectSet.LoadCHKdata()
@@ -586,7 +666,7 @@ Public Class Main
     Private Sub FileManager_Click(sender As Object, e As EventArgs) Handles Button15.Click
         ProjectSet.saveStatus = False
 
-        ShowEditorTab(FileManagerForm, Button15.Text,
+        ShowEditorTab(FileManagerForm, Button15,
                       Sub()
                           LoadFileimportable()
                           DatEditForm.Loadstattxt()
@@ -597,20 +677,20 @@ Public Class Main
     Private Sub binEditor_Click(sender As Object, e As EventArgs) Handles Button5.Click
         ProjectSet.saveStatus = False
 
-        ShowEditorTab(binEditorForm, Button5.Text)
+        ShowEditorTab(binEditorForm, Button5)
     End Sub
 
 
     Private Sub TileSet_Click(sender As Object, e As EventArgs) Handles Button6.Click
         ProjectSet.saveStatus = False
 
-        ShowEditorTab(TileSetForm, Button6.Text)
+        ShowEditorTab(TileSetForm, Button6)
     End Sub
 
 
     Private Sub DebugFormOpen(sender As Object, e As EventArgs) Handles Button12.Click
 
-        ShowEditorTab(DebugForm, Button12.Text)
+        ShowEditorTab(DebugForm, Button12)
     End Sub
 
 
@@ -697,7 +777,7 @@ Public Class Main
             MsgBox(Lan.GetText(Me.Name, "CHKMsg"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
         Else
             BulidForm.Close()
-            ShowEditorTab(TrigEditorForm, Button9.Text)
+            ShowEditorTab(TrigEditorForm, Button9)
         End If
     End Sub
 
@@ -752,11 +832,11 @@ Public Class Main
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         ProjectSet.saveStatus = False
 
-        ShowEditorTab(SoundPlayerForm, Button7.Text)
+        ShowEditorTab(SoundPlayerForm, Button7)
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        ShowEditorTab(FileSettingForm, Button11.Text)
+        ShowEditorTab(FileSettingForm, Button11)
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
