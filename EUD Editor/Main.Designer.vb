@@ -82,6 +82,7 @@ Partial Class Main
         Me.CheckMapWrite = New System.Windows.Forms.Timer(Me.components)
         Me.ThemeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ThemeSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditorTabControl = New System.Windows.Forms.TabControl()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -559,7 +560,7 @@ Partial Class Main
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.FlowLayoutPanel3, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel2, 0, 1)
-        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 24)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -746,11 +747,21 @@ Partial Class Main
         Me.ThemeSettingsToolStripMenuItem.Size = New System.Drawing.Size(197, 26)
         Me.ThemeSettingsToolStripMenuItem.Text = "Theme Settings"
         '
+        'EditorTabControl
+        '
+        Me.EditorTabControl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.EditorTabControl.Location = New System.Drawing.Point(0, 177)
+        Me.EditorTabControl.Name = "EditorTabControl"
+        Me.EditorTabControl.SelectedIndex = 0
+        Me.EditorTabControl.Size = New System.Drawing.Size(1000, 523)
+        Me.EditorTabControl.TabIndex = 3
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(472, 177)
+        Me.ClientSize = New System.Drawing.Size(1000, 700)
+        Me.Controls.Add(Me.EditorTabControl)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
@@ -758,7 +769,7 @@ Partial Class Main
         Me.KeyPreview = True
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.MinimumSize = New System.Drawing.Size(488, 212)
+        Me.MinimumSize = New System.Drawing.Size(488, 400)
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "EUD Editor SE"
@@ -809,6 +820,7 @@ Partial Class Main
     Friend WithEvents btn_Save As Button
     Friend WithEvents btn_close As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents EditorTabControl As TabControl
     Friend WithEvents FlowLayoutPanel3 As FlowLayoutPanel
     Friend WithEvents TableLayoutPanel2 As TableLayoutPanel
     Friend WithEvents FlowLayoutPanel4 As FlowLayoutPanel

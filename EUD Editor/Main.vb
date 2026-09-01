@@ -29,11 +29,9 @@ Public Class Main
 
     Public Sub buttonResetting()
         If ProgramSet.StarVersion = "1.16.1" Then
-            Me.MinimumSize = New Size(423 + 66, 212)
-            Me.Size = New Size(423 + 66, 212)
+            Me.MinimumSize = New Size(423 + 66, 400)
         Else
-            Me.MinimumSize = New Size(423 + 66 + 65 + 66, 159)
-            Me.Size = New Size(423 + 66 + 65 + 66, 159)
+            Me.MinimumSize = New Size(423 + 66 + 65 + 66, 400)
         End If
 
 
@@ -498,21 +496,71 @@ Public Class Main
     End Sub
 
     Private Sub DatEditFormOpen(sender As Object, e As EventArgs) Handles Button2.Click
-        'DatEditForm.Location = Me.Location
         DatEditForm.Timer1.Enabled = True
-
-        My.Forms.Main.Visible = False
-
-        DatEditForm.Show()
-        My.Forms.DatEditForm.Activate()
+        ShowEditorTab(DatEditForm, Button2.Text)
     End Sub
 
     Private Sub FireGraftFormOpen(sender As Object, e As EventArgs) Handles Button3.Click
-        My.Forms.Main.Visible = False
-        FireGraftForm.Show()
+        ShowEditorTab(FireGraftForm, Button3.Text)
         FireGraftForm.RefreshForm()
-        My.Forms.DatEditForm.Activate()
     End Sub
+
+#Region "Editor tabs"
+    ''' <summary>
+    ''' Hosts an editor form inside EditorTabControl. The form keeps all of its own
+    ''' code: it is simply re-parented into a tab page as a non-top-level window.
+    ''' Closing the form (or hiding it, for editors that cancel their close) removes
+    ''' the tab; opening it again re-creates the tab.
+    ''' </summary>
+    Public Sub ShowEditorTab(editor As Form, title As String)
+        Dim page As TabPage = FindEditorTab(editor)
+        If page Is Nothing Then
+            page = New TabPage(title) With {.Tag = editor, .Padding = New Padding(0)}
+            editor.TopLevel = False
+            editor.FormBorderStyle = FormBorderStyle.None
+            editor.Dock = DockStyle.Fill
+            page.Controls.Add(editor)
+            EditorTabControl.TabPages.Add(page)
+            AddHandler editor.FormClosing, AddressOf EditorTab_FormClosing
+            AddHandler editor.VisibleChanged, AddressOf EditorTab_VisibleChanged
+        End If
+        editor.Show()
+        EditorTabControl.SelectedTab = page
+        editor.Select()
+    End Sub
+
+    Private Function FindEditorTab(editor As Form) As TabPage
+        For Each page As TabPage In EditorTabControl.TabPages
+            If page.Tag Is editor Then Return page
+        Next
+        Return Nothing
+    End Function
+
+    Private Sub RemoveEditorTab(editor As Form)
+        Dim page As TabPage = FindEditorTab(editor)
+        If page Is Nothing Then Return
+        RemoveHandler editor.FormClosing, AddressOf EditorTab_FormClosing
+        RemoveHandler editor.VisibleChanged, AddressOf EditorTab_VisibleChanged
+        page.Controls.Remove(editor)
+        EditorTabControl.TabPages.Remove(page)
+        page.Dispose()
+        nameResetting()
+    End Sub
+
+    'Runs after the editor's own Closing handler (which may cancel and just hide).
+    Private Sub EditorTab_FormClosing(sender As Object, e As FormClosingEventArgs)
+        RemoveEditorTab(DirectCast(sender, Form))
+    End Sub
+
+    'Editors that cancel their close just hide themselves; drop their tab then.
+    'Control.Visible is also False while the tab page is merely not selected, so
+    'only react when the page itself is visible.
+    Private Sub EditorTab_VisibleChanged(sender As Object, e As EventArgs)
+        Dim editor As Form = sender
+        If editor.IsDisposed OrElse editor.Visible Then Return
+        If editor.Parent IsNot Nothing AndAlso editor.Parent.Visible Then RemoveEditorTab(editor)
+    End Sub
+#End Region
 
     Private Sub TriggerViewFormOpen(sender As Object, e As EventArgs) Handles Button4.Click
         My.Forms.Main.Visible = False
@@ -655,10 +703,7 @@ Public Class Main
             MsgBox(Lan.GetText(Me.Name, "CHKMsg"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
         Else
             BulidForm.Close()
-            My.Forms.Main.Visible = False
-            TrigEditorForm.ShowDialog()
-            My.Forms.Main.Visible = True
-            nameResetting()
+            ShowEditorTab(TrigEditorForm, Button9.Text)
         End If
     End Sub
 
