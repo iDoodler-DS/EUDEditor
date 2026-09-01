@@ -478,21 +478,13 @@ Public Class Main
     End Sub
 
     Private Sub MPQFormOpen(sender As Object, e As EventArgs) Handles Button13.Click
-        'MPQForm.Location = Me.Location
-        My.Forms.Main.Visible = False
-        MPQForm.ShowDialog()
-        My.Forms.Main.Visible = True
-
+        ShowEditorTab(MPQForm, Button13.Text)
     End Sub
 
     Private Sub GRPFormOpen(sender As Object, e As EventArgs) Handles Button8.Click
         'GRPForm.Location = Me.Location
         'Size = New Size(221, 438)
-        GRPForm.Size = New Size(806, 438)
-        My.Forms.Main.Visible = False
-        GRPForm.ShowDialog()
-        My.Forms.Main.Visible = True
-        nameResetting()
+        ShowEditorTab(GRPForm, Button8.Text)
     End Sub
 
     Private Sub DatEditFormOpen(sender As Object, e As EventArgs) Handles Button2.Click
@@ -512,7 +504,10 @@ Public Class Main
     ''' Closing the form (or hiding it, for editors that cancel their close) removes
     ''' the tab; opening it again re-creates the tab.
     ''' </summary>
-    Public Sub ShowEditorTab(editor As Form, title As String)
+    Private ReadOnly editorClosedActions As New Dictionary(Of Form, System.Action)
+
+    Public Sub ShowEditorTab(editor As Form, title As String, Optional onClosed As System.Action = Nothing)
+        If onClosed IsNot Nothing Then editorClosedActions(editor) = onClosed
         Dim page As TabPage = FindEditorTab(editor)
         If page Is Nothing Then
             page = New TabPage(title) With {.Tag = editor, .Padding = New Padding(0)}
@@ -525,6 +520,8 @@ Public Class Main
             AddHandler editor.VisibleChanged, AddressOf EditorTab_VisibleChanged
         End If
         editor.Show()
+        'An editor may close itself during Load (e.g. Debug when StarCraft is not running).
+        If page.IsDisposed OrElse editor.IsDisposed OrElse Not EditorTabControl.TabPages.Contains(page) Then Return
         EditorTabControl.SelectedTab = page
         editor.Select()
     End Sub
@@ -545,6 +542,13 @@ Public Class Main
         EditorTabControl.TabPages.Remove(page)
         page.Dispose()
         nameResetting()
+
+        'Work that used to follow the modal ShowDialog call.
+        Dim onClosed As System.Action = Nothing
+        If editorClosedActions.TryGetValue(editor, onClosed) Then
+            editorClosedActions.Remove(editor)
+            onClosed()
+        End If
     End Sub
 
     'Runs after the editor's own Closing handler (which may cancel and just hide).
@@ -572,51 +576,41 @@ Public Class Main
     Private Sub plugin_Click(sender As Object, e As EventArgs) Handles Button10.Click
         ProjectSet.saveStatus = False
 
-        My.Forms.Main.Visible = False
-        PluginForm.ShowDialog()
-        My.Forms.Main.Visible = True
-        nameResetting()
-        LoadFileimportable()
-        ProjectSet.LoadCHKdata()
+        ShowEditorTab(PluginForm, Button10.Text,
+                      Sub()
+                          LoadFileimportable()
+                          ProjectSet.LoadCHKdata()
+                      End Sub)
     End Sub
 
     Private Sub FileManager_Click(sender As Object, e As EventArgs) Handles Button15.Click
         ProjectSet.saveStatus = False
 
-        My.Forms.Main.Visible = False
-        FileManagerForm.ShowDialog()
-        My.Forms.Main.Visible = True
-        nameResetting()
-        LoadFileimportable()
-        DatEditForm.Loadstattxt()
+        ShowEditorTab(FileManagerForm, Button15.Text,
+                      Sub()
+                          LoadFileimportable()
+                          DatEditForm.Loadstattxt()
+                      End Sub)
     End Sub
 
 
     Private Sub binEditor_Click(sender As Object, e As EventArgs) Handles Button5.Click
         ProjectSet.saveStatus = False
 
-        My.Forms.Main.Visible = False
-        binEditorForm.ShowDialog()
-        My.Forms.Main.Visible = True
-        nameResetting()
+        ShowEditorTab(binEditorForm, Button5.Text)
     End Sub
 
 
     Private Sub TileSet_Click(sender As Object, e As EventArgs) Handles Button6.Click
         ProjectSet.saveStatus = False
 
-        My.Forms.Main.Visible = False
-        TileSetForm.ShowDialog()
-        My.Forms.Main.Visible = True
-        nameResetting()
+        ShowEditorTab(TileSetForm, Button6.Text)
     End Sub
 
 
     Private Sub DebugFormOpen(sender As Object, e As EventArgs) Handles Button12.Click
 
-        My.Forms.Main.Visible = False
-        DebugForm.ShowDialog()
-        My.Forms.Main.Visible = True
+        ShowEditorTab(DebugForm, Button12.Text)
     End Sub
 
 
@@ -758,17 +752,11 @@ Public Class Main
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         ProjectSet.saveStatus = False
 
-        My.Forms.Main.Visible = False
-        SoundPlayerForm.ShowDialog()
-        My.Forms.Main.Visible = True
-        nameResetting()
+        ShowEditorTab(SoundPlayerForm, Button7.Text)
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        My.Forms.Main.Visible = False
-        FileSettingForm.ShowDialog()
-        My.Forms.Main.Visible = True
-        nameResetting()
+        ShowEditorTab(FileSettingForm, Button11.Text)
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
