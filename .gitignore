@@ -288,3 +288,6 @@ Updater/build
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# Runtime error log written next to the executable
+ErrorLog.txt

@@ -7,6 +7,52 @@ Namespace Lan
         Dim textCache = New Dictionary(Of String, Dictionary(Of String, String))
         Dim msgTextCache = New Dictionary(Of String, String)
         Dim arrayCache = New Dictionary(Of String, Dictionary(Of String, String))
+        Dim reportedProblems As New HashSet(Of String)
+
+        Private Function LanguageFile(name As String) As String
+            Return My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & name & ".json"
+        End Function
+
+        ''' <summary>Reports a missing file/key once per run, in the error log only.</summary>
+        Private Sub ReportProblem(what As String)
+            If reportedProblems.Add(what) Then
+                LogMessage("Language: " & what)
+            End If
+        End Sub
+
+        ''' <summary>
+        ''' Reads a language json file. Returns an empty dictionary (and logs) when the
+        ''' file is missing or invalid, so a missing translation never crashes the editor.
+        ''' </summary>
+        Private Function ReadLanguageFile(name As String) As Dictionary(Of String, String)
+            Dim Languagepath As String = LanguageFile(name)
+            Try
+                If Not File.Exists(Languagepath) Then
+                    ReportProblem("file not found: " & Languagepath)
+                    Return New Dictionary(Of String, String)
+                End If
+                Dim _filestream As New FileStream(Languagepath, FileMode.Open, FileAccess.Read, FileShare.Read)
+                Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
+                Dim jsonString As String = _streamreader.ReadToEnd
+                _streamreader.Close()
+                _filestream.Close()
+                Dim dic = JsonConvert.DeserializeObject(Of Dictionary(Of String, String))(jsonString)
+                If dic Is Nothing Then dic = New Dictionary(Of String, String)
+                Return dic
+            Catch ex As Exception
+                ReportProblem("cannot read " & Languagepath & ": " & ex.Message)
+                LogException(ex, "language file " & name)
+                Return New Dictionary(Of String, String)
+            End Try
+        End Function
+
+        Private Function Lookup(dic As Dictionary(Of String, String), filename As String, key As String) As String
+            If dic.ContainsKey(key) Then
+                Return dic(key)
+            End If
+            ReportProblem("missing key '" & key & "' in " & filename & ".json")
+            Return key
+        End Function
 
 
         Private Function getcontrolname(controls As Control)
@@ -180,19 +226,8 @@ Namespace Lan
 
         Dim labels As Dictionary(Of String, String)
         Public Sub SetLanguage(ByRef forms As Form)
-            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & forms.Name & ".json"
-
-
-            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
-            Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
-
-            Dim jsonString As String = _streamreader.ReadToEnd
-
-
-            labels = JsonConvert.DeserializeObject(Of Dictionary(Of String, String))(jsonString)
-
-            _streamreader.Close()
-            _filestream.Close()
+            labels = ReadLanguageFile(forms.Name)
+            If labels.Count = 0 Then Return
 
             'Window title: "FormTitle"
             If label("FormTitle") <> "" Then
@@ -227,20 +262,8 @@ Namespace Lan
         End Sub
 
         Public Sub SetMenu(ByRef forms As Form, meun As Object, Optional name As String = "")
-            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & forms.Name & meun.Name & name & ".json"
-
-
-            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
-            Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
-
-            Dim jsonString As String = _streamreader.ReadToEnd
-
-
-            labels = JsonConvert.DeserializeObject(Of Dictionary(Of String, String))(jsonString)
-
-            _streamreader.Close()
-            _filestream.Close()
-
+            labels = ReadLanguageFile(forms.Name & meun.Name & name)
+            If labels.Count = 0 Then Return
 
             For i = 0 To meun.Items.Count - 1
                 Try
@@ -253,20 +276,8 @@ Namespace Lan
         End Sub
 
         Public Sub SetTooltip(forms As Form, meun As ToolStrip)
-            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & forms.Name & meun.Name & ".json"
-
-
-            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
-            Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
-
-            Dim jsonString As String = _streamreader.ReadToEnd
-
-
-            labels = JsonConvert.DeserializeObject(Of Dictionary(Of String, String))(jsonString)
-
-            _streamreader.Close()
-            _filestream.Close()
-
+            labels = ReadLanguageFile(forms.Name & meun.Name)
+            If labels.Count = 0 Then Return
 
             For i = 0 To meun.Items.Count - 1
                 Try
@@ -283,68 +294,22 @@ Namespace Lan
                 Return msgTextCache(key)
             End If
 
-            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\Msgbox.json"
-
-            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
-            Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
-
-            Dim jsonString As String = _streamreader.ReadToEnd
-
-
-            Dim dic As Dictionary(Of String, String) = JsonConvert.DeserializeObject(Of Dictionary(Of String, String))(jsonString)
-
-            _streamreader.Close()
-            _filestream.Close()
-
-            msgTextCache.Add(key, dic(key))
-
-            Return dic(key)
+            Dim value As String = Lookup(ReadLanguageFile("Msgbox"), "Msgbox", key)
+            msgTextCache(key) = value
+            Return value
         End Function
         Public Function GetText(filename As String, key As String) As String
-
-            If textCache.ContainsKey(filename) Then
-                Return textCache(filename)(key)
+            If Not textCache.ContainsKey(filename) Then
+                textCache(filename) = ReadLanguageFile(filename)
             End If
-
-            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename & ".json"
-
-            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
-            Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
-
-            Dim jsonString As String = _streamreader.ReadToEnd
-
-
-            Dim dic As Dictionary(Of String, String) = JsonConvert.DeserializeObject(Of Dictionary(Of String, String))(jsonString)
-
-            _streamreader.Close()
-            _filestream.Close()
-
-            textCache.Add(filename, dic)
-
-            Return dic(key)
+            Return Lookup(textCache(filename), filename, key)
         End Function
 
         Public Function GetArray(filename As String, key As String) As String()
-            If arrayCache.ContainsKey(filename) Then
-                Return arrayCache(filename)(key).Split("\")
+            If Not arrayCache.ContainsKey(filename) Then
+                arrayCache(filename) = ReadLanguageFile(filename)
             End If
-
-            Dim Languagepath As String = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename & ".json"
-
-            Dim _filestream As New FileStream(Languagepath, FileMode.Open)
-            Dim _streamreader As New StreamReader(_filestream, System.Text.Encoding.Default)
-
-            Dim jsonString As String = _streamreader.ReadToEnd
-
-
-            Dim dic As Dictionary(Of String, String) = JsonConvert.DeserializeObject(Of Dictionary(Of String, String))(jsonString)
-
-            _streamreader.Close()
-            _filestream.Close()
-
-            arrayCache.Add(filename, dic)
-
-            Return dic(key).Split("\")
+            Return Lookup(arrayCache(filename), filename, key).Split("\")
         End Function
     End Module
 End Namespace

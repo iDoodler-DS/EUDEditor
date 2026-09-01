@@ -589,6 +589,7 @@
     <Compile Include="Module\mod_fn_HASH.vb" />
     <Compile Include="Module\MPQModule.vb" />
     <Compile Include="Module\NativeThemeModule.vb" />
+    <Compile Include="Module\ErrorLogModule.vb" />
     <Compile Include="Module\NPAModule.vb" />
     <Compile Include="Module\parsingModule.vb" />
     <Compile Include="Module\ProgramData.vb" />
@@ -611,6 +612,7 @@
     <Compile Include="Module\UpdateModule.vb" />
     <Compile Include="Module\ValueDefsModule.vb" />
     <Compile Include="Module\tempmoudle.vb" />
+    <Compile Include="My Project\ApplicationEvents.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
