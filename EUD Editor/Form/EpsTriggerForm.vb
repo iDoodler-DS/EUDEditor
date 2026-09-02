@@ -251,7 +251,9 @@ Public Class EpsTriggerForm
 
             Dim terms As List(Of String) = EpsHead.TermsOf(node.Text)
             For i = 0 To terms.Count - 1
-                Dim term As New TreeNode(terms(i)) With {.Tag = New Spot(node, Part.Condition, i)}
+                Dim said As String = EpsLines.Sentenced(terms(i))
+                Dim term As New TreeNode(If(said = "", terms(i), said)) With {
+                    .Tag = New Spot(node, Part.Condition, i)}
                 If off Then term.ForeColor = Color.Gray
                 conditions.Nodes.Add(term)
             Next
@@ -287,6 +289,13 @@ Public Class EpsTriggerForm
             Case EpsShape.Folder
                 Return node.Text
             Case Else
+                'A call the editor has words for reads as those words, the same
+                'ones the edit window shows. Anything else reads as it is written.
+                If node.Kind = EpsKind.Statement Then
+                    Dim said As String = EpsLines.Sentenced(node.Text)
+                    If said <> "" Then Return said
+                End If
+
                 Dim caption As String = node.Caption()
                 If node.Kind = EpsKind.Comment AndAlso caption = "" Then Return "(blank line)"
                 Return caption

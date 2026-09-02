@@ -154,6 +154,22 @@ Namespace EpsSource
             Return If(code, "").Trim()
         End Function
 
+        ''' <summary>
+        ''' A line said the way the edit window says it: "Modify death counts for
+        ''' Player 2 : Set To 0 for Terran Marine." Gives back "" when the editor has
+        ''' no sentence for the call, so the line itself is shown instead.
+        ''' </summary>
+        Public Function Sentenced(text As String) As String
+            Dim known As EpsCall = EpsSymbols.Find(CallOf(text))
+            If known Is Nothing OrElse known.Sentence = "" Then Return ""
+
+            Dim out As New StringBuilder()
+            For Each piece As Tuple(Of String, Integer) In Describe(known, ValuesOf(text))
+                out.Append(piece.Item1)
+            Next
+            Return Regex.Replace(out.ToString().Trim(), "\s+", " ")
+        End Function
+
         ''' <summary>The same, without the semicolon, for the head of an if or a while.</summary>
         Public Function EmptyTest(known As EpsCall) As String
             Return EmptyCall(known).TrimEnd(";"c)

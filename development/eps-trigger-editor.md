@@ -23,6 +23,11 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
 
 - **A tree, like the advanced view.** Folders, functions, `if` and `while`
   blocks nest; each statement is a node.
+- **A node reads as words, not as code.** A call the editor has a sentence for
+  is shown as that sentence, the same one the edit window shows: *Create 1
+  Terran Marine at 'Anywhere' for Player 1.* A condition reads the same way.
+  A call the editor has no words for is shown as it is written, so nothing is
+  ever hidden.
 - **A node is edited in a window of its own**, opened by a double click or by
   Enter, and nothing is edited as text if the editor knows what it is:
 
