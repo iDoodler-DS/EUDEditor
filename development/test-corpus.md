@@ -37,3 +37,13 @@ The walk found three faults that the test project could not: two reads outside
 the range of a list in the trigger value parser, and one in the checkbox lists.
 Two of the projects are older than the current build, which also tests reading
 a file an older version wrote.
+
+## The roadmap picture
+
+`development/roadmap.html` holds the plan, and `development/img` the pictures in
+it. The published copy is one page with nothing beside it, so it cannot read that
+folder:
+
+    python development/build-artifact.py out.html
+
+puts every picture in as a data URI and takes off the wrapper the host supplies.

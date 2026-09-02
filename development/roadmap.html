@@ -287,6 +287,26 @@
   .st.done { color: var(--good); }
   .st.part { color: var(--warn); }
 
+  .shot {
+    margin: 12px 0 0;
+    max-width: var(--read);
+  }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule-hard);
+    border-radius: 2px;
+    background: var(--band);
+  }
+  .shot figcaption {
+    margin-top: 5px;
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.72rem;
+    color: var(--ink-mute);
+  }
+  .shot.narrow { max-width: 380px; }
+
   nav.rail a.done .n { color: var(--good); font-weight: 600; }
   nav.rail a.part .n { color: var(--warn); font-weight: 600; }
   nav.rail a.done span:last-child { color: var(--ink-mute); }
@@ -531,6 +551,17 @@
       the check item 04 makes into a test.
       Times are milliseconds to open an editor. The test project is survival.e2s.
     </p>
+    <p class="lede">
+      Two things outside the numbered items also shipped. A field that names an entry of another kind of data
+      opens that entry, from one place that knows what each list holds. And an entry can be bookmarked from the
+      menu it already had, which puts it under View for one click back. Bookmarks belong to the project and are
+      written in its file.
+    </p>
+    <figure class="shot">
+      <img src="img/bookmarks.png" alt="The bookmarks of the project under the View menu.">
+      <figcaption>The bookmarks of the project, under View. Removing them all sits at the foot of the list.</figcaption>
+    </figure>
+
     <div class="table-wrap">
       <table>
         <caption>Measured open time, Test build</caption>
@@ -581,6 +612,10 @@
           <dt>Result</dt>
           <dd class="solution">The editor writes a recovery copy every five minutes while there are changes that are not saved, and after an error. A save or a close takes the copy away, so a copy that is still there at the next start means the editor stopped without a save; the editor then offers it. An error window gives the cause, the place of the copy, and a button that copies the details.</dd>
         </dl>
+                <figure class="shot narrow">
+          <img src="img/recovery-offer.png" alt="The offer at the next start, after the editor stopped without a save.">
+          <figcaption>The offer at the next start, after the editor stopped without a save.</figcaption>
+        </figure>
         <div class="meta"><span><b>Effort</b> 2 days</span><span><b>Area</b> Project data</span></div>
       </div>
     </div>
@@ -656,6 +691,10 @@
           <dt>Result</dt>
           <dd class="solution">Project, Data, Triggers and Resources, each with an Edit menu and a history of its own. The editors load without a first paint. TileSet, GRP and BinEditor are hidden, because they are unused.</dd>
         </dl>
+                <figure class="shot">
+          <img src="img/four-tabs.png" alt="Project, Data, Triggers and Resources. Only a main tab carries an icon.">
+          <figcaption>Project, Data, Triggers and Resources. Only a main tab carries an icon.</figcaption>
+        </figure>
         <div class="meta"><span><b>Effort</b> 2 weeks</span><span><b>Area</b> Shell</span></div>
       </div>
     </div>
@@ -672,6 +711,18 @@
           <dt>Result</dt>
           <dd class="solution">DatEdit is the only view under Data. FireGraft has no pane: its fields are sub tabs of the data type they belong to, and its button sets are the eleventh kind of data. The wireframe of a unit is a sub tab of the unit page too, from FileManager, which keeps the string table because that is not per entry. A tab carries the number of the kind of data it shows, so an unsupported page can go; Portrait is gone for that reason. Still to do: the name of a unit, which is one row of that string table.</dd>
         </dl>
+                <figure class="shot">
+          <img src="img/unit-sub-tabs.png" alt="A unit: its values, and the status, requirements and wireframe that were in two other windows.">
+          <figcaption>A unit: its values, and the status, requirements and wireframe that were in two other windows.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="img/upgrade-requirements.png" alt="The other kinds of data get a strip of their own. An upgrade, with its requirements.">
+          <figcaption>The other kinds of data get a strip of their own. An upgrade, with its requirements.</figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="img/button-data.png" alt="Button sets are the eleventh kind of data, with the list and the icons of the units they belong to.">
+          <figcaption>Button sets are the eleventh kind of data, with the list and the icons of the units they belong to.</figcaption>
+        </figure>
         <div class="meta"><span><b>Effort</b> 3 weeks</span><span class="flag"><b>Needs</b> 05</span></div>
       </div>
     </div>
@@ -718,6 +769,10 @@
           <dt>Result</dt>
           <dd class="solution">The picker for a value is already inside the condition and action editors, and each shows the control the type of the field asks for. What it had no way to do was find one entry among hundreds: a filter above the list now shows only what matches. A value stays the place of the entry in the whole list, so a filtered list still writes the right value. Still to do: the editors are two dialogs deep over the trigger list, so the user cannot see the trigger while editing a line of it.</dd>
         </dl>
+                <figure class="shot narrow">
+          <img src="img/picker-filter.png" alt="The filter above the list of values. 28 entries, 4 shown, the value still Allies.">
+          <figcaption>The filter above the list of values. 28 entries, 4 shown, the value still Allies.</figcaption>
+        </figure>
         <div class="meta"><span><b>Effort</b> 2 weeks</span><span><b>Area</b> Triggers</span></div>
       </div>
     </div>
