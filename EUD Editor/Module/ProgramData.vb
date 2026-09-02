@@ -79,6 +79,9 @@ Module ProgramData
 
     Public stattextdic As New Dictionary(Of Integer, String)
     Public Sub StatTextAdd(index As Integer, value As String)
+        Dim before As String = Nothing
+        If stattextdic.ContainsKey(index) Then before = stattextdic(index)
+
         ProjectSet.saveStatus = False
         My.Forms.Main.nameResetting()
         If value <> "" Then
@@ -90,6 +93,10 @@ Module ProgramData
             If stattextdic.ContainsKey(index) Then
                 stattextdic.Remove(index)
             End If
+        End If
+
+        If Not EditHistory.History.Suppressed AndAlso If(before, "") <> If(value, "") Then
+            EditHistory.History.Record(New EditHistory.StatTextEdit(index, before, value))
         End If
     End Sub
 
@@ -157,6 +164,24 @@ Module ProgramData
         Public pos As UInt16
 
         Public Code As List(Of UShort)
+
+        Public Function Clone() As SReqDATA
+            Dim c As New SReqDATA
+            c.pos = pos
+            If Code IsNot Nothing Then c.Code = New List(Of UShort)(Code)
+            Return c
+        End Function
+
+        Public Function SameAs(other As SReqDATA) As Boolean
+            If other Is Nothing Then Return False
+            If pos <> other.pos Then Return False
+            If Code Is Nothing OrElse other.Code Is Nothing Then Return Code Is other.Code
+            If Code.Count <> other.Code.Count Then Return False
+            For i = 0 To Code.Count - 1
+                If Code(i) <> other.Code(i) Then Return False
+            Next
+            Return True
+        End Function
     End Class
     Public ProjectRequireDataUSE(4) As List(Of UInteger)
 
@@ -410,6 +435,21 @@ Module ProgramData
                 disStr = extratext(2, poss, data)
             End If
         End Sub
+        'Undo copies a whole button set, so a record must copy itself.
+        Public Function Clone() As SBtnDATA
+            Dim c As New SBtnDATA
+            c.pos = pos : c.icon = icon : c.enaStr = enaStr : c.disStr = disStr
+            c.con = con : c.conval = conval : c.act = act : c.actval = actval
+            Return c
+        End Function
+
+        Public Function SameAs(other As SBtnDATA) As Boolean
+            If other Is Nothing Then Return False
+            Return pos = other.pos AndAlso icon = other.icon AndAlso enaStr = other.enaStr AndAlso
+                   disStr = other.disStr AndAlso con = other.con AndAlso conval = other.conval AndAlso
+                   act = other.act AndAlso actval = other.actval
+        End Function
+
         Private Function extratext(size As Integer, ByRef ptr As Integer, str As String)
             Dim returnvalue As ULong = 0
             For i = 0 To size - 1
@@ -981,7 +1021,22 @@ Module ProgramData
     End Sub
 
     Public CMDIconBitmapList = New List(Of Bitmap)
+
+    'What LoadFileimportable last decoded; callers can skip the (slow) reload when
+    'none of its inputs changed.
+    Public FileImportableSignature As String = ""
+
+    Public Function FileImportableCurrentSignature() As String
+        Return String.Join("|", {dataDumper_cmdicons, dataDumper_cmdicons_f, dataDumper_stat_txt, dataDumper_stat_txt_f,
+                                 statlang, iscriptPatcheruse, iscriptPatcher, String.Join(",", ProgramSet.DatMPQDirec)})
+    End Function
+
+    Public Function FileImportableUpToDate() As Boolean
+        Return CMDIconBitmapList.Count > 0 AndAlso stat_txt IsNot Nothing AndAlso FileImportableSignature = FileImportableCurrentSignature()
+    End Function
+
     Public Sub LoadFileimportable()
+        FileImportableSignature = FileImportableCurrentSignature()
         Dim mpq As New SFMpq
 
         Dim icongrp As New GRP
@@ -1633,7 +1688,33 @@ Module ProgramData
         End Function
 
 
+        ''' <summary>
+        ''' Records the change for undo. Reads the effective value before and after the
+        ''' write, so an undo puts back exactly what the user saw, including any clamp.
+        ''' </summary>
+        Private Sub RecordEdit(key As String, index As UInteger, before As Long)
+            If EditHistory.History.Suppressed Then Return
+            Try
+                Dim after As Long = ReadValue(key, index)
+                If after = before Then Return
+                EditHistory.History.Record(New EditHistory.DatEdit(DatEditDATA.IndexOf(Me), key, index, before, after))
+            Catch
+            End Try
+        End Sub
+
+        'Effective value now, or Nothing when this field does not cover this entry.
+        Private Function ValueOrNothing(key As String, index As UInteger) As Long?
+            Try
+                Return ReadValue(key, index)
+            Catch
+                Return Nothing
+            End Try
+        End Function
+
         Public Function WriteValue(key As String, index As UInteger, value As Long)
+            Dim before As Long? = Nothing
+            If Not EditHistory.History.Suppressed Then before = ValueOrNothing(key, index)
+
             ProjectSet.saveStatusChange()
             Dim tempvalue As Long = value - data(keyDic(key))(index - keyINFO(keyDic(key)).VarStart)
 
@@ -1644,6 +1725,7 @@ Module ProgramData
                 If DatEditForm.ListBox1.Items.Count <> 0 Then
                     DatEditForm.ListBox1.SelectedItem(2) = CheckChangeAll(index)
                 End If
+                If before.HasValue Then RecordEdit(key, index, before.Value)
                 Return True
             Else
                 projectdata(keyDic(key))(index - keyINFO(keyDic(key)).VarStart) = value - data(keyDic(key))(index - keyINFO(keyDic(key)).VarStart) - mapdata(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart)
@@ -1652,6 +1734,7 @@ Module ProgramData
                     DatEditForm.ListBox1.SelectedItem(2) = CheckChangeAll(index)
                 End If
             End If
+            If before.HasValue Then RecordEdit(key, index, before.Value)
             Return False
         End Function
         Public Function WriteValueNum(key As Integer, index As UInteger, value As Long, Optional Loading As Boolean = False)
@@ -1660,6 +1743,18 @@ Module ProgramData
                 restrict = False
             End If
 
+            'The field name is what the undo entry needs; keyDic maps it the other way.
+            Dim fieldKey As String = Nothing
+            Dim before As Long? = Nothing
+            If restrict AndAlso Not Loading AndAlso Not EditHistory.History.Suppressed Then
+                For Each pair As KeyValuePair(Of String, UInteger) In keyDic
+                    If pair.Value = key Then
+                        fieldKey = pair.Key
+                        Exit For
+                    End If
+                Next
+                If fieldKey IsNot Nothing Then before = ValueOrNothing(fieldKey, index)
+            End If
 
             If restrict Then
 
@@ -1673,6 +1768,7 @@ Module ProgramData
                     If DatEditForm.ListBox1.Items.Count <> 0 Then
                         DatEditForm.ListBox1.SelectedItem(2) = CheckChangeAll(index)
                     End If
+                    If before.HasValue Then RecordEdit(fieldKey, index, before.Value)
                     Return True
                 Else
                     projectdata(key)(index - keyINFO(key).VarStart) = value - data(key)(index - keyINFO(key).VarStart) - mapdata(key)(index - keyINFO(key).VarStart)
@@ -1683,6 +1779,7 @@ Module ProgramData
                         End If
                     End If
                 End If
+                If before.HasValue Then RecordEdit(fieldKey, index, before.Value)
             End If
             Return False
         End Function
@@ -1692,17 +1789,12 @@ Module ProgramData
 
         '즉  projectdata(데이터넘버)(유닛넘버) 에서 데이터넘버를 바꿔가며 그 값이 0인지 확인.
 
+        'Whether any field of this entry has been changed. Keys that cover fewer entries
+        'are skipped by a bounds check; the old Try/Catch threw for each of them.
         Public Function CheckChangeAll(index As Long) As Integer
             For i = 0 To projectdata.Count - 1
-                Try
-                    If (index - keyINFO(i).VarStart) >= 0 Then
-                        If projectdata(i)(index - keyINFO(i).VarStart) <> 0 Then ' 하나라도 0이 아니라면. 즉 하나라도 수정되어있다면.
-                            Return 1
-                        End If
-                    End If
-                Catch ex As Exception
-                End Try
-
+                Dim k As Long = index - keyINFO(i).VarStart
+                If k >= 0 AndAlso k < projectdata(i).Count AndAlso projectdata(i)(k) <> 0 Then Return 1
             Next
             Return 0
         End Function
