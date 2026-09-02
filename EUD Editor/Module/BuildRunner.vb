@@ -1,4 +1,4 @@
-Imports System.ComponentModel
+﻿Imports System.ComponentModel
 
 ''' <summary>
 ''' Runs euddraft on the project's .eds file and streams its output into the main
@@ -7,6 +7,9 @@ Imports System.ComponentModel
 Module BuildRunner
     Private process As Process
     Private baseFolder As String
+    'Which settings file in eudplibdata to run. The build of today writes
+    'EUDEditor.eds; the epScript editor writes one of its own.
+    Private settingsName As String = "EUDEditor.eds"
     Private errorText As String = ""
     Private retries As Integer
 
@@ -18,9 +21,10 @@ Module BuildRunner
     Private Const ZlibError As String = "zipimport.ZipImportError: can't decompress data; zlib not available"
     Private Const MaxRetries As Integer = 5
 
-    Public Sub Start(folder As String)
+    Public Sub Start(folder As String, Optional settings As String = "EUDEditor.eds")
         ui = Main
         baseFolder = folder
+        settingsName = settings
         errorText = ""
         retries = 0
         ui.ResetLog(Lan.GetMsgText("build") & vbCrLf)
@@ -28,7 +32,7 @@ Module BuildRunner
     End Sub
 
     Private Sub Launch()
-        Dim filename As String = baseFolder & "\eudplibdata\EUDEditor.eds"
+        Dim filename As String = baseFolder & "\eudplibdata\" & settingsName
         Dim info As New ProcessStartInfo(ProgramSet.euddraftDirec, """" & filename & """") With {
             .RedirectStandardOutput = True,
             .RedirectStandardError = True,

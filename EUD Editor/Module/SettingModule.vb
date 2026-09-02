@@ -2389,6 +2389,10 @@ Namespace ProjectSet
             End If
 
             DeleteFilesFromFolder(My.Application.Info.DirectoryPath & "\Data\temp")
+            'The epScript editor keeps its source in a file of its own beside this
+            'one, so it is written at the same time.
+            Main.SaveEpsTriggers()
+
             'The project file now holds the work, so the recovery copy is of no use.
             RecoveryModule.Clear()
         End Sub

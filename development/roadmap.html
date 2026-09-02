@@ -552,6 +552,12 @@
       Times are milliseconds to open an editor. The test project is survival.e2s.
     </p>
     <p class="lede">
+      A second trigger editor sits on a tab of its own, called Script. It keeps epScript rather than a tree of
+      nodes: the text is what is saved, beside the project file, and the tree is a way of looking at it. It has
+      a build of its own that takes only that source. The editor of today is untouched. What it means for a
+      project that uses it is written down in development/eps-trigger-editor.md.
+    </p>
+    <p class="lede">
       Two things outside the numbered items also shipped. A field that names an entry of another kind of data
       opens that entry, from one place that knows what each list holds. And an entry can be bookmarked from the
       menu it already had, which puts it under View for one click back. Bookmarks belong to the project and are

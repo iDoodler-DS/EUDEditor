@@ -64,6 +64,7 @@ Public Class Main
         fireGraftTool.Enabled = False
         bgmPlayerTool.Enabled = loaded
         triggerEditorTool.Enabled = loaded
+        epsTriggerTool.Enabled = loaded
         pluginTool.Enabled = loaded
         fileManagerTool.Enabled = loaded
         projectTool.Enabled = loaded
@@ -228,6 +229,8 @@ Public Class Main
 
 
 
+
+
 #Region "Recovery copy"
     ' The editor writes a copy of the project every few minutes while there are changes
     ' that are not saved. A save or a close takes the copy away, so a copy that is still
@@ -334,6 +337,7 @@ Public Class Main
 
         ProjectSet.LoadCHKdata()
         DatEditForm.ReloadCHK()
+        ReloadEpsTriggers()
         refreshSet()
         If EditorLoaded(projectTool) Then ProjectSettingForm.ApplyStarVersion()
         AutoCompileToolStripMenuItem.Checked = ProgramSet.isAutoCompile
@@ -821,6 +825,9 @@ Public Class Main
     Private ReadOnly datEditTool As New EditorTool("Tool_DatEdit", My.Resources.ICON_DatEdit, AddressOf OpenDatEdit, Function() DatEditForm)
     Private ReadOnly fireGraftTool As New EditorTool("Tool_FireGraft", My.Resources.ICON_FireGraft, AddressOf OpenFireGraft, Function() FireGraftForm)
     Private ReadOnly triggerEditorTool As New EditorTool("Tool_TriggerEditor", My.Resources.ICON_TriggerEditor, AddressOf OpenTriggerEditor)
+    'A second trigger editor, whose source is epScript. It stands beside the one
+    'above and takes nothing away from it.
+    Private ReadOnly epsTriggerTool As New EditorTool("Tool_EpsTrigger", My.Resources.ICON_TriggerEditor, AddressOf OpenEpsTrigger, Function() EpsTriggers)
     Private ReadOnly mpqTool As New EditorTool("Tool_MPQ", My.Resources.ICON_MPQEditor, AddressOf OpenMPQ)
     Private ReadOnly fileManagerTool As New EditorTool("Tool_FileManager", My.Resources.ICON_FileManager, AddressOf OpenFileManager, Function() FileManagerForm)
     Private ReadOnly bgmPlayerTool As New EditorTool("Tool_BGMPlayer", My.Resources.ICON_SoundPlayer, AddressOf OpenBGMPlayer, Function() SoundPlayerForm)
@@ -838,6 +845,8 @@ Public Class Main
         {datEditTool})
     Private ReadOnly triggerGroup As New ToolGroup("Group_Triggers", My.Resources.ICON_TriggerEditor,
         {triggerEditorTool})
+    Private ReadOnly epsGroup As New ToolGroup("Group_Script", My.Resources.ICON_TriggerEditor,
+        {epsTriggerTool})
     Private ReadOnly resourceGroup As New ToolGroup("Group_Resources", My.Resources.ICON_FileManager,
         {mpqTool, fileManagerTool, bgmPlayerTool, grpTool, binEditorTool, tileSetTool})
     Private ReadOnly debugGroup As New ToolGroup("Group_Debug", My.Resources.Debug,
@@ -847,7 +856,7 @@ Public Class Main
     Private suppressTabLoad As Boolean
 
     Private Function ToolGroups() As ToolGroup()
-        Return {projectGroup, dataGroup, triggerGroup, resourceGroup, debugGroup}
+        Return {projectGroup, dataGroup, triggerGroup, epsGroup, resourceGroup, debugGroup}
     End Function
 
     Private Function EditorTools() As EditorTool()
@@ -1355,6 +1364,35 @@ Public Class Main
     Private Sub OpenFireGraft()
         ShowEditorTab(FireGraftForm, fireGraftTool)
         FireGraftForm.RefreshForm()
+    End Sub
+
+    'The one instance of the epScript editor, kept the way the other editors are.
+    Private epsTriggersForm As EpsTriggerForm
+
+    Public ReadOnly Property EpsTriggers As EpsTriggerForm
+        Get
+            If epsTriggersForm Is Nothing OrElse epsTriggersForm.IsDisposed Then
+                epsTriggersForm = New EpsTriggerForm()
+            End If
+            Return epsTriggersForm
+        End Get
+    End Property
+
+    Private Sub OpenEpsTrigger()
+        ShowEditorTab(EpsTriggers, epsTriggerTool)
+    End Sub
+
+    ''' <summary>Writes the epScript source, if that editor has been opened.</summary>
+    Public Sub SaveEpsTriggers()
+        If epsTriggersForm Is Nothing OrElse epsTriggersForm.IsDisposed Then Return
+        epsTriggersForm.SaveToProject()
+    End Sub
+
+    ''' <summary>Reads the source of the project that has just been opened.</summary>
+    Public Sub ReloadEpsTriggers()
+        EpsSource.EpsValueLists.Forget()
+        If epsTriggersForm Is Nothing OrElse epsTriggersForm.IsDisposed Then Return
+        epsTriggersForm.LoadFromProject()
     End Sub
 
     Private Sub OpenTriggerEditor()

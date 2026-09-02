@@ -1,0 +1,7559 @@
+{
+ "Accumulate": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "TrgResource | Byte | ExprProxy[Resource]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "resource_type"
+   }
+  ]
+ },
+ "Action": {
+  "doc": "Class for general expression with rlocints.",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "AddCurrentPlayer": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "p"
+   }
+  ]
+ },
+ "Always": {
+  "kind": "function",
+  "params": []
+ },
+ "Assignable2List": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "typing.Any",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   }
+  ]
+ },
+ "Bring": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "location"
+   }
+  ]
+ },
+ "CPByteWriter": {
+  "kind": "type",
+  "params": []
+ },
+ "CSprite": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "int | eudplib.core.variable.eudv.EUDVariable | eudplib.utils.exprproxy.ExprProxy",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": "int | eudplib.core.variable.eudv.EUDVariable | eudplib.utils.exprproxy.ExprProxy | None",
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ptr"
+   }
+  ]
+ },
+ "CUnit": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "int | eudplib.core.variable.eudv.EUDVariable | eudplib.utils.exprproxy.ExprProxy",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": "int | eudplib.core.variable.eudv.EUDVariable | eudplib.utils.exprproxy.ExprProxy | None",
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ptr"
+   }
+  ]
+ },
+ "CenterView": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   }
+  ]
+ },
+ "CenterViewAll": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "location"
+   }
+  ]
+ },
+ "Command": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "CommandLeast": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "CommandLeastAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "location"
+   }
+  ]
+ },
+ "CommandMost": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "CommandMostAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "location"
+   }
+  ]
+ },
+ "Comment": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "text"
+   }
+  ]
+ },
+ "CompressPayload": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "bool",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mode"
+   }
+  ]
+ },
+ "Condition": {
+  "doc": "Class for general expression with rlocints.",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "ConstExpr": {
+  "doc": "Class for general expression with rlocints.",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "baseobj"
+   },
+   {
+    "annotation": null,
+    "default": "0",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "offset"
+   },
+   {
+    "annotation": null,
+    "default": "4",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "rlocmode"
+   }
+  ]
+ },
+ "CountdownTimer": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time"
+   }
+  ]
+ },
+ "CreatePayload": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "EUDObject | Forward",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "root"
+   }
+  ]
+ },
+ "CreateUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ExprProxy[int | EUDVariable]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "for_player"
+   }
+  ]
+ },
+ "CreateUnitWithProperties": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ExprProxy[int | EUDVariable]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "eudplib.core.mapdata.unitprp.UnitProperty | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "properties"
+   }
+  ]
+ },
+ "CtrlStruOpener": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": "<class 'collections.abc.Callable'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "f"
+   }
+  ]
+ },
+ "Db": {
+  "doc": "Class for standalone object on memory",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "Deaths": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "DeathsX": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "Defeat": {
+  "kind": "function",
+  "params": []
+ },
+ "Disabled": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "eudplib.core.rawtrigger.condition.Condition | eudplib.core.rawtrigger.action.Action",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "arg"
+   }
+  ]
+ },
+ "DisplayText": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "text"
+   },
+   {
+    "annotation": "int | EUDVariable | ExprProxy[int | EUDVariable]",
+    "default": "4",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "AlwaysDisplay"
+   }
+  ]
+ },
+ "DisplayTextAll": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "text"
+   }
+  ]
+ },
+ "DisplayTextAllAt": {
+  "kind": "EUDFullFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "line"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "text"
+   }
+  ]
+ },
+ "DisplayTextAt": {
+  "kind": "EUDFullFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "line"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "text"
+   }
+  ]
+ },
+ "DoActions": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "actions"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "preserved"
+   }
+  ]
+ },
+ "Draw": {
+  "kind": "function",
+  "params": []
+ },
+ "EPD": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "typing.Any",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "p"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "EPDCUnitMap": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "int | eudplib.core.variable.eudv.EUDVariable | eudplib.utils.exprproxy.ExprProxy",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": "int | eudplib.core.variable.eudv.EUDVariable | eudplib.utils.exprproxy.ExprProxy | None",
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ptr"
+   }
+  ]
+ },
+ "EPDSwitch": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": "4294967295",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "EPError": {
+  "doc": "Common base class for all non-exit exceptions.",
+  "kind": "type",
+  "params": null,
+  "why": "no signature found for builtin type <class 'eudplib.utils.eperror.EPError'>"
+ },
+ "EPSLoader": {
+  "doc": "Concrete implementation of SourceLoader using the file system.",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "fullname"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "path"
+   }
+  ]
+ },
+ "EPS_SetDebug": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "EPWarning": {
+  "doc": "Base class for warning categories.",
+  "kind": "type",
+  "params": null,
+  "why": "no signature found for builtin type <class 'eudplib.utils.eperror.EPWarning'>"
+ },
+ "EP_SetRValueStrictMode": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "bool",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mode"
+   }
+  ]
+ },
+ "EUDAnd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cond1"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "conds"
+   }
+  ]
+ },
+ "EUDArray": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "_from"
+   }
+  ]
+ },
+ "EUDBinaryMax": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cond"
+   },
+   {
+    "annotation": null,
+    "default": "0",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "minv"
+   },
+   {
+    "annotation": null,
+    "default": "4294967295",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "maxv"
+   }
+  ]
+ },
+ "EUDBinaryMin": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cond"
+   },
+   {
+    "annotation": null,
+    "default": "0",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "minv"
+   },
+   {
+    "annotation": null,
+    "default": "4294967295",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "maxv"
+   }
+  ]
+ },
+ "EUDBranch": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "typing.Union[eudplib.core.allocator.ConstExpr, bool, int, eudplib.core.variable.eudv.EUDVariable, eudplib.core.variable.eudlv.EUDLightVariable, eudplib.core.variable.eudlv.EUDLightBool, eudplib.utils.exprproxy.ExprProxy[bool | int | eudplib.core.variable.eudv.EUDVariable | eudplib.core.variable.eudlv.EUDLightVariable | eudplib.core.variable.eudlv.EUDLightBool], eudplib.utils.exprproxy.ExprProxy[eudplib.core.allocator.ConstExpr], collections.abc.Iterable[typing.Union[eudplib.core.allocator.ConstExpr, bool, int, eudplib.core.variable.eudv.EUDVariable, eudplib.core.variable.eudlv.EUDLightVariable, eudplib.core.variable.eudlv.EUDLightBool, eudplib.utils.exprproxy.ExprProxy[bool | int | eudplib.core.variable.eudv.EUDVariable | eudplib.core.variable.eudlv.EUDLightVariable | eudplib.core.variable.eudlv.EUDLightBool], eudplib.utils.exprproxy.ExprProxy[eudplib.core.allocator.ConstExpr], collections.abc.Iterable]]]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   },
+   {
+    "annotation": "<class 'eudplib.core.allocator.ConstExpr'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ontrue"
+   },
+   {
+    "annotation": "<class 'eudplib.core.allocator.ConstExpr'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "onfalse"
+   },
+   {
+    "annotation": "eudplib.core.rawtrigger.action.Action | collections.abc.Sequence[eudplib.core.rawtrigger.action.Action | collections.abc.Sequence] | None",
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "_actions"
+   }
+  ]
+ },
+ "EUDBreak": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDBreakIf": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   }
+  ]
+ },
+ "EUDBreakIfNot": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   }
+  ]
+ },
+ "EUDByteReader": {
+  "kind": "type",
+  "params": []
+ },
+ "EUDByteStream": {
+  "kind": "type",
+  "params": []
+ },
+ "EUDByteWriter": {
+  "kind": "type",
+  "params": []
+ },
+ "EUDClearNamespace": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDContinue": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDContinueIf": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   }
+  ]
+ },
+ "EUDContinueIfNot": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   }
+  ]
+ },
+ "EUDCreateBlock": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "name"
+   },
+   {
+    "annotation": "typing.Any",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "userdata"
+   }
+  ]
+ },
+ "EUDCreateVariables": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "varn"
+   }
+  ]
+ },
+ "EUDDeque": {
+  "kind": "_lru_cache_wrapper",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "capacity"
+   }
+  ]
+ },
+ "EUDDoEvents": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDElse": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDElseIf": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDElseIfNot": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDEndExecuteOnce": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDEndIf": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDEndInfLoop": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDEndLoopN": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDEndPlayerLoop": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDEndSwitch": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDEndWhile": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDExecuteOnce": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDFunc": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "fdecl_func"
+   }
+  ]
+ },
+ "EUDFuncPtr": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "argn"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "retn"
+   }
+  ]
+ },
+ "EUDGetBlockList": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDGetLastBlock": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDGetLastBlockOfName": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "name"
+   }
+  ]
+ },
+ "EUDIf": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDIfNot": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDInfLoop": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDIsContinuePointSet": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDJump": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "nextptr"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "must_use"
+   }
+  ]
+ },
+ "EUDJumpIf": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ontrue"
+   }
+  ]
+ },
+ "EUDJumpIfNot": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "onfalse"
+   }
+  ]
+ },
+ "EUDLightBool": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": "<class 'bool'>",
+    "default": "False",
+    "kind": "POSITIONAL_ONLY",
+    "name": "initval"
+   }
+  ]
+ },
+ "EUDLightVariable": {
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": null,
+    "default": "0",
+    "kind": "POSITIONAL_ONLY",
+    "name": "initvalue"
+   }
+  ]
+ },
+ "EUDLoopCUnit": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDLoopList": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "header_offset"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "break_offset"
+   }
+  ]
+ },
+ "EUDLoopN": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDLoopNewCUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'int'>",
+    "default": "2",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "allowance"
+   }
+  ]
+ },
+ "EUDLoopNewUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'int'>",
+    "default": "2",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "allowance"
+   }
+  ]
+ },
+ "EUDLoopPlayer": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "typing.Optional[typing.Literal['Zerg', 'Terran', 'Protoss', 'Independent', 'Neutral', 'User selectable', 'Inactive', 'Human', 'Starcraft Campaign Editor', '']]",
+    "default": "'Human'",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptype"
+   },
+   {
+    "annotation": "int | eudplib.scdata.player.TrgPlayer | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "force"
+   },
+   {
+    "annotation": "typing.Optional[typing.Literal['Unused', 'Rescuable', 'Computer', 'Human', 'Neutral', '']]",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "race"
+   }
+  ]
+ },
+ "EUDLoopPlayerCUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "EUDLoopPlayerUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "EUDLoopRange": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "start"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "end"
+   }
+  ]
+ },
+ "EUDLoopUnit": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDLoopUnit2": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDMethod": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "method"
+   }
+  ]
+ },
+ "EUDNot": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cond"
+   }
+  ]
+ },
+ "EUDObject": {
+  "doc": "Class for standalone object on memory",
+  "kind": "type",
+  "params": []
+ },
+ "EUDOnStart": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'collections.abc.Callable'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "func"
+   }
+  ]
+ },
+ "EUDOr": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cond1"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "conds"
+   }
+  ]
+ },
+ "EUDPeekBlock": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "name"
+   }
+  ]
+ },
+ "EUDPlayerLoop": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDPopBlock": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "name"
+   }
+  ]
+ },
+ "EUDQueue": {
+  "kind": "_lru_cache_wrapper",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "capacity"
+   }
+  ]
+ },
+ "EUDRegisterObjectToNamespace": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "funcname"
+   },
+   {
+    "annotation": "typing.Any",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "obj"
+   }
+  ]
+ },
+ "EUDRegistered": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "func"
+   }
+  ]
+ },
+ "EUDReturn": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "EUDSCAnd": {
+  "kind": "type",
+  "params": []
+ },
+ "EUDSCOr": {
+  "kind": "type",
+  "params": []
+ },
+ "EUDSetContinuePoint": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDStack": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "basetype"
+   }
+  ]
+ },
+ "EUDStruct": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "_EUDStructMetaclass",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "_from"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "_static_initval"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "EUDSwitch": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "var"
+   },
+   {
+    "annotation": null,
+    "default": "4294967295",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "EUDSwitchCase": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDSwitchDefault": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDTernary": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   },
+   {
+    "annotation": null,
+    "default": "False",
+    "kind": "KEYWORD_ONLY",
+    "name": "neg"
+   }
+  ]
+ },
+ "EUDTypedFunc": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "argtypes"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "rettypes"
+   },
+   {
+    "annotation": null,
+    "default": "False",
+    "kind": "KEYWORD_ONLY",
+    "name": "traced"
+   }
+  ]
+ },
+ "EUDTypedFuncPtr": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "argtypes"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "rettypes"
+   }
+  ]
+ },
+ "EUDTypedMethod": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "argtypes"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "rettypes"
+   },
+   {
+    "annotation": null,
+    "default": "False",
+    "kind": "KEYWORD_ONLY",
+    "name": "traced"
+   }
+  ]
+ },
+ "EUDVArray": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": "int",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "size"
+   },
+   {
+    "annotation": "type | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "basetype"
+   }
+  ]
+ },
+ "EUDVArrayReader": {
+  "kind": "type",
+  "params": []
+ },
+ "EUDVariable": {
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": null,
+    "default": "0",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "EUDWhile": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDWhileNot": {
+  "kind": "function",
+  "params": []
+ },
+ "EUDXVariable": {
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_ONLY",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_ONLY",
+    "name": "modtype"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_ONLY",
+    "name": "initval"
+   },
+   {
+    "annotation": null,
+    "default": "4294967295",
+    "kind": "POSITIONAL_ONLY",
+    "name": "mask"
+   },
+   {
+    "annotation": null,
+    "default": "0",
+    "kind": "KEYWORD_ONLY",
+    "name": "nextptr"
+   }
+  ]
+ },
+ "ElapsedTime": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time"
+   }
+  ]
+ },
+ "EncodeAIScript": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ConstExpr | ExprProxy[str | bytes | int | EUDVariable | ConstExpr | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ais"
+   }
+  ]
+ },
+ "EncodeAllyStatus": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeButtonSet": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "buttonset"
+   }
+  ]
+ },
+ "EncodeComparison": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeCount": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeFlingy": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "flingy"
+   }
+  ]
+ },
+ "EncodeIcon": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "icon"
+   }
+  ]
+ },
+ "EncodeImage": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "image"
+   }
+  ]
+ },
+ "EncodeIscript": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "iscript"
+   }
+  ]
+ },
+ "EncodeLocation": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "loc"
+   }
+  ]
+ },
+ "EncodeModifier": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeOrder": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodePlayer": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ConstExpr | ExprProxy[_Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodePortrait": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "portrait"
+   }
+  ]
+ },
+ "EncodePropState": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeProperty": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "typing.Union[eudplib.core.mapdata.unitprp.UnitProperty, bytes, eudplib.utils.exprproxy.ExprProxy[eudplib.core.mapdata.unitprp.UnitProperty | bytes]]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "prop"
+   }
+  ]
+ },
+ "EncodeResource": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeScore": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeSprite": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "sprite"
+   }
+  ]
+ },
+ "EncodeString": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeSwitch": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "sw"
+   }
+  ]
+ },
+ "EncodeSwitchAction": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeSwitchState": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "ConstType | int | EUDVariable | ExprProxy[__Arg]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "EncodeTBL": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ConstExpr | ExprProxy[str | bytes | int | EUDVariable | ConstExpr | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "t"
+   }
+  ]
+ },
+ "EncodeTech": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "tech"
+   }
+  ]
+ },
+ "EncodeUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "u"
+   }
+  ]
+ },
+ "EncodeUnitOrder": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "order"
+   }
+  ]
+ },
+ "EncodeUpgrade": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "upgrade"
+   }
+  ]
+ },
+ "EncodeWeapon": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes | int | EUDVariable | ExprProxy[str | bytes | int | EUDVariable | ExprProxy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "weapon"
+   }
+  ]
+ },
+ "Evaluate": {
+  "doc": "Evaluate expressions",
+  "kind": "builtin_function_or_method",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   }
+  ]
+ },
+ "ExprProxy": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "FixedText": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": "[]",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "actions_on_exit"
+   }
+  ]
+ },
+ "FlattenIter": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "typing.Any",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "lst"
+   }
+  ]
+ },
+ "FlattenList": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "typing.Any",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "lst"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ret"
+   }
+  ]
+ },
+ "Flingy": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "DefaultFlingy | Flingy | Byte | ExprProxy[_Flingy]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "Forward": {
+  "doc": "Class for forward definition.",
+  "kind": "type",
+  "params": []
+ },
+ "GetChkTokenized": {
+  "kind": "function",
+  "params": []
+ },
+ "GetEUDNamespace": {
+  "kind": "function",
+  "params": []
+ },
+ "GetFirstTrigTrigger": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "Player",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "GetGlobalStringBuffer": {
+  "kind": "function",
+  "params": []
+ },
+ "GetLastTrigTrigger": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "Player",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "GetLocationIndex": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "loc"
+   }
+  ]
+ },
+ "GetMapStringAddr": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "str_id"
+   }
+  ]
+ },
+ "GetObjectAddr": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "EUDObject",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "obj"
+   }
+  ]
+ },
+ "GetPlayerInfo": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "GetPropertyIndex": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "eudplib.core.mapdata.unitprp.UnitProperty | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "prop"
+   }
+  ]
+ },
+ "GetStringIndex": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "GetSwitchIndex": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "GetTBLAddr": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "tbl_id"
+   }
+  ]
+ },
+ "GetTriggerCounter": {
+  "kind": "function",
+  "params": []
+ },
+ "GetUnitIndex": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "u"
+   }
+  ]
+ },
+ "GiveUnits": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "new_owner"
+   }
+  ]
+ },
+ "HighestScore": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgScore | Byte | ExprProxy[_Score]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ScoreType"
+   }
+  ]
+ },
+ "Icon": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "Image": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "DefaultImage | Image | Word | ExprProxy[_Image]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "InitialWireframe": {
+  "kind": "type",
+  "params": []
+ },
+ "Is64BitWireframe": {
+  "kind": "function",
+  "params": []
+ },
+ "IsConstExpr": {
+  "kind": "builtin_function_or_method",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   }
+  ]
+ },
+ "IsEUDVariable": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "object",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   }
+  ]
+ },
+ "IsMapdataInitialized": {
+  "kind": "function",
+  "params": []
+ },
+ "IsPName": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "name"
+   }
+  ]
+ },
+ "IsUserCP": {
+  "kind": "function",
+  "params": []
+ },
+ "Iscript": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "KillUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "KillUnitAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "for_player"
+   }
+  ]
+ },
+ "Kills": {
+  "kind": "_Kills",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "c"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "d"
+   }
+  ]
+ },
+ "LeaderBoardComputerPlayers": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgPropState | Byte | ExprProxy[PropState]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "state"
+   }
+  ]
+ },
+ "LeaderBoardControl": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardControlAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "location"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardGoalControl": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "goal"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardGoalControlAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "goal"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "location"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardGoalKills": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "goal"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardGoalResources": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "goal"
+   },
+   {
+    "annotation": "TrgResource | Byte | ExprProxy[Resource]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "resource_type"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardGoalScore": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "goal"
+   },
+   {
+    "annotation": "TrgScore | Byte | ExprProxy[_Score]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ScoreType"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardGreed": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "goal"
+   }
+  ]
+ },
+ "LeaderBoardKills": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardResources": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgResource | Byte | ExprProxy[Resource]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "resource_type"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeaderBoardScore": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgScore | Byte | ExprProxy[_Score]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ScoreType"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "label"
+   }
+  ]
+ },
+ "LeastKills": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "LeastResources": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgResource | Byte | ExprProxy[Resource]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "resource_type"
+   }
+  ]
+ },
+ "List2Assignable": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "collections.abc.Sequence[~T]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "lst"
+   }
+  ]
+ },
+ "LoadMap": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "fname"
+   }
+  ]
+ },
+ "LowestScore": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgScore | Byte | ExprProxy[_Score]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ScoreType"
+   }
+  ]
+ },
+ "MPQAddFile": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "fname"
+   },
+   {
+    "annotation": "str | bytes | bytearray | None",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "path_or_content"
+   },
+   {
+    "annotation": "<class 'bool'>",
+    "default": "False",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "is_wav"
+   }
+  ]
+ },
+ "MPQAddWave": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "fname"
+   },
+   {
+    "annotation": "str | bytes | bytearray | None",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "path_or_content"
+   }
+  ]
+ },
+ "MPQCheckFile": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "fname"
+   }
+  ]
+ },
+ "Memory": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cmptype"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "MemoryEPD": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cmptype"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "MemoryX": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cmptype"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "MemoryXEPD": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cmptype"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "MinimapPing": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   }
+  ]
+ },
+ "MinimapPingAll": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "location"
+   }
+  ]
+ },
+ "ModifyUnitEnergy": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "percent"
+   }
+  ]
+ },
+ "ModifyUnitHangarCount": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "add"
+   },
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   }
+  ]
+ },
+ "ModifyUnitHitPoints": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "percent"
+   }
+  ]
+ },
+ "ModifyUnitResourceAmount": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "new_value"
+   }
+  ]
+ },
+ "ModifyUnitShields": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "percent"
+   }
+  ]
+ },
+ "MostKills": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "MostResources": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgResource | Byte | ExprProxy[Resource]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "resource_type"
+   }
+  ]
+ },
+ "MoveLocation": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "location"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "on_unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest_location"
+   }
+  ]
+ },
+ "MoveUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit_type"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "start_location"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest_location"
+   }
+  ]
+ },
+ "MuteUnitSpeech": {
+  "kind": "function",
+  "params": []
+ },
+ "Never": {
+  "kind": "function",
+  "params": []
+ },
+ "NextTrigger": {
+  "kind": "function",
+  "params": []
+ },
+ "NonSeqCompute": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "assignpairs"
+   }
+  ]
+ },
+ "Opponents": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   }
+  ]
+ },
+ "Order": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "start_location"
+   },
+   {
+    "annotation": "TrgOrder | Byte | ExprProxy[_Order]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "order_type"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest_location"
+   }
+  ]
+ },
+ "PColor": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "i"
+   }
+  ]
+ },
+ "PName": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   }
+  ]
+ },
+ "PRT_SetInliningRate": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'float'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "rate"
+   }
+  ]
+ },
+ "PRT_SkipPayloadRelocator": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'bool'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "enable"
+   }
+  ]
+ },
+ "PTrigger": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "eudplib.core.rawtrigger.constenc._Player | int | collections.abc.Iterable[eudplib.core.rawtrigger.constenc._Player | int | collections.abc.Iterable]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "players"
+   },
+   {
+    "annotation": "eudplib.core.rawtrigger.condition.Condition | bool | collections.abc.Iterable[eudplib.core.rawtrigger.condition.Condition | bool | collections.abc.Iterable | None] | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   },
+   {
+    "annotation": "eudplib.core.rawtrigger.action.Action | collections.abc.Iterable[eudplib.core.rawtrigger.action.Action | collections.abc.Iterable | None] | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "actions"
+   }
+  ]
+ },
+ "PVariable": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initvars"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "_from"
+   }
+  ]
+ },
+ "PauseGame": {
+  "kind": "function",
+  "params": []
+ },
+ "PauseTimer": {
+  "kind": "function",
+  "params": []
+ },
+ "PlayWAV": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "sound_name"
+   }
+  ]
+ },
+ "PlayWAVAll": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "soundpath"
+   }
+  ]
+ },
+ "PopTriggerScope": {
+  "kind": "function",
+  "params": []
+ },
+ "Portrait": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "PreserveTrigger": {
+  "kind": "function",
+  "params": []
+ },
+ "PushTriggerScope": {
+  "kind": "function",
+  "params": []
+ },
+ "QueueGameCommand": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "data"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "size"
+   }
+  ]
+ },
+ "QueueGameCommand_AddSelect": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "n"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr_arr"
+   }
+  ]
+ },
+ "QueueGameCommand_MergeArchon": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "QueueGameCommand_MergeDarkArchon": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "QueueGameCommand_MinimapPing": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "xy"
+   }
+  ]
+ },
+ "QueueGameCommand_PauseGame": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "QueueGameCommand_QueuedRightClick": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "xy"
+   }
+  ]
+ },
+ "QueueGameCommand_RemoveSelect": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "n"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr_arr"
+   }
+  ]
+ },
+ "QueueGameCommand_RestartGame": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "QueueGameCommand_ResumeGame": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "QueueGameCommand_RightClick": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "xy"
+   }
+  ]
+ },
+ "QueueGameCommand_Select": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "n"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr_arr"
+   }
+  ]
+ },
+ "QueueGameCommand_TrainUnit": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "QueueGameCommand_UseCheat": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "flags"
+   }
+  ]
+ },
+ "RawTrigger": {
+  "doc": "Class for standalone object on memory",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "RegisterCreatePayloadCallback": {
+  "kind": "builtin_function_or_method",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "callable"
+   }
+  ]
+ },
+ "RemoveUnit": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "RemoveUnitAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgCount | Byte | ExprProxy[Count]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "for_player"
+   }
+  ]
+ },
+ "RlocInt": {
+  "kind": "builtin_function_or_method",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "offset"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "rlocmode"
+   }
+  ]
+ },
+ "RlocInt_C": {
+  "doc": "Relocatable int",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "offset"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "rlocmode"
+   }
+  ]
+ },
+ "RunAIScript": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "(\n    DefaultAIScriptWithoutLocation\n    | str\n    | bytes\n    | Dword\n    | ExprProxy[AIScriptWithoutLocation]\n)",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "script"
+   }
+  ]
+ },
+ "RunAIScriptAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "typing.Union[typing.Literal['Terran Custom Level', 'Zerg Custom Level', 'Protoss Custom Level', 'Terran Expansion Custom Level', 'Zerg Expansion Custom Level', 'Protoss Expansion Custom Level', 'Terran Campaign Easy', 'Terran Campaign Medium', 'Terran Campaign Difficult', 'Terran Campaign Insane', 'Terran Campaign Area Town', 'Zerg Campaign Easy', 'Zerg Campaign Medium', 'Zerg Campaign Difficult', 'Zerg Campaign Insane', 'Zerg Campaign Area Town', 'Protoss Campaign Easy', 'Protoss Campaign Medium', 'Protoss Campaign Difficult', 'Protoss Campaign Insane', 'Protoss Campaign Area Town', 'Expansion Terran Campaign Easy', 'Expansion Terran Campaign Medium', 'Expansion Terran Campaign Difficult', 'Expansion Terran Campaign Insane', 'Expansion Terran Campaign Area Town', 'Expansion Zerg Campaign Easy', 'Expansion Zerg Campaign Medium', 'Expansion Zerg Campaign Difficult', 'Expansion Zerg Campaign Insane', 'Expansion Zerg Campaign Area Town', 'Expansion Protoss Campaign Easy', 'Expansion Protoss Campaign Medium', 'Expansion Protoss Campaign Difficult', 'Expansion Protoss Campaign Insane', 'Expansion Protoss Campaign Area Town', 'Move Dark Templars to Region', 'Clear Previous Combat Data', 'Set Player to Enemy', 'Set Player to Ally', 'Value This Area Higher', 'Enter Closest Bunker', 'Set Generic Command Target', 'Make These Units Patrol', 'Enter Transport', 'Exit Transport', 'AI Nuke Here', 'AI Harass Here', 'Set Unit Order To: Junk Yard Dog', 'Disruption Web Here', 'Recall Here', 'Terran 3 - Zerg Town', 'Terran 5 - Terran Main Town', 'Terran 5 - Terran Harvest Town', 'Terran 6 - Air Attack Zerg', 'Terran 6 - Ground Attack Zerg', 'Terran 6 - Zerg Support Town', 'Terran 7 - Bottom Zerg Town', 'Terran 7 - Right Zerg Town', 'Terran 7 - Middle Zerg Town', 'Terran 8 - Confederate Town', 'Terran 9 - Light Attack', 'Terran 9 - Heavy Attack', 'Terran 10 - Confederate Towns', 'Terran 11 - Zerg Town', 'Terran 11 - Lower Protoss Town', 'Terran 11 - Upper Protoss Town', 'Terran 12 - Nuke Town', 'Terran 12 - Phoenix Town', 'Terran 12 - Tank Town', 'Terran 1 - Electronic Distribution', 'Terran 2 - Electronic Distribution', 'Terran 3 - Electronic Distribution', 'Terran 1 - Shareware', 'Terran 2 - Shareware', 'Terran 3 - Shareware', 'Terran 4 - Shareware', 'Terran 5 - Shareware', 'Zerg 1 - Terran Town', 'Zerg 2 - Protoss Town', 'Zerg 3 - Terran Town', 'Zerg 4 - Right Terran Town', 'Zerg 4 - Lower Terran Town', 'Zerg 6 - Protoss Town', 'Zerg 7 - Air Town', 'Zerg 7 - Ground Town', 'Zerg 7 - Support Town', 'Zerg 8 - Scout Town', 'Zerg 8 - Templar Town', 'Zerg 9 - Teal Protoss', 'Zerg 9 - Left Yellow Protoss', 'Zerg 9 - Right Yellow Protoss', 'Zerg 9 - Left Orange Protoss', 'Zerg 9 - Right Orange Protoss', 'Zerg 10 - Left Teal (Attack', 'Zerg 10 - Right Teal (Support', 'Zerg 10 - Left Yellow (Support', 'Zerg 10 - Right Yellow (Attack', 'Zerg 10 - Red Protoss', 'Protoss 1 - Zerg Town', 'Protoss 2 - Zerg Town', 'Protoss 3 - Air Zerg Town', 'Protoss 3 - Ground Zerg Town', 'Protoss 4 - Zerg Town', 'Protoss 5 - Zerg Town Island', 'Protoss 5 - Zerg Town Base', 'Protoss 7 - Left Protoss Town', 'Protoss 7 - Right Protoss Town', 'Protoss 7 - Shrine Protoss', 'Protoss 8 - Left Protoss Town', 'Protoss 8 - Right Protoss Town', 'Protoss 8 - Protoss Defenders', 'Protoss 9 - Ground Zerg', 'Protoss 9 - Air Zerg', 'Protoss 9 - Spell Zerg', 'Protoss 10 - Mini-Towns', 'Protoss 10 - Mini-Town Master', 'Protoss 10 - Overmind Defenders', 'Brood Wars Protoss 1 - Town A', 'Brood Wars Protoss 1 - Town B', 'Brood Wars Protoss 1 - Town C', 'Brood Wars Protoss 1 - Town D', 'Brood Wars Protoss 1 - Town E', 'Brood Wars Protoss 1 - Town F', 'Brood Wars Protoss 2 - Town A', 'Brood Wars Protoss 2 - Town B', 'Brood Wars Protoss 2 - Town C', 'Brood Wars Protoss 2 - Town D', 'Brood Wars Protoss 2 - Town E', 'Brood Wars Protoss 2 - Town F', 'Brood Wars Protoss 3 - Town A', 'Brood Wars Protoss 3 - Town B', 'Brood Wars Protoss 3 - Town C', 'Brood Wars Protoss 3 - Town D', 'Brood Wars Protoss 3 - Town E', 'Brood Wars Protoss 3 - Town F', 'Brood Wars Protoss 4 - Town A', 'Brood Wars Protoss 4 - Town B', 'Brood Wars Protoss 4 - Town C', 'Brood Wars Protoss 4 - Town D', 'Brood Wars Protoss 4 - Town E', 'Brood Wars Protoss 4 - Town F', 'Brood Wars Protoss 5 - Town A', 'Brood Wars Protoss 5 - Town B', 'Brood Wars Protoss 5 - Town C', 'Brood Wars Protoss 5 - Town D', 'Brood Wars Protoss 5 - Town E', 'Brood Wars Protoss 5 - Town F', 'Brood Wars Protoss 6 - Town A', 'Brood Wars Protoss 6 - Town B', 'Brood Wars Protoss 6 - Town C', 'Brood Wars Protoss 6 - Town D', 'Brood Wars Protoss 6 - Town E', 'Brood Wars Protoss 6 - Town F', 'Brood Wars Protoss 7 - Town A', 'Brood Wars Protoss 7 - Town B', 'Brood Wars Protoss 7 - Town C', 'Brood Wars Protoss 7 - Town D', 'Brood Wars Protoss 7 - Town E', 'Brood Wars Protoss 7 - Town F', 'Brood Wars Protoss 8 - Town A', 'Brood Wars Protoss 8 - Town B', 'Brood Wars Protoss 8 - Town C', 'Brood Wars Protoss 8 - Town D', 'Brood Wars Protoss 8 - Town E', 'Brood Wars Protoss 8 - Town F', 'Brood Wars Terran 1 - Town A', 'Brood Wars Terran 1 - Town B', 'Brood Wars Terran 1 - Town C', 'Brood Wars Terran 1 - Town D', 'Brood Wars Terran 1 - Town E', 'Brood Wars Terran 1 - Town F', 'Brood Wars Terran 2 - Town A', 'Brood Wars Terran 2 - Town B', 'Brood Wars Terran 2 - Town C', 'Brood Wars Terran 2 - Town D', 'Brood Wars Terran 2 - Town E', 'Brood Wars Terran 2 - Town F', 'Brood Wars Terran 3 - Town A', 'Brood Wars Terran 3 - Town B', 'Brood Wars Terran 3 - Town C', 'Brood Wars Terran 3 - Town D', 'Brood Wars Terran 3 - Town E', 'Brood Wars Terran 3 - Town F', 'Brood Wars Terran 4 - Town A', 'Brood Wars Terran 4 - Town B', 'Brood Wars Terran 4 - Town C', 'Brood Wars Terran 4 - Town D', 'Brood Wars Terran 4 - Town E', 'Brood Wars Terran 4 - Town F', 'Brood Wars Terran 5 - Town A', 'Brood Wars Terran 5 - Town B', 'Brood Wars Terran 5 - Town C', 'Brood Wars Terran 5 - Town D', 'Brood Wars Terran 5 - Town E', 'Brood Wars Terran 5 - Town F', 'Brood Wars Terran 6 - Town A', 'Brood Wars Terran 6 - Town B', 'Brood Wars Terran 6 - Town C', 'Brood Wars Terran 6 - Town D', 'Brood Wars Terran 6 - Town E', 'Brood Wars Terran 6 - Town F', 'Brood Wars Terran 7 - Town A', 'Brood Wars Terran 7 - Town B', 'Brood Wars Terran 7 - Town C', 'Brood Wars Terran 7 - Town D', 'Brood Wars Terran 7 - Town E', 'Brood Wars Terran 7 - Town F', 'Brood Wars Terran 8 - Town A', 'Brood Wars Terran 8 - Town B', 'Brood Wars Terran 8 - Town C', 'Brood Wars Terran 8 - Town D', 'Brood Wars Terran 8 - Town E', 'Brood Wars Terran 8 - Town F', 'Brood Wars Zerg 1 - Town A', 'Brood Wars Zerg 1 - Town B', 'Brood Wars Zerg 1 - Town C', 'Brood Wars Zerg 1 - Town D', 'Brood Wars Zerg 1 - Town E', 'Brood Wars Zerg 1 - Town F', 'Brood Wars Zerg 2 - Town A', 'Brood Wars Zerg 2 - Town B', 'Brood Wars Zerg 2 - Town C', 'Brood Wars Zerg 2 - Town D', 'Brood Wars Zerg 2 - Town E', 'Brood Wars Zerg 2 - Town F', 'Brood Wars Zerg 3 - Town A', 'Brood Wars Zerg 3 - Town B', 'Brood Wars Zerg 3 - Town C', 'Brood Wars Zerg 3 - Town D', 'Brood Wars Zerg 3 - Town E', 'Brood Wars Zerg 3 - Town F', 'Brood Wars Zerg 4 - Town A', 'Brood Wars Zerg 4 - Town B', 'Brood Wars Zerg 4 - Town C', 'Brood Wars Zerg 4 - Town D', 'Brood Wars Zerg 4 - Town E', 'Brood Wars Zerg 4 - Town F', 'Brood Wars Zerg 5 - Town A', 'Brood Wars Zerg 5 - Town B', 'Brood Wars Zerg 5 - Town C', 'Brood Wars Zerg 5 - Town D', 'Brood Wars Zerg 5 - Town E', 'Brood Wars Zerg 5 - Town F', 'Brood Wars Zerg 6 - Town A', 'Brood Wars Zerg 6 - Town B', 'Brood Wars Zerg 6 - Town C', 'Brood Wars Zerg 6 - Town D', 'Brood Wars Zerg 6 - Town E', 'Brood Wars Zerg 6 - Town F', 'Brood Wars Zerg 7 - Town A', 'Brood Wars Zerg 7 - Town B', 'Brood Wars Zerg 7 - Town C', 'Brood Wars Zerg 7 - Town D', 'Brood Wars Zerg 7 - Town E', 'Brood Wars Zerg 7 - Town F', 'Brood Wars Zerg 8 - Town A', 'Brood Wars Zerg 8 - Town B', 'Brood Wars Zerg 8 - Town C', 'Brood Wars Zerg 8 - Town D', 'Brood Wars Zerg 8 - Town E', 'Brood Wars Zerg 8 - Town F', 'Brood Wars Zerg 9 - Town A', 'Brood Wars Zerg 9 - Town B', 'Brood Wars Zerg 9 - Town C', 'Brood Wars Zerg 9 - Town D', 'Brood Wars Zerg 9 - Town E', 'Brood Wars Zerg 9 - Town F', 'Brood Wars Zerg 10 - Town A', 'Brood Wars Zerg 10 - Town B', 'Brood Wars Zerg 10 - Town C', 'Brood Wars Zerg 10 - Town D', 'Brood Wars Zerg 10 - Town E', 'Brood Wars Zerg 10 - Town F'], str, bytes, ForwardRef('int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]'), eudplib.utils.exprproxy.ExprProxy[ForwardRef('AIScriptAtLocation')]]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "script"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   }
+  ]
+ },
+ "RunTrigTrigger": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "SCMD2Text": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "SaveMap": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "fname"
+   },
+   {
+    "annotation": "<class 'collections.abc.Callable'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "rootf"
+   },
+   {
+    "annotation": "int | None",
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "sector_size"
+   }
+  ]
+ },
+ "Score": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgScore | Byte | ExprProxy[_Score]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ScoreType"
+   },
+   {
+    "annotation": "TrgComparison | Byte | ExprProxy[Comparison]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "comparison"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   }
+  ]
+ },
+ "SeqCompute": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "assignpairs"
+   }
+  ]
+ },
+ "SetAllianceStatus": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgAllyStatus | Byte | ExprProxy[AllyStatus]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "status"
+   }
+  ]
+ },
+ "SetCountdownTimer": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time_modifier"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time"
+   }
+  ]
+ },
+ "SetCurrentPlayer": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "p"
+   }
+  ]
+ },
+ "SetDeaths": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modifier"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "SetDeathsX": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modifier"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "SetDoodadState": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgPropState | Byte | ExprProxy[PropState]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "state"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   }
+  ]
+ },
+ "SetGrpWire": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "wireframe"
+   }
+  ]
+ },
+ "SetInvincibility": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "TrgPropState | Byte | ExprProxy[PropState]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "state"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "owner"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   }
+  ]
+ },
+ "SetKills": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modifier"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   },
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   }
+  ]
+ },
+ "SetMemory": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modtype"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "SetMemoryEPD": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modtype"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "SetMemoryX": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modtype"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "SetMemoryXEPD": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modtype"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "SetMissionObjectives": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "text"
+   }
+  ]
+ },
+ "SetMissionObjectivesAll": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "text"
+   }
+  ]
+ },
+ "SetNextPtr": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "trg"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dest"
+   }
+  ]
+ },
+ "SetNextScenario": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "scenario_name"
+   }
+  ]
+ },
+ "SetNextTrigger": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'eudplib.core.allocator.ConstExpr'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "trg"
+   }
+  ]
+ },
+ "SetPName": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "name"
+   }
+  ]
+ },
+ "SetPNamef": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "SetResources": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modifier"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "amount"
+   },
+   {
+    "annotation": "TrgResource | Byte | ExprProxy[Resource]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "resource_type"
+   }
+  ]
+ },
+ "SetScore": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "_Player | Dword | ExprProxy[Player]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modifier"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "amount"
+   },
+   {
+    "annotation": "TrgScore | Byte | ExprProxy[_Score]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ScoreType"
+   }
+  ]
+ },
+ "SetSwitch": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[_Switch]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "switch"
+   },
+   {
+    "annotation": "TrgSwitchAction | Byte | ExprProxy[SwitchAction]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "state"
+   }
+  ]
+ },
+ "SetTranWire": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "wireframe"
+   }
+  ]
+ },
+ "SetVariables": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "srclist"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dstlist"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mdtlist"
+   }
+  ]
+ },
+ "SetWirefram": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "wireframe"
+   }
+  ]
+ },
+ "SetWireframes": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "wireframe"
+   }
+  ]
+ },
+ "ShufflePayload": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "bool",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mode"
+   }
+  ]
+ },
+ "Sprite": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "DefaultSprite | Sprite | Word | ExprProxy[_Sprite]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "StatText": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "StringBuffer": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "_EUDStructMetaclass",
+  "params": [
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "content"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "_from"
+   }
+  ]
+ },
+ "Switch": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[_Switch]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "switch"
+   },
+   {
+    "annotation": "TrgSwitchState | Byte | ExprProxy[SwitchState]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "state"
+   }
+  ]
+ },
+ "TBL": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": "bytes | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "content"
+   },
+   {
+    "annotation": "tuple[CHK, StringIdMap, StringIdMap, StringIdMap] | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "init_chkt"
+   },
+   {
+    "annotation": "Literal[2, 4]",
+    "default": "2",
+    "kind": "KEYWORD_ONLY",
+    "name": "load_entry"
+   },
+   {
+    "annotation": "Literal[2, 4]",
+    "default": "4",
+    "kind": "KEYWORD_ONLY",
+    "name": "save_entry"
+   }
+  ]
+ },
+ "TalkingPortrait": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time"
+   }
+  ]
+ },
+ "TalkingPortraitAll": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time"
+   }
+  ]
+ },
+ "Tech": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "DefaultTech | Tech | Byte | ExprProxy[_Tech]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TextFX_FadeIn": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "color"
+   },
+   {
+    "annotation": null,
+    "default": "1",
+    "kind": "KEYWORD_ONLY",
+    "name": "wait"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "reset"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "tag"
+   },
+   {
+    "annotation": null,
+    "default": "'UTF-8'",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "TextFX_FadeOut": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "color"
+   },
+   {
+    "annotation": null,
+    "default": "1",
+    "kind": "KEYWORD_ONLY",
+    "name": "wait"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "reset"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "tag"
+   },
+   {
+    "annotation": null,
+    "default": "'UTF-8'",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "TextFX_Remove": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "tag"
+   }
+  ]
+ },
+ "TextFX_SetTimer": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "tag"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "modtype"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "Transmission": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "unit"
+   },
+   {
+    "annotation": "str | Byte | bytes | ExprProxy[Location]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "where"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "sound_name"
+   },
+   {
+    "annotation": "TrgModifier | Byte | ExprProxy[Modifier]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time_modifier"
+   },
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time"
+   },
+   {
+    "annotation": "str | Word | bytes | ExprProxy[String]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "text"
+   },
+   {
+    "annotation": "int | EUDVariable | ExprProxy[int | EUDVariable]",
+    "default": "4",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "AlwaysDisplay"
+   }
+  ]
+ },
+ "TrgAIScript": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgAllyStatus": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgComparison": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgCount": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgLocation": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgModifier": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgOrder": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgPlayer": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgPropState": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgProperty": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgResource": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgScore": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgString": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgSwitch": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgSwitchAction": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgSwitchState": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "+T_co",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrgUnit": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "DefaultUnit | TrgUnit | Word | ExprProxy[Unit]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "TrigTriggerBegin": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "Player",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "TrigTriggerEnd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "Player",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "Trigger": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "eudplib.core.rawtrigger.condition.Condition | bool | collections.abc.Iterable[eudplib.core.rawtrigger.condition.Condition | bool | collections.abc.Iterable | None] | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "conditions"
+   },
+   {
+    "annotation": "eudplib.core.rawtrigger.action.Action | collections.abc.Iterable[eudplib.core.rawtrigger.action.Action | collections.abc.Iterable | None] | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "actions"
+   },
+   {
+    "annotation": "<class 'bool'>",
+    "default": "True",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "preserved"
+   }
+  ]
+ },
+ "TriggerScopeError": {
+  "doc": "Common base class for all non-exit exceptions.",
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": "'Must put Trigger into onPluginStart, beforeTriggerExec or afterTriggerExec'",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "msg"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "UnMuteUnitSpeech": {
+  "kind": "function",
+  "params": []
+ },
+ "UnitGroup": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": "int",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "capacity"
+   }
+  ]
+ },
+ "UnitOrder": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "DefaultUnitOrder | UnitOrder | Byte | ExprProxy[_UnitOrder]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "UnitProperty": {
+  "doc": "Structure base class",
+  "kind": "PyCStructType",
+  "params": [
+   {
+    "annotation": "int | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "hitpoint"
+   },
+   {
+    "annotation": "int | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "shield"
+   },
+   {
+    "annotation": "int | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "energy"
+   },
+   {
+    "annotation": "int | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "resource"
+   },
+   {
+    "annotation": "int | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "hanger"
+   },
+   {
+    "annotation": "bool | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cloaked"
+   },
+   {
+    "annotation": "bool | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "burrowed"
+   },
+   {
+    "annotation": "bool | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "intransit"
+   },
+   {
+    "annotation": "bool | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "hallucinated"
+   },
+   {
+    "annotation": "bool | None",
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "invincible"
+   }
+  ]
+ },
+ "UnpauseGame": {
+  "kind": "function",
+  "params": []
+ },
+ "UnpauseTimer": {
+  "kind": "function",
+  "params": []
+ },
+ "Upgrade": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "DefaultUpgrade | Upgrade | Byte | ExprProxy[_Upgrade]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "VProc": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "EUDVariable | Sequence[EUDVariable]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "v"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "actions"
+   }
+  ]
+ },
+ "Victory": {
+  "kind": "function",
+  "params": []
+ },
+ "Wait": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "int | EUDVariable | ConstExpr | ExprProxy[int | EUDVariable | ConstExpr]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "time"
+   }
+  ]
+ },
+ "Weapon": {
+  "doc": "Abstract base class for generic types.",
+  "kind": "ABCMeta",
+  "params": [
+   {
+    "annotation": "DefaultWeapon | Weapon | Byte | ExprProxy[_Weapon]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "initval"
+   }
+  ]
+ },
+ "b2i1": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "collections.abc.Sequence[int]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": "<class 'int'>",
+    "default": "0",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "index"
+   }
+  ]
+ },
+ "b2i2": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "collections.abc.Sequence[int]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": "<class 'int'>",
+    "default": "0",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "index"
+   }
+  ]
+ },
+ "b2i4": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "collections.abc.Sequence[int]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": "<class 'int'>",
+    "default": "0",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "index"
+   }
+  ]
+ },
+ "b2u": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "b2utf8": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "bits": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'int'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "n"
+   }
+  ]
+ },
+ "cachedfunc": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_ONLY",
+    "name": "user_function"
+   }
+  ]
+ },
+ "classproperty": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "method"
+   }
+  ]
+ },
+ "ep_assert": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'object'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "statement"
+   },
+   {
+    "annotation": "<class 'object'>",
+    "default": "'Assertion failed'",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "message"
+   }
+  ]
+ },
+ "ep_eprint": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'object'>",
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "ep_warn": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'str'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "message"
+   }
+  ]
+ },
+ "epd2s": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "epsCompile": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "filename"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b_code"
+   }
+  ]
+ },
+ "eudplibVersion": {
+  "kind": "function",
+  "params": []
+ },
+ "f_addcurpl": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cp"
+   }
+  ]
+ },
+ "f_addloc": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "loc"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "coords"
+   },
+   {
+    "annotation": null,
+    "default": "False",
+    "kind": "KEYWORD_ONLY",
+    "name": "action"
+   }
+  ]
+ },
+ "f_atan2": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "y"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   }
+  ]
+ },
+ "f_atan2_256": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "y"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   }
+  ]
+ },
+ "f_badd_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bitand": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bitlshift": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": null,
+    "default": "{2: <eudplib.core.eudfunc.eudtypedfuncn.EUDTypedFuncN object at 0x0000021A03C50250>}",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "_fdict"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_bitnand": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bitnor": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bitnot": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   }
+  ]
+ },
+ "f_bitnxor": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bitor": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bitrshift": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_bitsplit": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   }
+  ]
+ },
+ "f_bitxor": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bread": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_bread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ret"
+   }
+  ]
+ },
+ "f_bread_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ret"
+   }
+  ]
+ },
+ "f_bsubtract_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bwrite": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bwrite_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_bwrite_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_cp949_to_utf8_cpy": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dst"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "src"
+   }
+  ]
+ },
+ "f_cpstr_adddw": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   }
+  ]
+ },
+ "f_cpstr_addptr": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   }
+  ]
+ },
+ "f_cpstr_addstr": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "src"
+   }
+  ]
+ },
+ "f_cpstr_print": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "EOS"
+   },
+   {
+    "annotation": null,
+    "default": "'UTF-8'",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "f_cunitepdread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_cunitepdread_epd": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   }
+  ]
+ },
+ "f_cunitread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_cunitread_epd": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   }
+  ]
+ },
+ "f_dbstr_print": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dst"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "EOS"
+   },
+   {
+    "annotation": null,
+    "default": "'UTF-8'",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "f_dilateloc": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "loc"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "coords"
+   },
+   {
+    "annotation": null,
+    "default": "False",
+    "kind": "KEYWORD_ONLY",
+    "name": "action"
+   }
+  ]
+ },
+ "f_div": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_div_euclid": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_div_floor": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_div_towards_zero": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_dwadd_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "f_dwadd_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "f_dwbreak": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   }
+  ]
+ },
+ "f_dwbreak2": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "number"
+   }
+  ]
+ },
+ "f_dwepdread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_dwepdread_epd": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   }
+  ]
+ },
+ "f_dwepdread_epd_safe": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_dwrand": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "f_dwread": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_dwread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ret"
+   }
+  ]
+ },
+ "f_dwread_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ret"
+   }
+  ]
+ },
+ "f_dwread_epd_safe": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_dwsubtract_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "f_dwsubtract_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "f_dwwrite": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dw"
+   }
+  ]
+ },
+ "f_dwwrite_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "f_dwwrite_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "f_epdcunitread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_epdcunitread_epd": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   }
+  ]
+ },
+ "f_epdread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ret"
+   }
+  ]
+ },
+ "f_epdread_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ret"
+   }
+  ]
+ },
+ "f_epdread_epd_safe": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_epdspriteread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_epdspriteread_epd": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   }
+  ]
+ },
+ "f_eprintAll": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "f_eprintf": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "f_eprintln": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "f_eprintln2": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "f_flagread_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "flags"
+   },
+   {
+    "annotation": null,
+    "default": "{}",
+    "kind": "KEYWORD_ONLY",
+    "name": "_readerdict"
+   }
+  ]
+ },
+ "f_getcurpl": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "f_getgametick": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "f_getlocTL": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "loc"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_getseed": {
+  "kind": "function",
+  "params": []
+ },
+ "f_gettextptr": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "f_getuserplayerid": {
+  "kind": "function",
+  "params": []
+ },
+ "f_lengthdir": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "length"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "angle"
+   }
+  ]
+ },
+ "f_lengthdir_256": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "length"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "angle"
+   }
+  ]
+ },
+ "f_maskread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   },
+   {
+    "annotation": null,
+    "default": "{}",
+    "kind": "KEYWORD_ONLY",
+    "name": "_fdict"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_maskread_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   },
+   {
+    "annotation": null,
+    "default": "{}",
+    "kind": "KEYWORD_ONLY",
+    "name": "_fdict"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_maskwrite_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "f_maskwrite_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   }
+  ]
+ },
+ "f_memcmp": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "buf1"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "buf2"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   }
+  ]
+ },
+ "f_memcpy": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dst"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "src"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "copylen"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_mul": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_parse": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dst"
+   },
+   {
+    "annotation": null,
+    "default": "10",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "radix"
+   }
+  ]
+ },
+ "f_playerexist": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "f_posread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpoffset"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_posread_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_pow": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "a"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "b"
+   }
+  ]
+ },
+ "f_printAll": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "f_printAllAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "line"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "f_printAt": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "line"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "f_println": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   }
+  ]
+ },
+ "f_raise_CCMU": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "player"
+   }
+  ]
+ },
+ "f_rand": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "f_randomize": {
+  "kind": "EUDTypedFuncN",
+  "params": []
+ },
+ "f_readgen_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'int'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   },
+   {
+    "annotation": "tuple[int, collections.abc.Callable[[int], int]]",
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": "str | None",
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "docstring"
+   },
+   {
+    "annotation": "<class 'bool'>",
+    "default": "False",
+    "kind": "KEYWORD_ONLY",
+    "name": "_check_empty"
+   }
+  ]
+ },
+ "f_readgen_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'int'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "mask"
+   },
+   {
+    "annotation": "tuple[int, collections.abc.Callable[[int], int]]",
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": "str | None",
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "docstring"
+   },
+   {
+    "annotation": "<class 'bool'>",
+    "default": "False",
+    "kind": "KEYWORD_ONLY",
+    "name": "_check_empty"
+   }
+  ]
+ },
+ "f_repmovsd_epd": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dstepdp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "srcepdp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "copydwn"
+   }
+  ]
+ },
+ "f_setcurpl": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cp"
+   },
+   {
+    "annotation": null,
+    "default": "[]",
+    "kind": "KEYWORD_ONLY",
+    "name": "actions"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "set_modifier"
+   }
+  ]
+ },
+ "f_setcurpl2cpcache": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": "[]",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "v"
+   },
+   {
+    "annotation": null,
+    "default": "[]",
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "actions"
+   }
+  ]
+ },
+ "f_setloc": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "loc"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "coords"
+   },
+   {
+    "annotation": null,
+    "default": "False",
+    "kind": "KEYWORD_ONLY",
+    "name": "action"
+   }
+  ]
+ },
+ "f_setloc_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "loc"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   }
+  ]
+ },
+ "f_settbl": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "tbl_id"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "offset"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "f_settbl2": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "tbl_id"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "offset"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "f_settblf": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "tbl_id"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "offset"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "f_settblf2": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "tbl_id"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "offset"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "f_simpleprint": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "spaced"
+   }
+  ]
+ },
+ "f_sprintf": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dst"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "EOS"
+   },
+   {
+    "annotation": null,
+    "default": "'UTF-8'",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "f_sprintf_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "format_string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_POSITIONAL",
+    "name": "args"
+   },
+   {
+    "annotation": null,
+    "default": "True",
+    "kind": "KEYWORD_ONLY",
+    "name": "EOS"
+   },
+   {
+    "annotation": null,
+    "default": "'UTF-8'",
+    "kind": "KEYWORD_ONLY",
+    "name": "encoding"
+   }
+  ]
+ },
+ "f_spriteepdread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_spriteepdread_epd": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   }
+  ]
+ },
+ "f_spriteread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_spriteread_epd": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "targetplayer"
+   }
+  ]
+ },
+ "f_sqrt": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "n"
+   }
+  ]
+ },
+ "f_srand": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "seed"
+   }
+  ]
+ },
+ "f_strcmp": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s1"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s2"
+   }
+  ]
+ },
+ "f_strcpy": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "dst"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "src"
+   }
+  ]
+ },
+ "f_strlen": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_ONLY",
+    "name": "src"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_strlen_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_ONLY",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": "0",
+    "kind": "POSITIONAL_ONLY",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_strnstr": {
+  "kind": "EUDTypedFuncN",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "string"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "substring"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "count"
+   }
+  ]
+ },
+ "f_wadd_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "w"
+   }
+  ]
+ },
+ "f_wread": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "VAR_KEYWORD",
+    "name": "kwargs"
+   }
+  ]
+ },
+ "f_wread_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ret"
+   }
+  ]
+ },
+ "f_wread_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": "None",
+    "kind": "KEYWORD_ONLY",
+    "name": "ret"
+   }
+  ]
+ },
+ "f_wsubtract_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "w"
+   }
+  ]
+ },
+ "f_wwrite": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "ptr"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "w"
+   }
+  ]
+ },
+ "f_wwrite_cp": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cpo"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "w"
+   }
+  ]
+ },
+ "f_wwrite_epd": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "epd"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "subp"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "w"
+   }
+  ]
+ },
+ "find_data_file": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "filename"
+   },
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "file"
+   }
+  ]
+ },
+ "hptr": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "i2b1": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'int'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "i"
+   }
+  ]
+ },
+ "i2b2": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'int'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "i"
+   }
+  ]
+ },
+ "i2b4": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'int'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "i"
+   }
+  ]
+ },
+ "isUnproxyInstance": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "<class 'object'>",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   },
+   {
+    "annotation": "type | types.UnionType | tuple['_ClassInfo', ...]",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "cls"
+   }
+  ]
+ },
+ "ptr2s": {
+  "kind": "type",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "value"
+   }
+  ]
+ },
+ "selftype": {
+  "kind": "type",
+  "params": []
+ },
+ "toRlocInt": {
+  "doc": "Convert int/RlocInt to rlocint",
+  "kind": "builtin_function_or_method",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   }
+  ]
+ },
+ "u2b": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "u2utf8": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": "str | bytes",
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "s"
+   }
+  ]
+ },
+ "unProxy": {
+  "kind": "function",
+  "params": [
+   {
+    "annotation": null,
+    "default": null,
+    "kind": "POSITIONAL_OR_KEYWORD",
+    "name": "x"
+   }
+  ]
+ }
+}

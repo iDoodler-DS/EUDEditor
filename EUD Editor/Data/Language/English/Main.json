@@ -16,6 +16,8 @@
     "Tool_FileManager": "FileManager",
     "Tool_GRP": "GRP",
     "Tool_TriggerEditor": "TriggerEditor",
+    "Tool_EpsTrigger": "epScript",
+    "Group_Script": "Script",
     "Tool_Plugin": "Plugin",
     "Tool_MPQ": "MPQ",
     "Tool_FileSetting": "Files",
