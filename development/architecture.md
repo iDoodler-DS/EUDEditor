@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) and human contributo
 
 EUD Editor 2 SE is a fork of armoha/EUDEditor: a VB.NET WinForms front-end for building EUD-powered StarCraft: Brood War maps. The GUI edits triggers, `.dat` tables, FireGraft requirements, GRPs, MPQs, etc., then generates eudplib Python + epScript and shells out to an external `euddraft.exe` to inject the result into the map. SE is *not* backwards compatible with EUD Editor 2 (SE projects don't load in EE2; EE2 projects load in SE).
 
+Where this fork is going: [`roadmap.html`](roadmap.html) (open it in a browser). Four phases in dependency order — stability, folding the overlapping windows into one surface per job, replacing the trigger system's format/model/generator, then the features that unlocks. It is the plan of record; keep it updated as items land.
+
 ## Build
 
 Single project, .NET Framework 4.8, **x86 only**. There are no tests and no CI.

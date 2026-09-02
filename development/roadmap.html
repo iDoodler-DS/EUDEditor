@@ -1,0 +1,1043 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EUD Editor Roadmap</title>
+<style>
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground:   #FFFFFF;
+    --band:     #F4F6F8;
+    --ink:      #16191D;
+    --ink-soft: #3F464E;
+    --ink-mute: #6B747E;
+    --rule:     #DEE3E8;
+    --rule-hard:#B9C1CA;
+    --accent:   #275EA8;
+    --warn:     #8A5510;
+
+    --read: 78ch;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:   #15181C;
+      --band:     #1B1F24;
+      --ink:      #E6EAEE;
+      --ink-soft: #BAC2CB;
+      --ink-mute: #8A939D;
+      --rule:     #2A3037;
+      --rule-hard:#3E464F;
+      --accent:   #7FAAE4;
+      --warn:     #D9A455;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:   #15181C;
+    --band:     #1B1F24;
+    --ink:      #E6EAEE;
+    --ink-soft: #BAC2CB;
+    --ink-mute: #8A939D;
+    --rule:     #2A3037;
+    --rule-hard:#3E464F;
+    --accent:   #7FAAE4;
+    --warn:     #D9A455;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 clamp(18px, 4vw, 40px);
+  }
+
+  /* Two columns: a nav rail that stays in place, and the document. */
+  .layout {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: 0 44px;
+    align-items: start;
+  }
+
+  nav.rail {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 30px 0 40px;
+    border-right: 1px solid var(--rule);
+    margin-right: -22px;
+    padding-right: 22px;
+  }
+
+  nav.rail h2 {
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin: 0 0 8px;
+  }
+
+  nav.rail h2 + ul { margin-bottom: 20px; }
+
+  nav.rail ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav.rail li { margin: 0; }
+
+  nav.rail a {
+    display: grid;
+    grid-template-columns: 1.9rem minmax(0, 1fr);
+    gap: 6px;
+    padding: 3px 0;
+    font-size: 0.83rem;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  nav.rail a:hover { color: var(--accent); text-decoration: underline; }
+
+  nav.rail a .n {
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.76rem;
+    color: var(--ink-mute);
+  }
+
+  nav.rail a.top {
+    grid-template-columns: minmax(0, 1fr);
+    font-weight: 500;
+    color: var(--ink);
+    padding: 4px 0 2px;
+  }
+
+  main { min-width: 0; }
+
+  h1, h2, h3 {
+    font-weight: 600;
+    letter-spacing: -0.008em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .mono, code {
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  }
+
+  code {
+    font-size: 0.88em;
+    background: var(--band);
+    padding: 0.08em 0.3em;
+    border-radius: 2px;
+  }
+
+  /* header */
+
+  header {
+    border-bottom: 1px solid var(--rule-hard);
+    padding: 40px 0 18px;
+  }
+
+  h1 { font-size: 1.7rem; }
+
+  .sub {
+    color: var(--ink-soft);
+    max-width: var(--read);
+    margin: 8px 0 0;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 22px;
+    margin-top: 16px;
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+  }
+
+  /* sections */
+
+  section { padding: 30px 0 6px; scroll-margin-top: 12px; }
+  section + section { border-top: 1px solid var(--rule); }
+  .item { scroll-margin-top: 12px; }
+
+  h2 {
+    font-size: 1.12rem;
+    margin-bottom: 4px;
+  }
+
+  .phase-label {
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .lede {
+    color: var(--ink-soft);
+    max-width: var(--read);
+    margin: 0 0 22px;
+  }
+
+  /* items */
+
+  .item {
+    display: grid;
+    grid-template-columns: 2.6rem minmax(0, 1fr);
+    gap: 0 14px;
+    padding: 16px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .item:last-child { border-bottom: 1px solid var(--rule); }
+
+  .id {
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-mute);
+    padding-top: 0.15em;
+  }
+
+  h3 { font-size: 1rem; margin-bottom: 8px; }
+
+  .ps {
+    display: grid;
+    grid-template-columns: 5.2rem minmax(0, 1fr);
+    gap: 4px 12px;
+    max-width: var(--read);
+  }
+
+  .ps dt {
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding-top: 0.28em;
+  }
+
+  .ps dd { margin: 0; color: var(--ink-soft); }
+  .ps dd.solution { color: var(--ink); }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 18px;
+    margin-top: 10px;
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.76rem;
+    color: var(--ink-mute);
+  }
+
+  .meta b { font-weight: 500; color: var(--ink-soft); }
+  .meta .flag { color: var(--warn); }
+
+  /* code sample inside an item */
+
+  .emits {
+    margin: 10px 0 0;
+    padding: 9px 12px;
+    background: var(--band);
+    border-left: 2px solid var(--accent);
+    overflow-x: auto;
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: var(--read);
+  }
+
+  .emits b { color: var(--ink); font-weight: 500; }
+  .emits .c { color: var(--ink-mute); }
+
+  .covers {
+    margin: 10px 0 0;
+    max-width: var(--read);
+    font-size: 0.93rem;
+    color: var(--ink-soft);
+  }
+
+  .covers b {
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+
+  /* tables */
+
+  .table-wrap { overflow-x: auto; margin-bottom: 22px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  caption {
+    text-align: left;
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding-bottom: 8px;
+  }
+
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 7px 16px 7px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  thead th {
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 500;
+    border-bottom-color: var(--rule-hard);
+  }
+
+  tbody th { font-weight: 500; width: 12rem; }
+  td.spread { color: var(--ink-mute); }
+  td.into { color: var(--accent); width: 14rem; }
+  td.num {
+    font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    text-align: right;
+    width: 7ch;
+    font-variant-numeric: tabular-nums;
+  }
+  td.num.after { color: var(--accent); font-weight: 500; }
+
+  /* order list */
+
+  ol.order {
+    max-width: var(--read);
+    margin: 0 0 6px;
+    padding-left: 1.3em;
+    color: var(--ink-soft);
+  }
+  ol.order li { margin-bottom: 4px; }
+  ol.order b { color: var(--ink); font-weight: 500; }
+
+  footer {
+    border-top: 1px solid var(--rule-hard);
+    margin-top: 30px;
+    padding: 26px 0 50px;
+    color: var(--ink-mute);
+    font-size: 0.85rem;
+  }
+
+  footer p { max-width: var(--read); margin: 0 0 8px; }
+
+  a { color: var(--accent); text-underline-offset: 2px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    nav.rail {
+      position: static;
+      max-height: none;
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+      margin-right: 0;
+      padding: 16px 0 18px;
+    }
+    nav.rail ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px 18px;
+    }
+    nav.rail h2 { margin-top: 10px; }
+  }
+
+  @media (max-width: 700px) {
+    .ps { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .ps dt { padding-top: 6px; }
+    tbody th { width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="shell">
+    <h1>EUD Editor SE roadmap</h1>
+    <p class="sub">
+      Development plan for the fork. Four phases in dependency order. Each phase makes the next phase cheaper.
+      This document is the plan of record. Update it when an item is complete.
+    </p>
+    <div class="facts">
+      <span>72 forms</span>
+      <span>86,000 lines VB.NET</span>
+      <span>.NET 4.8 WinForms</span>
+      <span>24 trigger dialogs</span>
+      <span>56 trigger function files</span>
+      <span>30 trigger node types, none typed</span>
+      <span>Revised 2026-09-02</span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+<div class="layout">
+
+<nav class="rail" aria-label="Contents">
+  <ul>
+    <li><a class="top" href="#sequence">Sequence</a></li>
+    <li><a class="top" href="#state">Current state</a></li>
+  </ul>
+
+  <h2>Phase 1 &middot; Stability</h2>
+  <ul>
+      <li><a href="#item-01"><span class="n">01</span><span>Undo and redo in the data editors</span></a></li>
+      <li><a href="#item-02"><span class="n">02</span><span>Autosave and crash recovery</span></a></li>
+      <li><a href="#item-03"><span class="n">03</span><span>Correct the error handling</span></a></li>
+      <li><a href="#item-04"><span class="n">04</span><span>Reference build</span></a></li>
+  </ul>
+
+  <h2>Phase 2 &middot; Four tabs</h2>
+  <ul>
+      <li><a href="#item-05"><span class="n">05</span><span>Four tabs, by subject</span></a></li>
+      <li><a href="#item-06"><span class="n">06</span><span>The Data tab, by concept</span></a></li>
+      <li><a href="#item-07"><span class="n">07</span><span>The Resources tab</span></a></li>
+      <li><a href="#item-08"><span class="n">08</span><span>The Project tab, and one build action</span></a></li>
+      <li><a href="#item-09"><span class="n">09</span><span>Inline value pickers</span></a></li>
+  </ul>
+
+  <h2>Phase 3 &middot; Foundations</h2>
+  <ul>
+      <li><a href="#item-10"><span class="n">10</span><span>Function file format</span></a></li>
+      <li><a href="#item-11"><span class="n">11</span><span>Trigger model</span></a></li>
+      <li><a href="#item-12"><span class="n">12</span><span>Generator</span></a></li>
+      <li><a href="#item-13"><span class="n">13</span><span>Compiler version check</span></a></li>
+  </ul>
+
+  <h2>Phase 4 &middot; Modern EUD</h2>
+  <ul>
+      <li><a href="#item-14"><span class="n">14</span><span>Named game data in a trigger</span></a></li>
+      <li><a href="#item-15"><span class="n">15</span><span>Live units as a value</span></a></li>
+      <li><a href="#item-16"><span class="n">16</span><span>Named state flags</span></a></li>
+      <li><a href="#item-17"><span class="n">17</span><span>Loops over the objects of the game</span></a></li>
+      <li><a href="#item-18"><span class="n">18</span><span>Unit groups</span></a></li>
+      <li><a href="#item-19"><span class="n">19</span><span>Collections</span></a></li>
+      <li><a href="#item-20"><span class="n">20</span><span>Structures and functions with types</span></a></li>
+      <li><a href="#item-21"><span class="n">21</span><span>Text with arguments</span></a></li>
+      <li><a href="#item-22"><span class="n">22</span><span>epScript beside the tree</span></a></li>
+  </ul>
+
+  <h2>Phase 5 &middot; Tools</h2>
+  <ul>
+      <li><a href="#item-23"><span class="n">23</span><span>Find all references</span></a></li>
+      <li><a href="#item-24"><span class="n">24</span><span>Validation during the edit</span></a></li>
+      <li><a href="#item-25"><span class="n">25</span><span>Difference against the stock game data</span></a></li>
+      <li><a href="#item-26"><span class="n">26</span><span>Edit multiple entries</span></a></li>
+      <li><a href="#item-27"><span class="n">27</span><span>Field documentation</span></a></li>
+  </ul>
+
+  <ul>
+    <li><a class="top" href="#start">Where to start</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="sequence">
+    <h2>Sequence</h2>
+    <p class="lede">Do the phases in this order. The reasons are dependencies, not preference.</p>
+    <ol class="order">
+      <li><b>Stability.</b> Phase 2 moves code that user projects depend on. Do not move it while an error is permanent.</li>
+      <li><b>Four tabs.</b> Project, Data, Triggers and Resources. The editor follows the subject, not the file format.</li>
+      <li><b>Trigger foundations.</b> A format with a schema, a model with types, and a generator that reads the model.</li>
+      <li><b>Modern EUD.</b> Typed game objects, loops over units, collections and formatted text. Nine items. This is the reason for phase 3.</li>
+      <li><b>Tools and quality.</b> Search, validation and a difference view. Each one is simple after phase 3.</li>
+    </ol>
+</section>
+
+<section id="state">
+    <h2>Current state</h2>
+    <p class="lede">
+      Complete in the last session: the toolbar is a tab strip, the build log is a dock in the main window,
+      project settings are a tab, and the theme is in the settings dialog. Undo and redo work in the data editors. TileSet, GRP and BinEditor are hidden, because they are unused. Times are milliseconds to open an
+      editor. The test project is survival.e2s.
+    </p>
+    <div class="table-wrap">
+      <table>
+        <caption>Measured open time, Test build</caption>
+        <thead>
+          <tr><th scope="col">Editor</th><th scope="col" class="num">Before</th><th scope="col" class="num">After</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">DatEdit</th><td class="num">1920</td><td class="num after">110</td></tr>
+          <tr><th scope="row">FireGraft</th><td class="num">591</td><td class="num after">107</td></tr>
+          <tr><th scope="row">FileManager</th><td class="num">719</td><td class="num after">35</td></tr>
+          <tr><th scope="row">Plugin</th><td class="num">241</td><td class="num after">15</td></tr>
+          <tr><th scope="row">Resize, 20 steps, 4 editors open</th><td class="num">4000</td><td class="num after">260</td></tr>
+        </tbody>
+      </table>
+    </div>
+</section>
+
+<section id="phase1">
+    <div class="phase-label">Phase 1</div>
+    <h2>Stability</h2>
+    <p class="lede">The editor must not lose user data. Complete this phase before you move code.</p>
+
+    <div class="item" id="item-01">
+      <div class="id">01</div>
+      <div>
+        <h3>Undo and redo in the data editors</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>DatEdit, FireGraft and the string table have no undo. A wrong keystroke writes a value. The user cannot go back.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Add one command log for the data editors. Most edits use two write methods on one data class. Connect the log to those two methods. Refresh the list and the fields after an undo. Scope the history to the tab, not to the editor. The trigger editor keeps its own, because it records only about half of its changes, and a merged stack would undo the wrong thing in a tab the user is not looking at.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 1 week</span><span><b>Area</b> DatEdit</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-02">
+      <div class="id">02</div>
+      <div>
+        <h3>Autosave and crash recovery</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>A crash discards all changes after the last manual save. The crash log has no reader.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Write a recovery copy of the project every 5 minutes. Offer the copy at the next start. Show a crash dialog with the cause and a copy button.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 2 days</span><span><b>Area</b> Project data</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-03">
+      <div class="id">03</div>
+      <div>
+        <h3>Correct the error handling</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>Empty catch blocks hide failures. A file that does not load looks the same as an empty file. Some catch blocks replace a missing bounds test and run on a hot path.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Replace each catch block with the correct test where the intention is clear. Record the other errors. Also remove the references that construct a form as a side effect. One such reference built the FireGraft window during each DatEdit load.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> continuous</span><span class="flag"><b>Risk</b> correctness</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-04">
+      <div class="id">04</div>
+      <div>
+        <h3>Reference build</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>No test shows whether a code change alters the generated output.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Compile a set of reference projects. Keep the generated files. Compare the files after each change. Identical output proves the change is safe.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 2 days</span><span class="flag"><b>Required for</b> phase 3</span></div>
+      </div>
+    </div>
+</section>
+
+<section id="phase2">
+    <div class="phase-label">Phase 2</div>
+    <h2>Four tabs, by subject</h2>
+    <p class="lede">
+      The editor has a window for each file format. A unit's data is in four of them. Replace that with four
+      tabs named after the subject: Project, Data, Triggers and Resources. Each old editor becomes a pane inside
+      the tab it belongs to, and keeps its controls.
+    </p>
+    <p class="lede">
+      Do the move first and the merge second. Item 05 changes where a screen lives. Items 06 to 08 change how
+      the screens inside a tab work together. A user can follow the first step without relearning anything.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>Where each editor goes</caption>
+        <thead>
+          <tr><th scope="col">Tab</th><th scope="col">Holds today's</th><th scope="col">Contains</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Project</th><td class="spread">Project settings, Plugin, data source paths, build options</td><td>Everything about this project and how it builds.</td></tr>
+          <tr><th scope="row">Data</th><td class="spread">DatEdit, FireGraft, wireframes and unit names from FileManager</td><td>Everything the map changes in the game: units, weapons, upgrades, techs, orders, graphics, sounds.</td></tr>
+          <tr><th scope="row">Triggers</th><td class="spread">Trigger editor and its dialogs</td><td>The trigger tree and the generated script.</td></tr>
+          <tr><th scope="row">Resources</th><td class="spread">MPQ browser, GRP editor, string table, BGM player, TileSet, BinEditor</td><td>The files inside the map and the game archives.</td></tr>
+          <tr><th scope="row">Debug</th><td class="spread">Debug, cheats, unit view, deaths, game data, player data, switches</td><td>A running game. Present only for 1.16.1, as today.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="item" id="item-05">
+      <div class="id">05</div>
+      <div>
+        <h3>Four tabs, by subject</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The editor has one tab for each file format. A user who wants to change a unit opens DatEdit for the values, FireGraft for the requirements and the button set, and FileManager for the wireframe and the name. The structure follows the data, not the work.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Group the editors into four tabs: Project, Data, Triggers and Resources. Each old editor becomes a pane inside its tab, with its controls unchanged. A user who knows the editor finds the same screens, in fewer places. Each tab carries its own Edit menu and its own undo history, so Ctrl+Z always means "undo my last change in this tab".</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 2 weeks</span><span><b>Area</b> Shell</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-06">
+      <div class="id">06</div>
+      <div>
+        <h3>The Data tab, by concept</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>DatEdit has one inner tab per .dat file. FireGraft is a separate window with the requirements and the button set of the same units. The user holds the connection in their head.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Give the Data tab one list per concept: units, weapons, upgrades, techs, orders, graphics, sounds. Select a unit and see its values, its requirements, its button set and its wireframe on one page. The .dat files stay as they are; only the presentation changes.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 3 weeks</span><span class="flag"><b>Needs</b> 05</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-07">
+      <div class="id">07</div>
+      <div>
+        <h3>The Resources tab</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The map archive, the graphics, the string table and the sounds each have a window, and several have more than one. The user cannot answer "what is in this map" from one place.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Put the archive browser, the graphics, the strings and the sounds in one tab with a type filter and a preview. All of these windows already call the same archive reader, and the archive listing is cached.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 2 weeks</span><span class="flag"><b>Needs</b> 05</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-08">
+      <div class="id">08</div>
+      <div>
+        <h3>The Project tab, and one build action</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>Plugins are a separate tab although they are project configuration. There are five ways to build the mod into a map and three ways to read the generated code.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Move the plugin list into the Project tab beside the other project settings. Reduce the build to one action with options, and the output to one panel with tabs for the script, the triggers and the log.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 1 week</span><span class="flag"><b>Needs</b> 05</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-09">
+      <div class="id">09</div>
+      <div>
+        <h3>Inline value pickers</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The trigger editor opens a modal dialog to select a unit, a player, a switch, a wait or a string. The user must close the dialog before the user can see the trigger.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Make one inline picker. The picker reads the type of the field. Each list is already in memory.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 2 weeks</span><span><b>Area</b> Triggers</span></div>
+      </div>
+    </div>
+</section>
+
+<section id="phase3">
+    <div class="phase-label">Phase 3</div>
+    <h2>Trigger system foundations</h2>
+    <p class="lede">
+      The format, the model and the generator. Each layer can ship separately. Item 04 verifies each change.
+    </p>
+    <p class="lede">
+      These four items do not add a function for the user. They make phase 4 possible.
+    </p>
+
+    <div class="item" id="item-10">
+      <div class="id">10</div>
+      <div>
+        <h3>Function file format</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The 56 function files use a private format. The format has numeric type codes, an element count before each child, an <code>END</code> marker, and one Tamil letter as the field separator. The help text for each language is inside each node. A change is not readable in a diff. A new language needs an edit to all 56 files.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Use JSON with a schema. Convert the files one time. Move the help text to the language files. Validate each file at load.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 1 to 2 weeks</span><span class="flag"><b>Needs</b> 04</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-11">
+      <div class="id">11</div>
+      <div>
+        <h3>Trigger model</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The trigger tree is the data and the interface. Each node holds its own display text. The generator reads the tree control. Search, test and validation need an open window. The model has 30 node types: if, while, for, switch, function, action, condition, folder and raw code. It has no type for a value.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Make a model that does not depend on a window. Give a value a type: a number, a unit, a player, a unit pointer, an array. The tree control shows the model. This item enables all of phase 4.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 3 to 4 weeks</span><span class="flag"><b>Risk</b> high</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-12">
+      <div class="id">12</div>
+      <div>
+        <h3>Generator</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The generator concatenates strings across a module of 1,393 lines. It decides the format at each site. The output is not testable.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Generate epScript from the model. Keep the source position of each node. A compile error then points to the trigger.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 2 weeks</span><span class="flag"><b>Needs</b> 11, 04</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-13">
+      <div class="id">13</div>
+      <div>
+        <h3>Compiler version check</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The editor does not know which euddraft version is installed. It does not know which functions that version accepts. A build finds the error.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Read the version at start and show it in the status bar. Keep a table of the version of each function. Warn before the build.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 3 days</span><span><b>Area</b> Build</span></div>
+      </div>
+    </div>
+</section>
+
+<section id="phase4">
+    <div class="phase-label">Phase 4</div>
+    <h2>Modern EUD, natively</h2>
+    <p class="lede">
+      This is the transformation. Everything before it is preparation.
+    </p>
+    <p class="lede">
+      The trigger editor gives the user conditions, actions, variables and raw memory. epScript and eudplib
+      give the user typed game objects, loops over units, collections and formatted text. A user who wants the
+      second set leaves the editor, or pastes an address into a memory action and hopes.
+    </p>
+    <pre class="emits"><span class="c">// To add 3 damage to a weapon, a user writes this today.</span>
+const offset = 0x656EB0 + EncodeWeapon("Fragmentation Grenade") * 2;
+wwrite(offset, wread(offset) + 3);
+
+<span class="c">// epScript has had this since the SCData release.</span>
+<b>TrgUnit("Terran Vulture").groundWeapon.damage += 3;</b></pre>
+
+    <p class="lede">
+      The 56 built-in trigger functions are the evidence. Each one wraps an address and a size that somebody
+      looked up once, and each one is a copy that nobody can check. Give the user the concept instead of the
+      wrapper.
+    </p>
+    <p class="lede">
+      One rule for this phase: the editor does not become a text editor. The tree keeps its place. It gets the
+      vocabulary that the language already has. Item 22 is the door for users who prefer text.
+    </p>
+
+    <div class="table-wrap">
+      <table>
+        <caption>The value types the trigger model needs</caption>
+        <thead>
+          <tr><th scope="col">Type</th><th scope="col">Holds</th><th scope="col">In the editor today</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Number</th><td>A count, a timer, a coordinate</td><td class="spread">Yes, the only type today</td></tr>
+          <tr><th scope="row">Unit type</th><td>"Terran Marine" as data, not as a unit on the map</td><td class="spread">A number in a list</td></tr>
+          <tr><th scope="row">Player, order, weapon, upgrade, tech</th><td>The other kinds of game data</td><td class="spread">A number in a list</td></tr>
+          <tr><th scope="row">Unit pointer</th><td>One unit that exists in the running game</td><td class="spread">No</td></tr>
+          <tr><th scope="row">Sprite pointer</th><td>The graphic of a unit</td><td class="spread">No</td></tr>
+          <tr><th scope="row">Unit group</th><td>A set of unit pointers that survives between runs</td><td class="spread">No</td></tr>
+          <tr><th scope="row">Array</th><td>Values by index</td><td class="spread">No</td></tr>
+          <tr><th scope="row">Structure</th><td>Values by name</td><td class="spread">No</td></tr>
+          <tr><th scope="row">Text</th><td>A format string with arguments</td><td class="spread">A fixed string</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="item" id="item-14">
+      <div class="id">14</div>
+      <div>
+        <h3>Named game data in a trigger</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The .dat values the Data tab edits are fixed when the map is built. To change one while the map runs, a user writes a memory address and a byte size. The address 0x656EB0 does not say "weapon damage". The multiplication by 2 does not say "each weapon record is 2 bytes long".</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Add a data action and a data condition with named fields. The user picks the subject, then the field, then the operation: set, add, subtract. The generator emits the member access and eudplib computes the address and the size. The same field names the Data tab shows before the build become available during the game.</dd>
+        </dl>
+        <pre class="emits"><span class="c">// action: Terran Vulture, ground weapon, damage, add 3</span>
+<b>TrgUnit("Terran Vulture").groundWeapon.damage += 3;</b>
+<span class="c">// condition: max hit points of Terran Marine is at least 60</span>
+<b>TrgUnit("Terran Marine").maxHp &gt;= 60 * 256</b></pre>
+        <p class="covers"><b>Covers</b> Units with 40 fields, weapons with 16, upgrades with 12, techs with 10, orders with 11, flingy, sprites, images, and the resources and supply of a player. A field that holds another kind of data returns that kind, so the user can walk from a unit to its weapon to that weapon&#8217;s damage in one expression.</p>
+        <div class="meta"><span><b>Effort</b> 2 weeks</span><span class="flag"><b>Needs</b> 11</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-15">
+      <div class="id">15</div>
+      <div>
+        <h3>Live units as a value</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>A trigger cannot read the units that exist in the running game. To read the hit points of a unit, a user finds the offset 0x08 in the EUD offset book, divides an address by four, and writes a memory condition. The unit structure has about 190 named fields. The editor exposes none of them.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Add a unit pointer value type. A user selects a field by name and reads or writes it like a variable. The fields are typed, so the target of an order is another unit, the owner is a player, and the unit type is game data. The user can therefore follow a chain: the owner of the target of this unit&#8217;s order.</dd>
+        </dl>
+        <pre class="emits"><span class="c">// give 100 minerals to the owner of the unit this unit is attacking</span>
+<b>unit.orderTarget.owner.ore += 100;</b>
+<span class="c">// raise the maximum hit points of this unit&#8217;s type</span>
+<b>unit.unitType.maxHp += 20 * 256;</b></pre>
+        <p class="covers"><b>Covers</b> Position, hit points, shield, energy, owner, unit type, order and order target, both weapon cooldowns, build queue, resource amount, transport contents, hangar contents, and the timers for stim, ensnare, lockdown, irradiate, stasis, plague and storm. Sprites carry the graphic.</p>
+        <div class="meta"><span><b>Effort</b> 3 weeks</span><span class="flag"><b>Needs</b> 11</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-16">
+      <div class="id">16</div>
+      <div>
+        <h3>Named state flags</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>A unit carries 33 state flags in three groups. A user who wants to know whether a unit is cloaked writes a bit mask as a number. The number does not say "cloaked". A user who sets the wrong bit gets no error, only a map that behaves strangely.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Show the flags as a named list with check boxes. Read them in a condition and set them in an action. Group them as the game does: state, movement and pathing.</dd>
+        </dl>
+        <p class="covers"><b>Covers</b> Completed, In air, Burrowed, In transport, In building, Cloaked, Requires detection, Invincible, Hallucination, Holding position, Can not attack, Can not receive orders, Is gathering, Speed upgrade, Cooldown upgrade, Has collision, Is stacked, and 16 more.</p>
+        <div class="meta"><span><b>Effort</b> 4 days</span><span class="flag"><b>Needs</b> 15</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-17">
+      <div class="id">17</div>
+      <div>
+        <h3>Loops over the objects of the game</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The trigger model has while, for and switch. It has no loop over the objects of the game. To act on each unit of a player, a user writes a function with a counter and a memory read, or copies one of the 56 built-in functions and changes it.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Add a foreach block. The user picks the source. The block gives a unit value that the rest of the phase can use. Each source is a loop eudplib already provides, so the generated code is the one the library authors optimised.</dd>
+        </dl>
+        <pre class="emits"><span class="c">// for each unit created since the last run</span>
+<b>foreach(unit : EUDLoopNewCUnit()) {</b>
+    <span class="c">// the tree of this block goes here</span>
+<b>}</b></pre>
+        <p class="covers"><b>Covers</b> All units, units created since the last run, the units of one player, all players, bullets and sprites.</p>
+        <div class="meta"><span><b>Effort</b> 1 week</span><span class="flag"><b>Needs</b> 11, 15</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-18">
+      <div class="id">18</div>
+      <div>
+        <h3>Unit groups</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>To act on a set of units across several game ticks, a user builds an array of addresses and manages the indices. To notice that a member died, the user compares each entry every tick and removes the entry by hand. This is the most common source of a slow map.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Add a unit group value. The user adds a unit to it, loops over it, and handles a dying member in a block inside that loop. The library removes the dead member at the end of that block.</dd>
+        </dl>
+        <pre class="emits"><span class="c">// spawn an Infested Terran where a tracked Zergling dies</span>
+<b>foreach(unit : zerglings.cploop) {</b>
+    <b>foreach(dead : unit.dying) {</b>
+        <span class="c">// the position and owner of the dead unit are available here</span>
+    <b>}</b>
+<b>}</b></pre>
+        <div class="meta"><span><b>Effort</b> 1 week</span><span class="flag"><b>Needs</b> 15, 17</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-19">
+      <div class="id">19</div>
+      <div>
+        <h3>Collections</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The trigger editor has flat variables. A user who needs a table of values declares many variables and keeps the meaning of each index in their head. A user who needs a waiting list writes the list logic from the start each time.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Add an array value with an index, and the three collections that follow from it: a queue, a stack and a pool of reusable objects. Each one is a type in the library already.</dd>
+        </dl>
+        <p class="covers"><b>Covers</b> Array by index, array of structures, queue with append and take, stack with push and pop, and an object pool with allocate and free for a fixed number of reusable records.</p>
+        <div class="meta"><span><b>Effort</b> 2 weeks</span><span class="flag"><b>Needs</b> 11</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-20">
+      <div class="id">20</div>
+      <div>
+        <h3>Structures and functions with types</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>A trigger function takes numbers. A user who passes a unit type to a function passes a number and remembers what it means. There is no way to group related values under one name.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Add a structure with named fields, and give a function parameter a type. The editor can then check the argument before the build, and offer the fields of the value the user selected.</dd>
+        </dl>
+        <pre class="emits"><span class="c">// a typed parameter, checked before the build</span>
+<b>function makeStronger(unitID: TrgUnit) {</b>
+    <b>unitID.maxHp += 20 * 256;</b>
+<b>}</b></pre>
+        <div class="meta"><span><b>Effort</b> 2 weeks</span><span class="flag"><b>Needs</b> 11, 19</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-21">
+      <div class="id">21</div>
+      <div>
+        <h3>Text with arguments</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>Text output joins strings by hand. A colour is an escape character typed into the string. A number is converted and concatenated. The user cannot see the result before the build.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Add one text action with a format string, arguments, a colour picker and a preview. Add the text buffer for text that the map changes as it runs, such as a score board or a chat log.</dd>
+        </dl>
+        <pre class="emits"><span class="c">// print with an argument, to every player</span>
+<b>printAll("\x04Player 7 gas: {}", P7.gas);</b></pre>
+        <p class="covers"><b>Covers</b> Print to all players, print at a position, a text buffer with append, insert and delete, a fade effect, and the Korean and UTF-8 encodings the game accepts.</p>
+        <div class="meta"><span><b>Effort</b> 1 week</span><span class="flag"><b>Needs</b> 11</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-22">
+      <div class="id">22</div>
+      <div>
+        <h3>epScript beside the tree</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The tree and epScript are separate worlds. A user who knows epScript cannot read what the tree produces. A user who has an epScript file cannot bring it into the editor. The two groups of users cannot read each other&#8217;s work.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Show the epScript of the selected trigger beside the tree. Let the user edit it there and read the result back into the model. The user then uses the tree for structure and the text for detail. This also gives the editor a way to accept the code that the community already publishes.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 3 weeks</span><span class="flag"><b>Needs</b> 11, 12</span></div>
+      </div>
+    </div>
+</section>
+
+<section id="phase5">
+    <div class="phase-label">Phase 5</div>
+    <h2>Tools and quality</h2>
+    <p class="lede">
+      Each item is expensive today and simple after phase 3. Item 25 has no dependency and can start at any time.
+    </p>
+
+    <div class="item" id="item-23">
+      <div class="id">23</div>
+      <div>
+        <h3>Find all references</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>To find where a trigger sets a switch, the user reads the generated script.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Query the model. Show each use. Add a safe rename function.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 4 days</span><span class="flag"><b>Needs</b> 11</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-24">
+      <div class="id">24</div>
+      <div>
+        <h3>Validation during the edit</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>euddraft reports a wrong argument count or an unknown variable minutes later. The message gives a line number in the generated file.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Validate the model after each change. Mark the incorrect trigger in the tree. The schema from item 10 defines a correct argument.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 1 week</span><span class="flag"><b>Needs</b> 11, 10</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-25">
+      <div class="id">25</div>
+      <div>
+        <h3>Difference against the stock game data</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The project keeps user edits separate from the stock game data. The editor knows each difference. It does not show them.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">List each changed value with its original value and a revert button. Group the list by data file. The list is also the changelog for a release.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 1 week</span><span><b>Needs</b> nothing</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-26">
+      <div class="id">26</div>
+      <div>
+        <h3>Edit multiple entries</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>A balance change for one race is one unit at a time.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Select a range in the list. Set one field for all selected entries.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> 4 days</span><span class="flag"><b>Needs</b> 01</span></div>
+      </div>
+    </div>
+
+    <div class="item" id="item-27">
+      <div class="id">27</div>
+      <div>
+        <h3>Field documentation</h3>
+        <dl class="ps">
+          <dt>Problem</dt>
+          <dd>The field descriptions are on external sites. The Help menu has the links. The user leaves the editor to read them.</dd>
+          <dt>Solution</dt>
+          <dd class="solution">Show the description of a field in a tooltip. The code is one day. The content is several hundred descriptions. The community can supply them.</dd>
+        </dl>
+        <div class="meta"><span><b>Effort</b> open</span><span><b>Area</b> Documentation</span></div>
+      </div>
+    </div>
+</section>
+
+<footer id="start">
+    <p><b>Start with items 01 and 04.</b> Item 01 makes an error reversible before phase 2 moves code. Item 04 proves that phase 3 does not change the output.</p>
+    <p><b>Phase 3 is not the goal.</b> It is the cost of phase 4. Read items 14 to 22 first, then decide how much of phase 3 you need.</p>
+    <p><b>Do not change the UI framework.</b> WinForms is not the limit. One form with 587 controls is slow in each framework that gives a window to each control.</p>
+    <p>Sources for phase 4: the euddraft wiki, the eudplib source and the EUD offset book. The Help menu links all three.</p>
+</footer>
+
+</main>
+</div>
+</div>
+</body>
+</html>
