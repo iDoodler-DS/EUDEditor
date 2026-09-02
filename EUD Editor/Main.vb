@@ -209,6 +209,7 @@ Public Class Main
 #End Region
 
 
+
 #Region "Recovery copy"
     ' The editor writes a copy of the project every few minutes while there are changes
     ' that are not saved. A save or a close takes the copy away, so a copy that is still

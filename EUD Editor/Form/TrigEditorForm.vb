@@ -2481,6 +2481,8 @@ Public Class TrigEditorForm
     Private Sub ListControl1_ItemClick(sender As Object, index As Integer) Handles ListControl1.ItemClick
         ClassbuttonRefresh(index)
     End Sub
+
+
     Private Sub ListControl1_DoubleClick(sender As Object) Handles ListControl1.ItemDoubleClick
         TriggerForm.MainTrigger = RawTriggers.GetElements(playerlist(listboxdata(ListBox2.SelectedIndex))(ListControl1.SelectedIndex)).Clone
         If TriggerForm.ShowDialog() = DialogResult.OK Then

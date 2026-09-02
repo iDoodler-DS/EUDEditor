@@ -595,6 +595,7 @@
     <Compile Include="Module\ErrorLogModule.vb" />
     <Compile Include="Module\RecoveryModule.vb" />
     <Compile Include="Module\BookmarkModule.vb" />
+    <Compile Include="Module\PickerFilterModule.vb" />
     <Compile Include="Form\CrashForm.vb" />
     <Compile Include="Module\NPAModule.vb" />
     <Compile Include="Module\parsingModule.vb" />

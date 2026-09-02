@@ -869,16 +869,14 @@ Public Class ActionForm
                 TableLayoutPanel7.Visible = False
                 TableLayoutPanel8.Visible = False
 
-                ListBox1.Items.Clear()
-                ListBox1.Items.AddRange(_valuedef.GetValues)
+                PickerFilterModule.SetItems(ListBox1, _valuedef.GetValues)
 
-                Try
-                    Dim temp As Long = CLng(value)
-                    ListBox1.SelectedIndex = value
+                'A value that is a name, and not a number, names no place in the list.
+                Dim place As Long
+                If Long.TryParse(Convert.ToString(value), place) Then
+                    PickerFilterModule.SelectValue(ListBox1, CInt(place))
                     isDataCollect = True
-                Catch ex As Exception
-                    LogSuppressed(ex, "ActionForm.ValueSetting#8")
-                End Try
+                End If
 
             Case ValueDefs.OutPutType.List
                 ListBox1.Visible = True
@@ -891,11 +889,9 @@ Public Class ActionForm
                 TableLayoutPanel7.Visible = False
                 TableLayoutPanel8.Visible = False
 
-                ListBox1.Items.Clear()
-                ListBox1.Items.AddRange(_valuedef.GetValues)
+                PickerFilterModule.SetItems(ListBox1, _valuedef.GetValues)
 
-                If ListBox1.Items.Contains(value) Then
-                    ListBox1.SelectedIndex = ListBox1.Items.IndexOf(value)
+                If PickerFilterModule.SelectText(ListBox1, value) Then
                     isDataCollect = True
                 End If
             Case ValueDefs.OutPutType.Number
@@ -1238,6 +1234,7 @@ Public Class ActionForm
     End Sub
 
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        If PickerFilterModule.IsUpdating(ListBox1) Then Return
         If isloading = False And isload Then
             Dim _valuedef As ValueDefs = GetDefValueDefs(currentValueDef)
             'If currentValueDef = "DValue" Then
@@ -1279,12 +1276,12 @@ Public Class ActionForm
 
 
             If _valuedef.type = ValueDefs.OutPutType.ListNum Then
-                SetValue(ListBox1.SelectedIndex)
+                SetValue(PickerFilterModule.SelectedValue(ListBox1))
             Else
                 If currentValueDef <> "1.DValue" And currentValueDef <> "1.SValue" Then
                     SetValue(ListBox1.SelectedItem)
                 Else
-                    SetValue(ListBox1.SelectedIndex)
+                    SetValue(PickerFilterModule.SelectedValue(ListBox1))
                 End If
             End If
             MakeLable(False)

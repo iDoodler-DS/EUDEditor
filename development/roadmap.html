@@ -466,7 +466,7 @@
       <li><a class="part" href="#item-06"><span class="n">06</span><span>The Data tab, by concept</span></a></li>
       <li><a href="#item-07"><span class="n">07</span><span>The Resources tab</span></a></li>
       <li><a class="part" href="#item-08"><span class="n">08</span><span>The Project tab, and one build action</span></a></li>
-      <li><a href="#item-09"><span class="n">09</span><span>Inline value pickers</span></a></li>
+      <li><a class="part" href="#item-09"><span class="n">09</span><span>Inline value pickers</span></a></li>
   </ul>
 
   <h2>Phase 3 &middot; Foundations</h2>
@@ -521,7 +521,7 @@
 <section id="state">
     <h2>Current state</h2>
     <p class="lede">
-      Items 01, 02 and 05 are complete. Items 03, 06 and 08 are complete in part. The editor now opens as four tabs.
+      Items 01, 02 and 05 are complete. Items 03, 06, 08 and 09 are complete in part. The editor now opens as four tabs.
       Data holds one view, DatEdit, with the FireGraft fields as sub tabs of the data type they belong to.
       Undo and redo work in the data editors, one history for each main tab. A save builds the map.
     </p>
@@ -709,12 +709,14 @@
     <div class="item" id="item-09">
       <div class="id">09</div>
       <div>
-        <h3>Inline value pickers</h3>
+        <h3>Inline value pickers<span class="st part">In part</span></h3>
         <dl class="ps">
           <dt>Problem</dt>
           <dd>The trigger editor opens a modal dialog to select a unit, a player, a switch, a wait or a string. The user must close the dialog before the user can see the trigger.</dd>
           <dt>Solution</dt>
           <dd class="solution">Make one inline picker. The picker reads the type of the field. Each list is already in memory.</dd>
+          <dt>Result</dt>
+          <dd class="solution">The picker for a value is already inside the condition and action editors, and each shows the control the type of the field asks for. What it had no way to do was find one entry among hundreds: a filter above the list now shows only what matches. A value stays the place of the entry in the whole list, so a filtered list still writes the right value. Still to do: the editors are two dialogs deep over the trigger list, so the user cannot see the trigger while editing a line of it.</dd>
         </dl>
         <div class="meta"><span><b>Effort</b> 2 weeks</span><span><b>Area</b> Triggers</span></div>
       </div>

@@ -270,6 +270,8 @@
         Conbtnrefreash()
     End Sub
 
+    'The probe opens the condition editor as soon as this window appears.
+
     Private Sub ConNew()
         Dim _selectElement As Element = MainTrigger.GetElements(0)
         CondictionForm._varele = _selectElement
