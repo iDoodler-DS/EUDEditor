@@ -228,24 +228,27 @@ Public Class DatEditForm
     ' A right click on the list marks the entry, or takes the mark away. The marks sit
     ' in the View menu of the main window, and belong to the project.
 
-    Private bookmarkMenu As ContextMenuStrip
+
     Private WithEvents bookmarkToggleItem As ToolStripMenuItem
     Private WithEvents bookmarkClearItem As ToolStripMenuItem
 
+    ''' <summary>
+    ''' The entry menu holds Reset, Copy, Paste and the mdat commands, and now the
+    ''' bookmark commands as well. It was on the icon grid only; the list of names
+    ''' shows the same entries, so it answers a right click there too.
+    ''' </summary>
     Private Sub SetUpBookmarkMenu()
-        If bookmarkMenu IsNot Nothing Then Return
+        If bookmarkToggleItem IsNot Nothing Then Return
 
         bookmarkToggleItem = New ToolStripMenuItem(Lan.GetText(Me.Name, "BookmarkAdd"))
         bookmarkClearItem = New ToolStripMenuItem(Lan.GetText(Me.Name, "BookmarkClear"))
 
-        bookmarkMenu = New ContextMenuStrip()
-        bookmarkMenu.Items.Add(bookmarkToggleItem)
-        bookmarkMenu.Items.Add(New ToolStripSeparator())
-        bookmarkMenu.Items.Add(bookmarkClearItem)
-        AddHandler bookmarkMenu.Opening, AddressOf BookmarkMenu_Opening
-        ThemeSetForm.SetControlColor(bookmarkMenu)
+        ListMenu.Items.Add(New ToolStripSeparator())
+        ListMenu.Items.Add(bookmarkToggleItem)
+        ListMenu.Items.Add(bookmarkClearItem)
+        AddHandler ListMenu.Opening, AddressOf BookmarkMenu_Opening
 
-        ListBox1.ContextMenuStrip = bookmarkMenu
+        ListBox1.ContextMenuStrip = ListMenu
     End Sub
 
     'A right click picks the entry under the pointer first, so the menu acts on it.
@@ -256,14 +259,15 @@ Public Class DatEditForm
     End Sub
 
     Private Sub BookmarkMenu_Opening(sender As Object, e As ComponentModel.CancelEventArgs)
+        'The theme can change while the editor is open, and this menu is built once.
+        ThemeSetForm.SetControlColor(ListMenu)
+
         Dim marked As Boolean = BookmarkModule.IsBookmarked(TAB_INDEX, _OBJECTNUM)
         bookmarkToggleItem.Text = Lan.GetText(Me.Name, If(marked, "BookmarkRemove", "BookmarkAdd"))
-        bookmarkToggleItem.Enabled = ListBox1.SelectedIndex >= 0
         bookmarkClearItem.Enabled = BookmarkModule.Bookmarks.Count > 0
     End Sub
 
     Private Sub BookmarkToggle_Click(sender As Object, e As EventArgs) Handles bookmarkToggleItem.Click
-        If ListBox1.SelectedIndex < 0 Then Return
         BookmarkModule.Toggle(TAB_INDEX, _OBJECTNUM)
     End Sub
 
