@@ -2,6 +2,7 @@
     Dim cheatvalue() As UInteger = {&H20000, &H2000, &H800, &H4, &H2}
     Dim cheatFlag As UInteger
     Private Sub DebugCheatForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
         'Location = MousePosition
         Focus()

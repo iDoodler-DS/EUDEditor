@@ -2,6 +2,10 @@
 Imports System.IO
 
 Public Class ProjectLoadingForm
+    Private Sub ThemedForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
+    End Sub
+
     Private _worker As BackgroundWorker
     Public Buffer() As Byte
 

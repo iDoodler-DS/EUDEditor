@@ -915,6 +915,7 @@ Public Class TileSetForm
 
 
     Private Sub TileSetForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetTooltip(Me, ToolStrip1)
         Lan.SetMenu(Me, MenuStrip1)
         workflow.works.Clear()

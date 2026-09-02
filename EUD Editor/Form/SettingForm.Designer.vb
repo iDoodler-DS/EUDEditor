@@ -30,42 +30,56 @@ Partial Class SettingForm
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckedListBox2 = New System.Windows.Forms.CheckedListBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.ThemePresetCombo = New System.Windows.Forms.ComboBox()
+        Me.ThemePresetLabel = New System.Windows.Forms.Label()
+        Me.ThemeColorGroup = New System.Windows.Forms.GroupBox()
+        Me.ThemeColorDialog = New System.Windows.Forms.ColorDialog()
+        Me.FieldTextLabel = New System.Windows.Forms.Label()
+        Me.FieldTextColor = New System.Windows.Forms.PictureBox()
+        Me.FieldTextButton = New System.Windows.Forms.Button()
+        Me.FieldBackLabel = New System.Windows.Forms.Label()
+        Me.FieldBackColor = New System.Windows.Forms.PictureBox()
+        Me.FieldBackButton = New System.Windows.Forms.Button()
+        Me.ChangedBackLabel = New System.Windows.Forms.Label()
+        Me.ChangedBackColor = New System.Windows.Forms.PictureBox()
+        Me.ChangedBackButton = New System.Windows.Forms.Button()
+        Me.CheckedBackLabel = New System.Windows.Forms.Label()
+        Me.CheckedBackColor = New System.Windows.Forms.PictureBox()
+        Me.CheckedBackButton = New System.Windows.Forms.Button()
+        Me.BackgroundLabel = New System.Windows.Forms.Label()
+        Me.BackgroundColor = New System.Windows.Forms.PictureBox()
+        Me.BackgroundButton = New System.Windows.Forms.Button()
+        Me.LabelTextLabel = New System.Windows.Forms.Label()
+        Me.LabelTextColor = New System.Windows.Forms.PictureBox()
+        Me.LabelTextButton = New System.Windows.Forms.Button()
+        Me.CodeBackLabel = New System.Windows.Forms.Label()
+        Me.CodeBackColor = New System.Windows.Forms.PictureBox()
+        Me.CodeBackButton = New System.Windows.Forms.Button()
+        Me.PanelBackLabel = New System.Windows.Forms.Label()
+        Me.PanelBackColor = New System.Windows.Forms.PictureBox()
+        Me.PanelBackButton = New System.Windows.Forms.Button()
+        Me.ThemeGroup = New System.Windows.Forms.GroupBox()
         Me.CheckBox4 = New System.Windows.Forms.CheckBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.euddraftOFD = New System.Windows.Forms.OpenFileDialog()
         Me.StarCraftOFD = New System.Windows.Forms.OpenFileDialog()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.ThemeGroup.SuspendLayout()
+        Me.ThemeColorGroup.SuspendLayout()
+        CType(Me.FieldTextColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FieldBackColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ChangedBackColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckedBackColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BackgroundColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LabelTextColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CodeBackColor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelBackColor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
@@ -73,7 +87,7 @@ Partial Class SettingForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(10, 72)
+        Me.Label1.Location = New System.Drawing.Point(12, 92)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(103, 15)
         Me.Label1.TabIndex = 1
@@ -85,16 +99,16 @@ Partial Class SettingForm
         Me.ComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"1.16.1", "Remastered"})
-        Me.ComboBox1.Location = New System.Drawing.Point(117, 69)
+        Me.ComboBox1.Location = New System.Drawing.Point(140, 89)
         Me.ComboBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(180, 23)
+        Me.ComboBox1.Size = New System.Drawing.Size(264, 23)
         Me.ComboBox1.TabIndex = 2
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 101)
+        Me.Label2.Location = New System.Drawing.Point(12, 126)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(79, 15)
         Me.Label2.TabIndex = 3
@@ -102,38 +116,38 @@ Partial Class SettingForm
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(247, 96)
+        Me.Button1.Location = New System.Drawing.Point(346, 122)
         Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(50, 25)
+        Me.Button1.Size = New System.Drawing.Size(58, 25)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "설정"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(89, 97)
+        Me.TextBox1.Location = New System.Drawing.Point(140, 123)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(152, 23)
+        Me.TextBox1.Size = New System.Drawing.Size(200, 23)
         Me.TextBox1.TabIndex = 5
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(89, 125)
+        Me.TextBox2.Location = New System.Drawing.Point(140, 157)
         Me.TextBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(152, 23)
+        Me.TextBox2.Size = New System.Drawing.Size(200, 23)
         Me.TextBox2.TabIndex = 8
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(247, 124)
+        Me.Button2.Location = New System.Drawing.Point(346, 156)
         Me.Button2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(50, 25)
+        Me.Button2.Size = New System.Drawing.Size(58, 25)
         Me.Button2.TabIndex = 7
         Me.Button2.Text = "설정"
         Me.Button2.UseVisualStyleBackColor = True
@@ -141,245 +155,11 @@ Partial Class SettingForm
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(10, 129)
+        Me.Label3.Location = New System.Drawing.Point(12, 160)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(73, 15)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "euddraft.exe"
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.CheckBox5)
-        Me.GroupBox1.Controls.Add(Me.GroupBox3)
-        Me.GroupBox1.Controls.Add(Me.GroupBox4)
-        Me.GroupBox1.Controls.Add(Me.CheckBox1)
-        Me.GroupBox1.Controls.Add(Me.CheckedListBox2)
-        Me.GroupBox1.Controls.Add(Me.TextBox4)
-        Me.GroupBox1.Controls.Add(Me.Button4)
-        Me.GroupBox1.Controls.Add(Me.Label6)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
-        Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Controls.Add(Me.CheckedListBox1)
-        Me.GroupBox1.Enabled = False
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 156)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(0)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox1.Size = New System.Drawing.Size(308, 265)
-        Me.GroupBox1.TabIndex = 9
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "프로젝트 세팅"
-        '
-        'CheckBox5
-        '
-        Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Location = New System.Drawing.Point(10, 184)
-        Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(107, 19)
-        Me.CheckBox5.TabIndex = 15
-        Me.CheckBox5.Text = "epTrace Debug"
-        Me.CheckBox5.UseVisualStyleBackColor = True
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.Label7)
-        Me.GroupBox3.Controls.Add(Me.ComboBox2)
-        Me.GroupBox3.Controls.Add(Me.CheckBox2)
-        Me.GroupBox3.Location = New System.Drawing.Point(8, 312)
-        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(5)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(292, 69)
-        Me.GroupBox3.TabIndex = 14
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "트리거 출력 설정"
-        Me.GroupBox3.Visible = False
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 25)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(3, 6, 3, 0)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(95, 15)
-        Me.Label7.TabIndex = 5
-        Me.Label7.Text = "트리거 플레이어"
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7", "Player8"})
-        Me.ComboBox2.Location = New System.Drawing.Point(107, 22)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(167, 23)
-        Me.ComboBox2.TabIndex = 4
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.CheckBox2.Checked = True
-        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox2.Location = New System.Drawing.Point(44, 48)
-        Me.CheckBox2.Margin = New System.Windows.Forms.Padding(3, 6, 3, 3)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(76, 19)
-        Me.CheckBox2.TabIndex = 3
-        Me.CheckBox2.Text = "SeTo사용"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.Controls.Add(Me.CheckBox3)
-        Me.GroupBox4.Location = New System.Drawing.Point(8, 208)
-        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(5)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(292, 53)
-        Me.GroupBox4.TabIndex = 15
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "기타 설정"
-        '
-        'CheckBox3
-        '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(9, 22)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(114, 19)
-        Me.CheckBox3.TabIndex = 14
-        Me.CheckBox3.Text = "Debug기능 사용"
-        Me.CheckBox3.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 17)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(138, 19)
-        Me.CheckBox1.TabIndex = 13
-        Me.CheckBox1.Text = "CHK데이터 읽어오기"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'CheckedListBox2
-        '
-        Me.CheckedListBox2.CheckOnClick = True
-        Me.CheckedListBox2.ColumnWidth = 144
-        Me.CheckedListBox2.FormattingEnabled = True
-        Me.CheckedListBox2.Items.AddRange(New Object() {"DatEdit", "FireGraft", "BinEditor", "TileSet", "BGMPlayer"})
-        Me.CheckedListBox2.Location = New System.Drawing.Point(153, 107)
-        Me.CheckedListBox2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.CheckedListBox2.MultiColumn = True
-        Me.CheckedListBox2.Name = "CheckedListBox2"
-        Me.CheckedListBox2.Size = New System.Drawing.Size(147, 94)
-        Me.CheckedListBox2.TabIndex = 12
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Location = New System.Drawing.Point(75, 65)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.ReadOnly = True
-        Me.TextBox4.Size = New System.Drawing.Size(166, 23)
-        Me.TextBox4.TabIndex = 11
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(247, 64)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(50, 25)
-        Me.Button4.TabIndex = 10
-        Me.Button4.Text = "설정"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(10, 68)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(47, 15)
-        Me.Label6.TabIndex = 9
-        Me.Label6.Text = "저장 맵"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(75, 38)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ReadOnly = True
-        Me.TextBox3.Size = New System.Drawing.Size(166, 23)
-        Me.TextBox3.TabIndex = 8
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(247, 37)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(50, 25)
-        Me.Button3.TabIndex = 7
-        Me.Button3.Text = "설정"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(10, 42)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(59, 15)
-        Me.Label5.TabIndex = 6
-        Me.Label5.Text = "연결된 맵"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 92)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(101, 15)
-        Me.Label4.TabIndex = 3
-        Me.Label4.Text = "사용 & 삽입 설정"
-        Me.Label4.UseMnemonic = False
-        '
-        'CheckedListBox1
-        '
-        Me.CheckedListBox1.CheckOnClick = True
-        Me.CheckedListBox1.ColumnWidth = 144
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Items.AddRange(New Object() {"GRP", "TriggerEditor", "Plugin", "FlieManager"})
-        Me.CheckedListBox1.Location = New System.Drawing.Point(6, 107)
-        Me.CheckedListBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.CheckedListBox1.MultiColumn = True
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(147, 76)
-        Me.CheckedListBox1.TabIndex = 0
-        '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Enabled = False
-        Me.RadioButton2.Location = New System.Drawing.Point(359, 375)
-        Me.RadioButton2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(118, 19)
-        Me.RadioButton2.TabIndex = 2
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "euddraft사용안함"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        Me.RadioButton2.Visible = False
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(369, 320)
-        Me.RadioButton1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(94, 19)
-        Me.RadioButton1.TabIndex = 1
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "euddraft사용"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        Me.RadioButton1.Visible = False
         '
         'GroupBox2
         '
@@ -397,7 +177,7 @@ Partial Class SettingForm
         Me.GroupBox2.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(0)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(308, 156)
+        Me.GroupBox2.Size = New System.Drawing.Size(420, 196)
         Me.GroupBox2.TabIndex = 10
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "프로그램 세팅"
@@ -405,7 +185,7 @@ Partial Class SettingForm
         'CheckBox4
         '
         Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Location = New System.Drawing.Point(6, 18)
+        Me.CheckBox4.Location = New System.Drawing.Point(12, 24)
         Me.CheckBox4.Name = "CheckBox4"
         Me.CheckBox4.Size = New System.Drawing.Size(86, 19)
         Me.CheckBox4.TabIndex = 14
@@ -415,7 +195,7 @@ Partial Class SettingForm
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(10, 41)
+        Me.Label8.Location = New System.Drawing.Point(12, 58)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(84, 15)
         Me.Label8.TabIndex = 9
@@ -426,11 +206,304 @@ Partial Class SettingForm
         Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(117, 38)
+        Me.ComboBox3.Location = New System.Drawing.Point(140, 55)
         Me.ComboBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(180, 23)
+        Me.ComboBox3.Size = New System.Drawing.Size(264, 23)
         Me.ComboBox3.TabIndex = 10
+        '
+        'ThemePresetCombo
+        '
+        Me.ThemePresetCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ThemePresetCombo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.ThemePresetCombo.FormattingEnabled = True
+        Me.ThemePresetCombo.Items.AddRange(New Object() {"사용자 정의", "DatEdit 테마", "EUD Editor 테마", "EUD Editor2 테마"})
+        Me.ThemePresetCombo.Location = New System.Drawing.Point(140, 27)
+        Me.ThemePresetCombo.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ThemePresetCombo.Name = "ThemePresetCombo"
+        Me.ThemePresetCombo.Size = New System.Drawing.Size(264, 23)
+        Me.ThemePresetCombo.TabIndex = 0
+        '
+        'ThemePresetLabel
+        '
+        Me.ThemePresetLabel.Location = New System.Drawing.Point(12, 30)
+        Me.ThemePresetLabel.Name = "ThemePresetLabel"
+        Me.ThemePresetLabel.Size = New System.Drawing.Size(125, 13)
+        Me.ThemePresetLabel.TabIndex = 3
+        Me.ThemePresetLabel.Text = "테마"
+        Me.ThemePresetLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'ThemeColorGroup
+        '
+        Me.ThemeColorGroup.Controls.Add(Me.PanelBackColor)
+        Me.ThemeColorGroup.Controls.Add(Me.CheckedBackColor)
+        Me.ThemeColorGroup.Controls.Add(Me.CodeBackColor)
+        Me.ThemeColorGroup.Controls.Add(Me.FieldTextColor)
+        Me.ThemeColorGroup.Controls.Add(Me.ChangedBackColor)
+        Me.ThemeColorGroup.Controls.Add(Me.FieldTextLabel)
+        Me.ThemeColorGroup.Controls.Add(Me.LabelTextColor)
+        Me.ThemeColorGroup.Controls.Add(Me.FieldTextButton)
+        Me.ThemeColorGroup.Controls.Add(Me.FieldBackColor)
+        Me.ThemeColorGroup.Controls.Add(Me.BackgroundColor)
+        Me.ThemeColorGroup.Controls.Add(Me.PanelBackButton)
+        Me.ThemeColorGroup.Controls.Add(Me.PanelBackLabel)
+        Me.ThemeColorGroup.Controls.Add(Me.CheckedBackButton)
+        Me.ThemeColorGroup.Controls.Add(Me.CodeBackButton)
+        Me.ThemeColorGroup.Controls.Add(Me.CheckedBackLabel)
+        Me.ThemeColorGroup.Controls.Add(Me.CodeBackLabel)
+        Me.ThemeColorGroup.Controls.Add(Me.ChangedBackButton)
+        Me.ThemeColorGroup.Controls.Add(Me.LabelTextButton)
+        Me.ThemeColorGroup.Controls.Add(Me.ChangedBackLabel)
+        Me.ThemeColorGroup.Controls.Add(Me.FieldBackButton)
+        Me.ThemeColorGroup.Controls.Add(Me.BackgroundButton)
+        Me.ThemeColorGroup.Controls.Add(Me.FieldBackLabel)
+        Me.ThemeColorGroup.Controls.Add(Me.BackgroundLabel)
+        Me.ThemeColorGroup.Controls.Add(Me.LabelTextLabel)
+        Me.ThemeColorGroup.Location = New System.Drawing.Point(8, 62)
+        Me.ThemeColorGroup.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ThemeColorGroup.Name = "ThemeColorGroup"
+        Me.ThemeColorGroup.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ThemeColorGroup.Size = New System.Drawing.Size(404, 152)
+        Me.ThemeColorGroup.TabIndex = 5
+        Me.ThemeColorGroup.TabStop = False
+        '
+        'FieldTextLabel
+        '
+        Me.FieldTextLabel.Location = New System.Drawing.Point(208, 53)
+        Me.FieldTextLabel.Name = "FieldTextLabel"
+        Me.FieldTextLabel.Size = New System.Drawing.Size(100, 13)
+        Me.FieldTextLabel.TabIndex = 4
+        Me.FieldTextLabel.Text = "글씨색"
+        Me.FieldTextLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'FieldTextColor
+        '
+        Me.FieldTextColor.Location = New System.Drawing.Point(314, 50)
+        Me.FieldTextColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.FieldTextColor.Name = "FieldTextColor"
+        Me.FieldTextColor.Size = New System.Drawing.Size(20, 20)
+        Me.FieldTextColor.TabIndex = 14
+        Me.FieldTextColor.TabStop = False
+        '
+        'FieldTextButton
+        '
+        Me.FieldTextButton.Location = New System.Drawing.Point(338, 48)
+        Me.FieldTextButton.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.FieldTextButton.Name = "FieldTextButton"
+        Me.FieldTextButton.Size = New System.Drawing.Size(50, 23)
+        Me.FieldTextButton.TabIndex = 2
+        Me.FieldTextButton.Text = "수정"
+        Me.FieldTextButton.UseVisualStyleBackColor = True
+        '
+        'FieldBackLabel
+        '
+        Me.FieldBackLabel.Location = New System.Drawing.Point(8, 53)
+        Me.FieldBackLabel.Name = "FieldBackLabel"
+        Me.FieldBackLabel.Size = New System.Drawing.Size(100, 13)
+        Me.FieldBackLabel.TabIndex = 7
+        Me.FieldBackLabel.Text = "배경색"
+        Me.FieldBackLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'FieldBackColor
+        '
+        Me.FieldBackColor.Location = New System.Drawing.Point(112, 50)
+        Me.FieldBackColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.FieldBackColor.Name = "FieldBackColor"
+        Me.FieldBackColor.Size = New System.Drawing.Size(20, 20)
+        Me.FieldBackColor.TabIndex = 15
+        Me.FieldBackColor.TabStop = False
+        '
+        'FieldBackButton
+        '
+        Me.FieldBackButton.Location = New System.Drawing.Point(136, 48)
+        Me.FieldBackButton.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.FieldBackButton.Name = "FieldBackButton"
+        Me.FieldBackButton.Size = New System.Drawing.Size(50, 23)
+        Me.FieldBackButton.TabIndex = 6
+        Me.FieldBackButton.Text = "수정"
+        Me.FieldBackButton.UseVisualStyleBackColor = True
+        '
+        'ChangedBackLabel
+        '
+        Me.ChangedBackLabel.Location = New System.Drawing.Point(8, 117)
+        Me.ChangedBackLabel.Name = "ChangedBackLabel"
+        Me.ChangedBackLabel.Size = New System.Drawing.Size(100, 13)
+        Me.ChangedBackLabel.TabIndex = 10
+        Me.ChangedBackLabel.Text = "수정색"
+        Me.ChangedBackLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'ChangedBackColor
+        '
+        Me.ChangedBackColor.Location = New System.Drawing.Point(112, 114)
+        Me.ChangedBackColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ChangedBackColor.Name = "ChangedBackColor"
+        Me.ChangedBackColor.Size = New System.Drawing.Size(20, 20)
+        Me.ChangedBackColor.TabIndex = 16
+        Me.ChangedBackColor.TabStop = False
+        '
+        'ChangedBackButton
+        '
+        Me.ChangedBackButton.Location = New System.Drawing.Point(136, 112)
+        Me.ChangedBackButton.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ChangedBackButton.Name = "ChangedBackButton"
+        Me.ChangedBackButton.Size = New System.Drawing.Size(50, 23)
+        Me.ChangedBackButton.TabIndex = 9
+        Me.ChangedBackButton.Text = "수정"
+        Me.ChangedBackButton.UseVisualStyleBackColor = True
+        '
+        'CheckedBackLabel
+        '
+        Me.CheckedBackLabel.Location = New System.Drawing.Point(208, 117)
+        Me.CheckedBackLabel.Name = "CheckedBackLabel"
+        Me.CheckedBackLabel.Size = New System.Drawing.Size(100, 13)
+        Me.CheckedBackLabel.TabIndex = 13
+        Me.CheckedBackLabel.Text = "체크색"
+        Me.CheckedBackLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'CheckedBackColor
+        '
+        Me.CheckedBackColor.Location = New System.Drawing.Point(314, 114)
+        Me.CheckedBackColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.CheckedBackColor.Name = "CheckedBackColor"
+        Me.CheckedBackColor.Size = New System.Drawing.Size(20, 20)
+        Me.CheckedBackColor.TabIndex = 17
+        Me.CheckedBackColor.TabStop = False
+        '
+        'CheckedBackButton
+        '
+        Me.CheckedBackButton.Location = New System.Drawing.Point(338, 112)
+        Me.CheckedBackButton.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.CheckedBackButton.Name = "CheckedBackButton"
+        Me.CheckedBackButton.Size = New System.Drawing.Size(50, 23)
+        Me.CheckedBackButton.TabIndex = 12
+        Me.CheckedBackButton.Text = "수정"
+        Me.CheckedBackButton.UseVisualStyleBackColor = True
+        '
+        'BackgroundLabel
+        '
+        Me.BackgroundLabel.Location = New System.Drawing.Point(8, 21)
+        Me.BackgroundLabel.Name = "BackgroundLabel"
+        Me.BackgroundLabel.Size = New System.Drawing.Size(100, 13)
+        Me.BackgroundLabel.TabIndex = 4
+        Me.BackgroundLabel.Text = "BG"
+        Me.BackgroundLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'BackgroundColor
+        '
+        Me.BackgroundColor.Location = New System.Drawing.Point(112, 18)
+        Me.BackgroundColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.BackgroundColor.Name = "BackgroundColor"
+        Me.BackgroundColor.Size = New System.Drawing.Size(20, 20)
+        Me.BackgroundColor.TabIndex = 14
+        Me.BackgroundColor.TabStop = False
+        '
+        'BackgroundButton
+        '
+        Me.BackgroundButton.Location = New System.Drawing.Point(136, 16)
+        Me.BackgroundButton.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.BackgroundButton.Name = "BackgroundButton"
+        Me.BackgroundButton.Size = New System.Drawing.Size(50, 23)
+        Me.BackgroundButton.TabIndex = 2
+        Me.BackgroundButton.Text = "수정"
+        Me.BackgroundButton.UseVisualStyleBackColor = True
+        '
+        'LabelTextLabel
+        '
+        Me.LabelTextLabel.Location = New System.Drawing.Point(208, 21)
+        Me.LabelTextLabel.Name = "LabelTextLabel"
+        Me.LabelTextLabel.Size = New System.Drawing.Size(100, 13)
+        Me.LabelTextLabel.TabIndex = 7
+        Me.LabelTextLabel.Text = "LabelText"
+        Me.LabelTextLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'LabelTextColor
+        '
+        Me.LabelTextColor.Location = New System.Drawing.Point(314, 18)
+        Me.LabelTextColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelTextColor.Name = "LabelTextColor"
+        Me.LabelTextColor.Size = New System.Drawing.Size(20, 20)
+        Me.LabelTextColor.TabIndex = 15
+        Me.LabelTextColor.TabStop = False
+        '
+        'LabelTextButton
+        '
+        Me.LabelTextButton.Location = New System.Drawing.Point(338, 16)
+        Me.LabelTextButton.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.LabelTextButton.Name = "LabelTextButton"
+        Me.LabelTextButton.Size = New System.Drawing.Size(50, 23)
+        Me.LabelTextButton.TabIndex = 6
+        Me.LabelTextButton.Text = "수정"
+        Me.LabelTextButton.UseVisualStyleBackColor = True
+        '
+        'CodeBackLabel
+        '
+        Me.CodeBackLabel.Location = New System.Drawing.Point(8, 85)
+        Me.CodeBackLabel.Name = "CodeBackLabel"
+        Me.CodeBackLabel.Size = New System.Drawing.Size(100, 13)
+        Me.CodeBackLabel.TabIndex = 10
+        Me.CodeBackLabel.Text = "CodeBG"
+        Me.CodeBackLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'CodeBackColor
+        '
+        Me.CodeBackColor.Location = New System.Drawing.Point(112, 82)
+        Me.CodeBackColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.CodeBackColor.Name = "CodeBackColor"
+        Me.CodeBackColor.Size = New System.Drawing.Size(20, 20)
+        Me.CodeBackColor.TabIndex = 16
+        Me.CodeBackColor.TabStop = False
+        '
+        'CodeBackButton
+        '
+        Me.CodeBackButton.Location = New System.Drawing.Point(136, 80)
+        Me.CodeBackButton.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.CodeBackButton.Name = "CodeBackButton"
+        Me.CodeBackButton.Size = New System.Drawing.Size(50, 23)
+        Me.CodeBackButton.TabIndex = 9
+        Me.CodeBackButton.Text = "수정"
+        Me.CodeBackButton.UseVisualStyleBackColor = True
+        '
+        'PanelBackLabel
+        '
+        Me.PanelBackLabel.Location = New System.Drawing.Point(208, 85)
+        Me.PanelBackLabel.Name = "PanelBackLabel"
+        Me.PanelBackLabel.Size = New System.Drawing.Size(100, 13)
+        Me.PanelBackLabel.TabIndex = 13
+        Me.PanelBackLabel.Text = "PanelBG"
+        Me.PanelBackLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'PanelBackColor
+        '
+        Me.PanelBackColor.Location = New System.Drawing.Point(314, 82)
+        Me.PanelBackColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PanelBackColor.Name = "PanelBackColor"
+        Me.PanelBackColor.Size = New System.Drawing.Size(20, 20)
+        Me.PanelBackColor.TabIndex = 17
+        Me.PanelBackColor.TabStop = False
+        '
+        'PanelBackButton
+        '
+        Me.PanelBackButton.Location = New System.Drawing.Point(338, 80)
+        Me.PanelBackButton.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PanelBackButton.Name = "PanelBackButton"
+        Me.PanelBackButton.Size = New System.Drawing.Size(50, 23)
+        Me.PanelBackButton.TabIndex = 12
+        Me.PanelBackButton.Text = "수정"
+        Me.PanelBackButton.UseVisualStyleBackColor = True
+        '
+        'ThemeGroup
+        '
+        Me.ThemeGroup.Controls.Add(Me.ThemePresetLabel)
+        Me.ThemeGroup.Controls.Add(Me.ThemePresetCombo)
+        Me.ThemeGroup.Controls.Add(Me.ThemeColorGroup)
+        Me.ThemeGroup.Location = New System.Drawing.Point(0, 208)
+        Me.ThemeGroup.Margin = New System.Windows.Forms.Padding(0, 12, 0, 0)
+        Me.ThemeGroup.Name = "ThemeGroup"
+        Me.ThemeGroup.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ThemeGroup.Size = New System.Drawing.Size(420, 226)
+        Me.ThemeGroup.TabIndex = 11
+        Me.ThemeGroup.TabStop = False
+        Me.ThemeGroup.Text = "Theme"
         '
         'Button5
         '
@@ -441,7 +514,7 @@ Partial Class SettingForm
         Me.Button5.Location = New System.Drawing.Point(0, 0)
         Me.Button5.Margin = New System.Windows.Forms.Padding(0)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(154, 30)
+        Me.Button5.Size = New System.Drawing.Size(210, 34)
         Me.Button5.TabIndex = 11
         Me.Button5.Text = "확인"
         Me.Button5.UseVisualStyleBackColor = True
@@ -458,28 +531,15 @@ Partial Class SettingForm
         Me.StarCraftOFD.Filter = "StarCraft.exe|StarCraft.exe"
         Me.StarCraftOFD.Title = "StarCraft.exe 선택"
         '
-        'SaveFileDialog1
-        '
-        Me.SaveFileDialog1.FileName = "*.scx"
-        Me.SaveFileDialog1.Filter = "StarCraft BroodWar|*.scx"
-        Me.SaveFileDialog1.OverwritePrompt = False
-        Me.SaveFileDialog1.Title = "Select OutputMap"
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "*.scx"
-        Me.OpenFileDialog1.Filter = "StarCraft BroodWar|*.scx"
-        Me.OpenFileDialog1.Title = "Select InputMap"
-        '
         'Button6
         '
         Me.Button6.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Button6.Image = Global.EUD_Editor.My.Resources.Resources.Cancle
         Me.Button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button6.Location = New System.Drawing.Point(154, 0)
+        Me.Button6.Location = New System.Drawing.Point(210, 0)
         Me.Button6.Margin = New System.Windows.Forms.Padding(0)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(154, 30)
+        Me.Button6.Size = New System.Drawing.Size(210, 34)
         Me.Button6.TabIndex = 12
         Me.Button6.Text = "취소"
         Me.Button6.UseVisualStyleBackColor = True
@@ -489,23 +549,24 @@ Partial Class SettingForm
         Me.FlowLayoutPanel1.AutoSize = True
         Me.FlowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.FlowLayoutPanel1.Controls.Add(Me.GroupBox2)
-        Me.FlowLayoutPanel1.Controls.Add(Me.GroupBox1)
+        Me.FlowLayoutPanel1.Controls.Add(Me.ThemeGroup)
         Me.FlowLayoutPanel1.Controls.Add(Me.FlowLayoutPanel2)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.FlowLayoutPanel1.MaximumSize = New System.Drawing.Size(317, 500)
+        Me.FlowLayoutPanel1.MaximumSize = New System.Drawing.Size(444, 900)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(317, 500)
+        Me.FlowLayoutPanel1.Padding = New System.Windows.Forms.Padding(12)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(444, 504)
         Me.FlowLayoutPanel1.TabIndex = 13
         '
         'FlowLayoutPanel2
         '
         Me.FlowLayoutPanel2.Controls.Add(Me.Button5)
         Me.FlowLayoutPanel2.Controls.Add(Me.Button6)
-        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(0, 421)
-        Me.FlowLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(0, 446)
+        Me.FlowLayoutPanel2.Margin = New System.Windows.Forms.Padding(0, 12, 0, 0)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(314, 32)
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(420, 34)
         Me.FlowLayoutPanel2.TabIndex = 14
         '
         'SettingForm
@@ -516,11 +577,9 @@ Partial Class SettingForm
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.CancelButton = Me.Button6
-        Me.ClientSize = New System.Drawing.Size(489, 560)
+        Me.ClientSize = New System.Drawing.Size(444, 504)
         Me.ControlBox = False
         Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.Controls.Add(Me.RadioButton1)
-        Me.Controls.Add(Me.RadioButton2)
         Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -530,13 +589,18 @@ Partial Class SettingForm
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Setting"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
+        Me.ThemeGroup.ResumeLayout(False)
+        Me.ThemeGroup.PerformLayout()
+        Me.ThemeColorGroup.ResumeLayout(False)
+        CType(Me.FieldTextColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FieldBackColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ChangedBackColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckedBackColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BackgroundColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LabelTextColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CodeBackColor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelBackColor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.PerformLayout()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel2.ResumeLayout(False)
@@ -553,36 +617,43 @@ Partial Class SettingForm
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Button2 As Button
     Friend WithEvents Label3 As Label
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents CheckedListBox1 As CheckedListBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents ThemePresetCombo As ComboBox
+    Friend WithEvents ThemePresetLabel As Label
+    Friend WithEvents ThemeColorGroup As GroupBox
+    Friend WithEvents ThemeColorDialog As ColorDialog
+    Friend WithEvents FieldTextLabel As Label
+    Friend WithEvents FieldTextColor As PictureBox
+    Friend WithEvents FieldTextButton As Button
+    Friend WithEvents FieldBackLabel As Label
+    Friend WithEvents FieldBackColor As PictureBox
+    Friend WithEvents FieldBackButton As Button
+    Friend WithEvents ChangedBackLabel As Label
+    Friend WithEvents ChangedBackColor As PictureBox
+    Friend WithEvents ChangedBackButton As Button
+    Friend WithEvents CheckedBackLabel As Label
+    Friend WithEvents CheckedBackColor As PictureBox
+    Friend WithEvents CheckedBackButton As Button
+    Friend WithEvents BackgroundLabel As Label
+    Friend WithEvents BackgroundColor As PictureBox
+    Friend WithEvents BackgroundButton As Button
+    Friend WithEvents LabelTextLabel As Label
+    Friend WithEvents LabelTextColor As PictureBox
+    Friend WithEvents LabelTextButton As Button
+    Friend WithEvents CodeBackLabel As Label
+    Friend WithEvents CodeBackColor As PictureBox
+    Friend WithEvents CodeBackButton As Button
+    Friend WithEvents PanelBackLabel As Label
+    Friend WithEvents PanelBackColor As PictureBox
+    Friend WithEvents PanelBackButton As Button
+    Friend WithEvents ThemeGroup As GroupBox
     Friend WithEvents Button5 As Button
-    Friend WithEvents CheckedListBox2 As CheckedListBox
     Friend WithEvents euddraftOFD As OpenFileDialog
     Friend WithEvents StarCraftOFD As OpenFileDialog
-    Friend WithEvents SaveFileDialog1 As SaveFileDialog
-    Friend WithEvents OpenFileDialog1 As OpenFileDialog
-    Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Button6 As Button
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
-    Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents CheckBox3 As CheckBox
     Friend WithEvents Label8 As Label
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents CheckBox4 As CheckBox
-    Friend WithEvents CheckBox5 As CheckBox
 End Class

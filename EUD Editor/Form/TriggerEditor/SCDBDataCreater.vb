@@ -31,6 +31,7 @@ Public Class SCDBDataCreater
 
 
     Private Sub SCDBDataCreater_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
         TextBox1.Text = Lan.GetText(Me.Name, "PlayerNamePrompt")
 

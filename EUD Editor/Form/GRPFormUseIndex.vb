@@ -2,6 +2,7 @@
     Public grpname As String
 
     Private Sub GRPFormUseIndex_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
 
         TextBox1.Clear()

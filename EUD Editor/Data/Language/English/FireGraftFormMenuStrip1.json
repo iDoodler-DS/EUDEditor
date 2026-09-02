@@ -8,6 +8,5 @@
     "ObjResetToolStripMenuItem": "Initialize object",
     "ObjectCopyToolStripMenuItem": "Object Copy",
     "ObjPasteToolStripMenuItem": "Object Paste",
-    "ViewVToolStripMenuItem": "&View",
-    "ThemeSetTToolStripMenuItem": "Set &Theme"
+    "ViewVToolStripMenuItem": "&View"
 }

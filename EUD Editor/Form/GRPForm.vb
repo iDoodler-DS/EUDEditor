@@ -2,6 +2,7 @@
     Dim Grp As New GRP
 
     Private Sub GRPForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
         ProjectSet.saveStatus = False
 

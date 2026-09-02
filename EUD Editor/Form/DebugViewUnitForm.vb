@@ -106,6 +106,7 @@ Public Class DebugViewUnitForm
     'End Sub
 
     Private Sub DebugViewUnitForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
         Timer1.Enabled = True
 

@@ -150,6 +150,7 @@ Public Class DebugForm
 
 
     Private Sub DebugForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
         ProjectSet.LoadCHKdata()
         LoadGameDATA()

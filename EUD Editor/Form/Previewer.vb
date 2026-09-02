@@ -6,6 +6,7 @@ Public Class Previewer
 
     Friend WithEvents FCTB As New FastColoredTextBox
     Private Sub Previewer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         FCTB.Dock = DockStyle.Fill
         FCTB.Language = Language.CSharp
         FCTB.ReadOnly = True

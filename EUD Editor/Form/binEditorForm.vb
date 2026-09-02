@@ -138,6 +138,7 @@ Public Class binEditorForm
     End Sub
 
     Private Sub binEditorForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
 
         PictureBox1.Image = New Bitmap(640, 480) 'Format8bppIndexed

@@ -1,7 +1,10 @@
 ﻿Imports FastColoredTextBoxNS
 
+''' <summary>
+''' Theme colours and the code that applies them to controls. The theme is edited
+''' in SettingForm; this form is never shown.
+''' </summary>
 Public Class ThemeSetForm
-    Dim loadstatus As Boolean = False
 
     'Dark Mode preset
     Public darkModeColorBackground As Color = Color.FromArgb(&HFF1F1F1F)
@@ -30,7 +33,7 @@ Public Class ThemeSetForm
         ProgramSet.colorCheckedBackground = darkModeColorCheckedBackground
     End Sub
 
-    Private Sub ApplyLightMode(fieldText As Color, fieldBackground As Color, changedBackground As Color, checkedBackground As Color)
+    Public Sub ApplyLightMode(fieldText As Color, fieldBackground As Color, changedBackground As Color, checkedBackground As Color)
         ProgramSet.colorBackground = lightModeColorBackground
         ProgramSet.colorLabelText = lightModeColorLabelText
         ProgramSet.colorFieldBackground = fieldBackground
@@ -46,136 +49,6 @@ Public Class ThemeSetForm
             Return ProgramSet.colorBackground.GetBrightness() < 0.5
         End Get
     End Property
-
-    Private Sub ColorSet()
-        SetControlColor(Me)
-
-        PictureBox1.BackColor = ProgramSet.colorFieldText
-        PictureBox2.BackColor = ProgramSet.colorFieldBackground
-        PictureBox3.BackColor = ProgramSet.colorChangedBackground
-        PictureBox4.BackColor = ProgramSet.colorCheckedBackground
-        PictureBox5.BackColor = ProgramSet.colorBackground
-        PictureBox6.BackColor = ProgramSet.colorLabelText
-        PictureBox7.BackColor = ProgramSet.colorCodeBackground
-        PictureBox8.BackColor = ProgramSet.colorPanelBackground
-
-
-        loadstatus = True
-        ComboBox1.SelectedIndex = 0
-        If ProgramSet.colorFieldText = Color.White And
-        ProgramSet.colorFieldBackground = Color.Black And
-        ProgramSet.colorChangedBackground = Color.DarkCyan And
-        ProgramSet.colorCheckedBackground = Color.DarkGray Then
-            ComboBox1.SelectedIndex = 1
-        End If
-
-        If ProgramSet.colorFieldText = Color.Black And
-        ProgramSet.colorFieldBackground = Color.White And
-        ProgramSet.colorChangedBackground = Color.PaleGreen And
-        ProgramSet.colorCheckedBackground = Color.LightGray Then
-            ComboBox1.SelectedIndex = 2
-        End If
-
-        If ProgramSet.colorFieldText = Color.White And
-        ProgramSet.colorFieldBackground = Color.FromArgb(&HFF193333) And
-        ProgramSet.colorChangedBackground = Color.DarkSlateBlue And
-        ProgramSet.colorCheckedBackground = Color.FromArgb(&HFF538585) Then
-            ComboBox1.SelectedIndex = 3
-        End If ''FromArgb(&HFF4D9999)
-
-        If ProgramSet.colorBackground = Me.darkModeColorBackground And
-            ProgramSet.colorLabelText = Me.darkModeColorLabelText And
-            ProgramSet.colorFieldBackground = Me.darkModeColorFieldBackground And
-            ProgramSet.colorFieldText = Me.darkModeColorFieldText And
-            ProgramSet.colorCodeBackground = Me.darkModeColorCodeBackground And
-            ProgramSet.colorPanelBackground = Me.darkModeColorPanelBackground And
-            ProgramSet.colorChangedBackground = Me.darkModeColorChangedBackground And
-            ProgramSet.colorCheckedBackground = Me.darkModeColorCheckedBackground Then
-            ComboBox1.SelectedIndex = 4
-        End If
-        loadstatus = False
-    End Sub
-    Private Sub ThemeSetForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Lan.SetLanguage(Me)
-
-        ComboBox1.Items.Clear()
-        ComboBox1.Items.AddRange(Lan.GetArray(Me.Name, "Combobox1"))
-        ColorSet()
-    End Sub
-    '    사용자 정의
-    'DatEdit 테마
-    'EUD Editor 테마
-    'EUD Editor2 테마
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ColorDialog1.ShowDialog()
-        ProgramSet.colorFieldText = ColorDialog1.Color
-        ColorSet()
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        ColorDialog1.ShowDialog()
-        ProgramSet.colorFieldBackground = ColorDialog1.Color
-        ColorSet()
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        ColorDialog1.ShowDialog()
-        ProgramSet.colorChangedBackground = ColorDialog1.Color
-        ColorSet()
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        ColorDialog1.ShowDialog()
-        ProgramSet.colorCheckedBackground = ColorDialog1.Color
-        ColorSet()
-    End Sub
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        ColorDialog1.ShowDialog()
-        ProgramSet.colorBackground = ColorDialog1.Color
-        ColorSet()
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        ColorDialog1.ShowDialog()
-        ProgramSet.colorLabelText = ColorDialog1.Color
-        ColorSet()
-    End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        ColorDialog1.ShowDialog()
-        ProgramSet.colorCodeBackground = ColorDialog1.Color
-        ColorSet()
-    End Sub
-
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        ColorDialog1.ShowDialog()
-        ProgramSet.colorPanelBackground = ColorDialog1.Color
-        ColorSet()
-    End Sub
-
-    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        If loadstatus = False Then
-            Select Case ComboBox1.SelectedIndex
-                Case 1 'DatEdit
-                    ApplyLightMode(Color.White, Color.Black, Color.DarkCyan, Color.DarkGray)
-                Case 2 'EUD Editor
-                    ApplyLightMode(Color.Black, Color.White, Color.PaleGreen, Color.LightGray)
-                Case 3 'EUD Editor2
-                    ApplyLightMode(Color.White, Color.FromArgb(&HFF193333), Color.DarkSlateBlue, Color.FromArgb(&HFF538585))
-                Case 4 'Dark Mode
-                    ApplyDarkMode()
-            End Select
-
-
-
-            ColorSet()
-        End If
-    End Sub
-
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
-    End Sub
 
     ''' <summary>
     ''' Recursively applies the current theme colours to a control tree,

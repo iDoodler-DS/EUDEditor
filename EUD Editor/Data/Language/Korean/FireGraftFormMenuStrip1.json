@@ -8,6 +8,5 @@
     "ObjResetToolStripMenuItem": "오브젝트 초기화",
     "ObjectCopyToolStripMenuItem": "오브젝트 복사",
     "ObjPasteToolStripMenuItem": "오브젝트 붙여넣기",
-    "ViewVToolStripMenuItem": "보기(&V)",
-    "ThemeSetTToolStripMenuItem": "테마 설정(&T)"
+    "ViewVToolStripMenuItem": "보기(&V)"
 }

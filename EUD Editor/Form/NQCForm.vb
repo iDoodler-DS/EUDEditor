@@ -37,6 +37,7 @@
 
     Dim tload As Boolean = False
     Private Sub NQCForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
 
         TextBox1.Text = ""

@@ -72,6 +72,7 @@
     End Sub
 
     Private Sub PlayerdataForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
         PlayerNum = 0
 

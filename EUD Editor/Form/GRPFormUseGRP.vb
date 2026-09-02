@@ -25,6 +25,7 @@
     End Sub
 
     Private Sub GRPForm_ListForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ThemeSetForm.SetControlColor(Me)
         Lan.SetLanguage(Me)
         ListDraw()
         PaletDraw()

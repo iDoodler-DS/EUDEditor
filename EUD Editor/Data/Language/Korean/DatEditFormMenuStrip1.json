@@ -14,7 +14,6 @@
     "DataExportToolStripMenuItem1": "데이터로 내보내기",
     "DataImportToolStripMenuItem1": "데이터 불러오기",
     "ViewVToolStripMenuItem": "보기(&V)",
-    "ThameSetTToolStripMenuItem": "테마 설정(&T)",
     "UsedDataToolStripMenuItem": "사용된 데이터(&D)",
     "TriggerViewerTToolStripMenuItem": "트리거 보기(&T)"
 }
