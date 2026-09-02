@@ -292,3 +292,6 @@ Updater/build
 # Runtime error log written next to the executable
 ErrorLog.txt
 Recent.txt
+
+# Python bytecode from the development scripts
+development/spike/__pycache__/
