@@ -736,6 +736,7 @@ Namespace ProjectSet
 
 
         Public Sub Reset()
+            EditHistory.History.Clear()
             filename = ""
 
             InputMap = ""
@@ -929,6 +930,18 @@ Namespace ProjectSet
             ProjectLoadingForm.ShowDialog()
         End Sub
         Public Sub Load(MapName As String)
+            'A load writes thousands of values. None of them is a user edit, and an
+            'error inside leaves early, so the flag is cleared in Finally.
+            EditHistory.History.Suppressed = True
+            Try
+                LoadCore(MapName)
+            Finally
+                EditHistory.History.Suppressed = False
+                EditHistory.History.Clear()
+            End Try
+        End Sub
+
+        Private Sub LoadCore(MapName As String)
             For i = 0 To 7
                 UsedSetting(i) = False
             Next

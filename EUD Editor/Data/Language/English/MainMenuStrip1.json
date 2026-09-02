@@ -16,6 +16,11 @@
     "TriggerviewTToolStripMenuItem": "View &Trigger",
     "ToclipEToolStripMenuItem": "To Cli&pboard",
     "HelpHToolStripMenuItem": "&Help",
-    "BlogHelpToolStripMenuItem": "Blog Manual",
-    "UpdateViewToolStripMenuItem": "Update"
+    "UpdateViewToolStripMenuItem": "Update",
+    "SCRMapDocsToolStripMenuItem": "SCR Map Docs",
+    "EuddraftWikiToolStripMenuItem": "euddraft Wiki",
+    "EudBookToolStripMenuItem": "EUD Address Offset Book",
+    "EditToolStripMenuItem": "&Edit",
+    "UndoToolStripMenuItem": "Undo",
+    "RedoToolStripMenuItem": "Redo"
 }

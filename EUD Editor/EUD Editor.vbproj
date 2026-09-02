@@ -178,12 +178,6 @@
     <Compile Include="Form\BtnCreateHelperForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\BulidForm.Designer.vb">
-      <DependentUpon>BulidForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Form\BulidForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form\CheckUpdateForm.Designer.vb">
       <DependentUpon>CheckUpdateForm.vb</DependentUpon>
     </Compile>
@@ -338,6 +332,12 @@
       <DependentUpon>MPQForm_ListForm.vb</DependentUpon>
     </Compile>
     <Compile Include="Form\MPQForm_ListForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\ProjectSettingForm.Designer.vb">
+      <DependentUpon>ProjectSettingForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ProjectSettingForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\SettingForm.Designer.vb">
@@ -569,6 +569,7 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Module\BuildRunner.vb" />
     <Compile Include="Module\AESModule.vb" />
     <Compile Include="Module\BGMPlayerModule.vb" />
     <Compile Include="Module\BinEditModule.vb" />
@@ -589,6 +590,7 @@
     <Compile Include="Module\mod_fn_HASH.vb" />
     <Compile Include="Module\MPQModule.vb" />
     <Compile Include="Module\NativeThemeModule.vb" />
+    <Compile Include="Module\EditHistoryModule.vb" />
     <Compile Include="Module\ErrorLogModule.vb" />
     <Compile Include="Module\NPAModule.vb" />
     <Compile Include="Module\parsingModule.vb" />
@@ -645,9 +647,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\BtnCreateHelperForm.resx">
       <DependentUpon>BtnCreateHelperForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\BulidForm.resx">
-      <DependentUpon>BulidForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\CheckUpdateForm.resx">
       <DependentUpon>CheckUpdateForm.vb</DependentUpon>

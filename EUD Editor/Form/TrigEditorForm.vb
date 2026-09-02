@@ -2793,6 +2793,15 @@ Public Class TrigEditorForm
         Redo()
     End Sub
 
+    'Called by the Edit menu in the main window when the trigger tab is open.
+    Public Sub UndoFromMenu()
+        Undo()
+    End Sub
+
+    Public Sub RedoFromMenu()
+        Redo()
+    End Sub
+
     Private Sub Undo()
         TaskManager.Undo()
         UndoRedoBtnRefresh()

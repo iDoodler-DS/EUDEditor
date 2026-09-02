@@ -1,3 +1,4 @@
+﻿Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 
 ''' <summary>
@@ -30,6 +31,42 @@ Module NativeThemeModule
     <DllImport("user32.dll")>
     Private Function SendMessage(hWnd As IntPtr, msg As Integer, wParam As IntPtr, lParam As IntPtr) As IntPtr
     End Function
+
+    <DllImport("user32.dll")>
+    Private Function BeginPaint(hWnd As IntPtr, ByRef ps As PAINTSTRUCT) As IntPtr
+    End Function
+
+    <DllImport("user32.dll")>
+    Private Function EndPaint(hWnd As IntPtr, ByRef ps As PAINTSTRUCT) As Boolean
+    End Function
+
+    <StructLayout(LayoutKind.Sequential)>
+    Private Structure PAINTSTRUCT
+        Public hdc As IntPtr
+        Public fErase As Boolean
+        Public rcPaint As RECT
+        Public fRestore As Boolean
+        Public fIncUpdate As Boolean
+        <MarshalAs(UnmanagedType.ByValArray, SizeConst:=32)> Public rgbReserved As Byte()
+    End Structure
+
+    Private Const WM_SETREDRAW As Integer = &HB
+    Private Const WM_ERASEBKGND As Integer = &H14
+
+    ''' <summary>
+    ''' Stops a window (and its children) from repainting until ResumeDrawing, so a
+    ''' burst of changes shows up as one repaint instead of a flickering sequence.
+    ''' </summary>
+    Public Sub SuspendDrawing(c As Control)
+        If c IsNot Nothing AndAlso c.IsHandleCreated Then SendMessage(c.Handle, WM_SETREDRAW, IntPtr.Zero, IntPtr.Zero)
+    End Sub
+
+    Public Sub ResumeDrawing(c As Control)
+        If c IsNot Nothing AndAlso c.IsHandleCreated Then
+            SendMessage(c.Handle, WM_SETREDRAW, New IntPtr(1), IntPtr.Zero)
+            c.Refresh()
+        End If
+    End Sub
 
     <StructLayout(LayoutKind.Sequential)>
     Private Structure COMBOBOXINFO
@@ -68,33 +105,59 @@ Module NativeThemeModule
         End Try
     End Sub
 
-    ''' <summary>Applies the dark explorer theme (dark scroll bars, dark selection) to a control's window.</summary>
-    Public Sub SetWindowDark(c As Control, dark As Boolean, Optional theme As String = "DarkMode_Explorer")
+    ''' <summary>
+    ''' Window themes can only be applied once a control's window exists. Forcing the
+    ''' window into existence (Control.Handle) is what made theming a big form slow:
+    ''' every control on every hidden tab page got a window it did not need yet.
+    ''' So each theme action runs now if the window exists, and otherwise when it is
+    ''' created; it also runs again after a recreate, which used to lose the theme.
+    ''' A control can have several actions (its own window plus, say, its header).
+    ''' </summary>
+    Private ReadOnly themeActions As New ConditionalWeakTable(Of Control, Dictionary(Of String, System.Action))
+
+    Private Sub WhenHandleReady(c As Control, slot As String, apply As System.Action)
+        Dim actions As Dictionary(Of String, System.Action) = themeActions.GetOrCreateValue(c)
+        actions(slot) = apply
+        RemoveHandler c.HandleCreated, AddressOf ThemedControl_HandleCreated
+        AddHandler c.HandleCreated, AddressOf ThemedControl_HandleCreated
+        If c.IsHandleCreated Then apply()
+    End Sub
+
+    Private Sub ThemedControl_HandleCreated(sender As Object, e As EventArgs)
+        Dim actions As Dictionary(Of String, System.Action) = Nothing
+        If themeActions.TryGetValue(DirectCast(sender, Control), actions) Then
+            For Each apply As System.Action In actions.Values.ToArray()
+                apply()
+            Next
+        End If
+    End Sub
+
+    Private Sub ApplyWindowTheme(hWnd As IntPtr, theme As String)
         Try
-            If dark Then
-                SetWindowTheme(c.Handle, theme, Nothing)
-            Else
-                SetWindowTheme(c.Handle, Nothing, Nothing)
-            End If
+            SetWindowTheme(hWnd, theme, Nothing)
         Catch
         End Try
     End Sub
 
-    ''' <summary>Themes the pop-up list of a combo box.</summary>
+    ''' <summary>Applies the dark explorer theme (dark scroll bars, dark selection) to a control's window.</summary>
+    Public Sub SetWindowDark(c As Control, dark As Boolean, Optional theme As String = "DarkMode_Explorer")
+        WhenHandleReady(c, "window", Sub() ApplyWindowTheme(c.Handle, If(dark, theme, Nothing)))
+    End Sub
+
+    ''' <summary>Themes a combo box and its pop-up list.</summary>
     Public Sub SetComboBoxDark(cb As ComboBox, dark As Boolean)
-        Try
-            SetWindowDark(cb, dark, "DarkMode_CFD")
-            Dim info As New COMBOBOXINFO
-            info.cbSize = Marshal.SizeOf(info)
-            If GetComboBoxInfo(cb.Handle, info) AndAlso info.hwndList <> IntPtr.Zero Then
-                If dark Then
-                    SetWindowTheme(info.hwndList, "DarkMode_Explorer", Nothing)
-                Else
-                    SetWindowTheme(info.hwndList, Nothing, Nothing)
-                End If
-            End If
-        Catch
-        End Try
+        WhenHandleReady(cb, "window",
+                        Sub()
+                            ApplyWindowTheme(cb.Handle, If(dark, "DarkMode_CFD", Nothing))
+                            Try
+                                Dim info As New COMBOBOXINFO
+                                info.cbSize = Marshal.SizeOf(info)
+                                If GetComboBoxInfo(cb.Handle, info) AndAlso info.hwndList <> IntPtr.Zero Then
+                                    ApplyWindowTheme(info.hwndList, If(dark, "DarkMode_Explorer", Nothing))
+                                End If
+                            Catch
+                            End Try
+                        End Sub)
     End Sub
 
     ''' <summary>Colours the window title bar to match the theme.</summary>
@@ -120,17 +183,14 @@ Module NativeThemeModule
 
     ''' <summary>Themes a list view's header window so its background follows the theme.</summary>
     Public Sub SetListViewHeaderDark(lv As ListView, dark As Boolean)
-        Try
-            Dim header As IntPtr = SendMessage(lv.Handle, LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero)
-            If header <> IntPtr.Zero Then
-                If dark Then
-                    SetWindowTheme(header, "DarkMode_ItemsView", Nothing)
-                Else
-                    SetWindowTheme(header, Nothing, Nothing)
-                End If
-            End If
-        Catch
-        End Try
+        WhenHandleReady(lv, "header",
+                        Sub()
+                            Try
+                                Dim hdr As IntPtr = SendMessage(lv.Handle, LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero)
+                                If hdr <> IntPtr.Zero Then ApplyWindowTheme(hdr, If(dark, "DarkMode_ItemsView", Nothing))
+                            Catch
+                            End Try
+                        End Sub)
     End Sub
 
     ''' <summary>
@@ -161,10 +221,39 @@ Module NativeThemeModule
                 RemoveHandler tc.HandleCreated, AddressOf p.OnHandleCreated
                 RemoveHandler tc.HandleDestroyed, AddressOf p.OnHandleDestroyed
                 p.ReleaseHandle()
+                p.DisposeIcons()
                 painters.Remove(tc)
                 tc.Invalidate()
             End If
         End Sub
+
+        'ImageList.Images(key) allocates a new bitmap on every access, so keep one per key.
+        Private ReadOnly icons As New Dictionary(Of String, Image)
+
+        Private Sub DisposeIcons()
+            For Each img As Image In icons.Values
+                img.Dispose()
+            Next
+            icons.Clear()
+        End Sub
+
+        Private Function TabIcon(page As TabPage) As Image
+            Dim list As ImageList = tab.ImageList
+            If list Is Nothing Then Return Nothing
+            Dim key As String = page.ImageKey
+            If String.IsNullOrEmpty(key) Then
+                If page.ImageIndex < 0 OrElse page.ImageIndex >= list.Images.Count Then Return Nothing
+                key = "#" & page.ImageIndex
+            ElseIf Not list.Images.ContainsKey(key) Then
+                Return Nothing
+            End If
+            Dim img As Image = Nothing
+            If Not icons.TryGetValue(key, img) Then
+                img = If(key.StartsWith("#"), list.Images(page.ImageIndex), list.Images(key))
+                icons(key) = img
+            End If
+            Return img
+        End Function
 
         Private Sub New(tc As TabControl)
             tab = tc
@@ -178,16 +267,29 @@ Module NativeThemeModule
             ReleaseHandle()
         End Sub
 
+        'The strip is painted here in full, in place of the native drawing. Letting the
+        'control paint its light chrome first and covering it afterwards flashed on
+        'every repaint.
         Protected Overrides Sub WndProc(ByRef m As Message)
+            Select Case m.Msg
+                Case WM_ERASEBKGND
+                    m.Result = New IntPtr(1)
+                    Return
+                Case WM_PAINT
+                    Dim ps As New PAINTSTRUCT
+                    Dim hdc As IntPtr = BeginPaint(m.HWnd, ps)
+                    Try
+                        Using g As Graphics = Graphics.FromHdc(hdc)
+                            PaintChrome(g)
+                        End Using
+                    Catch
+                    Finally
+                        EndPaint(m.HWnd, ps)
+                    End Try
+                    m.Result = IntPtr.Zero
+                    Return
+            End Select
             MyBase.WndProc(m)
-            If m.Msg = WM_PAINT Then
-                Try
-                    Using g As Graphics = Graphics.FromHwnd(tab.Handle)
-                        PaintChrome(g)
-                    End Using
-                Catch
-                End Try
-            End If
         End Sub
 
         Private Sub PaintChrome(g As Graphics)
@@ -202,10 +304,11 @@ Module NativeThemeModule
             'Everything that is not the page area: strip, borders and gaps.
             Using bgBrush As New SolidBrush(bg)
                 Using region As New Region(client)
-                    region.Exclude(display)
+                    If tab.TabCount > 0 Then region.Exclude(display)
                     g.FillRegion(bgBrush, region)
                 End Using
             End Using
+            If tab.TabCount = 0 Then Return
 
             'Frame around the page area.
             Using pen As New Pen(border)
@@ -216,7 +319,9 @@ Module NativeThemeModule
                 g.DrawRectangle(pen, frame)
             End Using
 
-            'Tab headers.
+            'Tab headers: icon and caption centred in the tab.
+            Const gap As Integer = 6
+            Dim flags As TextFormatFlags = TextFormatFlags.VerticalCenter Or TextFormatFlags.SingleLine Or TextFormatFlags.NoPadding
             For i = 0 To tab.TabCount - 1
                 Dim r As Rectangle = tab.GetTabRect(i)
                 Dim selected As Boolean = (i = tab.SelectedIndex)
@@ -226,8 +331,18 @@ Module NativeThemeModule
                 Using pen As New Pen(border)
                     g.DrawRectangle(pen, r.X, r.Y, r.Width - 1, r.Height - 1)
                 End Using
-                TextRenderer.DrawText(g, tab.TabPages(i).Text, tab.Font, r, fg,
-                                      TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter Or TextFormatFlags.SingleLine)
+
+                Dim text As String = tab.TabPages(i).Text
+                Dim icon As Image = TabIcon(tab.TabPages(i))
+                If icon Is Nothing Then
+                    TextRenderer.DrawText(g, text, tab.Font, r, fg, flags Or TextFormatFlags.HorizontalCenter)
+                Else
+                    Dim textWidth As Integer = TextRenderer.MeasureText(g, text, tab.Font, r.Size, flags).Width
+                    Dim x As Integer = r.X + Math.Max(0, (r.Width - (icon.Width + gap + textWidth)) \ 2)
+                    g.DrawImage(icon, New Rectangle(x, r.Y + (r.Height - icon.Height) \ 2, icon.Width, icon.Height))
+                    Dim textLeft As Integer = x + icon.Width + gap
+                    TextRenderer.DrawText(g, text, tab.Font, New Rectangle(textLeft, r.Y, r.Right - textLeft, r.Height), fg, flags Or TextFormatFlags.Left)
+                End If
             Next
         End Sub
     End Class
