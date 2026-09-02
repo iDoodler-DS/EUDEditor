@@ -2,7 +2,6 @@
 Imports System.Drawing
 Imports System.Threading
 
-
 Public Enum DTYPE
     units = 0
     weapons = 1
@@ -137,6 +136,7 @@ Public Class DatEditForm
         End If
 
         _OBJECTNUM = index
+        EntitySelection.SetCurrent(TAB_INDEX, _OBJECTNUM)
         LoadData()
     End Sub
     Public Function GetUnitIndex(index As Integer)
@@ -148,7 +148,6 @@ Public Class DatEditForm
         Return 0
     End Function
 
-
     Private Sub DatEditForm_Closed(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         Timer1.Enabled = False
         IScriptPlayer.Enabled = False
@@ -159,7 +158,6 @@ Public Class DatEditForm
 
         My.Forms.Main.Visible = True
     End Sub
-
 
     Public FristRun As Boolean = False
     Public FristRunOpenOrders As Boolean = False
@@ -187,7 +185,6 @@ Public Class DatEditForm
 
         ColorReset()
 
-
         If FristRun = False Then
 
             For i = 0 To MainTAB.TabCount - 1
@@ -211,7 +208,6 @@ Public Class DatEditForm
                 ListBox1.SelectedIndex = 0
             End If
 
-
             'loadthread.Abort()
             Activate()
             FristRun = True
@@ -221,7 +217,6 @@ Public Class DatEditForm
         RefreshForm()
         INITIAL_SETUP = False
     End Sub
-
 
     Public Sub SoundPlay(name As String)
         Try
@@ -254,7 +249,6 @@ Public Class DatEditForm
         End If
     End Function
 
-
     Private Sub 초기화ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 초기화ToolStripMenuItem.Click
         Dim index As Integer = _OBJECTNUM
         For i = 0 To DatEditDATA(MainTAB.SelectedIndex).projectdata.Count - 1
@@ -280,7 +274,6 @@ Public Class DatEditForm
         ListBox1.Refresh()
     End Sub
 
-
     Private Sub ObjectCopy()
         Dim datasource As String = ""
 
@@ -297,14 +290,10 @@ Public Class DatEditForm
                     datasource = datasource & "Null" & ","
                 End Try
 
-
-
-
             Catch ex As Exception
                 MsgBox(DatEditDATA(TAB_INDEX).keyDic.Values(i))
             End Try
         Next
-
 
         My.Computer.Clipboard.SetText(datasource)
 
@@ -340,9 +329,7 @@ Public Class DatEditForm
 
                     End Try
 
-
                     'DatEditDAT(MainTAB.SelectedIndex).WriteValueNum(i, index, DatEditDAT(MainTAB.SelectedIndex).ReadValueNum(i, Toindex))
-
 
                 End If
             Catch ex As Exception
@@ -440,10 +427,6 @@ Public Class DatEditForm
         End Try
     End Sub
 
-
-
-
-
     Private Sub ListMenuShow()
         Dim cliptext As String = My.Computer.Clipboard.GetText()
 
@@ -506,7 +489,6 @@ Public Class DatEditForm
             Dim filestream As New FileStream(SaveFileDialog1.FileName, FileMode.Create)
             Dim streamwriter As New StreamWriter(filestream)
 
-
             Dim datasource As String = ""
 
             Dim index = _OBJECTNUM
@@ -526,9 +508,7 @@ Public Class DatEditForm
                 End Try
             Next
 
-
             streamwriter.Write(datasource)
-
 
             streamwriter.Close()
             filestream.Close()
@@ -551,19 +531,10 @@ Public Class DatEditForm
                 MsgBox(Lan.GetText(Me.Name, "invalidData"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             End Try
 
-
-
             streamreader.Close()
             filestream.Close()
         End If
     End Sub
-
-
-
-
-
-
-
 
     Public Sub RefreshForm()
         Dim oldselectindex As Integer = _OBJECTNUM
@@ -578,7 +549,6 @@ Public Class DatEditForm
         RefreshForm()
         ListSelected()
     End Sub
-
 
     Private Sub LoadComboBoxFromFile(ByRef Combobox As ComboBox, filename As String)
         Combobox.Items.Clear()
@@ -614,7 +584,6 @@ Public Class DatEditForm
             file.Position = 0
             stream.DiscardBufferedData()
             comboBoxCache(filename) = stream.ReadToEnd
-
 
             stream.Close()
             file.Close()
@@ -657,17 +626,14 @@ Public Class DatEditForm
             stream.DiscardBufferedData()
             listViewCache.Add(filename, stream.ReadToEnd)
 
-
             stream.Close()
             file.Close()
         End If
     End Sub
 
-
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MainTAB.SelectedIndexChanged
         loadSTATUS = False
         'TabSelectindex(MainTAB.selecti)
-
 
         TabSelectindex(LastSelectTab) = _OBJECTNUM
         Tabfilfer(LastSelectTab) = LISTFILTER
@@ -675,8 +641,6 @@ Public Class DatEditForm
         'TabSelectindex.Add(0)
         'Tabfilfer.Add("")
         LISTFILTER = Tabfilfer(MainTAB.SelectedIndex)
-
-
 
         TAB_INDEX = MainTAB.SelectedIndex
         ListDraw()
@@ -697,7 +661,6 @@ Public Class DatEditForm
 
         TextBox2.Text = Tabfilfer(MainTAB.SelectedIndex)
 
-
         LastSelectTab = MainTAB.SelectedIndex
         loadSTATUS = True
     End Sub
@@ -712,7 +675,6 @@ Public Class DatEditForm
             For i = 0 To DatFileLoad.FileNames.Count - 1
                 MainTAB.SelectedIndex = ReadDATAFileFromDat(DatFileLoad.FileNames(i))
             Next
-
 
             ListDraw()
             PaletDraw()
@@ -735,8 +697,6 @@ Public Class DatEditForm
 
     Private Sub Dat파일모두저장ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DatFileAllSaveToolStripMenuItem.Click
         Dim dialog As DialogResult
-
-
 
         dialog = DatFileSaveAll.ShowDialog
 
@@ -764,7 +724,6 @@ Public Class DatEditForm
             ReadDATAFileFromDat(Filename)
         Next
 
-
         ListDraw()
         PaletDraw()
     End Sub
@@ -775,8 +734,6 @@ Public Class DatEditForm
         LoadData()
         refreshchangeAll()
     End Sub
-
-
 
     Private Sub 프로젝트저장ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProjectSaveToolStripMenuItem.Click
         MainTAB.Focus()
@@ -871,7 +828,6 @@ Public Class DatEditForm
         Dim listNum As Integer = MainTAB.SelectedIndex
         Dim index As Integer = 0
 
-
         ListBox1.Items.Clear()
 
         For i = 0 To CODE(listNum).Count - 1
@@ -903,7 +859,6 @@ Public Class DatEditForm
                 End If
                 temp2(0) = "[" & Format(i, "000") & "]- " & temp2(0)
 
-
                 Select Case TAB_INDEX
                     Case DTYPE.sfxdata
                         Dim value As Integer = DatEditDATA(DTYPE.sfxdata).ReadValue("Sound File", i)
@@ -918,8 +873,6 @@ Public Class DatEditForm
                         End If
                 End Select
 
-
-
                 If TAB_INDEX = DTYPE.portdata Then
                     MPQlib.ReadListfile(ListBox7)
                     readlistsmk()
@@ -932,7 +885,6 @@ Public Class DatEditForm
                         End If
                     Next
                 End If
-
 
                 stra = temp2(0).ToLower
                 If LISTFILTER <> "" Then
@@ -957,12 +909,9 @@ Public Class DatEditForm
             ListBox1.SelectedIndex = 0
         End If
 
-
-
         ListBox1.EndUpdate()
         ListBox1.ResumeLayout()
     End Sub
-
 
     Private LastSize As Integer
     Private Sub PaletteBtn(sender As Object, e As EventArgs) Handles Button5.Click
@@ -987,7 +936,6 @@ Public Class DatEditForm
         End Try
     End Sub
 
-
     Private Sub ListBox1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles ListBox1.MouseUp
         If e.Button = MouseButtons.Right Then
 
@@ -1003,7 +951,8 @@ Public Class DatEditForm
     Private Sub ListSelected()
         If ListBox1.Items.Count <> 0 Then
             _OBJECTNUM = ListBox1.SelectedItem(1)
-
+            'FireGraft shows more fields of this same entry.
+            EntitySelection.SetCurrent(TAB_INDEX, _OBJECTNUM)
 
             LoadData()
         Else
@@ -1032,14 +981,11 @@ Public Class DatEditForm
             myBrush = Brushes.IndianRed
         End If
 
-
         e.Graphics.DrawString(ListBox1.Items(e.Index)(0).ToString,
         e.Font, myBrush, e.Bounds, StringFormat.GenericDefault)
 
-
         e.DrawFocusRectangle()
     End Sub
-
 
     Private Sub ListBox8_DrawItem(ByVal sender As Object,
  ByVal e As System.Windows.Forms.DrawItemEventArgs) _
@@ -1060,16 +1006,12 @@ Public Class DatEditForm
                 ListBox1.Items(ListBox1.SelectedIndex)(2) = 1
             End If
 
-
             e.Graphics.DrawString(ListBox8.Items(e.Index).ToString,
         e.Font, myBrush, e.Bounds, StringFormat.GenericDefault)
-
 
             e.DrawFocusRectangle()
         End If
     End Sub
-
-
 
     Public Sub Loadstattxt()
         If ProjectSet.UsedSetting(8) = True Then
@@ -1111,7 +1053,6 @@ Public Class DatEditForm
         ComboBox42.EndUpdate()
         ComboBox42.ResumeLayout()
 
-
         ComboBox44.SuspendLayout()
         ComboBox44.BeginUpdate()
         ComboBox44.Items.Clear()
@@ -1119,7 +1060,6 @@ Public Class DatEditForm
         ComboBox44.Items.AddRange(stat_txt)
         ComboBox44.EndUpdate()
         ComboBox44.ResumeLayout()
-
 
         ComboBox50.SuspendLayout()
         ComboBox50.BeginUpdate()
@@ -1150,7 +1090,6 @@ Public Class DatEditForm
     Private Sub LoadComboBoxAndList()
         Loadstattxt()
 
-
         ComboBox1.SuspendLayout()
         ComboBox1.BeginUpdate()
         ComboBox1.Items.Clear()
@@ -1171,7 +1110,6 @@ Public Class DatEditForm
         ComboBox5.Items.AddRange(CODE(DTYPE.weapons).ToArray)
         ComboBox5.EndUpdate()
         ComboBox5.ResumeLayout()
-
 
         LoadComboBoxFromFile(ComboBox6, "UnitSize.txt")
         LoadComboBoxFromFile(ComboBox20, "ElevationLevels.txt")
@@ -1266,7 +1204,6 @@ Public Class DatEditForm
         ComboBox16.EndUpdate()
         ComboBox16.ResumeLayout()
 
-
         ComboBox17.SuspendLayout()
         ComboBox17.BeginUpdate()
         ComboBox17.Items.Clear()
@@ -1287,7 +1224,6 @@ Public Class DatEditForm
         ComboBox19.Items.AddRange(CODE(DTYPE.flingy).ToArray)
         ComboBox19.EndUpdate()
         ComboBox19.ResumeLayout()
-
 
         ComboBox24.SuspendLayout()
         ComboBox24.BeginUpdate()
@@ -1326,7 +1262,6 @@ Public Class DatEditForm
 
         LoadComboBoxFromFile(ComboBox29, "Rightclick.txt")
         LoadListviewFromFile(ListView7, "AIInternal.txt")
-
 
         LoadComboBoxFromFile(ComboBox3, "DamTypes.txt")
         LoadComboBoxFromFile(ComboBox30, "Explosions.txt")
@@ -1381,11 +1316,7 @@ Public Class DatEditForm
 
         LoadComboBoxFromFile(ComboBox41, "Icon.txt")
 
-
-
         LoadComboBoxFromFile(ComboBox45, "Icon.txt")
-
-
 
         LoadComboBoxFromFile(ComboBox43, "Races.txt")
         ComboBox43.Items.Add("All")
@@ -1413,11 +1344,8 @@ Public Class DatEditForm
         ComboBox49.EndUpdate()
         ComboBox49.ResumeLayout()
 
-
         LoadComboBoxFromFile(ComboBox51, "Animations.txt")
         LoadComboBoxFromFile(ComboBox52, "Icon.txt")
-
-
 
         ComboBox53.SuspendLayout()
         ComboBox53.BeginUpdate()
@@ -1426,7 +1354,6 @@ Public Class DatEditForm
         ComboBox53.Items.AddRange(sfxdata)
         ComboBox53.EndUpdate()
         ComboBox53.ResumeLayout()
-
 
         ComboBox54.SuspendLayout()
         ComboBox54.BeginUpdate()
@@ -1438,7 +1365,6 @@ Public Class DatEditForm
 
         LoadComboBoxFromFile(ComboBox55, "DrawList.txt")
         LoadComboBoxFromFile(ComboBox56, "Remapping.txt")
-
 
         LoadComboBoxFromFile(ComboBox57, "GRPfile.txt")
         LoadComboBoxFromFile(ComboBox58, "GRPfile.txt")
@@ -1452,7 +1378,6 @@ Public Class DatEditForm
         LoadComboBoxFromFile(ComboBox65, "GRPfile.txt")
         LoadComboBoxFromFile(ComboBox64, "IscriptIDList.txt")
     End Sub
-
 
     Public Sub LoadData()
         Me.SuspendLayout()
@@ -1496,18 +1421,13 @@ Public Class DatEditForm
             Label24.Text = ListBox1.SelectedItem(0) & " (" & CODE(DTYPE.units)(_OBJECTNUM) & ")"
         End If
 
-
-
         Dim t_Iconnum As Integer
-
-
 
         Try
             PictureBox4.Image = ICONILIST.Images(_OBJECTNUM)
         Catch ex As Exception
 
         End Try
-
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox4, _OBJECTNUM) 'HP
         If TextBox4.Text > Integer.MaxValue Then
@@ -1534,7 +1454,6 @@ Public Class DatEditForm
         End Try
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox1, _OBJECTNUM) '방어구 콤보박스
 
-
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox5, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox9, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox10, _OBJECTNUM)
@@ -1542,8 +1461,6 @@ Public Class DatEditForm
         NumericUpDown2.BackColor = TextBox10.BackColor
 
         DatEditDATA(DTYPE.units).ReadToCHECKBOX(CheckBox2, _OBJECTNUM)
-
-
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox11, _OBJECTNUM)
         Try
@@ -1554,7 +1471,6 @@ Public Class DatEditForm
         End Try
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox4, _OBJECTNUM) '지상공격 콤보박스
 
-
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox12, _OBJECTNUM)
         Try
             t_Iconnum = DatEditDATA(DTYPE.weapons).ReadValue("Icon", TextBox12.Text)
@@ -1564,17 +1480,13 @@ Public Class DatEditForm
         End Try
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox5, _OBJECTNUM) '공중공격 콤보박스
 
-
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox14, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox13, _OBJECTNUM)
-
-
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox15, _OBJECTNUM) '인구수
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox16, _OBJECTNUM)
 
         DatEditDATA(DTYPE.units).ReadToCHECKBOXLIST(ListView3, _OBJECTNUM)
-
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox17, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox18, _OBJECTNUM)
@@ -1585,9 +1497,6 @@ Public Class DatEditForm
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox22, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox23, _OBJECTNUM)
-
-
-
 
         '고급정보
         DatEditDATA(DTYPE.units).ReadToCHECKBOXLIST(ListView2, _OBJECTNUM)
@@ -1621,7 +1530,6 @@ Public Class DatEditForm
 
         DatEditDATA(DTYPE.units).ReadToCHECKBOXLIST(ListView4, _OBJECTNUM)
 
-
         '사운드
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox27, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox10, _OBJECTNUM)
@@ -1641,7 +1549,6 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox33, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox16, _OBJECTNUM)
 
-
         If MainTAB.SelectedIndex = 0 And TabControl2.SelectedIndex = 2 Then
             LoadSoundlist()
         End If
@@ -1651,7 +1558,6 @@ Public Class DatEditForm
 
         frameNum = 0
         drawUnitGRP()
-
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox35, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox18, _OBJECTNUM)
@@ -1664,14 +1570,10 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox21, _OBJECTNUM)
         'Unit Direction
 
-
-
-
         DatEditDATA(DTYPE.units).ReadToNUMERIC(NumericUpDown3, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToNUMERIC(NumericUpDown4, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToNUMERIC(NumericUpDown5, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToNUMERIC(NumericUpDown6, _OBJECTNUM)
-
 
         DatEditDATA(DTYPE.units).ReadToNUMERIC(NumericUpDown7, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToNUMERIC(NumericUpDown8, _OBJECTNUM)
@@ -1682,13 +1584,11 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.units).ReadToCHECKBOXLIST(ListView5, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCHECKBOXLIST(ListView6, _OBJECTNUM)
 
-
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox45, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox22, _OBJECTNUM)
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox46, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox23, _OBJECTNUM)
-
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox53, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox28, _OBJECTNUM)
@@ -1735,13 +1635,10 @@ Public Class DatEditForm
             PictureBox15.Image = ICONILIST.Images(4)
         End Try
 
-
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox54, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox29, _OBJECTNUM)
 
-
         DatEditDATA(DTYPE.units).ReadToCHECKBOXLIST(ListView7, _OBJECTNUM)
-
 
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox107, _OBJECTNUM)
 
@@ -1781,7 +1678,6 @@ Public Class DatEditForm
         End Try
         DatEditDATA(DTYPE.weapons).ReadToCOMBOBOX(ComboBox2, _OBJECTNUM) '지상공격 콤보박스
 
-
         DatEditDATA(DTYPE.weapons).ReadToTEXTBOX(TextBox63, _OBJECTNUM)
         Try
             t_Iconnum = TextBox63.Text
@@ -1791,8 +1687,6 @@ Public Class DatEditForm
         End Try
         DatEditDATA(DTYPE.weapons).ReadToCOMBOBOX(ComboBox36, _OBJECTNUM) '지상공격 콤보박스
         '39,40,43,44,55,56,57,64,65,66,67,62
-
-
 
         DatEditDATA(DTYPE.weapons).ReadToTEXTBOX(TextBox42, _OBJECTNUM)
         DatEditDATA(DTYPE.weapons).ReadToCOMBOBOX(ComboBox3, _OBJECTNUM)
@@ -1813,7 +1707,6 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.weapons).ReadToTEXTBOX(TextBox63, _OBJECTNUM)
         DatEditDATA(DTYPE.weapons).ReadToCOMBOBOX(ComboBox36, _OBJECTNUM)
 
-
         DatEditDATA(DTYPE.weapons).ReadToCHECKBOXLIST(ListView8, _OBJECTNUM)
 
         LoadWeaponGRP()
@@ -1825,7 +1718,6 @@ Public Class DatEditForm
             ListBox1.SelectedItem(2) = DatEditDATA(DTYPE.flingy).CheckChangeAll(_OBJECTNUM)
         End If
 
-
         DatEditDATA(DTYPE.flingy).ReadToTEXTBOX(TextBox68, _OBJECTNUM)
         DatEditDATA(DTYPE.flingy).ReadToCOMBOBOX(ComboBox37, _OBJECTNUM)
 
@@ -1834,11 +1726,8 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.flingy).ReadToTEXTBOX(TextBox71, _OBJECTNUM)
         DatEditDATA(DTYPE.flingy).ReadToTEXTBOX(TextBox72, _OBJECTNUM)
 
-
         DatEditDATA(DTYPE.flingy).ReadToTEXTBOX(TextBox73, _OBJECTNUM)
         DatEditDATA(DTYPE.flingy).ReadToCOMBOBOX(ComboBox38, _OBJECTNUM)
-
-
 
         DatEditDATA(DTYPE.flingy).ReadToTEXTBOX(TextBox108, _OBJECTNUM)
 
@@ -1851,21 +1740,15 @@ Public Class DatEditForm
             ListBox1.SelectedItem(2) = DatEditDATA(DTYPE.sprites).CheckChangeAll(_OBJECTNUM)
         End If
 
-
-
-
         DatEditDATA(DTYPE.sprites).ReadToTEXTBOX(TextBox74, _OBJECTNUM)
         DatEditDATA(DTYPE.sprites).ReadToCOMBOBOX(ComboBox39, _OBJECTNUM)
 
         DatEditDATA(DTYPE.sprites).ReadToTEXTBOX(TextBox75, _OBJECTNUM)
         DatEditDATA(DTYPE.sprites).ReadToCOMBOBOX(ComboBox40, _OBJECTNUM)
 
-
         DatEditDATA(DTYPE.sprites).ReadToCHECKBOX(CheckBox6, _OBJECTNUM)
 
-
         DatEditDATA(DTYPE.sprites).ReadToTEXTBOX(TextBox77, _OBJECTNUM)
-
 
         DatEditDATA(DTYPE.sprites).ReadToTEXTBOX(TextBox76, _OBJECTNUM)
         NumericUpDown13.Value = TextBox76.Text / 3
@@ -1881,16 +1764,11 @@ Public Class DatEditForm
             ListBox1.SelectedItem(2) = DatEditDATA(DTYPE.images).CheckChangeAll(_OBJECTNUM)
         End If
 
-
-
-
         DatEditDATA(DTYPE.images).ReadToTEXTBOX(TextBox112, _OBJECTNUM)
         DatEditDATA(DTYPE.images).ReadToCOMBOBOX(ComboBox55, _OBJECTNUM)
 
         DatEditDATA(DTYPE.images).ReadToTEXTBOX(TextBox113, _OBJECTNUM)
         DatEditDATA(DTYPE.images).ReadToCOMBOBOX(ComboBox56, _OBJECTNUM)
-
-
 
         DatEditDATA(DTYPE.images).ReadToTEXTBOX(TextBox114, _OBJECTNUM)
         DatEditDATA(DTYPE.images).ReadToCOMBOBOX(ComboBox57, _OBJECTNUM)
@@ -1919,7 +1797,6 @@ Public Class DatEditForm
             Dim strings As String = DatEditDATA(DTYPE.images).keyDic.Keys(i + 1)
             ListView10.Items(i).Checked = DatEditDATA(DTYPE.images).ReadValue(strings, _OBJECTNUM)
 
-
             DatEditDATA(DTYPE.images).CheckChange(strings, _OBJECTNUM, ListView10.Items(i))
 
             Dim value As Boolean = DatEditDATA(DTYPE.images).ReadValue(strings, _OBJECTNUM)
@@ -1928,15 +1805,11 @@ Public Class DatEditForm
             End If
         Next
 
-
         TextBox121.Enabled = False
         ComboBox65.Enabled = False
 
         TextBox121.BackColor = Color.GhostWhite
         ComboBox65.BackColor = Color.GhostWhite
-
-
-
 
         If ListView10.Items(0).Checked Then
             TrackBar1.Enabled = True
@@ -1945,7 +1818,6 @@ Public Class DatEditForm
             TrackBar1.Enabled = False
         End If
 
-
         If GRPEditorUsingDATA(_OBJECTNUM) <> "" Then
             ComboBox65.BackColor = Color.IndianRed
             If ListBox1.Items.Count <> 0 Then
@@ -1953,9 +1825,7 @@ Public Class DatEditForm
             End If
         End If
 
-
         Dim iscriptID As Integer = DatEditDATA(DTYPE.images).ReadValue("Iscript ID", _OBJECTNUM)
-
 
         ListBox9.Items.Clear()
 
@@ -1972,8 +1842,6 @@ Public Class DatEditForm
         If GRPEditorControl.Visible = True Then
             GRPEditorControlload()
         End If
-
-
 
         If ListBox9.Items.Count <> 0 Then
             ListBox9.SelectedIndex = 0
@@ -1993,7 +1861,6 @@ Public Class DatEditForm
             ListBox1.SelectedItem(2) = DatEditDATA(DTYPE.upgrades).CheckChangeAll(_OBJECTNUM)
         End If
 
-
         Dim t_Iconnum As Integer
 
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox78, _OBJECTNUM) '방어구
@@ -2006,7 +1873,6 @@ Public Class DatEditForm
         End Try
         DatEditDATA(DTYPE.upgrades).ReadToCOMBOBOX(ComboBox41, _OBJECTNUM) '방어구 콤보박스
 
-
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox79, _OBJECTNUM)
         DatEditDATA(DTYPE.upgrades).ReadToCOMBOBOX(ComboBox42, _OBJECTNUM)
 
@@ -2016,26 +1882,18 @@ Public Class DatEditForm
         NumericUpDown14.Value = TextBox80.Text * 42 / 1000
         NumericUpDown14.BackColor = TextBox80.BackColor
 
-
-
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox85, _OBJECTNUM)
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox84, _OBJECTNUM)
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox83, _OBJECTNUM)
         NumericUpDown15.Value = TextBox83.Text * 42 / 1000
         NumericUpDown15.BackColor = TextBox83.BackColor
 
-
-
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox87, _OBJECTNUM)
-
 
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox88, _OBJECTNUM)
         DatEditDATA(DTYPE.upgrades).ReadToCOMBOBOX(ComboBox43, _OBJECTNUM)
 
-
-
         DatEditDATA(DTYPE.upgrades).ReadToCHECKBOX(CheckBox8, _OBJECTNUM)
-
 
         DatEditDATA(DTYPE.upgrades).ReadToTEXTBOX(TextBox109, _OBJECTNUM)
     End Sub
@@ -2044,7 +1902,6 @@ Public Class DatEditForm
         If ListBox1.SelectedIndex <> -1 Then
             ListBox1.SelectedItem(2) = DatEditDATA(DTYPE.techdata).CheckChangeAll(_OBJECTNUM)
         End If
-
 
         Dim t_Iconnum As Integer
 
@@ -2058,10 +1915,8 @@ Public Class DatEditForm
         End Try
         DatEditDATA(DTYPE.techdata).ReadToCOMBOBOX(ComboBox45, _OBJECTNUM) '방어구 콤보박스
 
-
         DatEditDATA(DTYPE.techdata).ReadToTEXTBOX(TextBox91, _OBJECTNUM)
         DatEditDATA(DTYPE.techdata).ReadToCOMBOBOX(ComboBox44, _OBJECTNUM)
-
 
         DatEditDATA(DTYPE.techdata).ReadToTEXTBOX(TextBox90, _OBJECTNUM)
         DatEditDATA(DTYPE.techdata).ReadToTEXTBOX(TextBox89, _OBJECTNUM)
@@ -2071,12 +1926,8 @@ Public Class DatEditForm
 
         DatEditDATA(DTYPE.techdata).ReadToTEXTBOX(TextBox94, _OBJECTNUM)
 
-
-
         DatEditDATA(DTYPE.techdata).ReadToTEXTBOX(TextBox93, _OBJECTNUM)
         DatEditDATA(DTYPE.techdata).ReadToCOMBOBOX(ComboBox46, _OBJECTNUM)
-
-
 
         DatEditDATA(DTYPE.techdata).ReadToCHECKBOX(CheckBox9, _OBJECTNUM)
 
@@ -2088,7 +1939,6 @@ Public Class DatEditForm
         If ListBox1.SelectedIndex <> -1 Then
             ListBox1.SelectedItem(2) = DatEditDATA(DTYPE.orders).CheckChangeAll(_OBJECTNUM)
         End If
-
 
         Dim t_Iconnum As Integer
 
@@ -2102,7 +1952,6 @@ Public Class DatEditForm
         End Try
         DatEditDATA(DTYPE.orders).ReadToCOMBOBOX(ComboBox52, _OBJECTNUM) '방어구 콤보박스
 
-
         DatEditDATA(DTYPE.orders).ReadToTEXTBOX(TextBox95, _OBJECTNUM)
         DatEditDATA(DTYPE.orders).ReadToCOMBOBOX(ComboBox47, _OBJECTNUM)
         DatEditDATA(DTYPE.orders).ReadToTEXTBOX(TextBox96, _OBJECTNUM)
@@ -2114,13 +1963,10 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.orders).ReadToTEXTBOX(TextBox99, _OBJECTNUM)
         DatEditDATA(DTYPE.orders).ReadToCOMBOBOX(ComboBox51, _OBJECTNUM)
 
-
-
         For i = 0 To 11
             Dim strings As String = DatEditDATA(DTYPE.orders).keyDic.Keys(i + 1)
             Try
                 ListView9.Items(i).Checked = DatEditDATA(DTYPE.orders).ReadValue(strings, _OBJECTNUM)
-
 
                 DatEditDATA(DTYPE.orders).CheckChange(strings, _OBJECTNUM, ListView9.Items(i))
 
@@ -2150,14 +1996,11 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.sfxdata).ReadToTEXTBOX(TextBox104, _OBJECTNUM)
         DatEditDATA(DTYPE.sfxdata).ReadToTEXTBOX(TextBox105, _OBJECTNUM)
 
-
         TextBox101.Enabled = False
         ComboBox53.Enabled = False
 
         TextBox101.BackColor = Color.GhostWhite
         ComboBox53.BackColor = Color.GhostWhite
-
-
 
         MPQlib.ReadListfile(ListBox6)
         readlist()
@@ -2178,14 +2021,11 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.portdata).ReadToTEXTBOX(TextBox106, _OBJECTNUM)
         DatEditDATA(DTYPE.portdata).ReadToCOMBOBOX(ComboBox54, _OBJECTNUM)
 
-
-
         TextBox106.Enabled = False
         ComboBox54.Enabled = False
 
         TextBox106.BackColor = Color.GhostWhite
         ComboBox54.BackColor = Color.GhostWhite
-
 
         ListBox8.Items.Clear()
 
@@ -2203,7 +2043,6 @@ Public Class DatEditForm
         streamreader.Close()
         filmstream.Close()
 
-
         For i = 0 To filenames.Count - 1
             If InStr(filenames(i), ComboBox54.Items(TextBox106.Text).ToString.ToLower) <> 0 Then
                 If ListBox8.Items.Contains(filenames(i)) = False Then
@@ -2216,7 +2055,6 @@ Public Class DatEditForm
             ListBox8.SelectedIndex = 0
         End If
 
-
         MPQlib.ReadListfile(ListBox7)
         readlistsmk()
 
@@ -2224,7 +2062,6 @@ Public Class DatEditForm
         'ComboBox54.BackColor = Color.IndianRed
         'End If
     End Sub
-
 
     Private Sub ListBox9_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox9.SelectedIndexChanged
         If ListBox9.SelectedIndex <> -1 Then
@@ -2246,7 +2083,6 @@ Public Class DatEditForm
             Catch ex As KeyNotFoundException
 
             End Try
-
 
         End If
     End Sub
@@ -2282,8 +2118,6 @@ Public Class DatEditForm
                 iscript.currentHeader = animheader
                 IScriptPlayer.Enabled = True
 
-
-
                 Dim gfxturn As Boolean = DatEditDATA(DTYPE.images).ReadValue("Gfx Turns", _OBJECTNUM)
                 If gfxturn = True Then
                     If TrackBar1.Value > 16 Then
@@ -2308,7 +2142,6 @@ Public Class DatEditForm
         ListBox4.Items.Clear()
         ListBox5.Items.Clear()
 
-
         Dim ready As Integer = Val(TextBox27.Text)
         Dim yes1 As Integer = Val(TextBox28.Text)
         Dim yes2 As Integer = Val(TextBox29.Text)
@@ -2323,7 +2156,6 @@ Public Class DatEditForm
         Catch ex As Exception
             ListBox2.Items.Clear()
         End Try
-
 
         Try
             If Math.Abs(yes1 - yes2) < 1144 Then
@@ -2343,7 +2175,6 @@ Public Class DatEditForm
             ListBox3.Items.Clear()
         End Try
 
-
         Try
             If Math.Abs(what1 - what2) < 1144 Then
                 If what1 <= what2 Then
@@ -2361,7 +2192,6 @@ Public Class DatEditForm
         Catch ex As Exception
             ListBox4.Items.Clear()
         End Try
-
 
         Try
             If Math.Abs(piss1 - piss2) < 1144 Then
@@ -2418,14 +2248,11 @@ Public Class DatEditForm
         End If
     End Sub
 
-
     Private Sub TabControl2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl2.SelectedIndexChanged
         If MainTAB.SelectedIndex = 0 And TabControl2.SelectedIndex = 2 Then
             LoadSoundlist()
         End If
     End Sub
-
-
 
     Dim ImageGRP As New GRP
     Public Sub drawImageGRP(fnum As Integer, flip As Boolean, Optional x As Integer = 0, Optional y As Integer = 0)
@@ -2500,7 +2327,6 @@ Public Class DatEditForm
             Image = DatEditDATA(DTYPE.sprites).ReadValue("Image File", _OBJECTNUM)
             remapping = DatEditDATA(DTYPE.images).ReadValue("Remapping", Image)
 
-
             Select Case remapping
                 Case 0
                     SpritGRP.LoadPalette(PalettType.install)
@@ -2514,16 +2340,11 @@ Public Class DatEditForm
                     SpritGRP.LoadPalette(PalettType.bexpl)
             End Select
 
-
             Try
                 SpritGRP.DrawToPictureBox(PictureBox22, frameNum, 12, True)
             Catch ex As Exception
                 PictureBox22.Image = ICONILIST.Images(4)
             End Try
-
-
-
-
 
             Dim tempgrp As New GRP
             Try
@@ -2531,7 +2352,6 @@ Public Class DatEditForm
                 point = DatEditDATA(DTYPE.sprites).ReadValue("Sel.Circle Offset", _OBJECTNUM)
                 Image = DatEditDATA(DTYPE.sprites).ReadValue("Sel.Circle Image", _OBJECTNUM) + 561
                 remapping = DatEditDATA(DTYPE.images).ReadValue("Remapping", Image)
-
 
                 Select Case remapping
                     Case 0
@@ -2546,9 +2366,7 @@ Public Class DatEditForm
                         tempgrp.LoadPalette(PalettType.bexpl)
                 End Select
 
-
                 tempgrp.LoadGRP(GRPHock(Image)) 'mpq.ReaddatFile("unit\" & CODE(DTYPE.grpfile)(temp2).Replace("<0>", ""))) 'unit\protoss\dragoo
-
 
                 tempgrp.DrawToPictureBoxBackG(PictureBox22, frameNum, 12, point)
 
@@ -2576,7 +2394,6 @@ Public Class DatEditForm
 
         End Try
 
-
         SpritGRP.Reset()
         Try
             SpritGRP.LoadGRP(GRPHock(Image))
@@ -2595,7 +2412,6 @@ Public Class DatEditForm
             Image = DatEditDATA(DTYPE.sprites).ReadValue("Image File", sprite)
             remapping = DatEditDATA(DTYPE.images).ReadValue("Remapping", Image)
 
-
             Select Case remapping
                 Case 0
                     flingyGRP.LoadPalette(PalettType.install)
@@ -2608,7 +2424,6 @@ Public Class DatEditForm
                 Case 4
                     flingyGRP.LoadPalette(PalettType.bexpl)
             End Select
-
 
             Try
                 flingyGRP.DrawToPictureBox(PictureBox21, frameNum, 12)
@@ -2640,14 +2455,12 @@ Public Class DatEditForm
     Private Sub drawWeaponGRP()
         Dim weaponsgrp, weaponsprite, weaponimage, grpfile, remapping As Integer
 
-
         Try
             weaponsgrp = DatEditDATA(DTYPE.weapons).ReadValue("Graphics", _OBJECTNUM)
             weaponsprite = DatEditDATA(DTYPE.flingy).ReadValue("Sprite", weaponsgrp)
             weaponimage = DatEditDATA(DTYPE.sprites).ReadValue("Image File", weaponsprite)
             grpfile = DatEditDATA(DTYPE.images).ReadValue("GRP File", weaponimage)
             remapping = DatEditDATA(DTYPE.images).ReadValue("Remapping", weaponimage)
-
 
             Select Case remapping
                 Case 0
@@ -2671,7 +2484,6 @@ Public Class DatEditForm
             PictureBox17.Image = PictureBox17.ErrorImage
         End Try
 
-
         Try
             Dim dir As Integer = DatEditDATA(DTYPE.weapons).ReadValue("Attack Angle", _OBJECTNUM)
             Dim Attackdir As Integer = DatEditDATA(DTYPE.weapons).ReadValue("Launch Spin", _OBJECTNUM)
@@ -2684,10 +2496,7 @@ Public Class DatEditForm
             Dim point As Point
             dergee = (dir / 256) * 360
 
-
             grp.FillPie(Brushes.LimeGreen, New Rectangle(0, 0, 31, 31), 270 - dergee, dergee * 2)
-
-
 
             dergee = (((Attackdir) / 256) * 360 - 90) * (Math.PI / 180)
             point = New Point(Math.Cos(dergee) * 20 + 16, Math.Sin(dergee) * 20 + 16)
@@ -2696,26 +2505,17 @@ Public Class DatEditForm
             point = New Point(Math.Cos(dergee) * -20 + 16, Math.Sin(dergee) * 20 + 16)
             grp.DrawLine(New Pen(Color.Red, 2), New Point(16, 16), point)
 
-
             PictureBox20.Image = bit
 
-
-
             'Dim ICONGRP As New GRP
-
 
             'grpfile = DatEditDATA(DTYPE.images).ReadValue("GRP File", NumericUpDown12.Value)
             'ICONGRP.LoadPalette(PalettType.install)
             'ICONGRP.LoadGRP(GRPHock(NumericUpDown12.Value)) 'mpq.ReaddatFile("unit\" & CODE(DTYPE.grpfile)(grpfile).Replace("<0>", "")))
             'PictureBox19.BackgroundImage = ICONGRP.DrawGRP(8)
 
-
-
-
-
             bit = New Bitmap(96, 96)
             grp = Graphics.FromImage(bit)
-
 
             Dim x, y As Integer
             x = DatEditDATA(DTYPE.weapons).ReadValue("Forward Offset", _OBJECTNUM)
@@ -2735,7 +2535,6 @@ Public Class DatEditForm
 
             grp.DrawLine(Pens.LimeGreen, 48 + x, 0, 48 + x, 96)
             grp.DrawLine(Pens.LimeGreen, 0, 48 - y, 96, 48 - y)
-
 
             PictureBox19.Image = bit
         Catch ex As Exception
@@ -2791,8 +2590,6 @@ Public Class DatEditForm
                 addy = 0
             End Try
 
-
-
             Select Case temp3
                 Case 0
                     UnitGRP.LoadPalette(PalettType.install)
@@ -2805,8 +2602,6 @@ Public Class DatEditForm
                 Case 4
                     UnitGRP.LoadPalette(PalettType.bexpl)
             End Select
-
-
 
             'mpq.ReaddatFile("unit\" & CODE(DTYPE.grpfile)(temp2).Replace("<0>", ""))) 'unit\protoss\dragoo
 
@@ -2828,8 +2623,6 @@ Public Class DatEditForm
             PictureBox8.Image = PictureBox8.ErrorImage
         End Try
 
-
-
         Try
             Dim bit As New Bitmap(32, 32)
             Dim grp As Graphics
@@ -2846,16 +2639,10 @@ Public Class DatEditForm
 
             PictureBox10.Image = bit
 
-
-
-
-
             temp1 = DatEditDATA(DTYPE.units).ReadValue("Construction Animation", _OBJECTNUM)
 
             temp2 = DatEditDATA(DTYPE.images).ReadValue("GRP File", temp1)
             temp3 = DatEditDATA(DTYPE.images).ReadValue("Remapping", temp1)
-
-
 
             Select Case temp3
                 Case 0
@@ -2869,7 +2656,6 @@ Public Class DatEditForm
                 Case 4
                     ConStructGRP.LoadPalette(PalettType.bexpl)
             End Select
-
 
             ConStructGRP.DrawToPictureBox(PictureBox9, frameNum)
         Catch ex As Exception
@@ -2887,11 +2673,8 @@ Public Class DatEditForm
 
         End Try
 
-
         UnitGRP.Reset()
         UnitGRP.LoadGRP(GRPHock(temp4))
-
-
 
         Try
             temp1 = DatEditDATA(DTYPE.units).ReadValue("Construction Animation", _OBJECTNUM)
@@ -2902,14 +2685,10 @@ Public Class DatEditForm
 
         End Try
 
-
         ConStructGRP.Reset()
         ConStructGRP.LoadGRP(GRPHock(temp1)) 'mpq.ReaddatFile("unit\" & CODE(DTYPE.grpfile)(temp2).Replace("<0>", ""))) 'unit\protoss\dragoo
 
     End Sub
-
-
-
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
@@ -2926,17 +2705,12 @@ Public Class DatEditForm
                 drawSpriteGRP()
         End Select
 
-
-
         If frameNum < &HFFFFFFFE& Then
             frameNum += 1
         Else
             frameNum = 0
         End If
     End Sub
-
-
-
 
     Private Sub comboandtext(ByRef Textbox As TextBox, ByRef Combobox As ComboBox)
         loadSTATUS = False
@@ -2955,7 +2729,6 @@ Public Class DatEditForm
         End Try
         loadSTATUS = True
     End Sub
-
 
     Private Sub readlist()
         Dim k As Integer = 0
@@ -2984,12 +2757,10 @@ Public Class DatEditForm
             If MPQlib.ReadListfile(ListBox6) Then
                 readlist()
 
-
                 MPQEditorControl.Visible = True
             Else
                 MsgBox(Lan.GetText(Me.Name, "invalidMap"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             End If
-
 
         End If
     End Sub
@@ -3002,10 +2773,7 @@ Public Class DatEditForm
 
         If dialog = DialogResult.OK Then
 
-
-
             infliename = "sound\" & ComboBox53.Items(TextBox101.Text).ToString.ToLower
-
 
             MPQlib.AddFileSound(soundLoad.FileName, infliename)
             If ListBox6.Items.Contains(infliename) = False Then
@@ -3022,7 +2790,6 @@ Public Class DatEditForm
             MPQlib.RemoveFile(ListBox6.SelectedItem)
             ListBox6.Items.RemoveAt(ListBox6.SelectedIndex)
 
-
         End If
 
         LoadData()
@@ -3036,8 +2803,6 @@ Public Class DatEditForm
         End If
     End Sub
 
-
-
     Private Sub Button33_Click(sender As Object, e As EventArgs) Handles Button33.Click
         Dim dialog As DialogResult
         Dim infliename As String = ""
@@ -3046,10 +2811,7 @@ Public Class DatEditForm
 
         If dialog = DialogResult.OK Then
 
-
-
             infliename = "portrait\" & ListBox8.SelectedItem
-
 
             MPQlib.AddFile(soundLoad.FileName, infliename)
             If ListBox7.Items.Contains(infliename) = False Then
@@ -3066,7 +2828,6 @@ Public Class DatEditForm
 
             MPQlib.RemoveFile(ListBox7.SelectedItem)
             ListBox7.Items.RemoveAt(ListBox7.SelectedIndex)
-
 
         End If
         LoadData()
@@ -3087,15 +2848,12 @@ Public Class DatEditForm
             If MPQlib.ReadListfile(ListBox7) Then
                 readlistsmk()
 
-
                 MPQEditorControl2.Visible = True
             Else
                 MsgBox(Lan.GetText(Me.Name, "invalidMap"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
             End If
         End If
     End Sub
-
-
 
     'HP 설정
     Private Sub HitPoint_TextChanged(sender As Object, e As EventArgs) Handles TextBox4.TextChanged
@@ -3109,7 +2867,6 @@ Public Class DatEditForm
             Else
                 NumericUpDown1.Value = (value - 4294967296) \ 256
             End If
-
 
             NumericUpDown1.BackColor = TextBox4.BackColor
             HPloadSTATUS = True
@@ -3157,7 +2914,6 @@ Public Class DatEditForm
             End If
         End If
     End Sub
-
 
     Private Sub Armor_TextChanged(sender As Object, e As EventArgs) Handles TextBox7.TextChanged
         If loadSTATUS = True Then
@@ -3269,7 +3025,6 @@ Public Class DatEditForm
             DatEditDATA(TAB_INDEX).WriteToNUMERIC(NumericUpDown7, _OBJECTNUM)
         End If
     End Sub
-
 
     Private Sub UnitDirection_TextChanged(sender As Object, e As EventArgs) Handles TextBox38.TextChanged
         If loadSTATUS = True Then
@@ -4117,8 +3872,6 @@ Public Class DatEditForm
         End If
     End Sub
 
-
-
     Private Sub TextBox42_TextChanged(sender As Object, e As EventArgs) Handles TextBox42.TextChanged
         If loadSTATUS = True Then
             comboandtext(TextBox42, ComboBox3)
@@ -4245,10 +3998,6 @@ Public Class DatEditForm
         End If
     End Sub
 
-
-
-
-
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
         If loadSTATUS = True Then
             DatEditDATA(TAB_INDEX).WriteToCOMBOBOX(ComboBox2, _OBJECTNUM)
@@ -4299,7 +4048,6 @@ Public Class DatEditForm
             End Try
         End If
     End Sub
-
 
     Private Sub TextBox68_TextChanged(sender As Object, e As EventArgs) Handles TextBox68.TextChanged
         If loadSTATUS = True Then
@@ -4417,8 +4165,6 @@ Public Class DatEditForm
             NumericUpDown13.Visible = TextBox76.Visible
         End If
     End Sub
-
-
 
     Private Sub TextBox78_TextChanged(sender As Object, e As EventArgs) Handles TextBox78.TextChanged
         If loadSTATUS = True Then
@@ -4674,10 +4420,6 @@ Public Class DatEditForm
         End If
     End Sub
 
-
-
-
-
     Private Sub TextBox95_TextChanged(sender As Object, e As EventArgs) Handles TextBox95.TextChanged
         If loadSTATUS = True Then
             comboandtext(TextBox95, ComboBox47)
@@ -4782,8 +4524,6 @@ Public Class DatEditForm
         End If
     End Sub
 
-
-
     Private Sub ListView9_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView9.ItemChecked
         If loadSTATUS = True And FristRunOpenOrders = True Then
             'ListView8.Items(0).Checked
@@ -4796,7 +4536,6 @@ Public Class DatEditForm
                     DatEditDATA(DTYPE.orders).WriteValue(strings, _OBJECTNUM, 0)
                 End If
                 DatEditDATA(DTYPE.orders).CheckChange(strings, _OBJECTNUM, ListView9.Items(i))
-
 
                 Dim value As Boolean = DatEditDATA(DTYPE.orders).ReadValue(strings, _OBJECTNUM)
                 If value = True And ListView9.Items(i).BackColor = ProgramSet.colorFieldBackground Then
@@ -5035,9 +4774,6 @@ Public Class DatEditForm
         End Try
     End Sub
 
-
-
-
     Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button21.Tag, _OBJECTNUM)
@@ -5101,9 +4837,6 @@ Public Class DatEditForm
         End Try
 
     End Sub
-
-
-
 
     Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
         Try
@@ -5176,7 +4909,6 @@ Public Class DatEditForm
 
         End Try
     End Sub
-
 
     Private Sub Button26_Click(sender As Object, e As EventArgs) Handles Button26.Click
         Try
@@ -5253,7 +4985,6 @@ Public Class DatEditForm
                             DatEditDATA(DTYPE.images).WriteValue(strings, _OBJECTNUM, 0)
                         End If
                         DatEditDATA(DTYPE.images).CheckChange(strings, _OBJECTNUM, Item)
-
 
                         Dim value As Boolean = DatEditDATA(DTYPE.images).ReadValue(strings, _OBJECTNUM)
                         If value = True And Item.BackColor = ProgramSet.colorFieldBackground Then
@@ -5397,9 +5128,7 @@ Public Class DatEditForm
             comboandtext(TextBox120, ComboBox64)
             Dim iscriptID As Integer = DatEditDATA(DTYPE.images).ReadValue("Iscript ID", _OBJECTNUM)
 
-
             ListBox9.Items.Clear()
-
 
             Try
                 '        ListBox9.Items.Add(iscript.iscriptEntry(iscript.key(iscriptID)).EntryType)
@@ -5430,7 +5159,6 @@ Public Class DatEditForm
             DatEditDATA(TAB_INDEX).WriteToCOMBOBOX(ComboBox64, _OBJECTNUM)
             TextBox120.Text = ComboBox64.SelectedIndex
             Dim iscriptID As Integer = DatEditDATA(DTYPE.images).ReadValue("Iscript ID", _OBJECTNUM)
-
 
             ListBox9.Items.Clear()
             Try
@@ -5479,10 +5207,6 @@ Public Class DatEditForm
             ListBox10.SelectedIndex = 0
         End If
 
-
-
-
-
         GRPEditorControl.Visible = True
     End Sub
 
@@ -5492,10 +5216,8 @@ Public Class DatEditForm
         dialog = GRPForm_ListForm.ShowDialog()
         If (dialog = DialogResult.OK) Or (GRPForm_ListForm.returnvalue >= 0) Then
 
-
             Dim GrpD As New GRPDATA
             GrpD.IsExternal = False
-
 
             'GRPForm_ListForm.returnvalue
             GrpD.Filename = "unit\" & CODE(DTYPE.grpfile)(GRPForm_ListForm.returnvalue).Replace("<0>", "") '"unit\neutral\civilian.grp"
@@ -5503,8 +5225,6 @@ Public Class DatEditForm
             GrpD.Remapping = 0
             GrpD.Palett = 4
             GrpD.usingimage = New List(Of Integer)
-
-
 
             If ListBox10.SelectedIndex <> -1 Then
                 For i = 0 To GRPEditorDATA.Count - 1
@@ -5517,12 +5237,8 @@ Public Class DatEditForm
                 Next
             End If
 
-
-
             ListBox10.Items.Add(GrpD.SafeFilename)
             GRPEditorDATA.Add(GrpD)
-
-
 
             ListBox10.SelectedIndex = ListBox10.Items.Count - 1
         End If
@@ -5531,7 +5247,6 @@ Public Class DatEditForm
     Private Sub LoadGRP(sender As Object, e As EventArgs) Handles Button42.Click
         Dim dialog As DialogResult
         dialog = OpenFileDialog2.ShowDialog
-
 
         If dialog = DialogResult.OK Then
             Dim GrpD As New GRPDATA
@@ -5542,24 +5257,18 @@ Public Class DatEditForm
             GrpD.Palett = 4
             GrpD.usingimage = New List(Of Integer)
 
-
             If ListBox1.SelectedIndex <> -1 Then
                 For i = 0 To GRPEditorDATA.Count - 1
                     If GRPEditorDATA(i).SafeFilename = GrpD.SafeFilename Then
                         MsgBox(Lan.GetText(Me.Name, "DuplicateFile"), MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
-
 
                         Exit Sub
                     End If
                 Next
             End If
 
-
-
             ListBox10.Items.Add(GrpD.SafeFilename)
             GRPEditorDATA.Add(GrpD)
-
-
 
             ListBox10.SelectedIndex = ListBox10.Items.Count - 1
         End If
@@ -5588,7 +5297,6 @@ Public Class DatEditForm
                     End If
                 Next
 
-
                 ListBox10.Items.RemoveAt((index))
 
                 For i = 0 To GRPEditorDATA(num).usingimage.Count - 1
@@ -5598,8 +5306,6 @@ Public Class DatEditForm
                 GRPEditorDATA.RemoveAt(num)
             End If
 
-
-
             If ListBox10.Items.Count > index Then
                 ListBox10.SelectedIndex = index
             Else
@@ -5607,8 +5313,6 @@ Public Class DatEditForm
                     ListBox10.SelectedIndex = ListBox10.Items.Count - 1
                 End If
             End If
-
-
 
             GRPEditorControlload()
             ListDraw()
@@ -5634,11 +5338,9 @@ Public Class DatEditForm
                     GRPEditorUsingDATA(_OBJECTNUM) = ""
                 End If
 
-
                 '선택한 파일에 해당 이미지를 추가한다.
                 If ListBox10.SelectedIndex <> 0 Then '선택한게 None가 아니라면
                     Dim grpfilename As String = ListBox10.SelectedItem
-
 
                     For i = 0 To GRPEditorDATA.Count - 1
                         If GRPEditorDATA(i).Filename = grpfilename Then
@@ -5654,14 +5356,12 @@ Public Class DatEditForm
         End If
     End Sub
 
-
     Private Sub 트리거보기TToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TriggerViewerTToolStripMenuItem.Click
         Visible = False
         TriggerViewerForm.ShowDialog()
         Visible = True
         LoadData()
     End Sub
-
 
     Private Sub Stat_textSet(key As String)
         Dim value As UInteger = DatEditDATA(TAB_INDEX).ReadValue(key, _OBJECTNUM)
@@ -5718,7 +5418,6 @@ Public Class DatEditForm
         Stat_textSet(TextBox98.Tag)
     End Sub
 
-
     Private Sub CodeViewerShow(listN As DTYPE, Button As Object)
         Try
             CodeViewer.listNum = listN
@@ -5729,7 +5428,6 @@ Public Class DatEditForm
             CodeViewer.ObjectNum = _OBJECTNUM
             CodeViewer.ObjectTab = TAB_INDEX
 
-
             CodeViewer.Show()
             CodeViewer.Location = New Point(MousePosition.X - CodeViewer.Size.Width / 2, MousePosition.Y)
         Catch ex As Exception
@@ -5737,7 +5435,6 @@ Public Class DatEditForm
         End Try
 
     End Sub
-
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         CodeViewerShow(DTYPE.upgrades, PictureBox1)

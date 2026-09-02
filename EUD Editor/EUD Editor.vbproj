@@ -590,6 +590,7 @@
     <Compile Include="Module\mod_fn_HASH.vb" />
     <Compile Include="Module\MPQModule.vb" />
     <Compile Include="Module\NativeThemeModule.vb" />
+    <Compile Include="Module\EntitySelectionModule.vb" />
     <Compile Include="Module\EditHistoryModule.vb" />
     <Compile Include="Module\ErrorLogModule.vb" />
     <Compile Include="Module\NPAModule.vb" />

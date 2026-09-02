@@ -15,6 +15,7 @@ Public Class FireGraftForm
 
 
     Public Sub RefreshForm()
+        ShowSharedEntry()
         Dim oldselectindex As Integer = _OBJECTNUM
         LoadList()
         PaletDraw()
@@ -46,7 +47,13 @@ Public Class FireGraftForm
 
     End Sub
 
+    'Switching to this pane must show the entry DatEdit has selected since last time.
+    Private Sub FireGraftForm_VisibleChanged(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
+        If Visible AndAlso followingShared Then ShowSharedEntry()
+    End Sub
+
     Private Sub FireGraftForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        StartFollowingSelection()
 
         Dim func As String = Lan.GetText(Me.Name, "Func")
         ComboBox1.Items.Clear()
@@ -146,6 +153,7 @@ Public Class FireGraftForm
         End If
     End Sub
     Private Sub FireGraftForm_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
+        StopFollowingSelection()
         RecordPendingChanges()
         StopWatchingChanges()
 
@@ -569,6 +577,8 @@ Public Class FireGraftForm
 
         LoadList()
         PaletDraw()
+        'The list of entries lives in DatEdit; show the entry it has selected.
+        ShowSharedEntry()
     End Sub
     Private Sub TabControl2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl2.SelectedIndexChanged
         RecordPendingChanges()
@@ -598,6 +608,8 @@ Public Class FireGraftForm
 
         LoadList()
         PaletDraw()
+        'The list of entries lives in DatEdit; show the entry it has selected.
+        ShowSharedEntry()
     End Sub
 
     Dim StatusDic As New List(Of String)
@@ -1223,6 +1235,72 @@ Handles ListBox1.DrawItem
         Name = 2
     End Enum
 
+
+#Region "Shared selection"
+    ' DatEdit owns the list of units, upgrades, techs and orders. This form shows more
+    ' fields of the same entries, so it follows that list instead of keeping its own.
+    ' Its list stays only for button sets, which are numbered in their own list.
+
+    'The kind of data each mode of this form works on. -1 means its own numbering.
+    Private Shared Function DataTypeOfMode(mode As Integer) As Integer
+        Select Case mode
+            Case 0 : Return DTYPE.units      'unit info
+            Case 1 : Return -1               'button set, numbered by DTYPE.btnunit
+            Case 2 : Return DTYPE.units      'unit requirements
+            Case 3 : Return DTYPE.upgrades   'upgrade requirements
+            Case 4, 5 : Return DTYPE.techdata 'tech research and tech use requirements
+            Case 6 : Return DTYPE.orders     'order requirements
+            Case Else : Return -1
+        End Select
+    End Function
+
+    Private Function UsesSharedList() As Boolean
+        Return DataTypeOfMode(TAB_INDEX) >= 0
+    End Function
+
+    Private followingShared As Boolean
+
+    Private Sub StartFollowingSelection()
+        If followingShared Then Return
+        AddHandler EntitySelection.Changed, AddressOf SharedSelection_Changed
+        followingShared = True
+    End Sub
+
+    Private Sub StopFollowingSelection()
+        If Not followingShared Then Return
+        RemoveHandler EntitySelection.Changed, AddressOf SharedSelection_Changed
+        followingShared = False
+    End Sub
+
+    Private Sub SharedSelection_Changed(dataType As Integer, index As Integer)
+        If IsDisposed OrElse dataType <> DataTypeOfMode(TAB_INDEX) Then Return
+        ShowSharedEntry()
+    End Sub
+
+    ''' <summary>
+    ''' Shows the entry DatEdit has selected for the kind of data this mode works on,
+    ''' and hides or shows the local list to match.
+    ''' </summary>
+    Public Sub ShowSharedEntry()
+        Dim shared_ As Boolean = UsesSharedList()
+
+        'The left column holds the list and its filter.
+        If TableLayoutPanel2.Visible = shared_ Then
+            TableLayoutPanel2.Visible = Not shared_
+            TableLayoutPanel1.ColumnStyles(0).Width = If(shared_, 0, 235)
+        End If
+
+        If Not shared_ Then Return
+
+        Dim wanted As Integer = EntitySelection.GetCurrent(DataTypeOfMode(TAB_INDEX))
+        If wanted = _OBJECTNUM Then Return
+
+        RecordPendingChanges()
+        _OBJECTNUM = wanted
+        LoadData()
+        TakeSnapshot()
+    End Sub
+#End Region
 
 #Region "Undo support"
     ' FireGraft changes its data in 43 places, so hooking each one is not practical.
