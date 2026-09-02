@@ -6,6 +6,8 @@ name: Windows release
 on:
   push:
     branches: [master]
+    # A tag makes a release as well as a build. See "Making a release" below.
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
 
@@ -13,9 +15,32 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# Making a release
+#
+#     git tag v0.18.2 && git push origin v0.18.2
+#
+# The build then packs itself up and waits on the Releases page as a draft
+# pre-release. A draft is not public: only people who can write to the
+# repository see it, and nobody browsing the project finds it. That is what
+# this is for while the version is still being worked on.
+#
+# To hand it to someone outside, publish it but keep it a pre-release, so it
+# does not take the "Latest" badge from whatever holds it:
+#
+#     gh release edit v0.18.2 --draft=false
+#
+# GitHub gives that badge to the newest release that is neither a draft nor a
+# pre-release. When the version really is the public one:
+#
+#     gh release edit v0.18.2 --draft=false --prerelease=false --latest
+#
 jobs:
   build:
     runs-on: windows-latest
+
+    permissions:
+      # Only to make the release; the build itself needs nothing.
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -47,3 +72,19 @@ jobs:
         with:
           name: EUD-Editor-SE-x86
           path: release
+
+      - name: Pack the build
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: |
+          Compress-Archive -Path release\* -DestinationPath "EUD-Editor-SE-${{ github.ref_name }}-x86.zip"
+
+      - name: Make the draft release
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" "EUD-Editor-SE-${{ github.ref_name }}-x86.zip" --draft --prerelease --title "EUD Editor SE ${{ github.ref_name }}" --generate-notes --notes "A build from development, not a public release. Unzip it and run **EUD Editor SE.exe**; the Data folder beside it is part of the program.
+
+          This is a draft pre-release: it is not visible outside the repository, and it does not take the Latest badge."
