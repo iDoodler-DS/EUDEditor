@@ -55,23 +55,26 @@ Public Class Main
         'bring them back; nothing else about them was removed.
         Const showRetiredTools As Boolean = False
 
-        'BinEditor, GRP, MPQ and Debug only exist for 1.16.1.
-        datEditTool.Enabled = loaded AndAlso ProjectSet.UsedSetting(0)
+        'A tool is offered for every project. The project settings say what the build
+        'writes into the map, not what the editor shows, so the tabs keep one shape.
+        datEditTool.Enabled = loaded
         'FireGraft has no tab of its own. Its fields are sub tabs inside DatEdit and
         'its button sets are the eleventh kind of data there, so it stays loaded and
         'hidden as the code behind those fields.
         fireGraftTool.Enabled = False
-        binEditorTool.Enabled = showRetiredTools AndAlso loaded AndAlso is116 AndAlso ProjectSet.UsedSetting(2)
-        tileSetTool.Enabled = showRetiredTools AndAlso loaded AndAlso ProjectSet.UsedSetting(3)
-        bgmPlayerTool.Enabled = loaded AndAlso ProjectSet.UsedSetting(4)
-        grpTool.Enabled = showRetiredTools AndAlso loaded AndAlso is116 AndAlso ProjectSet.UsedSetting(5)
-        triggerEditorTool.Enabled = loaded AndAlso ProjectSet.UsedSetting(6)
-        pluginTool.Enabled = loaded AndAlso ProjectSet.UsedSetting(7)
-        fileManagerTool.Enabled = loaded AndAlso ProjectSet.UsedSetting(8)
+        bgmPlayerTool.Enabled = loaded
+        triggerEditorTool.Enabled = loaded
+        pluginTool.Enabled = loaded
+        fileManagerTool.Enabled = loaded
         projectTool.Enabled = loaded
         fileSettingTool.Enabled = loaded
+
+        'BinEditor, GRP, MPQ and Debug only exist for 1.16.1.
         mpqTool.Enabled = loaded AndAlso is116
         debugTool.Enabled = loaded AndAlso is116
+        binEditorTool.Enabled = showRetiredTools AndAlso loaded AndAlso is116
+        tileSetTool.Enabled = showRetiredTools AndAlso loaded AndAlso is116
+        grpTool.Enabled = showRetiredTools AndAlso loaded AndAlso is116
     End Sub
 
     Public Sub menuResetting()
@@ -792,20 +795,23 @@ Public Class Main
         Public ReadOnly Key As String
         Public ReadOnly Icon As Image
         Public ReadOnly Tools As EditorTool()
-        'False for a group that holds one tool, which is then shown without an inner strip.
-        Public ReadOnly UseInnerTabs As Boolean
         Public Page As TabPage
         Public Inner As TabControl
 
-        Public Sub New(key As String, icon As Image, useInnerTabs As Boolean, tools As EditorTool())
+        Public Sub New(key As String, icon As Image, tools As EditorTool())
             Me.Key = key
             Me.Icon = icon
-            Me.UseInnerTabs = useInnerTabs
             Me.Tools = tools
         End Sub
 
         Public Function EnabledTools() As List(Of EditorTool)
             Return Tools.Where(Function(t) t.Enabled).ToList()
+        End Function
+
+        'A group that declares one tool shows it on the page of the group. A group that
+        'declares more gets a strip of panes. Neither changes while the editor runs.
+        Public Function NeedsInnerTabs() As Boolean
+            Return Tools.Length > 1
         End Function
     End Class
 
@@ -826,15 +832,15 @@ Public Class Main
     'The main tabs, in order. Plugins are project configuration, so they sit with the
     'project. The .dat editors and FireGraft change the same game data, so they sit
     'together. Everything that reads a file out of the map is a resource.
-    Private ReadOnly projectGroup As New ToolGroup("Group_Project", ProjectFileIcon(), True,
+    Private ReadOnly projectGroup As New ToolGroup("Group_Project", ProjectFileIcon(),
         {projectTool, pluginTool, fileSettingTool})
-    Private ReadOnly dataGroup As New ToolGroup("Group_Data", My.Resources.ICON_DatEdit, False,
+    Private ReadOnly dataGroup As New ToolGroup("Group_Data", My.Resources.ICON_DatEdit,
         {datEditTool})
-    Private ReadOnly triggerGroup As New ToolGroup("Group_Triggers", My.Resources.ICON_TriggerEditor, False,
+    Private ReadOnly triggerGroup As New ToolGroup("Group_Triggers", My.Resources.ICON_TriggerEditor,
         {triggerEditorTool})
-    Private ReadOnly resourceGroup As New ToolGroup("Group_Resources", My.Resources.ICON_FileManager, True,
+    Private ReadOnly resourceGroup As New ToolGroup("Group_Resources", My.Resources.ICON_FileManager,
         {mpqTool, fileManagerTool, bgmPlayerTool, grpTool, binEditorTool, tileSetTool})
-    Private ReadOnly debugGroup As New ToolGroup("Group_Debug", My.Resources.Debug, False,
+    Private ReadOnly debugGroup As New ToolGroup("Group_Debug", My.Resources.Debug,
         {debugTool})
 
     Private ReadOnly editorClosedActions As New Dictionary(Of Form, System.Action)
@@ -1045,23 +1051,15 @@ Public Class Main
 
         If group.Page Is Nothing Then
             group.Page = NewPage(GroupText(group), group.Key, group,
-                                 If(group.UseInnerTabs, New Padding(0), PagePadding(tools(0))),
+                                 If(group.NeedsInnerTabs(), New Padding(0), PagePadding(tools(0))),
                                  EditorTabControl, index)
         ElseIf group.Page.Text <> GroupText(group) Then
             group.Page.Text = GroupText(group)
         End If
 
-        If Not group.UseInnerTabs Then
-            'One tool, shown without an inner strip.
-            Dim only As EditorTool = tools(0)
-            For Each tool As EditorTool In group.Tools
-                If tool IsNot only AndAlso tool.Page IsNot Nothing Then
-                    DetachEditor(tool.Page)
-                    UnparkEditor(tool)
-                    tool.Page = Nothing
-                End If
-            Next
-            only.Page = group.Page
+        If Not group.NeedsInnerTabs() Then
+            'One tool, shown on the page of the group itself.
+            tools(0).Page = group.Page
             Return
         End If
 
@@ -1165,9 +1163,8 @@ Public Class Main
     ''' applies the language to those controls.
     ''' </summary>
     Public Function EnsureFireGraftLoaded() As Boolean
-        'The tool has no tab of its own, so its Enabled flag stays off. What decides
-        'here is whether the project uses FireGraft at all.
-        If Not ProjectSet.isload OrElse Not ProjectSet.UsedSetting(1) Then Return False
+        'The tool has no tab of its own, so its Enabled flag stays off.
+        If Not ProjectSet.isload Then Return False
         If EditorLoaded(fireGraftTool) OrElse parkedEditors.ContainsKey(fireGraftTool) Then Return True
         Return PrepareEditor(FireGraftForm, fireGraftTool, Nothing)
     End Function
@@ -1177,7 +1174,7 @@ Public Class Main
     ''' fields from it. FileManager keeps its own tab for the string table.
     ''' </summary>
     Public Function EnsureFileManagerLoaded() As Boolean
-        If Not ProjectSet.isload OrElse Not ProjectSet.UsedSetting(8) Then Return False
+        If Not ProjectSet.isload Then Return False
         If EditorLoaded(fileManagerTool) OrElse parkedEditors.ContainsKey(fileManagerTool) Then Return True
         Return PrepareEditor(FileManagerForm, fileManagerTool, Nothing)
     End Function

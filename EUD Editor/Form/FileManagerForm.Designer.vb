@@ -159,7 +159,7 @@ Partial Class FileManagerForm
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.TableLayoutPanel5)
         Me.GroupBox1.Controls.Add(Me.DataGridView1)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(0)
@@ -247,7 +247,6 @@ Partial Class FileManagerForm
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.GroupBox1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 24)
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage1.Name = "TabPage1"
@@ -673,7 +672,7 @@ Partial Class FileManagerForm
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(665, 502)
-        Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)

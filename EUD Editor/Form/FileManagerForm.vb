@@ -112,7 +112,8 @@
         If wireframeMoved Then Return
         wireframeMoved = True
 
-        If TabControl1.TabPages.Contains(TabPage2) Then TabControl1.TabPages.Remove(TabPage2)
+        'The strip is not on the form: the string table is, and the wireframe fields
+        'go to DatEdit. TAB_INDEX names the string table for the rest of this form.
         TAB_INDEX = 0
     End Sub
 

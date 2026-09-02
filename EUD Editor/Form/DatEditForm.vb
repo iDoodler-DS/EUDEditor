@@ -122,7 +122,6 @@ Public Class DatEditForm
 
     Private Sub SetUpExtraFields()
         If extraReady Then Return
-        If Not ProjectSet.UsedSetting(1) Then Return   'FireGraft is off for this project
         If Not Main.EnsureFireGraftLoaded() Then Return
 
         Try
@@ -183,7 +182,6 @@ Public Class DatEditForm
     ''' </summary>
     Private Sub SetUpWireframe()
         If wireframeReady Then Return
-        If Not ProjectSet.UsedSetting(8) Then Return   'FileManager is off for this project
         If Not Main.EnsureFileManagerLoaded() Then Return
 
         Try
@@ -207,6 +205,7 @@ Public Class DatEditForm
             If box.Parent IsNot tab Then
                 box.Dock = DockStyle.Fill
                 tab.Controls.Add(box)
+                ThemeSetForm.SetControlColor(box)
             End If
 
             FileManagerForm.ShowWireframeFor(_OBJECTNUM)
