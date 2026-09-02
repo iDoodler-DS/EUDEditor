@@ -32,8 +32,6 @@ Partial Class FireGraftForm
         Me.ObjResetToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ObjectCopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ObjPasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViewVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ThemeSetTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
@@ -193,7 +191,7 @@ Partial Class FireGraftForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileFToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewVToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileFToolStripMenuItem, Me.EditToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(784, 24)
@@ -256,19 +254,6 @@ Partial Class FireGraftForm
             Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
         Me.ObjPasteToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.ObjPasteToolStripMenuItem.Text = "오브젝트 붙여넣기"
-        '
-        'ViewVToolStripMenuItem
-        '
-        Me.ViewVToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ThemeSetTToolStripMenuItem})
-        Me.ViewVToolStripMenuItem.Name = "ViewVToolStripMenuItem"
-        Me.ViewVToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
-        Me.ViewVToolStripMenuItem.Text = "보기(&V)"
-        '
-        'ThemeSetTToolStripMenuItem
-        '
-        Me.ThemeSetTToolStripMenuItem.Name = "ThemeSetTToolStripMenuItem"
-        Me.ThemeSetTToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
-        Me.ThemeSetTToolStripMenuItem.Text = "테마 설정(&T)"
         '
         'TableLayoutPanel1
         '
@@ -1588,8 +1573,6 @@ Partial Class FireGraftForm
     Friend WithEvents ObjResetToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ObjectCopyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ObjPasteToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ViewVToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ThemeSetTToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents MainTab As TabControl
     Friend WithEvents TabPage1 As TabPage

@@ -146,6 +146,8 @@ Public Class FireGraftForm
         End If
     End Sub
     Private Sub FireGraftForm_Closing(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
+        RecordPendingChanges()
+        StopWatchingChanges()
 
         e.Cancel = True
         Me.Hide()
@@ -528,6 +530,7 @@ Public Class FireGraftForm
 
 
     Private Sub MainTab_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MainTab.SelectedIndexChanged
+        RecordPendingChanges()
         TAB_INDEX = MainTab.SelectedIndex
         'If TAB_INDEX = 2 Then
         '    MsgBox(Lan.GetText("Msgbox", "NotArrow"), MsgBoxStyle.Information, ProgramSet.ErrorFormMessage)
@@ -568,6 +571,7 @@ Public Class FireGraftForm
         PaletDraw()
     End Sub
     Private Sub TabControl2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl2.SelectedIndexChanged
+        RecordPendingChanges()
         TAB_INDEX = 2 + TabControl2.SelectedIndex
 
 
@@ -666,7 +670,7 @@ Public Class FireGraftForm
             Label13.ForeColor = Color.Black
         End If
     End Sub
-    Private Sub LoadData()
+    Public Sub LoadData()
         RepDataToFile()
 
         isload = False
@@ -1220,11 +1224,118 @@ Handles ListBox1.DrawItem
     End Enum
 
 
+#Region "Undo support"
+    ' FireGraft changes its data in 43 places, so hooking each one is not practical.
+    ' Instead the form copies the button set and the requirement of the selected entry,
+    ' and compares them when the message queue goes idle. A burst of changes from one
+    ' user action therefore becomes one undo step. Item 11 of the roadmap replaces this
+    ' with a model that reports its own changes.
+
+    Private snapshotButtons As List(Of SBtnDATA)
+    Private snapshotButtonIndex As Integer = -1
+    Private snapshotReq As SReqDATA
+    Private snapshotReqKind As Integer = -1
+    Private snapshotReqIndex As Integer = -1
+    Private watchingIdle As Boolean
+
+    Private Sub StartWatchingChanges()
+        If watchingIdle Then Return
+        AddHandler Application.Idle, AddressOf Changes_Idle
+        watchingIdle = True
+    End Sub
+
+    Private Sub StopWatchingChanges()
+        If Not watchingIdle Then Return
+        RemoveHandler Application.Idle, AddressOf Changes_Idle
+        watchingIdle = False
+    End Sub
+
+    ''' <summary>Copies the data of the selected entry, so a later change can be compared to it.</summary>
+    Public Sub TakeSnapshot()
+        snapshotButtonIndex = -1
+        snapshotButtons = Nothing
+        snapshotReqKind = -1
+        snapshotReq = Nothing
+
+        Try
+            If ProjectBtnData IsNot Nothing AndAlso _OBJECTNUM >= 0 AndAlso _OBJECTNUM <= ProjectBtnData.Length - 1 Then
+                snapshotButtonIndex = _OBJECTNUM
+                snapshotButtons = EditHistory.ButtonSetEdit.CloneButtons(ProjectBtnData(_OBJECTNUM))
+            End If
+
+            Dim kind As Integer = TAB_INDEX - 2
+            If kind >= 0 AndAlso kind <= 4 AndAlso ProjectRequireData(kind) IsNot Nothing AndAlso
+               _OBJECTNUM >= 0 AndAlso _OBJECTNUM < ProjectRequireData(kind).Count Then
+                snapshotReqKind = kind
+                snapshotReqIndex = _OBJECTNUM
+                snapshotReq = ProjectRequireData(kind)(_OBJECTNUM).Clone()
+            End If
+        Catch
+        End Try
+
+        StartWatchingChanges()
+    End Sub
+
+    Private Sub Changes_Idle(sender As Object, e As EventArgs)
+        If EditHistory.History.Suppressed OrElse Not Visible Then Return
+        RecordPendingChanges()
+    End Sub
+
+    ''' <summary>Records an edit when the data of the snapshot entry has changed.</summary>
+    Public Sub RecordPendingChanges()
+        Try
+            If snapshotButtonIndex >= 0 AndAlso snapshotButtonIndex <= ProjectBtnData.Length - 1 Then
+                Dim current As List(Of SBtnDATA) = ProjectBtnData(snapshotButtonIndex)
+                If EditHistory.ButtonSetEdit.ButtonsDiffer(snapshotButtons, current) Then
+                    Dim after As List(Of SBtnDATA) = EditHistory.ButtonSetEdit.CloneButtons(current)
+                    EditHistory.History.Record(New EditHistory.ButtonSetEdit(snapshotButtonIndex, snapshotButtons, after))
+                    snapshotButtons = EditHistory.ButtonSetEdit.CloneButtons(current)
+                End If
+            End If
+
+            If snapshotReqKind >= 0 AndAlso snapshotReq IsNot Nothing AndAlso
+               snapshotReqIndex < ProjectRequireData(snapshotReqKind).Count Then
+                Dim current As SReqDATA = ProjectRequireData(snapshotReqKind)(snapshotReqIndex)
+                If Not snapshotReq.SameAs(current) Then
+                    EditHistory.History.Record(New EditHistory.RequirementEdit(
+                        snapshotReqKind, snapshotReqIndex, snapshotReq, current.Clone()))
+                    snapshotReq = current.Clone()
+                End If
+            End If
+        Catch
+        End Try
+    End Sub
+
+    ''' <summary>Opens the tab and selects the entry an undo is about to change.</summary>
+    Public Sub RevealEntry(tabIndex As Integer, entryIndex As Integer)
+        'Record what the user did before moving away from the current entry.
+        RecordPendingChanges()
+
+        If tabIndex >= 0 AndAlso tabIndex < MainTab.TabCount AndAlso MainTab.SelectedIndex <> tabIndex Then
+            MainTab.SelectedIndex = tabIndex
+        End If
+        For i = 0 To ListBox1.Items.Count - 1
+            If ListBox1.Items(i)(1) = entryIndex Then
+                ListBox1.SelectedIndex = i
+                Exit For
+            End If
+        Next
+    End Sub
+
+    ''' <summary>Reads the changed data back into the controls after an undo.</summary>
+    Public Sub ReloadAfterUndo()
+        LoadData()
+        TakeSnapshot()
+    End Sub
+#End Region
+
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        RecordPendingChanges()
         If ListBox1.SelectedIndex <> -1 Then
             _OBJECTNUM = ListBox1.SelectedItem(1)
 
             LoadData()
+            TakeSnapshot()
         End If
     End Sub
 
@@ -1330,11 +1441,6 @@ Handles ListBox1.DrawItem
 
     Private Sub ColorReset()
         ThemeSetForm.SetControlColor(Me)
-    End Sub
-    Private Sub 테마설정TToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThemeSetTToolStripMenuItem.Click
-        ThemeSetForm.ShowDialog()
-        ColorReset()
-        LoadData()
     End Sub
 
     Private Sub 초기화ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem1.Click

@@ -4,9 +4,9 @@ Imports Newtonsoft.Json
 Namespace Lan
     Module LanguageModule
 
-        Dim textCache = New Dictionary(Of String, Dictionary(Of String, String))
-        Dim msgTextCache = New Dictionary(Of String, String)
-        Dim arrayCache = New Dictionary(Of String, Dictionary(Of String, String))
+        'Parsed language files keyed by language and file name, so localising a form
+        'again (every editor does it on load) does not re-read and re-parse its json.
+        Dim fileCache As New Dictionary(Of String, Dictionary(Of String, String))
         Dim reportedProblems As New HashSet(Of String)
 
         Private Function LanguageFile(name As String) As String
@@ -44,6 +44,16 @@ Namespace Lan
                 LogException(ex, "language file " & name)
                 Return New Dictionary(Of String, String)
             End Try
+        End Function
+
+        Private Function CachedLanguageFile(name As String) As Dictionary(Of String, String)
+            Dim cacheKey As String = My.Settings.Language & "|" & name
+            Dim dic As Dictionary(Of String, String) = Nothing
+            If Not fileCache.TryGetValue(cacheKey, dic) Then
+                dic = ReadLanguageFile(name)
+                fileCache(cacheKey) = dic
+            End If
+            Return dic
         End Function
 
         Private Function Lookup(dic As Dictionary(Of String, String), filename As String, key As String) As String
@@ -226,7 +236,7 @@ Namespace Lan
 
         Dim labels As Dictionary(Of String, String)
         Public Sub SetLanguage(ByRef forms As Form)
-            labels = ReadLanguageFile(forms.Name)
+            labels = CachedLanguageFile(forms.Name)
             If labels.Count = 0 Then Return
 
             'Window title: "FormTitle"
@@ -262,7 +272,7 @@ Namespace Lan
         End Sub
 
         Public Sub SetMenu(ByRef forms As Form, meun As Object, Optional name As String = "")
-            labels = ReadLanguageFile(forms.Name & meun.Name & name)
+            labels = CachedLanguageFile(forms.Name & meun.Name & name)
             If labels.Count = 0 Then Return
 
             For i = 0 To meun.Items.Count - 1
@@ -276,7 +286,7 @@ Namespace Lan
         End Sub
 
         Public Sub SetTooltip(forms As Form, meun As ToolStrip)
-            labels = ReadLanguageFile(forms.Name & meun.Name)
+            labels = CachedLanguageFile(forms.Name & meun.Name)
             If labels.Count = 0 Then Return
 
             For i = 0 To meun.Items.Count - 1
@@ -290,26 +300,14 @@ Namespace Lan
         End Sub
 
         Public Function GetMsgText(key As String) As String
-            If msgTextCache.ContainsKey(key) Then
-                Return msgTextCache(key)
-            End If
-
-            Dim value As String = Lookup(ReadLanguageFile("Msgbox"), "Msgbox", key)
-            msgTextCache(key) = value
-            Return value
+            Return Lookup(CachedLanguageFile("Msgbox"), "Msgbox", key)
         End Function
         Public Function GetText(filename As String, key As String) As String
-            If Not textCache.ContainsKey(filename) Then
-                textCache(filename) = ReadLanguageFile(filename)
-            End If
-            Return Lookup(textCache(filename), filename, key)
+            Return Lookup(CachedLanguageFile(filename), filename, key)
         End Function
 
         Public Function GetArray(filename As String, key As String) As String()
-            If Not arrayCache.ContainsKey(filename) Then
-                arrayCache(filename) = ReadLanguageFile(filename)
-            End If
-            Return Lookup(arrayCache(filename), filename, key).Split("\")
+            Return Lookup(CachedLanguageFile(filename), filename, key).Split("\")
         End Function
     End Module
 End Namespace

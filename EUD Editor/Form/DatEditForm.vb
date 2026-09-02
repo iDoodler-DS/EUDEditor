@@ -39,6 +39,91 @@ Public Class DatEditForm
     Private comboBoxCache = New Dictionary(Of String, String)
     Private listViewCache = New Dictionary(Of String, String)
 
+#Region "Reveal a field"
+    ' Undo and redo call this before they change a value, so the user sees the change
+    ' happen instead of a value moving on a screen they are not looking at.
+
+    ''' <summary>
+    ''' Opens the data type, selects the entry, opens the inner tabs that hold the field,
+    ''' and marks the control for a moment.
+    ''' </summary>
+    Public Sub RevealField(dataIndex As Integer, entryIndex As Long, fieldKey As String)
+        If dataIndex >= 0 AndAlso dataIndex < MainTAB.TabCount AndAlso MainTAB.SelectedIndex <> dataIndex Then
+            MainTAB.SelectedIndex = dataIndex
+        End If
+
+        If _OBJECTNUM <> entryIndex Then SELECTLIST(CInt(entryIndex))
+
+        Dim target As Control = FindFieldControl(Me, fieldKey)
+        If target Is Nothing Then Return
+
+        'Open every tab page between the form and the control.
+        Dim node As Control = target
+        While node IsNot Nothing AndAlso node IsNot Me
+            Dim page As TabPage = TryCast(node, TabPage)
+            If page IsNot Nothing Then
+                Dim owner As TabControl = TryCast(page.Parent, TabControl)
+                If owner IsNot Nothing AndAlso owner.SelectedTab IsNot page Then owner.SelectedTab = page
+            End If
+            node = node.Parent
+        End While
+
+        Try
+            If target.CanSelect Then target.Focus()
+        Catch
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Reads the changed value back into the controls, then marks the field.
+    ''' Undo and redo call this after they write.
+    ''' </summary>
+    Public Sub ReloadAfterUndo(fieldKey As String)
+        LoadData()
+        refreshchangeAll()
+
+        Dim target As Control = FindFieldControl(Me, fieldKey)
+        If target IsNot Nothing Then FlashField(target)
+    End Sub
+
+    'The control that shows a field carries the field name in its Tag.
+    Private Shared Function FindFieldControl(parent As Control, fieldKey As String) As Control
+        For Each c As Control In parent.Controls
+            Dim tag As String = TryCast(c.Tag, String)
+            If tag IsNot Nothing AndAlso tag = fieldKey Then Return c
+            If c.Controls.Count > 0 Then
+                Dim found As Control = FindFieldControl(c, fieldKey)
+                If found IsNot Nothing Then Return found
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    Private flashTarget As Control
+    Private flashRestore As Color
+    Private WithEvents flashTimer As System.Windows.Forms.Timer
+
+    Private Sub FlashField(target As Control)
+        If flashTimer Is Nothing Then flashTimer = New System.Windows.Forms.Timer With {.Interval = 550}
+        EndFlash()
+
+        flashTarget = target
+        flashRestore = target.BackColor
+        target.BackColor = ProgramSet.colorCheckedBackground
+        flashTimer.Start()
+    End Sub
+
+    Private Sub EndFlash()
+        flashTimer.Stop()
+        If flashTarget IsNot Nothing AndAlso Not flashTarget.IsDisposed Then flashTarget.BackColor = flashRestore
+        flashTarget = Nothing
+    End Sub
+
+    Private Sub flashTimer_Tick(sender As Object, e As EventArgs) Handles flashTimer.Tick
+        EndFlash()
+    End Sub
+#End Region
+
     Private Sub SELECTLIST(index As Integer)
         For i = 0 To ListBox1.Items.Count - 1
             If ListBox1.Items(i)(1) = index Then
@@ -227,6 +312,16 @@ Public Class DatEditForm
     End Sub
 
     Private Sub ObjectLoad(_text As String)
+        'A paste writes every field of the entry; undo it as one step.
+        EditHistory.History.BeginGroup(Lan.GetText(Me.Name, "PasteObject"))
+        Try
+            ObjectLoadCore(_text)
+        Finally
+            EditHistory.History.EndGroup()
+        End Try
+    End Sub
+
+    Private Sub ObjectLoadCore(_text As String)
         Dim cliptext As String = _text
 
         Dim newvalue() As String = cliptext.Split(",")
@@ -681,11 +776,6 @@ Public Class DatEditForm
         refreshchangeAll()
     End Sub
 
-    Private Sub 테마설정TToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ThameSetTToolStripMenuItem.Click
-        ThemeSetForm.ShowDialog()
-        ColorReset()
-        LoadData()
-    End Sub
 
 
     Private Sub 프로젝트저장ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProjectSaveToolStripMenuItem.Click
@@ -992,10 +1082,8 @@ Public Class DatEditForm
         ComboBox22.SuspendLayout()
         ComboBox22.BeginUpdate()
         ComboBox22.Items.Clear()
-        ComboBox22.Items.AddRange(stat_txt)
-        For i = 0 To 1300
-            ComboBox22.Items.RemoveAt(0)
-        Next
+        'Only the strings after the first 1301; removing them one at a time was slow.
+        ComboBox22.Items.AddRange(stat_txt.Skip(1301).ToArray())
         ComboBox22.EndUpdate()
         ComboBox22.ResumeLayout()
 
@@ -1041,6 +1129,8 @@ Public Class DatEditForm
         ComboBox50.EndUpdate()
         ComboBox50.ResumeLayout()
 
+        'Only when FireGraft is loaded; touching its default instance would construct it here.
+        If Not Main.FireGraftEditorAlive() Then Exit Sub
         FireGraftForm.ComboBox9.SuspendLayout()
         FireGraftForm.ComboBox9.BeginUpdate()
         FireGraftForm.ComboBox9.Items.Clear()
@@ -1284,15 +1374,10 @@ Public Class DatEditForm
         ComboBox40.SuspendLayout()
         ComboBox40.BeginUpdate()
         ComboBox40.Items.Clear()
-        ComboBox40.Items.AddRange(CODE(DTYPE.images).ToArray)
+        'Images 561 to 816 only; trimming the full list one entry at a time was slow.
+        ComboBox40.Items.AddRange(CODE(DTYPE.images).Skip(561).Take(256).ToArray())
         ComboBox40.EndUpdate()
         ComboBox40.ResumeLayout()
-        For i = 0 To 560
-            ComboBox40.Items.RemoveAt(0)
-        Next
-        While (ComboBox40.Items.Count > 256)
-            ComboBox40.Items.RemoveAt(256)
-        End While
 
         LoadComboBoxFromFile(ComboBox41, "Icon.txt")
 

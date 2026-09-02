@@ -33,7 +33,8 @@
 
         Dim mpq As New SFMpq
 
-        LoadFileimportable()
+        'The icons and strings are decoded at project load; only redo it if something changed.
+        If Not FileImportableUpToDate() Then LoadFileimportable()
 
 
         'PasteRefresh()
@@ -72,12 +73,78 @@
             tranwire.LoadGRP(mpq.ReaddatFile("unit\wirefram\tranwire.grp"))
         End If
 
-        LoadData()
         LoadList()
         PaletDraw()
         ColorReset()
         loadcmp = True
     End Sub
+
+#Region "Undo support"
+    ' Wireframe values are written here only, so one place records the change.
+
+    Public Sub SetWireframe(kind As Integer, entryIndex As Integer, value As Byte)
+        Dim before As Byte = ReadWireframe(kind, entryIndex)
+        If before = value Then Return
+
+        Select Case kind
+            Case 0 : wireframData(entryIndex) = value
+            Case 1 : grpwireData(entryIndex) = value
+            Case 2 : tranwireData(entryIndex) = value
+        End Select
+        ProjectSet.saveStatusChange()
+
+        If Not EditHistory.History.Suppressed Then
+            EditHistory.History.Record(New EditHistory.WireframeEdit(kind, entryIndex, before, value))
+        End If
+    End Sub
+
+    Private Shared Function ReadWireframe(kind As Integer, entryIndex As Integer) As Byte
+        Select Case kind
+            Case 0 : Return wireframData(entryIndex)
+            Case 1 : Return grpwireData(entryIndex)
+            Case Else : Return tranwireData(entryIndex)
+        End Select
+    End Function
+
+    ''' <summary>Opens the wireframe tab and selects the unit an undo is about to change.</summary>
+    Public Sub RevealWireframe(kind As Integer, entryIndex As Integer)
+        If TabControl1.SelectedIndex <> 1 Then TabControl1.SelectedIndex = 1
+        SelectEntry(entryIndex)
+        Dim target As Control = Nothing
+        Select Case kind
+            Case 0 : target = NumericUpDown1
+            Case 1 : target = NumericUpDown2
+            Case 2 : target = NumericUpDown3
+        End Select
+        If target IsNot Nothing AndAlso target.CanSelect Then target.Focus()
+    End Sub
+
+    ''' <summary>Opens the string tab and selects the row an undo is about to change.</summary>
+    Public Sub RevealStatText(index As Integer)
+        If TabControl1.SelectedIndex <> 0 Then TabControl1.SelectedIndex = 0
+        For Each row As DataGridViewRow In DataGridView1.Rows
+            If row.Tag IsNot Nothing AndAlso CInt(row.Tag) = index Then
+                DataGridView1.CurrentCell = row.Cells(1)
+                Return
+            End If
+        Next
+    End Sub
+
+    Private Sub SelectEntry(entryIndex As Integer)
+        For i = 0 To ListBox1.Items.Count - 1
+            If ListBox1.Items(i)(LITEM.index) = entryIndex Then
+                ListBox1.SelectedIndex = i
+                Return
+            End If
+        Next
+    End Sub
+
+    ''' <summary>Reads the changed values back into the controls after an undo.</summary>
+    Public Sub ReloadAfterUndo()
+        LoadListData()
+        LoadList()
+    End Sub
+#End Region
 
     Private Sub ListBox1_MouseUp(ByVal sender As Object, ByVal e As MouseEventArgs) Handles ListBox1.MouseUp
         If e.Button = MouseButtons.Right Then
@@ -209,37 +276,29 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
 
 
     Private Sub LoadListData()
+        Dim editText As String = Lan.GetText(Me.Name, "Edit")
+        Dim oldFilter As String = TextBox1.Text
+        Dim newFilter As String = TextBox3.Text
+        Dim rows As New List(Of DataGridViewRow)
+        For i = 0 To stat_txt.Length - 1
+            If oldFilter <> "" AndAlso Not stat_txt(i).Contains(oldFilter) Then Continue For
+            Dim newText As String = Nothing
+            If stattextdic.ContainsKey(i) Then newText = stattextdic(i)
+            If newFilter <> "" AndAlso (newText Is Nothing OrElse Not newText.Contains(newFilter)) Then Continue For
+            Dim row As New DataGridViewRow With {.Tag = i}
+            row.CreateCells(DataGridView1, i + 1, stat_txt(i), If(newText, ""), editText)
+            rows.Add(row)
+        Next
+        'One AddRange lays the grid out once; Rows.Add did that for every row.
         DataGridView1.SuspendLayout()
         DataGridView1.Rows.Clear()
-        For i = 0 To stat_txt.Count - 1
-            If TextBox1.Text <> "" Then
-                If Not stat_txt(i).Contains(TextBox1.Text) Then
-                    Continue For
-                End If
-            End If
-            If TextBox3.Text <> "" Then
-                If stattextdic.ContainsKey(i) Then
-                    If Not stattextdic(i).Contains(TextBox3.Text) Then
-                        Continue For
-                    End If
-                Else
-                    Continue For
-                End If
-            End If
-            If stattextdic.ContainsKey(i) Then
-                DataGridView1.Rows.Add(i + 1, stat_txt(i), stattextdic(i), Lan.GetText(Me.Name, "Edit"))
-                DataGridView1.Rows(DataGridView1.Rows.Count - 1).Tag = i
-            Else
-                DataGridView1.Rows.Add(i + 1, stat_txt(i), "", Lan.GetText(Me.Name, "Edit"))
-                DataGridView1.Rows(DataGridView1.Rows.Count - 1).Tag = i
-            End If
-        Next
+        DataGridView1.Rows.AddRange(rows.ToArray())
         DataGridView1.ResumeLayout()
     End Sub
 
 
     Dim LoadStatus As Boolean
-    Private Sub LoadData()
+    Public Sub LoadData()
         LoadStatus = True
         Select Case TAB_INDEX
             Case 0
@@ -326,7 +385,11 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
         _OBJECTNUM = 0
     End Sub
 
+    'True while LoadList picks the selection; it loads the data itself afterwards.
+    Private selectingList As Boolean
+
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+        If selectingList Then Return
         If ListBox1.SelectedIndex <> -1 Then
             _OBJECTNUM = ListBox1.SelectedItem(LITEM.index)
 
@@ -407,10 +470,12 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
         Next
 
 
+        selectingList = True
         SELECTLIST(lastSELECT)
-
+        selectingList = False
 
         ListBox1.EndUpdate()
+        LoadData()
     End Sub
 
 
@@ -440,7 +505,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
 
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
         If LoadStatus = False Then
-            wireframData(_OBJECTNUM) = NumericUpDown1.Value
+            SetWireframe(0, _OBJECTNUM, CByte(NumericUpDown1.Value))
             LoadData()
             If ListBox1.SelectedIndex <> -1 Then
                 If wireframData(_OBJECTNUM) <> _OBJECTNUM Then
@@ -454,7 +519,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
 
     Private Sub NumericUpDown2_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
         If LoadStatus = False Then
-            grpwireData(_OBJECTNUM) = NumericUpDown2.Value
+            SetWireframe(1, _OBJECTNUM, CByte(NumericUpDown2.Value))
             LoadData()
             If ListBox1.SelectedIndex <> -1 Then
                 If grpwireData(_OBJECTNUM) <> _OBJECTNUM Then
@@ -468,7 +533,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
 
     Private Sub NumericUpDown3_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown3.ValueChanged
         If LoadStatus = False Then
-            tranwireData(_OBJECTNUM) = NumericUpDown3.Value
+            SetWireframe(2, _OBJECTNUM, CByte(NumericUpDown3.Value))
             LoadData()
             If ListBox1.SelectedIndex <> -1 Then
                 If tranwireData(_OBJECTNUM) <> _OBJECTNUM Then
@@ -481,9 +546,15 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
     End Sub
 
     Private Sub 초기화ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 초기화ToolStripMenuItem.Click
-        wireframData(_OBJECTNUM) = _OBJECTNUM
-        grpwireData(_OBJECTNUM) = _OBJECTNUM
-        tranwireData(_OBJECTNUM) = _OBJECTNUM
+        EditHistory.History.BeginGroup("Reset wireframe")
+
+        SetWireframe(0, _OBJECTNUM, CByte(_OBJECTNUM))
+
+        SetWireframe(1, _OBJECTNUM, CByte(_OBJECTNUM))
+
+        SetWireframe(2, _OBJECTNUM, CByte(_OBJECTNUM))
+
+        EditHistory.History.EndGroup()
         If ListBox1.SelectedIndex <> -1 Then
             ListBox1.SelectedItem(LITEM.ischange) = False
         End If
@@ -512,9 +583,19 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
             Case 1
                 Dim codes() As String = cliptext.Split(",")
 
-                wireframData(_OBJECTNUM) = codes(0)
-                grpwireData(_OBJECTNUM) = codes(1)
-                tranwireData(_OBJECTNUM) = codes(2)
+                EditHistory.History.BeginGroup("Paste wireframe")
+
+
+                SetWireframe(0, _OBJECTNUM, CByte(codes(0)))
+
+
+                SetWireframe(1, _OBJECTNUM, CByte(codes(1)))
+
+
+                SetWireframe(2, _OBJECTNUM, CByte(codes(2)))
+
+
+                EditHistory.History.EndGroup()
 
                 If ListBox1.SelectedIndex <> -1 Then
                     If wireframData(_OBJECTNUM) = _OBJECTNUM And grpwireData(_OBJECTNUM) = _OBJECTNUM And tranwireData(_OBJECTNUM) = _OBJECTNUM Then
@@ -565,9 +646,15 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
     End Sub
 
     Private Sub 오브젝트초기화ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 오브젝트초기화ToolStripMenuItem.Click
-        wireframData(_OBJECTNUM) = _OBJECTNUM
-        grpwireData(_OBJECTNUM) = _OBJECTNUM
-        tranwireData(_OBJECTNUM) = _OBJECTNUM
+        EditHistory.History.BeginGroup("Reset wireframe")
+
+        SetWireframe(0, _OBJECTNUM, CByte(_OBJECTNUM))
+
+        SetWireframe(1, _OBJECTNUM, CByte(_OBJECTNUM))
+
+        SetWireframe(2, _OBJECTNUM, CByte(_OBJECTNUM))
+
+        EditHistory.History.EndGroup()
         If ListBox1.SelectedIndex <> -1 Then
             ListBox1.SelectedItem(LITEM.ischange) = False
         End If
@@ -619,9 +706,19 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
             Case 1
                 Dim codes() As String = cliptext.Split(",")
 
-                wireframData(_OBJECTNUM) = codes(0)
-                grpwireData(_OBJECTNUM) = codes(1)
-                tranwireData(_OBJECTNUM) = codes(2)
+                EditHistory.History.BeginGroup("Paste wireframe")
+
+
+                SetWireframe(0, _OBJECTNUM, CByte(codes(0)))
+
+
+                SetWireframe(1, _OBJECTNUM, CByte(codes(1)))
+
+
+                SetWireframe(2, _OBJECTNUM, CByte(codes(2)))
+
+
+                EditHistory.History.EndGroup()
 
                 If ListBox1.SelectedIndex <> -1 Then
                     If wireframData(_OBJECTNUM) = _OBJECTNUM And grpwireData(_OBJECTNUM) = _OBJECTNUM And tranwireData(_OBJECTNUM) = _OBJECTNUM Then
@@ -635,11 +732,6 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
         End Select
     End Sub
 
-    Private Sub 테마설정TToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 테마설정TToolStripMenuItem.Click
-        ThemeSetForm.ShowDialog()
-        ColorReset()
-        LoadData()
-    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         LoadListData()

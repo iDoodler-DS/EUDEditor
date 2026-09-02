@@ -614,8 +614,6 @@ Partial Class DatEditForm
         Me.DataExportToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.DataImportToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ThameSetTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.UsedDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TriggerViewerTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
@@ -7474,21 +7472,10 @@ Partial Class DatEditForm
         '
         'ViewVToolStripMenuItem
         '
-        Me.ViewVToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ThameSetTToolStripMenuItem, Me.ToolStripSeparator7, Me.UsedDataToolStripMenuItem, Me.TriggerViewerTToolStripMenuItem})
+        Me.ViewVToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UsedDataToolStripMenuItem, Me.TriggerViewerTToolStripMenuItem})
         Me.ViewVToolStripMenuItem.Name = "ViewVToolStripMenuItem"
         Me.ViewVToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.ViewVToolStripMenuItem.Text = "보기(&V)"
-        '
-        'ThameSetTToolStripMenuItem
-        '
-        Me.ThameSetTToolStripMenuItem.Name = "ThameSetTToolStripMenuItem"
-        Me.ThameSetTToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
-        Me.ThameSetTToolStripMenuItem.Text = "테마 설정(&T)"
-        '
-        'ToolStripSeparator7
-        '
-        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(204, 6)
         '
         'UsedDataToolStripMenuItem
         '
@@ -9240,7 +9227,6 @@ Partial Class DatEditForm
     Friend WithEvents Label131 As Label
     Friend WithEvents ViewVToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UsedDataToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ThameSetTToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MPQEditorControl As Panel
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
     Friend WithEvents Label132 As Label
@@ -9327,7 +9313,6 @@ Partial Class DatEditForm
     Friend WithEvents OpenFileDialog2 As OpenFileDialog
     Friend WithEvents Label146 As Label
     Friend WithEvents TriggerViewerTToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
     Friend WithEvents Button45 As Button
     Friend WithEvents Button46 As Button
     Friend WithEvents Button47 As Button

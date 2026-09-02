@@ -59,8 +59,6 @@ Partial Class FileManagerForm
         Me.오브젝트초기화ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.오브젝트복사ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.오브젝트붙여넣기ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.보기VToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.테마설정TToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.NumericUpDown3 = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -461,7 +459,7 @@ Partial Class FileManagerForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.편집ToolStripMenuItem, Me.보기VToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.편집ToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(430, 24)
@@ -510,19 +508,6 @@ Partial Class FileManagerForm
             Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
         Me.오브젝트붙여넣기ToolStripMenuItem.Size = New System.Drawing.Size(246, 22)
         Me.오브젝트붙여넣기ToolStripMenuItem.Text = "오브젝트 붙여넣기"
-        '
-        '보기VToolStripMenuItem
-        '
-        Me.보기VToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.테마설정TToolStripMenuItem})
-        Me.보기VToolStripMenuItem.Name = "보기VToolStripMenuItem"
-        Me.보기VToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
-        Me.보기VToolStripMenuItem.Text = "보기(&V)"
-        '
-        '테마설정TToolStripMenuItem
-        '
-        Me.테마설정TToolStripMenuItem.Name = "테마설정TToolStripMenuItem"
-        Me.테마설정TToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.테마설정TToolStripMenuItem.Text = "테마 설정(&T)"
         '
         'GroupBox4
         '
@@ -776,8 +761,6 @@ Partial Class FileManagerForm
     Friend WithEvents 오브젝트초기화ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 오브젝트복사ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 오브젝트붙여넣기ToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents 보기VToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents 테마설정TToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Label4 As Label
     Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
     Friend WithEvents Label6 As Label

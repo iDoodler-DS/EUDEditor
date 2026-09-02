@@ -271,8 +271,8 @@
     "Label27": "필터",
     "CheckBox5": "수정",
     "Button5": "접기",
-    "Fold": "접기",
-    "UnFold": "펼치기",
+    "Fold": "접기",
+    "UnFold": "펼치기",
     "MenuStrip1": "MenuStrip1",
     "ComboBox6.Items": "독립적크기\\소형\\중형\\대형",
     "ComboBox21.Items": "독립적크기\\소형\\중형\\대형",
@@ -294,5 +294,6 @@
     "ComboBox57.Items": "독립적크기\\소형\\중형\\대형",
     "ComboBox43.Items": "독립적크기\\소형\\중형\\대형",
     "ComboBox46.Items": "독립적크기\\소형\\중형\\대형",
-    "ComboBox51.Items": "독립적크기\\소형\\중형\\대형"
+    "ComboBox51.Items": "독립적크기\\소형\\중형\\대형",
+    "PasteObject": "오브젝트 붙여넣기"
 }

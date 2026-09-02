@@ -51,54 +51,83 @@ Namespace MPQlib
             Return list.ToArray
         End Function
 
-        Public Function ReadListfile(ByRef VListbox As ListBox) As Boolean
-            VListbox.Items.Clear()
+        'The map's (listfile), parsed once per map version. DatEdit used to open the
+        'archive and re-parse it on every unit selection.
+        Private cachedListfileKey As String = ""
+        Private cachedListfile As String() = Nothing
+        Private ReadOnly listboxListfileKeys As New Dictionary(Of ListBox, String)
 
+        Private Function ListfileKey() As String
+            Try
+                Dim info As New FileInfo(ProjectSet.InputMap)
+                If info.Exists Then Return info.FullName & "|" & info.LastWriteTimeUtc.Ticks & "|" & info.Length
+            Catch
+            End Try
+            Return ProjectSet.InputMap
+        End Function
+
+        'Returns Nothing when the map has no (listfile).
+        Private Function ReadListfileText() As String
             Dim hmpq As UInteger
             Dim hfile As UInteger
             Dim buffer(0) As Byte
             Dim filesize As UInteger
-            Dim temptext As String = ""
-
+            Dim temptext As String = Nothing
             Dim pdwread As IntPtr
 
             StormLib.SFileOpenArchive(ProjectSet.InputMap, 0, 0, hmpq)
-
-
-            Dim openFilename As String = "(listfile)"
-
-            StormLib.SFileOpenFileEx(hmpq, openFilename, 0, hfile)
-
+            StormLib.SFileOpenFileEx(hmpq, "(listfile)", 0, hfile)
             If hfile <> 0 Then
                 filesize = StormLib.SFileGetFileSize(hfile, filesize)
                 ReDim buffer(filesize)
-
                 StormLib.SFileReadFile(hfile, buffer, filesize, pdwread, 0)
-
-                Dim mem As MemoryStream = New MemoryStream(buffer)
-                Dim stream As StreamReader = New StreamReader(mem, System.Text.Encoding.Default)
-
-
-                temptext = stream.ReadToEnd
-
+                Using mem As New MemoryStream(buffer)
+                    Using stream As New StreamReader(mem, System.Text.Encoding.Default)
+                        temptext = stream.ReadToEnd
+                    End Using
+                End Using
                 StormLib.SFileCloseFile(hfile)
+            End If
+            StormLib.SFileCloseArchive(hmpq)
+            Return temptext
+        End Function
 
-                stream.Close()
-                mem.Close()
-            Else
+        Private Function ListfileLines() As String()
+            Dim key As String = ListfileKey()
+            If key <> cachedListfileKey Then
+                cachedListfileKey = key
+                Dim temptext As String = ReadListfileText()
+                If temptext Is Nothing Then
+                    cachedListfile = Nothing
+                Else
+                    Dim lines As New List(Of String)
+                    Dim parts() As String = temptext.Split(vbCrLf)
+                    For i = 0 To parts.Count - 1
+                        If parts(i).Trim <> "staredit\scenario.chk" Then lines.Add(parts(i).Trim)
+                    Next
+                    If lines.Count > 0 Then lines.RemoveAt(lines.Count - 1)
+                    cachedListfile = lines.ToArray()
+                End If
+            End If
+            Return cachedListfile
+        End Function
+
+        Public Function ReadListfile(ByRef VListbox As ListBox) As Boolean
+            Dim lines() As String = ListfileLines()
+            If lines Is Nothing Then
+                VListbox.Items.Clear()
+                listboxListfileKeys.Remove(VListbox)
                 Return False
             End If
+            'Already holds this version of the list (possibly filtered by the caller).
+            Dim filledFrom As String = Nothing
+            If listboxListfileKeys.TryGetValue(VListbox, filledFrom) AndAlso filledFrom = cachedListfileKey Then Return True
 
-            StormLib.SFileCloseArchive(hmpq)
-
-
-            For i = 0 To temptext.Split(vbCrLf).Count - 1
-                If temptext.Split(vbCrLf)(i).Trim <> "staredit\scenario.chk" Then
-                    VListbox.Items.Add(temptext.Split(vbCrLf)(i).Trim)
-                End If
-            Next
-
-            VListbox.Items.RemoveAt(VListbox.Items.Count - 1)
+            VListbox.BeginUpdate()
+            VListbox.Items.Clear()
+            VListbox.Items.AddRange(lines)
+            VListbox.EndUpdate()
+            listboxListfileKeys(VListbox) = cachedListfileKey
             Return True
         End Function
 
