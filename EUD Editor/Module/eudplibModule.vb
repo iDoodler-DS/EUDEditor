@@ -1148,11 +1148,7 @@ Namespace eudplib
 
                 DeledtDebugpy()
             Else
-                BulidForm.isotherWindows = isotherWindows
-
-                BulidForm.Show()
-
-                BulidForm.CompileStart(basefolder)
+                BuildRunner.Start(basefolder)
                 'filename = My.Application.Info.DirectoryPath & "\Data\eudplibdata\EUDEditor.eds"
 
                 'startInfo.FileName = ProgramSet.euddraftDirec
