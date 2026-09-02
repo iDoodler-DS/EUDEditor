@@ -875,7 +875,7 @@ Namespace ProjectSet
 
 
             If DatEditForm IsNot Nothing Then
-                DatEditForm.MainTAB.SelectedIndex = 0
+                DatEditForm.SelectDataTab(DTYPE.units)
                 DatEditForm.TAB_INDEX = 0
                 DatEditForm.Close()
             End If

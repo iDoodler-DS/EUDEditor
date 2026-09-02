@@ -23,6 +23,10 @@ Public Class DatEditForm
     Public loadSTATUS As Boolean
     Public TAB_INDEX As Integer = 0
 
+    'The eleventh page of the data type strip. Button sets have no .dat table, so
+    'the code paths that read one are skipped for it.
+    Public Const BUTTON_TAB As Integer = 10
+
     Private frameNum As UInteger
     Private LISTFILTER As String
     Private Const Stringisnot As String = "FailToLoadString"
@@ -78,9 +82,16 @@ Public Class DatEditForm
         Dim tabs As TabControl = Nothing
         If subTabsByPage.TryGetValue(page, tabs) Then Return tabs
 
-        'A new strip, always. The unit page has one of its own, but it is drawn as flat
-        'buttons with no padding and its captions do not show, so pages added to it
-        'cannot be reached. That strip keeps working inside the first tab of this one.
+        'The unit page already has a strip: Basic, Advanced, Sound and the rest. Status
+        'and Requirements join it. A page without a strip gets one, with its own fields
+        'on the first tab.
+        For Each c As Control In page.Controls
+            tabs = TryCast(c, TabControl)
+            If tabs IsNot Nothing Then
+                subTabsByPage(page) = tabs
+                Return tabs
+            End If
+        Next
 
         tabs = New TabControl With {.Dock = DockStyle.Fill}
         Dim first As New TabPage(Lan.GetText(Me.Name, "SubTab_Data")) With {.Padding = New Padding(0)}
@@ -141,11 +152,33 @@ Public Class DatEditForm
         If extraReady Then RefreshExtraFields()
     End Sub
 
+    ''' <summary>Shows the button set of the selected entry on the Button page.</summary>
+    Private Sub ShowButtonSet()
+        SetUpExtraFields()
+        If Not extraReady Then Return
+
+        Try
+            Dim fg As FireGraftForm = FireGraftForm
+            If fg.ButtonSetBox.Parent IsNot TabPageButton Then
+                TabPageButton.SuspendLayout()
+                fg.ButtonSetBox.Dock = DockStyle.Fill
+                TabPageButton.Controls.Add(fg.ButtonSetBox)
+                fg.UseDefaultButtonsCheck.Dock = DockStyle.Top
+                TabPageButton.Controls.Add(fg.UseDefaultButtonsCheck)
+                TabPageButton.ResumeLayout()
+            End If
+            fg.ShowFieldsFor(1, _OBJECTNUM)
+        Catch ex As Exception
+            LogException(ex, "showing the button set")
+        End Try
+    End Sub
+
     ''' <summary>Puts the FireGraft fields on the page of the kind of data on show.</summary>
     Public Sub RefreshExtraFields()
         SetUpExtraFields()
         If Not extraReady Then Return
 
+        If TAB_INDEX = BUTTON_TAB Then Return
         Dim mode As Integer = FireGraftModeFor(TAB_INDEX)
         If mode < 0 Then Return
         If TAB_INDEX < 0 OrElse TAB_INDEX >= MainTAB.TabCount Then Return
@@ -191,6 +224,60 @@ Public Class DatEditForm
     End Sub
 #End Region
 
+#Region "Which kind of data a tab shows"
+    ' A tab shows one kind of data. The tab position was that number, so a page that
+    ' was taken away moved every kind after it. Each page now carries its own number,
+    ' and TAB_INDEX comes from the page, not from its place in the strip.
+
+    'Room for every kind of data, plus the button page. TabSelectindex and Tabfilfer
+    'use these slots.
+    Public Const DATA_TAB_SLOTS As Integer = 16
+
+    Private dataTabsReady As Boolean
+
+    'Sets the number of each page, and takes away the pages that are not supported.
+    Private Sub SetUpDataTabs()
+        If dataTabsReady Then Return
+        dataTabsReady = True
+
+        Dim order() As Integer = {DTYPE.units, DTYPE.weapons, DTYPE.flingy, DTYPE.sprites,
+                                  DTYPE.images, DTYPE.upgrades, DTYPE.techdata, DTYPE.orders,
+                                  DTYPE.sfxdata, DTYPE.portdata, BUTTON_TAB}
+        For i As Integer = 0 To Math.Min(order.Length, MainTAB.TabPages.Count) - 1
+            MainTAB.TabPages(i).Tag = order(i)
+        Next
+
+        'Portraits are not supported.
+        RemoveDataTab(DTYPE.portdata)
+    End Sub
+
+    Private Sub RemoveDataTab(dataType As Integer)
+        For Each page As TabPage In MainTAB.TabPages
+            If TypeOf page.Tag Is Integer AndAlso CInt(page.Tag) = dataType Then
+                MainTAB.TabPages.Remove(page)
+                Return
+            End If
+        Next
+    End Sub
+
+    'The kind of data a page shows. Falls back to its place in the strip.
+    Private Function DataTypeOfTab(page As TabPage) As Integer
+        If page Is Nothing Then Return TAB_INDEX
+        If TypeOf page.Tag Is Integer Then Return CInt(page.Tag)
+        Return MainTAB.TabPages.IndexOf(page)
+    End Function
+
+    ''' <summary>Opens the page for one kind of data. Does nothing if it has no page.</summary>
+    Public Sub SelectDataTab(dataType As Integer)
+        For Each page As TabPage In MainTAB.TabPages
+            If DataTypeOfTab(page) = dataType Then
+                If MainTAB.SelectedTab IsNot page Then MainTAB.SelectedTab = page
+                Return
+            End If
+        Next
+    End Sub
+#End Region
+
 #Region "Reveal a field"
     ' Undo and redo call this before they change a value, so the user sees the change
     ' happen instead of a value moving on a screen they are not looking at.
@@ -200,8 +287,8 @@ Public Class DatEditForm
     ''' and marks the control for a moment.
     ''' </summary>
     Public Sub RevealField(dataIndex As Integer, entryIndex As Long, fieldKey As String)
-        If dataIndex >= 0 AndAlso dataIndex < MainTAB.TabCount AndAlso MainTAB.SelectedIndex <> dataIndex Then
-            MainTAB.SelectedIndex = dataIndex
+        If dataIndex >= 0 AndAlso TAB_INDEX <> dataIndex Then
+            SelectDataTab(dataIndex)
         End If
 
         If _OBJECTNUM <> entryIndex Then SELECTLIST(CInt(entryIndex))
@@ -334,13 +421,15 @@ Public Class DatEditForm
 
         Lan.SetLanguage(Me)
         Lan.SetMenu(Me, MenuStrip1)
+        SetUpDataTabs()
         Lan.SetMenu(Me, ListMenu)
 
         ColorReset()
 
         If FristRun = False Then
 
-            For i = 0 To MainTAB.TabCount - 1
+            'Keyed by kind of data, not by tab position, so a hidden page costs nothing.
+            For i = 0 To DATA_TAB_SLOTS - 1
                 TabSelectindex.Add(0)
                 Tabfilfer.Add("")
             Next
@@ -404,17 +493,17 @@ Public Class DatEditForm
 
     Private Sub 초기화ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 초기화ToolStripMenuItem.Click
         Dim index As Integer = _OBJECTNUM
-        For i = 0 To DatEditDATA(MainTAB.SelectedIndex).projectdata.Count - 1
+        For i = 0 To DatEditDATA(TAB_INDEX).projectdata.Count - 1
             Try
-                If (index - DatEditDATA(MainTAB.SelectedIndex).keyINFO(i).VarStart) >= 0 Then
-                    DatEditDATA(MainTAB.SelectedIndex).projectdata(i)(index - DatEditDATA(MainTAB.SelectedIndex).keyINFO(i).VarStart) = 0
+                If (index - DatEditDATA(TAB_INDEX).keyINFO(i).VarStart) >= 0 Then
+                    DatEditDATA(TAB_INDEX).projectdata(i)(index - DatEditDATA(TAB_INDEX).keyINFO(i).VarStart) = 0
 
                 End If
             Catch ex As Exception
             End Try
         Next
 
-        If MainTAB.SelectedIndex = 0 Then
+        If TAB_INDEX = 0 Then
             Dim value As Integer = -1 + DatEditDATA(DTYPE.units).ReadValue("Unit Map String", _OBJECTNUM)
             If value >= 0 Then
                 ListBox1.SelectedItem(0) = "[" & Format(_OBJECTNUM, "000") & "]- " & ProjectSet.CHKSTRING(value)
@@ -434,7 +523,7 @@ Public Class DatEditForm
         For i = 0 To DatEditDATA(TAB_INDEX).projectdata.Count - 1
             Try
                 Try
-                    If (index - DatEditDATA(MainTAB.SelectedIndex).keyINFO(i).VarStart) >= 0 Then
+                    If (index - DatEditDATA(TAB_INDEX).keyINFO(i).VarStart) >= 0 Then
                         datasource = datasource & DatEditDATA(TAB_INDEX).ReadValueNum(i, index) & ","
                     Else
                         datasource = datasource & "Null" & ","
@@ -450,7 +539,7 @@ Public Class DatEditForm
 
         My.Computer.Clipboard.SetText(datasource)
 
-        'My.Computer.Clipboard.SetText(MainTAB.SelectedIndex & "," & index)
+        'My.Computer.Clipboard.SetText(TAB_INDEX & "," & index)
     End Sub
 
     Private Sub ObjectLoad(_text As String)
@@ -472,25 +561,25 @@ Public Class DatEditForm
 
         Dim Toindex = cliptext.Split(",")(1)
         'Dim i =
-        For i = 0 To DatEditDATA(MainTAB.SelectedIndex).projectdata.Count - 1
+        For i = 0 To DatEditDATA(TAB_INDEX).projectdata.Count - 1
             Try
 
-                If (index - DatEditDATA(MainTAB.SelectedIndex).keyINFO(i).VarStart) >= 0 And newvalue(i) <> "Null" Then 'And (Toindex - DatEditDAT(MainTAB.SelectedIndex).keyINFO(i).VarStart) >= 0 Then
+                If (index - DatEditDATA(TAB_INDEX).keyINFO(i).VarStart) >= 0 And newvalue(i) <> "Null" Then 'And (Toindex - DatEditDAT(TAB_INDEX).keyINFO(i).VarStart) >= 0 Then
                     Try
-                        DatEditDATA(MainTAB.SelectedIndex).WriteValueNum(i, index, newvalue(i))
+                        DatEditDATA(TAB_INDEX).WriteValueNum(i, index, newvalue(i))
                     Catch ex As Exception
 
                     End Try
 
-                    'DatEditDAT(MainTAB.SelectedIndex).WriteValueNum(i, index, DatEditDAT(MainTAB.SelectedIndex).ReadValueNum(i, Toindex))
+                    'DatEditDAT(TAB_INDEX).WriteValueNum(i, index, DatEditDAT(TAB_INDEX).ReadValueNum(i, Toindex))
 
                 End If
             Catch ex As Exception
-                MsgBox(DatEditDATA(MainTAB.SelectedIndex).keyDic.Values(i))
+                MsgBox(DatEditDATA(TAB_INDEX).keyDic.Values(i))
             End Try
         Next
 
-        If MainTAB.SelectedIndex = 0 Then
+        If TAB_INDEX = 0 Then
             Dim value As Long = -1 + DatEditDATA(DTYPE.units).ReadValue("Unit Map String", _OBJECTNUM)
             If value >= 0 Then
                 Try
@@ -529,7 +618,7 @@ Public Class DatEditForm
                 Next
                 'DatEditDAT(TAB_INDEX).WriteToCHECKBOXLIST(ListView8, _OBJECTNUM)
             Else
-                DatEditDATA(MainTAB.SelectedIndex).projectdata(DatEditDATA(MainTAB.SelectedIndex).keyDic(key))(_OBJECTNUM - DatEditDATA(MainTAB.SelectedIndex).keyINFO(DatEditDATA(MainTAB.SelectedIndex).keyDic(key)).VarStart) = 0
+                DatEditDATA(TAB_INDEX).projectdata(DatEditDATA(TAB_INDEX).keyDic(key))(_OBJECTNUM - DatEditDATA(TAB_INDEX).keyINFO(DatEditDATA(TAB_INDEX).keyDic(key)).VarStart) = 0
             End If
 
             LoadData()
@@ -541,17 +630,17 @@ Public Class DatEditForm
     Private Sub 오브젝트초기화ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ObjectResetToolStripMenuItem.Click
         Dim index As Integer = _OBJECTNUM
         'MsgBox()
-        For i = 0 To DatEditDATA(MainTAB.SelectedIndex).projectdata.Count - 1
+        For i = 0 To DatEditDATA(TAB_INDEX).projectdata.Count - 1
             Try
-                If (index - DatEditDATA(MainTAB.SelectedIndex).keyINFO(i).VarStart) >= 0 Then
-                    DatEditDATA(MainTAB.SelectedIndex).projectdata(i)(index - DatEditDATA(MainTAB.SelectedIndex).keyINFO(i).VarStart) = 0
+                If (index - DatEditDATA(TAB_INDEX).keyINFO(i).VarStart) >= 0 Then
+                    DatEditDATA(TAB_INDEX).projectdata(i)(index - DatEditDATA(TAB_INDEX).keyINFO(i).VarStart) = 0
 
                 End If
             Catch ex As Exception
             End Try
         Next
 
-        If MainTAB.SelectedIndex = 0 Then
+        If TAB_INDEX = 0 Then
             Dim value As Integer = -1 + DatEditDATA(DTYPE.units).ReadValue("Unit Map String", _OBJECTNUM)
             If value >= 0 Then
                 ListBox1.SelectedItem(0) = "[" & Format(_OBJECTNUM, "000") & "]- " & ProjectSet.CHKSTRING(value)
@@ -573,7 +662,7 @@ Public Class DatEditForm
 
         Dim valuecount As Integer = cliptext.Split(",").Count - 1
         Try
-            If valuecount = DatEditDATA(MainTAB.SelectedIndex).projectdata.Count Then
+            If valuecount = DatEditDATA(TAB_INDEX).projectdata.Count Then
                 ObjectPaste()
             End If
         Catch ex As Exception
@@ -586,7 +675,7 @@ Public Class DatEditForm
         Dim valuecount As Integer = cliptext.Split(",").Count - 1
         Dim temp As String = cliptext.Split(",")(0)
         Try
-            If valuecount = DatEditDATA(MainTAB.SelectedIndex).projectdata.Count Then
+            If valuecount = DatEditDATA(TAB_INDEX).projectdata.Count Then
                 붙여넣기ToolStripMenuItem.Enabled = True
             Else
                 붙여넣기ToolStripMenuItem.Enabled = False
@@ -605,7 +694,7 @@ Public Class DatEditForm
         Dim valuecount As Integer = cliptext.Split(",").Count - 1
         Dim temp As String = cliptext.Split(",")(0)
         Try
-            If valuecount = DatEditDATA(MainTAB.SelectedIndex).projectdata.Count Then
+            If valuecount = DatEditDATA(TAB_INDEX).projectdata.Count Then
                 ObjectPasteToolStripMenuItem.Enabled = True
             Else
                 ObjectPasteToolStripMenuItem.Enabled = False
@@ -648,7 +737,7 @@ Public Class DatEditForm
             For i = 0 To DatEditDATA(TAB_INDEX).projectdata.Count - 1
                 Try
                     Try
-                        If (index - DatEditDATA(MainTAB.SelectedIndex).keyINFO(i).VarStart) >= 0 Then
+                        If (index - DatEditDATA(TAB_INDEX).keyINFO(i).VarStart) >= 0 Then
                             datasource = datasource & DatEditDATA(TAB_INDEX).ReadValueNum(i, index) & ","
                         Else
                             datasource = datasource & "Null" & ","
@@ -675,7 +764,7 @@ Public Class DatEditForm
             Dim streamreader As New StreamReader(filestream)
             Dim tempstring As String = streamreader.ReadToEnd
             Try
-                If DatEditDATA(MainTAB.SelectedIndex).projectdata.Count = (tempstring.Split(",").Count - 1) Then
+                If DatEditDATA(TAB_INDEX).projectdata.Count = (tempstring.Split(",").Count - 1) Then
                     ObjectLoad(tempstring)
                 Else
                     Throw New Exception
@@ -791,11 +880,12 @@ Public Class DatEditForm
         TabSelectindex(LastSelectTab) = _OBJECTNUM
         Tabfilfer(LastSelectTab) = LISTFILTER
 
+        TAB_INDEX = DataTypeOfTab(MainTAB.SelectedTab)
+
         'TabSelectindex.Add(0)
         'Tabfilfer.Add("")
-        LISTFILTER = Tabfilfer(MainTAB.SelectedIndex)
+        LISTFILTER = Tabfilfer(TAB_INDEX)
 
-        TAB_INDEX = MainTAB.SelectedIndex
         RefreshExtraFields()
         ListDraw()
         PaletDraw()
@@ -807,15 +897,15 @@ Public Class DatEditForm
         Application.DoEvents()
 
         'Try
-        SELECTLIST(TabSelectindex(MainTAB.SelectedIndex))
+        SELECTLIST(TabSelectindex(TAB_INDEX))
 
         'Catch ex As Exception
         '_OBJECTNUM = 0
         'End Try
 
-        TextBox2.Text = Tabfilfer(MainTAB.SelectedIndex)
+        TextBox2.Text = Tabfilfer(TAB_INDEX)
 
-        LastSelectTab = MainTAB.SelectedIndex
+        LastSelectTab = TAB_INDEX
         loadSTATUS = True
     End Sub
 
@@ -827,7 +917,7 @@ Public Class DatEditForm
         If dialog = DialogResult.OK Then
             'Dim num As Integer = 
             For i = 0 To DatFileLoad.FileNames.Count - 1
-                MainTAB.SelectedIndex = ReadDATAFileFromDat(DatFileLoad.FileNames(i))
+                SelectDataTab(ReadDATAFileFromDat(DatFileLoad.FileNames(i)))
             Next
 
             ListDraw()
@@ -897,10 +987,32 @@ Public Class DatEditForm
         ListView1.SuspendLayout()
         ListView1.BeginUpdate()
         ListView1.Items.Clear()
+        'The first 228 button sets are the units, in the same order; the rest are
+        'menus such as cancel and build, which have no graphic.
+        If TAB_INDEX = BUTTON_TAB Then
+            ListView1.LargeImageList = IMAGELIST
+            For i = 0 To ListBox1.Items.Count - 1
+                Dim entry As Integer = ListBox1.Items(i)(1)
+                ListView1.Items.Add("")
+                Dim added As ListViewItem = ListView1.Items(ListView1.Items.Count - 1)
+                added.Tag = entry
+                If entry < CODE(DTYPE.units).Count Then
+                    Try
+                        Dim fl As Integer = DatEditDATA(DTYPE.units).ReadValue("Graphics", entry)
+                        Dim sp As Integer = DatEditDATA(DTYPE.flingy).ReadValue("Sprite", fl)
+                        added.ImageIndex = DatEditDATA(DTYPE.sprites).ReadValue("Image File", sp)
+                    Catch
+                    End Try
+                End If
+            Next
+            ListView1.EndUpdate()
+            ListView1.ResumeLayout()
+            Exit Sub
+        End If
         Dim flingyNum, SpriteNum, ImageNum As Integer
         Dim size As Integer = ListBox1.Items.Count - 1
-        If MainTAB.SelectedIndex = DTYPE.weapons Or MainTAB.SelectedIndex = DTYPE.techdata Or
-            MainTAB.SelectedIndex = DTYPE.orders Then
+        If TAB_INDEX = DTYPE.weapons Or TAB_INDEX = DTYPE.techdata Or
+            TAB_INDEX = DTYPE.orders Then
             size -= 1
         End If
         For i = 0 To size
@@ -908,7 +1020,7 @@ Public Class DatEditForm
 
             ListView1.Items.Add("")
             Dim itemindex As Integer = ListView1.Items.Count - 1
-            Select Case MainTAB.SelectedIndex
+            Select Case TAB_INDEX
                 Case DTYPE.units
                     flingyNum = DatEditDATA(DTYPE.units).ReadValue("Graphics", index)
                     SpriteNum = DatEditDATA(DTYPE.flingy).ReadValue("Sprite", flingyNum)
@@ -979,10 +1091,28 @@ Public Class DatEditForm
         ListBox1.SuspendLayout()
         ListBox1.BeginUpdate()
 
-        Dim listNum As Integer = MainTAB.SelectedIndex
+        Dim listNum As Integer = TAB_INDEX
         Dim index As Integer = 0
 
         ListBox1.Items.Clear()
+
+        'Button sets are an eleventh kind of data. They have their own code list and
+        'their own mark for a changed entry, and no .dat table behind them.
+        If listNum = BUTTON_TAB Then
+            For i = 0 To CODE(DTYPE.btnunit).Count - 1
+                Dim btn(2) As String
+                btn(0) = "[" & Format(i, "000") & "]- " & CODE(DTYPE.btnunit)(i)
+                btn(1) = i
+                btn(2) = If(ProjectBtnUSE IsNot Nothing AndAlso i <= ProjectBtnUSE.Length - 1 AndAlso ProjectBtnUSE(i), 1, 0)
+                If InStr(btn(0).ToLower, LISTFILTER.ToLower) <> 0 Then
+                    If CheckBox5.Checked = False OrElse btn(2) = 1 Then ListBox1.Items.Add(btn)
+                End If
+            Next
+            If ListBox1.SelectedIndex = -1 And ListBox1.Items.Count <> 0 Then ListBox1.SelectedIndex = 0
+            ListBox1.EndUpdate()
+            ListBox1.ResumeLayout()
+            Exit Sub
+        End If
 
         For i = 0 To CODE(listNum).Count - 1
             index = i
@@ -1106,7 +1236,7 @@ Public Class DatEditForm
         If ListBox1.Items.Count <> 0 Then
             _OBJECTNUM = ListBox1.SelectedItem(1)
             'FireGraft shows more fields of this same entry.
-            EntitySelection.SetCurrent(TAB_INDEX, _OBJECTNUM)
+            EntitySelection.SetCurrent(If(TAB_INDEX = BUTTON_TAB, DTYPE.btnunit, TAB_INDEX), _OBJECTNUM)
             RefreshExtraFields()
 
             LoadData()
@@ -1536,9 +1666,14 @@ Public Class DatEditForm
 
     Public Sub LoadData()
         Me.SuspendLayout()
+        If TAB_INDEX = BUTTON_TAB Then
+            ShowButtonSet()
+            Me.ResumeLayout()
+            Exit Sub
+        End If
         'Timer1.Enabled = False
         loadSTATUS = False
-        Select Case MainTAB.SelectedIndex
+        Select Case TAB_INDEX
             Case DTYPE.units
                 UnitDataLOAD()
             Case DTYPE.weapons
@@ -1704,7 +1839,7 @@ Public Class DatEditForm
         DatEditDATA(DTYPE.units).ReadToTEXTBOX(TextBox33, _OBJECTNUM)
         DatEditDATA(DTYPE.units).ReadToCOMBOBOX(ComboBox16, _OBJECTNUM)
 
-        If MainTAB.SelectedIndex = 0 And TabControl2.SelectedIndex = 2 Then
+        If TAB_INDEX = 0 And TabControl2.SelectedIndex = 2 Then
             LoadSoundlist()
         End If
         '그래픽
@@ -2404,7 +2539,7 @@ Public Class DatEditForm
     End Sub
 
     Private Sub TabControl2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl2.SelectedIndexChanged
-        If MainTAB.SelectedIndex = 0 And TabControl2.SelectedIndex = 2 Then
+        If TAB_INDEX = 0 And TabControl2.SelectedIndex = 2 Then
             LoadSoundlist()
         End If
     End Sub
@@ -4752,7 +4887,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button3.Tag, _OBJECTNUM)
             If CODE(DTYPE.weapons).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.weapons
+                TAB_INDEX = DTYPE.weapons
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4765,7 +4900,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button4.Tag, _OBJECTNUM)
             If CODE(DTYPE.weapons).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.weapons
+                TAB_INDEX = DTYPE.weapons
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4777,7 +4912,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button1.Tag, _OBJECTNUM)
             If CODE(DTYPE.units).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.units
+                TAB_INDEX = DTYPE.units
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4789,7 +4924,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button2.Tag, _OBJECTNUM)
             If CODE(DTYPE.units).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.units
+                TAB_INDEX = DTYPE.units
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4801,7 +4936,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button6.Tag, _OBJECTNUM)
             If CODE(DTYPE.units).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.units
+                TAB_INDEX = DTYPE.units
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4813,7 +4948,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button12.Tag, _OBJECTNUM)
             If CODE(DTYPE.sfxdata).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.sfxdata
+                TAB_INDEX = DTYPE.sfxdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4825,7 +4960,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button13.Tag, _OBJECTNUM)
             If CODE(DTYPE.sfxdata).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.sfxdata
+                TAB_INDEX = DTYPE.sfxdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4837,7 +4972,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button10.Tag, _OBJECTNUM)
             If CODE(DTYPE.sfxdata).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.sfxdata
+                TAB_INDEX = DTYPE.sfxdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4849,7 +4984,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button11.Tag, _OBJECTNUM)
             If CODE(DTYPE.sfxdata).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.sfxdata
+                TAB_INDEX = DTYPE.sfxdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4861,7 +4996,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button9.Tag, _OBJECTNUM)
             If CODE(DTYPE.sfxdata).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.sfxdata
+                TAB_INDEX = DTYPE.sfxdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4873,7 +5008,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button8.Tag, _OBJECTNUM)
             If CODE(DTYPE.sfxdata).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.sfxdata
+                TAB_INDEX = DTYPE.sfxdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4885,7 +5020,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button7.Tag, _OBJECTNUM)
             If CODE(DTYPE.sfxdata).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.sfxdata
+                TAB_INDEX = DTYPE.sfxdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4897,7 +5032,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button16.Tag, _OBJECTNUM)
             If CODE(DTYPE.flingy).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.flingy
+                TAB_INDEX = DTYPE.flingy
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4909,7 +5044,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button15.Tag, _OBJECTNUM)
             If CODE(DTYPE.images).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.images
+                TAB_INDEX = DTYPE.images
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4921,7 +5056,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button14.Tag, _OBJECTNUM)
             If CODE(DTYPE.portdata).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.portdata
+                TAB_INDEX = DTYPE.portdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4933,7 +5068,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button21.Tag, _OBJECTNUM)
             If CODE(DTYPE.orders).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.orders
+                TAB_INDEX = DTYPE.orders
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4945,7 +5080,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button20.Tag, _OBJECTNUM)
             If CODE(DTYPE.orders).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.orders
+                TAB_INDEX = DTYPE.orders
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4958,7 +5093,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button19.Tag, _OBJECTNUM)
             If CODE(DTYPE.orders).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.orders
+                TAB_INDEX = DTYPE.orders
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4971,7 +5106,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button18.Tag, _OBJECTNUM)
             If CODE(DTYPE.orders).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.orders
+                TAB_INDEX = DTYPE.orders
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4984,7 +5119,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button17.Tag, _OBJECTNUM)
             If CODE(DTYPE.orders).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.orders
+                TAB_INDEX = DTYPE.orders
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -4997,7 +5132,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.weapons).ReadValue(Button22.Tag, _OBJECTNUM)
             If CODE(DTYPE.flingy).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.flingy
+                TAB_INDEX = DTYPE.flingy
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -5009,7 +5144,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.flingy).ReadValue(Button23.Tag, _OBJECTNUM)
             If CODE(DTYPE.sprites).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.sprites
+                TAB_INDEX = DTYPE.sprites
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -5021,7 +5156,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.sprites).ReadValue(Button24.Tag, _OBJECTNUM)
             If CODE(DTYPE.images).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.images
+                TAB_INDEX = DTYPE.images
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -5033,7 +5168,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.sprites).ReadValue(Button25.Tag, _OBJECTNUM)
             If CODE(DTYPE.images).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.images
+                TAB_INDEX = DTYPE.images
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -5045,7 +5180,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button51.Tag, _OBJECTNUM)
             If CODE(DTYPE.upgrades).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.upgrades
+                TAB_INDEX = DTYPE.upgrades
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -5057,7 +5192,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.weapons).ReadValue(Button52.Tag, _OBJECTNUM)
             If CODE(DTYPE.upgrades).Count > value Then
-                MainTAB.SelectedIndex = DTYPE.upgrades
+                TAB_INDEX = DTYPE.upgrades
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -5069,7 +5204,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.orders).ReadValue(Button26.Tag, _OBJECTNUM)
             If CODE(DTYPE.weapons).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.weapons
+                TAB_INDEX = DTYPE.weapons
                 SELECTLIST(value)
             End If
         Catch ex As Exception
@@ -5081,7 +5216,7 @@ Public Class DatEditForm
         Try
             Dim value As Integer = DatEditDATA(DTYPE.orders).ReadValue(Button27.Tag, _OBJECTNUM)
             If CODE(DTYPE.techdata).Count > value + 1 Then
-                MainTAB.SelectedIndex = DTYPE.techdata
+                TAB_INDEX = DTYPE.techdata
                 SELECTLIST(value)
             End If
         Catch ex As Exception

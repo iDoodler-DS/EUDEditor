@@ -57,7 +57,10 @@ Public Class Main
 
         'BinEditor, GRP, MPQ and Debug only exist for 1.16.1.
         datEditTool.Enabled = loaded AndAlso ProjectSet.UsedSetting(0)
-        fireGraftTool.Enabled = loaded AndAlso ProjectSet.UsedSetting(1)
+        'FireGraft has no tab of its own. Its fields are sub tabs inside DatEdit and
+        'its button sets are the eleventh kind of data there, so it stays loaded and
+        'hidden as the code behind those fields.
+        fireGraftTool.Enabled = False
         binEditorTool.Enabled = showRetiredTools AndAlso loaded AndAlso is116 AndAlso ProjectSet.UsedSetting(2)
         tileSetTool.Enabled = showRetiredTools AndAlso loaded AndAlso ProjectSet.UsedSetting(3)
         bgmPlayerTool.Enabled = loaded AndAlso ProjectSet.UsedSetting(4)
@@ -681,8 +684,8 @@ Public Class Main
     'together. Everything that reads a file out of the map is a resource.
     Private ReadOnly projectGroup As New ToolGroup("Group_Project", ProjectFileIcon(), True,
         {projectTool, pluginTool, fileSettingTool})
-    Private ReadOnly dataGroup As New ToolGroup("Group_Data", My.Resources.ICON_DatEdit, True,
-        {datEditTool, fireGraftTool})
+    Private ReadOnly dataGroup As New ToolGroup("Group_Data", My.Resources.ICON_DatEdit, False,
+        {datEditTool})
     Private ReadOnly triggerGroup As New ToolGroup("Group_Triggers", My.Resources.ICON_TriggerEditor, False,
         {triggerEditorTool})
     Private ReadOnly resourceGroup As New ToolGroup("Group_Resources", My.Resources.ICON_MPQEditor, True,
@@ -732,7 +735,7 @@ Public Class Main
         parkedEditors.Remove(tool)
 
         editorStaging.Size = EditorTabControl.DisplayRectangle.Size
-        editorStaging.Padding = page.Padding
+        editorStaging.Padding = If(page Is Nothing, New Padding(0), page.Padding)
         editor.TopLevel = False
         editor.FormBorderStyle = FormBorderStyle.None
         editor.Dock = DockStyle.Fill
@@ -1019,10 +1022,11 @@ Public Class Main
     ''' applies the language to those controls.
     ''' </summary>
     Public Function EnsureFireGraftLoaded() As Boolean
-        If Not fireGraftTool.Enabled Then Return False
+        'The tool has no tab of its own, so its Enabled flag stays off. What decides
+        'here is whether the project uses FireGraft at all.
+        If Not ProjectSet.isload OrElse Not ProjectSet.UsedSetting(1) Then Return False
         If EditorLoaded(fireGraftTool) OrElse parkedEditors.ContainsKey(fireGraftTool) Then Return True
-        If fireGraftTool.Page Is Nothing Then Return False
-        Return PrepareEditor(FireGraftForm, fireGraftTool, fireGraftTool.Page)
+        Return PrepareEditor(FireGraftForm, fireGraftTool, Nothing)
     End Function
 
     'For editors that want to push data into FireGraft only if it exists.
@@ -1482,5 +1486,8 @@ Public Class Main
         If EditorLoaded(fileManagerTool) Then FileManagerForm.LoadData()
         If EditorLoaded(fireGraftTool) Then FireGraftForm.LoadData()
     End Sub
+
+
+
 
 End Class

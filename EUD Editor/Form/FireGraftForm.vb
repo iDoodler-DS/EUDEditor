@@ -1255,6 +1255,20 @@ Handles ListBox1.DrawItem
         End Get
     End Property
 
+    ''' <summary>The button set editor, for DatEdit to place.</summary>
+    Public ReadOnly Property ButtonSetBox As Control
+        Get
+            Return Panel2
+        End Get
+    End Property
+
+    ''' <summary>The "use the default buttons" switch that belongs with it.</summary>
+    Public ReadOnly Property UseDefaultButtonsCheck As Control
+        Get
+            Return CheckBox1
+        End Get
+    End Property
+
     ''' <summary>The unit status box, for DatEdit to place.</summary>
     Public ReadOnly Property UnitStatusBox As Control
         Get

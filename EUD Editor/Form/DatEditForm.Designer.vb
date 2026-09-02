@@ -578,6 +578,7 @@ Partial Class DatEditForm
         Me.TextBox101 = New System.Windows.Forms.TextBox()
         Me.Button29 = New System.Windows.Forms.Button()
         Me.TabPage16 = New System.Windows.Forms.TabPage()
+        Me.TabPageButton = New System.Windows.Forms.TabPage()
         Me.GroupBox40 = New System.Windows.Forms.GroupBox()
         Me.ListBox8 = New System.Windows.Forms.ListBox()
         Me.MPQEditorControl2 = New System.Windows.Forms.Panel()
@@ -973,6 +974,7 @@ Partial Class DatEditForm
         Me.MainTAB.Controls.Add(Me.TabPage8)
         Me.MainTAB.Controls.Add(Me.TabPage15)
         Me.MainTAB.Controls.Add(Me.TabPage16)
+        Me.MainTAB.Controls.Add(Me.TabPageButton)
         Me.MainTAB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MainTAB.Font = New System.Drawing.Font("Malgun Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.MainTAB.HotTrack = True
@@ -1029,7 +1031,6 @@ Partial Class DatEditForm
         '
         'TabControl2
         '
-        Me.TabControl2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.TabControl2.Controls.Add(Me.TabPage9)
         Me.TabControl2.Controls.Add(Me.TabPage10)
         Me.TabControl2.Controls.Add(Me.TabPage11)
@@ -1040,7 +1041,7 @@ Partial Class DatEditForm
         Me.TabControl2.Location = New System.Drawing.Point(0, 24)
         Me.TabControl2.Margin = New System.Windows.Forms.Padding(0)
         Me.TabControl2.Name = "TabControl2"
-        Me.TabControl2.Padding = New System.Drawing.Point(0, 0)
+        Me.TabControl2.Padding = New System.Drawing.Point(9, 3)
         Me.TabControl2.SelectedIndex = 0
         Me.TabControl2.Size = New System.Drawing.Size(549, 487)
         Me.TabControl2.TabIndex = 0
@@ -8534,6 +8535,12 @@ Partial Class DatEditForm
         '
         Me.OpenFileDialog2.Filter = "GRP File|*.grp"
         '
+        'TabPageButton
+        '
+        Me.TabPageButton.Name = "TabPageButton"
+        Me.TabPageButton.Padding = New System.Windows.Forms.Padding(0)
+        Me.TabPageButton.Text = "Button"
+        '
         'DatEditForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -8834,6 +8841,7 @@ Partial Class DatEditForm
     Friend WithEvents 데이터불러오기ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TabPage15 As TabPage
     Friend WithEvents TabPage16 As TabPage
+    Friend WithEvents TabPageButton As TabPage
     Friend WithEvents GroupBox9 As GroupBox
     Friend WithEvents Label28 As Label
     Friend WithEvents TextBox24 As TextBox
