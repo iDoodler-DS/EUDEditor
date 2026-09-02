@@ -43,8 +43,13 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
 - **A list shows a word and writes a number.** See below.
 - **Turn a node off.** It is written as a comment, so euddraft passes over it
   and a person still reads it. A folder that is off takes everything in it.
-- **Edit as text.** The source is shown beside the tree and can be edited
-  directly; pressing the button again reads it back into the tree.
+- **Edit as text.** The source is shown beside the tree, coloured the way
+  TypeScript is — epScript is spelled the same way — with a colour of its own
+  for a call the editor knows and for a constant eudplib names, because those
+  are what a person looks for when reading a trigger. It can be edited
+  directly; pressing the button again reads it back into the tree. The colours
+  are chosen against whatever ground the theme gives the box, so both the light
+  and the dark theme read.
 - **Build map.** Writes the source and a settings file, and runs euddraft on
   them, with the output going to the same log at the foot of the window.
 

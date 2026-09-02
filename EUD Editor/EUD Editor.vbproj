@@ -596,6 +596,7 @@
     <Compile Include="Module\RecoveryModule.vb" />
     <Compile Include="Module\BookmarkModule.vb" />
     <Compile Include="Module\EpsSourceModule.vb" />
+    <Compile Include="Module\EpsPaintModule.vb" />
     <Compile Include="Module\EpsSymbolModule.vb" />
     <Compile Include="Module\EpsValueListModule.vb" />
     <Compile Include="Module\EpsBuildModule.vb" />

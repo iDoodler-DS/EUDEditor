@@ -207,6 +207,18 @@ Namespace EpsSource
             Return text
         End Function
 
+        ''' <summary>Whether a word is one of the constants eudplib names.</summary>
+        Public Function IsConstant(word As String) As Boolean
+            ReadNames()
+            If word Is Nothing OrElse word = "" Then Return False
+            For Each kind As KeyValuePair(Of String, Dictionary(Of Integer, String)) In named
+                For Each one As KeyValuePair(Of Integer, String) In kind.Value
+                    If String.Equals(one.Value, word, StringComparison.Ordinal) Then Return True
+                Next
+            Next
+            Return False
+        End Function
+
         ''' <summary>Forgets the lists, for when a project opens and they change.</summary>
         Public Sub Forget()
             held.Clear()

@@ -16,7 +16,7 @@ Public Class EpsTriggerForm
     Inherits Form
 
     Private WithEvents tree As New TreeView()
-    Private ReadOnly source As New TextBox()
+    Private ReadOnly source As New RichTextBox()
     Private ReadOnly status As New Label()
     Private ReadOnly split As New SplitContainer()
 
@@ -117,9 +117,10 @@ Public Class EpsTriggerForm
         tree.ShowLines = True
 
         source.Dock = DockStyle.Fill
-        source.Multiline = True
-        source.ScrollBars = ScrollBars.Both
+        source.ScrollBars = RichTextBoxScrollBars.Both
         source.WordWrap = False
+        source.BorderStyle = BorderStyle.None
+        source.DetectUrls = False
         source.ReadOnly = True
         source.Font = New Font("Consolas", 9.0F)
 
@@ -378,7 +379,14 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub RefreshSource()
-        source.Text = EpsWriter.Write(root).Replace(vbLf, vbCrLf).Replace(vbCr & vbCr, vbCr)
+        Dim text As String = EpsWriter.Write(root).Replace(vbLf, vbCrLf).Replace(vbCr & vbCr, vbCr)
+        If source.ReadOnly Then
+            EpsPaint.Draw(source, text)
+        Else
+            'While the text belongs to the user it is left alone; it is coloured
+            'again when it is read back into the tree.
+            source.Text = text
+        End If
     End Sub
 
     Private Sub Touched()

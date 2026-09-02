@@ -31,7 +31,6 @@ Public Class Main
         buttonResetting()
         menuResetting()
         nameResetting()
-
     End Sub
 
     'Re-applies the theme to the main window and to every editor loaded into a tab.
