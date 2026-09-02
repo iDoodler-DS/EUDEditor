@@ -832,7 +832,7 @@ Public Class Main
         {datEditTool})
     Private ReadOnly triggerGroup As New ToolGroup("Group_Triggers", My.Resources.ICON_TriggerEditor, False,
         {triggerEditorTool})
-    Private ReadOnly resourceGroup As New ToolGroup("Group_Resources", My.Resources.ICON_MPQEditor, True,
+    Private ReadOnly resourceGroup As New ToolGroup("Group_Resources", My.Resources.ICON_FileManager, True,
         {mpqTool, fileManagerTool, bgmPlayerTool, grpTool, binEditorTool, tileSetTool})
     Private ReadOnly debugGroup As New ToolGroup("Group_Debug", My.Resources.Debug, False,
         {debugTool})
@@ -851,11 +851,9 @@ Public Class Main
     Private Sub SetUpEditorTabs()
         Dim icons As New ImageList With {.ImageSize = New Size(24, 24), .ColorDepth = ColorDepth.Depth32Bit}
         For Each group As ToolGroup In ToolGroups()
+            'The ImageList keeps the Image itself until its native handle exists, so do
+            'not dispose it. Only a main tab has an icon, so only a group needs one here.
             icons.Images.Add(group.Key, ScaleIcon(group.Icon, icons.ImageSize))
-            For Each tool As EditorTool In group.Tools
-                'The ImageList keeps the Image itself until its native handle exists, so do not dispose it.
-                icons.Images.Add(tool.Key, ScaleIcon(tool.Icon, icons.ImageSize))
-            Next
         Next
         EditorTabControl.ImageList = icons
 
@@ -1074,7 +1072,6 @@ Public Class Main
                 .ItemSize = New Size(42, 28),
                 .Padding = New Point(9, 3),
                 .Tag = group}
-            AddHandler group.Inner.HandleCreated, AddressOf InnerTabs_HandleCreated
             AddHandler group.Inner.SelectedIndexChanged, AddressOf InnerTabs_SelectedIndexChanged
             AddHandler group.Inner.MouseUp, AddressOf InnerTabs_MouseUp
             AddHandler group.Inner.Deselected, AddressOf InnerTabs_Deselected
@@ -1311,14 +1308,6 @@ Public Class Main
     Private Sub EditorTabControl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles EditorTabControl.SelectedIndexChanged
         If suppressTabLoad Then Return
         LoadVisibleTab()
-    End Sub
-
-    Private Sub InnerTabs_HandleCreated(sender As Object, e As EventArgs)
-        Dim tabs As TabControl = sender
-        For Each page As TabPage In tabs.TabPages
-            Dim tool As EditorTool = TryCast(page.Tag, EditorTool)
-            If tool IsNot Nothing Then ApplyPageIcon(page, tool.Key)
-        Next
     End Sub
 
     Private Sub InnerTabs_SelectedIndexChanged(sender As Object, e As EventArgs)
