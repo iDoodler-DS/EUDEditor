@@ -50,8 +50,6 @@ Partial Class DatEditForm
         Me.Button5 = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.MainTAB = New System.Windows.Forms.TabControl()
-        Me.ExtraPanel = New System.Windows.Forms.Panel()
-        Me.ExtraSplitter = New System.Windows.Forms.Splitter()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
@@ -8536,33 +8534,12 @@ Partial Class DatEditForm
         '
         Me.OpenFileDialog2.Filter = "GRP File|*.grp"
         '
-        'ExtraPanel
-        '
-        Me.ExtraPanel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.ExtraPanel.Name = "ExtraPanel"
-        Me.ExtraPanel.AutoScroll = True
-        Me.ExtraPanel.MinimumSize = New System.Drawing.Size(300, 0)
-        Me.ExtraPanel.Size = New System.Drawing.Size(430, 537)
-        Me.ExtraPanel.Visible = False
-        '
-        'ExtraSplitter
-        '
-        Me.ExtraSplitter.Dock = System.Windows.Forms.DockStyle.Right
-        Me.ExtraSplitter.MinExtra = 260
-        Me.ExtraSplitter.MinSize = 220
-        Me.ExtraSplitter.Name = "ExtraSplitter"
-        Me.ExtraSplitter.Size = New System.Drawing.Size(4, 537)
-        Me.ExtraSplitter.TabStop = False
-        Me.ExtraSplitter.Visible = False
-        '
         'DatEditForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 561)
         Me.Controls.Add(Me.MainTAB)
-        Me.Controls.Add(Me.ExtraSplitter)
-        Me.Controls.Add(Me.ExtraPanel)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Font = New System.Drawing.Font("Malgun Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
@@ -8756,8 +8733,6 @@ Partial Class DatEditForm
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents MainTAB As TabControl
-    Friend WithEvents ExtraPanel As Panel
-    Friend WithEvents ExtraSplitter As Splitter
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabControl2 As TabControl
     Friend WithEvents TabPage9 As TabPage

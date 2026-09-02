@@ -41,17 +41,20 @@ Public Class DatEditForm
 #Region "FireGraft fields"
     ' FireGraft holds more fields of the entries listed here: the status flags of a
     ' unit, and the requirements of a unit, an upgrade, a tech or an order. Those
-    ' controls sit in the panel on the right of this form, so one list and one screen
-    ' cover the whole entry.
+    ' controls sit in sub tabs of the page for their kind of data, so one list and one
+    ' screen cover the whole entry and each sub tab holds a screenful.
     '
-    ' The controls keep their own event handlers, which belong to FireGraftForm. That
-    ' form stays alive and holds the code behind these fields. Its own window shows
-    ' only button sets, which are numbered in a list of their own.
+    ' The unit page already had a strip of sub tabs. The other pages get one, with
+    ' their own fields moved onto its first tab.
     '
-    ' A tech has two sets of requirements, one for research and one for use, so the
-    ' panel carries a small selector for that case.
+    ' The controls stay owned by FireGraftForm, which holds the code behind them. It
+    ' has one requirements editor for all five kinds, so the editor moves to the page
+    ' of the kind on show, and this form sets FireGraft's mode before asking for a
+    ' redraw. FireGraft's own window keeps the button set editor, which needs its own
+    ' list because 21 button sets do not belong to a unit.
 
     Private extraReady As Boolean
+    Private ReadOnly subTabsByPage As New Dictionary(Of TabPage, TabControl)
     Private techModeSelector As Panel
     Private WithEvents techResearchOption As RadioButton
     Private WithEvents techUseOption As RadioButton
@@ -67,38 +70,56 @@ Public Class DatEditForm
         End Select
     End Function
 
-    ''' <summary>Moves FireGraft's fields into the panel on the right, once.</summary>
+    ''' <summary>
+    ''' The strip of sub tabs on a page. A page without one gets a strip, and its own
+    ''' fields move onto the first tab.
+    ''' </summary>
+    Private Function SubTabsFor(page As TabPage) As TabControl
+        Dim tabs As TabControl = Nothing
+        If subTabsByPage.TryGetValue(page, tabs) Then Return tabs
+
+        'A new strip, always. The unit page has one of its own, but it is drawn as flat
+        'buttons with no padding and its captions do not show, so pages added to it
+        'cannot be reached. That strip keeps working inside the first tab of this one.
+
+        tabs = New TabControl With {.Dock = DockStyle.Fill}
+        Dim first As New TabPage(Lan.GetText(Me.Name, "SubTab_Data")) With {.Padding = New Padding(0)}
+        Dim children() As Control = page.Controls.Cast(Of Control)().ToArray()
+        page.Controls.Clear()
+        For Each c As Control In children
+            first.Controls.Add(c)
+        Next
+        tabs.TabPages.Add(first)
+        page.Controls.Add(tabs)
+        ThemeSetForm.SetControlColor(tabs)
+
+        subTabsByPage(page) = tabs
+        Return tabs
+    End Function
+
+    'Finds, or adds at the end, a sub tab with this tag.
+    Private Function SubTab(page As TabPage, tag As String, caption As String) As TabPage
+        Dim tabs As TabControl = SubTabsFor(page)
+        For Each sub_ As TabPage In tabs.TabPages
+            If TypeOf sub_.Tag Is String AndAlso CStr(sub_.Tag) = tag Then Return sub_
+        Next
+        Dim added As New TabPage(caption) With {.Tag = tag, .Padding = New Padding(4)}
+        ThemeSetForm.SetControlColor(added)
+        tabs.TabPages.Add(added)
+        Return added
+    End Function
+
     Private Sub SetUpExtraFields()
         If extraReady Then Return
         If Not ProjectSet.UsedSetting(1) Then Return   'FireGraft is off for this project
         If Not Main.EnsureFireGraftLoaded() Then Return
 
         Try
-            Dim fg As FireGraftForm = FireGraftForm
-            fg.ReleaseSharedFields()
-
-            ExtraPanel.SuspendLayout()
-            ExtraPanel.Controls.Clear()
-
-            'Bottom to top: the editor fills, the boxes above it keep their height.
-            fg.RequirementInfoBox.Dock = DockStyle.Fill
-            ExtraPanel.Controls.Add(fg.RequirementInfoBox)
-
-            fg.RequirementCapacityBox.Dock = DockStyle.Top
-            ExtraPanel.Controls.Add(fg.RequirementCapacityBox)
-
-            fg.UnitStatusBox.Dock = DockStyle.Top
-            fg.UnitStatusBox.Height = 118
-            ExtraPanel.Controls.Add(fg.UnitStatusBox)
-
+            FireGraftForm.ReleaseSharedFields()
             BuildTechModeSelector()
-            ExtraPanel.Controls.Add(techModeSelector)
-
-            ExtraPanel.ResumeLayout()
-            ThemeSetForm.SetControlColor(ExtraPanel)
             extraReady = True
         Catch ex As Exception
-            LogException(ex, "moving the FireGraft fields")
+            LogException(ex, "taking the FireGraft fields")
         End Try
     End Sub
 
@@ -110,33 +131,63 @@ Public Class DatEditForm
             .Text = Lan.GetText(Me.Name, "TechUseRequirement"),
             .AutoSize = True, .Location = New Point(150, 4)}
 
-        techModeSelector = New Panel With {.Dock = DockStyle.Top, .Height = 26, .Visible = False}
+        techModeSelector = New Panel With {.Dock = DockStyle.Top, .Height = 26}
         techModeSelector.Controls.Add(techResearchOption)
         techModeSelector.Controls.Add(techUseOption)
     End Sub
 
     Private Sub TechMode_CheckedChanged(sender As Object, e As EventArgs) _
         Handles techResearchOption.CheckedChanged, techUseOption.CheckedChanged
-        If Not extraReady Then Return
-        RefreshExtraFields()
+        If extraReady Then RefreshExtraFields()
     End Sub
 
-    ''' <summary>Shows the FireGraft fields that belong to the open kind of data.</summary>
+    ''' <summary>Puts the FireGraft fields on the page of the kind of data on show.</summary>
     Public Sub RefreshExtraFields()
         SetUpExtraFields()
         If Not extraReady Then Return
 
         Dim mode As Integer = FireGraftModeFor(TAB_INDEX)
-        Dim show As Boolean = mode >= 0
+        If mode < 0 Then Return
+        If TAB_INDEX < 0 OrElse TAB_INDEX >= MainTAB.TabCount Then Return
 
-        ExtraPanel.Visible = show
-        ExtraSplitter.Visible = show
-        If Not show Then Return
+        Try
+            Dim page As TabPage = MainTAB.TabPages(TAB_INDEX)
+            Dim fg As FireGraftForm = FireGraftForm
 
-        Dim fg As FireGraftForm = FireGraftForm
-        fg.UnitStatusBox.Visible = (TAB_INDEX = DTYPE.units)
-        techModeSelector.Visible = (TAB_INDEX = DTYPE.techdata)
-        fg.ShowFieldsFor(mode, _OBJECTNUM)
+            'The status flags belong to a unit only.
+            If TAB_INDEX = DTYPE.units Then
+                Dim statusTab As TabPage = SubTab(page, "fgStatus", Lan.GetText(Me.Name, "SubTab_Status"))
+                If fg.UnitStatusBox.Parent IsNot statusTab Then
+                    fg.UnitStatusBox.Dock = DockStyle.Top
+                    fg.UnitStatusBox.Height = 118
+                    statusTab.Controls.Add(fg.UnitStatusBox)
+                End If
+            End If
+
+            'One requirements editor serves every kind, so it moves to the page on show.
+            Dim reqTab As TabPage = SubTab(page, "fgRequirements", Lan.GetText(Me.Name, "SubTab_Requirements"))
+            If fg.RequirementInfoBox.Parent IsNot reqTab Then
+                reqTab.SuspendLayout()
+                fg.RequirementInfoBox.Dock = DockStyle.Fill
+                reqTab.Controls.Add(fg.RequirementInfoBox)
+                fg.RequirementCapacityBox.Dock = DockStyle.Top
+                reqTab.Controls.Add(fg.RequirementCapacityBox)
+                reqTab.ResumeLayout()
+            End If
+
+            'A tech has two sets of requirements, one to research it and one to use it.
+            If TAB_INDEX = DTYPE.techdata Then
+                If techModeSelector.Parent IsNot reqTab Then reqTab.Controls.Add(techModeSelector)
+                techModeSelector.BringToFront()
+                techModeSelector.Visible = True
+            ElseIf techModeSelector.Parent IsNot Nothing Then
+                techModeSelector.Visible = False
+            End If
+
+            fg.ShowFieldsFor(mode, _OBJECTNUM)
+        Catch ex As Exception
+            LogException(ex, "showing the FireGraft fields")
+        End Try
     End Sub
 #End Region
 

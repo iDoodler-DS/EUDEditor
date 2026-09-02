@@ -297,5 +297,8 @@
     "ComboBox51.Items": "독립적크기\\소형\\중형\\대형",
     "PasteObject": "오브젝트 붙여넣기",
     "TechResearchRequirement": "기술연구",
-    "TechUseRequirement": "기술사용"
+    "TechUseRequirement": "기술사용",
+    "SubTab_Data": "데이터",
+    "SubTab_Status": "상태",
+    "SubTab_Requirements": "요구사항"
 }

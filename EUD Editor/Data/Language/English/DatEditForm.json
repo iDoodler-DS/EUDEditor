@@ -297,5 +297,8 @@
     "ComboBox51.Items": "Independent\\Small\\Medium\\Large",
     "PasteObject": "Paste object",
     "TechResearchRequirement": "Research",
-    "TechUseRequirement": "Use"
+    "TechUseRequirement": "Use",
+    "SubTab_Data": "Data",
+    "SubTab_Status": "Status",
+    "SubTab_Requirements": "Requirements"
 }
