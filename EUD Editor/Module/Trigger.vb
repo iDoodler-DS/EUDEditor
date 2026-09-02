@@ -449,6 +449,8 @@ Public Class Element
                         _values.Clear()
                         _values.AddRange(GetDefValueDefs(CUnitData(num)(1)).GetValues(isTocode, num))
 
+                        'A value with no name in the list keeps its own text.
+                        If val < 0 OrElse val >= _values.Count Then Return returnstring
                         returnstring = _values(val)
                         Return returnstring
                     Catch ex As Exception
