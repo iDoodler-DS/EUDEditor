@@ -737,6 +737,7 @@ Namespace ProjectSet
 
         Public Sub Reset()
             EditHistory.History.Clear()
+            BookmarkModule.Reset()
             filename = ""
 
             InputMap = ""
@@ -1341,6 +1342,8 @@ Namespace ProjectSet
 
 
                     Try
+                        BookmarkModule.FromProjectText(FindSection(text, "BookmarkSET"))
+
                         Dim Section_PluginSET As String = FindSection(text, "PluginSET")
                         soundstopper = FindSetting(Section_PluginSET, "soundstopper")
                         scmloader = FindSetting(Section_PluginSET, "scmloader")
@@ -1895,6 +1898,8 @@ Namespace ProjectSet
             _stringbdl.Append("E_ProjectSET" & vbCrLf)
 
 
+
+            _stringbdl.Append(BookmarkModule.ToProjectText())
 
             _stringbdl.Append("S_DatEditSET" & vbCrLf) 'DatEditSET Start
             For i = 0 To DatEditDATA.Count - 1

@@ -224,6 +224,60 @@ Public Class DatEditForm
     End Sub
 #End Region
 
+#Region "Bookmarks"
+    ' A right click on the list marks the entry, or takes the mark away. The marks sit
+    ' in the View menu of the main window, and belong to the project.
+
+    Private bookmarkMenu As ContextMenuStrip
+    Private WithEvents bookmarkToggleItem As ToolStripMenuItem
+    Private WithEvents bookmarkClearItem As ToolStripMenuItem
+
+    Private Sub SetUpBookmarkMenu()
+        If bookmarkMenu IsNot Nothing Then Return
+
+        bookmarkToggleItem = New ToolStripMenuItem(Lan.GetText(Me.Name, "BookmarkAdd"))
+        bookmarkClearItem = New ToolStripMenuItem(Lan.GetText(Me.Name, "BookmarkClear"))
+
+        bookmarkMenu = New ContextMenuStrip()
+        bookmarkMenu.Items.Add(bookmarkToggleItem)
+        bookmarkMenu.Items.Add(New ToolStripSeparator())
+        bookmarkMenu.Items.Add(bookmarkClearItem)
+        AddHandler bookmarkMenu.Opening, AddressOf BookmarkMenu_Opening
+        ThemeSetForm.SetControlColor(bookmarkMenu)
+
+        ListBox1.ContextMenuStrip = bookmarkMenu
+    End Sub
+
+    'A right click picks the entry under the pointer first, so the menu acts on it.
+    Private Sub ListBox1_MouseDown(sender As Object, e As MouseEventArgs) Handles ListBox1.MouseDown
+        If e.Button <> MouseButtons.Right Then Return
+        Dim under As Integer = ListBox1.IndexFromPoint(e.Location)
+        If under >= 0 AndAlso under <> ListBox1.SelectedIndex Then ListBox1.SelectedIndex = under
+    End Sub
+
+    Private Sub BookmarkMenu_Opening(sender As Object, e As ComponentModel.CancelEventArgs)
+        Dim marked As Boolean = BookmarkModule.IsBookmarked(TAB_INDEX, _OBJECTNUM)
+        bookmarkToggleItem.Text = Lan.GetText(Me.Name, If(marked, "BookmarkRemove", "BookmarkAdd"))
+        bookmarkToggleItem.Enabled = ListBox1.SelectedIndex >= 0
+        bookmarkClearItem.Enabled = BookmarkModule.Bookmarks.Count > 0
+    End Sub
+
+    Private Sub BookmarkToggle_Click(sender As Object, e As EventArgs) Handles bookmarkToggleItem.Click
+        If ListBox1.SelectedIndex < 0 Then Return
+        BookmarkModule.Toggle(TAB_INDEX, _OBJECTNUM)
+    End Sub
+
+    Private Sub BookmarkClear_Click(sender As Object, e As EventArgs) Handles bookmarkClearItem.Click
+        BookmarkModule.RemoveAll()
+    End Sub
+
+    ''' <summary>Opens one entry, for the bookmark menu of the main window.</summary>
+    Public Sub GoToEntry(dataType As Integer, index As Integer)
+        SelectDataTab(dataType)
+        SELECTLIST(index)
+    End Sub
+#End Region
+
 #Region "Jump to the entry a field names"
     ' A field can name an entry of another kind of data: a unit names its weapons, a
     ' weapon names its graphics, an order names the technology it needs. The list beside
@@ -553,6 +607,7 @@ Public Class DatEditForm
         Lan.SetMenu(Me, MenuStrip1)
         SetUpDataTabs()
         HideDeadButtons()
+        SetUpBookmarkMenu()
         Lan.SetMenu(Me, ListMenu)
 
         ColorReset()

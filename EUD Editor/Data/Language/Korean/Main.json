@@ -7,7 +7,7 @@
     "Button4": "트리거보기(&T)",
     "Button16": "복사(&E)",
     "LogLabel": "로그",
-    "Tool_Project": "프로젝트",
+    "Tool_Project": "프로젝트 설정",
     "Tool_DatEdit": "DatEdit",
     "Tool_FireGraft": "FireGraft",
     "Tool_BinEditor": "BinEditor",
@@ -26,5 +26,7 @@
     "MapisNotExit": "맵 파일이 존재하지 않습니다.",
     "CHKMsg": "CHK데이터 읽어오기가 활성화 되어야 합니다.",
     "Undo": "실행 취소",
-    "Redo": "다시 실행"
+    "Redo": "다시 실행",
+    "Bookmarks": "북마크",
+    "BookmarksNone": "북마크 없음"
 }

@@ -7,7 +7,7 @@
     "Button4": "View Trigger(&T)",
     "Button16": "Copy(&E)",
     "LogLabel": "Log",
-    "Tool_Project": "Project",
+    "Tool_Project": "Project Setup",
     "Tool_DatEdit": "DatEdit",
     "Tool_FireGraft": "FireGraft",
     "Tool_BinEditor": "BinEditor",
@@ -26,5 +26,7 @@
     "MapisNotExit": "The map file does not exist.",
     "CHKMsg": "CHK data read must be enabled.",
     "Undo": "Undo",
-    "Redo": "Redo"
+    "Redo": "Redo",
+    "Bookmarks": "Bookmarks",
+    "BookmarksNone": "No bookmarks"
 }

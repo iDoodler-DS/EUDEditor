@@ -137,6 +137,7 @@ Public Class Main
         refreshTheme()
         refreshSet()
 
+        SetUpBookmarkMenu()
         OfferRecovery()
         autoSaveTimer.Start()
     End Sub
@@ -144,6 +145,68 @@ Public Class Main
 
 
 
+
+
+#Region "Bookmarks"
+    ' The bookmarks of the project sit in the View menu. A right click on an entry in
+    ' the data list puts it there. The list belongs to the project, so it changes with
+    ' the project that is open.
+
+    Private bookmarkRoot As ToolStripMenuItem
+
+    Private Sub SetUpBookmarkMenu()
+        If bookmarkRoot IsNot Nothing Then Return
+
+        bookmarkRoot = New ToolStripMenuItem(Lan.GetText(Me.Name, "Bookmarks")) With {
+            .Name = "BookmarksMenuItem",
+            .BackColor = ProgramSet.colorBackground,
+            .ForeColor = ProgramSet.colorLabelText}
+        ViewVToolStripMenuItem.DropDownItems.Insert(0, bookmarkRoot)
+        ViewVToolStripMenuItem.DropDownItems.Insert(1, New ToolStripSeparator With {.Name = "BookmarksSeparator"})
+
+        AddHandler BookmarkModule.Changed, AddressOf RefreshBookmarkMenu
+        RefreshBookmarkMenu()
+    End Sub
+
+    Private Sub RefreshBookmarkMenu()
+        If bookmarkRoot Is Nothing Then Return
+        If InvokeRequired Then
+            BeginInvoke(New System.Action(AddressOf RefreshBookmarkMenu))
+            Return
+        End If
+
+        bookmarkRoot.DropDownItems.Clear()
+
+        If BookmarkModule.Bookmarks.Count = 0 Then
+            bookmarkRoot.DropDownItems.Add(New ToolStripMenuItem(Lan.GetText(Me.Name, "BookmarksNone")) With {
+                .Enabled = False,
+                .BackColor = ProgramSet.colorBackground,
+                .ForeColor = ProgramSet.colorLabelText})
+            Return
+        End If
+
+        For i = 0 To BookmarkModule.Bookmarks.Count - 1
+            Dim mark As BookmarkModule.Bookmark = BookmarkModule.Bookmarks(i)
+            Dim item As New ToolStripMenuItem(BookmarkModule.LabelOf(mark), Nothing, AddressOf BookmarkMenuItem_Click) With {
+                .Tag = mark,
+                .BackColor = ProgramSet.colorBackground,
+                .ForeColor = ProgramSet.colorLabelText}
+            bookmarkRoot.DropDownItems.Add(item)
+        Next
+    End Sub
+
+    Private Sub BookmarkMenuItem_Click(sender As Object, e As EventArgs)
+        Dim mark As BookmarkModule.Bookmark = TryCast(DirectCast(sender, ToolStripMenuItem).Tag, BookmarkModule.Bookmark)
+        If mark Is Nothing Then Return
+
+        Try
+            SelectTool(datEditTool)
+            DatEditForm.GoToEntry(mark.DataType, mark.Index)
+        Catch ex As Exception
+            LogException(ex, "opening a bookmark")
+        End Try
+    End Sub
+#End Region
 
 
 #Region "Recovery copy"
@@ -1019,7 +1082,7 @@ Public Class Main
         For i = 0 To tools.Count - 1
             Dim tool As EditorTool = tools(i)
             If tool.Page Is Nothing OrElse tool.Page.Parent IsNot group.Inner Then
-                tool.Page = NewPage(ToolText(tool), tool.Key, tool, PagePadding(tool), group.Inner, i)
+                tool.Page = NewPage(ToolText(tool), "", tool, PagePadding(tool), group.Inner, i)
             ElseIf tool.Page.Text <> ToolText(tool) Then
                 tool.Page.Text = ToolText(tool)
             End If
