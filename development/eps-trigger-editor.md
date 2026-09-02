@@ -48,6 +48,13 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
 - **A list shows a word and writes a number.** See below.
 - **Turn a node off.** It is written as a comment, so euddraft passes over it
   and a person still reads it. A folder that is off takes everything in it.
+- **The three blocks read as when they run**: On map start, Before map
+  triggers, After map triggers. The source keeps euddraft's own names.
+- **More than one node at a time.** Ctrl and a click add and take away; shift
+  and a click take everything between. Only kin can be picked together, so a
+  click outside the family starts again. Copy, cut and delete act on all of it,
+  and the menu says how many. Moving still takes one thing (or the run it
+  belongs to).
 - **Ctrl and the wheel** make the tree larger or smaller, between 6 point and
   30. The box beside it zooms the same way of its own accord.
 - **Edit as text.** The source is shown beside the tree, coloured the way

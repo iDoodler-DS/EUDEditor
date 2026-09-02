@@ -51,6 +51,8 @@ Public Class EpsTriggerForm
     Private root As EpsNode = New EpsNode(EpsKind.Root)
     Private chosen As Spot
     Private held As List(Of EpsNode)     'what was cut or copied
+    Private ReadOnly picked As New List(Of TreeNode)          'every node picked
+    Private ReadOnly wasInk As New Dictionary(Of TreeNode, Color)
     Private placed As Boolean
 
     ''' <summary>Which part of a clause a node stands for.</summary>
@@ -220,6 +222,9 @@ Public Class EpsTriggerForm
         Dim wasPart As Part = If(chosen Is Nothing, Part.Whole, chosen.Part)
         Dim wasAt As Integer = If(chosen Is Nothing, -1, chosen.At)
 
+        'The nodes are made again, so what was picked is gone with the old ones.
+        Unpick()
+
         tree.BeginUpdate()
         tree.Nodes.Clear()
         For Each child As EpsNode In root.Children
@@ -288,6 +293,11 @@ Public Class EpsTriggerForm
                 Return "Else do (Actions)"
             Case EpsShape.Folder
                 Return node.Text
+            Case EpsShape.Function_
+                'One of the three reads as when it runs, not as what it is called.
+                Dim said As String = ""
+                If HookNames.TryGetValue(EpsHead.FunctionName(node.Text), said) Then Return said
+                Return node.Caption()
             Case Else
                 'A call the editor has words for reads as those words, the same
                 'ones the edit window shows. Anything else reads as it is written.
@@ -340,6 +350,11 @@ Public Class EpsTriggerForm
 
     Private Sub Tree_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles tree.AfterSelect
         chosen = TryCast(e.Node.Tag, Spot)
+        'Moving about with the arrow keys picks one thing, as it always did.
+        If Not picked.Contains(e.Node) Then
+            Unpick()
+            picked.Add(e.Node)
+        End If
     End Sub
 
     'A right click picks the node under the pointer, so the menu acts on it.
@@ -364,9 +379,19 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub Tree_MouseDown(sender As Object, e As MouseEventArgs) Handles tree.MouseDown
-        If e.Button <> MouseButtons.Right Then Return
         Dim under As TreeNode = tree.GetNodeAt(e.Location)
-        If under IsNot Nothing Then tree.SelectedNode = under
+        If under Is Nothing Then Return
+
+        If e.Button = MouseButtons.Right Then
+            'A right click on something already picked leaves the picking alone,
+            'so the menu acts on all of it.
+            If Not picked.Contains(under) Then Pick(under, False, False)
+            tree.SelectedNode = under
+            Return
+        End If
+
+        Pick(under, (Control.ModifierKeys And Keys.Control) = Keys.Control,
+                    (Control.ModifierKeys And Keys.Shift) = Keys.Shift)
     End Sub
 
     Private Sub Tree_DoubleClick(sender As Object, e As EventArgs) Handles tree.DoubleClick
@@ -466,6 +491,13 @@ Public Class EpsTriggerForm
     'missing, will not take them away, and puts everything new inside one of them.
     Private Shared ReadOnly Hooks As String() = {"onPluginStart", "beforeTriggerExec", "afterTriggerExec"}
 
+    'What each is called on the tree. euddraft wants the names on the left;
+    'a person reading a trigger wants to know when it runs.
+    Private Shared ReadOnly HookNames As New Dictionary(Of String, String)(StringComparer.Ordinal) From {
+        {"onPluginStart", "On map start"},
+        {"beforeTriggerExec", "Before map triggers"},
+        {"afterTriggerExec", "After map triggers"}}
+
     ''' <summary>
     ''' Whether a node is one of the three, which are not the editor's to change.
     ''' Wherever it stands: a hand-written file may have put one inside a folder,
@@ -527,6 +559,103 @@ Public Class EpsTriggerForm
             walk = walk.Parent
         End While
         Return If(HookNamed(Hooks(0)), root)
+    End Function
+#End Region
+
+#Region "Picking more than one"
+    'A TreeView holds one selection, and a person editing triggers wants to take
+    'a run of them at once. So the picking is the editor's own: the control keeps
+    'its idea of the node last clicked, and this keeps the rest.
+    '
+    'Only kin can be picked together. Picking a node and something inside it, or
+    'two nodes from different blocks, has no good meaning when they are copied or
+    'taken away, so a click outside the family starts again.
+
+    ''' <summary>Picks a node, adding to what is picked or starting again.</summary>
+    Private Sub Pick(one As TreeNode, add As Boolean, upTo As Boolean)
+        If one Is Nothing Then Return
+
+        Dim family As TreeNodeCollection = If(one.Parent Is Nothing, tree.Nodes, one.Parent.Nodes)
+        Dim kin As Boolean = picked.Count > 0 AndAlso
+                             Not (picked(0).Parent Is Nothing Xor one.Parent Is Nothing) AndAlso
+                             (picked(0).Parent Is Nothing OrElse picked(0).Parent Is one.Parent)
+
+        If Not kin Then
+            add = False
+            upTo = False
+        End If
+
+        If upTo Then
+            'Shift takes everything between what was picked first and this.
+            Dim from_ As Integer = family.IndexOf(picked(0))
+            Dim [to] As Integer = family.IndexOf(one)
+            Dim keep As TreeNode = picked(0)
+            Unpick()
+            picked.Add(keep)
+            For at = Math.Min(from_, [to]) To Math.Max(from_, [to])
+                If family(at) IsNot keep Then Show_(family(at))
+            Next
+        ElseIf add Then
+            If picked.Contains(one) Then
+                Hide_(one)
+                picked.Remove(one)
+            Else
+                Show_(one)
+            End If
+        Else
+            Unpick()
+            picked.Add(one)
+        End If
+
+        tree.SelectedNode = one
+        chosen = TryCast(one.Tag, Spot)
+        ShowCounts()
+    End Sub
+
+    Private Sub Show_(one As TreeNode)
+        If picked.Contains(one) Then Return
+        picked.Add(one)
+        If Not wasInk.ContainsKey(one) Then wasInk(one) = one.ForeColor
+        one.BackColor = SystemColors.Highlight
+        one.ForeColor = SystemColors.HighlightText
+    End Sub
+
+    Private Sub Hide_(one As TreeNode)
+        one.BackColor = Color.Empty
+        Dim ink As Color
+        If wasInk.TryGetValue(one, ink) Then
+            one.ForeColor = ink
+            wasInk.Remove(one)
+        End If
+    End Sub
+
+    ''' <summary>Lets go of everything picked.</summary>
+    Private Sub Unpick()
+        For Each one As TreeNode In picked
+            Hide_(one)
+        Next
+        picked.Clear()
+        wasInk.Clear()
+    End Sub
+
+    ''' <summary>
+    ''' What is picked, in the order it stands, as nodes of the source. A run of
+    ''' an if and its elses comes back whole however much of it was picked.
+    ''' </summary>
+    Private Function PickedNodes() As List(Of EpsNode)
+        Dim out As New List(Of EpsNode)
+        If picked.Count = 0 Then Return out
+
+        Dim family As TreeNodeCollection = If(picked(0).Parent Is Nothing, tree.Nodes, picked(0).Parent.Nodes)
+        For at = 0 To family.Count - 1
+            If Not picked.Contains(family(at)) Then Continue For
+            Dim spot As Spot = TryCast(family(at).Tag, Spot)
+            If spot Is Nothing OrElse spot.Part <> Part.Whole OrElse spot.Node Is Nothing Then Continue For
+            For Each one As EpsNode In Chain(spot.Node)
+                If Not out.Contains(one) Then out.Add(one)
+            Next
+        Next
+        Return out
     End Function
 #End Region
 
@@ -776,9 +905,13 @@ Public Class EpsTriggerForm
         'A single condition cannot be commented out on its own; it is part of a line.
         offItem.Enabled = whole
         offItem.Text = If(whole AndAlso chosen.Node.Off, "Turn on", "Turn off")
+        Dim many As Integer = PickedNodes().Count
         cutItem.Enabled = whole
         copyItem.Enabled = whole OrElse standing
         codeCopyItem.Enabled = whole OrElse standing
+        cutItem.Text = If(many > 1, "Cut " & many & " lines", "Cut")
+        copyItem.Text = If(many > 1, "Copy " & many & " lines", "Copy")
+        deleteItem.Text = If(many > 1, "Delete " & many & " lines", "Delete")
         deleteItem.Enabled = whole OrElse condition
         upItem.Enabled = whole OrElse condition
         downItem.Enabled = whole OrElse condition
@@ -813,9 +946,14 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub CopyChosen()
-        If chosen Is Nothing OrElse chosen.Part <> Part.Whole OrElse chosen.Node Is Nothing Then Return
+        Dim taking As List(Of EpsNode) = PickedNodes()
+        If taking.Count = 0 Then
+            If chosen Is Nothing OrElse chosen.Part <> Part.Whole OrElse chosen.Node Is Nothing Then Return
+            taking = Chain(chosen.Node)
+        End If
+
         held = New List(Of EpsNode)
-        For Each one As EpsNode In Chain(chosen.Node)
+        For Each one As EpsNode In taking
             held.Add(one.Clone())
         Next
     End Sub
@@ -871,15 +1009,23 @@ Public Class EpsTriggerForm
         If IsHook(chosen.Node) Then Return
         Dim parent As EpsNode = chosen.Node.Parent
 
-        'An else cannot stand without its if, so taking the if away takes the
-        'rest of the run with it. Taking an else away leaves the if alone.
-        If Continues(chosen.Node) Then
-            parent.Remove(chosen.Node)
-        Else
-            For Each one As EpsNode In Chain(chosen.Node)
-                parent.Remove(one)
-            Next
+        'Everything picked goes. An else cannot stand without its if, so taking
+        'the if away takes the rest of the run with it; taking an else away on
+        'its own leaves the if standing.
+        Dim taking As List(Of EpsNode) = PickedNodes()
+        If taking.Count = 0 Then
+            taking = If(Continues(chosen.Node),
+                        New List(Of EpsNode) From {chosen.Node},
+                        Chain(chosen.Node))
+        ElseIf taking.Count = 1 AndAlso Continues(chosen.Node) Then
+            taking = New List(Of EpsNode) From {chosen.Node}
         End If
+
+        For Each one As EpsNode In taking
+            If IsHook(one) Then Continue For
+            If one.Parent IsNot Nothing Then one.Parent.Remove(one)
+        Next
+        Unpick()
         chosen = New Spot(parent)
         Touched()
     End Sub
