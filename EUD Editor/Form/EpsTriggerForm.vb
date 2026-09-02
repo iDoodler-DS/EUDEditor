@@ -278,6 +278,7 @@ Public Class EpsTriggerForm
     End Sub
 
 
+
     Private Sub ShowCounts()
         Dim lines As Integer = 0
         Dim drawn As Integer = 0

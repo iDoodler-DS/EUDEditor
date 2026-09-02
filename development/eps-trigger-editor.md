@@ -23,11 +23,21 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
 
 - **A tree, like the advanced view.** Folders, functions, `if` and `while`
   blocks nest; each statement is a node.
-- **A line is edited in a window of its own**, opened by a double click or by
-  Enter. A line the editor knows is shown as its values, each with the list
-  that fills it, and the line it will write is shown underneath as it is built.
-  A line it does not know is shown as itself, in a box. That leaves the tab
-  itself to the tree and the source.
+- **A node is edited in a window of its own**, opened by a double click or by
+  Enter, and nothing is edited as text if the editor knows what it is:
+
+  | What it is | What the window shows |
+  | --- | --- |
+  | A call | Which call, from a list of all 506, and each of its values with the list that fills it |
+  | An if, else if or while | One row for each condition: which condition, then its values. Conditions can be added and taken away |
+  | A function | Its name, and a row for each argument |
+  | A for | The variable, where it starts, what it counts to, and what it does each time |
+  | A folder | Its name |
+  | Anything else | Itself, in a box, so nothing is ever out of reach |
+
+  The line it will write is shown underneath as it is built. Changing which
+  call a row holds draws the rest of the row again, with each value at what it
+  starts as.
 - **A new value starts at the first of its list**, because that is a value the
   game will take. A value with no list starts at 0.
 - **Turn a node off.** It is written as a comment, so euddraft passes over it
