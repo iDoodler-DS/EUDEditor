@@ -30,6 +30,7 @@
     "Label8": "Mineral",
     "GroupBox1": "Vital Statistics",
     "Button51": "Jump",
+    "JumpTip": "Open $S$ on its own page",
     "Label2": "Shields",
     "CheckBox1": "Use",
     "Label4": "Upgrade",

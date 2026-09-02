@@ -224,6 +224,119 @@ Public Class DatEditForm
     End Sub
 #End Region
 
+#Region "Jump to the entry a field names"
+    ' A field can name an entry of another kind of data: a unit names its weapons, a
+    ' weapon names its graphics, an order names the technology it needs. The list beside
+    ' such a field holds the names of those entries, and the button beside it opens the
+    ' entry on its own page.
+    '
+    ' One place now knows which kind of data each of those lists holds. The button, the
+    ' double click on the list and the state of the button all come from that one fact,
+    ' in place of a handler for each button that said the same thing again.
+    '
+    ' A jump is offered only when it leads somewhere: the kind of data must have a page,
+    ' and the value must name an entry. "None" and an unused field name no entry.
+
+    Private ReadOnly referenceTargets As New Dictionary(Of ComboBox, Integer)
+    Private ReadOnly jumpSources As New Dictionary(Of Button, ComboBox)
+    Private jumpTips As ToolTip
+
+    ''' <summary>
+    ''' Fills a list with the names of one kind of data, and remembers the kind, so a
+    ''' jump from this field knows where to go.
+    ''' </summary>
+    Private Sub FillReference(box As ComboBox, dataType As Integer,
+                              Optional jump As Button = Nothing,
+                              Optional extra As String = Nothing,
+                              Optional skip As Integer = 0,
+                              Optional take As Integer = 0)
+        box.SuspendLayout()
+        box.BeginUpdate()
+        box.Items.Clear()
+        If take > 0 Then
+            box.Items.AddRange(CODE(dataType).Skip(skip).Take(take).ToArray())
+        Else
+            box.Items.AddRange(CODE(dataType).ToArray())
+        End If
+        If extra IsNot Nothing Then box.Items.Add(extra)
+        box.EndUpdate()
+        box.ResumeLayout()
+
+        If Not referenceTargets.ContainsKey(box) Then
+            AddHandler box.DoubleClick, AddressOf ReferenceBox_DoubleClick
+        End If
+        referenceTargets(box) = dataType
+
+        If jump IsNot Nothing AndAlso Not jumpSources.ContainsKey(jump) Then
+            AddHandler jump.Click, AddressOf JumpButton_Click
+            jumpSources(jump) = box
+        End If
+    End Sub
+
+    Private Sub JumpButton_Click(sender As Object, e As EventArgs)
+        Dim box As ComboBox = Nothing
+        If jumpSources.TryGetValue(DirectCast(sender, Button), box) Then JumpToFieldEntry(box)
+    End Sub
+
+    Private Sub ReferenceBox_DoubleClick(sender As Object, e As EventArgs)
+        JumpToFieldEntry(DirectCast(sender, ComboBox))
+    End Sub
+
+    ''' <summary>Opens the entry this field names, on the page of its kind of data.</summary>
+    Private Sub JumpToFieldEntry(box As ComboBox)
+        Dim value As Integer
+        Dim dataType As Integer
+        If Not FieldPointsAt(box, dataType, value) Then Return
+
+        SelectDataTab(dataType)
+        SELECTLIST(value)
+    End Sub
+
+    ''' <summary>
+    ''' The entry a field names, if it names one that can be opened. The value comes
+    ''' from the data and not from the place in the list, because some lists start at an
+    ''' offset and some hold a "None" of their own.
+    ''' </summary>
+    Private Function FieldPointsAt(box As ComboBox, ByRef dataType As Integer, ByRef value As Integer) As Boolean
+        value = -1
+        If box Is Nothing OrElse Not referenceTargets.TryGetValue(box, dataType) Then Return False
+        If Not HasDataTab(dataType) Then Return False
+        If TAB_INDEX < 0 OrElse TAB_INDEX >= DatEditDATA.Count Then Return False
+
+        Dim field As String = TryCast(box.Tag, String)
+        If String.IsNullOrEmpty(field) Then Return False
+
+        value = CInt(DatEditDATA(TAB_INDEX).ReadValue(field, CUInt(_OBJECTNUM)))
+        If value < 0 OrElse dataType >= CODE.Count OrElse value >= CODE(dataType).Count Then
+            value = -1
+            Return False
+        End If
+        Return True
+    End Function
+
+    ''' <summary>
+    ''' Turns each jump button on or off for the entry on show, so a button that leads
+    ''' nowhere does not ask to be pressed.
+    ''' </summary>
+    Private Sub RefreshJumpButtons()
+        If jumpSources.Count = 0 Then Return
+        If jumpTips Is Nothing Then jumpTips = New ToolTip()
+
+        For Each pair As KeyValuePair(Of Button, ComboBox) In jumpSources
+            Dim dataType As Integer
+            Dim value As Integer
+            Dim canJump As Boolean = FieldPointsAt(pair.Value, dataType, value)
+
+            pair.Key.Enabled = canJump
+            If canJump Then
+                jumpTips.SetToolTip(pair.Key, Lan.GetText(Me.Name, "JumpTip").Replace("$S$", CODE(dataType)(value)))
+            Else
+                jumpTips.SetToolTip(pair.Key, "")
+            End If
+        Next
+    End Sub
+#End Region
+
 #Region "Which kind of data a tab shows"
     ' A tab shows one kind of data. The tab position was that number, so a page that
     ' was taken away moved every kind after it. Each page now carries its own number,
@@ -236,6 +349,14 @@ Public Class DatEditForm
     Private dataTabsReady As Boolean
 
     'Sets the number of each page, and takes away the pages that are not supported.
+    'Six buttons stand beside the overlay fields of an image. They carry the tag of
+    'another field by mistake, and no code ever answered them, so they do nothing.
+    Private Sub HideDeadButtons()
+        For Each b As Button In {Button35, Button36, Button37, Button38, Button39, Button40}
+            b.Visible = False
+        Next
+    End Sub
+
     Private Sub SetUpDataTabs()
         If dataTabsReady Then Return
         dataTabsReady = True
@@ -265,6 +386,14 @@ Public Class DatEditForm
         If page Is Nothing Then Return TAB_INDEX
         If TypeOf page.Tag Is Integer Then Return CInt(page.Tag)
         Return MainTAB.TabPages.IndexOf(page)
+    End Function
+
+    'Whether this kind of data still has a page. Portraits do not.
+    Private Function HasDataTab(dataType As Integer) As Boolean
+        For Each page As TabPage In MainTAB.TabPages
+            If DataTypeOfTab(page) = dataType Then Return True
+        Next
+        Return False
     End Function
 
     ''' <summary>Opens the page for one kind of data. Does nothing if it has no page.</summary>
@@ -423,6 +552,7 @@ Public Class DatEditForm
         Lan.SetLanguage(Me)
         Lan.SetMenu(Me, MenuStrip1)
         SetUpDataTabs()
+        HideDeadButtons()
         Lan.SetMenu(Me, ListMenu)
 
         ColorReset()
@@ -1387,26 +1517,11 @@ Public Class DatEditForm
     Private Sub LoadComboBoxAndList()
         Loadstattxt()
 
-        ComboBox1.SuspendLayout()
-        ComboBox1.BeginUpdate()
-        ComboBox1.Items.Clear()
-        ComboBox1.Items.AddRange(CODE(DTYPE.upgrades).ToArray)
-        ComboBox1.EndUpdate()
-        ComboBox1.ResumeLayout()
+        FillReference(ComboBox1, DTYPE.upgrades, Button51)
 
-        ComboBox4.SuspendLayout()
-        ComboBox4.BeginUpdate()
-        ComboBox4.Items.Clear()
-        ComboBox4.Items.AddRange(CODE(DTYPE.weapons).ToArray)
-        ComboBox4.EndUpdate()
-        ComboBox4.ResumeLayout()
+        FillReference(ComboBox4, DTYPE.weapons, Button3)
 
-        ComboBox5.SuspendLayout()
-        ComboBox5.BeginUpdate()
-        ComboBox5.Items.Clear()
-        ComboBox5.Items.AddRange(CODE(DTYPE.weapons).ToArray)
-        ComboBox5.EndUpdate()
-        ComboBox5.ResumeLayout()
+        FillReference(ComboBox5, DTYPE.weapons, Button4)
 
         LoadComboBoxFromFile(ComboBox6, "UnitSize.txt")
         LoadComboBoxFromFile(ComboBox20, "ElevationLevels.txt")
@@ -1428,188 +1543,64 @@ Public Class DatEditForm
         ComboBox23.EndUpdate()
         ComboBox23.ResumeLayout()
 
-        ComboBox7.BeginUpdate()
-        ComboBox7.SuspendLayout()
-        ComboBox7.Items.Clear()
-        ComboBox7.Items.AddRange(CODE(DTYPE.units).ToArray)
-        ComboBox7.Items.Add("None")
-        ComboBox7.EndUpdate()
-        ComboBox7.ResumeLayout()
+        FillReference(ComboBox7, DTYPE.units, Button1, extra:="None")
 
-        ComboBox8.SuspendLayout()
-        ComboBox8.BeginUpdate()
-        ComboBox8.Items.Clear()
-        ComboBox8.Items.AddRange(CODE(DTYPE.units).ToArray)
-        ComboBox8.Items.Add("None")
-        ComboBox8.EndUpdate()
-        ComboBox8.ResumeLayout()
+        FillReference(ComboBox8, DTYPE.units, Button2, extra:="None")
 
-        ComboBox9.SuspendLayout()
-        ComboBox9.BeginUpdate()
-        ComboBox9.Items.Clear()
-        ComboBox9.Items.AddRange(CODE(DTYPE.units).ToArray)
-        ComboBox9.Items.Add("None")
-        ComboBox9.EndUpdate()
-        ComboBox9.ResumeLayout()
+        FillReference(ComboBox9, DTYPE.units, Button6, extra:="None")
 
-        ComboBox10.SuspendLayout()
-        ComboBox10.BeginUpdate()
-        ComboBox10.Items.Clear()
-        ComboBox10.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
-        ComboBox10.EndUpdate()
-        ComboBox10.ResumeLayout()
+        FillReference(ComboBox10, DTYPE.sfxdata, Button7)
 
-        ComboBox11.SuspendLayout()
-        ComboBox11.BeginUpdate()
-        ComboBox11.Items.Clear()
-        ComboBox11.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
-        ComboBox11.EndUpdate()
-        ComboBox11.ResumeLayout()
+        FillReference(ComboBox11, DTYPE.sfxdata, Button8)
 
-        ComboBox12.SuspendLayout()
-        ComboBox12.BeginUpdate()
-        ComboBox12.Items.Clear()
-        ComboBox12.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
-        ComboBox12.EndUpdate()
-        ComboBox12.ResumeLayout()
+        FillReference(ComboBox12, DTYPE.sfxdata, Button9)
 
-        ComboBox13.SuspendLayout()
-        ComboBox13.BeginUpdate()
-        ComboBox13.Items.Clear()
-        ComboBox13.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
-        ComboBox13.EndUpdate()
-        ComboBox13.ResumeLayout()
+        FillReference(ComboBox13, DTYPE.sfxdata, Button10)
 
-        ComboBox14.SuspendLayout()
-        ComboBox14.BeginUpdate()
-        ComboBox14.Items.Clear()
-        ComboBox14.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
-        ComboBox14.EndUpdate()
-        ComboBox14.ResumeLayout()
+        FillReference(ComboBox14, DTYPE.sfxdata, Button11)
 
-        ComboBox15.SuspendLayout()
-        ComboBox15.BeginUpdate()
-        ComboBox15.Items.Clear()
-        ComboBox15.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
-        ComboBox15.EndUpdate()
-        ComboBox15.ResumeLayout()
+        FillReference(ComboBox15, DTYPE.sfxdata, Button12)
 
-        ComboBox16.SuspendLayout()
-        ComboBox16.BeginUpdate()
-        ComboBox16.Items.Clear()
-        ComboBox16.Items.AddRange(CODE(DTYPE.sfxdata).ToArray)
-        ComboBox16.EndUpdate()
-        ComboBox16.ResumeLayout()
+        FillReference(ComboBox16, DTYPE.sfxdata, Button13)
 
-        ComboBox17.SuspendLayout()
-        ComboBox17.BeginUpdate()
-        ComboBox17.Items.Clear()
-        ComboBox17.Items.AddRange(CODE(DTYPE.portdata).ToArray)
-        ComboBox17.EndUpdate()
-        ComboBox17.ResumeLayout()
+        FillReference(ComboBox17, DTYPE.portdata, Button14)
 
-        ComboBox18.SuspendLayout()
-        ComboBox18.BeginUpdate()
-        ComboBox18.Items.Clear()
-        ComboBox18.Items.AddRange(CODE(DTYPE.images).ToArray)
-        ComboBox18.EndUpdate()
-        ComboBox18.ResumeLayout()
+        FillReference(ComboBox18, DTYPE.images, Button15)
 
-        ComboBox19.SuspendLayout()
-        ComboBox19.BeginUpdate()
-        ComboBox19.Items.Clear()
-        ComboBox19.Items.AddRange(CODE(DTYPE.flingy).ToArray)
-        ComboBox19.EndUpdate()
-        ComboBox19.ResumeLayout()
+        FillReference(ComboBox19, DTYPE.flingy, Button16)
 
-        ComboBox24.SuspendLayout()
-        ComboBox24.BeginUpdate()
-        ComboBox24.Items.Clear()
-        ComboBox24.Items.AddRange(CODE(DTYPE.orders).ToArray)
-        ComboBox24.EndUpdate()
-        ResumeLayout()
+        FillReference(ComboBox24, DTYPE.orders, Button17)
 
-        ComboBox25.SuspendLayout()
-        ComboBox25.BeginUpdate()
-        ComboBox25.Items.Clear()
-        ComboBox25.Items.AddRange(CODE(DTYPE.orders).ToArray)
-        ComboBox25.EndUpdate()
-        ComboBox25.ResumeLayout()
+        FillReference(ComboBox25, DTYPE.orders, Button18)
 
-        ComboBox26.SuspendLayout()
-        ComboBox26.BeginUpdate()
-        ComboBox26.Items.Clear()
-        ComboBox26.Items.AddRange(CODE(DTYPE.orders).ToArray)
-        ComboBox26.EndUpdate()
-        ComboBox26.ResumeLayout()
+        FillReference(ComboBox26, DTYPE.orders, Button19)
 
-        ComboBox27.SuspendLayout()
-        ComboBox27.BeginUpdate()
-        ComboBox27.Items.Clear()
-        ComboBox27.Items.AddRange(CODE(DTYPE.orders).ToArray)
-        ComboBox27.EndUpdate()
-        ComboBox27.ResumeLayout()
+        FillReference(ComboBox27, DTYPE.orders, Button20)
 
-        ComboBox28.SuspendLayout()
-        ComboBox28.BeginUpdate()
-        ComboBox28.Items.Clear()
-        ComboBox28.Items.AddRange(CODE(DTYPE.orders).ToArray)
-        ComboBox28.EndUpdate()
-        ComboBox28.ResumeLayout()
+        FillReference(ComboBox28, DTYPE.orders, Button21)
 
         LoadComboBoxFromFile(ComboBox29, "Rightclick.txt")
         LoadListviewFromFile(ListView7, "AIInternal.txt")
 
         LoadComboBoxFromFile(ComboBox3, "DamTypes.txt")
         LoadComboBoxFromFile(ComboBox30, "Explosions.txt")
-        ComboBox31.SuspendLayout()
-        ComboBox31.BeginUpdate()
-        ComboBox31.Items.Clear()
-        ComboBox31.Items.AddRange(CODE(DTYPE.techdata).ToArray)
-        ComboBox31.EndUpdate()
-        ComboBox31.ResumeLayout()
+        FillReference(ComboBox31, DTYPE.techdata)
 
-        ComboBox2.SuspendLayout()
-        ComboBox2.BeginUpdate()
-        ComboBox2.Items.Clear()
-        ComboBox2.Items.AddRange(CODE(DTYPE.upgrades).ToArray)
-        ComboBox2.EndUpdate()
-        ComboBox2.ResumeLayout()
+        FillReference(ComboBox2, DTYPE.upgrades, Button52)
 
         LoadListviewFromFile(ListView8, "TargetType.txt")
         LoadComboBoxFromFile(ComboBox34, "Behaviours.txt")
 
-        ComboBox35.SuspendLayout()
-        ComboBox35.BeginUpdate()
-        ComboBox35.Items.Clear()
-        ComboBox35.Items.AddRange(CODE(DTYPE.flingy).ToArray)
-        ComboBox35.EndUpdate()
-        ComboBox35.ResumeLayout()
+        FillReference(ComboBox35, DTYPE.flingy, Button22)
         LoadComboBoxFromFile(ComboBox36, "Icon.txt")
 
-        ComboBox37.SuspendLayout()
-        ComboBox37.BeginUpdate()
-        ComboBox37.Items.Clear()
-        ComboBox37.Items.AddRange(CODE(DTYPE.sprites).ToArray)
-        ComboBox37.EndUpdate()
-        ComboBox37.ResumeLayout()
+        FillReference(ComboBox37, DTYPE.sprites, Button23)
 
         LoadComboBoxFromFile(ComboBox38, "FlingyControl.txt")
 
-        ComboBox39.SuspendLayout()
-        ComboBox39.BeginUpdate()
-        ComboBox39.Items.Clear()
-        ComboBox39.Items.AddRange(CODE(DTYPE.images).ToArray)
-        ComboBox39.EndUpdate()
-        ComboBox39.ResumeLayout()
+        FillReference(ComboBox39, DTYPE.images, Button24)
 
-        ComboBox40.SuspendLayout()
-        ComboBox40.BeginUpdate()
-        ComboBox40.Items.Clear()
-        'Images 561 to 816 only; trimming the full list one entry at a time was slow.
-        ComboBox40.Items.AddRange(CODE(DTYPE.images).Skip(561).Take(256).ToArray())
-        ComboBox40.EndUpdate()
-        ComboBox40.ResumeLayout()
+        FillReference(ComboBox40, DTYPE.images, Button25, skip:=561, take:=256)
 
         LoadComboBoxFromFile(ComboBox41, "Icon.txt")
 
@@ -1620,26 +1611,11 @@ Public Class DatEditForm
         LoadComboBoxFromFile(ComboBox46, "Races.txt")
         ComboBox46.Items.Add("All")
 
-        ComboBox47.SuspendLayout()
-        ComboBox47.BeginUpdate()
-        ComboBox47.Items.Clear()
-        ComboBox47.Items.AddRange(CODE(DTYPE.weapons).ToArray)
-        ComboBox47.EndUpdate()
-        ComboBox47.ResumeLayout()
+        FillReference(ComboBox47, DTYPE.weapons, Button26)
 
-        ComboBox48.SuspendLayout()
-        ComboBox48.BeginUpdate()
-        ComboBox48.Items.Clear()
-        ComboBox48.Items.AddRange(CODE(DTYPE.techdata).ToArray)
-        ComboBox48.EndUpdate()
-        ComboBox48.ResumeLayout()
+        FillReference(ComboBox48, DTYPE.techdata, Button27)
 
-        ComboBox49.SuspendLayout()
-        ComboBox49.BeginUpdate()
-        ComboBox49.Items.Clear()
-        ComboBox49.Items.AddRange(CODE(DTYPE.orders).ToArray)
-        ComboBox49.EndUpdate()
-        ComboBox49.ResumeLayout()
+        FillReference(ComboBox49, DTYPE.orders)
 
         LoadComboBoxFromFile(ComboBox51, "Animations.txt")
         LoadComboBoxFromFile(ComboBox52, "Icon.txt")
@@ -1711,6 +1687,7 @@ Public Class DatEditForm
 
         loadSTATUS = True
         HPloadSTATUS = True
+        RefreshJumpButtons()
         Me.ResumeLayout()
     End Sub
 
@@ -4909,375 +4886,6 @@ Public Class DatEditForm
                 SoundPlay("sound\" & Replace(ComboBox53.SelectedItem, "(1)", "").Trim)
             End If
         End If
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button3.Tag, _OBJECTNUM)
-            If CODE(DTYPE.weapons).Count > value + 1 Then
-                TAB_INDEX = DTYPE.weapons
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button3_Click")
-
-        End Try
-
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button4.Tag, _OBJECTNUM)
-            If CODE(DTYPE.weapons).Count > value + 1 Then
-                TAB_INDEX = DTYPE.weapons
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button4_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button1.Tag, _OBJECTNUM)
-            If CODE(DTYPE.units).Count > value + 1 Then
-                TAB_INDEX = DTYPE.units
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button1_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button2.Tag, _OBJECTNUM)
-            If CODE(DTYPE.units).Count > value Then
-                TAB_INDEX = DTYPE.units
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button2_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button6.Tag, _OBJECTNUM)
-            If CODE(DTYPE.units).Count > value Then
-                TAB_INDEX = DTYPE.units
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button6_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button12.Tag, _OBJECTNUM)
-            If CODE(DTYPE.sfxdata).Count > value Then
-                TAB_INDEX = DTYPE.sfxdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button12_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button13.Tag, _OBJECTNUM)
-            If CODE(DTYPE.sfxdata).Count > value Then
-                TAB_INDEX = DTYPE.sfxdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button13_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button10.Tag, _OBJECTNUM)
-            If CODE(DTYPE.sfxdata).Count > value Then
-                TAB_INDEX = DTYPE.sfxdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button10_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button11.Tag, _OBJECTNUM)
-            If CODE(DTYPE.sfxdata).Count > value Then
-                TAB_INDEX = DTYPE.sfxdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button11_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button9.Tag, _OBJECTNUM)
-            If CODE(DTYPE.sfxdata).Count > value Then
-                TAB_INDEX = DTYPE.sfxdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button9_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button8.Tag, _OBJECTNUM)
-            If CODE(DTYPE.sfxdata).Count > value Then
-                TAB_INDEX = DTYPE.sfxdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button8_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button7.Tag, _OBJECTNUM)
-            If CODE(DTYPE.sfxdata).Count > value Then
-                TAB_INDEX = DTYPE.sfxdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button7_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button16.Tag, _OBJECTNUM)
-            If CODE(DTYPE.flingy).Count > value Then
-                TAB_INDEX = DTYPE.flingy
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button16_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button15.Tag, _OBJECTNUM)
-            If CODE(DTYPE.images).Count > value Then
-                TAB_INDEX = DTYPE.images
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button15_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button14.Tag, _OBJECTNUM)
-            If CODE(DTYPE.portdata).Count > value Then
-                TAB_INDEX = DTYPE.portdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button14_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button21_Click(sender As Object, e As EventArgs) Handles Button21.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button21.Tag, _OBJECTNUM)
-            If CODE(DTYPE.orders).Count > value + 1 Then
-                TAB_INDEX = DTYPE.orders
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button21_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button20.Tag, _OBJECTNUM)
-            If CODE(DTYPE.orders).Count > value + 1 Then
-                TAB_INDEX = DTYPE.orders
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button20_Click")
-
-        End Try
-
-    End Sub
-
-    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button19.Tag, _OBJECTNUM)
-            If CODE(DTYPE.orders).Count > value + 1 Then
-                TAB_INDEX = DTYPE.orders
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button19_Click")
-
-        End Try
-
-    End Sub
-
-    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button18.Tag, _OBJECTNUM)
-            If CODE(DTYPE.orders).Count > value + 1 Then
-                TAB_INDEX = DTYPE.orders
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button18_Click")
-
-        End Try
-
-    End Sub
-
-    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button17.Tag, _OBJECTNUM)
-            If CODE(DTYPE.orders).Count > value + 1 Then
-                TAB_INDEX = DTYPE.orders
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button17_Click")
-
-        End Try
-
-    End Sub
-
-    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.weapons).ReadValue(Button22.Tag, _OBJECTNUM)
-            If CODE(DTYPE.flingy).Count > value Then
-                TAB_INDEX = DTYPE.flingy
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button22_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button23_Click(sender As Object, e As EventArgs) Handles Button23.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.flingy).ReadValue(Button23.Tag, _OBJECTNUM)
-            If CODE(DTYPE.sprites).Count > value Then
-                TAB_INDEX = DTYPE.sprites
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button23_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button24_Click(sender As Object, e As EventArgs) Handles Button24.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.sprites).ReadValue(Button24.Tag, _OBJECTNUM)
-            If CODE(DTYPE.images).Count > value Then
-                TAB_INDEX = DTYPE.images
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button24_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button25_Click(sender As Object, e As EventArgs) Handles Button25.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.sprites).ReadValue(Button25.Tag, _OBJECTNUM)
-            If CODE(DTYPE.images).Count > value Then
-                TAB_INDEX = DTYPE.images
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button25_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button51_Click(sender As Object, e As EventArgs) Handles Button51.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.units).ReadValue(Button51.Tag, _OBJECTNUM)
-            If CODE(DTYPE.upgrades).Count > value Then
-                TAB_INDEX = DTYPE.upgrades
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button51_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button52_Click(sender As Object, e As EventArgs) Handles Button52.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.weapons).ReadValue(Button52.Tag, _OBJECTNUM)
-            If CODE(DTYPE.upgrades).Count > value Then
-                TAB_INDEX = DTYPE.upgrades
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button52_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button26_Click(sender As Object, e As EventArgs) Handles Button26.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.orders).ReadValue(Button26.Tag, _OBJECTNUM)
-            If CODE(DTYPE.weapons).Count > value + 1 Then
-                TAB_INDEX = DTYPE.weapons
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button26_Click")
-
-        End Try
-    End Sub
-
-    Private Sub Button27_Click(sender As Object, e As EventArgs) Handles Button27.Click
-        Try
-            Dim value As Integer = DatEditDATA(DTYPE.orders).ReadValue(Button27.Tag, _OBJECTNUM)
-            If CODE(DTYPE.techdata).Count > value + 1 Then
-                TAB_INDEX = DTYPE.techdata
-                SELECTLIST(value)
-            End If
-        Catch ex As Exception
-            LogSuppressed(ex, "DatEditForm.Button27_Click")
-
-        End Try
     End Sub
 
     Private Sub TextBox107_TextChanged(sender As Object, e As EventArgs) Handles TextBox107.TextChanged
