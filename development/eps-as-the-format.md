@@ -4,6 +4,7 @@ A note on what it would take, with a spike that shows the shape of the work.
 Run it with:
 
     python development/spike/eps_roundtrip.py --corpus <folder of projects>
+    python development/spike/test_roundtrip.py
 
 ## Where this comes from
 
@@ -50,6 +51,20 @@ euddraft passes over them and a person still reads them:
 
 A switched-off node is a commented-out node. That is what a reader would expect
 it to mean, and it is what the editor means by it.
+
+A folder that is switched off takes everything in it with it. The editor writes
+no code for a node that is off and none for anything under it, so the text
+comments the whole block, a line at a time:
+
+    //@folder-off Old wave code
+    //CreateUnit(1, "Zergling", "Anywhere", 2);
+    //DisplayText("wave 3", 4);
+    //@end
+
+One mark goes on and one mark comes off, so a folder inside a folder keeps its
+own mark and reads back with its own state. Marking each line rather than
+wrapping the block in /* */ matters: the blocks people already keep in raw
+nodes contain comments of their own, and a wrapper would end at the first one.
 
 ## Anything else stays raw
 

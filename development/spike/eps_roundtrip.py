@@ -228,10 +228,22 @@ class Writer:
         # A folder is the editor's own idea, so it goes in as a comment.
         if node.kind == FOLDER:
             title = (node.values[0] if node.values else EMPTY).replace('\n', ' ')
-            out = [pad + EDITOR_MARK + 'folder ' + title]
+            inside = []
             for child in node.children:
-                out += self.write(child, depth)
-            return out + [pad + EDITOR_MARK + 'end']
+                inside += self.write(child, depth)
+
+            if node.off:
+                # A folder that is switched off takes everything in it with it.
+                # That is what the editor does: a node that is off writes no
+                # code at all, and neither does anything under it. So the whole
+                # block is commented out, one line at a time. Two marks in a
+                # row are safe, and a folder inside a folder simply gets two.
+                return ([pad + EDITOR_MARK + 'folder-off ' + title] +
+                        ['//' + line for line in inside] +
+                        [pad + EDITOR_MARK + 'end'])
+
+            return ([pad + EDITOR_MARK + 'folder ' + title] + inside +
+                    [pad + EDITOR_MARK + 'end'])
 
         if node.kind in PASS_THROUGH:
             out = []
@@ -338,12 +350,24 @@ class Reader:
             if not line:
                 continue
 
-            if line.startswith(EDITOR_MARK + 'folder '):
-                folder = Node(FOLDER)
-                folder.values = [line[len(EDITOR_MARK + 'folder '):]]
+            opener = None
+            for mark in (EDITOR_MARK + 'folder-off ', EDITOR_MARK + 'folder '):
+                if line.startswith(mark):
+                    opener = mark
+                    break
+            if opener:
+                off = opener.endswith('-off ')
+                folder = Node(FOLDER, off=off)
+                folder.values = [line[len(opener):]]
                 end = self.matching(lines, at, stop,
-                                    EDITOR_MARK + 'folder ', EDITOR_MARK + 'end')
-                self.fill(folder, lines, at, end)
+                                    (EDITOR_MARK + 'folder-off ', EDITOR_MARK + 'folder '),
+                                    EDITOR_MARK + 'end')
+                inside = lines[at:end]
+                if off:
+                    # Take off the one mark this folder put on, and no more: a
+                    # folder inside it takes off its own.
+                    inside = [l[2:] if l.startswith('//') else l for l in inside]
+                self.fill(folder, inside, 0, len(inside))
                 parent.children.append(folder)
                 at = end + 1
                 continue
@@ -467,11 +491,14 @@ class Reader:
         return stop
 
     @staticmethod
-    def matching(lines, at, stop, opener, closer):
+    def matching(lines, at, stop, openers, closer):
+        """Where the block that has just opened ends."""
+        if isinstance(openers, str):
+            openers = (openers,)
         depth = 1
         while at < stop:
             line = lines[at].strip()
-            if line.startswith(opener):
+            if any(line.startswith(o) for o in openers):
                 depth += 1
             elif line == closer:
                 depth -= 1
@@ -519,7 +546,7 @@ def shape(node):
         text = node.values[0] if node.values else EMPTY
         return (RAW, EMPTY.join(text.split()))
     if node.kind == FOLDER:
-        return (FOLDER, (node.values[0] if node.values else EMPTY).strip())
+        return (FOLDER, (node.values[0] if node.values else EMPTY).strip(), node.off)
     if node.kind == FUNCTION_DEF:
         return (FUNCTION_DEF, (node.values[0] if node.values else EMPTY).strip())
     return (node.kind,)
