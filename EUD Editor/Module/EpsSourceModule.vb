@@ -100,10 +100,30 @@ Namespace EpsSource
         ''' <summary>The whole of a source file, as a tree.</summary>
         Public Function Parse(text As String) As EpsNode
             Dim root As New EpsNode(EpsKind.Root)
-            Dim lines As String() = If(text, "").Replace(vbCrLf, vbLf).Split(CChar(vbLf))
+            Dim lines As String() = Split_(If(text, ""))
             Dim at As Integer = 0
             Fill(root, lines, at, lines.Length)
             Return root
+        End Function
+
+        ''' <summary>
+        ''' The lines of the text, with a closing brace put on a line of its own.
+        ''' People write "} else {", and the reader wants the brace that closes the
+        ''' block it is in to stand alone so it can see the block end there.
+        ''' </summary>
+        Private Function Split_(text As String) As String()
+            Dim out As New List(Of String)
+            For Each line As String In text.Replace(vbCrLf, vbLf).Split(CChar(vbLf))
+                Dim body As String = line.TrimStart()
+                If body.StartsWith("}") AndAlso body.Length > 1 AndAlso body.Substring(1).Trim() <> "" Then
+                    Dim pad As String = line.Substring(0, line.Length - body.Length)
+                    out.Add(pad & "}")
+                    out.Add(pad & body.Substring(1).Trim())
+                Else
+                    out.Add(line)
+                End If
+            Next
+            Return out.ToArray()
         End Function
 
         'Reads lines from `at` up to `stop` into `parent`.

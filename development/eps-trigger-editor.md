@@ -10,17 +10,49 @@ editor cannot draw is still that line, spelled the way it was written.
 
 ## What it does
 
+The commands are the ones the old editor puts on its own tree, on a right click:
+
+    New >    Folder, Comment, Action, Condition,
+             If, Else if, Else, While, For, Function
+    Fold, Unfold, Fold all, Unfold all
+    Edit, Turn off
+    Cut, Copy, Copy as text, Paste, Delete
+    Move up, Move down
+
+with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
+
 - **A tree, like the advanced view.** Folders, functions, `if` and `while`
   blocks nest; each statement is a node.
-- **Fields for a line it knows.** Pick `CreateUnit(...)` and its four values are
-  named and typed: Unit, Where and ForPlayer are drop-downs filled from this
-  project, Number is a box. 506 names are known.
+- **A line is edited in a window of its own**, opened by a double click or by
+  Enter. A line the editor knows is shown as its values, each with the list
+  that fills it, and the line it will write is shown underneath as it is built.
+  A line it does not know is shown as itself, in a box. That leaves the tab
+  itself to the tree and the source.
+- **A new value starts at the first of its list**, because that is a value the
+  game will take. A value with no list starts at 0.
 - **Turn a node off.** It is written as a comment, so euddraft passes over it
   and a person still reads it. A folder that is off takes everything in it.
 - **Edit as text.** The source is shown beside the tree and can be edited
   directly; pressing the button again reads it back into the tree.
 - **Build map.** Writes the source and a settings file, and runs euddraft on
   them, with the output going to the same log at the foot of the window.
+
+### What the new items write
+
+    Folder      //@folder <name> ... //@end
+    If          if (Always()) { }
+    Else if     else if (Always()) { }
+    Else        else { }
+    While       while (Always()) { }
+    For         for (var i = 0; i < 10; i++) { }
+    Function    function newFunction() { }
+
+An else or an else if is put after the block it follows, not inside it. The
+spellings are the ones euddraft's own sample uses, and all of them were put
+through euddraft to check that they compile.
+
+A condition is a test, so it joins the head of the `if`, `else if` or `while`
+that is selected, with `&&`. On anything else it starts an `if` of its own.
 
 ## Where the source is kept
 
@@ -97,8 +129,10 @@ unchanged. To read them again:
 ## What it is not yet
 
 - No undo of its own. The Edit menu of this tab does nothing yet.
-- No search, and no move of a node from one place to another except by editing
-  the text.
+- No search. A node moves up and down among its own kin, but not from one
+  block into another except by cut and paste.
+- Switch and case are not offered, because the old editor writes them as a
+  state machine of its own rather than as anything epScript spells.
 - The classic triggers of a project are not offered for import.
 - A statement is read a line at a time, so a call written across several lines
   is one node holding all of them, and its fields are not drawn.

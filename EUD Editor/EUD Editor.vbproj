@@ -601,6 +601,8 @@
     <Compile Include="Module\EpsBuildModule.vb" />
     <Compile Include="Form\EpsTriggerForm.vb" />
     <Compile Include="Form\EpsPickCallForm.vb" />
+    <Compile Include="Form\EpsEditLineForm.vb" />
+    <Compile Include="Module\EpsLineModule.vb" />
     <Compile Include="Module\PickerFilterModule.vb" />
     <Compile Include="Form\CrashForm.vb" />
     <Compile Include="Module\NPAModule.vb" />

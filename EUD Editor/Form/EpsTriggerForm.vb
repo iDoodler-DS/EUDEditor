@@ -1,6 +1,4 @@
 ﻿Imports System.IO
-Imports System.Text
-Imports System.Text.RegularExpressions
 Imports EUD_Editor.EpsSource
 
 ''' <summary>
@@ -11,33 +9,52 @@ Imports EUD_Editor.EpsSource
 ''' lost in the round trip, because nothing is converted: a line the editor cannot
 ''' draw is still a line, spelled the way it was written.
 '''
-''' It is built in code rather than in the designer, because every part of it is
-''' made from the source that is open.
+''' The commands are the ones the old editor puts on its own tree: new things,
+''' fold and unfold, edit, cut, copy, paste, delete, move. A line is edited in a
+''' window of its own, opened by a double click or by Enter, which leaves the room
+''' to the tree and the source.
 ''' </summary>
 Public Class EpsTriggerForm
     Inherits Form
 
     Private WithEvents tree As New TreeView()
     Private ReadOnly source As New TextBox()
-    Private ReadOnly fields As New TableLayoutPanel()
-    Private ReadOnly heading As New Label()
-    Private ReadOnly note As New Label()
     Private ReadOnly status As New Label()
-
-    Private WithEvents offButton As New Button()
-    Private WithEvents deleteButton As New Button()
-    Private WithEvents addButton As New Button()
-    Private WithEvents folderButton As New Button()
-    Private WithEvents buildButton As New Button()
-    Private WithEvents sourceButton As New Button()
-
     Private ReadOnly split As New SplitContainer()
-    Private ReadOnly rightSplit As New SplitContainer()
+
+    Private WithEvents editButton As New Button()
+    Private WithEvents sourceButton As New Button()
+    Private WithEvents buildButton As New Button()
+
+    Private WithEvents menu As New ContextMenuStrip()
+    Private WithEvents newFolder As New ToolStripMenuItem("Folder")
+    Private WithEvents newComment As New ToolStripMenuItem("Comment")
+    Private WithEvents newAction As New ToolStripMenuItem("Action")
+    Private WithEvents newCondition As New ToolStripMenuItem("Condition")
+    Private WithEvents newIf As New ToolStripMenuItem("If")
+    Private WithEvents newElseIf As New ToolStripMenuItem("Else if")
+    Private WithEvents newElse As New ToolStripMenuItem("Else")
+    Private WithEvents newWhile As New ToolStripMenuItem("While")
+    Private WithEvents newFor As New ToolStripMenuItem("For")
+    Private WithEvents newFunction As New ToolStripMenuItem("Function")
+    Private WithEvents foldItem As New ToolStripMenuItem("Fold")
+    Private WithEvents unfoldItem As New ToolStripMenuItem("Unfold")
+    Private WithEvents foldAllItem As New ToolStripMenuItem("Fold all")
+    Private WithEvents unfoldAllItem As New ToolStripMenuItem("Unfold all")
+    Private WithEvents editItem As New ToolStripMenuItem("Edit")
+    Private WithEvents offItem As New ToolStripMenuItem("Turn off")
+    Private WithEvents cutItem As New ToolStripMenuItem("Cut")
+    Private WithEvents copyItem As New ToolStripMenuItem("Copy")
+    Private WithEvents codeCopyItem As New ToolStripMenuItem("Copy as text")
+    Private WithEvents pasteItem As New ToolStripMenuItem("Paste")
+    Private WithEvents deleteItem As New ToolStripMenuItem("Delete")
+    Private WithEvents upItem As New ToolStripMenuItem("Move up")
+    Private WithEvents downItem As New ToolStripMenuItem("Move down")
 
     Private root As EpsNode = New EpsNode(EpsKind.Root)
     Private chosen As EpsNode
-    Private filling As Boolean
-    Private dirty As Boolean
+    Private held As EpsNode          'what was cut or copied
+    Private placed As Boolean
 
     ''' <summary>Where the source of a project is kept, beside the project file.</summary>
     Public Shared Function SourcePath(projectFile As String) As String
@@ -50,16 +67,14 @@ Public Class EpsTriggerForm
         Me.Text = "epScript triggers"
         Me.Font = SystemFonts.MessageBoxFont
         BuildLayout()
+        BuildMenu()
     End Sub
 
 #Region "How it is put together"
     Private Sub BuildLayout()
         Dim bar As New FlowLayoutPanel With {.Dock = DockStyle.Top, .Height = 32,
                                              .Padding = New Padding(4, 3, 4, 3)}
-        For Each pair In {Tuple.Create(addButton, "Add"),
-                          Tuple.Create(folderButton, "New folder"),
-                          Tuple.Create(offButton, "Turn off"),
-                          Tuple.Create(deleteButton, "Delete"),
+        For Each pair In {Tuple.Create(editButton, "Edit"),
                           Tuple.Create(sourceButton, "Edit as text"),
                           Tuple.Create(buildButton, "Build map")}
             pair.Item1.Text = pair.Item2
@@ -67,7 +82,6 @@ Public Class EpsTriggerForm
             pair.Item1.Margin = New Padding(0, 0, 6, 0)
             bar.Controls.Add(pair.Item1)
         Next
-
         status.AutoSize = True
         status.Margin = New Padding(12, 6, 0, 0)
         bar.Controls.Add(status)
@@ -77,29 +91,6 @@ Public Class EpsTriggerForm
         tree.FullRowSelect = True
         tree.ShowLines = True
 
-        heading.Dock = DockStyle.Top
-        heading.AutoSize = False
-        heading.Height = 22
-        heading.Font = New Font(Me.Font, FontStyle.Bold)
-        heading.Padding = New Padding(2, 4, 2, 0)
-
-        note.Dock = DockStyle.Top
-        note.AutoSize = False
-        note.Height = 32
-        note.Padding = New Padding(2, 0, 2, 4)
-
-        fields.Dock = DockStyle.Fill
-        fields.ColumnCount = 2
-        fields.AutoScroll = True
-        fields.Padding = New Padding(2)
-        fields.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 130))
-        fields.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100))
-
-        Dim right As New Panel With {.Dock = DockStyle.Fill}
-        right.Controls.Add(fields)
-        right.Controls.Add(note)
-        right.Controls.Add(heading)
-
         source.Dock = DockStyle.Fill
         source.Multiline = True
         source.ScrollBars = ScrollBars.Both
@@ -107,25 +98,36 @@ Public Class EpsTriggerForm
         source.ReadOnly = True
         source.Font = New Font("Consolas", 9.0F)
 
-        rightSplit.Dock = DockStyle.Fill
-        rightSplit.Orientation = Orientation.Horizontal
-        rightSplit.Panel1.Controls.Add(right)
-        rightSplit.Panel2.Controls.Add(source)
-
         split.Dock = DockStyle.Fill
         split.Panel1.Controls.Add(tree)
-        split.Panel2.Controls.Add(rightSplit)
+        split.Panel2.Controls.Add(source)
 
         Me.Controls.Add(split)
         Me.Controls.Add(bar)
     End Sub
+
+    'The commands the old editor puts on its tree, in the order it puts them.
+    Private Sub BuildMenu()
+        Dim newItem As New ToolStripMenuItem("New")
+        newItem.DropDownItems.AddRange(New ToolStripItem() {
+            newFolder, newComment, New ToolStripSeparator(),
+            newAction, newCondition, New ToolStripSeparator(),
+            newIf, newElseIf, newElse, New ToolStripSeparator(),
+            newWhile, newFor, New ToolStripSeparator(), newFunction})
+
+        menu.Items.AddRange(New ToolStripItem() {
+            newItem, New ToolStripSeparator(),
+            foldItem, unfoldItem, foldAllItem, unfoldAllItem, New ToolStripSeparator(),
+            editItem, offItem, New ToolStripSeparator(),
+            cutItem, copyItem, codeCopyItem, pasteItem, deleteItem, New ToolStripSeparator(),
+            upItem, downItem})
+        tree.ContextMenuStrip = menu
+    End Sub
 #End Region
 
 #Region "Opening and keeping"
-    Private placed As Boolean
-
     Private Sub EpsTriggerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        PlaceSplitters()
+        PlaceSplitter()
         LoadFromProject()
         Try
             ThemeSetForm.SetControlColor(Me)
@@ -135,21 +137,17 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub EpsTriggerForm_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
-        If Not placed Then PlaceSplitters()
+        If Not placed Then PlaceSplitter()
     End Sub
 
-    'The tree takes the left half; the fields and the source share the right.
-    Private Sub PlaceSplitters()
+    Private Sub PlaceSplitter()
         Try
             If split.Width > 200 Then
-                split.SplitterDistance = CInt(split.Width * 0.5)
+                split.SplitterDistance = CInt(split.Width * 0.55)
                 placed = True
             End If
-            If rightSplit.Height > 200 Then
-                rightSplit.SplitterDistance = CInt(rightSplit.Height * 0.5)
-            End If
         Catch ex As Exception
-            LogSuppressed(ex, "EpsTriggerForm.PlaceSplitters")
+            LogSuppressed(ex, "EpsTriggerForm.PlaceSplitter")
         End Try
     End Sub
 
@@ -165,7 +163,6 @@ Public Class EpsTriggerForm
             End Try
         End If
         SetSource(text)
-        dirty = False
     End Sub
 
     ''' <summary>Writes the source beside the project. Called when the project saves.</summary>
@@ -174,17 +171,10 @@ Public Class EpsTriggerForm
         If path = "" Then Return
         Try
             File.WriteAllText(path, EpsWriter.Write(root))
-            dirty = False
         Catch ex As Exception
             LogException(ex, "writing " & path)
         End Try
     End Sub
-
-    Public ReadOnly Property HasSource As Boolean
-        Get
-            Return root.Children.Count > 0
-        End Get
-    End Property
 
     Public Function CurrentSource() As String
         Return EpsWriter.Write(root)
@@ -192,8 +182,8 @@ Public Class EpsTriggerForm
 
     Private Sub SetSource(text As String)
         root = EpsReader.Parse(text)
+        chosen = Nothing
         RebuildTree()
-        RefreshSource()
     End Sub
 #End Region
 
@@ -212,6 +202,7 @@ Public Class EpsTriggerForm
         If tree.SelectedNode Is Nothing AndAlso tree.Nodes.Count > 0 Then
             tree.SelectedNode = tree.Nodes(0)
         End If
+        RefreshSource()
         ShowCounts()
     End Sub
 
@@ -249,242 +240,73 @@ Public Class EpsTriggerForm
         Next
     End Function
 
-
     Private Sub Tree_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles tree.AfterSelect
         chosen = TryCast(e.Node.Tag, EpsNode)
-        ShowFields()
     End Sub
 
+    'A right click picks the node under the pointer, so the menu acts on it.
+    Private Sub Tree_MouseDown(sender As Object, e As MouseEventArgs) Handles tree.MouseDown
+        If e.Button <> MouseButtons.Right Then Return
+        Dim under As TreeNode = tree.GetNodeAt(e.Location)
+        If under IsNot Nothing Then tree.SelectedNode = under
+    End Sub
+
+    Private Sub Tree_DoubleClick(sender As Object, e As EventArgs) Handles tree.DoubleClick
+        EditChosen()
+    End Sub
+
+    Private Sub Tree_KeyDown(sender As Object, e As KeyEventArgs) Handles tree.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            EditChosen()
+            e.Handled = True
+        ElseIf e.KeyCode = Keys.Delete Then
+            DeleteChosen()
+            e.Handled = True
+        ElseIf e.Control AndAlso e.KeyCode = Keys.C Then
+            If chosen IsNot Nothing Then held = chosen.Clone()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.X Then
+            CutChosen()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.V Then
+            PasteHeld()
+        ElseIf e.Control AndAlso e.KeyCode = Keys.Up Then
+            Move(-1)
+            e.Handled = True
+        ElseIf e.Control AndAlso e.KeyCode = Keys.Down Then
+            Move(1)
+            e.Handled = True
+        End If
+    End Sub
+
+
     Private Sub ShowCounts()
-        Dim statements As Integer = 0
+        Dim lines As Integer = 0
         Dim drawn As Integer = 0
         For Each node As EpsNode In root.Walk()
             If node.Kind <> EpsKind.Statement Then Continue For
-            statements += 1
-            If EpsSymbols.Find(CallOf(node.Text)) IsNot Nothing Then drawn += 1
+            lines += 1
+            If EpsSymbols.Find(EpsLines.CallOf(node.Text)) IsNot Nothing Then drawn += 1
         Next
         status.Text = String.Format("{0} lines, {1} known to the editor, {2} names in the book",
-                                    statements, drawn, EpsSymbols.Count)
-    End Sub
-#End Region
-
-#Region "The fields of one line"
-    'The name of the call a line makes, if it makes one.
-    Private Shared Function CallOf(text As String) As String
-        Dim head As Match = Regex.Match(If(text, "").Trim(), "^([A-Za-z_]\w*)\s*\(")
-        Return If(head.Success, head.Groups(1).Value, "")
-    End Function
-
-    'What a call was given, split on the commas that are not inside something.
-    Private Shared Function ValuesOf(text As String) As List(Of String)
-        Dim out As New List(Of String)
-        Dim body As String = If(text, "").Trim().TrimEnd(";"c).Trim()
-        Dim opened As Integer = body.IndexOf("("c)
-        If opened < 0 OrElse Not body.EndsWith(")") Then Return out
-        body = body.Substring(opened + 1, body.Length - opened - 2)
-
-        Dim depth As Integer = 0
-        Dim quote As Char = ChrW(0)
-        Dim current As New StringBuilder()
-        For Each ch As Char In body
-            If quote <> ChrW(0) Then
-                current.Append(ch)
-                If ch = quote Then quote = ChrW(0)
-                Continue For
-            End If
-            Select Case ch
-                Case """"c, "'"c
-                    quote = ch
-                    current.Append(ch)
-                Case "("c, "["c, "{"c
-                    depth += 1
-                    current.Append(ch)
-                Case ")"c, "]"c, "}"c
-                    depth -= 1
-                    current.Append(ch)
-                Case ","c
-                    If depth = 0 Then
-                        out.Add(current.ToString().Trim())
-                        current.Clear()
-                    Else
-                        current.Append(ch)
-                    End If
-                Case Else
-                    current.Append(ch)
-            End Select
-        Next
-        If current.Length > 0 OrElse out.Count > 0 Then out.Add(current.ToString().Trim())
-        Return out
-    End Function
-
-    Private Sub ShowFields()
-        filling = True
-        fields.SuspendLayout()
-        fields.Controls.Clear()
-        fields.RowStyles.Clear()
-
-        If chosen Is Nothing Then
-            heading.Text = ""
-            note.Text = ""
-            fields.ResumeLayout()
-            filling = False
-            Return
-        End If
-
-        Dim name As String = CallOf(chosen.Text)
-        Dim known As EpsCall = EpsSymbols.Find(name)
-
-        Select Case chosen.Kind
-            Case EpsKind.Root : heading.Text = "The whole source"
-            Case EpsKind.Folder : heading.Text = "Folder"
-            Case EpsKind.Block : heading.Text = "Block"
-            Case EpsKind.Comment : heading.Text = "Comment"
-            Case Else : heading.Text = If(name <> "", name, "Line")
-        End Select
-        If chosen.Off Then heading.Text &= "  (off)"
-
-        note.Text = If(known IsNot Nothing,
-                       If(known.Note <> "", known.Note, "from the " & known.Source),
-                       "This line is kept as it was written.")
-
-        If chosen.Kind = EpsKind.Folder Then
-            AddTextField("Name", chosen.Text, Sub(value)
-                                                  chosen.Text = value
-                                                  Changed()
-                                              End Sub)
-        ElseIf known IsNot Nothing Then
-            Dim values As List(Of String) = ValuesOf(chosen.Text)
-            For i = 0 To known.Values.Count - 1
-                Dim at As Integer = i
-                Dim value As EpsValue = known.Values(i)
-                Dim now As String = If(i < values.Count, values(i), "")
-                Dim label As String = value.Name
-                If value.HasList Then label &= "  [" & value.Kind & "]"
-                AddValueField(label, now, value, Sub(text)
-                                                     WriteValue(known, at, text)
-                                                 End Sub)
-            Next
-            If known.Values.Count = 0 Then AddNote("This call takes nothing.")
-        Else
-            AddTextField("Line", chosen.Text, Sub(value)
-                                                  chosen.Text = value
-                                                  Changed()
-                                              End Sub)
-        End If
-
-        fields.ResumeLayout()
-        filling = False
-    End Sub
-
-    Private Sub AddNote(text As String)
-        Dim shown As New Label With {.Text = text, .AutoSize = True, .Margin = New Padding(3, 6, 3, 3)}
-        fields.Controls.Add(shown, 0, fields.RowCount)
-        fields.SetColumnSpan(shown, 2)
-        fields.RowCount += 1
-    End Sub
-
-    Private Sub AddTextField(label As String, value As String, apply As Action(Of String))
-        Dim shown As New Label With {.Text = label, .AutoSize = True, .Margin = New Padding(3, 6, 3, 3)}
-        Dim box As New TextBox With {.Text = value, .Dock = DockStyle.Fill}
-        AddHandler box.TextChanged, Sub()
-                                        If Not filling Then apply(box.Text)
-                                    End Sub
-        fields.Controls.Add(shown, 0, fields.RowCount)
-        fields.Controls.Add(box, 1, fields.RowCount)
-        fields.RowCount += 1
-    End Sub
-
-    Private Sub AddValueField(label As String, value As String, kind As EpsValue, apply As Action(Of String))
-        Dim shown As New Label With {.Text = label, .AutoSize = True, .Margin = New Padding(3, 6, 3, 3)}
-        fields.Controls.Add(shown, 0, fields.RowCount)
-
-        Dim options As List(Of String) = EpsValueLists.For_(kind.Kind)
-        If options IsNot Nothing AndAlso options.Count > 0 Then
-            Dim box As New ComboBox With {.Dock = DockStyle.Fill, .DropDownStyle = ComboBoxStyle.DropDown}
-            box.Items.AddRange(options.ToArray())
-            box.Text = value
-            AddHandler box.TextChanged, Sub()
-                                            If Not filling Then apply(box.Text)
-                                        End Sub
-            fields.Controls.Add(box, 1, fields.RowCount)
-        Else
-            Dim box As New TextBox With {.Text = value, .Dock = DockStyle.Fill}
-            AddHandler box.TextChanged, Sub()
-                                            If Not filling Then apply(box.Text)
-                                        End Sub
-            fields.Controls.Add(box, 1, fields.RowCount)
-        End If
-        fields.RowCount += 1
-    End Sub
-
-    'Puts one value back into the line, leaving the rest of it alone.
-    Private Sub WriteValue(known As EpsCall, at As Integer, text As String)
-        If chosen Is Nothing Then Return
-        Dim values As List(Of String) = ValuesOf(chosen.Text)
-        While values.Count < known.Values.Count
-            values.Add("")
-        End While
-        If at >= values.Count Then Return
-        values(at) = text
-
-        Dim ends As String = If(chosen.Text.TrimEnd().EndsWith(";"), ";", "")
-        chosen.Text = known.Name & "(" & String.Join(", ", values) & ")" & ends
-        Changed()
-    End Sub
-
-    Private Sub Changed()
-        dirty = True
-        ProjectSet.saveStatus = False
-        If tree.SelectedNode IsNot Nothing AndAlso chosen IsNot Nothing Then
-            tree.SelectedNode.Text = chosen.Caption()
-            tree.SelectedNode.ForeColor = If(chosen.Off, Color.Gray, tree.ForeColor)
-        End If
-        RefreshSource()
-        ShowCounts()
+                                    lines, drawn, EpsSymbols.Count)
     End Sub
 
     Private Sub RefreshSource()
         source.Text = EpsWriter.Write(root).Replace(vbLf, vbCrLf).Replace(vbCr & vbCr, vbCr)
     End Sub
-#End Region
 
-#Region "What the buttons do"
-    Private Sub OffButton_Click(sender As Object, e As EventArgs) Handles offButton.Click
-        If chosen Is Nothing OrElse chosen.Kind = EpsKind.Root Then Return
-        chosen.Off = Not chosen.Off
-        offButton.Text = If(chosen.Off, "Turn on", "Turn off")
-        Changed()
-    End Sub
-
-    Private Sub DeleteButton_Click(sender As Object, e As EventArgs) Handles deleteButton.Click
-        If chosen Is Nothing OrElse chosen.Parent Is Nothing Then Return
-        Dim parent As EpsNode = chosen.Parent
-        parent.Remove(chosen)
-        chosen = parent
-        dirty = True
+    Private Sub Touched()
         ProjectSet.saveStatus = False
         RebuildTree()
-        RefreshSource()
     End Sub
+#End Region
 
-    Private Sub AddButton_Click(sender As Object, e As EventArgs) Handles addButton.Click
-        Dim picked As String = EpsPickCallForm.Ask(Me)
-        If picked = "" Then Return
-
-        Dim known As EpsCall = EpsSymbols.Find(picked)
-        Dim empty As String = If(known Is Nothing, picked,
-                                 known.Name & "(" & String.Join(", ",
-                                     known.Values.Select(Function(v) "0")) & ");")
-        AddBeside(New EpsNode(EpsKind.Statement, empty))
-    End Sub
-
-    Private Sub FolderButton_Click(sender As Object, e As EventArgs) Handles folderButton.Click
-        AddBeside(New EpsNode(EpsKind.Folder, "New folder"))
-    End Sub
-
-    Private Sub AddBeside(node As EpsNode)
+#Region "Putting something new in"
+    'Where a new node goes: inside the chosen one when it can hold things, and
+    'after it when it cannot.
+    Private Sub Insert(node As EpsNode)
         Dim parent As EpsNode = root
         Dim at As Integer = -1
+
         If chosen IsNot Nothing AndAlso chosen.Kind <> EpsKind.Root Then
             If chosen.Kind = EpsKind.Folder OrElse chosen.Kind = EpsKind.Block Then
                 parent = chosen
@@ -500,25 +322,230 @@ Public Class EpsTriggerForm
         Else
             parent.Children.Add(node)
         End If
-
         chosen = node
-        dirty = True
-        ProjectSet.saveStatus = False
-        RebuildTree()
-        RefreshSource()
+        Touched()
+    End Sub
+
+    ''' <summary>
+    ''' Puts a node beside the chosen one, never inside it. An else follows the if
+    ''' it belongs to; it does not live in it.
+    ''' </summary>
+    Private Sub InsertBeside(node As EpsNode)
+        Dim after As EpsNode = chosen
+        If after Is Nothing OrElse after.Kind = EpsKind.Root OrElse after.Parent Is Nothing Then
+            Insert(node)
+            Return
+        End If
+
+        Dim parent As EpsNode = after.Parent
+        node.Parent = parent
+        parent.Children.Insert(parent.Children.IndexOf(after) + 1, node)
+        chosen = node
+        Touched()
+    End Sub
+
+    Private Shared Function Block(head As String) As EpsNode
+        Return New EpsNode(EpsKind.Block, head)
+    End Function
+
+    Private Sub NewFolder_Click(sender As Object, e As EventArgs) Handles newFolder.Click
+        Insert(New EpsNode(EpsKind.Folder, "New folder"))
+    End Sub
+
+    Private Sub NewComment_Click(sender As Object, e As EventArgs) Handles newComment.Click
+        Insert(New EpsNode(EpsKind.Comment, "// "))
+    End Sub
+
+    Private Sub NewAction_Click(sender As Object, e As EventArgs) Handles newAction.Click
+        Dim picked As String = EpsPickCallForm.Ask(Me)
+        If picked = "" Then Return
+        Dim known As EpsCall = EpsSymbols.Find(picked)
+        Insert(New EpsNode(EpsKind.Statement,
+                           If(known Is Nothing, picked & "();", EpsLines.EmptyCall(known))))
+    End Sub
+
+    ''' <summary>
+    ''' A condition is a test, so it joins the head of the block it belongs to. On
+    ''' anything else it starts an if of its own, which is where a test belongs.
+    ''' </summary>
+    Private Sub NewCondition_Click(sender As Object, e As EventArgs) Handles newCondition.Click
+        Dim picked As String = EpsPickCallForm.Ask(Me)
+        If picked = "" Then Return
+        Dim known As EpsCall = EpsSymbols.Find(picked)
+        Dim test As String = If(known Is Nothing, picked & "()", EpsLines.EmptyTest(known))
+
+        If chosen IsNot Nothing AndAlso chosen.Kind = EpsKind.Block AndAlso HasTest(chosen.Text) Then
+            Dim head As String = chosen.Text.Trim()
+            Dim opened As Integer = head.IndexOf("("c)
+            Dim closed As Integer = head.LastIndexOf(")"c)
+            If opened >= 0 AndAlso closed > opened Then
+                Dim inside As String = head.Substring(opened + 1, closed - opened - 1).Trim()
+                inside = If(inside = "", test, inside & " && " & test)
+                chosen.Text = head.Substring(0, opened + 1) & inside & head.Substring(closed)
+                Touched()
+                Return
+            End If
+        End If
+
+        Insert(Block("if (" & test & ")"))
+    End Sub
+
+    Private Shared Function HasTest(head As String) As Boolean
+        Dim body As String = If(head, "").TrimStart()
+        Return body.StartsWith("if") OrElse body.StartsWith("else if") OrElse body.StartsWith("while")
+    End Function
+
+    Private Sub NewIf_Click(sender As Object, e As EventArgs) Handles newIf.Click
+        Insert(Block("if (Always())"))
+    End Sub
+
+    Private Sub NewElseIf_Click(sender As Object, e As EventArgs) Handles newElseIf.Click
+        InsertBeside(Block("else if (Always())"))
+    End Sub
+
+    Private Sub NewElse_Click(sender As Object, e As EventArgs) Handles newElse.Click
+        InsertBeside(Block("else"))
+    End Sub
+
+    Private Sub NewWhile_Click(sender As Object, e As EventArgs) Handles newWhile.Click
+        Insert(Block("while (Always())"))
+    End Sub
+
+    Private Sub NewFor_Click(sender As Object, e As EventArgs) Handles newFor.Click
+        'The spelling euddraft's own sample uses.
+        Insert(Block("for (var i = 0; i < 10; i++)"))
+    End Sub
+
+    Private Sub NewFunction_Click(sender As Object, e As EventArgs) Handles newFunction.Click
+        Insert(Block("function newFunction()"))
+    End Sub
+#End Region
+
+#Region "What else the menu does"
+    Private Sub EditItem_Click(sender As Object, e As EventArgs) Handles editItem.Click, editButton.Click
+        EditChosen()
+    End Sub
+
+    Private Sub EditChosen()
+        If chosen Is Nothing OrElse chosen.Kind = EpsKind.Root Then Return
+        If EpsEditLineForm.Edit(Me, chosen) Then Touched()
+    End Sub
+
+    Private Sub OffItem_Click(sender As Object, e As EventArgs) Handles offItem.Click
+        If chosen Is Nothing OrElse chosen.Kind = EpsKind.Root Then Return
+        chosen.Off = Not chosen.Off
+        Touched()
+    End Sub
+
+    Private Sub Menu_Opening(sender As Object, e As ComponentModel.CancelEventArgs) Handles menu.Opening
+        Dim any As Boolean = chosen IsNot Nothing AndAlso chosen.Kind <> EpsKind.Root
+        editItem.Enabled = any
+        offItem.Enabled = any
+        offItem.Text = If(any AndAlso chosen.Off, "Turn on", "Turn off")
+        cutItem.Enabled = any
+        copyItem.Enabled = any
+        codeCopyItem.Enabled = any
+        deleteItem.Enabled = any
+        upItem.Enabled = any
+        downItem.Enabled = any
+        pasteItem.Enabled = held IsNot Nothing
+        foldItem.Enabled = tree.SelectedNode IsNot Nothing
+        unfoldItem.Enabled = tree.SelectedNode IsNot Nothing
+        Try
+            ThemeSetForm.SetControlColor(menu)
+        Catch ex As Exception
+            LogSuppressed(ex, "EpsTriggerForm.Menu_Opening")
+        End Try
+    End Sub
+
+    Private Sub FoldItem_Click(sender As Object, e As EventArgs) Handles foldItem.Click
+        If tree.SelectedNode IsNot Nothing Then tree.SelectedNode.Collapse()
+    End Sub
+
+    Private Sub UnfoldItem_Click(sender As Object, e As EventArgs) Handles unfoldItem.Click
+        If tree.SelectedNode IsNot Nothing Then tree.SelectedNode.ExpandAll()
+    End Sub
+
+    Private Sub FoldAllItem_Click(sender As Object, e As EventArgs) Handles foldAllItem.Click
+        tree.CollapseAll()
+    End Sub
+
+    Private Sub UnfoldAllItem_Click(sender As Object, e As EventArgs) Handles unfoldAllItem.Click
+        tree.ExpandAll()
+    End Sub
+
+    Private Sub CopyItem_Click(sender As Object, e As EventArgs) Handles copyItem.Click
+        If chosen IsNot Nothing Then held = chosen.Clone()
+    End Sub
+
+    Private Sub CodeCopyItem_Click(sender As Object, e As EventArgs) Handles codeCopyItem.Click
+        If chosen Is Nothing Then Return
+        Try
+            Clipboard.SetText(String.Join(vbCrLf, EpsWriter.Lines(chosen, 0)))
+        Catch ex As Exception
+            LogSuppressed(ex, "EpsTriggerForm.CodeCopy")
+        End Try
+    End Sub
+
+    Private Sub CutItem_Click(sender As Object, e As EventArgs) Handles cutItem.Click
+        CutChosen()
+    End Sub
+
+    Private Sub CutChosen()
+        If chosen Is Nothing OrElse chosen.Parent Is Nothing Then Return
+        held = chosen.Clone()
+        DeleteChosen()
+    End Sub
+
+    Private Sub PasteItem_Click(sender As Object, e As EventArgs) Handles pasteItem.Click
+        PasteHeld()
+    End Sub
+
+    Private Sub PasteHeld()
+        If held Is Nothing Then Return
+        Insert(held.Clone())
+    End Sub
+
+    Private Sub DeleteItem_Click(sender As Object, e As EventArgs) Handles deleteItem.Click
+        DeleteChosen()
+    End Sub
+
+    Private Sub DeleteChosen()
+        If chosen Is Nothing OrElse chosen.Parent Is Nothing Then Return
+        Dim parent As EpsNode = chosen.Parent
+        parent.Remove(chosen)
+        chosen = parent
+        Touched()
+    End Sub
+
+    Private Sub UpItem_Click(sender As Object, e As EventArgs) Handles upItem.Click
+        Move(-1)
+    End Sub
+
+    Private Sub DownItem_Click(sender As Object, e As EventArgs) Handles downItem.Click
+        Move(1)
+    End Sub
+
+    Private Sub Move(step_ As Integer)
+        If chosen Is Nothing OrElse chosen.Parent Is Nothing Then Return
+        Dim parent As EpsNode = chosen.Parent
+        Dim at As Integer = parent.Children.IndexOf(chosen)
+        Dim goes As Integer = at + step_
+        If goes < 0 OrElse goes >= parent.Children.Count Then Return
+        parent.Children.RemoveAt(at)
+        parent.Children.Insert(goes, chosen)
+        Touched()
     End Sub
 
     Private Sub SourceButton_Click(sender As Object, e As EventArgs) Handles sourceButton.Click
         If source.ReadOnly Then
             source.ReadOnly = False
-            source.BackColor = ProgramSet.colorFieldBackground
             sourceButton.Text = "Read the text back"
             status.Text = "The text is yours. Press again to read it back into the tree."
         Else
             SetSource(source.Text)
             source.ReadOnly = True
             sourceButton.Text = "Edit as text"
-            dirty = True
             ProjectSet.saveStatus = False
         End If
     End Sub
