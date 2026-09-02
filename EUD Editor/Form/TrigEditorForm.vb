@@ -1909,6 +1909,7 @@ Public Class TrigEditorForm
             Try
                 DebugDic.Values(i).ReDrawColor()
             Catch ex As Exception
+                LogSuppressed(ex, "TrigEditorForm.Button14_Click")
 
             End Try
         Next
@@ -2853,6 +2854,7 @@ Public Class TrigEditorForm
             Dim _selectElement As Element = CType(WorkSpace.SelectedNode.Tag, Element)
             My.Computer.Clipboard.SetText(_selectElement.ToCode(0, True))
         Catch ex As Exception
+            LogSuppressed(ex, "TrigEditorForm.ToolStripMenuItem3_Click")
 
         End Try
     End Sub

@@ -138,6 +138,7 @@ Public Class BtnSettingForm
                     PictureBox1.Image = DatEditForm.ICONILIST.Images(4)
                 End Try
             Catch ex As Exception
+                LogSuppressed(ex, "BtnSettingForm.TextBox5_TextChanged")
             End Try
             WriteText()
 
@@ -184,6 +185,7 @@ Public Class BtnSettingForm
                     ComboBox10.SelectedIndex = -1
                 End Try
             Catch ex As Exception
+                LogSuppressed(ex, "BtnSettingForm.TextBox10_TextChanged")
             End Try
 
 
@@ -231,6 +233,7 @@ Public Class BtnSettingForm
                     ComboBox9.SelectedIndex = -1
                 End Try
             Catch ex As Exception
+                LogSuppressed(ex, "BtnSettingForm.TextBox11_TextChanged")
             End Try
 
 
@@ -271,6 +274,7 @@ Public Class BtnSettingForm
             Try
                 D_con = conbtnFnc(TextBox7.Text).FucOffset
             Catch ex As Exception
+                LogSuppressed(ex, "BtnSettingForm.TextBox7_TextChanged")
             End Try
 
             Try
@@ -307,6 +311,7 @@ Public Class BtnSettingForm
             Try
                 D_con = conbtnFnc(ComboBox6.SelectedIndex).FucOffset 'TextBox5.Text
             Catch ex As Exception
+                LogSuppressed(ex, "BtnSettingForm.ComboBox6_SelectedIndexChanged")
                 'MsgBox("시발?")
             End Try
 
@@ -345,6 +350,7 @@ Public Class BtnSettingForm
             Try
                 D_act = actbtnFnc(TextBox9.Text).FucOffset
             Catch ex As Exception
+                LogSuppressed(ex, "BtnSettingForm.TextBox9_TextChanged")
             End Try
 
             Try
@@ -384,6 +390,7 @@ Public Class BtnSettingForm
             Try
                 D_act = actbtnFnc(ComboBox7.SelectedIndex).FucOffset 'TextBox5.Text
             Catch ex As Exception
+                LogSuppressed(ex, "BtnSettingForm.ComboBox7_SelectedIndexChanged")
                 'MsgBox("시발?")
             End Try
 
@@ -735,6 +742,7 @@ Public Class BtnSettingForm
             CodeViewer.Show()
             CodeViewer.Location = New Point(MousePosition.X - CodeViewer.Size.Width / 2, MousePosition.Y)
         Catch ex As Exception
+            LogSuppressed(ex, "BtnSettingForm.CodeViewerShow")
 
         End Try
 

@@ -95,6 +95,7 @@ Public Class ListControlItem
                 bMouse = MouseCapture.Inside
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "ListControlItem.tmrMouseLeave_Tick")
 
         End Try
     End Sub

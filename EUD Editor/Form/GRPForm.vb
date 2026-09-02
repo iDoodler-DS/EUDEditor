@@ -221,6 +221,7 @@
             End If
             Grp.DrawToPictureBox(PictureBox8, ListBox4.SelectedIndices(0), 0)
         Catch ex As Exception
+            LogSuppressed(ex, "GRPForm.Listbox4_SelectedIndexChanged")
 
         End Try
     End Sub
@@ -236,6 +237,7 @@
             End If
             Grp.DrawToPictureBox(PictureBox8, ListBox4.SelectedIndices(0), 0)
         Catch ex As Exception
+            LogSuppressed(ex, "GRPForm.ComboBox1_SelectedIndexChanged")
 
         End Try
 
@@ -252,6 +254,7 @@
             End If
             Grp.DrawToPictureBox(PictureBox8, ListBox4.SelectedIndices(0), 0)
         Catch ex As Exception
+            LogSuppressed(ex, "GRPForm.ComboBox20_SelectedIndexChanged")
 
         End Try
 

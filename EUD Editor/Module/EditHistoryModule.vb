@@ -126,7 +126,8 @@ Namespace EditHistory
                 If DataIndex >= 0 AndAlso DataIndex < CODE.Count AndAlso EntryIndex < CODE(DataIndex).Count Then
                     entryName = CODE(DataIndex)(CInt(EntryIndex))
                 End If
-            Catch
+            Catch sup1 As Exception
+                LogSuppressed(sup1, "EditHistoryModule.Describe")
             End Try
             If entryName = "" Then Return FieldKey
             Return FieldKey & " of " & entryName
@@ -362,7 +363,8 @@ Namespace EditHistory
                 If index >= 0 AndAlso CODE.Count > 0 AndAlso index < CODE(DTYPE.units).Count Then
                     Return CODE(DTYPE.units)(index)
                 End If
-            Catch
+            Catch sup2 As Exception
+                LogSuppressed(sup2, "EditHistoryModule.UnitName")
             End Try
             Return "entry " & index
         End Function

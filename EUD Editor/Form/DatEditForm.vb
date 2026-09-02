@@ -309,7 +309,8 @@ Public Class DatEditForm
 
         Try
             If target.CanSelect Then target.Focus()
-        Catch
+        Catch sup1 As Exception
+            LogSuppressed(sup1, "DatEditForm.RevealField")
         End Try
     End Sub
 
@@ -500,6 +501,7 @@ Public Class DatEditForm
 
                 End If
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.GRPHock")
             End Try
         Next
 
@@ -568,6 +570,7 @@ Public Class DatEditForm
                     Try
                         DatEditDATA(TAB_INDEX).WriteValueNum(i, index, newvalue(i))
                     Catch ex As Exception
+                        LogSuppressed(ex, "DatEditForm.ObjectLoadCore")
 
                     End Try
 
@@ -624,6 +627,7 @@ Public Class DatEditForm
             LoadData()
             ListBox1.Refresh()
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.ObjectPaste#1")
         End Try
     End Sub
 
@@ -637,6 +641,7 @@ Public Class DatEditForm
 
                 End If
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.ObjectPaste#2")
             End Try
         Next
 
@@ -666,6 +671,7 @@ Public Class DatEditForm
                 ObjectPaste()
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.ObjectPaste#3")
         End Try
     End Sub
 
@@ -812,6 +818,8 @@ Public Class DatEditForm
             Combobox.ResumeLayout()
             stream.Close()
         Else
+            'The cache answers on the name it was asked for, not the full path.
+            Dim cacheKey As String = filename
             filename = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename
             Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
             Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
@@ -825,7 +833,7 @@ Public Class DatEditForm
             Combobox.ResumeLayout()
             file.Position = 0
             stream.DiscardBufferedData()
-            comboBoxCache(filename) = stream.ReadToEnd
+            comboBoxCache(cacheKey) = stream.ReadToEnd
 
             stream.Close()
             file.Close()
@@ -852,6 +860,8 @@ Public Class DatEditForm
             Listview.ResumeLayout()
             stream.Close()
         Else
+            'The cache answers on the name it was asked for, not the full path.
+            Dim cacheKey As String = filename
             filename = My.Application.Info.DirectoryPath & "\Data\Language\" & My.Settings.Language & "\" & filename
             Dim file As FileStream = New FileStream(filename, FileMode.Open, FileAccess.Read)
             Dim stream As StreamReader = New StreamReader(file, System.Text.Encoding.Default)
@@ -866,7 +876,7 @@ Public Class DatEditForm
             Listview.ResumeLayout()
             file.Position = 0
             stream.DiscardBufferedData()
-            listViewCache.Add(filename, stream.ReadToEnd)
+            listViewCache(cacheKey) = stream.ReadToEnd
 
             stream.Close()
             file.Close()
@@ -1001,7 +1011,8 @@ Public Class DatEditForm
                         Dim fl As Integer = DatEditDATA(DTYPE.units).ReadValue("Graphics", entry)
                         Dim sp As Integer = DatEditDATA(DTYPE.flingy).ReadValue("Sprite", fl)
                         added.ImageIndex = DatEditDATA(DTYPE.sprites).ReadValue("Image File", sp)
-                    Catch
+                    Catch sup2 As Exception
+                        LogSuppressed(sup2, "DatEditForm.PaletDraw")
                     End Try
                 End If
             Next
@@ -1217,6 +1228,7 @@ Public Class DatEditForm
         Try
             SELECTLIST(ListView1.SelectedItems(0).Tag)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.ListView1_SelectedIndexChanged")
         End Try
     End Sub
 
@@ -1716,6 +1728,7 @@ Public Class DatEditForm
         Try
             PictureBox4.Image = ICONILIST.Images(_OBJECTNUM)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.UnitDataLOAD")
 
         End Try
 
@@ -2126,6 +2139,7 @@ Public Class DatEditForm
                 'ListBox9.Items.Add(iscript.iscriptEntry(iscript.key(iscriptID)).headeroffset)
             Next
         Catch ex As KeyNotFoundException
+            LogSuppressed(ex, "DatEditForm.ImagesDataLOAD")
 
         End Try
 
@@ -2371,6 +2385,7 @@ Public Class DatEditForm
                 iscript.y = 0
                 IScriptPlayer.Enabled = True
             Catch ex As KeyNotFoundException
+                LogSuppressed(ex, "DatEditForm.ListBox9_SelectedIndexChanged")
 
             End Try
 
@@ -2420,6 +2435,7 @@ Public Class DatEditForm
                 End If
 
             Catch ex As KeyNotFoundException
+                LogSuppressed(ex, "DatEditForm.TrackBar1_Scroll")
 
             End Try
 
@@ -2596,6 +2612,7 @@ Public Class DatEditForm
         Try
             remapping = DatEditDATA(DTYPE.images).ReadValue("Remapping", _OBJECTNUM)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.LoadImageGRP")
 
         End Try
 
@@ -2681,6 +2698,7 @@ Public Class DatEditForm
             Image = DatEditDATA(DTYPE.sprites).ReadValue("Image File", _OBJECTNUM)
             remapping = DatEditDATA(DTYPE.images).ReadValue("Remapping", Image)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.LoadSpriteGRP#1")
 
         End Try
 
@@ -2688,6 +2706,7 @@ Public Class DatEditForm
         Try
             SpritGRP.LoadGRP(GRPHock(Image))
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.LoadSpriteGRP#2")
 
         End Try
 
@@ -2733,6 +2752,7 @@ Public Class DatEditForm
             Image = DatEditDATA(DTYPE.sprites).ReadValue("Image File", sprite)
             remapping = DatEditDATA(DTYPE.images).ReadValue("Remapping", Image)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.LoadflingyGRP")
 
         End Try
 
@@ -2841,6 +2861,7 @@ Public Class DatEditForm
             grpfile = DatEditDATA(DTYPE.images).ReadValue("GRP File", weaponimage)
             remapping = DatEditDATA(DTYPE.images).ReadValue("Remapping", weaponimage)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.LoadWeaponGRP")
 
         End Try
 
@@ -2960,6 +2981,7 @@ Public Class DatEditForm
             temp2 = DatEditDATA(DTYPE.flingy).ReadValue("Sprite", temp1)
             temp4 = DatEditDATA(DTYPE.sprites).ReadValue("Image File", temp2)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.LoadUnitGRP#1")
 
         End Try
 
@@ -2972,6 +2994,7 @@ Public Class DatEditForm
             temp2 = DatEditDATA(DTYPE.images).ReadValue("GRP File", temp1)
             temp3 = DatEditDATA(DTYPE.images).ReadValue("Remapping", temp1)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.LoadUnitGRP#2")
 
         End Try
 
@@ -3271,6 +3294,7 @@ Public Class DatEditForm
             Try
                 NumericUpDown2.Value = TextBox10.Text * 42 / 1000
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.BuildTime_TextChanged")
 
             End Try
             NumericUpDown2.BackColor = TextBox10.BackColor
@@ -4441,6 +4465,7 @@ Public Class DatEditForm
             Try
                 NumericUpDown13.Value = TextBox76.Text \ 3
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.TextBox76_TextChanged")
             End Try
             NumericUpDown13.BackColor = TextBox76.BackColor
             NumericUpDown13.Visible = TextBox76.Visible
@@ -4525,6 +4550,7 @@ Public Class DatEditForm
             Try
                 NumericUpDown14.Value = TextBox80.Text * 42 / 1000
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.TextBox80_TextChanged")
 
             End Try
             NumericUpDown14.BackColor = TextBox80.BackColor
@@ -4559,6 +4585,7 @@ Public Class DatEditForm
             Try
                 NumericUpDown15.Value = TextBox83.Text * 42 / 1000
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.TextBox83_TextChanged")
 
             End Try
             NumericUpDown15.BackColor = TextBox83.BackColor
@@ -4669,6 +4696,7 @@ Public Class DatEditForm
             Try
                 NumericUpDown16.Value = TextBox86.Text * 42 / 1000
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.TextBox86_TextChanged")
 
             End Try
             NumericUpDown16.BackColor = TextBox86.BackColor
@@ -4891,6 +4919,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button3_Click")
 
         End Try
 
@@ -4904,6 +4933,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button4_Click")
 
         End Try
     End Sub
@@ -4916,6 +4946,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button1_Click")
 
         End Try
     End Sub
@@ -4928,6 +4959,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button2_Click")
 
         End Try
     End Sub
@@ -4940,6 +4972,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button6_Click")
 
         End Try
     End Sub
@@ -4952,6 +4985,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button12_Click")
 
         End Try
     End Sub
@@ -4964,6 +4998,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button13_Click")
 
         End Try
     End Sub
@@ -4976,6 +5011,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button10_Click")
 
         End Try
     End Sub
@@ -4988,6 +5024,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button11_Click")
 
         End Try
     End Sub
@@ -5000,6 +5037,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button9_Click")
 
         End Try
     End Sub
@@ -5012,6 +5050,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button8_Click")
 
         End Try
     End Sub
@@ -5024,6 +5063,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button7_Click")
 
         End Try
     End Sub
@@ -5036,6 +5076,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button16_Click")
 
         End Try
     End Sub
@@ -5048,6 +5089,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button15_Click")
 
         End Try
     End Sub
@@ -5060,6 +5102,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button14_Click")
 
         End Try
     End Sub
@@ -5072,6 +5115,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button21_Click")
 
         End Try
     End Sub
@@ -5084,6 +5128,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button20_Click")
 
         End Try
 
@@ -5097,6 +5142,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button19_Click")
 
         End Try
 
@@ -5110,6 +5156,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button18_Click")
 
         End Try
 
@@ -5123,6 +5170,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button17_Click")
 
         End Try
 
@@ -5136,6 +5184,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button22_Click")
 
         End Try
     End Sub
@@ -5148,6 +5197,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button23_Click")
 
         End Try
     End Sub
@@ -5160,6 +5210,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button24_Click")
 
         End Try
     End Sub
@@ -5172,6 +5223,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button25_Click")
 
         End Try
     End Sub
@@ -5184,6 +5236,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button51_Click")
 
         End Try
     End Sub
@@ -5196,6 +5249,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button52_Click")
 
         End Try
     End Sub
@@ -5208,6 +5262,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button26_Click")
 
         End Try
     End Sub
@@ -5220,6 +5275,7 @@ Public Class DatEditForm
                 SELECTLIST(value)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.Button27_Click")
 
         End Try
     End Sub
@@ -5294,6 +5350,7 @@ Public Class DatEditForm
             Try
                 ListBox9.SelectedIndex = 0
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.TextBox112_TextChanged")
 
             End Try
         End If
@@ -5306,6 +5363,7 @@ Public Class DatEditForm
             Try
                 ListBox9.SelectedIndex = 0
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.ComboBox55_SelectedIndexChanged")
 
             End Try
         End If
@@ -5317,6 +5375,7 @@ Public Class DatEditForm
             Try
                 ListBox9.SelectedIndex = 0
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.TextBox113_TextChanged")
 
             End Try
             'drawImageGRP(0, False)
@@ -5330,6 +5389,7 @@ Public Class DatEditForm
             Try
                 ListBox9.SelectedIndex = 0
             Catch ex As Exception
+                LogSuppressed(ex, "DatEditForm.ComboBox56_SelectedIndexChanged")
 
             End Try
         End If
@@ -5427,6 +5487,7 @@ Public Class DatEditForm
                     'ListBox9.Items.Add(iscript.iscriptEntry(iscript.key(iscriptID)).headeroffset)
                 Next
             Catch ex As KeyNotFoundException
+                LogSuppressed(ex, "DatEditForm.TextBox120_TextChanged")
 
             End Try
 
@@ -5458,6 +5519,7 @@ Public Class DatEditForm
                     'ListBox9.Items.Add(iscript.iscriptEntry(iscript.key(iscriptID)).headeroffset)
                 Next
             Catch ex As KeyNotFoundException
+                LogSuppressed(ex, "DatEditForm.ComboBox64_SelectedIndexChanged")
 
             End Try
 
@@ -5721,6 +5783,7 @@ Public Class DatEditForm
             CodeViewer.Show()
             CodeViewer.Location = New Point(MousePosition.X - CodeViewer.Size.Width / 2, MousePosition.Y)
         Catch ex As Exception
+            LogSuppressed(ex, "DatEditForm.CodeViewerShow")
 
         End Try
 

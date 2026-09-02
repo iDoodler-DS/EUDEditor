@@ -103,6 +103,7 @@ Module MapModule
                     Try
                         TileSetData(i * 32 + j) = binaryReader.ReadByte
                     Catch ex As Exception
+                        LogSuppressed(ex, "MapModule..New#1")
 
                     End Try
                 Next
@@ -130,6 +131,7 @@ Module MapModule
                     Try
                         TileSetData(i * 32 + j) = binaryReader.ReadByte
                     Catch ex As Exception
+                        LogSuppressed(ex, "MapModule..New#2")
 
                     End Try
                 Next

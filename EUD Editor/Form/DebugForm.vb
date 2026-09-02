@@ -866,6 +866,7 @@ Public Class DebugForm
 
                     'GameData.LocaationTable(i).Left
                 Catch ex As Exception
+                    LogSuppressed(ex, "DebugForm.DrawOthers")
 
                 End Try
             Next

@@ -195,6 +195,7 @@
         Try
             SELECTLIST(ListView1.SelectedItems(0).Tag)
         Catch ex As Exception
+            LogSuppressed(ex, "GRPForm_ListForm.ListView1_SelectedIndexChanged")
         End Try
     End Sub
 

@@ -609,6 +609,7 @@ Public Class CGameData
                         End If
                     End While
                 Catch ex As Exception
+                    LogSuppressed(ex, "DebugClass.AddSpriteList")
                     'imagememstr.Position = pImagePrimary - imageoffset
                     'AddImageList(imagebinreader.ReadBytes(64), pos, Color, elevationLevel)
                 End Try

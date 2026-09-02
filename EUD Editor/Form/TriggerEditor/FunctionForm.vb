@@ -283,6 +283,7 @@ Public Class FunctionForm
 
             ValueSetting(True)
         Catch ex As Exception
+            LogSuppressed(ex, "FunctionForm.TabControl3_SelectedIndexChanged")
 
         End Try
     End Sub
@@ -576,6 +577,7 @@ Public Class FunctionForm
                         Dim strings() As String = {"Unit", "Weapon", "Flingy", "Sprite", "Image", "Upgrade", "Techdata", "Order"}
                         _valuedef = GetDefValueDefs(strings(num))
                     Catch ex As Exception
+                        LogSuppressed(ex, "FunctionForm.ValueSetting#1")
 
                     End Try
                 End If
@@ -592,6 +594,7 @@ Public Class FunctionForm
                         'Dim strings() As String = {"Unit", "Weapon", "Flingy", "Sprite", "Image", "Upgrade", "Techdata", "Order"}
                         '_valuedef = GetDefValueDefs(strings(num))
                     Catch ex As Exception
+                        LogSuppressed(ex, "FunctionForm.ValueSetting#2")
 
                     End Try
                 End If
@@ -608,6 +611,7 @@ Public Class FunctionForm
                         _valuedef = GetDefValueDefs(ReadValDef(_defstring))
 
                     Catch ex As Exception
+                        LogSuppressed(ex, "FunctionForm.ValueSetting#3")
 
                     End Try
                 End If
@@ -622,6 +626,7 @@ Public Class FunctionForm
 
                         _valuedef = GetDefValueDefs(_defstring)
                     Catch ex As Exception
+                        LogSuppressed(ex, "FunctionForm.ValueSetting#4")
 
                     End Try
                 End If
@@ -701,6 +706,7 @@ Public Class FunctionForm
 
                     isDataCollect = True
                 Catch ex As Exception
+                    LogSuppressed(ex, "FunctionForm.ValueSetting#5")
                 End Try
             Case ValueDefs.OutPutType.CheckList
 
@@ -725,6 +731,7 @@ Public Class FunctionForm
                     isDataCollect = True
 
                 Catch ex As Exception
+                    LogSuppressed(ex, "FunctionForm.ValueSetting#6")
 
                 End Try
 
@@ -766,6 +773,7 @@ Public Class FunctionForm
                     EasyCompletionComboBox1.SelectedIndex = value
                     isDataCollect = True
                 Catch ex As Exception
+                    LogSuppressed(ex, "FunctionForm.ValueSetting#7")
                 End Try
             Case ValueDefs.OutPutType.ListNum
                 ListBox1.Visible = True
@@ -786,6 +794,7 @@ Public Class FunctionForm
                     ListBox1.SelectedIndex = value
                     isDataCollect = True
                 Catch ex As Exception
+                    LogSuppressed(ex, "FunctionForm.ValueSetting#8")
                 End Try
 
             Case ValueDefs.OutPutType.List
@@ -822,6 +831,7 @@ Public Class FunctionForm
                     NumericUpDown1.Value = CLng(value)
                     isDataCollect = True
                 Catch ex As Exception
+                    LogSuppressed(ex, "FunctionForm.ValueSetting#9")
 
                 End Try
             Case ValueDefs.OutPutType.Text
@@ -1137,6 +1147,7 @@ Public Class FunctionForm
                         _valuedef = GetDefValueDefs(ReadValDef(_defstring))
 
                     Catch ex As Exception
+                        LogSuppressed(ex, "FunctionForm.ListBox1_SelectedIndexChanged#1")
 
                     End Try
                 End If
@@ -1155,6 +1166,7 @@ Public Class FunctionForm
                         _valuedef = GetDefValueDefs(_defstring)
 
                     Catch ex As Exception
+                        LogSuppressed(ex, "FunctionForm.ListBox1_SelectedIndexChanged#2")
 
                     End Try
                 End If

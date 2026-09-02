@@ -43,6 +43,7 @@ Module CreateDebugpyModule
             End If
             My.Computer.FileSystem.DeleteFile(basefolder & "\eudplibdata\" & "EUDEditorDebug.py")
         Catch ex As Exception
+            LogSuppressed(ex, "CreateDebugpyModule.DeledtDebugpy")
 
         End Try
     End Sub

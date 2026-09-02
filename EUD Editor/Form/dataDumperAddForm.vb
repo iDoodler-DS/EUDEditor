@@ -103,6 +103,7 @@ Public Class dataDumperAddForm
                 Try
                     ListBox1.Items.Add(text(i).Split(",")(0).Trim & " " & text(i).Split(",")(1).Trim)
                 Catch ex As Exception
+                    LogSuppressed(ex, "dataDumperAddForm.LoadData")
 
                 End Try
             End If

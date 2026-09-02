@@ -767,6 +767,7 @@ Public Class TileSetForm
                     'DrawRect(i * 32, j * 32, MTXMDATA(0))
                     DrawRect(i * 32 - scoll.X Mod 32, j * 32 - scoll.Y Mod 32, i + scoll.X \ 32 + (j + scoll.Y \ 32) * MapSize.Width)
                 Catch ex As Exception
+                    LogSuppressed(ex, "TileSetForm.GetMapImage")
 
                 End Try
 
@@ -877,6 +878,7 @@ Public Class TileSetForm
             Try
                 HScrollBar1.Value = HScrollBar1.Maximum - HScrollBar1.LargeChange
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.RefreshBMP#1")
             End Try
 
         End If
@@ -884,6 +886,7 @@ Public Class TileSetForm
             Try
                 VScrollBar1.Value = VScrollBar1.Maximum - VScrollBar1.LargeChange
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.RefreshBMP#2")
             End Try
 
         End If
@@ -902,6 +905,7 @@ Public Class TileSetForm
             Try
                 VScrollBar2.Value = VScrollBar2.Maximum - VScrollBar2.LargeChange
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.RefreshBMP#3")
 
             End Try
         End If
@@ -909,6 +913,7 @@ Public Class TileSetForm
         Try
             GetPalletImage()
         Catch ex As Exception
+            LogSuppressed(ex, "TileSetForm.RefreshBMP#4")
         End Try
         DrawMap()
     End Sub
@@ -1100,6 +1105,7 @@ Public Class TileSetForm
             Try
                 HScrollBar1.Value = x
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.ScrollMap#1")
 
             End Try
             drawing = True
@@ -1109,6 +1115,7 @@ Public Class TileSetForm
             Try
                 HScrollBar1.Value = 0
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.ScrollMap#2")
 
             End Try
             drawing = True
@@ -1118,6 +1125,7 @@ Public Class TileSetForm
             Try
                 HScrollBar1.Value = HScrollBar1.Maximum - Panel2.Size.Width
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.ScrollMap#3")
 
             End Try
             drawing = True
@@ -1129,6 +1137,7 @@ Public Class TileSetForm
             Try
                 VScrollBar1.Value = y
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.ScrollMap#4")
 
             End Try
             drawing = True
@@ -1138,6 +1147,7 @@ Public Class TileSetForm
             Try
                 VScrollBar1.Value = 0
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.ScrollMap#5")
 
             End Try
             drawing = True
@@ -1147,6 +1157,7 @@ Public Class TileSetForm
             Try
                 VScrollBar1.Value = VScrollBar1.Maximum - Panel2.Size.Height
             Catch ex As Exception
+                LogSuppressed(ex, "TileSetForm.ScrollMap#6")
 
             End Try
             drawing = True
@@ -1964,6 +1975,7 @@ Public Class TileSetForm
         Try
             ProgressBar1.Value = RemasterTile.GetProgress
         Catch ex As Exception
+            LogSuppressed(ex, "TileSetForm.Timer2_Tick_1")
 
         End Try
 

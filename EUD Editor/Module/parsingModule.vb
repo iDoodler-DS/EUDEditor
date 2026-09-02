@@ -472,6 +472,7 @@ Module parsingModule
         Try
             My.Computer.FileSystem.DeleteFile(filename)
         Catch ex As Exception
+            LogSuppressed(ex, "parsingModule.Getstattextbin")
 
         End Try
         Dim filestr As FileStream = New FileStream(filename, FileMode.CreateNew)

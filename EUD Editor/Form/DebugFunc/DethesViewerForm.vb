@@ -328,6 +328,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
         Try
             SELECTLIST(ListView1.SelectedItems(0).Tag)
         Catch ex As Exception
+            LogSuppressed(ex, "DethesViewerForm.ListView1_SelectedIndexChanged")
         End Try
     End Sub
 

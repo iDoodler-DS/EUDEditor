@@ -125,6 +125,7 @@ Namespace eudplib
 
                         End If
                     Catch ex As Exception
+                        LogSuppressed(ex, "eudplibModule.Getedstext")
                     End Try
 
                     Dim temp1string() As String = nqccommands.Split({"\"}, StringSplitOptions.RemoveEmptyEntries)

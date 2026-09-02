@@ -99,6 +99,7 @@ Public Class TextEditor
 
             PreViewer.Lines = lines
         Catch ex As Exception
+            LogSuppressed(ex, "TextEditor.DrawPreview")
 
         End Try
 

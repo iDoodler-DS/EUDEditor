@@ -399,10 +399,12 @@ Public Class Element
                 End If
             Case "DValue"
                 If isTocode = False Then
+                    Dim val As Integer
+                    If Not Integer.TryParse(_value, val) Then Return returnstring
+
                     Try
                         Dim num As Integer = CInt(GetValue("DatFile"))
                         Dim num2 As Integer = CInt(GetValue("OffsetName"))
-                        Dim val As Integer = _value
 
                         Dim _defstring As String = GetDefValueDefs("OffsetName").GetValues(False, num)(num2)
                         _defstring = DatEditDATA(num).typeName & "_" & _defstring
@@ -413,9 +415,11 @@ Public Class Element
                         _values.Clear()
                         _values.AddRange(GetDefValueDefs(ReadValDef(_defstring)).GetValues(isTocode, num))
 
+                        If val < 0 OrElse val >= _values.Count Then Return returnstring
                         returnstring = _values(val)
                         Return returnstring
                     Catch ex As Exception
+                        LogSuppressed(ex, "Trigger.ValueParser#1")
 
                     End Try
                 End If
@@ -426,15 +430,18 @@ Public Class Element
                         returnstring = "0x" & CUnitData(val)(0)
                         Return returnstring
                     Catch ex As Exception
+                        LogSuppressed(ex, "Trigger.ValueParser#2")
 
                     End Try
                 End If
             Case "SValue"
                 If isTocode = False Then
+                    Dim val As Integer
+                    If Not Integer.TryParse(_value, val) Then Return returnstring
+
                     Try
                         Dim num As Integer = CInt(GetValue("StructOffset"))
                         Dim _defstring As String = CUnitData(num)(1)
-                        Dim val As Integer = _value
 
                         If GetDefValueDefs(CUnitData(num)(1)).type = ValueDefs.OutPutType.CheckList Then
                             Return "0x" & Hex(returnstring)
@@ -445,6 +452,7 @@ Public Class Element
                         returnstring = _values(val)
                         Return returnstring
                     Catch ex As Exception
+                        LogSuppressed(ex, "Trigger.ValueParser#3")
 
                     End Try
                 End If
@@ -860,6 +868,7 @@ Public Class Element
                         FuncLoadFile(Values(0))
                         TrigEditorForm.refreshScreen()
                     Catch ex As Exception
+                        LogSuppressed(ex, "Trigger.LoadFile")
                     End Try
                 End If
             End If
@@ -1335,6 +1344,7 @@ Public Class Element
             Try
                 text = GetText()
             Catch ex As Exception
+                LogSuppressed(ex, "Trigger.ToTreeNode")
 
             End Try
             RTreeNode = New TreeNode(text)
@@ -1652,6 +1662,7 @@ Public Class Element
                 End If
             Next
         Catch ex As Exception
+            LogSuppressed(ex, "Trigger.GetFuncDEf")
 
         End Try
 
@@ -1709,6 +1720,7 @@ Public Class Element
                         Try
                             num2 = Val("&H" & CUnitData(num + 1)(0))
                         Catch ex As Exception
+                            LogSuppressed(ex, "Trigger.GetCode#1")
 
                         End Try
 
@@ -1763,6 +1775,7 @@ Public Class Element
                             _rtext = _rtext.Replace("Offset" & i + 1, value)
                         Next
                     Catch ex As Exception
+                        LogSuppressed(ex, "Trigger.GetCode#2")
 
                     End Try
                 ElseIf act.Name = "ChangeStarText" Then
@@ -1787,6 +1800,7 @@ Public Class Element
                         _rtext = _rtext.Replace("Offset", start)
                         _rtext = _rtext.Replace("len", len)
                     Catch ex As Exception
+                        LogSuppressed(ex, "Trigger.GetCode#3")
 
                     End Try
                 ElseIf act.Name = "ChangeButtonEnableMsg" Then
@@ -1811,6 +1825,7 @@ Public Class Element
                         _rtext = _rtext.Replace("Offset", start)
                         _rtext = _rtext.Replace("len", len)
                     Catch ex As Exception
+                        LogSuppressed(ex, "Trigger.GetCode#4")
 
                     End Try
                 ElseIf act.Name = "ChangeButtonUnEnableMsg" Then
@@ -1835,6 +1850,7 @@ Public Class Element
                         _rtext = _rtext.Replace("Offset", start)
                         _rtext = _rtext.Replace("len", len)
                     Catch ex As Exception
+                        LogSuppressed(ex, "Trigger.GetCode#5")
 
                     End Try
                 ElseIf act.Name = "DisplayCText" Then
@@ -1936,6 +1952,7 @@ Public Class Element
                         Try
                             num2 = Val("&H" & CUnitData(num + 1)(0))
                         Catch ex As Exception
+                            LogSuppressed(ex, "Trigger.GetCode#6")
 
                         End Try
 
@@ -2264,6 +2281,7 @@ Public Class Element
                         Try
                             DebugDic.Add(LineCount, Me)
                         Catch ex As Exception
+                            LogSuppressed(ex, "Trigger.ToCode")
 
                         End Try
                     End If

@@ -120,6 +120,7 @@ Public Class SCDBDataCreater
                     Try
                         SCDBDeathData(i) = DataGridView1.Item(1, i).Value
                     Catch ex As Exception
+                        LogSuppressed(ex, "SCDBDataCreater.DataSave#1")
 
                     End Try
 
@@ -129,6 +130,7 @@ Public Class SCDBDataCreater
                     Try
                         SCDBVariableData(i) = DataGridView1.Item(1, i).Value
                     Catch ex As Exception
+                        LogSuppressed(ex, "SCDBDataCreater.DataSave#2")
 
                     End Try
                 Next

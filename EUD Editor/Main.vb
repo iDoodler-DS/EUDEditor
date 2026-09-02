@@ -143,6 +143,8 @@ Public Class Main
 
 
 
+
+
 #Region "Recovery copy"
     ' The editor writes a copy of the project every few minutes while there are changes
     ' that are not saved. A save or a close takes the copy away, so a copy that is still
@@ -860,7 +862,8 @@ Public Class Main
                     Return ico.ToBitmap()
                 End Using
             End If
-        Catch
+        Catch sup1 As Exception
+            LogSuppressed(sup1, "Main.ProjectFileIcon")
         End Try
         Return My.Resources.MapEditor
     End Function
@@ -913,7 +916,8 @@ Public Class Main
     Private Shared Sub ApplyPageIcon(page As TabPage, imageKey As String)
         Try
             page.ImageKey = imageKey
-        Catch
+        Catch sup2 As Exception
+            LogSuppressed(sup2, "Main.ApplyPageIcon")
         End Try
     End Sub
 
@@ -1514,6 +1518,7 @@ Public Class Main
             End While
             srStream.Close()
         Catch ex As Exception
+            LogSuppressed(ex, "Main.LoadRecentList")
         End Try
         RecentlyOpenedFiles.Reverse()
         OpenRecentToolStripMenuItem.Visible = RecentlyOpenedFiles.Count > 0

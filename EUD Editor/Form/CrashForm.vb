@@ -1,4 +1,4 @@
-''' <summary>
+﻿''' <summary>
 ''' Shows what stopped the editor, and lets the user copy the details. The editor
 ''' stays open after an error on the interface thread, so this window says what
 ''' happened and where the recovery copy is.
@@ -62,7 +62,8 @@ Public Class CrashForm
 
         Try
             ThemeSetForm.SetControlColor(Me)
-        Catch
+        Catch sup1 As Exception
+            LogSuppressed(sup1, "CrashForm.New")
             'A theme is a small thing next to an error report.
         End Try
     End Sub

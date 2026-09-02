@@ -25,6 +25,7 @@
             Try
                 SCDBLocationData.SetUnitCount(i, DataGridView1.Item(2, i).Value)
             Catch ex As Exception
+                LogSuppressed(ex, "UnitSelecter.UnitSelecter_Closed")
 
             End Try
         Next

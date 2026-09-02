@@ -55,6 +55,7 @@ Public Class DebugViewUnitForm
                 End Select
 
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.DataGridView1_CellEndEdit")
 
             End Try
 
@@ -153,6 +154,7 @@ Public Class DebugViewUnitForm
                     Try
                         listname = ProjectSet.CHKSTRING(strnum)
                     Catch ex As Exception
+                        LogSuppressed(ex, "DebugViewUnitForm.DebugViewUnitForm_Load")
 
                     End Try
                 Else
@@ -475,6 +477,7 @@ Public Class DebugViewUnitForm
 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &H8), CInt(TextBox1.Text * 256))
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.TextBox1_TextChanged")
 
             End Try
         End If
@@ -515,6 +518,7 @@ Public Class DebugViewUnitForm
 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &H8), CInt(NumericUpDown1.Value / 100 * maxhp))
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.NumericUpDown1_ValueChanged")
 
             End Try
         End If
@@ -541,6 +545,7 @@ Public Class DebugViewUnitForm
 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &H60), CInt(TextBox2.Text * 256))
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.TextBox2_TextChanged")
 
             End Try
         End If
@@ -575,6 +580,7 @@ Public Class DebugViewUnitForm
 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &H60), CUInt(NumericUpDown2.Value / 100 * maxShield))
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.NumericUpDown2_ValueChanged")
 
             End Try
         End If
@@ -601,6 +607,7 @@ Public Class DebugViewUnitForm
 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &HA2), CUShort(TextBox3.Text * 256))
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.TextBox3_TextChanged")
 
             End Try
         End If
@@ -639,6 +646,7 @@ Public Class DebugViewUnitForm
                 'NumericUpDown3.Value/ 100 * (maxEnergy * 256) = (Energy / ) 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &HA2), CUShort(NumericUpDown3.Value / 100 * (maxEnergy * 256)))
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.NumericUpDown3_ValueChanged")
 
             End Try
         End If
@@ -664,6 +672,7 @@ Public Class DebugViewUnitForm
 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &HD0), CUShort(TextBox4.Text))
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.TextBox4_TextChanged")
 
             End Try
         End If
@@ -682,6 +691,7 @@ Public Class DebugViewUnitForm
 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &H4C), CByte(ComboBox1.SelectedIndex))
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.ComboBox1_SelectedIndexChanged")
 
             End Try
         End If
@@ -708,6 +718,7 @@ Public Class DebugViewUnitForm
 
                 WinAPI.Write(CUInt(&H59CCA8 + selectindex * 336 + &HDC), statusflag)
             Catch ex As Exception
+                LogSuppressed(ex, "DebugViewUnitForm.CheckedListBox1_SelectedIndexChanged")
 
             End Try
         End If

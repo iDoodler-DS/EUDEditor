@@ -112,6 +112,7 @@ Namespace Lan
                 Try
                     _str.Append(getmeunitem(meunitem.DropDownItems(i)))
                 Catch ex As Exception
+                    LogSuppressed(ex, "LangageModule.getmeunitem")
 
                 End Try
             Next
@@ -125,6 +126,7 @@ Namespace Lan
                 Try
                     _str.Append(getmeunitem(meun.Items(i)))
                 Catch ex As Exception
+                    LogSuppressed(ex, "LangageModule.GetMenu")
 
                 End Try
                 '_str.Append(getcontrolname(baseform.Controls(i)))
@@ -151,6 +153,7 @@ Namespace Lan
                 Try
                     _str.AppendLine("    """ & i.Name & """: """ & i.Text & """,")
                 Catch ex As Exception
+                    LogSuppressed(ex, "LangageModule.GetTooltip")
 
                 End Try
             Next
@@ -262,12 +265,9 @@ Namespace Lan
                 End If
             End If
 
-            For i = 0 To meunitem.DropDownItems.Count - 1
-                Try
-                    setmeunitem(meunitem.DropDownItems(i))
-                Catch ex As Exception
-
-                End Try
+            For Each item As ToolStripItem In meunitem.DropDownItems
+                Dim child As ToolStripMenuItem = TryCast(item, ToolStripMenuItem)
+                If child IsNot Nothing Then setmeunitem(child)
             Next
         End Sub
 
@@ -275,13 +275,9 @@ Namespace Lan
             labels = CachedLanguageFile(forms.Name & meun.Name & name)
             If labels.Count = 0 Then Return
 
-            For i = 0 To meun.Items.Count - 1
-                Try
-                    setmeunitem(meun.Items(i))
-                Catch ex As Exception
-
-                End Try
-                '_str.Append(getcontrolname(baseform.Controls(i)))
+            For Each item As ToolStripItem In meun.Items
+                Dim child As ToolStripMenuItem = TryCast(item, ToolStripMenuItem)
+                If child IsNot Nothing Then setmeunitem(child)
             Next
         End Sub
 
@@ -293,6 +289,7 @@ Namespace Lan
                 Try
                     meun.Items(i).Text = labels(meun.Items(i).Name)
                 Catch ex As Exception
+                    LogSuppressed(ex, "LangageModule.SetTooltip")
 
                 End Try
                 '_str.Append(getcontrolname(baseform.Controls(i)))

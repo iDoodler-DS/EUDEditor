@@ -61,7 +61,8 @@ Namespace MPQlib
             Try
                 Dim info As New FileInfo(ProjectSet.InputMap)
                 If info.Exists Then Return info.FullName & "|" & info.LastWriteTimeUtc.Ticks & "|" & info.Length
-            Catch
+            Catch sup1 As Exception
+                LogSuppressed(sup1, "MPQModule.ListfileKey")
             End Try
             Return ProjectSet.InputMap
         End Function

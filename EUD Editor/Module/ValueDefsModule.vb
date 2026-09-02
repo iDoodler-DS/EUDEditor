@@ -175,6 +175,7 @@ Module ValueDefsModule
                 _values.Add("Empty")
                 Return _values.ToArray
             Catch ex As Exception
+                LogSuppressed(ex, "ValueDefsModule.GetValues")
 
             End Try
             Return _values.ToArray

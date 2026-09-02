@@ -320,6 +320,7 @@ Module TriggerEditorDataMoudle
             Try
                 AddText = New Element(AddText, ElementType.RawString)
             Catch ex As Exception
+                LogSuppressed(ex, "TriggerEditorDataMoudle.LoadTriggerFile#1")
 
             End Try
             functions = New Element(functions, ElementType.Functions)
@@ -333,6 +334,7 @@ Module TriggerEditorDataMoudle
             Try
                 AddText.LoadFile(splitData, findSection(datas, "&AddText&"))
             Catch ex As Exception
+                LogSuppressed(ex, "TriggerEditorDataMoudle.LoadTriggerFile#2")
 
             End Try
             functions.LoadFile(splitData, findSection(datas, "&functions&"), isfirst)
@@ -362,6 +364,7 @@ Module TriggerEditorDataMoudle
             Try
                 AddText.LoadFile(splitData, findSection(datas, "&AddText&"))
             Catch ex As Exception
+                LogSuppressed(ex, "TriggerEditorDataMoudle.LoadTriggerFileKeepFile")
 
             End Try
             functions.LoadFile(splitData, findSection(datas, "&functions&"))
@@ -685,6 +688,7 @@ Module TriggerEditorDataMoudle
             Try
                 Actions(i).Text = Actions(i).Texts(Actions(i).Texts.IndexOf(My.Settings.Language) + 1)
             Catch ex As Exception
+                LogSuppressed(ex, "TriggerEditorDataMoudle.LoadTriggerData#1")
 
             End Try
         Next
@@ -706,6 +710,7 @@ Module TriggerEditorDataMoudle
             Try
                 Condictions(i).Text = Condictions(i).Texts(Condictions(i).Texts.IndexOf(My.Settings.Language) + 1)
             Catch ex As Exception
+                LogSuppressed(ex, "TriggerEditorDataMoudle.LoadTriggerData#2")
 
             End Try
         Next

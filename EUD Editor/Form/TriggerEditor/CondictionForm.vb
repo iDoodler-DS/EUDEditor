@@ -164,6 +164,7 @@ Public Class CondictionForm
                 ValueSetting(True)
             End If
         Catch ex As Exception
+            LogSuppressed(ex, "CondictionForm.TabControl3_SelectedIndexChanged")
 
         End Try
     End Sub
@@ -377,6 +378,7 @@ Public Class CondictionForm
             End Select
             ComboBox3.SelectedIndex = checkindex - _index
         Catch ex As Exception
+            LogSuppressed(ex, "CondictionForm.LoadCombobox")
         End Try
         'If Condictions(i).Name = _ele.Con.Name Then
         '    ComboBox3.SelectedIndex = i
@@ -662,6 +664,7 @@ Public Class CondictionForm
                         Dim strings() As String = {"Unit", "Weapon", "Flingy", "Sprite", "Image", "Upgrade", "Techdata", "Order"}
                         _valuedef = GetDefValueDefs(strings(num))
                     Catch ex As Exception
+                        LogSuppressed(ex, "CondictionForm.ValueSetting#1")
 
                     End Try
                 End If
@@ -678,6 +681,7 @@ Public Class CondictionForm
                         'Dim strings() As String = {"Unit", "Weapon", "Flingy", "Sprite", "Image", "Upgrade", "Techdata", "Order"}
                         '_valuedef = GetDefValueDefs(strings(num))
                     Catch ex As Exception
+                        LogSuppressed(ex, "CondictionForm.ValueSetting#2")
 
                     End Try
                 End If
@@ -694,6 +698,7 @@ Public Class CondictionForm
                         _valuedef = GetDefValueDefs(ReadValDef(_defstring))
 
                     Catch ex As Exception
+                        LogSuppressed(ex, "CondictionForm.ValueSetting#3")
 
                     End Try
                 End If
@@ -708,6 +713,7 @@ Public Class CondictionForm
 
                         _valuedef = GetDefValueDefs(_defstring)
                     Catch ex As Exception
+                        LogSuppressed(ex, "CondictionForm.ValueSetting#4")
 
                     End Try
                 End If
@@ -785,6 +791,7 @@ Public Class CondictionForm
 
                     isDataCollect = True
                 Catch ex As Exception
+                    LogSuppressed(ex, "CondictionForm.ValueSetting#5")
                 End Try
 
             Case ValueDefs.OutPutType.CheckList
@@ -809,6 +816,7 @@ Public Class CondictionForm
                     isDataCollect = True
 
                 Catch ex As Exception
+                    LogSuppressed(ex, "CondictionForm.ValueSetting#6")
 
                 End Try
 
@@ -849,6 +857,7 @@ Public Class CondictionForm
                     EasyCompletionComboBox1.SelectedIndex = value
                     isDataCollect = True
                 Catch ex As Exception
+                    LogSuppressed(ex, "CondictionForm.ValueSetting#7")
                 End Try
             Case ValueDefs.OutPutType.ListNum
                 ListBox1.Visible = True
@@ -869,6 +878,7 @@ Public Class CondictionForm
                     ListBox1.SelectedIndex = value
                     isDataCollect = True
                 Catch ex As Exception
+                    LogSuppressed(ex, "CondictionForm.ValueSetting#8")
                 End Try
 
             Case ValueDefs.OutPutType.List
@@ -905,6 +915,7 @@ Public Class CondictionForm
                     NumericUpDown1.Value = CLng(value)
                     isDataCollect = True
                 Catch ex As Exception
+                    LogSuppressed(ex, "CondictionForm.ValueSetting#9")
 
                 End Try
             Case ValueDefs.OutPutType.Text

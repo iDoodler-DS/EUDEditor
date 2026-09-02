@@ -53,6 +53,7 @@
                 isvla = CByte(Mid(TextBox1.Text, 1, 1))
                 Button5.Enabled = False
             Catch ex As Exception
+                LogSuppressed(ex, "CreateValForm.TextBox1_TextChanged")
             End Try
         Else
             Button5.Enabled = False
@@ -80,6 +81,7 @@
                 isvla = CByte(Mid(TextBox1.Text, 1, 1))
                 Button5.Enabled = False
             Catch ex As Exception
+                LogSuppressed(ex, "CreateValForm.NumericUpDown1_ValueChanged")
             End Try
         Else
             Button5.Enabled = False

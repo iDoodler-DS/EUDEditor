@@ -223,6 +223,7 @@
         Try
             SELECTLIST(ListView1.SelectedItems(0).Tag)
         Catch ex As Exception
+            LogSuppressed(ex, "GRPFormUseGRP.ListView1_SelectedIndexChanged")
         End Try
     End Sub
 
@@ -361,6 +362,7 @@
         Try
             drawUnitGRP()
         Catch ex As Exception
+            LogSuppressed(ex, "GRPFormUseGRP.Timer1_Tick")
 
         End Try
 

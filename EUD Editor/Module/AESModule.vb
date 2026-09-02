@@ -51,7 +51,8 @@ Module AESModule
             bytEncoded = objMemoryStream.ToArray
             objMemoryStream.Close()
             objCryptoStream.Close()
-        Catch
+        Catch sup1 As Exception
+            LogSuppressed(sup1, "AESModule.EncryptString128Bit")
         End Try
 
 
@@ -106,7 +107,8 @@ Module AESModule
             objCryptoStream.FlushFinalBlock()
             objMemoryStream.Close()
             objCryptoStream.Close()
-        Catch
+        Catch sup2 As Exception
+            LogSuppressed(sup2, "AESModule.DecryptString128Bit")
 
         End Try
 

@@ -28,6 +28,7 @@ Public Class ErrorDialog
                 DataGridView1.Rows.Add({linecount, ErrorType})
                 DataGridView1.Rows.Item(DataGridView1.Rows.Count - 1).Tag = DebugDic(linecount).CTreeNode
             Catch ex As Exception
+                LogSuppressed(ex, "ErrorDialog.ErrorParse")
 
             End Try
 
@@ -53,6 +54,7 @@ Public Class ErrorDialog
             Dim node As TreeNode = CType(DataGridView1.SelectedRows(0).Tag, TreeNode)
             node.TreeView.SelectedNode = node
         Catch ex As Exception
+            LogSuppressed(ex, "ErrorDialog.DataGridView1_CellContentClick")
             'DataGridView1.Rows.RemoveAt(DataGridView1.SelectedRows(0).Index)
         End Try
     End Sub

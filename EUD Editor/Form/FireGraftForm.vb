@@ -141,6 +141,7 @@ Public Class FireGraftForm
                 ListBox1.SelectedIndex = 0
 
             Catch ex As Exception
+                LogSuppressed(ex, "FireGraftForm.FireGraftForm_Load")
 
             End Try
 
@@ -532,6 +533,7 @@ Public Class FireGraftForm
         Try
             SELECTLIST(ListView1.SelectedItems(0).Tag)
         Catch ex As Exception
+            LogSuppressed(ex, "FireGraftForm.ListView1_SelectedIndexChanged")
         End Try
     End Sub
 
@@ -1436,7 +1438,8 @@ Handles ListBox1.DrawItem
                 snapshotReqIndex = _OBJECTNUM
                 snapshotReq = ProjectRequireData(kind)(_OBJECTNUM).Clone()
             End If
-        Catch
+        Catch sup1 As Exception
+            LogSuppressed(sup1, "FireGraftForm.TakeSnapshot")
         End Try
 
         StartWatchingChanges()
@@ -1468,7 +1471,8 @@ Handles ListBox1.DrawItem
                     snapshotReq = current.Clone()
                 End If
             End If
-        Catch
+        Catch sup2 As Exception
+            LogSuppressed(sup2, "FireGraftForm.RecordPendingChanges")
         End Try
     End Sub
 
@@ -1569,6 +1573,7 @@ Handles ListBox1.DrawItem
                 Main.nameResetting()
                 changeColor(TextBox1, ProjectDebugID(_OBJECTNUM))
             Catch ex As Exception
+                LogSuppressed(ex, "FireGraftForm.TextBox1_TextChanged")
 
             End Try
         End If
@@ -2063,6 +2068,7 @@ Handles ListBox1.DrawItem
                         End Try
                         namechange = False
                     Catch ex As Exception
+                        LogSuppressed(ex, "FireGraftForm.TextBox5_TextChanged")
                     End Try
 
 
@@ -2152,6 +2158,7 @@ Handles ListBox1.DrawItem
 
                         End With
                     Catch ex As Exception
+                        LogSuppressed(ex, "FireGraftForm.TextBox10_TextChanged")
 
                     End Try
                 End If
@@ -2237,6 +2244,7 @@ Handles ListBox1.DrawItem
                             & ValueTostring(.enaStr) & ValueTostring(.disStr)
                         End With
                     Catch ex As Exception
+                        LogSuppressed(ex, "FireGraftForm.TextBox11_TextChanged")
 
                     End Try
                 End If
@@ -2303,6 +2311,7 @@ Handles ListBox1.DrawItem
                     Try
                         ProjectBtnData(_OBJECTNUM)(btnnum).con = conbtnFnc(TextBox7.Text).FucOffset
                     Catch ex As Exception
+                        LogSuppressed(ex, "FireGraftForm.TextBox7_TextChanged")
                     End Try
 
                     With ProjectBtnData(_OBJECTNUM)(btnnum)
@@ -2359,6 +2368,7 @@ Handles ListBox1.DrawItem
                     Try
                         ProjectBtnData(_OBJECTNUM)(btnnum).con = conbtnFnc(ComboBox6.SelectedIndex).FucOffset 'TextBox5.Text
                     Catch ex As Exception
+                        LogSuppressed(ex, "FireGraftForm.ComboBox6_SelectedIndexChanged")
                         'MsgBox("시발?")
                     End Try
 
@@ -2418,6 +2428,7 @@ Handles ListBox1.DrawItem
                     Try
                         ProjectBtnData(_OBJECTNUM)(btnnum).act = actbtnFnc(TextBox9.Text).FucOffset
                     Catch ex As Exception
+                        LogSuppressed(ex, "FireGraftForm.TextBox9_TextChanged")
                     End Try
 
                     With ProjectBtnData(_OBJECTNUM)(btnnum)
@@ -2474,6 +2485,7 @@ Handles ListBox1.DrawItem
                     Try
                         ProjectBtnData(_OBJECTNUM)(btnnum).act = actbtnFnc(ComboBox7.SelectedIndex).FucOffset 'TextBox5.Text
                     Catch ex As Exception
+                        LogSuppressed(ex, "FireGraftForm.ComboBox7_SelectedIndexChanged")
                         'MsgBox("시발?")
                     End Try
 
@@ -3996,6 +4008,7 @@ Handles ListBox1.DrawItem
             End With
 
         Catch ex As Exception
+            LogSuppressed(ex, "FireGraftForm.reqPASTE")
         End Try
         changeban = True
         ReadReqData(ProjectRequireData(TAB_INDEX - 2)(_OBJECTNUM), False)
@@ -4136,6 +4149,7 @@ Handles ListBox1.DrawItem
             CodeViewer.Show()
             CodeViewer.Location = New Point(MousePosition.X - CodeViewer.Size.Width / 2, MousePosition.Y)
         Catch ex As Exception
+            LogSuppressed(ex, "FireGraftForm.CodeViewerShow")
 
         End Try
 

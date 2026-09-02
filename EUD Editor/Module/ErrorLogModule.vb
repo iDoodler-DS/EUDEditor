@@ -1,4 +1,4 @@
-Imports System.IO
+﻿Imports System.IO
 Imports System.Text
 
 ''' <summary>
@@ -7,6 +7,7 @@ Imports System.Text
 ''' </summary>
 Module ErrorLogModule
     Private ReadOnly logLock As New Object
+    Private ReadOnly reportedPlaces As New HashSet(Of String)
 
     Public ReadOnly Property LogPath As String
         Get
@@ -34,6 +35,22 @@ Module ErrorLogModule
             sb.AppendLine()
 
             Write(sb.ToString())
+        Catch
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Records an error that the code goes on from. A place reports one time in a run,
+    ''' because some of these places run many times a second. The first report says
+    ''' where to look; a count of the rest is of no use.
+    ''' </summary>
+    Public Sub LogSuppressed(ex As Exception, place As String)
+        Try
+            SyncLock reportedPlaces
+                If reportedPlaces.Contains(place) Then Return
+                reportedPlaces.Add(place)
+            End SyncLock
+            LogException(ex, "went on after: " & place)
         Catch
         End Try
     End Sub

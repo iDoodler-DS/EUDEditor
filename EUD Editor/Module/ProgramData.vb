@@ -1678,10 +1678,36 @@ Module ProgramData
 
 
 
+        'The value of one field of one entry: the game data, plus what the project
+        'changes, plus what the map changes. A key covers a range of entries, and a
+        'layer can be shorter than that range, or empty, when the map holds no data of
+        'this kind. Those entries read as 0. The callers used a Try for this, which hid
+        'the real faults as well.
         Public Function ReadValue(key As String, index As UInteger)
-            Dim keyDicValue = keyDic.Item(key)
-            Dim lookupIndex = index - keyINFO(keyDicValue).VarStart
-            Return data(keyDicValue)(lookupIndex) + projectdata(keyDicValue)(lookupIndex) + mapdata(keyDicValue)(lookupIndex)
+            Dim slot As UInteger
+            If Not keyDic.TryGetValue(key, slot) Then Return 0
+            If slot >= keyINFO.Count Then Return 0
+
+            Dim lookupIndex As Long = CLng(index) - keyINFO(CInt(slot)).VarStart
+            If lookupIndex < 0 Then Return 0
+
+            Return LayerValue(data, CInt(slot), lookupIndex) +
+                   LayerValue(projectdata, CInt(slot), lookupIndex) +
+                   LayerValue(mapdata, CInt(slot), lookupIndex)
+        End Function
+
+        Private Shared Function LayerValue(layer As List(Of List(Of UInteger)), slot As Integer, index As Long) As Long
+            If layer Is Nothing OrElse slot >= layer.Count Then Return 0
+            Dim values As List(Of UInteger) = layer(slot)
+            If values Is Nothing OrElse index >= values.Count Then Return 0
+            Return values(CInt(index))
+        End Function
+
+        Private Shared Function LayerValue(layer As List(Of List(Of Long)), slot As Integer, index As Long) As Long
+            If layer Is Nothing OrElse slot >= layer.Count Then Return 0
+            Dim values As List(Of Long) = layer(slot)
+            If values Is Nothing OrElse index >= values.Count Then Return 0
+            Return values(CInt(index))
         End Function
         Public Function ReadValueNum(key As Integer, index As UInteger)
             Return data(key)(index - keyINFO(key).VarStart) + projectdata(key)(index - keyINFO(key).VarStart) + mapdata(key)(index - keyINFO(key).VarStart)
@@ -1698,7 +1724,8 @@ Module ProgramData
                 Dim after As Long = ReadValue(key, index)
                 If after = before Then Return
                 EditHistory.History.Record(New EditHistory.DatEdit(DatEditDATA.IndexOf(Me), key, index, before, after))
-            Catch
+            Catch sup1 As Exception
+                LogSuppressed(sup1, "ProgramData.RecordEdit")
             End Try
         End Sub
 
@@ -1800,19 +1827,25 @@ Module ProgramData
         End Function
 
 
+        'Whether this field of this entry differs from the game data. A key covers a
+        'range of entries, and an entry outside that range holds no changed value.
         Public Sub CheckChange(key As String, index As UInteger, obj As Object)
             obj.ForeColor = ProgramSet.colorFieldText
-            Try
-                If projectdata(keyDic(key))(index - keyINFO(keyDic(key)).VarStart) = 0 Then
-                    obj.BackColor = ProgramSet.colorFieldBackground
-                    'Return False
-                Else
-                    obj.BackColor = ProgramSet.colorChangedBackground
-                    'Return True
-                End If
-            Catch ex As Exception
-            End Try
+            obj.BackColor = If(HasChange(key, index),
+                               ProgramSet.colorChangedBackground,
+                               ProgramSet.colorFieldBackground)
         End Sub
+
+        'True when the entry is inside the range of the key and its value is not 0.
+        Private Function HasChange(key As String, index As UInteger) As Boolean
+            Dim slot As Integer
+            If Not keyDic.TryGetValue(key, slot) Then Return False
+            If slot < 0 OrElse slot >= projectdata.Count Then Return False
+
+            Dim k As Long = CLng(index) - keyINFO(slot).VarStart
+            If k < 0 OrElse k >= projectdata(slot).Count Then Return False
+            Return projectdata(slot)(k) <> 0
+        End Function
 
 
         Public Sub ChecklistChange(key As String, index As UInteger, checkedlistBox As ListView)
@@ -1831,26 +1864,20 @@ Module ProgramData
 
 
                 For i = 0 To checkedlistBox.Items.Count - 1
-                    'MsgBox(value & vbCrLf & i & " 번째 버튼 " & (value And (2 ^ i)))
+                    'An entry the control has not built yet has no colour to set.
+                    Dim item As ListViewItem = checkedlistBox.Items(i)
+                    If item Is Nothing Then Continue For
 
-                    '만약 value 가 00111
-                    '만약 value 가 00110
-                    '다음 index 가 00001
-
-                    'and시 0이 아니면 현재 수치가 존재한다.
                     If (oldvalue And (2 ^ i)) <> (newvalue And (2 ^ i)) Then
-                        checkedlistBox.Items(i).BackColor = ProgramSet.colorChangedBackground
-                        'Return False
+                        item.BackColor = ProgramSet.colorChangedBackground
+                    ElseIf item.Checked Then
+                        item.BackColor = ProgramSet.colorCheckedBackground
                     Else
-                        If checkedlistBox.Items(i).Checked = True Then
-                            checkedlistBox.Items(i).BackColor = ProgramSet.colorCheckedBackground
-                        Else
-                            checkedlistBox.Items(i).BackColor = ProgramSet.colorFieldBackground
-                        End If
-                        'Return True
+                        item.BackColor = ProgramSet.colorFieldBackground
                     End If
                 Next
             Catch ex As Exception
+                LogSuppressed(ex, "ProgramData.ChecklistChange")
             End Try
         End Sub
 
@@ -1909,6 +1936,7 @@ Module ProgramData
                 End If
                 CheckChange(key, index, textbox)
             Catch ex As Exception
+                LogSuppressed(ex, "ProgramData.WriteToTEXTBOX")
             End Try           'projectdata(KEYV)(index - keyINFO(KEYV).VarStart) = textbox.Text - data(KEYV)(index - keyINFO(KEYV).VarStart)
         End Sub
 
@@ -1940,6 +1968,7 @@ Module ProgramData
                 End If
                 CheckChange(key, index, numericupdown)
             Catch ex As Exception
+                LogSuppressed(ex, "ProgramData.WriteToNUMERIC")
             End Try           'projectdata(KEYV)(index - keyINFO(KEYV).VarStart) = textbox.Text - data(KEYV)(index - keyINFO(KEYV).VarStart)
         End Sub
 
@@ -1968,6 +1997,7 @@ Module ProgramData
                 End If
                 CheckChange(key, index, combobox)
             Catch ex As Exception
+                LogSuppressed(ex, "ProgramData.WriteToCOMBOBOX")
             End Try
             combobox.Enabled = True
             'projectdata(KEYV)(index - keyINFO(KEYV).VarStart) = textbox.Text - data(KEYV)(index - keyINFO(KEYV).VarStart)
@@ -2005,8 +2035,11 @@ Module ProgramData
             Dim key As String = checkedlistBox.Tag
 
             Try
+                Dim value As UInteger = ReadValue(key, index)
                 For i = 0 To checkedlistBox.Items.Count - 1
-                    checkedlistBox.Items(i).Checked = ReadValue(key, index) And (2 ^ i)
+                    Dim item As ListViewItem = checkedlistBox.Items(i)
+                    If item Is Nothing Then Continue For
+                    item.Checked = (value And (2 ^ i)) <> 0
                 Next
                 ' checkedlistBox.Text = ReadValue(key, index) 'data(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart) + projectdata(keyDic.Item(key))(index - keyINFO(keyDic(key)).VarStart)
                 checkedlistBox.Enabled = True
@@ -2019,11 +2052,18 @@ Module ProgramData
         End Sub
 
         Public Sub WriteToCHECKBOXLIST(ByRef checkedlistBox As ListView, index As UInteger)
-            Dim key As String = checkedlistBox.Tag
+            'The Tag names the field. A list with no name behind it holds no data.
+            Dim key As String = TryCast(checkedlistBox.Tag, String)
+            If String.IsNullOrEmpty(key) OrElse Not keyDic.ContainsKey(key) Then Return
+
             Try
                 Dim value As UInteger = ReadValue(key, index)
                 For i = 0 To checkedlistBox.Items.Count - 1
-                    If checkedlistBox.Items(i).Checked = True Then
+                    'An entry the control has not built yet keeps the value it holds.
+                    Dim item As ListViewItem = checkedlistBox.Items(i)
+                    If item Is Nothing Then Continue For
+
+                    If item.Checked Then
                         value = value Or 2 ^ i
                     Else
                         value = (value Or (2 ^ i)) - 2 ^ i
@@ -2033,6 +2073,7 @@ Module ProgramData
 
                 ChecklistChange(checkedlistBox.Tag, index, checkedlistBox)
             Catch ex As Exception
+                LogSuppressed(ex, "ProgramData.WriteToCHECKBOXLIST")
 
             End Try
         End Sub

@@ -100,7 +100,8 @@ Module NativeThemeModule
         Try
             SetPreferredAppMode(If(dark, APPMODE_ALLOWDARK, APPMODE_DEFAULT))
             FlushMenuThemes()
-        Catch
+        Catch sup1 As Exception
+            LogSuppressed(sup1, "NativeThemeModule.SetProcessDarkMode")
             'Undocumented export; ignore on builds that lack it.
         End Try
     End Sub
@@ -135,7 +136,8 @@ Module NativeThemeModule
     Private Sub ApplyWindowTheme(hWnd As IntPtr, theme As String)
         Try
             SetWindowTheme(hWnd, theme, Nothing)
-        Catch
+        Catch sup2 As Exception
+            LogSuppressed(sup2, "NativeThemeModule.ApplyWindowTheme")
         End Try
     End Sub
 
@@ -155,7 +157,8 @@ Module NativeThemeModule
                                 If GetComboBoxInfo(cb.Handle, info) AndAlso info.hwndList <> IntPtr.Zero Then
                                     ApplyWindowTheme(info.hwndList, If(dark, "DarkMode_Explorer", Nothing))
                                 End If
-                            Catch
+                            Catch sup3 As Exception
+                                LogSuppressed(sup3, "NativeThemeModule.SetComboBoxDark")
                             End Try
                         End Sub)
     End Sub
@@ -173,7 +176,8 @@ Module NativeThemeModule
             Dim textColor As Integer = If(dark, ToColorRef(text), DWMWA_COLOR_DEFAULT)
             DwmSetWindowAttribute(f.Handle, DWMWA_CAPTION_COLOR, captionColor, 4)
             DwmSetWindowAttribute(f.Handle, DWMWA_TEXT_COLOR, textColor, 4)
-        Catch
+        Catch sup4 As Exception
+            LogSuppressed(sup4, "NativeThemeModule.SetTitleBarColor")
         End Try
     End Sub
 
@@ -188,7 +192,8 @@ Module NativeThemeModule
                             Try
                                 Dim hdr As IntPtr = SendMessage(lv.Handle, LVM_GETHEADER, IntPtr.Zero, IntPtr.Zero)
                                 If hdr <> IntPtr.Zero Then ApplyWindowTheme(hdr, If(dark, "DarkMode_ItemsView", Nothing))
-                            Catch
+                            Catch sup5 As Exception
+                                LogSuppressed(sup5, "NativeThemeModule.SetListViewHeaderDark")
                             End Try
                         End Sub)
     End Sub
@@ -282,7 +287,8 @@ Module NativeThemeModule
                         Using g As Graphics = Graphics.FromHdc(hdc)
                             PaintChrome(g)
                         End Using
-                    Catch
+                    Catch sup6 As Exception
+                        LogSuppressed(sup6, "NativeThemeModule.WndProc")
                     Finally
                         EndPaint(m.HWnd, ps)
                     End Try

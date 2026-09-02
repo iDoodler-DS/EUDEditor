@@ -455,8 +455,8 @@
   <h2>Phase 1 &middot; Stability</h2>
   <ul>
       <li><a class="done" href="#item-01"><span class="n">01</span><span>Undo and redo in the data editors</span></a></li>
-      <li><a href="#item-02"><span class="n">02</span><span>Autosave and crash recovery</span></a></li>
-      <li><a href="#item-03"><span class="n">03</span><span>Correct the error handling</span></a></li>
+      <li><a class="done" href="#item-02"><span class="n">02</span><span>Autosave and crash recovery</span></a></li>
+      <li><a class="part" href="#item-03"><span class="n">03</span><span>Correct the error handling</span></a></li>
       <li><a href="#item-04"><span class="n">04</span><span>Reference build</span></a></li>
   </ul>
 
@@ -521,12 +521,14 @@
 <section id="state">
     <h2>Current state</h2>
     <p class="lede">
-      Items 01 and 05 are complete. Items 06 and 08 are complete in part. The editor now opens as four tabs.
+      Items 01, 02 and 05 are complete. Items 03, 06 and 08 are complete in part. The editor now opens as four tabs.
       Data holds one view, DatEdit, with the FireGraft fields as sub tabs of the data type they belong to.
       Undo and redo work in the data editors, one history for each main tab. A save builds the map.
     </p>
     <p class="lede">
-      Next: item 02, then item 03. The editor must not lose user data before more code moves.
+      Next: item 04, a reference build. A walk of every tab and every kind of data now reports no
+      hidden fault, and a save of the test project gives a file byte for byte the same as before, which is
+      the check item 04 makes into a test.
       Times are milliseconds to open an editor. The test project is survival.e2s.
     </p>
     <div class="table-wrap">
@@ -570,12 +572,14 @@
     <div class="item" id="item-02">
       <div class="id">02</div>
       <div>
-        <h3>Autosave and crash recovery</h3>
+        <h3>Autosave and crash recovery<span class="st done">Done</span></h3>
         <dl class="ps">
           <dt>Problem</dt>
           <dd>A crash discards all changes after the last manual save. The crash log has no reader.</dd>
           <dt>Solution</dt>
           <dd class="solution">Write a recovery copy of the project every 5 minutes. Offer the copy at the next start. Show a crash dialog with the cause and a copy button.</dd>
+          <dt>Result</dt>
+          <dd class="solution">The editor writes a recovery copy every five minutes while there are changes that are not saved, and after an error. A save or a close takes the copy away, so a copy that is still there at the next start means the editor stopped without a save; the editor then offers it. An error window gives the cause, the place of the copy, and a button that copies the details.</dd>
         </dl>
         <div class="meta"><span><b>Effort</b> 2 days</span><span><b>Area</b> Project data</span></div>
       </div>
@@ -584,12 +588,14 @@
     <div class="item" id="item-03">
       <div class="id">03</div>
       <div>
-        <h3>Correct the error handling</h3>
+        <h3>Correct the error handling<span class="st part">In part</span></h3>
         <dl class="ps">
           <dt>Problem</dt>
           <dd>Empty catch blocks hide failures. A file that does not load looks the same as an empty file. Some catch blocks replace a missing bounds test and run on a hot path.</dd>
           <dt>Solution</dt>
           <dd class="solution">Replace each catch block with the correct test where the intention is clear. Record the other errors. Also remove the references that construct a form as a side effect. One such reference built the FireGraft window during each DatEdit load.</dd>
+          <dt>Result</dt>
+          <dd class="solution">Every catch block that said nothing now reports, one time for each place, so a hot path cannot fill the log. That is 225 places. The first run of the editor reported six faults that nobody could see before, and each is now corrected: a menu separator that the language code treated as a menu item; three reads outside the range of a list; a value that is a name where a number was expected; and a list of flags whose write was thrown away in full, so a change to a unit flag did nothing. Two caches were also filled under one name and read under another, so they never answered. Still to do: the catch blocks that hide a fault only under conditions this run did not meet.</dd>
         </dl>
         <div class="meta"><span><b>Effort</b> continuous</span><span class="flag"><b>Risk</b> correctness</span></div>
       </div>

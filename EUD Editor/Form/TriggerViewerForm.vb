@@ -643,6 +643,7 @@ Public Class TriggerViewerForm
         Try
             FCTB.Text = Mid(FCTB.Text, InStr(FCTB.Text, "--end"))
         Catch ex As Exception
+            LogSuppressed(ex, "TriggerViewerForm.Compile")
 
         End Try
 

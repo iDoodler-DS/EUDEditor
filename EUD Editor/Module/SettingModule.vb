@@ -894,6 +894,7 @@ Namespace ProjectSet
                     ise2s = True
                 End If
             Catch ex As Exception
+                LogSuppressed(ex, "SettingModule.Close")
 
             End Try
             Dim Dialog As DialogResult

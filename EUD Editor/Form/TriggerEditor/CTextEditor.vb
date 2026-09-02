@@ -126,6 +126,7 @@ Public Class CTextEditor
 
             PreViewer.Lines = lines
         Catch ex As Exception
+            LogSuppressed(ex, "CTextEditor.DrawPreview")
         End Try
 
 

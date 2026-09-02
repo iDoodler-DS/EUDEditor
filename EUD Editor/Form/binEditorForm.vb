@@ -111,6 +111,7 @@ Public Class binEditorForm
                                 grp.DrawImage(DefaultBinBitmap(dialogNum).objtimage(k), ttpos.X + tpos.X, ttpos.Y + tpos.Y)
                         End Select
                     Catch ex As Exception
+                        LogSuppressed(ex, "binEditorForm.DrawConsole")
 
                     End Try
 

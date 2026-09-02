@@ -91,6 +91,7 @@ Module EUDProjectManagerModule
                     My.Computer.FileSystem.DeleteFile(_file)
                 End If
             Catch ex As Exception
+                LogSuppressed(ex, "EUDProjectManagerModule.DeleteDumpFileAll")
 
             End Try
         Next
@@ -167,6 +168,7 @@ Module EUDProjectManagerModule
                 My.Computer.FileSystem.CopyFile(filename, targetname & "\" & folderstr & "\" & GetSafeName(filename), True)
                 filename = targetname & "\" & folderstr & "\" & GetSafeName(filename)
             Catch ex As Exception
+                LogSuppressed(ex, "EUDProjectManagerModule.MoveFile")
 
             End Try
 

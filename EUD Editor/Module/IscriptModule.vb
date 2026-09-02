@@ -421,6 +421,7 @@ Module IscriptModule
                                 DatEditForm.SoundPlay("sound\" & sfxdata(DatEditDATA(DTYPE.sfxdata).ReadValue("Sound File", values(0)) - 1))
 
                             Catch ex As Exception
+                                LogSuppressed(ex, "IscriptModule.playScript#1")
 
                             End Try
                         Case &H19
@@ -433,6 +434,7 @@ Module IscriptModule
                                 DatEditForm.SoundPlay("sound\" & sfxdata(DatEditDATA(DTYPE.sfxdata).ReadValue("Sound File", values(selectv)) - 1))
 
                             Catch ex As Exception
+                                LogSuppressed(ex, "IscriptModule.playScript#2")
 
                             End Try
                            'DatEditForm.SoundPlay("sound\" & CODE(DTYPE.sfxdata)(values(selectv)).Replace("(1)", ""))
@@ -444,6 +446,7 @@ Module IscriptModule
                                 DatEditForm.SoundPlay("sound\" & sfxdata(DatEditDATA(DTYPE.sfxdata).ReadValue("Sound File", selectv) - 1))
 
                             Catch ex As Exception
+                                LogSuppressed(ex, "IscriptModule.playScript#3")
 
                             End Try
                             'DatEditForm.SoundPlay("sound\" & CODE(DTYPE.sfxdata)(values(0)).Replace("(1)", ""))
@@ -460,6 +463,7 @@ Module IscriptModule
                                     DatEditForm.SoundPlay("sound\" & sfxdata(DatEditDATA(DTYPE.sfxdata).ReadValue("Sound File", values(selectv)) - 1))
 
                                 Catch ex As Exception
+                                    LogSuppressed(ex, "IscriptModule.playScript#4")
 
                                 End Try
                                 'DatEditForm.SoundPlay("sound\" & CODE(DTYPE.sfxdata)(values(selectv)).Replace("(1)", ""))
