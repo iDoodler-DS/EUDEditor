@@ -48,6 +48,8 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
 - **A list shows a word and writes a number.** See below.
 - **Turn a node off.** It is written as a comment, so euddraft passes over it
   and a person still reads it. A folder that is off takes everything in it.
+- **Ctrl and the wheel** make the tree larger or smaller, between 6 point and
+  30. The box beside it zooms the same way of its own accord.
 - **Edit as text.** The source is shown beside the tree, coloured the way
   TypeScript is — epScript is spelled the same way — with a colour of its own
   for a call the editor knows and for a constant eudplib names, because those
@@ -75,6 +77,20 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
 An else or an else if is put after the block it follows, not inside it. The
 spellings are the ones euddraft's own sample uses, and all of them were put
 through euddraft to check that they compile.
+
+**An if and its elses are one thing.** An else has no meaning without the if
+before it, so the run they make cannot be broken open:
+
+- Moving any of them moves the whole run, and it steps over the whole of
+  whatever stands beside it, so two runs never interleave.
+- Deleting or cutting the if takes the rest of the run with it. Deleting an
+  else leaves the if standing.
+- Anything new put beside one of them lands after the whole run, never between
+  its parts. A new else if goes before an else that is already there; a new
+  else goes last.
+
+Reordering the else ifs within a run is not offered, because moving any of them
+moves the run.
 
 A condition is a test, so it joins the head of the `if`, `else if` or `while`
 that is selected, with `&&`. On anything else it starts an `if` of its own.

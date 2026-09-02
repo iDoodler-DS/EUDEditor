@@ -50,7 +50,7 @@ Public Class EpsTriggerForm
 
     Private root As EpsNode = New EpsNode(EpsKind.Root)
     Private chosen As Spot
-    Private held As EpsNode          'what was cut or copied
+    Private held As List(Of EpsNode)     'what was cut or copied
     Private placed As Boolean
 
     ''' <summary>Which part of a clause a node stands for.</summary>
@@ -343,6 +343,26 @@ Public Class EpsTriggerForm
     End Sub
 
     'A right click picks the node under the pointer, so the menu acts on it.
+    ''' <summary>
+    ''' Ctrl and the wheel make the tree larger or smaller. A trigger tree gets
+    ''' deep, and a person reading one wants to see more of it at once; the box
+    ''' beside it zooms the same way of its own accord.
+    ''' </summary>
+    Private Sub Tree_MouseWheel(sender As Object, e As MouseEventArgs) Handles tree.MouseWheel
+        If (Control.ModifierKeys And Keys.Control) <> Keys.Control Then Return
+
+        Dim held As HandledMouseEventArgs = TryCast(e, HandledMouseEventArgs)
+        If held IsNot Nothing Then held.Handled = True     'zoom instead of scroll
+
+        Dim size As Single = tree.Font.Size + If(e.Delta > 0, 1.0F, -1.0F)
+        If size < 6.0F OrElse size > 30.0F Then Return
+        Try
+            tree.Font = New Font(tree.Font.FontFamily, size, tree.Font.Style)
+        Catch ex As Exception
+            LogSuppressed(ex, "EpsTriggerForm.Tree_MouseWheel")
+        End Try
+    End Sub
+
     Private Sub Tree_MouseDown(sender As Object, e As MouseEventArgs) Handles tree.MouseDown
         If e.Button <> MouseButtons.Right Then Return
         Dim under As TreeNode = tree.GetNodeAt(e.Location)
@@ -510,6 +530,64 @@ Public Class EpsTriggerForm
     End Function
 #End Region
 
+#Region "An if and what follows it"
+    'An else has no meaning without the if before it, so the two are one thing
+    'as far as moving, cutting and deleting go. Anything else would leave the
+    'source unbuildable, and the tree is not the place to find that out.
+
+    ''' <summary>Whether a block carries on from the one before it.</summary>
+    Private Shared Function Continues(node As EpsNode) As Boolean
+        If node Is Nothing OrElse node.Kind <> EpsKind.Block Then Return False
+        Dim head As String = node.Text.Trim()
+        Return head = "else" OrElse head.StartsWith("else ") OrElse head.StartsWith("else{") OrElse
+               head.StartsWith("else(")
+    End Function
+
+    ''' <summary>
+    ''' The whole run a node belongs to: the if it starts from, and every else if
+    ''' and else that follows. A node that is not part of one is a run of itself.
+    ''' </summary>
+    Private Shared Function Chain(node As EpsNode) As List(Of EpsNode)
+        Dim run As New List(Of EpsNode)
+        If node Is Nothing Then Return run
+
+        Dim kin As List(Of EpsNode) = If(node.Parent Is Nothing, Nothing, node.Parent.Children)
+        If kin Is Nothing Then
+            run.Add(node)
+            Return run
+        End If
+
+        Dim at As Integer = kin.IndexOf(node)
+        If at < 0 Then
+            run.Add(node)
+            Return run
+        End If
+
+        Dim first As Integer = at
+        While first > 0 AndAlso Continues(kin(first))
+            first -= 1
+        End While
+
+        Dim last As Integer = first
+        While last + 1 < kin.Count AndAlso Continues(kin(last + 1))
+            last += 1
+        End While
+
+        For i = first To last
+            run.Add(kin(i))
+        Next
+        Return run
+    End Function
+
+    ''' <summary>Where a run ends among its kin, so nothing is put inside it.</summary>
+    Private Shared Function AfterChain(node As EpsNode) As Integer
+        Dim run As List(Of EpsNode) = Chain(node)
+        Dim last As EpsNode = run(run.Count - 1)
+        If last.Parent Is Nothing Then Return -1
+        Return last.Parent.Children.IndexOf(last) + 1
+    End Function
+#End Region
+
 #Region "Putting something new in"
     ''' <summary>
     ''' Where a new node goes. A clause takes what belongs in it: what a test does
@@ -528,7 +606,8 @@ Public Class EpsTriggerForm
                         parent = chosen.Node
                     ElseIf chosen.Node.Parent IsNot Nothing Then
                         parent = chosen.Node.Parent
-                        at = parent.Children.IndexOf(chosen.Node) + 1
+                        'After the whole of an if ... else, never between its parts.
+                        at = AfterChain(chosen.Node)
                     End If
             End Select
         End If
@@ -550,7 +629,11 @@ Public Class EpsTriggerForm
         Touched()
     End Sub
 
-    ''' <summary>Puts a node beside the one picked, never inside it.</summary>
+    ''' <summary>
+    ''' Puts a node beside the one picked, never inside it. An else if goes after
+    ''' the last of its kind and before the else; an else goes last of all, which
+    ''' is the only order epScript will take.
+    ''' </summary>
     Private Sub InsertBeside(node As EpsNode)
         Dim after As EpsNode = If(chosen Is Nothing, Nothing, chosen.Node)
         If after Is Nothing OrElse after.Kind = EpsKind.Root OrElse
@@ -560,8 +643,21 @@ Public Class EpsTriggerForm
         End If
 
         Dim parent As EpsNode = after.Parent
+        Dim run As List(Of EpsNode) = Chain(after)
+        Dim at As Integer = parent.Children.IndexOf(run(run.Count - 1)) + 1
+
+        If Continues(node) AndAlso node.Text.Trim() <> "else" Then
+            'An else if belongs before an else that is already there.
+            For at2 As Integer = 0 To run.Count - 1
+                If run(at2).Text.Trim() = "else" Then
+                    at = parent.Children.IndexOf(run(at2))
+                    Exit For
+                End If
+            Next
+        End If
+
         node.Parent = parent
-        parent.Children.Insert(parent.Children.IndexOf(after) + 1, node)
+        parent.Children.Insert(at, node)
         chosen = New Spot(node)
         Touched()
     End Sub
@@ -686,7 +782,7 @@ Public Class EpsTriggerForm
         deleteItem.Enabled = whole OrElse condition
         upItem.Enabled = whole OrElse condition
         downItem.Enabled = whole OrElse condition
-        pasteItem.Enabled = held IsNot Nothing
+        pasteItem.Enabled = held IsNot Nothing AndAlso held.Count > 0
         foldItem.Enabled = tree.SelectedNode IsNot Nothing
         unfoldItem.Enabled = tree.SelectedNode IsNot Nothing
         Try
@@ -717,9 +813,11 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub CopyChosen()
-        If chosen IsNot Nothing AndAlso chosen.Part = Part.Whole AndAlso chosen.Node IsNot Nothing Then
-            held = chosen.Node.Clone()
-        End If
+        If chosen Is Nothing OrElse chosen.Part <> Part.Whole OrElse chosen.Node Is Nothing Then Return
+        held = New List(Of EpsNode)
+        For Each one As EpsNode In Chain(chosen.Node)
+            held.Add(one.Clone())
+        Next
     End Sub
 
     Private Sub CodeCopyItem_Click(sender As Object, e As EventArgs) Handles codeCopyItem.Click
@@ -738,7 +836,7 @@ Public Class EpsTriggerForm
     Private Sub CutChosen()
         If chosen Is Nothing OrElse chosen.Part <> Part.Whole Then Return
         If chosen.Node Is Nothing OrElse chosen.Node.Parent Is Nothing Then Return
-        held = chosen.Node.Clone()
+        CopyChosen()
         DeleteChosen()
     End Sub
 
@@ -747,8 +845,12 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub PasteHeld()
-        If held Is Nothing Then Return
-        Insert(held.Clone())
+        If held Is Nothing OrElse held.Count = 0 Then Return
+        'An if and what follows it are put back together, in order.
+        Insert(held(0).Clone())
+        For at = 1 To held.Count - 1
+            InsertBeside(held(at).Clone())
+        Next
     End Sub
 
     Private Sub DeleteItem_Click(sender As Object, e As EventArgs) Handles deleteItem.Click
@@ -768,7 +870,16 @@ Public Class EpsTriggerForm
         If chosen.Part <> Part.Whole OrElse chosen.Node.Parent Is Nothing Then Return
         If IsHook(chosen.Node) Then Return
         Dim parent As EpsNode = chosen.Node.Parent
-        parent.Remove(chosen.Node)
+
+        'An else cannot stand without its if, so taking the if away takes the
+        'rest of the run with it. Taking an else away leaves the if alone.
+        If Continues(chosen.Node) Then
+            parent.Remove(chosen.Node)
+        Else
+            For Each one As EpsNode In Chain(chosen.Node)
+                parent.Remove(one)
+            Next
+        End If
         chosen = New Spot(parent)
         Touched()
     End Sub
@@ -794,12 +905,26 @@ Public Class EpsTriggerForm
 
         If chosen.Part <> Part.Whole OrElse chosen.Node.Parent Is Nothing Then Return
         If IsHook(chosen.Node) Then Return
+
+        'An if and its elses move as one, and step over the whole of whatever
+        'stands next to them, so neither run is ever broken open.
         Dim parent As EpsNode = chosen.Node.Parent
-        Dim at As Integer = parent.Children.IndexOf(chosen.Node)
-        Dim [next] As Integer = at + step_
-        If [next] < 0 OrElse [next] >= parent.Children.Count Then Return
-        parent.Children.RemoveAt(at)
-        parent.Children.Insert([next], chosen.Node)
+        Dim run As List(Of EpsNode) = Chain(chosen.Node)
+        Dim first As Integer = parent.Children.IndexOf(run(0))
+        Dim last As Integer = first + run.Count - 1
+
+        Dim lands As Integer
+        If step_ < 0 Then
+            If first = 0 Then Return
+            lands = parent.Children.IndexOf(Chain(parent.Children(first - 1))(0))
+        Else
+            If last = parent.Children.Count - 1 Then Return
+            Dim beyond As List(Of EpsNode) = Chain(parent.Children(last + 1))
+            lands = parent.Children.IndexOf(beyond(beyond.Count - 1)) + 1 - run.Count
+        End If
+
+        parent.Children.RemoveRange(first, run.Count)
+        parent.Children.InsertRange(lands, run)
         Touched()
     End Sub
 
