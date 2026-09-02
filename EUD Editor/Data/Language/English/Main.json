@@ -28,5 +28,6 @@
     "Undo": "Undo",
     "Redo": "Redo",
     "Bookmarks": "Bookmarks",
-    "BookmarksNone": "No bookmarks"
+    "BookmarksNone": "No bookmarks",
+    "BookmarksClear": "Remove all bookmarks"
 }

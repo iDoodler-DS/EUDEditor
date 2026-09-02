@@ -193,6 +193,16 @@ Public Class Main
                 .ForeColor = ProgramSet.colorLabelText}
             bookmarkRoot.DropDownItems.Add(item)
         Next
+
+        bookmarkRoot.DropDownItems.Add(New ToolStripSeparator())
+        bookmarkRoot.DropDownItems.Add(New ToolStripMenuItem(
+            Lan.GetText(Me.Name, "BookmarksClear"), Nothing, AddressOf BookmarkClear_Click) With {
+            .BackColor = ProgramSet.colorBackground,
+            .ForeColor = ProgramSet.colorLabelText})
+    End Sub
+
+    Private Sub BookmarkClear_Click(sender As Object, e As EventArgs)
+        BookmarkModule.RemoveAll()
     End Sub
 
     Private Sub BookmarkMenuItem_Click(sender As Object, e As EventArgs)
@@ -207,6 +217,7 @@ Public Class Main
         End Try
     End Sub
 #End Region
+
 
 
 

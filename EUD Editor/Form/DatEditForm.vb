@@ -229,8 +229,8 @@ Public Class DatEditForm
     ' in the View menu of the main window, and belong to the project.
 
 
+
     Private WithEvents bookmarkToggleItem As ToolStripMenuItem
-    Private WithEvents bookmarkClearItem As ToolStripMenuItem
 
     ''' <summary>
     ''' The entry menu holds Reset, Copy, Paste and the mdat commands, and now the
@@ -241,11 +241,9 @@ Public Class DatEditForm
         If bookmarkToggleItem IsNot Nothing Then Return
 
         bookmarkToggleItem = New ToolStripMenuItem(Lan.GetText(Me.Name, "BookmarkAdd"))
-        bookmarkClearItem = New ToolStripMenuItem(Lan.GetText(Me.Name, "BookmarkClear"))
 
         ListMenu.Items.Add(New ToolStripSeparator())
         ListMenu.Items.Add(bookmarkToggleItem)
-        ListMenu.Items.Add(bookmarkClearItem)
         AddHandler ListMenu.Opening, AddressOf BookmarkMenu_Opening
 
         ListBox1.ContextMenuStrip = ListMenu
@@ -264,15 +262,10 @@ Public Class DatEditForm
 
         Dim marked As Boolean = BookmarkModule.IsBookmarked(TAB_INDEX, _OBJECTNUM)
         bookmarkToggleItem.Text = Lan.GetText(Me.Name, If(marked, "BookmarkRemove", "BookmarkAdd"))
-        bookmarkClearItem.Enabled = BookmarkModule.Bookmarks.Count > 0
     End Sub
 
     Private Sub BookmarkToggle_Click(sender As Object, e As EventArgs) Handles bookmarkToggleItem.Click
         BookmarkModule.Toggle(TAB_INDEX, _OBJECTNUM)
-    End Sub
-
-    Private Sub BookmarkClear_Click(sender As Object, e As EventArgs) Handles bookmarkClearItem.Click
-        BookmarkModule.RemoveAll()
     End Sub
 
     ''' <summary>Opens one entry, for the bookmark menu of the main window.</summary>
