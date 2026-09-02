@@ -5,7 +5,7 @@ name: Windows release
 
 on:
   push:
-    branches: [master]
+    branches: [master, dev]
     # A tag makes a release as well as a build. See "Making a release" below.
     tags: ['v*']
   pull_request:
