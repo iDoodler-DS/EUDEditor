@@ -295,5 +295,7 @@
     "ComboBox43.Items": "Independent\\Small\\Medium\\Large",
     "ComboBox46.Items": "Independent\\Small\\Medium\\Large",
     "ComboBox51.Items": "Independent\\Small\\Medium\\Large",
-    "PasteObject": "Paste object"
+    "PasteObject": "Paste object",
+    "TechResearchRequirement": "Research",
+    "TechUseRequirement": "Use"
 }

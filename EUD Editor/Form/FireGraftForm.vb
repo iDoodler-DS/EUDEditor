@@ -539,7 +539,7 @@ Public Class FireGraftForm
 
     Private Sub MainTab_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MainTab.SelectedIndexChanged
         RecordPendingChanges()
-        TAB_INDEX = MainTab.SelectedIndex
+        TAB_INDEX = If(fieldsReleased, 1, MainTab.SelectedIndex)
         'If TAB_INDEX = 2 Then
         '    MsgBox(Lan.GetText("Msgbox", "NotArrow"), MsgBoxStyle.Information, ProgramSet.ErrorFormMessage)
         '    MainTab.SelectedIndex = 1
@@ -1235,6 +1235,80 @@ Handles ListBox1.DrawItem
         Name = 2
     End Enum
 
+
+#Region "Fields shown inside DatEdit"
+    ' The status box and the requirements editor moved to DatEdit, which lists the
+    ' entries they describe. The controls stay owned by this form, so their handlers
+    ' and the code below still work; only their parent changed.
+    '
+    ' What is left in this window is the button set editor, which needs a list of its
+    ' own because button sets are numbered in their own code list rather than by unit.
+    '
+    ' The five requirement kinds shared one editor and picked between them with a strip
+    ' of empty tab pages. DatEdit picks the kind instead, so that strip is not moved.
+
+    Private fieldsReleased As Boolean
+
+    Public ReadOnly Property SharedFieldsReleased As Boolean
+        Get
+            Return fieldsReleased
+        End Get
+    End Property
+
+    ''' <summary>The unit status box, for DatEdit to place.</summary>
+    Public ReadOnly Property UnitStatusBox As Control
+        Get
+            Return GroupBox1
+        End Get
+    End Property
+
+    ''' <summary>The total capacity box of the requirements editor.</summary>
+    Public ReadOnly Property RequirementCapacityBox As Control
+        Get
+            Return GroupBox11
+        End Get
+    End Property
+
+    ''' <summary>The requirements editor itself.</summary>
+    Public ReadOnly Property RequirementInfoBox As Control
+        Get
+            Return GroupBox10
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' Hands the shared fields to DatEdit and leaves the button set editor here.
+    ''' Called once, by DatEdit, before it places them.
+    ''' </summary>
+    Public Sub ReleaseSharedFields()
+        If fieldsReleased Then Return
+        fieldsReleased = True
+
+        'This window keeps the button set page only.
+        If MainTab.TabPages.Contains(TabPage1) Then MainTab.TabPages.Remove(TabPage1)
+        If MainTab.TabPages.Contains(TabPage3) Then MainTab.TabPages.Remove(TabPage3)
+        TAB_INDEX = 1
+        ShowSharedEntry()
+    End Sub
+
+    ''' <summary>
+    ''' Points the requirements editor at one kind of data and one entry, and redraws
+    ''' it. DatEdit calls this when its list or its open kind of data changes.
+    ''' </summary>
+    Public Sub ShowFieldsFor(mode As Integer, entryIndex As Integer)
+        If Not fieldsReleased Then Return
+        RecordPendingChanges()
+
+        TAB_INDEX = mode
+        _OBJECTNUM = entryIndex
+        Try
+            LoadData()
+        Catch ex As Exception
+            LogException(ex, "drawing the FireGraft fields for mode " & mode)
+        End Try
+        TakeSnapshot()
+    End Sub
+#End Region
 
 #Region "Shared selection"
     ' DatEdit owns the list of units, upgrades, techs and orders. This form shows more

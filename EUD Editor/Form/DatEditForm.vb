@@ -38,6 +38,108 @@ Public Class DatEditForm
     Private comboBoxCache = New Dictionary(Of String, String)
     Private listViewCache = New Dictionary(Of String, String)
 
+#Region "FireGraft fields"
+    ' FireGraft holds more fields of the entries listed here: the status flags of a
+    ' unit, and the requirements of a unit, an upgrade, a tech or an order. Those
+    ' controls sit in the panel on the right of this form, so one list and one screen
+    ' cover the whole entry.
+    '
+    ' The controls keep their own event handlers, which belong to FireGraftForm. That
+    ' form stays alive and holds the code behind these fields. Its own window shows
+    ' only button sets, which are numbered in a list of their own.
+    '
+    ' A tech has two sets of requirements, one for research and one for use, so the
+    ' panel carries a small selector for that case.
+
+    Private extraReady As Boolean
+    Private techModeSelector As Panel
+    Private WithEvents techResearchOption As RadioButton
+    Private WithEvents techUseOption As RadioButton
+
+    'The FireGraft mode for a kind of data, or -1 when it has none.
+    Private Function FireGraftModeFor(dataType As Integer) As Integer
+        Select Case dataType
+            Case DTYPE.units : Return 2       'unit requirements
+            Case DTYPE.upgrades : Return 3
+            Case DTYPE.techdata : Return If(techUseOption IsNot Nothing AndAlso techUseOption.Checked, 5, 4)
+            Case DTYPE.orders : Return 6
+            Case Else : Return -1
+        End Select
+    End Function
+
+    ''' <summary>Moves FireGraft's fields into the panel on the right, once.</summary>
+    Private Sub SetUpExtraFields()
+        If extraReady Then Return
+        If Not ProjectSet.UsedSetting(1) Then Return   'FireGraft is off for this project
+        If Not Main.EnsureFireGraftLoaded() Then Return
+
+        Try
+            Dim fg As FireGraftForm = FireGraftForm
+            fg.ReleaseSharedFields()
+
+            ExtraPanel.SuspendLayout()
+            ExtraPanel.Controls.Clear()
+
+            'Bottom to top: the editor fills, the boxes above it keep their height.
+            fg.RequirementInfoBox.Dock = DockStyle.Fill
+            ExtraPanel.Controls.Add(fg.RequirementInfoBox)
+
+            fg.RequirementCapacityBox.Dock = DockStyle.Top
+            ExtraPanel.Controls.Add(fg.RequirementCapacityBox)
+
+            fg.UnitStatusBox.Dock = DockStyle.Top
+            fg.UnitStatusBox.Height = 118
+            ExtraPanel.Controls.Add(fg.UnitStatusBox)
+
+            BuildTechModeSelector()
+            ExtraPanel.Controls.Add(techModeSelector)
+
+            ExtraPanel.ResumeLayout()
+            ThemeSetForm.SetControlColor(ExtraPanel)
+            extraReady = True
+        Catch ex As Exception
+            LogException(ex, "moving the FireGraft fields")
+        End Try
+    End Sub
+
+    Private Sub BuildTechModeSelector()
+        techResearchOption = New RadioButton With {
+            .Text = Lan.GetText(Me.Name, "TechResearchRequirement"),
+            .AutoSize = True, .Checked = True, .Location = New Point(8, 4)}
+        techUseOption = New RadioButton With {
+            .Text = Lan.GetText(Me.Name, "TechUseRequirement"),
+            .AutoSize = True, .Location = New Point(150, 4)}
+
+        techModeSelector = New Panel With {.Dock = DockStyle.Top, .Height = 26, .Visible = False}
+        techModeSelector.Controls.Add(techResearchOption)
+        techModeSelector.Controls.Add(techUseOption)
+    End Sub
+
+    Private Sub TechMode_CheckedChanged(sender As Object, e As EventArgs) _
+        Handles techResearchOption.CheckedChanged, techUseOption.CheckedChanged
+        If Not extraReady Then Return
+        RefreshExtraFields()
+    End Sub
+
+    ''' <summary>Shows the FireGraft fields that belong to the open kind of data.</summary>
+    Public Sub RefreshExtraFields()
+        SetUpExtraFields()
+        If Not extraReady Then Return
+
+        Dim mode As Integer = FireGraftModeFor(TAB_INDEX)
+        Dim show As Boolean = mode >= 0
+
+        ExtraPanel.Visible = show
+        ExtraSplitter.Visible = show
+        If Not show Then Return
+
+        Dim fg As FireGraftForm = FireGraftForm
+        fg.UnitStatusBox.Visible = (TAB_INDEX = DTYPE.units)
+        techModeSelector.Visible = (TAB_INDEX = DTYPE.techdata)
+        fg.ShowFieldsFor(mode, _OBJECTNUM)
+    End Sub
+#End Region
+
 #Region "Reveal a field"
     ' Undo and redo call this before they change a value, so the user sees the change
     ' happen instead of a value moving on a screen they are not looking at.
@@ -643,6 +745,7 @@ Public Class DatEditForm
         LISTFILTER = Tabfilfer(MainTAB.SelectedIndex)
 
         TAB_INDEX = MainTAB.SelectedIndex
+        RefreshExtraFields()
         ListDraw()
         PaletDraw()
 
@@ -953,6 +1056,7 @@ Public Class DatEditForm
             _OBJECTNUM = ListBox1.SelectedItem(1)
             'FireGraft shows more fields of this same entry.
             EntitySelection.SetCurrent(TAB_INDEX, _OBJECTNUM)
+            RefreshExtraFields()
 
             LoadData()
         Else

@@ -1013,6 +1013,18 @@ Public Class Main
         Return tool.Page IsNot Nothing AndAlso tool.Page.Controls.Count > 0
     End Function
 
+    ''' <summary>
+    ''' Loads FireGraft off screen if it is not loaded. DatEdit needs it before it
+    ''' can show FireGraft's fields, because the form's own Load fills the lists and
+    ''' applies the language to those controls.
+    ''' </summary>
+    Public Function EnsureFireGraftLoaded() As Boolean
+        If Not fireGraftTool.Enabled Then Return False
+        If EditorLoaded(fireGraftTool) OrElse parkedEditors.ContainsKey(fireGraftTool) Then Return True
+        If fireGraftTool.Page Is Nothing Then Return False
+        Return PrepareEditor(FireGraftForm, fireGraftTool, fireGraftTool.Page)
+    End Function
+
     'For editors that want to push data into FireGraft only if it exists.
     Public Function FireGraftEditorAlive() As Boolean
         Return EditorLoaded(fireGraftTool) OrElse parkedEditors.ContainsKey(fireGraftTool)
