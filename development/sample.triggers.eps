@@ -1,0 +1,50 @@
+// A sample for the Script tab. Copy it beside a project as
+// <the project name>.triggers.eps and open that project.
+//
+// It is meant to show every kind of node the tree draws at once: a folder, a
+// comment, a line that is switched off, an if with more than one condition, an
+// else if and an else, a while, a for, calls the editor has words for and a
+// call it has none for.
+
+function onPluginStart() {
+    //@folder Setting up
+    // Each of these is drawn as a sentence, with its values spoken.
+    CreateUnit(1, "Terran Marine", "Anywhere", Player1);
+    SetDeaths(Player1, SetTo, 0, "Terran Marine");
+    SetResources(Player1, SetTo, 50, Ore);
+    SetSwitch(1, Clear);
+    //@end
+
+    // A line that is switched off is kept, greyed, and passed over by euddraft.
+    //@off SetResources(Player2, SetTo, 9999, OreAndGas);
+}
+
+function beforeTriggerExec() {
+    //@folder Who holds the middle
+    if (Bring(Player1, AtLeast, 1, "Terran Marine", "Anywhere") && Switch(1, Cleared)) {
+        SetSwitch(1, Set);
+        SetScore(Player1, Add, 10, Total);
+        DisplayText("Player 1 holds the middle.", 4);
+    } else if (Bring(Player2, AtLeast, 1, "Terran Marine", "Anywhere")) {
+        SetScore(Player2, Add, 10, Total);
+        DisplayText("Player 2 holds the middle.", 4);
+    } else {
+        SetSwitch(1, Clear);
+    }
+    //@end
+
+    // A test the editor has no words for is still shown, and still built.
+    while (Deaths(Player1, AtLeast, 5, "Terran Marine")) {
+        SetDeaths(Player1, Subtract, 5, "Terran Marine");
+        SetResources(Player1, Add, 25, Gas);
+    }
+}
+
+function afterTriggerExec() {
+    // A count, and a call the editor has no words for, shown as it is written.
+    for (var i = 0; i < 8; i++) {
+        SetAllianceStatus(Player1, Ally);
+    }
+
+    SetMemory(0x58D740, SetTo, 0);
+}

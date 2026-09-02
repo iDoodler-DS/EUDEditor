@@ -1,4 +1,4 @@
-Imports System.IO
+﻿Imports System.IO
 Imports System.Text
 
 ''' <summary>
@@ -58,6 +58,19 @@ Namespace EpsSource
             Return Path.Combine(BaseFolder(), "eudplibdata")
         End Function
 
+        ''' <summary>
+        ''' Where this build lands. Not where the project's own build lands: what
+        ''' comes out of here has only the epScript in it, and writing it over the
+        ''' finished map would throw away everything the rest of the editor put
+        ''' there. It goes beside that map, under a name that says what it is.
+        ''' </summary>
+        Public Function TryMap() As String
+            Dim theirs As String = ProjectSet.OutputMap
+            If String.IsNullOrWhiteSpace(theirs) Then Return ""
+            Return Path.Combine(Path.GetDirectoryName(theirs),
+                                "[Script] " & Path.GetFileName(theirs))
+        End Function
+
         'What euddraft is told to do: read one map, write another, and put this
         'source in between. Nothing else of the project takes part.
         Private Function Settings() As String
@@ -65,7 +78,7 @@ Namespace EpsSource
             out.AppendLine("[main]")
             out.AppendLine()
             out.AppendLine("input: " & ProjectSet.InputMap)
-            out.AppendLine("output: " & ProjectSet.OutputMap)
+            out.AppendLine("output: " & TryMap())
             If ProjectSet.epTraceDebug Then out.AppendLine("debug: 1")
             out.AppendLine()
             out.AppendLine("[" & SourceName & "]")

@@ -446,18 +446,22 @@ Public Class EpsTriggerForm
     'missing, will not take them away, and puts everything new inside one of them.
     Private Shared ReadOnly Hooks As String() = {"onPluginStart", "beforeTriggerExec", "afterTriggerExec"}
 
-    ''' <summary>Whether a node is one of the three, which are not the editor's to change.</summary>
+    ''' <summary>
+    ''' Whether a node is one of the three, which are not the editor's to change.
+    ''' Wherever it stands: a hand-written file may have put one inside a folder,
+    ''' and it is still the block euddraft calls.
+    ''' </summary>
     Private Function IsHook(node As EpsNode) As Boolean
-        If node Is Nothing OrElse node.Parent IsNot root Then Return False
+        If node Is Nothing OrElse node.Kind = EpsKind.Root Then Return False
         If EpsHead.ShapeOf(node) <> EpsShape.Function_ Then Return False
         Return Array.IndexOf(Hooks, EpsHead.FunctionName(node.Text)) >= 0
     End Function
 
     ''' <summary>The one of the three that carries a given name, or Nothing.</summary>
     Private Function HookNamed(name As String) As EpsNode
-        For Each child As EpsNode In root.Children
-            If EpsHead.ShapeOf(child) = EpsShape.Function_ AndAlso
-               EpsHead.FunctionName(child.Text) = name Then Return child
+        For Each node As EpsNode In root.Walk()
+            If EpsHead.ShapeOf(node) = EpsShape.Function_ AndAlso
+               EpsHead.FunctionName(node.Text) = name Then Return node
         Next
         Return Nothing
     End Function
@@ -481,10 +485,12 @@ Public Class EpsTriggerForm
             Dim standing As EpsNode = HookNamed(name)
             If standing Is Nothing Then
                 standing = Block("function " & name & "()")
-                standing.Parent = root
-                Dim at As Integer = If(after Is Nothing, root.Children.Count,
-                                       root.Children.IndexOf(after) + 1)
-                root.Children.Insert(at, standing)
+                Dim beside As EpsNode = If(after Is Nothing OrElse after.Parent Is Nothing,
+                                           root, after.Parent)
+                standing.Parent = beside
+                Dim at As Integer = If(after Is Nothing, beside.Children.Count,
+                                       beside.Children.IndexOf(after) + 1)
+                beside.Children.Insert(at, standing)
             End If
             after = standing
         Next
@@ -496,10 +502,10 @@ Public Class EpsTriggerForm
     ''' </summary>
     Private Function HookForNew() As EpsNode
         Dim walk As EpsNode = If(chosen Is Nothing, Nothing, chosen.Node)
-        While walk IsNot Nothing AndAlso walk.Parent IsNot root
+        While walk IsNot Nothing AndAlso walk.Kind <> EpsKind.Root
+            If IsHook(walk) Then Return walk
             walk = walk.Parent
         End While
-        If IsHook(walk) Then Return walk
         Return If(HookNamed(Hooks(0)), root)
     End Function
 #End Region

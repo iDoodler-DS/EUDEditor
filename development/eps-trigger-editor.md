@@ -56,7 +56,12 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
   are chosen against whatever ground the theme gives the box, so both the light
   and the dark theme read.
 - **Build map.** Writes the source and a settings file, and runs euddraft on
-  them, with the output going to the same log at the foot of the window.
+  them, with the output going to the same log at the foot of the window. It
+  writes its own map, `[Script] <the project's output map>`, beside the
+  project's — never over it, because this build has only the epScript in it.
+- **A sample to look at.** `development/sample.triggers.eps` shows every kind
+  of node at once. Copy it beside a project as `<the project name>.triggers.eps`
+  and open that project.
 
 ### What the new items write
 
@@ -108,7 +113,8 @@ project file, exactly as before.
 ### Build map on the Script tab builds only that source
 
 It writes `eudplibdata/EpsTriggers.eps` and `eudplibdata/EpsTriggers.eds`, and
-runs euddraft on them. That build has **only** the epScript in it. It leaves out:
+runs euddraft on them, into a map of its own called `[Script] <the project's
+output map>`. That build has **only** the epScript in it. It leaves out:
 
 - everything the data editors changed
 - button sets and requirements
@@ -117,6 +123,8 @@ runs euddraft on them. That build has **only** the epScript in it. It leaves out
 
 So it is a way of trying the source out, not a replacement for the build on the
 toolbar, which is unchanged and does not know about the epScript source at all.
+That is why it writes its own map: it built over the project's finished map
+once, and a triggers-only build is not what anybody wants in its place.
 
 ### The top level is three blocks and nothing else
 
