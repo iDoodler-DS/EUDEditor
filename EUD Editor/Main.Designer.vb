@@ -40,6 +40,7 @@ Partial Class Main
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UndoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.RedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PyViewVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -64,7 +65,7 @@ Partial Class Main
         Me.btn_OpenFile = New System.Windows.Forms.Button()
         Me.btn_Save = New System.Windows.Forms.Button()
         Me.Button18 = New System.Windows.Forms.Button()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.AutoCompileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.CheckMapWrite = New System.Windows.Forms.Timer(Me.components)
         Me.EditorTabControl = New System.Windows.Forms.TabControl()
@@ -211,7 +212,7 @@ Partial Class Main
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UndoToolStripMenuItem, Me.RedoToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UndoToolStripMenuItem, Me.RedoToolStripMenuItem, Me.EditSeparator1, Me.AutoCompileToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.EditToolStripMenuItem.Text = "Edit"
@@ -222,6 +223,11 @@ Partial Class Main
         Me.UndoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
         Me.UndoToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
         Me.UndoToolStripMenuItem.Text = "Undo"
+        '
+        'EditSeparator1
+        '
+        Me.EditSeparator1.Name = "EditSeparator1"
+        Me.EditSeparator1.Size = New System.Drawing.Size(217, 6)
         '
         'RedoToolStripMenuItem
         '
@@ -359,7 +365,6 @@ Partial Class Main
         Me.FlowLayoutPanel3.Controls.Add(Me.Button14)
         Me.FlowLayoutPanel3.Controls.Add(Me.Button18)
         Me.FlowLayoutPanel3.Controls.Add(Me.Button1)
-        Me.FlowLayoutPanel3.Controls.Add(Me.CheckBox1)
         Me.FlowLayoutPanel3.Controls.Add(Me.FlowLayoutPanel2)
         Me.FlowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.FlowLayoutPanel3.Location = New System.Drawing.Point(0, 24)
@@ -417,15 +422,12 @@ Partial Class Main
         Me.Button18.TabIndex = 17
         Me.Button18.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'AutoCompileToolStripMenuItem
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(365, 3)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(86, 19)
-        Me.CheckBox1.TabIndex = 18
-        Me.CheckBox1.Text = "자동컴파일"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.AutoCompileToolStripMenuItem.CheckOnClick = True
+        Me.AutoCompileToolStripMenuItem.Name = "AutoCompileToolStripMenuItem"
+        Me.AutoCompileToolStripMenuItem.Size = New System.Drawing.Size(220, 22)
+        Me.AutoCompileToolStripMenuItem.Text = "AutoCompile"
         '
         'Button1
         '
@@ -602,6 +604,7 @@ Partial Class Main
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UndoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RedoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditSeparator1 As ToolStripSeparator
     Friend WithEvents ViewVToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolTToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MpainjectWToolStripMenuItem As ToolStripMenuItem
@@ -619,7 +622,7 @@ Partial Class Main
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents CheckMapWrite As Timer
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents AutoCompileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpdateViewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenRecentToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -42,8 +42,8 @@ Public Class Main
         Dim loaded As Boolean = ProjectSet.isload
         Dim is116 As Boolean = (ProgramSet.StarVersion = "1.16.1")
 
-        CheckBox1.Enabled = loaded
-        If loaded Then CheckBox1.Checked = ProgramSet.isAutoCompile
+        AutoCompileToolStripMenuItem.Enabled = loaded
+        If loaded Then AutoCompileToolStripMenuItem.Checked = ProgramSet.isAutoCompile
 
         MpainjectWToolStripMenuItem.Enabled = loaded
         EDDOpenDToolStripMenuItem.Enabled = loaded
@@ -193,7 +193,7 @@ Public Class Main
         DatEditForm.ReloadCHK()
         refreshSet()
         If EditorLoaded(projectTool) Then ProjectSettingForm.ApplyStarVersion()
-        CheckBox1.Checked = ProgramSet.isAutoCompile
+        AutoCompileToolStripMenuItem.Checked = ProgramSet.isAutoCompile
         'My.Forms.SettingForm.Location = Me.Location + Button1.Location + New Point(0, 105)
     End Sub
 
@@ -252,6 +252,7 @@ Public Class Main
         If Dialog = DialogResult.Cancel Then
         Else
             ProjectSet.Save(SaveFileDialog1.FileName)
+            eudplib.Toflie()
         End If
 
         refreshSet()
@@ -286,6 +287,7 @@ Public Class Main
     End Sub
     Public Sub 저장()
         Dim extension As String = ProjectSet.filename.Split(".").Last
+        Dim saved As Boolean = False
         'Dim ise2s As Boolean = False
         'Try
         '    If Mid(ProjectSet.filename, ProjectSet.filename.Length - 3) <> ".e2s" Then
@@ -308,13 +310,15 @@ Public Class Main
             If Dialog = DialogResult.Cancel Then
             Else
                 ProjectSet.Save(SaveFileDialog1.FileName)
+                saved = True
             End If
         Else
             ProjectSet.Save(ProjectSet.filename)
+            saved = True
         End If
-        If ProgramSet.isAutoCompile = True Then
-            eudplib.Toflie()
-        End If
+
+        'A save writes the project, so the map is built from what was saved.
+        If saved Then eudplib.Toflie()
         refreshSet()
     End Sub
     Private Sub 끝내기ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
@@ -1404,8 +1408,10 @@ Public Class Main
 
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        ProgramSet.isAutoCompile = CheckBox1.Checked
+    'AutoCompile builds the map again when the source map changes on disk. A save
+    'builds it in any case.
+    Private Sub AutoCompileToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles AutoCompileToolStripMenuItem.CheckedChanged
+        ProgramSet.isAutoCompile = AutoCompileToolStripMenuItem.Checked
     End Sub
 
     Private Sub UpdateViewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateViewToolStripMenuItem.Click

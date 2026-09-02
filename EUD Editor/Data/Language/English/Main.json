@@ -25,7 +25,6 @@
     "SaveFilter": "e2s File|*.e2s|e2p File|*.e2p",
     "MapisNotExit": "The map file does not exist.",
     "CHKMsg": "CHK data read must be enabled.",
-    "CheckBox1": "AutoCompile",
     "Undo": "Undo",
     "Redo": "Redo"
 }

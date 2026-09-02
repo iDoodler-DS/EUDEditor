@@ -22,5 +22,6 @@
     "EudBookToolStripMenuItem": "EUD Address Offset Book",
     "EditToolStripMenuItem": "&Edit",
     "UndoToolStripMenuItem": "Undo",
-    "RedoToolStripMenuItem": "Redo"
+    "RedoToolStripMenuItem": "Redo",
+    "AutoCompileToolStripMenuItem": "AutoCompile"
 }
