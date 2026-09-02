@@ -1,0 +1,49 @@
+name: Windows release
+
+# The editor is .NET Framework 4.8 and x86 only, so it is built with MSBuild on a
+# Windows runner. The NuGet packages are not in the repository and are restored.
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Add MSBuild to the path
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Add NuGet to the path
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore the packages
+        run: nuget restore "EUD Editor.sln"
+
+      - name: Build the release
+        run: msbuild "EUD Editor.sln" -t:Build -p:Configuration=Release -p:Platform=x86 -v:m
+
+      - name: Put the data beside the program
+        shell: pwsh
+        run: |
+          # The build does not copy Data, and the editor reads it from beside the exe.
+          New-Item -ItemType Directory -Force release | Out-Null
+          Copy-Item "EUD Editor\bin\x86\Release\*" release -Recurse -Force
+          Copy-Item "EUD Editor\Data" "release\Data" -Recurse -Force
+          if (-not (Test-Path "release\EUD Editor SE.exe")) { throw "the program was not built" }
+          if (-not (Test-Path "release\Data\Language\English\Main.json")) { throw "the data is not there" }
+
+      - name: Keep the build
+        uses: actions/upload-artifact@v4
+        with:
+          name: EUD-Editor-SE-x86
+          path: release
