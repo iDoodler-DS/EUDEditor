@@ -11,6 +11,11 @@ Public Class Main
 
     Dim RecentlyOpenedFiles As New ArrayList()
 
+    'Which project the Script tab is showing. refreshSet runs after every open,
+    'new, save and close, so comparing the name here is what tells the tab that
+    'the project under it has changed and its source is somebody else's.
+    Private epsProject As String = Nothing
+
     Public Sub refreshSet()
         If ProjectSet.isload = True Then
             If ProgramSet.StarVersion = "Remastered" Then
@@ -18,9 +23,15 @@ Public Class Main
             End If
         End If
 
+        If ProjectSet.filename <> epsProject Then
+            epsProject = ProjectSet.filename
+            ReloadEpsTriggers()
+        End If
+
         buttonResetting()
         menuResetting()
         nameResetting()
+
     End Sub
 
     'Re-applies the theme to the main window and to every editor loaded into a tab.

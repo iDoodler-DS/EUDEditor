@@ -1,0 +1,725 @@
+{
+ "Add": {
+  "family": [
+   "TrgModifier",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Add",
+  "type": "TrgModifier",
+  "value": 8
+ },
+ "All": {
+  "family": [
+   "TrgCount",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "All",
+  "type": "TrgCount",
+  "value": 0
+ },
+ "AllPlayers": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "AllPlayers",
+  "type": "TrgPlayer",
+  "value": 17
+ },
+ "AlliedVictory": {
+  "family": [
+   "TrgAllyStatus",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "AlliedVictory",
+  "type": "TrgAllyStatus",
+  "value": 2
+ },
+ "Allies": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Allies",
+  "type": "TrgPlayer",
+  "value": 15
+ },
+ "Ally": {
+  "family": [
+   "TrgAllyStatus",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Ally",
+  "type": "TrgAllyStatus",
+  "value": 1
+ },
+ "AtLeast": {
+  "family": [
+   "TrgComparison",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "AtLeast",
+  "type": "TrgComparison",
+  "value": 0
+ },
+ "AtMost": {
+  "family": [
+   "TrgComparison",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "AtMost",
+  "type": "TrgComparison",
+  "value": 1
+ },
+ "Attack": {
+  "family": [
+   "TrgOrder",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Attack",
+  "type": "TrgOrder",
+  "value": 2
+ },
+ "Buildings": {
+  "family": [
+   "TrgScore",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Buildings",
+  "type": "TrgScore",
+  "value": 2
+ },
+ "Clear": {
+  "family": [
+   "TrgSwitchAction",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Clear",
+  "type": "TrgSwitchAction",
+  "value": 5
+ },
+ "Cleared": {
+  "family": [
+   "TrgSwitchState",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Cleared",
+  "type": "TrgSwitchState",
+  "value": 3
+ },
+ "CurrentPlayer": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "CurrentPlayer",
+  "type": "TrgPlayer",
+  "value": 13
+ },
+ "Custom": {
+  "family": [
+   "TrgScore",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Custom",
+  "type": "TrgScore",
+  "value": 7
+ },
+ "Disable": {
+  "family": [
+   "TrgPropState",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Disable",
+  "type": "TrgPropState",
+  "value": 5
+ },
+ "Enable": {
+  "family": [
+   "TrgPropState",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Enable",
+  "type": "TrgPropState",
+  "value": 4
+ },
+ "Enemy": {
+  "family": [
+   "TrgAllyStatus",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Enemy",
+  "type": "TrgAllyStatus",
+  "value": 0
+ },
+ "Exactly": {
+  "family": [
+   "TrgComparison",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Exactly",
+  "type": "TrgComparison",
+  "value": 10
+ },
+ "Foes": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Foes",
+  "type": "TrgPlayer",
+  "value": 14
+ },
+ "Force1": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Force1",
+  "type": "TrgPlayer",
+  "value": 18
+ },
+ "Force2": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Force2",
+  "type": "TrgPlayer",
+  "value": 19
+ },
+ "Force3": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Force3",
+  "type": "TrgPlayer",
+  "value": 20
+ },
+ "Force4": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Force4",
+  "type": "TrgPlayer",
+  "value": 21
+ },
+ "Gas": {
+  "family": [
+   "TrgResource",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Gas",
+  "type": "TrgResource",
+  "value": 1
+ },
+ "Kills": {
+  "family": [
+   "_Kills",
+   "TrgScore",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Kills",
+  "type": "_Kills",
+  "value": 4
+ },
+ "KillsAndRazings": {
+  "family": [
+   "TrgScore",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "KillsAndRazings",
+  "type": "TrgScore",
+  "value": 6
+ },
+ "Move": {
+  "family": [
+   "TrgOrder",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Move",
+  "type": "TrgOrder",
+  "value": 0
+ },
+ "NeutralPlayers": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "NeutralPlayers",
+  "type": "TrgPlayer",
+  "value": 16
+ },
+ "NonAlliedVictoryPlayers": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "NonAlliedVictoryPlayers",
+  "type": "TrgPlayer",
+  "value": 26
+ },
+ "Ore": {
+  "family": [
+   "TrgResource",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Ore",
+  "type": "TrgResource",
+  "value": 0
+ },
+ "OreAndGas": {
+  "family": [
+   "TrgResource",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "OreAndGas",
+  "type": "TrgResource",
+  "value": 2
+ },
+ "P1": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player1",
+  "type": "TrgPlayer",
+  "value": 0
+ },
+ "P10": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player10",
+  "type": "TrgPlayer",
+  "value": 9
+ },
+ "P11": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player11",
+  "type": "TrgPlayer",
+  "value": 10
+ },
+ "P12": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player12",
+  "type": "TrgPlayer",
+  "value": 11
+ },
+ "P2": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player2",
+  "type": "TrgPlayer",
+  "value": 1
+ },
+ "P3": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player3",
+  "type": "TrgPlayer",
+  "value": 2
+ },
+ "P4": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player4",
+  "type": "TrgPlayer",
+  "value": 3
+ },
+ "P5": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player5",
+  "type": "TrgPlayer",
+  "value": 4
+ },
+ "P6": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player6",
+  "type": "TrgPlayer",
+  "value": 5
+ },
+ "P7": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player7",
+  "type": "TrgPlayer",
+  "value": 6
+ },
+ "P8": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player8",
+  "type": "TrgPlayer",
+  "value": 7
+ },
+ "P9": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player9",
+  "type": "TrgPlayer",
+  "value": 8
+ },
+ "Patrol": {
+  "family": [
+   "TrgOrder",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Patrol",
+  "type": "TrgOrder",
+  "value": 1
+ },
+ "Player1": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player1",
+  "type": "TrgPlayer",
+  "value": 0
+ },
+ "Player10": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player10",
+  "type": "TrgPlayer",
+  "value": 9
+ },
+ "Player11": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player11",
+  "type": "TrgPlayer",
+  "value": 10
+ },
+ "Player12": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player12",
+  "type": "TrgPlayer",
+  "value": 11
+ },
+ "Player2": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player2",
+  "type": "TrgPlayer",
+  "value": 1
+ },
+ "Player3": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player3",
+  "type": "TrgPlayer",
+  "value": 2
+ },
+ "Player4": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player4",
+  "type": "TrgPlayer",
+  "value": 3
+ },
+ "Player5": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player5",
+  "type": "TrgPlayer",
+  "value": 4
+ },
+ "Player6": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player6",
+  "type": "TrgPlayer",
+  "value": 5
+ },
+ "Player7": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player7",
+  "type": "TrgPlayer",
+  "value": 6
+ },
+ "Player8": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player8",
+  "type": "TrgPlayer",
+  "value": 7
+ },
+ "Player9": {
+  "family": [
+   "TrgPlayer",
+   "EPDOffsetMap",
+   "_Player",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Player9",
+  "type": "TrgPlayer",
+  "value": 8
+ },
+ "Random": {
+  "family": [
+   "TrgSwitchAction",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Random",
+  "type": "TrgSwitchAction",
+  "value": 11
+ },
+ "Razings": {
+  "family": [
+   "TrgScore",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Razings",
+  "type": "TrgScore",
+  "value": 5
+ },
+ "Set": {
+  "family": [
+   "_Set",
+   "TrgSwitchState",
+   "TrgSwitchAction",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Set",
+  "type": "_Set",
+  "value": 4
+ },
+ "SetTo": {
+  "family": [
+   "TrgModifier",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "SetTo",
+  "type": "TrgModifier",
+  "value": 7
+ },
+ "Subtract": {
+  "family": [
+   "TrgModifier",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Subtract",
+  "type": "TrgModifier",
+  "value": 9
+ },
+ "Toggle": {
+  "family": [
+   "_Toggle",
+   "TrgPropState",
+   "TrgSwitchAction",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Toggle",
+  "type": "_Toggle",
+  "value": 6
+ },
+ "Total": {
+  "family": [
+   "TrgScore",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Total",
+  "type": "TrgScore",
+  "value": 0
+ },
+ "Units": {
+  "family": [
+   "TrgScore",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "Units",
+  "type": "TrgScore",
+  "value": 1
+ },
+ "UnitsAndBuildings": {
+  "family": [
+   "TrgScore",
+   "ConstType",
+   "ExprProxy"
+  ],
+  "prints": "UnitsAndBuildings",
+  "type": "TrgScore",
+  "value": 3
+ }
+}

@@ -34,7 +34,6 @@ Public Class EpsTriggerForm
     Private WithEvents newElse As New ToolStripMenuItem("Else")
     Private WithEvents newWhile As New ToolStripMenuItem("While")
     Private WithEvents newFor As New ToolStripMenuItem("For")
-    Private WithEvents newFunction As New ToolStripMenuItem("Function")
     Private WithEvents foldItem As New ToolStripMenuItem("Fold")
     Private WithEvents unfoldItem As New ToolStripMenuItem("Unfold")
     Private WithEvents foldAllItem As New ToolStripMenuItem("Fold all")
@@ -91,6 +90,9 @@ Public Class EpsTriggerForm
         Me.Font = SystemFonts.MessageBoxFont
         BuildLayout()
         BuildMenu()
+        'The three blocks stand from the start, so a source asked for before the
+        'tab has ever been shown is the three blocks and not nothing at all.
+        EnsureHooks()
     End Sub
 
 #Region "How it is put together"
@@ -136,7 +138,7 @@ Public Class EpsTriggerForm
             newFolder, newComment, New ToolStripSeparator(),
             newAction, newCondition, New ToolStripSeparator(),
             newIf, newElseIf, newElse, New ToolStripSeparator(),
-            newWhile, newFor, New ToolStripSeparator(), newFunction})
+            newWhile, newFor})
 
         menu.Items.AddRange(New ToolStripItem() {
             newItem, New ToolStripSeparator(),
@@ -205,6 +207,7 @@ Public Class EpsTriggerForm
 
     Private Sub SetSource(text As String)
         root = EpsReader.Parse(text)
+        EnsureHooks()
         chosen = Nothing
         RebuildTree()
     End Sub
@@ -420,6 +423,70 @@ Public Class EpsTriggerForm
     End Sub
 #End Region
 
+#Region "The three blocks"
+    'The three functions euddraft calls, in the order they are written. They are
+    'the whole of the top level: the editor puts them back whenever they are
+    'missing, will not take them away, and puts everything new inside one of them.
+    Private Shared ReadOnly Hooks As String() = {"onPluginStart", "beforeTriggerExec", "afterTriggerExec"}
+
+    ''' <summary>Whether a node is one of the three, which are not the editor's to change.</summary>
+    Private Function IsHook(node As EpsNode) As Boolean
+        If node Is Nothing OrElse node.Parent IsNot root Then Return False
+        If EpsHead.ShapeOf(node) <> EpsShape.Function_ Then Return False
+        Return Array.IndexOf(Hooks, EpsHead.FunctionName(node.Text)) >= 0
+    End Function
+
+    ''' <summary>The one of the three that carries a given name, or Nothing.</summary>
+    Private Function HookNamed(name As String) As EpsNode
+        For Each child As EpsNode In root.Children
+            If EpsHead.ShapeOf(child) = EpsShape.Function_ AndAlso
+               EpsHead.FunctionName(child.Text) = name Then Return child
+        Next
+        Return Nothing
+    End Function
+
+    ''' <summary>
+    ''' Puts back any of the three the source does not have, each after the one
+    ''' before it. Anything else already at the top level is left where it is.
+    ''' </summary>
+    Private Sub EnsureHooks()
+        'A blank line between the blocks says nothing and cannot be picked, so it
+        'is not carried as a node of its own at the top level.
+        For at As Integer = root.Children.Count - 1 To 0 Step -1
+            Dim child As EpsNode = root.Children(at)
+            If child.Kind = EpsKind.Comment AndAlso child.Text.Trim() = "" Then
+                root.Children.RemoveAt(at)
+            End If
+        Next
+
+        Dim after As EpsNode = Nothing
+        For Each name As String In Hooks
+            Dim standing As EpsNode = HookNamed(name)
+            If standing Is Nothing Then
+                standing = Block("function " & name & "()")
+                standing.Parent = root
+                Dim at As Integer = If(after Is Nothing, root.Children.Count,
+                                       root.Children.IndexOf(after) + 1)
+                root.Children.Insert(at, standing)
+            End If
+            after = standing
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Which of the three a new node belongs in: the one the selection sits
+    ''' under, or the first when the selection is outside them all.
+    ''' </summary>
+    Private Function HookForNew() As EpsNode
+        Dim walk As EpsNode = If(chosen Is Nothing, Nothing, chosen.Node)
+        While walk IsNot Nothing AndAlso walk.Parent IsNot root
+            walk = walk.Parent
+        End While
+        If IsHook(walk) Then Return walk
+        Return If(HookNamed(Hooks(0)), root)
+    End Function
+#End Region
+
 #Region "Putting something new in"
     ''' <summary>
     ''' Where a new node goes. A clause takes what belongs in it: what a test does
@@ -443,6 +510,13 @@ Public Class EpsTriggerForm
             End Select
         End If
 
+        'The top level is the three blocks and nothing else, so anything that
+        'would have landed there goes inside one of them instead.
+        If parent Is root Then
+            parent = HookForNew()
+            at = -1
+        End If
+
         node.Parent = parent
         If at >= 0 AndAlso at <= parent.Children.Count Then
             parent.Children.Insert(at, node)
@@ -456,7 +530,8 @@ Public Class EpsTriggerForm
     ''' <summary>Puts a node beside the one picked, never inside it.</summary>
     Private Sub InsertBeside(node As EpsNode)
         Dim after As EpsNode = If(chosen Is Nothing, Nothing, chosen.Node)
-        If after Is Nothing OrElse after.Kind = EpsKind.Root OrElse after.Parent Is Nothing Then
+        If after Is Nothing OrElse after.Kind = EpsKind.Root OrElse
+           after.Parent Is Nothing OrElse after.Parent Is root Then
             Insert(node)
             Return
         End If
@@ -533,9 +608,6 @@ Public Class EpsTriggerForm
         Insert(Block("for (var i = 0; i < 10; i++)"))
     End Sub
 
-    Private Sub NewFunction_Click(sender As Object, e As EventArgs) Handles newFunction.Click
-        Insert(Block("function newFunction()"))
-    End Sub
 #End Region
 
 #Region "What else the menu does"
@@ -560,12 +632,14 @@ Public Class EpsTriggerForm
         End If
 
         If chosen.Part <> Part.Whole Then Return    'a clause holds things; it is not one
+        If IsHook(chosen.Node) Then Return
         If EpsEditLineForm.Edit(Me, chosen.Node, root) Then Touched()
     End Sub
 
     Private Sub OffItem_Click(sender As Object, e As EventArgs) Handles offItem.Click
         If chosen Is Nothing OrElse chosen.Part <> Part.Whole Then Return
         If chosen.Node Is Nothing OrElse chosen.Node.Kind = EpsKind.Root Then Return
+        If IsHook(chosen.Node) Then Return
         chosen.Node.Off = Not chosen.Node.Off
         Touched()
     End Sub
@@ -575,13 +649,17 @@ Public Class EpsTriggerForm
                                chosen.Node IsNot Nothing AndAlso chosen.Node.Kind <> EpsKind.Root
         Dim condition As Boolean = chosen IsNot Nothing AndAlso chosen.Part = Part.Condition
 
+        'One of the three blocks is shown and filled, but never changed.
+        Dim standing As Boolean = whole AndAlso IsHook(chosen.Node)
+        whole = whole AndAlso Not standing
+
         editItem.Enabled = whole OrElse condition
         'A single condition cannot be commented out on its own; it is part of a line.
         offItem.Enabled = whole
         offItem.Text = If(whole AndAlso chosen.Node.Off, "Turn on", "Turn off")
         cutItem.Enabled = whole
-        copyItem.Enabled = whole
-        codeCopyItem.Enabled = whole
+        copyItem.Enabled = whole OrElse standing
+        codeCopyItem.Enabled = whole OrElse standing
         deleteItem.Enabled = whole OrElse condition
         upItem.Enabled = whole OrElse condition
         downItem.Enabled = whole OrElse condition
@@ -665,6 +743,7 @@ Public Class EpsTriggerForm
         End If
 
         If chosen.Part <> Part.Whole OrElse chosen.Node.Parent Is Nothing Then Return
+        If IsHook(chosen.Node) Then Return
         Dim parent As EpsNode = chosen.Node.Parent
         parent.Remove(chosen.Node)
         chosen = New Spot(parent)
@@ -691,6 +770,7 @@ Public Class EpsTriggerForm
         End If
 
         If chosen.Part <> Part.Whole OrElse chosen.Node.Parent Is Nothing Then Return
+        If IsHook(chosen.Node) Then Return
         Dim parent As EpsNode = chosen.Node.Parent
         Dim at As Integer = parent.Children.IndexOf(chosen.Node)
         Dim [next] As Integer = at + step_

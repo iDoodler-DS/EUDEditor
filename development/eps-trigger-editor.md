@@ -13,7 +13,7 @@ editor cannot draw is still that line, spelled the way it was written.
 The commands are the ones the old editor puts on its own tree, on a right click:
 
     New >    Folder, Comment, Action, Condition,
-             If, Else if, Else, While, For, Function
+             If, Else if, Else, While, For
     Fold, Unfold, Fold all, Unfold all
     Edit, Turn off
     Cut, Copy, Copy as text, Paste, Delete
@@ -56,7 +56,6 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
     Else        else { }
     While       while (Always()) { }
     For         for (var i = 0; i < 10; i++) { }
-    Function    function newFunction() { }
 
 An else or an else if is put after the block it follows, not inside it. The
 spellings are the ones euddraft's own sample uses, and all of them were put
@@ -109,22 +108,53 @@ runs euddraft on them. That build has **only** the epScript in it. It leaves out
 So it is a way of trying the source out, not a replacement for the build on the
 toolbar, which is unchanged and does not know about the epScript source at all.
 
-### A drop-down shows one thing and writes another
+### The top level is three blocks and nothing else
 
-The editor's own tables say how a kind of value is spelled, and the Script tab
-follows them:
+euddraft calls three functions, and they are the whole of the top level:
+
+    function onPluginStart() { }
+    function beforeTriggerExec() { }
+    function afterTriggerExec() { }
+
+The editor puts back any that a file does not have, will not let them be
+edited, moved, switched off or deleted, and puts everything new inside one of
+them: whichever one the selection sits under, or `onPluginStart` when the
+selection is outside them all.
+
+Anything else already at the top level of a hand-written file is left where it
+is and still shown. Only blank lines between the blocks are dropped, because
+they cannot be picked and stand for nothing.
+
+**New ▸ Function is gone.** epScript does not nest a function inside a
+function, and nothing may be added outside the three, so a new one has no home.
+
+### A drop-down shows a word and writes the constant
+
+eudplib names a constant for nearly everything these lists hold, and a name
+says what it means where a number does not:
 
 | The kind | What the list shows | What is written |
 | --- | --- | --- |
-| Player, Modifier, Comparison, Score type, Order, ... | `Player 2`, `Set To`, `At Least` | the place in the list: `1`, `0`, `0` |
+| Player, Modifier, Comparison, Score, Resource, Order, Switch | `Player 2`, `Set To`, `At Least` | `Player2`, `SetTo`, `AtLeast` |
 | Unit, Location, Text | `Terran Marine`, `Anywhere` | the same in quotes: `"Terran Marine"` |
 | Number, Count | the number | the number |
 
-The numbers are what eudplib itself takes: `SetDeaths` is annotated
-`modifier: TrgModifier | Byte`, and `SetDeaths(1, 0, 0, "Terran Marine")`
-compiles. Writing the place in the list rather than the word means the source
-does not depend on the editor's language, and a `.eps` written by a person in
-English opens the same for a person reading it in Korean.
+**The number is not the place in the list.** `Set To` is the first entry the
+editor offers and eudplib's `SetTo` is 7; `Exactly` is the third and is 10.
+Writing the constant is what makes that come out right without the editor
+holding a table of numbers of its own.
+
+The names are matched to the lists ahead of time, on the name with the spaces
+taken out — "Set To" is `SetTo`, "Ore and Gas" is `OreAndGas` — and kept in
+`Data/TriggerEditor/eudplib_constants.json`. Two entries the two sides call by
+different words (`Closed` is `Cleared`, `Randomize` is `Random`) are written
+down in the spike that builds the table. To build it again:
+
+    python development/spike/eudplib_constants.py <euddraft.exe> <a map.scx>
+
+A list entry eudplib has no name for — the four `Unknown` players and
+`NonAlliedVictoryPlayers` — is written as its place in the list, which for a
+player is also its number.
 
 A value the editor cannot match to a choice is left exactly as it was written
 and the window opens on **Custom**, so an expression such as

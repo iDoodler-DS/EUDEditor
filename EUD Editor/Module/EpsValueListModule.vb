@@ -1,3 +1,6 @@
+﻿Imports System.IO
+Imports Newtonsoft.Json.Linq
+
 ''' <summary>
 ''' What fills the drop-down of a value, and how the choice is spelled in code.
 '''
@@ -6,8 +9,15 @@
 ''' the locations of this map. Nothing here is a second copy of anything.
 '''
 ''' A list shows a person one thing and epScript wants another. "Player 1" is
-''' read by a person; euddraft wants the 1. So each kind carries a spelling, and
-''' every choice goes through it on the way in and on the way out.
+''' read by a person; euddraft wants `Player1`. So each kind carries a spelling,
+''' and every choice goes through it on the way in and on the way out.
+'''
+''' eudplib names a constant for most of what these lists hold, and a name says
+''' what it means where a number does not: `SetTo` rather than the 7 it stands
+''' for, `Exactly` rather than 10. Those names are matched to the lists ahead of
+''' time and kept in Data/TriggerEditor/eudplib_constants.json; see
+''' development/spike/eudplib_constants.py, which writes it. A list entry
+''' eudplib does not name is written as its place in the list, as before.
 ''' </summary>
 Namespace EpsSource
 
@@ -84,6 +94,54 @@ Namespace EpsSource
             Return out
         End Function
 
+
+        'What each list holds, against the constant eudplib names for it. Read
+        'once, from the file the spike writes.
+        Private ReadOnly named As New Dictionary(Of String, Dictionary(Of Integer, String))(StringComparer.OrdinalIgnoreCase)
+        Private tableRead As Boolean
+
+        ''' <summary>Reads the constant names, the first time one is asked for.</summary>
+        Private Sub ReadNames()
+            If tableRead Then Return
+            tableRead = True
+            Try
+                Dim path As String = IO.Path.Combine(My.Application.Info.DirectoryPath,
+                                                  "Data", "TriggerEditor", "eudplib_constants.json")
+                If Not File.Exists(path) Then Return
+                Dim table As JObject = JObject.Parse(File.ReadAllText(path))
+                For Each kind As KeyValuePair(Of String, JToken) In table
+                    Dim ours As New Dictionary(Of Integer, String)
+                    For Each one As KeyValuePair(Of String, JToken) In CType(kind.Value, JObject)
+                        Dim at As Integer
+                        If Integer.TryParse(one.Key, at) Then ours(at) = one.Value.ToString()
+                    Next
+                    named(kind.Key) = ours
+                Next
+            Catch ex As Exception
+                LogSuppressed(ex, "EpsValueLists.ReadNames")
+            End Try
+        End Sub
+
+        ''' <summary>What eudplib calls the entry at a place in a list, or "".</summary>
+        Public Function ConstantAt(kind As String, at As Integer) As String
+            ReadNames()
+            Dim ours As Dictionary(Of Integer, String) = Nothing
+            If Not named.TryGetValue(kind, ours) Then Return ""
+            Dim standing As String = ""
+            Return If(ours.TryGetValue(at, standing), standing, "")
+        End Function
+
+        ''' <summary>Which place in a list a constant stands for, or -1.</summary>
+        Public Function PlaceOfConstant(kind As String, name As String) As Integer
+            ReadNames()
+            Dim ours As Dictionary(Of Integer, String) = Nothing
+            If name Is Nothing OrElse Not named.TryGetValue(kind, ours) Then Return -1
+            For Each one As KeyValuePair(Of Integer, String) In ours
+                If String.Equals(one.Value, name.Trim(), StringComparison.Ordinal) Then Return one.Key
+            Next
+            Return -1
+        End Function
+
         ''' <summary>What a choice from the list is written as.</summary>
         Public Function CodeFor(kind As String, choice As String) As String
             If choice Is Nothing Then Return ""
@@ -93,7 +151,14 @@ Namespace EpsSource
                     If options IsNot Nothing Then
                         Dim at As Integer = options.FindIndex(
                             Function(one) String.Equals(one, choice, StringComparison.Ordinal))
-                        If at >= 0 Then Return at.ToString(Globalization.CultureInfo.InvariantCulture)
+                        If at >= 0 Then
+                            'The name eudplib gives it says what it means, and it is
+                            'the name that carries the number. Only an entry eudplib
+                            'has no name for falls back to its place in the list.
+                            Dim standing As String = ConstantAt(kind, at)
+                            If standing <> "" Then Return standing
+                            Return at.ToString(Globalization.CultureInfo.InvariantCulture)
+                        End If
                     End If
                     Return choice
                 Case EpsSpelling.Quoted
@@ -114,6 +179,8 @@ Namespace EpsSource
 
             Select Case SpellingOf(kind)
                 Case EpsSpelling.Index
+                    Dim named_ As Integer = PlaceOfConstant(kind, text)
+                    If named_ >= 0 AndAlso named_ < options.Count Then Return options(named_)
                     Dim at As Integer
                     If Integer.TryParse(text, Globalization.NumberStyles.Integer,
                                         Globalization.CultureInfo.InvariantCulture, at) AndAlso
