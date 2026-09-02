@@ -37,6 +37,12 @@ Namespace EpsSource
         Public Property Name As String = ""
         Public ReadOnly Values As New List(Of EpsValue)
         Public Property Note As String = ""
+        ''' <summary>
+        ''' What this call does, said as a sentence, with a mark where each value
+        ''' goes: "Modify death counts for $Player$: $Modifier$ $Number$ for $Unit$."
+        ''' The editor's own tables carry these; eudplib does not.
+        ''' </summary>
+        Public Property Sentence As String = ""
         ''' <summary>Where it was read from, for the user to see.</summary>
         Public Property Source As String = ""
     End Class
@@ -125,7 +131,8 @@ Namespace EpsSource
                 Dim head As Match = Regex.Match(template.Trim(), "^([A-Za-z_]\w*)\s*\(")
                 If Not head.Success Then Continue For        'a piece of epScript, not a call
 
-                Dim made As New EpsCall With {.Name = head.Groups(1).Value, .Source = "editor table"}
+                Dim made As New EpsCall With {.Name = head.Groups(1).Value, .Source = "editor table",
+                                              .Sentence = SentenceOf(entry)}
                 Dim kinds As List(Of String) = ListOf(entry, "ValuesDef")
                 Dim i As Integer = 0
                 For Each mark As Match In Regex.Matches(template, "\$(\w+)\$")
@@ -137,6 +144,21 @@ Namespace EpsSource
                 calls_(made.Name) = made
             Next
         End Sub
+
+        'The description in the language the editor is set to, or the English one.
+        Private Function SentenceOf(entry As Dictionary(Of String, Object)) As String
+            Dim texts As List(Of String) = ListOf(entry, "Texts")
+            Dim english As String = ""
+            For i = 0 To texts.Count - 2 Step 2
+                If String.Equals(texts(i), My.Settings.Language, StringComparison.OrdinalIgnoreCase) Then
+                    Return texts(i + 1)
+                End If
+                If String.Equals(texts(i), "English", StringComparison.OrdinalIgnoreCase) Then
+                    english = texts(i + 1)
+                End If
+            Next
+            Return english
+        End Function
 
         ''' <summary>
         ''' What euddraft said its eudplib offers. Only calls the tables do not

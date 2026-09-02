@@ -146,11 +146,6 @@ Public Class Main
         autoSaveTimer.Start()
     End Sub
 
-
-
-
-
-
 #Region "Bookmarks"
     ' The bookmarks of the project sit in the View menu. A right click on an entry in
     ' the data list puts it there. The list belongs to the project, so it changes with
@@ -221,17 +216,6 @@ Public Class Main
         End Try
     End Sub
 #End Region
-
-
-
-
-
-
-
-
-
-
-
 
 #Region "Recovery copy"
     ' The editor writes a copy of the project every few minutes while there are changes
@@ -1676,8 +1660,5 @@ Public Class Main
         If EditorLoaded(fileManagerTool) Then FileManagerForm.LoadData()
         If EditorLoaded(fireGraftTool) Then FireGraftForm.LoadData()
     End Sub
-
-
-
 
 End Class

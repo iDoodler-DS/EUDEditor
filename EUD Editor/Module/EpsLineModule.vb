@@ -1,4 +1,4 @@
-Imports System.Text
+﻿Imports System.Text
 Imports System.Text.RegularExpressions
 
 ''' <summary>
@@ -64,7 +64,9 @@ Namespace EpsSource
         Public Function DefaultFor(value As EpsValue) As String
             If value IsNot Nothing Then
                 Dim options As List(Of String) = EpsValueLists.For_(value.Kind)
-                If options IsNot Nothing AndAlso options.Count > 0 Then Return options(0)
+                If options IsNot Nothing AndAlso options.Count > 0 Then
+                    Return EpsValueLists.CodeFor(value.Kind, options(0))
+                End If
             End If
             Return "0"
         End Function
@@ -77,6 +79,79 @@ Namespace EpsSource
                 values.Add(DefaultFor(value))
             Next
             Return known.Name & "(" & String.Join(", ", values) & ");"
+        End Function
+
+        ''' <summary>
+        ''' The variables the source declares, so a value can be given one by name
+        ''' instead of a number. This is what the old editor calls a Variable.
+        ''' </summary>
+        Public Function VariablesIn(root As EpsNode) As List(Of String)
+            Dim out As New List(Of String)
+            If root Is Nothing Then Return out
+            For Each node As EpsNode In root.Walk()
+                If node.Kind <> EpsKind.Statement Then Continue For
+                Dim found As Match = Regex.Match(node.Text.Trim(), "^(?:var|const)\s+([A-Za-z_]\w*)")
+                If found.Success AndAlso Not out.Contains(found.Groups(1).Value) Then
+                    out.Add(found.Groups(1).Value)
+                End If
+            Next
+            out.Sort(StringComparer.OrdinalIgnoreCase)
+            Return out
+        End Function
+
+        ''' <summary>
+        ''' The words of a description, each with the value it stands for, or -1 when
+        ''' it is only words. The editor's tables carry a sentence for the calls of
+        ''' the classic set: "Modify death counts for $Player$: $Modifier$ ...".
+        ''' </summary>
+        Public Function Describe(known As EpsCall, values As IList(Of String)) As List(Of Tuple(Of String, Integer))
+            Dim out As New List(Of Tuple(Of String, Integer))
+            If known Is Nothing Then Return out
+
+            Dim sentence As String = known.Sentence
+            If sentence = "" Then
+                sentence = known.Name & "(" &
+                           String.Join(", ", known.Values.Select(Function(v) "$" & v.Name & "$")) & ")"
+            End If
+
+            Dim at As Integer = 0
+            For Each piece As Match In Regex.Matches(sentence, "\$(\w+)\$")
+                If piece.Index > at Then
+                    out.Add(Tuple.Create(sentence.Substring(at, piece.Index - at), -1))
+                End If
+
+                Dim which As Integer = -1
+                For i = 0 To known.Values.Count - 1
+                    If String.Equals(known.Values(i).Name, piece.Groups(1).Value,
+                                     StringComparison.OrdinalIgnoreCase) Then
+                        which = i
+                        Exit For
+                    End If
+                Next
+
+                Dim shown As String = piece.Groups(1).Value
+                If which >= 0 AndAlso which < values.Count AndAlso values(which) <> "" Then
+                    shown = Spoken(known.Values(which).Kind, values(which))
+                End If
+                out.Add(Tuple.Create(shown, which))
+                at = piece.Index + piece.Length
+            Next
+            If at < sentence.Length Then out.Add(Tuple.Create(sentence.Substring(at), -1))
+            Return out
+        End Function
+
+        ''' <summary>
+        ''' A written value as a person reads it: the word a number stands for, or
+        ''' the text without its quotes, or the value itself when it stands for
+        ''' nothing and was typed in by hand.
+        ''' </summary>
+        Public Function Spoken(kind As String, code As String) As String
+            Dim choice As String = EpsValueLists.ChoiceFor(kind, code)
+            If choice <> "" Then Return choice
+            If EpsValueLists.SpellingOf(kind) = EpsSpelling.Quoted Then
+                Return EpsValueLists.Unquoted(code)
+            End If
+            Return If(code, "").Trim()
         End Function
 
         ''' <summary>The same, without the semicolon, for the head of an if or a while.</summary>

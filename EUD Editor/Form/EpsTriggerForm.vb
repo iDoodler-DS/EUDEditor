@@ -4,15 +4,13 @@ Imports EUD_Editor.EpsSource
 ''' <summary>
 ''' A trigger editor whose source is epScript.
 '''
-''' The editor of today keeps a tree of nodes and writes epScript out of it. This
-''' one keeps the epScript, and the tree is a way of looking at it. Nothing is
-''' lost in the round trip, because nothing is converted: a line the editor cannot
-''' draw is still a line, spelled the way it was written.
+''' The tree is laid out the way the old editor lays its own out. An if is not one
+''' line holding a test; it is the construct, an "if :" holding one node for each
+''' condition, and a "then :" holding what it does. A condition is a node like any
+''' other: it can be picked, edited, moved and taken away on its own.
 '''
-''' The commands are the ones the old editor puts on its own tree: new things,
-''' fold and unfold, edit, cut, copy, paste, delete, move. A line is edited in a
-''' window of its own, opened by a double click or by Enter, which leaves the room
-''' to the tree and the source.
+''' None of that is in the file. The file says "if (A &amp;&amp; B) { ... }", which is
+''' what a person writing epScript would write. The clauses are how it is shown.
 ''' </summary>
 Public Class EpsTriggerForm
     Inherits Form
@@ -52,9 +50,34 @@ Public Class EpsTriggerForm
     Private WithEvents downItem As New ToolStripMenuItem("Move down")
 
     Private root As EpsNode = New EpsNode(EpsKind.Root)
-    Private chosen As EpsNode
+    Private chosen As Spot
     Private held As EpsNode          'what was cut or copied
     Private placed As Boolean
+
+    ''' <summary>Which part of a clause a node stands for.</summary>
+    Private Enum Part
+        ''' <summary>The node itself.</summary>
+        Whole = 0
+        ''' <summary>The "if :" of a test, which holds its conditions.</summary>
+        Conditions = 1
+        ''' <summary>The "then :" of a test, which holds what it does.</summary>
+        Body = 2
+        ''' <summary>One condition of a test.</summary>
+        Condition = 3
+    End Enum
+
+    ''' <summary>What a node of the tree stands for in the source.</summary>
+    Private Class Spot
+        Public ReadOnly Node As EpsNode
+        Public ReadOnly Part As Part
+        Public ReadOnly At As Integer
+
+        Public Sub New(node As EpsNode, Optional part As Part = Part.Whole, Optional at As Integer = -1)
+            Me.Node = node
+            Me.Part = part
+            Me.At = at
+        End Sub
+    End Class
 
     ''' <summary>Where the source of a project is kept, beside the project file.</summary>
     Public Shared Function SourcePath(projectFile As String) As String
@@ -187,9 +210,12 @@ Public Class EpsTriggerForm
     End Sub
 #End Region
 
-#Region "The tree"
+#Region "The tree, laid out the way the old editor lays one out"
     Private Sub RebuildTree()
-        Dim wasChosen As EpsNode = chosen
+        Dim wasNode As EpsNode = If(chosen Is Nothing, Nothing, chosen.Node)
+        Dim wasPart As Part = If(chosen Is Nothing, Part.Whole, chosen.Part)
+        Dim wasAt As Integer = If(chosen Is Nothing, -1, chosen.At)
+
         tree.BeginUpdate()
         tree.Nodes.Clear()
         For Each child As EpsNode In root.Children
@@ -198,7 +224,7 @@ Public Class EpsTriggerForm
         tree.ExpandAll()
         tree.EndUpdate()
 
-        If wasChosen IsNot Nothing Then Select_(wasChosen)
+        If wasNode IsNot Nothing Then Select_(wasNode, wasPart, wasAt)
         If tree.SelectedNode Is Nothing AndAlso tree.Nodes.Count > 0 Then
             tree.SelectedNode = tree.Nodes(0)
         End If
@@ -207,14 +233,34 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Function MakeNode(node As EpsNode, Optional insideOff As Boolean = False) As TreeNode
-        Dim caption As String = node.Caption()
-        If node.Kind = EpsKind.Comment AndAlso caption = "" Then caption = "(blank line)"
-
-        Dim shown As New TreeNode(caption) With {.Tag = node}
         Dim off As Boolean = insideOff OrElse node.Off
-        If node.Kind = EpsKind.Comment Then shown.ForeColor = Color.FromArgb(120, 160, 120)
-        'A node under one that is off writes no code either, so it reads as off.
-        If off Then shown.ForeColor = Color.Gray
+        Dim shown As New TreeNode(CaptionOf(node)) With {.Tag = New Spot(node)}
+        Paint(shown, node, off)
+
+        If EpsHead.ShapeOf(node) = EpsShape.Test Then
+            'A test is its conditions and what it does, each under a clause of its
+            'own, which is how the old editor shows one.
+            Dim keyword As String = EpsHead.KeywordOf(node.Text)
+            Dim conditions As New TreeNode(If(keyword = "while", "while :", "if :")) With {
+                .Tag = New Spot(node, Part.Conditions)}
+            conditions.ForeColor = Color.LightBlue
+
+            Dim terms As List(Of String) = EpsHead.TermsOf(node.Text)
+            For i = 0 To terms.Count - 1
+                Dim term As New TreeNode(terms(i)) With {.Tag = New Spot(node, Part.Condition, i)}
+                If off Then term.ForeColor = Color.Gray
+                conditions.Nodes.Add(term)
+            Next
+            shown.Nodes.Add(conditions)
+
+            Dim body As New TreeNode("then :") With {.Tag = New Spot(node, Part.Body)}
+            body.ForeColor = Color.LightBlue
+            For Each child As EpsNode In node.Children
+                body.Nodes.Add(MakeNode(child, off))
+            Next
+            shown.Nodes.Add(body)
+            Return shown
+        End If
 
         For Each child As EpsNode In node.Children
             shown.Nodes.Add(MakeNode(child, off))
@@ -222,9 +268,48 @@ Public Class EpsTriggerForm
         Return shown
     End Function
 
-    Private Sub Select_(node As EpsNode)
+    'What a node is called in the tree. A construct is named for what it is, the
+    'way the old editor names one, rather than for how it is spelled.
+    Private Shared Function CaptionOf(node As EpsNode) As String
+        Select Case EpsHead.ShapeOf(node)
+            Case EpsShape.Test
+                Select Case EpsHead.KeywordOf(node.Text)
+                    Case "while" : Return "While (Conditions) do (Actions)"
+                    Case "else if" : Return "Else if (Conditions) then do (Actions)"
+                    Case Else : Return "If (Conditions) then do (Actions)"
+                End Select
+            Case EpsShape.Plain
+                Return "Else do (Actions)"
+            Case EpsShape.Folder
+                Return node.Text
+            Case Else
+                Dim caption As String = node.Caption()
+                If node.Kind = EpsKind.Comment AndAlso caption = "" Then Return "(blank line)"
+                Return caption
+        End Select
+    End Function
+
+    'The colours the old editor uses, so the same kind of thing reads the same way.
+    Private Shared Sub Paint(shown As TreeNode, node As EpsNode, off As Boolean)
+        Select Case EpsHead.ShapeOf(node)
+            Case EpsShape.Test, EpsShape.For_, EpsShape.Function_, EpsShape.Plain
+                shown.ForeColor = Color.LightPink
+            Case EpsShape.Folder
+                shown.ForeColor = Color.LightGreen
+            Case Else
+                If node.Kind = EpsKind.Comment Then
+                    shown.ForeColor = Color.FromArgb(120, 160, 120)
+                ElseIf EpsSymbols.Find(EpsLines.CallOf(node.Text)) IsNot Nothing Then
+                    shown.ForeColor = Color.DodgerBlue
+                End If
+        End Select
+        If off Then shown.ForeColor = Color.Gray
+    End Sub
+
+    Private Sub Select_(node As EpsNode, part As Part, at As Integer)
         For Each shown As TreeNode In AllNodes(tree.Nodes)
-            If shown.Tag Is node Then
+            Dim spot As Spot = TryCast(shown.Tag, Spot)
+            If spot IsNot Nothing AndAlso spot.Node Is node AndAlso spot.Part = part AndAlso spot.At = at Then
                 tree.SelectedNode = shown
                 Return
             End If
@@ -241,7 +326,7 @@ Public Class EpsTriggerForm
     End Function
 
     Private Sub Tree_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles tree.AfterSelect
-        chosen = TryCast(e.Node.Tag, EpsNode)
+        chosen = TryCast(e.Node.Tag, Spot)
     End Sub
 
     'A right click picks the node under the pointer, so the menu acts on it.
@@ -263,7 +348,7 @@ Public Class EpsTriggerForm
             DeleteChosen()
             e.Handled = True
         ElseIf e.Control AndAlso e.KeyCode = Keys.C Then
-            If chosen IsNot Nothing Then held = chosen.Clone()
+            CopyChosen()
         ElseIf e.Control AndAlso e.KeyCode = Keys.X Then
             CutChosen()
         ElseIf e.Control AndAlso e.KeyCode = Keys.V Then
@@ -276,8 +361,6 @@ Public Class EpsTriggerForm
             e.Handled = True
         End If
     End Sub
-
-
 
     Private Sub ShowCounts()
         Dim lines As Integer = 0
@@ -301,20 +384,63 @@ Public Class EpsTriggerForm
     End Sub
 #End Region
 
+#Region "The conditions of a test"
+    Private Sub SetTerm(node As EpsNode, at As Integer, text As String)
+        Dim terms As List(Of String) = EpsHead.TermsOf(node.Text)
+        If at < 0 OrElse at >= terms.Count Then Return
+        terms(at) = text
+        node.Text = EpsHead.ComposeTest(EpsHead.KeywordOf(node.Text), terms)
+    End Sub
+
+    Private Sub AddTerm(node As EpsNode, text As String, Optional at As Integer = -1)
+        Dim terms As List(Of String) = EpsHead.TermsOf(node.Text)
+        If at >= 0 AndAlso at <= terms.Count Then
+            terms.Insert(at, text)
+        Else
+            terms.Add(text)
+        End If
+        node.Text = EpsHead.ComposeTest(EpsHead.KeywordOf(node.Text), terms)
+    End Sub
+
+    Private Sub RemoveTerm(node As EpsNode, at As Integer)
+        Dim terms As List(Of String) = EpsHead.TermsOf(node.Text)
+        If at < 0 OrElse at >= terms.Count Then Return
+        terms.RemoveAt(at)
+        node.Text = EpsHead.ComposeTest(EpsHead.KeywordOf(node.Text), terms)
+    End Sub
+
+    Private Sub MoveTerm(node As EpsNode, at As Integer, step_ As Integer)
+        Dim terms As List(Of String) = EpsHead.TermsOf(node.Text)
+        Dim goes As Integer = at + step_
+        If at < 0 OrElse at >= terms.Count OrElse goes < 0 OrElse goes >= terms.Count Then Return
+        Dim moved As String = terms(at)
+        terms.RemoveAt(at)
+        terms.Insert(goes, moved)
+        node.Text = EpsHead.ComposeTest(EpsHead.KeywordOf(node.Text), terms)
+    End Sub
+#End Region
+
 #Region "Putting something new in"
-    'Where a new node goes: inside the chosen one when it can hold things, and
-    'after it when it cannot.
+    ''' <summary>
+    ''' Where a new node goes. A clause takes what belongs in it: what a test does
+    ''' goes under its "then :", and everything else beside the node picked.
+    ''' </summary>
     Private Sub Insert(node As EpsNode)
         Dim parent As EpsNode = root
         Dim at As Integer = -1
 
-        If chosen IsNot Nothing AndAlso chosen.Kind <> EpsKind.Root Then
-            If chosen.Kind = EpsKind.Folder OrElse chosen.Kind = EpsKind.Block Then
-                parent = chosen
-            ElseIf chosen.Parent IsNot Nothing Then
-                parent = chosen.Parent
-                at = parent.Children.IndexOf(chosen) + 1
-            End If
+        If chosen IsNot Nothing AndAlso chosen.Node IsNot Nothing AndAlso chosen.Node.Kind <> EpsKind.Root Then
+            Select Case chosen.Part
+                Case Part.Body, Part.Conditions, Part.Condition
+                    parent = chosen.Node
+                Case Else
+                    If chosen.Node.Kind = EpsKind.Folder OrElse chosen.Node.Kind = EpsKind.Block Then
+                        parent = chosen.Node
+                    ElseIf chosen.Node.Parent IsNot Nothing Then
+                        parent = chosen.Node.Parent
+                        at = parent.Children.IndexOf(chosen.Node) + 1
+                    End If
+            End Select
         End If
 
         node.Parent = parent
@@ -323,16 +449,13 @@ Public Class EpsTriggerForm
         Else
             parent.Children.Add(node)
         End If
-        chosen = node
+        chosen = New Spot(node)
         Touched()
     End Sub
 
-    ''' <summary>
-    ''' Puts a node beside the chosen one, never inside it. An else follows the if
-    ''' it belongs to; it does not live in it.
-    ''' </summary>
+    ''' <summary>Puts a node beside the one picked, never inside it.</summary>
     Private Sub InsertBeside(node As EpsNode)
-        Dim after As EpsNode = chosen
+        Dim after As EpsNode = If(chosen Is Nothing, Nothing, chosen.Node)
         If after Is Nothing OrElse after.Kind = EpsKind.Root OrElse after.Parent Is Nothing Then
             Insert(node)
             Return
@@ -341,7 +464,7 @@ Public Class EpsTriggerForm
         Dim parent As EpsNode = after.Parent
         node.Parent = parent
         parent.Children.Insert(parent.Children.IndexOf(after) + 1, node)
-        chosen = node
+        chosen = New Spot(node)
         Touched()
     End Sub
 
@@ -366,8 +489,9 @@ Public Class EpsTriggerForm
     End Sub
 
     ''' <summary>
-    ''' A condition is a test, so it joins the head of the block it belongs to. On
-    ''' anything else it starts an if of its own, which is where a test belongs.
+    ''' A condition belongs to a test. Picked on one, or on its conditions, or on a
+    ''' condition of it, it joins that test. Anywhere else it starts an if of its
+    ''' own, which is where a condition can live.
     ''' </summary>
     Private Sub NewCondition_Click(sender As Object, e As EventArgs) Handles newCondition.Click
         Dim picked As String = EpsPickCallForm.Ask(Me)
@@ -375,26 +499,18 @@ Public Class EpsTriggerForm
         Dim known As EpsCall = EpsSymbols.Find(picked)
         Dim test As String = If(known Is Nothing, picked & "()", EpsLines.EmptyTest(known))
 
-        If chosen IsNot Nothing AndAlso chosen.Kind = EpsKind.Block AndAlso HasTest(chosen.Text) Then
-            Dim head As String = chosen.Text.Trim()
-            Dim opened As Integer = head.IndexOf("("c)
-            Dim closed As Integer = head.LastIndexOf(")"c)
-            If opened >= 0 AndAlso closed > opened Then
-                Dim inside As String = head.Substring(opened + 1, closed - opened - 1).Trim()
-                inside = If(inside = "", test, inside & " && " & test)
-                chosen.Text = head.Substring(0, opened + 1) & inside & head.Substring(closed)
-                Touched()
-                Return
-            End If
+        Dim node As EpsNode = If(chosen Is Nothing, Nothing, chosen.Node)
+        If node IsNot Nothing AndAlso EpsHead.ShapeOf(node) = EpsShape.Test Then
+            Dim at As Integer = If(chosen.Part = Part.Condition, chosen.At + 1, -1)
+            AddTerm(node, test, at)
+            chosen = New Spot(node, Part.Condition,
+                              If(at >= 0, at, EpsHead.TermsOf(node.Text).Count - 1))
+            Touched()
+            Return
         End If
 
         Insert(Block("if (" & test & ")"))
     End Sub
-
-    Private Shared Function HasTest(head As String) As Boolean
-        Dim body As String = If(head, "").TrimStart()
-        Return body.StartsWith("if") OrElse body.StartsWith("else if") OrElse body.StartsWith("while")
-    End Function
 
     Private Sub NewIf_Click(sender As Object, e As EventArgs) Handles newIf.Click
         Insert(Block("if (Always())"))
@@ -428,27 +544,47 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub EditChosen()
-        If chosen Is Nothing OrElse chosen.Kind = EpsKind.Root Then Return
-        If EpsEditLineForm.Edit(Me, chosen) Then Touched()
+        If chosen Is Nothing OrElse chosen.Node Is Nothing Then Return
+        If chosen.Node.Kind = EpsKind.Root Then Return
+
+        If chosen.Part = Part.Condition Then
+            'A condition is edited on its own, then put back into the test.
+            Dim terms As List(Of String) = EpsHead.TermsOf(chosen.Node.Text)
+            If chosen.At < 0 OrElse chosen.At >= terms.Count Then Return
+            Dim standing As New EpsNode(EpsKind.Statement, terms(chosen.At))
+            If EpsEditLineForm.Edit(Me, standing, root) Then
+                SetTerm(chosen.Node, chosen.At, standing.Text.TrimEnd(";"c).Trim())
+                Touched()
+            End If
+            Return
+        End If
+
+        If chosen.Part <> Part.Whole Then Return    'a clause holds things; it is not one
+        If EpsEditLineForm.Edit(Me, chosen.Node, root) Then Touched()
     End Sub
 
     Private Sub OffItem_Click(sender As Object, e As EventArgs) Handles offItem.Click
-        If chosen Is Nothing OrElse chosen.Kind = EpsKind.Root Then Return
-        chosen.Off = Not chosen.Off
+        If chosen Is Nothing OrElse chosen.Part <> Part.Whole Then Return
+        If chosen.Node Is Nothing OrElse chosen.Node.Kind = EpsKind.Root Then Return
+        chosen.Node.Off = Not chosen.Node.Off
         Touched()
     End Sub
 
     Private Sub Menu_Opening(sender As Object, e As ComponentModel.CancelEventArgs) Handles menu.Opening
-        Dim any As Boolean = chosen IsNot Nothing AndAlso chosen.Kind <> EpsKind.Root
-        editItem.Enabled = any
-        offItem.Enabled = any
-        offItem.Text = If(any AndAlso chosen.Off, "Turn on", "Turn off")
-        cutItem.Enabled = any
-        copyItem.Enabled = any
-        codeCopyItem.Enabled = any
-        deleteItem.Enabled = any
-        upItem.Enabled = any
-        downItem.Enabled = any
+        Dim whole As Boolean = chosen IsNot Nothing AndAlso chosen.Part = Part.Whole AndAlso
+                               chosen.Node IsNot Nothing AndAlso chosen.Node.Kind <> EpsKind.Root
+        Dim condition As Boolean = chosen IsNot Nothing AndAlso chosen.Part = Part.Condition
+
+        editItem.Enabled = whole OrElse condition
+        'A single condition cannot be commented out on its own; it is part of a line.
+        offItem.Enabled = whole
+        offItem.Text = If(whole AndAlso chosen.Node.Off, "Turn on", "Turn off")
+        cutItem.Enabled = whole
+        copyItem.Enabled = whole
+        codeCopyItem.Enabled = whole
+        deleteItem.Enabled = whole OrElse condition
+        upItem.Enabled = whole OrElse condition
+        downItem.Enabled = whole OrElse condition
         pasteItem.Enabled = held IsNot Nothing
         foldItem.Enabled = tree.SelectedNode IsNot Nothing
         unfoldItem.Enabled = tree.SelectedNode IsNot Nothing
@@ -476,13 +612,19 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub CopyItem_Click(sender As Object, e As EventArgs) Handles copyItem.Click
-        If chosen IsNot Nothing Then held = chosen.Clone()
+        CopyChosen()
+    End Sub
+
+    Private Sub CopyChosen()
+        If chosen IsNot Nothing AndAlso chosen.Part = Part.Whole AndAlso chosen.Node IsNot Nothing Then
+            held = chosen.Node.Clone()
+        End If
     End Sub
 
     Private Sub CodeCopyItem_Click(sender As Object, e As EventArgs) Handles codeCopyItem.Click
-        If chosen Is Nothing Then Return
+        If chosen Is Nothing OrElse chosen.Node Is Nothing Then Return
         Try
-            Clipboard.SetText(String.Join(vbCrLf, EpsWriter.Lines(chosen, 0)))
+            Clipboard.SetText(String.Join(vbCrLf, EpsWriter.Lines(chosen.Node, 0)))
         Catch ex As Exception
             LogSuppressed(ex, "EpsTriggerForm.CodeCopy")
         End Try
@@ -493,8 +635,9 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub CutChosen()
-        If chosen Is Nothing OrElse chosen.Parent Is Nothing Then Return
-        held = chosen.Clone()
+        If chosen Is Nothing OrElse chosen.Part <> Part.Whole Then Return
+        If chosen.Node Is Nothing OrElse chosen.Node.Parent Is Nothing Then Return
+        held = chosen.Node.Clone()
         DeleteChosen()
     End Sub
 
@@ -512,10 +655,19 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub DeleteChosen()
-        If chosen Is Nothing OrElse chosen.Parent Is Nothing Then Return
-        Dim parent As EpsNode = chosen.Parent
-        parent.Remove(chosen)
-        chosen = parent
+        If chosen Is Nothing OrElse chosen.Node Is Nothing Then Return
+
+        If chosen.Part = Part.Condition Then
+            RemoveTerm(chosen.Node, chosen.At)
+            chosen = New Spot(chosen.Node, Part.Conditions)
+            Touched()
+            Return
+        End If
+
+        If chosen.Part <> Part.Whole OrElse chosen.Node.Parent Is Nothing Then Return
+        Dim parent As EpsNode = chosen.Node.Parent
+        parent.Remove(chosen.Node)
+        chosen = New Spot(parent)
         Touched()
     End Sub
 
@@ -528,13 +680,23 @@ Public Class EpsTriggerForm
     End Sub
 
     Private Sub Move(step_ As Integer)
-        If chosen Is Nothing OrElse chosen.Parent Is Nothing Then Return
-        Dim parent As EpsNode = chosen.Parent
-        Dim at As Integer = parent.Children.IndexOf(chosen)
-        Dim goes As Integer = at + step_
-        If goes < 0 OrElse goes >= parent.Children.Count Then Return
+        If chosen Is Nothing OrElse chosen.Node Is Nothing Then Return
+
+        If chosen.Part = Part.Condition Then
+            Dim goes As Integer = chosen.At + step_
+            MoveTerm(chosen.Node, chosen.At, step_)
+            chosen = New Spot(chosen.Node, Part.Condition, goes)
+            Touched()
+            Return
+        End If
+
+        If chosen.Part <> Part.Whole OrElse chosen.Node.Parent Is Nothing Then Return
+        Dim parent As EpsNode = chosen.Node.Parent
+        Dim at As Integer = parent.Children.IndexOf(chosen.Node)
+        Dim [next] As Integer = at + step_
+        If [next] < 0 OrElse [next] >= parent.Children.Count Then Return
         parent.Children.RemoveAt(at)
-        parent.Children.Insert(goes, chosen)
+        parent.Children.Insert([next], chosen.Node)
         Touched()
     End Sub
 

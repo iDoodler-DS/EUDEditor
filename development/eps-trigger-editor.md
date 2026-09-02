@@ -40,6 +40,7 @@ with Enter to edit, Delete to remove, and Ctrl with X, C, V, Up and Down.
   starts as.
 - **A new value starts at the first of its list**, because that is a value the
   game will take. A value with no list starts at 0.
+- **A list shows a word and writes a number.** See below.
 - **Turn a node off.** It is written as a comment, so euddraft passes over it
   and a person still reads it. A folder that is off takes everything in it.
 - **Edit as text.** The source is shown beside the tree and can be edited
@@ -107,6 +108,27 @@ runs euddraft on them. That build has **only** the epScript in it. It leaves out
 
 So it is a way of trying the source out, not a replacement for the build on the
 toolbar, which is unchanged and does not know about the epScript source at all.
+
+### A drop-down shows one thing and writes another
+
+The editor's own tables say how a kind of value is spelled, and the Script tab
+follows them:
+
+| The kind | What the list shows | What is written |
+| --- | --- | --- |
+| Player, Modifier, Comparison, Score type, Order, ... | `Player 2`, `Set To`, `At Least` | the place in the list: `1`, `0`, `0` |
+| Unit, Location, Text | `Terran Marine`, `Anywhere` | the same in quotes: `"Terran Marine"` |
+| Number, Count | the number | the number |
+
+The numbers are what eudplib itself takes: `SetDeaths` is annotated
+`modifier: TrgModifier | Byte`, and `SetDeaths(1, 0, 0, "Terran Marine")`
+compiles. Writing the place in the list rather than the word means the source
+does not depend on the editor's language, and a `.eps` written by a person in
+English opens the same for a person reading it in Korean.
+
+A value the editor cannot match to a choice is left exactly as it was written
+and the window opens on **Custom**, so an expression such as
+`SetDeaths(foo + 1, ...)` survives being opened and saved.
 
 ### The comment marks are part of the format
 
