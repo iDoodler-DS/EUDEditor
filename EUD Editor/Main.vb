@@ -377,8 +377,8 @@ Public Class Main
 
     'True when the trigger editor owns the open tab and handles undo itself.
     Private Function TriggerTabActive() As Boolean
-        Dim page As TabPage = EditorTabControl.SelectedTab
-        Return page IsNot Nothing AndAlso page.Tag Is triggerEditorTool AndAlso page.Controls.Count > 0
+        Dim page As TabPage = VisiblePage()
+        Return page IsNot Nothing AndAlso ToolOfPage(page) Is triggerEditorTool AndAlso page.Controls.Count > 0
     End Function
 
     Private Sub UndoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UndoToolStripMenuItem.Click
@@ -465,7 +465,7 @@ Public Class Main
 
     Private Sub Main_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Not resizeDragging OrElse frozenEditor IsNot Nothing Then Return
-        frozenEditor = HostedEditor(EditorTabControl.SelectedTab)
+        frozenEditor = HostedEditor(VisiblePage())
         If frozenEditor Is Nothing Then Return
         SuspendEditorLayout(frozenEditor)
         SuspendDrawing(frozenEditor)
@@ -611,12 +611,15 @@ Public Class Main
 #End Region
 
 #Region "Editor tabs"
-    ' Every tool has a blank tab while a project is open. The editor form is loaded
-    ' into its tab the first time the tab is selected, re-parented as a non-top-level
-    ' window so it keeps all of its own code. When an editor closes or hides itself,
-    ' the tab goes blank again and reloads on demand.
+    ' The window has one tab per subject, not one per file format: Project, Data,
+    ' Triggers, Resources and, for 1.16.1, Debug. Each old editor is a pane inside the
+    ' tab it belongs to and keeps its own controls.
+    '
+    ' A tool's editor is loaded the first time its pane is shown, re-parented as a
+    ' non-top-level window so it keeps all of its own code. When an editor closes or
+    ' hides itself, the pane goes blank and reloads on demand.
 
-    'A tool hosted as a tab: its caption key in Main.json, its icon, whether the
+    'A tool hosted as a pane: its caption key in Main.json, its icon, whether the
     'current project offers it, and how to load its editor.
     Private Class EditorTool
         Public ReadOnly Key As String
@@ -626,6 +629,8 @@ Public Class Main
         'no side effects); those are warmed up in the background after a project opens.
         Public ReadOnly WarmForm As Func(Of Form)
         Public Enabled As Boolean
+        'The page that hosts this tool: an inner pane, or the group page itself.
+        Public Page As TabPage
 
         Public Sub New(key As String, icon As Image, open As System.Action, Optional warmForm As Func(Of Form) = Nothing)
             Me.Key = key
@@ -635,34 +640,75 @@ Public Class Main
         End Sub
     End Class
 
+    'A main tab. It holds one pane per tool, or the single tool itself.
+    Private Class ToolGroup
+        Public ReadOnly Key As String
+        Public ReadOnly Icon As Image
+        Public ReadOnly Tools As EditorTool()
+        'False for a group that holds one tool, which is then shown without an inner strip.
+        Public ReadOnly UseInnerTabs As Boolean
+        Public Page As TabPage
+        Public Inner As TabControl
+
+        Public Sub New(key As String, icon As Image, useInnerTabs As Boolean, tools As EditorTool())
+            Me.Key = key
+            Me.Icon = icon
+            Me.UseInnerTabs = useInnerTabs
+            Me.Tools = tools
+        End Sub
+
+        Public Function EnabledTools() As List(Of EditorTool)
+            Return Tools.Where(Function(t) t.Enabled).ToList()
+        End Function
+    End Class
+
     Private ReadOnly projectTool As New EditorTool("Tool_Project", ProjectFileIcon(), AddressOf OpenProjectSettings)
+    Private ReadOnly pluginTool As New EditorTool("Tool_Plugin", My.Resources.ICON_plugin, AddressOf OpenPlugin, Function() PluginForm)
+    Private ReadOnly fileSettingTool As New EditorTool("Tool_FileSetting", My.Resources.FileSetting, AddressOf OpenFileSetting, Function() FileSettingForm)
     Private ReadOnly datEditTool As New EditorTool("Tool_DatEdit", My.Resources.ICON_DatEdit, AddressOf OpenDatEdit, Function() DatEditForm)
     Private ReadOnly fireGraftTool As New EditorTool("Tool_FireGraft", My.Resources.ICON_FireGraft, AddressOf OpenFireGraft, Function() FireGraftForm)
     Private ReadOnly triggerEditorTool As New EditorTool("Tool_TriggerEditor", My.Resources.ICON_TriggerEditor, AddressOf OpenTriggerEditor)
-    Private ReadOnly pluginTool As New EditorTool("Tool_Plugin", My.Resources.ICON_plugin, AddressOf OpenPlugin, Function() PluginForm)
+    Private ReadOnly mpqTool As New EditorTool("Tool_MPQ", My.Resources.ICON_MPQEditor, AddressOf OpenMPQ)
     Private ReadOnly fileManagerTool As New EditorTool("Tool_FileManager", My.Resources.ICON_FileManager, AddressOf OpenFileManager, Function() FileManagerForm)
     Private ReadOnly bgmPlayerTool As New EditorTool("Tool_BGMPlayer", My.Resources.ICON_SoundPlayer, AddressOf OpenBGMPlayer, Function() SoundPlayerForm)
-    Private ReadOnly fileSettingTool As New EditorTool("Tool_FileSetting", My.Resources.FileSetting, AddressOf OpenFileSetting, Function() FileSettingForm)
-    Private ReadOnly mpqTool As New EditorTool("Tool_MPQ", My.Resources.ICON_MPQEditor, AddressOf OpenMPQ)
     Private ReadOnly grpTool As New EditorTool("Tool_GRP", My.Resources.ICON_GRP, AddressOf OpenGRP)
     Private ReadOnly binEditorTool As New EditorTool("Tool_BinEditor", My.Resources.ICON_BinEditor, AddressOf OpenBinEditor)
     Private ReadOnly tileSetTool As New EditorTool("Tool_TileSet", My.Resources.ICON_TileSet, AddressOf OpenTileSet)
     Private ReadOnly debugTool As New EditorTool("Tool_Debug", My.Resources.Debug, AddressOf OpenDebug)
 
+    'The main tabs, in order. Plugins are project configuration, so they sit with the
+    'project. The .dat editors and FireGraft change the same game data, so they sit
+    'together. Everything that reads a file out of the map is a resource.
+    Private ReadOnly projectGroup As New ToolGroup("Group_Project", ProjectFileIcon(), True,
+        {projectTool, pluginTool, fileSettingTool})
+    Private ReadOnly dataGroup As New ToolGroup("Group_Data", My.Resources.ICON_DatEdit, True,
+        {datEditTool, fireGraftTool})
+    Private ReadOnly triggerGroup As New ToolGroup("Group_Triggers", My.Resources.ICON_TriggerEditor, False,
+        {triggerEditorTool})
+    Private ReadOnly resourceGroup As New ToolGroup("Group_Resources", My.Resources.ICON_MPQEditor, True,
+        {mpqTool, fileManagerTool, bgmPlayerTool, grpTool, binEditorTool, tileSetTool})
+    Private ReadOnly debugGroup As New ToolGroup("Group_Debug", My.Resources.Debug, False,
+        {debugTool})
+
     Private ReadOnly editorClosedActions As New Dictionary(Of Form, System.Action)
     Private suppressTabLoad As Boolean
 
-    'Tools in tab order; each tab page's Tag is its tool.
+    Private Function ToolGroups() As ToolGroup()
+        Return {projectGroup, dataGroup, triggerGroup, resourceGroup, debugGroup}
+    End Function
+
     Private Function EditorTools() As EditorTool()
-        Return {projectTool, datEditTool, fireGraftTool, triggerEditorTool, pluginTool, fileManagerTool, bgmPlayerTool,
-                fileSettingTool, mpqTool, grpTool, binEditorTool, tileSetTool, debugTool}
+        Return ToolGroups().SelectMany(Function(g) g.Tools).ToArray()
     End Function
 
     Private Sub SetUpEditorTabs()
         Dim icons As New ImageList With {.ImageSize = New Size(24, 24), .ColorDepth = ColorDepth.Depth32Bit}
-        For Each tool As EditorTool In EditorTools()
-            'The ImageList keeps the Image itself until its native handle exists, so do not dispose it.
-            icons.Images.Add(tool.Key, ScaleIcon(tool.Icon, icons.ImageSize))
+        For Each group As ToolGroup In ToolGroups()
+            icons.Images.Add(group.Key, ScaleIcon(group.Icon, icons.ImageSize))
+            For Each tool As EditorTool In group.Tools
+                'The ImageList keeps the Image itself until its native handle exists, so do not dispose it.
+                icons.Images.Add(tool.Key, ScaleIcon(tool.Icon, icons.ImageSize))
+            Next
         Next
         EditorTabControl.ImageList = icons
 
@@ -698,8 +744,9 @@ Public Class Main
         Return True
     End Function
 
-    'Drops an editor that was loaded ahead of time but whose tab went away.
+    'Drops an editor that was loaded ahead of time but whose pane went away.
     Private Sub UnparkEditor(tool As EditorTool)
+        If tool Is Nothing Then Return
         Dim editor As Form = Nothing
         If Not parkedEditors.TryGetValue(tool, editor) Then Return
         parkedEditors.Remove(tool)
@@ -708,7 +755,7 @@ Public Class Main
         editor.Close()
     End Sub
 
-    'Loads the safe editors one per idle tick, so their tabs open instantly later.
+    'Loads the safe editors one per idle tick, so their panes open instantly later.
     Private Sub QueueWarmUp()
         warmUpQueue.Clear()
         For Each tool As EditorTool In EditorTools()
@@ -723,12 +770,11 @@ Public Class Main
     Private Sub WarmUpNextEditor(sender As Object, e As EventArgs)
         While warmUpQueue.Count > 0
             Dim tool As EditorTool = warmUpQueue.Dequeue()
-            Dim page As TabPage = FindEditorTab(tool)
-            If page Is Nothing OrElse page.Controls.Count > 0 OrElse Not tool.Enabled Then Continue While
+            If tool.Page Is Nothing OrElse tool.Page.Controls.Count > 0 OrElse Not tool.Enabled Then Continue While
             Dim editor As Form = tool.WarmForm()
             If editor.Parent IsNot Nothing Then Continue While
             Try
-                PrepareEditor(editor, tool, page)
+                PrepareEditor(editor, tool, tool.Page)
             Catch ex As Exception
                 LogException(ex, "warm up " & tool.Key)
             End Try
@@ -739,17 +785,6 @@ Public Class Main
             warmUpActive = False
         End If
     End Sub
-
-    'ImageList shrinks with a plain stretch; pre-scale so the 32px tool icons stay crisp.
-    Private Shared Function ScaleIcon(source As Image, size As Size) As Bitmap
-        Dim bmp As New Bitmap(size.Width, size.Height)
-        Using g As Graphics = Graphics.FromImage(bmp)
-            g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-            g.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighQuality
-            g.DrawImage(source, New Rectangle(Point.Empty, size))
-        End Using
-        Return bmp
-    End Function
 
     'The e2s project file icon shipped in Data\icons (the file association uses it too).
     Private Shared Function ProjectFileIcon() As Image
@@ -765,102 +800,217 @@ Public Class Main
         Return My.Resources.MapEditor
     End Function
 
+    'ImageList shrinks with a plain stretch; pre-scale so the 32px tool icons stay crisp.
+    Private Shared Function ScaleIcon(source As Image, size As Size) As Bitmap
+        Dim bmp As New Bitmap(size.Width, size.Height)
+        Using g As Graphics = Graphics.FromImage(bmp)
+            g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+            g.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighQuality
+            g.DrawImage(source, New Rectangle(Point.Empty, size))
+        End Using
+        Return bmp
+    End Function
+
     Private Function ToolText(tool As EditorTool) As String
         Return Lan.GetText(Me.Name, tool.Key)
     End Function
 
-    'Creates the blank tab for a tool and inserts it at the given position.
-    Private Function NewEditorTab(tool As EditorTool, index As Integer) As TabPage
-        'Small settings-style forms get breathing room; the full-size editors fill the page.
-        Dim margin As Integer = If(tool Is projectTool OrElse tool Is pluginTool, 12, 0)
-        Dim page As New TabPage(ToolText(tool)) With {.Tag = tool, .Padding = New Padding(margin)}
+    Private Function GroupText(group As ToolGroup) As String
+        Return Lan.GetText(Me.Name, group.Key)
+    End Function
+
+    'Small settings-style forms get breathing room; the full-size editors fill the page.
+    Private Function PagePadding(tool As EditorTool) As Padding
+        If tool Is projectTool OrElse tool Is pluginTool OrElse tool Is fileSettingTool Then Return New Padding(12)
+        Return New Padding(0)
+    End Function
+
+    Private Function NewPage(text As String, imageKey As String, tag As Object, pad As Padding,
+                             owner As TabControl, index As Integer) As TabPage
+        Dim page As New TabPage(text) With {.Tag = tag, .Padding = pad}
         'Pages are created after the form was themed; theme the blank page itself.
         ThemeSetForm.SetControlColor(page)
-        EditorTabControl.TabPages.Insert(Math.Min(index, EditorTabControl.TabPages.Count), page)
-        'The native tab control only picks the icon up once the page has a parent.
-        page.ImageKey = tool.Key
+        'Insert needs a window. An inner control has none until its own page is shown
+        'for the first time, and Insert then does nothing. Pages are built in order,
+        'so Add puts them in the right place anyway.
+        If owner.IsHandleCreated AndAlso index < owner.TabPages.Count Then
+            owner.TabPages.Insert(index, page)
+        Else
+            owner.TabPages.Add(page)
+        End If
+        ApplyPageIcon(page, imageKey)
         Return page
     End Function
 
-    'Creates blank tabs for the enabled tools and removes the others. Called after buttonResetting.
+    'A tab control only accepts an icon once it has a window. An inner control has
+    'none until its own page is shown for the first time, so apply the icons again
+    'when the window appears.
+    Private Shared Sub ApplyPageIcon(page As TabPage, imageKey As String)
+        Try
+            page.ImageKey = imageKey
+        Catch
+        End Try
+    End Sub
+
+    'Builds the main tabs and their panes for the enabled tools. Called after buttonResetting.
     Public Sub RefreshEditorTabs()
-        Dim wanted As List(Of EditorTool) = EditorTools().Where(Function(t) t.Enabled).ToList()
+        Dim wantedGroups As List(Of ToolGroup) = ToolGroups().Where(Function(g) g.EnabledTools().Count > 0).ToList()
+
         suppressTabLoad = True
         SuspendDrawing(EditorTabControl)
         Try
-
+            'Remove the main tabs whose tools are all gone.
             For Each page As TabPage In EditorTabControl.TabPages.Cast(Of TabPage)().ToArray()
-                If Not wanted.Contains(TryCast(page.Tag, EditorTool)) Then
-                    DetachEditor(page)
-                    UnparkEditor(TryCast(page.Tag, EditorTool))
+                Dim group As ToolGroup = TryCast(page.Tag, ToolGroup)
+                If group Is Nothing OrElse Not wantedGroups.Contains(group) Then
+                    If group IsNot Nothing Then
+                        For Each tool As EditorTool In group.Tools
+                            DetachEditor(tool.Page)
+                            UnparkEditor(tool)
+                            tool.Page = Nothing
+                        Next
+                        group.Page = Nothing
+                        group.Inner = Nothing
+                    End If
                     EditorTabControl.TabPages.Remove(page)
                     page.Dispose()
                 End If
             Next
 
-            For i = 0 To wanted.Count - 1
-                Dim page As TabPage = FindEditorTab(wanted(i))
-                If page Is Nothing Then
-                    NewEditorTab(wanted(i), i)
-                ElseIf page.Text <> ToolText(wanted(i)) Then
-                    page.Text = ToolText(wanted(i))
-                End If
+            For i = 0 To wantedGroups.Count - 1
+                BuildGroup(wantedGroups(i), i)
             Next
         Finally
             suppressTabLoad = False
             ResumeDrawing(EditorTabControl)
         End Try
 
-        'The project tab is first and cheap; show it straight away instead of a blank page.
-        Dim selected As TabPage = EditorTabControl.SelectedTab
-        If selected IsNot Nothing AndAlso selected.Tag Is projectTool Then LoadSelectedTab()
+        'The project pane is first and cheap; show it straight away instead of a blank page.
+        Dim visible As TabPage = VisiblePage()
+        If visible IsNot Nothing AndAlso visible.Tag Is projectTool Then LoadVisibleTab()
 
-        RefreshViewMenu(wanted)
+        RefreshViewMenu(wantedGroups)
         QueueWarmUp()
     End Sub
 
-    'One View menu entry per tab, Ctrl+1 .. Ctrl+9 and Ctrl+0 for the first ten.
-    Private Sub RefreshViewMenu(tools As List(Of EditorTool))
+    Private Sub BuildGroup(group As ToolGroup, index As Integer)
+        Dim tools As List(Of EditorTool) = group.EnabledTools()
+
+        If group.Page Is Nothing Then
+            group.Page = NewPage(GroupText(group), group.Key, group,
+                                 If(group.UseInnerTabs, New Padding(0), PagePadding(tools(0))),
+                                 EditorTabControl, index)
+        ElseIf group.Page.Text <> GroupText(group) Then
+            group.Page.Text = GroupText(group)
+        End If
+
+        If Not group.UseInnerTabs Then
+            'One tool, shown without an inner strip.
+            Dim only As EditorTool = tools(0)
+            For Each tool As EditorTool In group.Tools
+                If tool IsNot only AndAlso tool.Page IsNot Nothing Then
+                    DetachEditor(tool.Page)
+                    UnparkEditor(tool)
+                    tool.Page = Nothing
+                End If
+            Next
+            only.Page = group.Page
+            Return
+        End If
+
+        If group.Inner Is Nothing Then
+            group.Inner = New TabControl With {
+                .Dock = DockStyle.Fill,
+                .ImageList = EditorTabControl.ImageList,
+                .ItemSize = New Size(42, 28),
+                .Padding = New Point(9, 3),
+                .Tag = group}
+            AddHandler group.Inner.HandleCreated, AddressOf InnerTabs_HandleCreated
+            AddHandler group.Inner.SelectedIndexChanged, AddressOf InnerTabs_SelectedIndexChanged
+            AddHandler group.Inner.MouseUp, AddressOf InnerTabs_MouseUp
+            AddHandler group.Inner.Deselected, AddressOf InnerTabs_Deselected
+            AddHandler group.Inner.Selected, AddressOf InnerTabs_Selected
+            group.Page.Controls.Add(group.Inner)
+            ThemeSetForm.SetControlColor(group.Inner)
+        End If
+
+        'Remove the panes of tools this project does not offer.
+        For Each page As TabPage In group.Inner.TabPages.Cast(Of TabPage)().ToArray()
+            Dim tool As EditorTool = TryCast(page.Tag, EditorTool)
+            If tool Is Nothing OrElse Not tools.Contains(tool) Then
+                DetachEditor(page)
+                UnparkEditor(tool)
+                If tool IsNot Nothing Then tool.Page = Nothing
+                group.Inner.TabPages.Remove(page)
+                page.Dispose()
+            End If
+        Next
+
+        For i = 0 To tools.Count - 1
+            Dim tool As EditorTool = tools(i)
+            If tool.Page Is Nothing OrElse tool.Page.Parent IsNot group.Inner Then
+                tool.Page = NewPage(ToolText(tool), tool.Key, tool, PagePadding(tool), group.Inner, i)
+            ElseIf tool.Page.Text <> ToolText(tool) Then
+                tool.Page.Text = ToolText(tool)
+            End If
+        Next
+    End Sub
+
+    'One View menu entry per main tab, Ctrl+1 .. Ctrl+9.
+    Private Sub RefreshViewMenu(groups As List(Of ToolGroup))
         Dim items As ToolStripItemCollection = ViewVToolStripMenuItem.DropDownItems
         For Each item As ToolStripItem In items.Cast(Of ToolStripItem)().ToArray()
-            If TypeOf item.Tag Is EditorTool OrElse item.Name = "ViewTabsSeparator" Then items.Remove(item)
+            If TypeOf item.Tag Is ToolGroup OrElse item.Name = "ViewTabsSeparator" Then items.Remove(item)
         Next
-        If tools.Count = 0 Then Return
+        If groups.Count = 0 Then Return
 
         items.Add(New ToolStripSeparator With {.Name = "ViewTabsSeparator"})
-        For i = 0 To tools.Count - 1
-            Dim item As New ToolStripMenuItem(ToolText(tools(i)), Nothing, AddressOf ViewTabMenuItem_Click) With {
-                .Tag = tools(i),
+        For i = 0 To groups.Count - 1
+            Dim item As New ToolStripMenuItem(GroupText(groups(i)), Nothing, AddressOf ViewTabMenuItem_Click) With {
+                .Tag = groups(i),
                 .BackColor = ProgramSet.colorBackground,
                 .ForeColor = ProgramSet.colorLabelText}
-            If i < 9 Then
-                item.ShortcutKeys = Keys.Control Or CType(Keys.D1 + i, Keys)
-            ElseIf i = 9 Then
-                item.ShortcutKeys = Keys.Control Or Keys.D0
-            End If
+            If i < 9 Then item.ShortcutKeys = Keys.Control Or CType(Keys.D1 + i, Keys)
             items.Add(item)
         Next
     End Sub
 
     Private Sub ViewTabMenuItem_Click(sender As Object, e As EventArgs)
-        SelectTool(DirectCast(DirectCast(sender, ToolStripMenuItem).Tag, EditorTool))
+        SelectGroup(DirectCast(DirectCast(sender, ToolStripMenuItem).Tag, ToolGroup))
     End Sub
 
-    'Brings a tool's tab to the front, loading its editor if the tab is still blank.
-    Private Sub SelectTool(tool As EditorTool)
-        Dim page As TabPage = FindEditorTab(tool)
-        If page Is Nothing Then Return
-        If EditorTabControl.SelectedTab Is page Then
-            LoadSelectedTab()
+    Private Sub SelectGroup(group As ToolGroup)
+        If group.Page Is Nothing Then Return
+        If EditorTabControl.SelectedTab Is group.Page Then
+            LoadVisibleTab()
         Else
-            EditorTabControl.SelectedTab = page
+            EditorTabControl.SelectedTab = group.Page
         End If
     End Sub
 
-    'True when the tool's editor is currently loaded into its tab.
+    Private Function GroupOf(tool As EditorTool) As ToolGroup
+        For Each group As ToolGroup In ToolGroups()
+            If group.Tools.Contains(tool) Then Return group
+        Next
+        Return Nothing
+    End Function
+
+    'Brings a tool's pane to the front, loading its editor if the pane is still blank.
+    Private Sub SelectTool(tool As EditorTool)
+        If tool.Page Is Nothing Then Return
+        Dim group As ToolGroup = GroupOf(tool)
+        If group Is Nothing OrElse group.Page Is Nothing Then Return
+
+        If EditorTabControl.SelectedTab IsNot group.Page Then EditorTabControl.SelectedTab = group.Page
+        If group.Inner IsNot Nothing AndAlso group.Inner.SelectedTab IsNot tool.Page Then
+            group.Inner.SelectedTab = tool.Page
+        End If
+        LoadVisibleTab()
+    End Sub
+
+    'True when the tool's editor is currently loaded into its pane.
     Private Function EditorLoaded(tool As EditorTool) As Boolean
-        Dim page As TabPage = FindEditorTab(tool)
-        Return page IsNot Nothing AndAlso page.Controls.Count > 0
+        Return tool.Page IsNot Nothing AndAlso tool.Page.Controls.Count > 0
     End Function
 
     'For editors that want to push data into FireGraft only if it exists.
@@ -868,31 +1018,45 @@ Public Class Main
         Return EditorLoaded(fireGraftTool) OrElse parkedEditors.ContainsKey(fireGraftTool)
     End Function
 
-    Private Function FindEditorTab(tool As EditorTool) As TabPage
-        For Each page As TabPage In EditorTabControl.TabPages
-            If page.Tag Is tool Then Return page
+    'The deepest selected page: an inner pane, or a main tab that holds one tool.
+    Private Function VisiblePage() As TabPage
+        Dim outer As TabPage = EditorTabControl.SelectedTab
+        If outer Is Nothing Then Return Nothing
+        Dim group As ToolGroup = TryCast(outer.Tag, ToolGroup)
+        If group Is Nothing Then Return outer
+        If group.Inner Is Nothing Then Return outer
+        Return group.Inner.SelectedTab
+    End Function
+
+    'The tool of a page, whichever level it sits at.
+    Private Shared Function ToolOfPage(page As TabPage) As EditorTool
+        If page Is Nothing Then Return Nothing
+        Dim tool As EditorTool = TryCast(page.Tag, EditorTool)
+        If tool IsNot Nothing Then Return tool
+        Dim group As ToolGroup = TryCast(page.Tag, ToolGroup)
+        If group IsNot Nothing AndAlso group.Inner Is Nothing Then
+            Return group.EnabledTools().FirstOrDefault()
+        End If
+        Return Nothing
+    End Function
+
+    Private Function FindEditorPage(editor As Form) As TabPage
+        For Each tool As EditorTool In EditorTools()
+            If tool.Page IsNot Nothing AndAlso tool.Page.Controls.Contains(editor) Then Return tool.Page
         Next
         Return Nothing
     End Function
 
-    Private Function FindEditorTab(editor As Form) As TabPage
-        For Each page As TabPage In EditorTabControl.TabPages
-            If page.Controls.Contains(editor) Then Return page
-        Next
-        Return Nothing
-    End Function
-
-    'Loads an editor into its tool's tab (creating the tab if needed) and selects it.
+    'Loads an editor into its tool's pane and brings it to the front.
     Private Sub ShowEditorTab(editor As Form, tool As EditorTool, Optional onClosed As System.Action = Nothing)
         If onClosed IsNot Nothing Then editorClosedActions(editor) = onClosed
-
-        Dim page As TabPage = FindEditorTab(tool)
-        If page Is Nothing Then page = NewEditorTab(tool, EditorTabControl.TabPages.Count)
+        If tool.Page Is Nothing Then Return
+        Dim page As TabPage = tool.Page
 
         If Not page.Controls.Contains(editor) Then
             'Load, theme and fill off-screen (or reuse the warmed-up copy), then move the
             'finished editor onto the page. An editor may close itself during Load
-            '(e.g. Debug when StarCraft is not running); its tab then stays blank.
+            '(e.g. Debug when StarCraft is not running); its pane then stays blank.
             If Not PrepareEditor(editor, tool, page) Then Return
             parkedEditors.Remove(tool)
 
@@ -902,27 +1066,36 @@ Public Class Main
                 page.Controls.Add(editor)
                 AddHandler editor.FormClosing, AddressOf EditorTab_FormClosing
                 AddHandler editor.VisibleChanged, AddressOf EditorTab_VisibleChanged
-                suppressTabLoad = True
-                EditorTabControl.SelectedTab = page
-                suppressTabLoad = False
+                BringPageToFront(tool, page)
             Finally
                 ResumeDrawing(EditorTabControl)
             End Try
         Else
-            suppressTabLoad = True
-            EditorTabControl.SelectedTab = page
-            suppressTabLoad = False
+            BringPageToFront(tool, page)
         End If
         If Not editor.IsDisposed Then editor.Select()
     End Sub
 
-    'Takes the editor out of its tab, leaving the tab blank, and runs the work that
+    Private Sub BringPageToFront(tool As EditorTool, page As TabPage)
+        Dim group As ToolGroup = GroupOf(tool)
+        suppressTabLoad = True
+        Try
+            If group IsNot Nothing AndAlso group.Page IsNot Nothing Then
+                EditorTabControl.SelectedTab = group.Page
+                If group.Inner IsNot Nothing Then group.Inner.SelectedTab = page
+            End If
+        Finally
+            suppressTabLoad = False
+        End Try
+    End Sub
+
+    'Takes the editor out of its pane, leaving it blank, and runs the work that
     'used to follow the modal ShowDialog call.
     Private Sub DetachEditor(page As TabPage)
         Dim editor As Form = HostedEditor(page)
         If editor Is Nothing Then Return
 
-        'A hidden tab's editor has its layout suspended; do not carry that out of the tab.
+        'A hidden pane's editor has its layout suspended; do not carry that out of the pane.
         ResumeEditorLayout(editor, False)
         RemoveHandler editor.FormClosing, AddressOf EditorTab_FormClosing
         RemoveHandler editor.VisibleChanged, AddressOf EditorTab_VisibleChanged
@@ -938,36 +1111,64 @@ Public Class Main
 
     'Runs after the editor's own Closing handler (which may cancel and just hide).
     Private Sub EditorTab_FormClosing(sender As Object, e As FormClosingEventArgs)
-        DetachEditor(FindEditorTab(DirectCast(sender, Form)))
+        DetachEditor(FindEditorPage(DirectCast(sender, Form)))
     End Sub
 
-    'Editors that cancel their close just hide themselves; blank their tab then.
-    'Control.Visible is also False while the tab page is merely not selected, so
+    'Editors that cancel their close just hide themselves; blank their pane then.
+    'Control.Visible is also False while the page is merely not selected, so
     'only react when the page itself is visible.
     Private Sub EditorTab_VisibleChanged(sender As Object, e As EventArgs)
         Dim editor As Form = sender
         If editor.IsDisposed OrElse editor.Visible Then Return
-        If editor.Parent IsNot Nothing AndAlso editor.Parent.Visible Then DetachEditor(FindEditorTab(editor))
+        If editor.Parent IsNot Nothing AndAlso editor.Parent.Visible Then DetachEditor(FindEditorPage(editor))
     End Sub
 
-    'Lazy load: selecting a blank tab opens its tool, which loads the editor.
-    Private Sub LoadSelectedTab()
-        Dim page As TabPage = EditorTabControl.SelectedTab
+    'Lazy load: showing a blank pane opens its tool, which loads the editor.
+    Private Sub LoadVisibleTab()
+        Dim page As TabPage = VisiblePage()
         If page Is Nothing OrElse page.Controls.Count > 0 Then Return
-        Dim tool As EditorTool = TryCast(page.Tag, EditorTool)
+        Dim tool As EditorTool = ToolOfPage(page)
         If tool IsNot Nothing AndAlso tool.Enabled Then tool.Open()
     End Sub
 
     Private Sub EditorTabControl_SelectedIndexChanged(sender As Object, e As EventArgs) Handles EditorTabControl.SelectedIndexChanged
         If suppressTabLoad Then Return
-        LoadSelectedTab()
+        LoadVisibleTab()
+    End Sub
+
+    Private Sub InnerTabs_HandleCreated(sender As Object, e As EventArgs)
+        Dim tabs As TabControl = sender
+        For Each page As TabPage In tabs.TabPages
+            Dim tool As EditorTool = TryCast(page.Tag, EditorTool)
+            If tool IsNot Nothing Then ApplyPageIcon(page, tool.Key)
+        Next
+    End Sub
+
+    Private Sub InnerTabs_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If suppressTabLoad Then Return
+        LoadVisibleTab()
     End Sub
 
     'Clicking the already selected (blank) tab does not change the selection; load it anyway.
     Private Sub EditorTabControl_MouseUp(sender As Object, e As MouseEventArgs) Handles EditorTabControl.MouseUp
         If e.Button <> MouseButtons.Left Then Return
         Dim idx As Integer = EditorTabControl.SelectedIndex
-        If idx >= 0 AndAlso EditorTabControl.GetTabRect(idx).Contains(e.Location) Then LoadSelectedTab()
+        If idx >= 0 AndAlso EditorTabControl.GetTabRect(idx).Contains(e.Location) Then LoadVisibleTab()
+    End Sub
+
+    Private Sub InnerTabs_MouseUp(sender As Object, e As MouseEventArgs)
+        If e.Button <> MouseButtons.Left Then Return
+        Dim tabs As TabControl = sender
+        Dim idx As Integer = tabs.SelectedIndex
+        If idx >= 0 AndAlso tabs.GetTabRect(idx).Contains(e.Location) Then LoadVisibleTab()
+    End Sub
+
+    Private Sub InnerTabs_Deselected(sender As Object, e As TabControlEventArgs)
+        SuspendEditorLayout(HostedEditor(e.TabPage))
+    End Sub
+
+    Private Sub InnerTabs_Selected(sender As Object, e As TabControlEventArgs)
+        ResumeEditorLayout(HostedEditor(e.TabPage), True)
     End Sub
 
     Private Sub OpenProjectSettings()

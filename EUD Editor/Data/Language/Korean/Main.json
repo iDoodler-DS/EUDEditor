@@ -1,4 +1,9 @@
 ﻿{
+    "Group_Project": "프로젝트",
+    "Group_Data": "데이터",
+    "Group_Triggers": "트리거",
+    "Group_Resources": "리소스",
+    "Group_Debug": "디버그",
     "Button4": "트리거보기(&T)",
     "Button16": "복사(&E)",
     "LogLabel": "로그",

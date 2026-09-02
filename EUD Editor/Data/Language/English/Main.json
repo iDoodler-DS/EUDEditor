@@ -1,4 +1,9 @@
 ﻿{
+    "Group_Project": "Project",
+    "Group_Data": "Data",
+    "Group_Triggers": "Triggers",
+    "Group_Resources": "Resources",
+    "Group_Debug": "Debug",
     "Button4": "View Trigger(&T)",
     "Button16": "Copy(&E)",
     "LogLabel": "Log",
