@@ -1,4 +1,4 @@
-Namespace My
+﻿Namespace My
     Partial Friend Class MyApplication
 
         Private Sub MyApplication_Startup(sender As Object, e As ApplicationServices.StartupEventArgs) Handles Me.Startup
@@ -8,10 +8,21 @@ Namespace My
 
         Private Sub MyApplication_UnhandledException(sender As Object, e As ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
             LogException(e.Exception, "UI thread")
-            MsgBox("An unexpected error occurred:" & vbCrLf & vbCrLf &
-                   e.Exception.GetType().Name & ": " & e.Exception.Message & vbCrLf & vbCrLf &
-                   "Details were written to:" & vbCrLf & LogPath,
-                   MsgBoxStyle.Critical, "EUD Editor")
+
+            'An error is the moment a recovery copy is worth most.
+            Dim saved As Boolean = RecoveryModule.WriteCopy()
+
+            Try
+                Using dialog As New CrashForm(e.Exception, saved)
+                    dialog.ShowDialog()
+                End Using
+            Catch ex As Exception
+                LogException(ex, "showing the error window")
+                MsgBox(e.Exception.GetType().Name & ": " & e.Exception.Message & vbCrLf & vbCrLf &
+                       "Details were written to:" & vbCrLf & LogPath,
+                       MsgBoxStyle.Critical, "EUD Editor")
+            End Try
+
             'Keep the editor open so unsaved work is not lost.
             e.ExitApplication = False
         End Sub

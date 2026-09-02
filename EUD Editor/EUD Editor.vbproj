@@ -593,6 +593,8 @@
     <Compile Include="Module\EntitySelectionModule.vb" />
     <Compile Include="Module\EditHistoryModule.vb" />
     <Compile Include="Module\ErrorLogModule.vb" />
+    <Compile Include="Module\RecoveryModule.vb" />
+    <Compile Include="Form\CrashForm.vb" />
     <Compile Include="Module\NPAModule.vb" />
     <Compile Include="Module\parsingModule.vb" />
     <Compile Include="Module\ProgramData.vb" />

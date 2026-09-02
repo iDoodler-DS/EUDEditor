@@ -136,7 +136,65 @@ Public Class Main
         SetUpEditorTabs()
         refreshTheme()
         refreshSet()
+
+        OfferRecovery()
+        autoSaveTimer.Start()
     End Sub
+
+
+
+#Region "Recovery copy"
+    ' The editor writes a copy of the project every few minutes while there are changes
+    ' that are not saved. A save or a close takes the copy away, so a copy that is still
+    ' there at the next start means the editor stopped without a save.
+
+    Private WithEvents autoSaveTimer As New System.Windows.Forms.Timer With {.Interval = 300000}
+
+    Private Sub AutoSaveTimer_Tick(sender As Object, e As EventArgs) Handles autoSaveTimer.Tick
+        RecoveryModule.WriteCopy()
+    End Sub
+
+    'Asks the user about a copy that an earlier run left behind.
+    Private Sub OfferRecovery()
+        Dim info As RecoveryModule.RecoveryInfo = RecoveryModule.Pending()
+        If info Is Nothing Then Return
+
+        Dim answer As MsgBoxResult = MsgBox(
+            "The editor stopped before " & info.DisplayName & " was saved." & vbCrLf & vbCrLf &
+            "A recovery copy of " & info.Written.ToString("yyyy-MM-dd HH:mm") & " is here:" & vbCrLf &
+            RecoveryModule.RecoveryFile & vbCrLf & vbCrLf &
+            "Open the recovery copy?",
+            MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "EUD Editor")
+
+        If answer <> MsgBoxResult.Yes Then
+            'Keep the copy under another name, so the question comes only once.
+            RecoveryModule.SetAside()
+            Return
+        End If
+
+        Try
+            'Closing a project takes the copy away, so hold the copy somewhere else first.
+            Dim recovered As String = RecoveryModule.HoldForOpening()
+            If recovered = "" Then Return
+
+            If Not ProjectSet.Close() Then Return
+            ProjectSet.Load(recovered)
+
+            'A save must write the project the user knows, not the copy.
+            If info.ProjectPath <> "" Then ProjectSet.filename = info.ProjectPath
+            ProjectSet.saveStatus = False    'the work is not in the project file yet
+
+            RecoveryModule.Clear()
+            RecoveryModule.ReleaseHold()
+            buttonResetting()
+            refreshSet()
+        Catch ex As Exception
+            LogException(ex, "opening the recovery copy")
+            MsgBox("The recovery copy did not open. It is still here:" & vbCrLf &
+                   RecoveryModule.RecoveryFile, MsgBoxStyle.Exclamation, "EUD Editor")
+        End Try
+    End Sub
+#End Region
 
     Private Sub Main_Closed(sender As Object, e As FormClosingEventArgs) Handles MyBase.Closing
         If ShutDown = False Then

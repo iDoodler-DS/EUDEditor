@@ -919,6 +919,7 @@ Namespace ProjectSet
                 End If
             End If
             ProjectSet.Reset()
+            RecoveryModule.Clear()
 
             RemasterTile = Nothing
             Main.buttonResetting()
@@ -1866,59 +1867,14 @@ Namespace ProjectSet
             End If
         End Sub
 
-        Public Sub Save(MapName As String)
-            Dim issavefilezip As Boolean = False
-
-            If MapName.EndsWith(".e2p") Then
-                '집 파일이면
-                issavefilezip = True
-            End If
-
-
-
-            Dim isnewfile As Boolean = False
-
-
-            If CheckFileExist(MapName) Then
-                isnewfile = True
-            End If
-
-
-
-
+        ''' <summary>
+        ''' The project as text. Save writes this to the project file, and the recovery
+        ''' copy writes the same text to another place. It reads what is in memory and
+        ''' changes nothing.
+        ''' </summary>
+        Public Function ProjectText() As String
             Dim _stringbdl As New StringBuilder
-
-
-            DeleteFilesFromFolder(My.Application.Info.DirectoryPath & "\Data\temp")
-            Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\Data\temp\saveFile")
-
-
             Dim count As Integer = 0
-
-            If issavefilezip And isnewfile Then
-                ProjectSet.filename = MapName.Replace(GetSafeName(MapName), "") & GetSafeName(MapName).Split(".").First & "\" & GetSafeName(MapName)
-            Else
-                ProjectSet.filename = MapName
-            End If
-            ProjectSet.saveStatus = True
-            ProjectSet.isload = True
-
-            Dim file As FileStream
-
-            Dim savefilename As String
-            If issavefilezip = True And isnewfile = True Then
-                Directory.CreateDirectory(MapName.Replace(".e2p", ""))
-                savefilename = MapName.Replace(".e2p", "") & "\" & GetSafeName(MapName)
-            Else
-                savefilename = MapName
-            End If
-
-            file = New FileStream(savefilename, FileMode.Create, FileAccess.Write)
-
-            'Dim file As FileStream = New FileStream(MapName, FileMode.Create, FileAccess.Write)
-            Dim stream As StreamWriter = New StreamWriter(file)
-
-
 
             _stringbdl.Append("S_ProjectSET" & vbCrLf) 'ProjectSET Start
             _stringbdl.Append("Version : " & ProgramSet.Version & vbCrLf)
@@ -2332,9 +2288,66 @@ Namespace ProjectSet
 
             _stringbdl.Append("E_PluginSET" & vbCrLf)
 
+            Return _stringbdl.ToString()
+        End Function
+
+        Public Sub Save(MapName As String)
+            Dim issavefilezip As Boolean = False
+
+            If MapName.EndsWith(".e2p") Then
+                '집 파일이면
+                issavefilezip = True
+            End If
 
 
-            stream.Write(_stringbdl.ToString)
+
+            Dim isnewfile As Boolean = False
+
+
+            If CheckFileExist(MapName) Then
+                isnewfile = True
+            End If
+
+
+
+
+
+
+            DeleteFilesFromFolder(My.Application.Info.DirectoryPath & "\Data\temp")
+            Directory.CreateDirectory(My.Application.Info.DirectoryPath & "\Data\temp\saveFile")
+
+
+            Dim count As Integer = 0
+
+            If issavefilezip And isnewfile Then
+                ProjectSet.filename = MapName.Replace(GetSafeName(MapName), "") & GetSafeName(MapName).Split(".").First & "\" & GetSafeName(MapName)
+            Else
+                ProjectSet.filename = MapName
+            End If
+            ProjectSet.saveStatus = True
+            ProjectSet.isload = True
+
+            Dim file As FileStream
+
+            Dim savefilename As String
+            If issavefilezip = True And isnewfile = True Then
+                Directory.CreateDirectory(MapName.Replace(".e2p", ""))
+                savefilename = MapName.Replace(".e2p", "") & "\" & GetSafeName(MapName)
+            Else
+                savefilename = MapName
+            End If
+
+            file = New FileStream(savefilename, FileMode.Create, FileAccess.Write)
+
+            'Dim file As FileStream = New FileStream(MapName, FileMode.Create, FileAccess.Write)
+            Dim stream As StreamWriter = New StreamWriter(file)
+
+
+
+            stream.Write(ProjectText())
+
+
+
 
 
             stream.Close()
@@ -2370,6 +2383,8 @@ Namespace ProjectSet
             End If
 
             DeleteFilesFromFolder(My.Application.Info.DirectoryPath & "\Data\temp")
+            'The project file now holds the work, so the recovery copy is of no use.
+            RecoveryModule.Clear()
         End Sub
     End Module
 End Namespace
