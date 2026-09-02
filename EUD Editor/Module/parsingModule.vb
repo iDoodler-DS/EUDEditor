@@ -173,7 +173,7 @@ Module parsingModule
             If CheckFileExist(ProjectSet.InputMap) Then
                 MsgBox(Lan.GetMsgText("mapNotExist") & vbCrLf & ProjectSet.InputMap, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 While True
-                    If SettingForm.SetInputMap() Then
+                    If ProjectSettingForm.SetInputMap() Then
                         Exit While
                     End If
                 End While
@@ -188,7 +188,7 @@ Module parsingModule
             If System.IO.Directory.Exists(filename) = False Then
                 MsgBox(Lan.GetMsgText("mapNotExist") & vbCrLf & ProjectSet.OutputMap, MsgBoxStyle.Critical, ProgramSet.ErrorFormMessage)
                 While True
-                    If SettingForm.SetOutputMap() Then
+                    If ProjectSettingForm.SetOutputMap() Then
                         Exit While
                     End If
                 End While

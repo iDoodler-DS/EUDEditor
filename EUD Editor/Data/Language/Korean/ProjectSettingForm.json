@@ -1,0 +1,20 @@
+﻿{
+    "FormTitle": "프로젝트 세팅",
+    "GroupBox1": "프로젝트 세팅",
+    "GroupBox3": "트리거 출력 설정",
+    "Label7": "트리거 플레이어",
+    "CheckBox2": "SeTo사용",
+    "GroupBox4": "기타 설정",
+    "CheckBox3": "Debug기능 사용",
+    "CheckBox1": "CHK데이터 읽어오기",
+    "Button4": "설정",
+    "Label6": "저장 맵",
+    "Button3": "설정",
+    "Label5": "연결된 맵",
+    "Label4": "사용 & 삽입 설정",
+    "RadioButton2": "euddraft사용안함",
+    "RadioButton1": "euddraft사용",
+    "CheckBox5": "epTrace Debug",
+    "Button5": "확인",
+    "Button6": "취소"
+}
