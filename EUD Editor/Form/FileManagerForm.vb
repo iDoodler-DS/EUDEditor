@@ -79,6 +79,58 @@
         loadcmp = True
     End Sub
 
+#Region "Wireframe shown inside DatEdit"
+    ' The wireframe of a unit belongs to the unit, and DatEdit lists the units, so the
+    ' wireframe sits in a sub tab of the unit page there. The controls stay owned by
+    ' this form, which holds the code behind them; only their parent changed.
+    '
+    ' What is left in this window is the string table, which is not per unit.
+
+    Private wireframeMoved As Boolean
+
+    Public ReadOnly Property WireframeReleased As Boolean
+        Get
+            Return wireframeMoved
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' The wireframe fields, for DatEdit to place. The page also held a list of the
+    ''' units, which DatEdit already shows, so only the fields move.
+    ''' </summary>
+    Public ReadOnly Property WireframeBox As Control
+        Get
+            Return Panel2
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' Hands the wireframe fields to DatEdit and keeps the string table here.
+    ''' Called once, by DatEdit, before it places them.
+    ''' </summary>
+    Public Sub ReleaseWireframe()
+        If wireframeMoved Then Return
+        wireframeMoved = True
+
+        If TabControl1.TabPages.Contains(TabPage2) Then TabControl1.TabPages.Remove(TabPage2)
+        TAB_INDEX = 0
+    End Sub
+
+    ''' <summary>
+    ''' Draws the wireframe of one unit. DatEdit calls this when its list changes.
+    ''' </summary>
+    Public Sub ShowWireframeFor(entryIndex As Integer)
+        If Not wireframeMoved Then Return
+
+        _OBJECTNUM = entryIndex
+        Try
+            LoadWireframeData()
+        Catch ex As Exception
+            LogException(ex, "drawing the wireframe of unit " & entryIndex)
+        End Try
+    End Sub
+#End Region
+
 #Region "Undo support"
     ' Wireframe values are written here only, so one place records the change.
 
@@ -106,10 +158,13 @@
         End Select
     End Function
 
-    ''' <summary>Opens the wireframe tab and selects the unit an undo is about to change.</summary>
+    ''' <summary>
+    ''' Marks the field an undo is about to change. DatEdit opens the unit; this form
+    ''' owns the controls, so it points at the one that changed.
+    ''' </summary>
     Public Sub RevealWireframe(kind As Integer, entryIndex As Integer)
-        If TabControl1.SelectedIndex <> 1 Then TabControl1.SelectedIndex = 1
-        SelectEntry(entryIndex)
+        _OBJECTNUM = entryIndex
+        LoadWireframeData()
         Dim target As Control = Nothing
         Select Case kind
             Case 0 : target = NumericUpDown1
@@ -143,6 +198,14 @@
     Public Sub ReloadAfterUndo()
         LoadListData()
         LoadList()
+
+        'An undo reveals the place before it changes the value, so the wireframe fields
+        'are drawn again here, after the change.
+        Try
+            LoadWireframeData()
+        Catch ex As Exception
+            LogSuppressed(ex, "FileManagerForm.ReloadAfterUndo")
+        End Try
     End Sub
 #End Region
 
@@ -298,6 +361,63 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
 
 
     Dim LoadStatus As Boolean
+    ''' <summary>Draws the wireframe fields for the entry on show.</summary>
+    Public Sub LoadWireframeData()
+        LoadStatus = True
+        Try
+            NumericUpDown1.Maximum = wirefram.framecount - 1
+            NumericUpDown2.Maximum = grpwire.framecount - 1
+            NumericUpDown3.Maximum = tranwire.framecount - 1
+
+            '12 > 11
+            If wirefram.framecount > _OBJECTNUM Then
+                wirefram.DrawToPictureBox(PictureBox1, wireframData(_OBJECTNUM))
+                NumericUpDown1.Value = wireframData(_OBJECTNUM)
+
+                If wireframData(_OBJECTNUM) = _OBJECTNUM Then
+                    NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
+                Else
+                    NumericUpDown1.BackColor = ProgramSet.colorChangedBackground
+                End If
+                NumericUpDown1.Visible = True
+            Else
+                wirefram.DrawToPictureBox(PictureBox1, 0)
+                NumericUpDown1.Visible = False
+            End If
+            If grpwire.framecount > _OBJECTNUM Then
+                grpwire.DrawToPictureBox(PictureBox2, grpwireData(_OBJECTNUM))
+                NumericUpDown2.Value = grpwireData(_OBJECTNUM)
+
+                If grpwireData(_OBJECTNUM) = _OBJECTNUM Then
+                    NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
+                Else
+                    NumericUpDown2.BackColor = ProgramSet.colorChangedBackground
+                End If
+                NumericUpDown2.Visible = True
+            Else
+                grpwire.DrawToPictureBox(PictureBox2, 0)
+                NumericUpDown2.Visible = False
+            End If
+
+            If tranwire.framecount > _OBJECTNUM Then
+                tranwire.DrawToPictureBox(PictureBox3, tranwireData(_OBJECTNUM))
+                NumericUpDown3.Value = tranwireData(_OBJECTNUM)
+
+                If tranwireData(_OBJECTNUM) = _OBJECTNUM Then
+                    NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
+                Else
+                    NumericUpDown3.BackColor = ProgramSet.colorChangedBackground
+                End If
+                NumericUpDown3.Visible = True
+            Else
+                tranwire.DrawToPictureBox(PictureBox3, 0)
+                NumericUpDown3.Visible = False
+            End If
+        Finally
+            LoadStatus = False
+        End Try
+    End Sub
+
     Public Sub LoadData()
         LoadStatus = True
         Select Case TAB_INDEX
@@ -305,54 +425,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
                 LoadListData()
 
             Case 1
-                NumericUpDown1.Maximum = wirefram.framecount - 1
-                NumericUpDown2.Maximum = grpwire.framecount - 1
-                NumericUpDown3.Maximum = tranwire.framecount - 1
-
-                '12 > 11
-                If wirefram.framecount > _OBJECTNUM Then
-                    wirefram.DrawToPictureBox(PictureBox1, wireframData(_OBJECTNUM))
-                    NumericUpDown1.Value = wireframData(_OBJECTNUM)
-
-                    If wireframData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown1.BackColor = ProgramSet.colorFieldBackground
-                    Else
-                        NumericUpDown1.BackColor = ProgramSet.colorChangedBackground
-                    End If
-                    NumericUpDown1.Visible = True
-                Else
-                    wirefram.DrawToPictureBox(PictureBox1, 0)
-                    NumericUpDown1.Visible = False
-                End If
-                If grpwire.framecount > _OBJECTNUM Then
-                    grpwire.DrawToPictureBox(PictureBox2, grpwireData(_OBJECTNUM))
-                    NumericUpDown2.Value = grpwireData(_OBJECTNUM)
-
-                    If grpwireData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown2.BackColor = ProgramSet.colorFieldBackground
-                    Else
-                        NumericUpDown2.BackColor = ProgramSet.colorChangedBackground
-                    End If
-                    NumericUpDown2.Visible = True
-                Else
-                    grpwire.DrawToPictureBox(PictureBox2, 0)
-                    NumericUpDown2.Visible = False
-                End If
-
-                If tranwire.framecount > _OBJECTNUM Then
-                    tranwire.DrawToPictureBox(PictureBox3, tranwireData(_OBJECTNUM))
-                    NumericUpDown3.Value = tranwireData(_OBJECTNUM)
-
-                    If tranwireData(_OBJECTNUM) = _OBJECTNUM Then
-                        NumericUpDown3.BackColor = ProgramSet.colorFieldBackground
-                    Else
-                        NumericUpDown3.BackColor = ProgramSet.colorChangedBackground
-                    End If
-                    NumericUpDown3.Visible = True
-                Else
-                    tranwire.DrawToPictureBox(PictureBox3, 0)
-                    NumericUpDown3.Visible = False
-                End If
+                LoadWireframeData()
         End Select
         LoadStatus = False
     End Sub
@@ -507,7 +580,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
     Private Sub NumericUpDown1_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown1.ValueChanged
         If LoadStatus = False Then
             SetWireframe(0, _OBJECTNUM, CByte(NumericUpDown1.Value))
-            LoadData()
+            LoadWireframeData()
             If ListBox1.SelectedIndex <> -1 Then
                 If wireframData(_OBJECTNUM) <> _OBJECTNUM Then
                     ListBox1.SelectedItem(LITEM.ischange) = True
@@ -521,7 +594,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
     Private Sub NumericUpDown2_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown2.ValueChanged
         If LoadStatus = False Then
             SetWireframe(1, _OBJECTNUM, CByte(NumericUpDown2.Value))
-            LoadData()
+            LoadWireframeData()
             If ListBox1.SelectedIndex <> -1 Then
                 If grpwireData(_OBJECTNUM) <> _OBJECTNUM Then
                     ListBox1.SelectedItem(LITEM.ischange) = True
@@ -535,7 +608,7 @@ ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles ListBox1.DrawItem
     Private Sub NumericUpDown3_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown3.ValueChanged
         If LoadStatus = False Then
             SetWireframe(2, _OBJECTNUM, CByte(NumericUpDown3.Value))
-            LoadData()
+            LoadWireframeData()
             If ListBox1.SelectedIndex <> -1 Then
                 If tranwireData(_OBJECTNUM) <> _OBJECTNUM Then
                     ListBox1.SelectedItem(LITEM.ischange) = True

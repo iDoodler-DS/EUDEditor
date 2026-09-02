@@ -223,6 +223,8 @@ Public Class Main
 
 
 
+
+
 #Region "Recovery copy"
     ' The editor writes a copy of the project every few minutes while there are changes
     ' that are not saved. A save or a close takes the copy away, so a copy that is still
@@ -488,12 +490,12 @@ Public Class Main
         DatEditForm.ReloadAfterUndo(fieldKey)
     End Sub
 
-    ''' <summary>Opens the FileManager tab and shows the wireframe an undo is about to change.</summary>
+    ''' <summary>Opens the unit and shows the wireframe an undo is about to change.</summary>
     Public Sub RevealWireframe(kind As Integer, entryIndex As Integer)
-        If Not fileManagerTool.Enabled Then Return
-        If Not EditorLoaded(fileManagerTool) Then OpenFileManager()
-        SelectTool(fileManagerTool)
-        If EditorLoaded(fileManagerTool) Then FileManagerForm.RevealWireframe(kind, entryIndex)
+        If Not datEditTool.Enabled Then Return
+        If Not EditorLoaded(datEditTool) Then OpenDatEdit()
+        SelectTool(datEditTool)
+        If EditorLoaded(datEditTool) Then DatEditForm.RevealWireframe(kind, entryIndex)
     End Sub
 
     ''' <summary>Opens the FileManager tab and shows the string an undo is about to change.</summary>
@@ -505,7 +507,7 @@ Public Class Main
     End Sub
 
     Public Sub RefreshFileManager()
-        If EditorLoaded(fileManagerTool) Then FileManagerForm.ReloadAfterUndo()
+        If FileManagerEditorAlive() Then FileManagerForm.ReloadAfterUndo()
     End Sub
 
     ''' <summary>Opens the FireGraft tab and shows the entry an undo is about to change.</summary>
@@ -1173,9 +1175,24 @@ Public Class Main
         Return PrepareEditor(FireGraftForm, fireGraftTool, Nothing)
     End Function
 
+    ''' <summary>
+    ''' Loads FileManager without giving it a tab, so DatEdit can take the wireframe
+    ''' fields from it. FileManager keeps its own tab for the string table.
+    ''' </summary>
+    Public Function EnsureFileManagerLoaded() As Boolean
+        If Not ProjectSet.isload OrElse Not ProjectSet.UsedSetting(8) Then Return False
+        If EditorLoaded(fileManagerTool) OrElse parkedEditors.ContainsKey(fileManagerTool) Then Return True
+        Return PrepareEditor(FileManagerForm, fileManagerTool, Nothing)
+    End Function
+
     'For editors that want to push data into FireGraft only if it exists.
     Public Function FireGraftEditorAlive() As Boolean
         Return EditorLoaded(fireGraftTool) OrElse parkedEditors.ContainsKey(fireGraftTool)
+    End Function
+
+    'The same question for FileManager, which holds the wireframe fields DatEdit shows.
+    Public Function FileManagerEditorAlive() As Boolean
+        Return EditorLoaded(fileManagerTool) OrElse parkedEditors.ContainsKey(fileManagerTool)
     End Function
 
     'The deepest selected page: an inner pane, or a main tab that holds one tool.

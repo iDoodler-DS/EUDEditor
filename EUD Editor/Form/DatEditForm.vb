@@ -174,7 +174,71 @@ Public Class DatEditForm
     End Sub
 
     ''' <summary>Puts the FireGraft fields on the page of the kind of data on show.</summary>
+
+    Private wireframeReady As Boolean
+
+    ''' <summary>
+    ''' Takes the wireframe fields from FileManager, once. They belong to a unit, and
+    ''' this form lists the units, so they sit in a sub tab of the unit page.
+    ''' </summary>
+    Private Sub SetUpWireframe()
+        If wireframeReady Then Return
+        If Not ProjectSet.UsedSetting(8) Then Return   'FileManager is off for this project
+        If Not Main.EnsureFileManagerLoaded() Then Return
+
+        Try
+            FileManagerForm.ReleaseWireframe()
+            wireframeReady = True
+        Catch ex As Exception
+            LogException(ex, "taking the wireframe fields")
+        End Try
+    End Sub
+
+    'Puts the wireframe of the unit on show in its own sub tab of the unit page.
+    Private Sub RefreshWireframe()
+        SetUpWireframe()
+        If Not wireframeReady Then Return
+        If TAB_INDEX <> DTYPE.units Then Return
+
+        Try
+            Dim page As TabPage = MainTAB.TabPages(MainTAB.SelectedIndex)
+            Dim tab As TabPage = SubTab(page, "fmWireframe", Lan.GetText(Me.Name, "SubTab_Wireframe"))
+            Dim box As Control = FileManagerForm.WireframeBox
+            If box.Parent IsNot tab Then
+                box.Dock = DockStyle.Fill
+                tab.Controls.Add(box)
+            End If
+
+            FileManagerForm.ShowWireframeFor(_OBJECTNUM)
+        Catch ex As Exception
+            LogException(ex, "showing the wireframe fields")
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' Opens the unit and its wireframe tab, for an undo of a wireframe change.
+    ''' </summary>
+    Public Sub RevealWireframe(kind As Integer, entryIndex As Integer)
+        SelectDataTab(DTYPE.units)
+        SELECTLIST(entryIndex)
+        RefreshWireframe()
+
+        Dim page As TabPage = MainTAB.SelectedTab
+        If page Is Nothing Then Return
+        For Each c As Control In page.Controls
+            Dim tabs As TabControl = TryCast(c, TabControl)
+            If tabs Is Nothing Then Continue For
+            For Each sub_ As TabPage In tabs.TabPages
+                If TypeOf sub_.Tag Is String AndAlso CStr(sub_.Tag) = "fmWireframe" Then tabs.SelectedTab = sub_
+            Next
+        Next
+
+        If wireframeReady Then FileManagerForm.RevealWireframe(kind, entryIndex)
+    End Sub
+
     Public Sub RefreshExtraFields()
+        RefreshWireframe()
+
         SetUpExtraFields()
         If Not extraReady Then Return
 
